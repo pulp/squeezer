@@ -1,0 +1,105 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator//python
+    method: GET
+    uri: http://localhost:24817/pulp/api/v3/repositories/?name=test
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"_href":"/pulp/api/v3/repositories/5f1c1f1f-26ed-40d0-b2c0-add8cd28d12e/","_created":"2019-06-02T13:42:52.553623Z","_versions_href":"/pulp/api/v3/repositories/5f1c1f1f-26ed-40d0-b2c0-add8cd28d12e/versions/","_latest_version_href":null,"name":"test","description":"repository
+        created via ansible"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '349'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 02 Jun 2019 13:42:58 GMT
+      Server:
+      - gunicorn/19.9.0
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator//python
+    method: DELETE
+    uri: http://localhost:24817/pulp/api/v3/repositories/5f1c1f1f-26ed-40d0-b2c0-add8cd28d12e/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/cd16aed0-91b3-448b-99c0-c29d50e99791/"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 02 Jun 2019 13:42:58 GMT
+      Server:
+      - gunicorn/19.9.0
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator//python
+    method: GET
+    uri: http://localhost:24817/pulp/api/v3/tasks/cd16aed0-91b3-448b-99c0-c29d50e99791/
+  response:
+    body:
+      string: '{"_href":"/pulp/api/v3/tasks/cd16aed0-91b3-448b-99c0-c29d50e99791/","_created":"2019-06-02T13:42:58.420979Z","state":"completed","name":"pulpcore.app.tasks.repository.delete","started_at":"2019-06-02T13:42:58.556742Z","finished_at":"2019-06-02T13:42:58.616184Z","non_fatal_errors":[],"error":null,"worker":"/pulp/api/v3/workers/0ef4bdcd-b41e-4dc2-b2a4-e172a72a1f4f/","parent":null,"spawned_tasks":[],"progress_reports":[],"created_resources":[]}'
+    headers:
+      Allow:
+      - GET, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '445'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 02 Jun 2019 13:42:58 GMT
+      Server:
+      - gunicorn/19.9.0
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,21 @@
+---
+- hosts: tests
+  gather_facts: false
+  vars_files:
+    - vars/server_vars.yaml
+  module_defaults:
+    pulp_status:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+  tasks:
+    - name: Query pulp status
+      pulp_status: {}
+      register: pulp_status
+    - name: Verify result
+      assert:
+        that:
+          - pulp_status.changed == false
+          - pulp_status.status.database_connection.connected == true
+          - pulp_status.status.redis_connection.connected == true
+...

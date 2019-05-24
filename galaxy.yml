@@ -1,0 +1,10 @@
+namespace: "pulp"
+name: "pulp"
+authors:
+  - "Matthias Dellweg <2500@gmx.de>"
+version: "0.0.1"
+license: "GPL-3.0-or-later"
+tags:
+  - pulp
+dependencies:
+  ansible.version: ">= 2.8.0"

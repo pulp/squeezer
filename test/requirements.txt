@@ -1,0 +1,5 @@
+ansible>=2.8
+ansible_runner
+pycodestyle
+pytest
+vcrpy

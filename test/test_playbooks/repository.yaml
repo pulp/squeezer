@@ -1,0 +1,111 @@
+---
+- hosts: fixtures
+  gather_facts: false
+  vars_files:
+    - vars/server_vars.yaml
+  module_defaults:
+    pulp_repository:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+  tasks:
+    - name: Make repository absent
+      pulp_repository:
+        name: test
+        state: absent
+
+- hosts: tests
+  gather_facts: false
+  vars_files:
+    - vars/server_vars.yaml
+  module_defaults:
+    pulp_repository:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+  tasks:
+    - name: Create repository
+      pulp_repository:
+        name: test
+        state: present
+      register: result
+    - name: Verify create repository
+      assert:
+        that:
+          - result.changed == true
+          - result.repository.name == 'test'
+
+    - name: Create repository (2nd try)
+      pulp_repository:
+        name: test
+        state: present
+      register: result
+    - name: Verify create repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Modify repository
+      pulp_repository:
+        name: test
+        description: "repository created via ansible"
+        state: present
+      register: result
+    - name: Verify modify repository
+      assert:
+        that:
+          - result.changed == true
+          - result.repository.description == "repository created via ansible"
+
+    - name: Modify repository (2nd try)
+      pulp_repository:
+        name: test
+        description: "repository created via ansible"
+        state: present
+      register: result
+    - name: Verify modify repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: List repositories
+      pulp_repository: {}
+      register: result
+    - name: Verify list repositories
+      assert:
+        that:
+          - result.changed == false
+          - result.repositories | length >= 1
+
+    - name: Read repository
+      pulp_repository:
+        name: test
+      register: result
+    - name: Verify read repository
+      assert:
+        that:
+          - result.changed == false
+          - result.repository.name == 'test'
+          - result.repository.description == "repository created via ansible"
+
+    - name: Delete repository
+      pulp_repository:
+        name: test
+        state: absent
+      register: result
+    - name: Verify delete repository
+      assert:
+        that:
+          - result.changed == true
+          - not result.repository
+
+    - name: Delete repository (2nd try)
+      pulp_repository:
+        name: test
+        state: absent
+      register: result
+    - name: Verify delete repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+...

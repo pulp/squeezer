@@ -1,0 +1,34 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator//python
+    method: GET
+    uri: http://localhost:24817/pulp/api/v3/status/
+  response:
+    body:
+      string: '{"versions":[{"component":"pulpcore","version":"3.0.0rc2"},{"component":"pulpcore-plugin","version":"0.1.0rc2"},{"component":"pulp_file","version":"0.0.1b11"}],"online_workers":[],"missing_workers":[],"database_connection":{"connected":true},"redis_connection":{"connected":true}}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Content-Length:
+      - '280'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 02 Jun 2019 12:48:05 GMT
+      Server:
+      - WSGIServer/0.2 CPython/3.7.3rc1
+      Vary:
+      - Accept
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
