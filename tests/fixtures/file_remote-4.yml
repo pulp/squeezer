@@ -1,0 +1,36 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.1.0b2.dev01566585594/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/remotes/file/file/?page=1
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"_href":"/pulp/api/v3/remotes/file/file/e513b157-cdd1-4877-ba09-9ed9e0485d97/","_created":"2019-08-25T14:14:45.178289Z","_type":"file.file","name":"test_file_remote","url":"https://repos.fedorapeople.org/pulp/pulp/fixtures/file/PULP_MANIFEST","ssl_ca_certificate":null,"ssl_client_certificate":null,"ssl_client_key":null,"ssl_validation":true,"proxy_url":null,"_last_updated":"2019-08-25T14:14:46.607080Z","download_concurrency":20,"policy":"streamed"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '505'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 25 Aug 2019 14:14:49 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

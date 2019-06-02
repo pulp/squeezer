@@ -1,0 +1,115 @@
+---
+- hosts: fixtures
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    pulp_file_remote:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+  tasks:
+    - name: Make file_remote absent
+      pulp_file_remote:
+        name: test_file_remote
+        state: absent
+
+- hosts: tests
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    pulp_file_remote:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+  tasks:
+    - name: Create file_remote
+      pulp_file_remote:
+        name: test_file_remote
+        url: "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+        state: present
+      register: result
+    - name: Verify create file_remote
+      assert:
+        that:
+          - result.changed == true
+          - result.file_remote.name == "test_file_remote"
+          - result.file_remote.url == "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+
+    - name: Create file_remote (2nd try)
+      pulp_file_remote:
+        name: test_file_remote
+        url: "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+        state: present
+      register: result
+    - name: Verify create file_remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Modify file_remote
+      pulp_file_remote:
+        name: test_file_remote
+        policy: streamed
+        state: present
+      register: result
+    - name: Verify modify file_remote
+      assert:
+        that:
+          - result.changed == true
+          - result.file_remote.policy == "streamed"
+
+    - name: Modify file_remote (2nd try)
+      pulp_file_remote:
+        name: test_file_remote
+        policy: streamed
+        state: present
+      register: result
+    - name: Verify modify file_remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: List file remotes
+      pulp_file_remote: {}
+      register: result
+    - name: Verify list file remotes
+      assert:
+        that:
+          - result.changed == false
+          - result.file_remotes | length >= 1
+          - result.file_remotes | selectattr('name', 'match', 'test_file_remote') | list | length == 1
+
+    - name: Read file_remote
+      pulp_file_remote:
+        name: test_file_remote
+      register: result
+    - name: Verify read file_remote
+      assert:
+        that:
+          - result.changed == false
+          - result.file_remote.name == "test_file_remote"
+          - result.file_remote.url == "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+
+    - name: Delete file_remote
+      pulp_file_remote:
+        name: test_file_remote
+        state: absent
+      register: result
+    - name: Verify delete file_remote
+      assert:
+        that:
+          - result.changed == true
+          - not result.file_remote
+
+    - name: Delete file_remote (2nd try)
+      pulp_file_remote:
+        name: test_file_remote
+        state: absent
+      register: result
+    - name: Verify delete file_remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+...

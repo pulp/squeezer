@@ -14,10 +14,19 @@ from ansible.module_utils.basic import (
 try:
     from pulpcore.client import pulpcore
     HAS_PULPCORE_CLIENT = True
-except ModuleNotFoundError:
+except ImportError:
     pulpcore = None
     HAS_PULPCORE_CLIENT = False
     PULPCORE_CLIENT_IMPORT_ERROR = traceback.format_exc()
+
+
+try:
+    from pulpcore.client import pulp_file
+    HAS_PULP_FILE_CLIENT = True
+except ImportError:
+    pulp_file = None
+    HAS_PULP_FILE_CLIENT = False
+    PULP_FILE_CLIENT_IMPORT_ERROR = traceback.format_exc()
 
 
 class PulpAnsibleModule(AnsibleModule):
@@ -42,9 +51,29 @@ class PulpAnsibleModule(AnsibleModule):
         self._api_config.verify_ssl = self.params.pop('validate_certs')
         self._api_config.safe_chars_for_path_param = '/'
         self._client = pulpcore.ApiClient(self._api_config)
+        self._file_client = None
+        self._file_remotes_api = None
         self._repositories_api = None
         self._status_api = None
         self._tasks_api = None
+
+    @property
+    def file_client(self):
+        if not self._file_client:
+            if not HAS_PULP_FILE_CLIENT:
+                self.fail_json(
+                    msg=missing_required_lib("pulp_file-client"),
+                    exception=PULP_FILE_CLIENT_IMPORT_ERROR,
+                )
+            self._file_client = pulp_file.ApiClient(self._api_config)
+        return self._file_client
+
+    @property
+    def file_remotes_api(self):
+        if not self._file_remotes_api:
+            client = self.file_client
+            self._file_remotes_api = pulp_file.RemotesFileApi(client)
+        return self._file_remotes_api
 
     @property
     def repositories_api(self):
@@ -70,5 +99,5 @@ class PulpAnsibleModule(AnsibleModule):
             sleep(2)
             task = self.tasks_api.read(task.href)
         if task.state != 'completed':
-            self.fail_json(msg='Failed to delete repository {}'.format(name))
+            self.fail_json(msg='Task failed to complete. ({}; {})'.format(task.state, task.error['description']))
         return task

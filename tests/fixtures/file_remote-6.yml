@@ -1,0 +1,138 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.1.0b2.dev01566585594/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/remotes/file/file/?name=test_file_remote
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"_href":"/pulp/api/v3/remotes/file/file/e513b157-cdd1-4877-ba09-9ed9e0485d97/","_created":"2019-08-25T14:14:45.178289Z","_type":"file.file","name":"test_file_remote","url":"https://repos.fedorapeople.org/pulp/pulp/fixtures/file/PULP_MANIFEST","ssl_ca_certificate":null,"ssl_client_certificate":null,"ssl_client_key":null,"ssl_validation":true,"proxy_url":null,"_last_updated":"2019-08-25T14:14:46.607080Z","download_concurrency":20,"policy":"streamed"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '505'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 25 Aug 2019 14:14:50 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.1.0b2.dev01566585594/python
+    method: DELETE
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/remotes/file/file/e513b157-cdd1-4877-ba09-9ed9e0485d97/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/b447f9d3-5896-484e-bd0c-95ed91c4136a/"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 25 Aug 2019 14:14:51 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0rc5.dev01566665315/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/b447f9d3-5896-484e-bd0c-95ed91c4136a/
+  response:
+    body:
+      string: '{"_href":"/pulp/api/v3/tasks/b447f9d3-5896-484e-bd0c-95ed91c4136a/","_created":"2019-08-25T14:14:51.013625Z","state":"waiting","name":"pulpcore.app.tasks.base.general_delete","started_at":null,"finished_at":null,"non_fatal_errors":[],"error":null,"worker":"/pulp/api/v3/workers/318de026-cdd1-410b-b9cb-738f0362b41d/","parent":null,"spawned_tasks":[],"progress_reports":[],"created_resources":[]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '395'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 25 Aug 2019 14:14:51 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0rc5.dev01566665315/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/b447f9d3-5896-484e-bd0c-95ed91c4136a/
+  response:
+    body:
+      string: '{"_href":"/pulp/api/v3/tasks/b447f9d3-5896-484e-bd0c-95ed91c4136a/","_created":"2019-08-25T14:14:51.013625Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2019-08-25T14:14:51.225980Z","finished_at":"2019-08-25T14:14:51.286111Z","non_fatal_errors":[],"error":null,"worker":"/pulp/api/v3/workers/318de026-cdd1-410b-b9cb-738f0362b41d/","parent":null,"spawned_tasks":[],"progress_reports":[],"created_resources":[]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '447'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 25 Aug 2019 14:14:53 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

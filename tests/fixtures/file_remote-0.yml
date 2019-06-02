@@ -1,0 +1,73 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.1.0b2.dev01566585594/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/remotes/file/file/?name=test_file_remote
+  response:
+    body:
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '52'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 25 Aug 2019 14:14:45 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"name": "test_file_remote", "url": "https://repos.fedorapeople.org/pulp/pulp/fixtures/file/PULP_MANIFEST",
+      "policy": "immediate"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.1.0b2.dev01566585594/python
+    method: POST
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/remotes/file/file/
+  response:
+    body:
+      string: '{"_href":"/pulp/api/v3/remotes/file/file/e513b157-cdd1-4877-ba09-9ed9e0485d97/","_created":"2019-08-25T14:14:45.178289Z","_type":"file.file","name":"test_file_remote","url":"https://repos.fedorapeople.org/pulp/pulp/fixtures/file/PULP_MANIFEST","ssl_ca_certificate":null,"ssl_client_certificate":null,"ssl_client_key":null,"ssl_validation":true,"proxy_url":null,"_last_updated":"2019-08-25T14:14:45.178304Z","download_concurrency":20,"policy":"immediate"}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '454'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 25 Aug 2019 14:14:45 GMT
+      Location:
+      - /pulp/api/v3/remotes/file/file/e513b157-cdd1-4877-ba09-9ed9e0485d97/
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 201
+      message: Created
+version: 1
