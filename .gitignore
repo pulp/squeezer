@@ -1,4 +1,4 @@
 __pycache__/
 *.pyc
 *.pyo
-server_vars.yaml
+/test/test_playbooks/vars/server.yaml

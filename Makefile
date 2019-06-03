@@ -25,14 +25,14 @@ record_%: FORCE
 clean_%: FORCE
 	ansible-playbook --tags teardown,cleanup -i test/inventory/hosts 'test/test_playbooks/$*.yaml'
 
-test-setup: test/test_playbooks/vars/server_vars.yaml
+test-setup: test/test_playbooks/vars/server.yaml
 	pip install --upgrade pip
 	pip install -r requirements.txt
 	pip install -r test/requirements.txt
 
-test/test_playbooks/vars/server_vars.yaml:
-	cp test/test_playbooks/vars/server_vars.yaml.example test/test_playbooks/vars/server_vars.yaml
-	@echo "For recording, please adjust test/test_playbooks/vars/server_vars.yaml to match your reference server."
+test/test_playbooks/vars/server.yaml:
+	cp test/test_playbooks/vars/server.yaml.example test/test_playbooks/vars/server.yaml
+	@echo "For recording, please adjust test/test_playbooks/vars/server.yaml to match your reference server."
 
 FORCE:
 

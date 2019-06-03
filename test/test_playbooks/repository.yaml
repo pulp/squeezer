@@ -2,7 +2,7 @@
 - hosts: fixtures
   gather_facts: false
   vars_files:
-    - vars/server_vars.yaml
+    - vars/server.yaml
   module_defaults:
     pulp_repository:
       api_url: "{{ api_url }}"
@@ -11,13 +11,13 @@
   tasks:
     - name: Make repository absent
       pulp_repository:
-        name: test
+        name: test_repository
         state: absent
 
 - hosts: tests
   gather_facts: false
   vars_files:
-    - vars/server_vars.yaml
+    - vars/server.yaml
   module_defaults:
     pulp_repository:
       api_url: "{{ api_url }}"
@@ -26,18 +26,19 @@
   tasks:
     - name: Create repository
       pulp_repository:
-        name: test
+        name: test_repository
+        description: ""
         state: present
       register: result
     - name: Verify create repository
       assert:
         that:
           - result.changed == true
-          - result.repository.name == 'test'
+          - result.repository.name == 'test_repository'
 
     - name: Create repository (2nd try)
       pulp_repository:
-        name: test
+        name: test_repository
         state: present
       register: result
     - name: Verify create repository (2nd try)
@@ -45,28 +46,39 @@
         that:
           - result.changed == false
 
-    - name: Modify repository
+    - name: Add description to repository
       pulp_repository:
-        name: test
+        name: test_repository
         description: "repository created via ansible"
         state: present
       register: result
-    - name: Verify modify repository
+    - name: Verify add description to repository
       assert:
         that:
           - result.changed == true
           - result.repository.description == "repository created via ansible"
 
-    - name: Modify repository (2nd try)
+    - name: Add description to repository (2nd try)
       pulp_repository:
-        name: test
+        name: test_repository
         description: "repository created via ansible"
         state: present
       register: result
-    - name: Verify modify repository (2nd try)
+    - name: Verify add description to repository (2nd try)
       assert:
         that:
           - result.changed == false
+
+    - name: Fake modify repository
+      pulp_repository:
+        name: test_repository
+        state: present
+      register: result
+    - name: Verify fake modify repository
+      assert:
+        that:
+          - result.changed == false
+          - result.repository.description == "repository created via ansible"
 
     - name: List repositories
       pulp_repository: {}
@@ -79,18 +91,44 @@
 
     - name: Read repository
       pulp_repository:
-        name: test
+        name: test_repository
       register: result
     - name: Verify read repository
       assert:
         that:
           - result.changed == false
-          - result.repository.name == 'test'
+          - result.repository.name == 'test_repository'
           - result.repository.description == "repository created via ansible"
+
+    - name: Skip until nullifying fields is possible with the api bindings
+      when: false
+      block:
+        - name: Remove description from repository
+          pulp_repository:
+            name: test_repository
+            description: ""
+            state: present
+          register: result
+        - name: Verify remove description from repository
+          assert:
+            that:
+              - result.changed == true
+              - not result.repository.description
+
+        - name: Remove description from repository (2nd try)
+          pulp_repository:
+            name: test_repository
+            description: ""
+            state: present
+          register: result
+        - name: Verify remove description from repository (2nd try)
+          assert:
+            that:
+              - result.changed == false
 
     - name: Delete repository
       pulp_repository:
-        name: test
+        name: test_repository
         state: absent
       register: result
     - name: Verify delete repository
@@ -101,7 +139,7 @@
 
     - name: Delete repository (2nd try)
       pulp_repository:
-        name: test
+        name: test_repository
         state: absent
       register: result
     - name: Verify delete repository (2nd try)

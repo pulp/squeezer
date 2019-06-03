@@ -112,13 +112,18 @@ def main():
             repository = None
         if module.params['state'] == 'present':
             if repository:
-                if repository.description != description:
-                    repository.description = description
-                    if not module.check_mode:
-                        update_response = module.repositories_api.update(repository.href, repository)
-                        task = module.wait_for_task(update_response.task)
-                    changed = True
+                if description is not None:
+                    if description == "":
+                        description = None
+                    if repository.description != description:
+                        repository.description = description
+                        changed = True
+                if changed and not module.check_mode:
+                    update_response = module.repositories_api.update(repository.href, repository)
+                    task = module.wait_for_task(update_response.task)
             else:
+                if description == "":
+                    description = None
                 repository = pulpcore.Repository(name=name, description=description)
                 if not module.check_mode:
                     repository = module.repositories_api.create(repository)
