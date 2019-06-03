@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/mdellweg/pulp_ansible_modules.svg?branch=master)](https://travis-ci.com/mdellweg/pulp_ansible_modules)
+
 Pulp ansible modules
 ===
 
@@ -7,7 +9,7 @@ This is neither to be confused with ansible-pulp to install pulp, nor pulp\_ansi
 Testing
 ---
 
-Testing infrastructure has been wildly inspired by the sister project foreman-ansible-modules.
+Testing infrastructure has been wildly inspired by the sister project [foreman-ansible-modules](https://github.com/theforeman/foreman-ansible-modules).
 Look at the documentation there for now.
 
 Licence
