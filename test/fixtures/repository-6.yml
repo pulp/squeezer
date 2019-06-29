@@ -7,26 +7,26 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator//python
+      - OpenAPI-Generator/3.0.0rc3/python
     method: GET
-    uri: http://localhost:24817/pulp/api/v3/repositories/?name=test
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/?name=test
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"_href":"/pulp/api/v3/repositories/5f1c1f1f-26ed-40d0-b2c0-add8cd28d12e/","_created":"2019-06-02T13:42:52.553623Z","_versions_href":"/pulp/api/v3/repositories/5f1c1f1f-26ed-40d0-b2c0-add8cd28d12e/versions/","_latest_version_href":null,"name":"test","description":"repository
+      string: '{"count":1,"next":null,"previous":null,"results":[{"_href":"/pulp/api/v3/repositories/f2f798f9-d4ae-4df8-8ffc-50bf3d73d340/","_created":"2019-06-29T20:42:13.200350Z","_versions_href":"/pulp/api/v3/repositories/f2f798f9-d4ae-4df8-8ffc-50bf3d73d340/versions/","_latest_version_href":null,"name":"test","description":"repository
         created via ansible"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '349'
       Content-Type:
       - application/json
       Date:
-      - Sun, 02 Jun 2019 13:42:58 GMT
+      - Sat, 29 Jun 2019 20:42:18 GMT
       Server:
-      - gunicorn/19.9.0
+      - nginx/1.14.2
       Vary:
       - Accept, Cookie
       X-Frame-Options:
@@ -42,25 +42,25 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator//python
+      - OpenAPI-Generator/3.0.0rc3/python
     method: DELETE
-    uri: http://localhost:24817/pulp/api/v3/repositories/5f1c1f1f-26ed-40d0-b2c0-add8cd28d12e/
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/f2f798f9-d4ae-4df8-8ffc-50bf3d73d340/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/cd16aed0-91b3-448b-99c0-c29d50e99791/"}'
+      string: '{"task":"/pulp/api/v3/tasks/709aac8f-fb64-4412-9357-f72b463f8947/"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '67'
       Content-Type:
       - application/json
       Date:
-      - Sun, 02 Jun 2019 13:42:58 GMT
+      - Sat, 29 Jun 2019 20:42:19 GMT
       Server:
-      - gunicorn/19.9.0
+      - nginx/1.14.2
       Vary:
       - Accept, Cookie
       X-Frame-Options:
@@ -76,25 +76,25 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator//python
+      - OpenAPI-Generator/3.0.0rc3/python
     method: GET
-    uri: http://localhost:24817/pulp/api/v3/tasks/cd16aed0-91b3-448b-99c0-c29d50e99791/
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/709aac8f-fb64-4412-9357-f72b463f8947/
   response:
     body:
-      string: '{"_href":"/pulp/api/v3/tasks/cd16aed0-91b3-448b-99c0-c29d50e99791/","_created":"2019-06-02T13:42:58.420979Z","state":"completed","name":"pulpcore.app.tasks.repository.delete","started_at":"2019-06-02T13:42:58.556742Z","finished_at":"2019-06-02T13:42:58.616184Z","non_fatal_errors":[],"error":null,"worker":"/pulp/api/v3/workers/0ef4bdcd-b41e-4dc2-b2a4-e172a72a1f4f/","parent":null,"spawned_tasks":[],"progress_reports":[],"created_resources":[]}'
+      string: '{"_href":"/pulp/api/v3/tasks/709aac8f-fb64-4412-9357-f72b463f8947/","_created":"2019-06-29T20:42:18.989961Z","state":"completed","name":"pulpcore.app.tasks.repository.delete","started_at":"2019-06-29T20:42:19.119653Z","finished_at":"2019-06-29T20:42:19.173945Z","non_fatal_errors":[],"error":null,"worker":"/pulp/api/v3/workers/2f503dea-c8c8-43c6-87fc-2e1457eb696a/","parent":null,"spawned_tasks":[],"progress_reports":[],"created_resources":[]}'
     headers:
       Allow:
-      - GET, DELETE, HEAD, OPTIONS
+      - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '445'
       Content-Type:
       - application/json
       Date:
-      - Sun, 02 Jun 2019 13:42:58 GMT
+      - Sat, 29 Jun 2019 20:42:19 GMT
       Server:
-      - gunicorn/19.9.0
+      - nginx/1.14.2
       Vary:
       - Accept, Cookie
       X-Frame-Options:

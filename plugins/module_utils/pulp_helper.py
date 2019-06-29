@@ -65,10 +65,10 @@ class PulpAnsibleModule(AnsibleModule):
         return self._tasks_api
 
     def wait_for_task(self, task_href):
-        task = self.tasks_api.tasks_read(task_href)
+        task = self.tasks_api.read(task_href)
         while task.state not in ['completed', 'failed', 'canceled']:
             sleep(2)
-            task = self.tasks_api.tasks_read(task.href)
+            task = self.tasks_api.read(task.href)
         if task.state != 'completed':
             self.fail_json(msg='Failed to delete repository {}'.format(name))
         return task

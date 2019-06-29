@@ -62,7 +62,7 @@ else:
     fam_vcr.register_matcher('body_json_l2', body_json_l2_matcher)
     with fam_vcr.use_cassette(cassette_file,
                               record_mode=test_params['record_mode'],
-                              match_on=['method', 'scheme', 'port', 'path', 'query', 'body_json_l2'],
+                              match_on=['method', 'path', 'query', 'body_json_l2'],
                               filter_headers=['Authorization'],
                               ):
         with open(sys.argv[0]) as f:

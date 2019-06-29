@@ -7,25 +7,27 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator//python
+      - OpenAPI-Generator/3.0.0rc3/python
     method: GET
-    uri: http://localhost:24817/pulp/api/v3/status/
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/status/
   response:
     body:
-      string: '{"versions":[{"component":"pulpcore","version":"3.0.0rc2"},{"component":"pulpcore-plugin","version":"0.1.0rc2"},{"component":"pulp_file","version":"0.0.1b11"}],"online_workers":[],"missing_workers":[],"database_connection":{"connected":true},"redis_connection":{"connected":true}}'
+      string: '{"versions":[{"component":"pulpcore","version":"3.0.0rc3"},{"component":"pulpcore-plugin","version":"0.1.0rc3"},{"component":"pulp_file","version":"0.0.1b11"}],"online_workers":[{"_href":"/pulp/api/v3/workers/2f503dea-c8c8-43c6-87fc-2e1457eb696a/","_created":"2019-06-29T19:37:16.487471Z","name":"reserved-resource-worker-1@pulp3-sandbox-debian10.horus.example.com","last_heartbeat":"2019-06-29T20:38:46.483268Z","online":true,"missing":false},{"_href":"/pulp/api/v3/workers/a06bb25d-4b5a-41d8-b939-e954e2376113/","_created":"2019-06-29T19:37:17.186126Z","name":"reserved-resource-worker-2@pulp3-sandbox-debian10.horus.example.com","last_heartbeat":"2019-06-29T20:38:46.583869Z","online":true,"missing":false},{"_href":"/pulp/api/v3/workers/f997c723-0e16-4762-94d0-e5c61d3a927c/","_created":"2019-06-29T19:37:18.535062Z","name":"resource-manager@pulp3-sandbox-debian10.horus.example.com","last_heartbeat":"2019-06-29T20:38:46.984694Z","online":true,"missing":false}],"missing_workers":[],"online_content_apps":[{"name":"12482@pulp3-sandbox-debian10","last_heartbeat":"2019-06-29T20:38:54.023505Z"},{"name":"12481@pulp3-sandbox-debian10","last_heartbeat":"2019-06-29T20:38:54.034806Z"}],"database_connection":{"connected":true},"redis_connection":{"connected":true}}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
       Content-Length:
-      - '280'
+      - '1265'
       Content-Type:
       - application/json
       Date:
-      - Sun, 02 Jun 2019 12:48:05 GMT
+      - Sat, 29 Jun 2019 20:39:00 GMT
       Server:
-      - WSGIServer/0.2 CPython/3.7.3rc1
+      - nginx/1.14.2
       Vary:
-      - Accept
+      - Accept, Cookie
       X-Frame-Options:
       - SAMEORIGIN
     status:

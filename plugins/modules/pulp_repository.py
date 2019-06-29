@@ -105,7 +105,7 @@ def main():
     description = module.params['description']
 
     if name:
-        search_result = module.repositories_api.repositories_list(name=name)
+        search_result = module.repositories_api.list(name=name)
         if search_result.count == 1:
             repository = search_result.results[0]
         else:
@@ -115,17 +115,17 @@ def main():
                 if repository.description != description:
                     repository.description = description
                     if not module.check_mode:
-                        update_response = module.repositories_api.repositories_update(repository.href, repository)
+                        update_response = module.repositories_api.update(repository.href, repository)
                         task = module.wait_for_task(update_response.task)
                     changed = True
             else:
                 repository = pulpcore.Repository(name=name, description=description)
                 if not module.check_mode:
-                    repository = module.repositories_api.repositories_create(repository)
+                    repository = module.repositories_api.create(repository)
                 changed = True
         if module.params['state'] == 'absent' and repository is not None:
             if not module.check_mode:
-                delete_response = module.repositories_api.repositories_delete(repository.href)
+                delete_response = module.repositories_api.delete(repository.href)
                 task = module.wait_for_task(delete_response.task)
             repository = None
             changed = True
@@ -136,11 +136,11 @@ def main():
     else:
         repositories = []
         page = 1
-        search_result = module.repositories_api.repositories_list(page=page)
+        search_result = module.repositories_api.list(page=page)
         repositories.extend(search_result.results)
         while len(repositories) < search_result.count:
             page = page + 1
-            search_result = module.repositories_api.repositories_list(page=page)
+            search_result = module.repositories_api.list(page=page)
             repositories.extend(search_result.results)
 
         module.exit_json(changed=changed, repositories=[repository.to_dict() for repository in repositories])
