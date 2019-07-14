@@ -16,16 +16,16 @@ test:
 	pytest -v
 
 test_%: FORCE
-	pytest 'tests/test_crud.py::test_crud[$*]'
+	pytest 'tests/test_playbooks.py::test_playbook[$*]'
 
 record_%: FORCE
 	$(RM) tests/fixtures/$*-*.yml
-	pytest 'tests/test_crud.py::test_crud[$*]' --record
+	pytest 'tests/test_playbooks.py::test_playbook[$*]' --record
 
 clean_%: FORCE
 	ansible-playbook --tags teardown,cleanup -i tests/inventory/hosts 'tests/playbooks/$*.yaml'
 
-test-setup: test/test_playbooks/vars/server.yaml
+test-setup: tests/playbooks/vars/server.yaml
 	pip install --upgrade pip
 	pip install -r requirements.txt
 	pip install -r test/requirements.txt
