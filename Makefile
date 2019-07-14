@@ -10,29 +10,29 @@ help:
 	@echo "  clean_<test>   to run a specific test playbook with the teardown and cleanup tags"
 
 lint:
-	pycodestyle --ignore=E402,E722 --max-line-length=160 plugins/modules plugins/module_utils test
+	pycodestyle --ignore=E402,E722 --max-line-length=160 plugins/modules plugins/module_utils tests
 
 test:
-	pytest
+	pytest -v
 
 test_%: FORCE
-	pytest 'test/test_crud.py::test_crud[$*]'
+	pytest 'tests/test_crud.py::test_crud[$*]'
 
 record_%: FORCE
-	$(RM) test/fixtures/$*-*.yml
-	pytest 'test/test_crud.py::test_crud[$*]' --record
+	$(RM) tests/fixtures/$*-*.yml
+	pytest 'tests/test_crud.py::test_crud[$*]' --record
 
 clean_%: FORCE
-	ansible-playbook --tags teardown,cleanup -i test/inventory/hosts 'test/test_playbooks/$*.yaml'
+	ansible-playbook --tags teardown,cleanup -i tests/inventory/hosts 'tests/test_playbooks/$*.yaml'
 
 test-setup: test/test_playbooks/vars/server.yaml
 	pip install --upgrade pip
 	pip install -r requirements.txt
 	pip install -r test/requirements.txt
 
-test/test_playbooks/vars/server.yaml:
-	cp test/test_playbooks/vars/server.yaml.example test/test_playbooks/vars/server.yaml
-	@echo "For recording, please adjust test/test_playbooks/vars/server.yaml to match your reference server."
+tests/test_playbooks/vars/server.yaml:
+	cp tests/test_playbooks/vars/server.yaml.example tests/test_playbooks/vars/server.yaml
+	@echo "For recording, please adjust tests/test_playbooks/vars/server.yaml to match your reference server."
 
 FORCE:
 
