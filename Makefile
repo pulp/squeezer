@@ -23,16 +23,16 @@ record_%: FORCE
 	pytest 'tests/test_crud.py::test_crud[$*]' --record
 
 clean_%: FORCE
-	ansible-playbook --tags teardown,cleanup -i tests/inventory/hosts 'tests/test_playbooks/$*.yaml'
+	ansible-playbook --tags teardown,cleanup -i tests/inventory/hosts 'tests/playbooks/$*.yaml'
 
 test-setup: test/test_playbooks/vars/server.yaml
 	pip install --upgrade pip
 	pip install -r requirements.txt
 	pip install -r test/requirements.txt
 
-tests/test_playbooks/vars/server.yaml:
-	cp tests/test_playbooks/vars/server.yaml.example tests/test_playbooks/vars/server.yaml
-	@echo "For recording, please adjust tests/test_playbooks/vars/server.yaml to match your reference server."
+tests/playbooks/vars/server.yaml:
+	cp tests/playbooks/vars/server.yaml.example tests/playbooks/vars/server.yaml
+	@echo "For recording, please adjust tests/playbooks/vars/server.yaml to match your reference server."
 
 FORCE:
 

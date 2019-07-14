@@ -5,7 +5,7 @@ import json
 import ansible_runner
 
 
-TEST_NAMES = [name[:-5] for name in os.listdir('tests/test_playbooks') if name.endswith('.yaml')]
+TEST_NAMES = [name[:-5] for name in os.listdir('tests/playbooks') if name.endswith('.yaml')]
 
 
 # Clean environment from anything that could cause encoding problems
@@ -43,7 +43,7 @@ def run_playbook_vcr(tmpdir, test_name, extra_vars=None, record=False):
 def run_playbook(playbook, extra_vars=None, limit=None):
     # Assemble parameters for playbook call
     os.environ['ANSIBLE_CONFIG'] = os.path.join(os.getcwd(), 'ansible.cfg')
-    playbook_path = os.path.join(os.getcwd(), 'tests', 'test_playbooks', playbook)
+    playbook_path = os.path.join(os.getcwd(), 'tests', 'playbooks', playbook)
     inventory_path = os.path.join(os.getcwd(), 'tests', 'inventory', 'hosts')
     return ansible_runner.run(extravars=extra_vars, playbook=playbook_path, limit=limit, verbosity=4, inventory=inventory_path)
 
