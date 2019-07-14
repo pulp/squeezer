@@ -28,7 +28,7 @@ clean_%: FORCE
 test-setup: tests/playbooks/vars/server.yaml
 	pip install --upgrade pip
 	pip install -r requirements.txt
-	pip install -r test/requirements.txt
+	pip install -r tests/requirements.txt
 
 tests/playbooks/vars/server.yaml:
 	cp tests/playbooks/vars/server.yaml.example tests/playbooks/vars/server.yaml
