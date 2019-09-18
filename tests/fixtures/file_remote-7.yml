@@ -7,7 +7,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.1.0b2.dev01566585594/python
+      - OpenAPI-Generator/0.1.0b21568402078/python
     method: GET
     uri: http://pulp3-sandbox-debian10/pulp/api/v3/remotes/file/file/?name=test_file_remote
   response:
@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 25 Aug 2019 14:14:53 GMT
+      - Sun, 22 Sep 2019 13:42:18 GMT
       Server:
       - nginx/1.14.2
       Vary:

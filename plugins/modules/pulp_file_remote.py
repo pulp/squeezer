@@ -157,12 +157,12 @@ def main():
             module.exit_json(changed=changed, file_remote=None)
     else:
         remotes = []
-        page = 1
-        search_result = module.file_remotes_api.list(page=page)
+        offset = 0
+        search_result = module.file_remotes_api.list(limit=module.PAGE_LIMIT, offset=offset)
         remotes.extend(search_result.results)
-        while len(remotes) < search_result.count:
-            page = page + 1
-            search_result = module.file_remotes_api.list(page=page)
+        while search_result.next:
+            offset += module.PAGE_LIMIT
+            search_result = module.file_remotes_api.list(limit=module.PAGE_LIMIT, offset=offset)
             remotes.extend(search_result.results)
 
         module.exit_json(changed=changed, file_remotes=[remote.to_dict() for remote in remotes])

@@ -30,6 +30,9 @@ except ImportError:
 
 
 class PulpAnsibleModule(AnsibleModule):
+
+    PAGE_LIMIT = 20
+
     def __init__(self, argument_spec={}, **kwargs):
         spec = dict(
             api_url=dict(required=True),
