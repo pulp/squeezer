@@ -36,17 +36,30 @@
       api_url: "{{ api_url }}"
       username: "{{ username }}"
       password: "{{ password }}"
+    pulp_repository:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
   tasks:
     - name: Sync file_remote into repository
       pulp_file_sync:
         remote: file_sync_test_file_remote
         repository: file_sync_test_repository
       register: result
-    - name: Verify create file_remote
+    - name: Verify sync file_remote into repository
       assert:
         that:
           - result.changed == true
           - result.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
+
+    - name: Dump repository
+      pulp_repository:
+        name: file_sync_test_repository
+      register: result
+    - name: Verify repository_version in repository
+      assert:
+        that:
+          - result.repository.latest_version_href is match("/pulp/api/v3/repositories/.*/versions/1/")
 
 - hosts: fixtures
   gather_facts: false
