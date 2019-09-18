@@ -93,7 +93,6 @@ RETURN = r'''
 
 from ansible.module_utils.pulp_helper import (
     PulpAnsibleModule,
-    pulpcore,
     pulp_file,
 )
 
@@ -140,7 +139,7 @@ def main():
                     changed = True
                 if changed and not module.check_mode:
                     update_response = module.file_remotes_api.update(remote.href, remote)
-                    task = module.wait_for_task(update_response.task)
+                    module.wait_for_task(update_response.task)
             else:
                 remote = pulp_file.FileRemote(**{k: v for k, v in module.params.items() if v is not None})
                 if not module.check_mode:
@@ -149,7 +148,7 @@ def main():
         if state == 'absent' and remote is not None:
             if not module.check_mode:
                 delete_response = module.file_remotes_api.delete(remote.href)
-                task = module.wait_for_task(delete_response.task)
+                module.wait_for_task(delete_response.task)
             remote = None
             changed = True
         if remote:

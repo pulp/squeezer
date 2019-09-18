@@ -120,7 +120,7 @@ def main():
                         changed = True
                 if changed and not module.check_mode:
                     update_response = module.repositories_api.update(repository.href, repository)
-                    task = module.wait_for_task(update_response.task)
+                    module.wait_for_task(update_response.task)
             else:
                 if description == "":
                     description = None
@@ -131,7 +131,7 @@ def main():
         if module.params['state'] == 'absent' and repository is not None:
             if not module.check_mode:
                 delete_response = module.repositories_api.delete(repository.href)
-                task = module.wait_for_task(delete_response.task)
+                module.wait_for_task(delete_response.task)
             repository = None
             changed = True
         if repository:

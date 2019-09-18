@@ -56,11 +56,7 @@ RETURN = r'''
 '''
 
 
-from ansible.module_utils.pulp_helper import (
-    PulpAnsibleModule,
-    pulpcore,
-    pulp_file,
-)
+from ansible.module_utils.pulp_helper import PulpAnsibleModule
 
 
 def main():
