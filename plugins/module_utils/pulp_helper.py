@@ -55,6 +55,7 @@ class PulpAnsibleModule(AnsibleModule):
         self._api_config.safe_chars_for_path_param = '/'
         self._client = pulpcore.ApiClient(self._api_config)
         self._file_client = None
+        self._file_publications_api = None
         self._file_remotes_api = None
         self._repositories_api = None
         self._status_api = None
@@ -70,6 +71,13 @@ class PulpAnsibleModule(AnsibleModule):
                 )
             self._file_client = pulp_file.ApiClient(self._api_config)
         return self._file_client
+
+    @property
+    def file_publications_api(self):
+        if not self._file_publications_api:
+            client = self.file_client
+            self._file_publications_api = pulp_file.PublicationsFileApi(client)
+        return self._file_publications_api
 
     @property
     def file_remotes_api(self):

@@ -1,0 +1,106 @@
+---
+- hosts: fixtures
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults: &pulp_module_defaults
+    pulp_file_publication:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+    pulp_file_remote:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+    pulp_file_sync:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+    pulp_repository:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+  tasks:
+    - name: Make repository absent
+      pulp_repository:
+        name: file_sync_test_repository
+        state: absent
+    - name: Make repository present
+      pulp_repository:
+        name: file_sync_test_repository
+        state: present
+    - name: Make file_remote present
+      pulp_file_remote:
+        name: file_sync_test_file_remote
+        url: "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+        state: present
+    - name: Sync file_remote into repository
+      pulp_file_sync:
+        remote: file_sync_test_file_remote
+        repository: file_sync_test_repository
+
+- hosts: tests
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Publish latest version of repository
+      pulp_file_publication:
+        repository: file_sync_test_repository
+        state: present
+      register: result
+    - name: Verify publish latest version of repository
+      assert:
+        that:
+          - result.changed == true
+          - result.file_publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
+
+    - name: Publish latest version of repository (2nd try)
+      pulp_file_publication:
+        repository: file_sync_test_repository
+        state: present
+      register: result
+    - name: Verify publish latest version of repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Delete publication of latest version of repository
+      pulp_file_publication:
+        repository: file_sync_test_repository
+        state: absent
+      register: result
+    - name: Verify delete publication of latest version of repository
+      assert:
+        that:
+          - result.changed == true
+          - not result.file_publication
+
+    - name: Delete publication of latest version of repository (2nd try)
+      pulp_file_publication:
+        repository: file_sync_test_repository
+        state: absent
+      register: result
+    - name: Verify delete publication of latest version of repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+- hosts: fixtures
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Make repository absent
+      pulp_repository:
+        name: file_sync_test_repository
+        state: absent
+    - name: Make file_remote absent
+      pulp_file_remote:
+        name: file_sync_test_file_remote
+        state: absent
+...
