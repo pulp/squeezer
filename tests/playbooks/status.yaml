@@ -3,7 +3,7 @@
   gather_facts: false
   vars_files:
     - vars/server.yaml
-  module_defaults:
+  module_defaults: &pulp_module_defaults
     pulp_status:
       api_url: "{{ api_url }}"
       username: "{{ username }}"

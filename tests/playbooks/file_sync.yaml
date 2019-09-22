@@ -3,12 +3,16 @@
   gather_facts: false
   vars_files:
     - vars/server.yaml
-  module_defaults:
-    pulp_repository:
+  module_defaults: &pulp_module_defaults
+    pulp_file_remote:
       api_url: "{{ api_url }}"
       username: "{{ username }}"
       password: "{{ password }}"
-    pulp_file_remote:
+    pulp_file_sync:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+    pulp_repository:
       api_url: "{{ api_url }}"
       username: "{{ username }}"
       password: "{{ password }}"
@@ -32,14 +36,7 @@
   vars_files:
     - vars/server.yaml
   module_defaults:
-    pulp_file_sync:
-      api_url: "{{ api_url }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
-    pulp_repository:
-      api_url: "{{ api_url }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
+    <<: *pulp_module_defaults
   tasks:
     - name: Sync file_remote into repository
       pulp_file_sync:
@@ -66,14 +63,7 @@
   vars_files:
     - vars/server.yaml
   module_defaults:
-    pulp_repository:
-      api_url: "{{ api_url }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
-    pulp_file_remote:
-      api_url: "{{ api_url }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
+    <<: *pulp_module_defaults
   tasks:
     - name: Make repository absent
       pulp_repository:
