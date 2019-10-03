@@ -140,12 +140,12 @@ def main():
             module.exit_json(changed=changed, repository=None)
     else:
         repositories = []
-        page = 1
-        search_result = module.repositories_api.list(page=page)
+        offset = 0
+        search_result = module.repositories_api.list(limit=module.PAGE_LIMIT, offset=offset)
         repositories.extend(search_result.results)
-        while len(repositories) < search_result.count:
-            page = page + 1
-            search_result = module.repositories_api.list(page=page)
+        while search_result.next:
+            offset += module.PAGE_LIMIT
+            search_result = module.repositories_api.list(limit=module.PAGE_LIMIT, offset=offset)
             repositories.extend(search_result.results)
 
         module.exit_json(changed=changed, repositories=[repository.to_dict() for repository in repositories])

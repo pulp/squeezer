@@ -7,23 +7,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc3/python
+      - OpenAPI-Generator/3.0.0rc6/python
     method: GET
     uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/?name=test_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"_href":"/pulp/api/v3/repositories/e714f208-1c74-49b4-ae95-8897adc3e909/","_created":"2019-07-07T17:28:28.832648Z","_versions_href":"/pulp/api/v3/repositories/e714f208-1c74-49b4-ae95-8897adc3e909/versions/","_latest_version_href":null,"name":"test_repository","description":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"_href":"/pulp/api/v3/repositories/9cceae8d-8ca4-4594-b7b4-1cd60a079025/","_created":"2019-10-03T06:13:35.529080Z","_versions_href":"/pulp/api/v3/repositories/9cceae8d-8ca4-4594-b7b4-1cd60a079025/versions/","_latest_version_href":null,"name":"test_repository","plugin_managed":false,"description":null}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '332'
+      - '355'
       Content-Type:
       - application/json
       Date:
-      - Sun, 07 Jul 2019 17:28:29 GMT
+      - Thu, 03 Oct 2019 06:13:36 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -34,21 +34,22 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"_href": "/pulp/api/v3/repositories/e714f208-1c74-49b4-ae95-8897adc3e909/",
-      "_created": "2019-07-07T17:28:28.832648+00:00", "_versions_href": "/pulp/api/v3/repositories/e714f208-1c74-49b4-ae95-8897adc3e909/versions/",
-      "name": "test_repository", "description": "repository created via ansible"}'
+    body: '{"_href": "/pulp/api/v3/repositories/9cceae8d-8ca4-4594-b7b4-1cd60a079025/",
+      "_created": "2019-10-03T06:13:35.529080+00:00", "_versions_href": "/pulp/api/v3/repositories/9cceae8d-8ca4-4594-b7b4-1cd60a079025/versions/",
+      "name": "test_repository", "plugin_managed": false, "description": "repository
+      created via ansible"}'
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc3/python
+      - OpenAPI-Generator/3.0.0rc6/python
     method: PUT
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/e714f208-1c74-49b4-ae95-8897adc3e909/
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/9cceae8d-8ca4-4594-b7b4-1cd60a079025/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/44772772-f972-4dad-b121-51c991d1d37d/"}'
+      string: '{"task":"/pulp/api/v3/tasks/9120699e-14fc-4cd4-bee4-64d6c7ce2af0/"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -59,7 +60,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 07 Jul 2019 17:28:30 GMT
+      - Thu, 03 Oct 2019 06:13:36 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -77,57 +78,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc3/python
+      - OpenAPI-Generator/3.0.0rc6/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/44772772-f972-4dad-b121-51c991d1d37d/
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/9120699e-14fc-4cd4-bee4-64d6c7ce2af0/
   response:
     body:
-      string: '{"_href":"/pulp/api/v3/tasks/44772772-f972-4dad-b121-51c991d1d37d/","_created":"2019-07-07T17:28:30.045442Z","state":"running","name":"pulpcore.app.tasks.repository.update","started_at":"2019-07-07T17:28:30.179998Z","finished_at":null,"non_fatal_errors":[],"error":null,"worker":"/pulp/api/v3/workers/a06bb25d-4b5a-41d8-b939-e954e2376113/","parent":null,"spawned_tasks":[],"progress_reports":[],"created_resources":[]}'
+      string: '{"_href":"/pulp/api/v3/tasks/9120699e-14fc-4cd4-bee4-64d6c7ce2af0/","_created":"2019-10-03T06:13:36.369336Z","state":"completed","name":"pulpcore.app.tasks.repository.update","started_at":"2019-10-03T06:13:36.447850Z","finished_at":"2019-10-03T06:13:36.463940Z","non_fatal_errors":[],"error":null,"worker":"/pulp/api/v3/workers/c592b191-cdbd-4a5b-9593-6bb4108bf6c9/","parent":null,"spawned_tasks":[],"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/9cceae8d-8ca4-4594-b7b4-1cd60a079025/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '418'
+      - '541'
       Content-Type:
       - application/json
       Date:
-      - Sun, 07 Jul 2019 17:28:30 GMT
-      Server:
-      - nginx/1.14.2
-      Vary:
-      - Accept, Cookie
-      X-Frame-Options:
-      - SAMEORIGIN
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      User-Agent:
-      - OpenAPI-Generator/3.0.0rc3/python
-    method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/44772772-f972-4dad-b121-51c991d1d37d/
-  response:
-    body:
-      string: '{"_href":"/pulp/api/v3/tasks/44772772-f972-4dad-b121-51c991d1d37d/","_created":"2019-07-07T17:28:30.045442Z","state":"completed","name":"pulpcore.app.tasks.repository.update","started_at":"2019-07-07T17:28:30.179998Z","finished_at":"2019-07-07T17:28:30.241530Z","non_fatal_errors":[],"error":null,"worker":"/pulp/api/v3/workers/a06bb25d-4b5a-41d8-b939-e954e2376113/","parent":null,"spawned_tasks":[],"progress_reports":[],"created_resources":[]}'
-    headers:
-      Allow:
-      - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '445'
-      Content-Type:
-      - application/json
-      Date:
-      - Sun, 07 Jul 2019 17:28:32 GMT
+      - Thu, 03 Oct 2019 06:13:36 GMT
       Server:
       - nginx/1.14.2
       Vary:
