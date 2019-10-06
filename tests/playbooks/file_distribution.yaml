@@ -1,0 +1,139 @@
+---
+- hosts: fixtures
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults: &pulp_module_defaults
+    pulp_file_distribution:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+    pulp_file_publication:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+    pulp_file_remote:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+    pulp_file_sync:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+    pulp_repository:
+      api_url: "{{ api_url }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+  tasks:
+    - name: Make repository absent
+      pulp_repository:
+        name: file_sync_test_repository
+        state: absent
+    - name: Make repository present
+      pulp_repository:
+        name: file_sync_test_repository
+        state: present
+    - name: Make file_remote present
+      pulp_file_remote:
+        name: file_sync_test_file_remote
+        url: "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+        state: present
+    - name: Sync file_remote into repository
+      pulp_file_sync:
+        remote: file_sync_test_file_remote
+        repository: file_sync_test_repository
+    - name: Publish latest version of repository
+      pulp_file_publication:
+        repository: file_sync_test_repository
+        state: present
+
+- hosts: tests
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Retrieve publication of repository
+      pulp_file_publication:
+        repository: file_sync_test_repository
+      register: publication_result
+
+    - name: Distribute publication of repository
+      pulp_file_distribution:
+        name: file_test_distribution
+        base_path: test_repo
+        publication: "{{ publication_result.file_publication.href }}"
+        state: present
+      register: result
+    - name: Verify publish latest version of repository
+      assert:
+        that:
+          - result.changed == true
+          - result.file_distribution.name == "file_test_distribution"
+          - result.file_distribution.base_path == "test_repo"
+          - result.file_distribution.base_url == "/pulp/content/test_repo"
+          - result.file_distribution.publication == publication_result.file_publication.href
+
+    - name: Distribute publication of repository (2nd try)
+      pulp_file_distribution:
+        name: file_test_distribution
+        base_path: test_repo
+        publication: "{{ publication_result.file_publication.href }}"
+        state: present
+      register: result
+    - name: Verify publish latest version of repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Read distribution
+      pulp_file_distribution:
+        name: file_test_distribution
+      register: result
+    - name: Verify publish latest version of repository
+      assert:
+        that:
+          - result.changed == false
+          - result.file_distribution.name == "file_test_distribution"
+          - result.file_distribution.base_path == "test_repo"
+          - result.file_distribution.base_url == "/pulp/content/test_repo"
+          - result.file_distribution.publication == publication_result.file_publication.href
+
+    - name: Delete distribution
+      pulp_file_distribution:
+        name: file_test_distribution
+        state: absent
+      register: result
+    - name: Verify delete distribution
+      assert:
+        that:
+          - result.changed == true
+          - not result.file_distribution
+
+    - name: Delete distribution (2nd try)
+      pulp_file_distribution:
+        name: file_test_distribution
+        state: absent
+      register: result
+    - name: Verify delete distribution (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+- hosts: fixtures
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Make repository absent
+      pulp_repository:
+        name: file_sync_test_repository
+        state: absent
+    - name: Make file_remote absent
+      pulp_file_remote:
+        name: file_sync_test_file_remote
+        state: absent
+...

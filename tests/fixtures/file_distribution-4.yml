@@ -1,0 +1,104 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.1.0b3/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/distributions/file/file/?name=file_test_distribution
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"_href":"/pulp/api/v3/distributions/file/file/1997d893-16b7-490f-8ff1-e18f640e359f/","_created":"2019-10-06T10:58:52.420571Z","base_path":"test_repo","base_url":"/pulp/content/test_repo","content_guard":null,"name":"file_test_distribution","publication":"/pulp/api/v3/publications/file/file/9c3fc486-8ab0-4f9e-b8bc-9db2c41a3fd4/"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '383'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 06 Oct 2019 10:58:55 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.1.0b3/python
+    method: DELETE
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/distributions/file/file/1997d893-16b7-490f-8ff1-e18f640e359f/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/36baa893-72a2-48b8-a95d-c7efa9f53805/"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 06 Oct 2019 10:58:55 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0rc6/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/36baa893-72a2-48b8-a95d-c7efa9f53805/
+  response:
+    body:
+      string: '{"_href":"/pulp/api/v3/tasks/36baa893-72a2-48b8-a95d-c7efa9f53805/","_created":"2019-10-06T10:58:55.837251Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2019-10-06T10:58:55.904421Z","finished_at":"2019-10-06T10:58:55.922458Z","non_fatal_errors":[],"error":null,"worker":"/pulp/api/v3/workers/c592b191-cdbd-4a5b-9593-6bb4108bf6c9/","parent":null,"spawned_tasks":[],"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '502'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 06 Oct 2019 10:58:55 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

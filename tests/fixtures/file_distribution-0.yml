@@ -1,0 +1,70 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0rc6/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/?name=file_sync_test_repository
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"_href":"/pulp/api/v3/repositories/b4e3b409-fe8d-4e57-8e4a-f61e897f16e7/","_created":"2019-10-06T10:58:45.185115Z","_versions_href":"/pulp/api/v3/repositories/b4e3b409-fe8d-4e57-8e4a-f61e897f16e7/versions/","_latest_version_href":"/pulp/api/v3/repositories/b4e3b409-fe8d-4e57-8e4a-f61e897f16e7/versions/1/","name":"file_sync_test_repository","plugin_managed":false,"description":null}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '437'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 06 Oct 2019 10:58:51 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.1.0b3/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/publications/file/file/
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"_href":"/pulp/api/v3/publications/file/file/9c3fc486-8ab0-4f9e-b8bc-9db2c41a3fd4/","_created":"2019-10-06T10:58:49.074959Z","_type":"file.file","publisher":null,"repository_version":"/pulp/api/v3/repositories/b4e3b409-fe8d-4e57-8e4a-f61e897f16e7/versions/1/","distributions":[]}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '332'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 06 Oct 2019 10:58:51 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

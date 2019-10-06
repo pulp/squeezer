@@ -110,6 +110,10 @@ def main():
                 choices=['present', 'absent'],
             ),
         ),
+        required_if=[
+            ('state', 'present', ['name']),
+            ('state', 'absent', ['name']),
+        ],
         supports_check_mode=True,
     )
 
