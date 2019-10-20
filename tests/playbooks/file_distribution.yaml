@@ -1,29 +1,21 @@
 ---
-- hosts: fixtures
+- hosts: localhost
   gather_facts: false
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    pulp_file_distribution:
-      api_url: "{{ api_url }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
+    pulp_file_distribution: &pulp_connection_details
+      api_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
     pulp_file_publication:
-      api_url: "{{ api_url }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
+      <<: *pulp_connection_details
     pulp_file_remote:
-      api_url: "{{ api_url }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
+      <<: *pulp_connection_details
     pulp_file_sync:
-      api_url: "{{ api_url }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
+      <<: *pulp_connection_details
     pulp_repository:
-      api_url: "{{ api_url }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
+      <<: *pulp_connection_details
   tasks:
     - name: Make repository absent
       pulp_repository:
@@ -121,7 +113,7 @@
         that:
           - result.changed == false
 
-- hosts: fixtures
+- hosts: localhost
   gather_facts: false
   vars_files:
     - vars/server.yaml

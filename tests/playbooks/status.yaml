@@ -4,10 +4,10 @@
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    pulp_status:
-      api_url: "{{ api_url }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
+    pulp_status: &pulp_connection_details
+      api_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
   tasks:
     - name: Query pulp status
       pulp_status: {}
