@@ -143,9 +143,10 @@ def main():
         if state == 'present':
             if publication:
                 # publications cannot be updated
-                pass
+                if manifest and manifest != publication.manifest:
+                    module.fail_json(msg="Publications cannot be modified.")
             else:
-                publication = pulp_file.FilePublication(repository_version=repository_version_href)
+                publication = pulp_file.FilePublication(repository_version=repository_version_href, manifest=manifest)
                 if not module.check_mode:
                     create_response = module.file_publications_api.create(publication)
                     publication_href = module.wait_for_task(create_response.task).created_resources[0]
