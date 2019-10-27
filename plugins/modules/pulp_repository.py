@@ -80,7 +80,6 @@ RETURN = r'''
 
 from ansible.module_utils.pulp_helper import (
     PulpEntityAnsibleModule,
-    pulpcore,
 )
 
 

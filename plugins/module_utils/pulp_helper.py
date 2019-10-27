@@ -150,7 +150,7 @@ class PulpAnsibleModule(AnsibleModule):
         search_result = entity_api.list(limit=self.PAGE_LIMIT, offset=offset)
         entities.extend(search_result.results)
         while search_result.next:
-            offset += module.PAGE_LIMIT
+            offset += self.PAGE_LIMIT
             search_result = entity_api.list(limit=self.PAGE_LIMIT, offset=offset)
             entities.extend(search_result.results)
         return entities

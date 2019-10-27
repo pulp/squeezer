@@ -93,7 +93,6 @@ RETURN = r'''
 
 from ansible.module_utils.pulp_helper import (
     PulpEntityAnsibleModule,
-    pulp_file,
 )
 
 
