@@ -5,7 +5,7 @@
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
     pulp_repository: &pulp_connection_details
-      api_url: "{{ pulp_url }}"
+      pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
   tasks:

@@ -35,7 +35,7 @@ class PulpAnsibleModule(AnsibleModule):
 
     def __init__(self, argument_spec={}, **kwargs):
         spec = dict(
-            api_url=dict(required=True),
+            pulp_url=dict(required=True),
             username=dict(required=True),
             password=dict(required=True, no_log=True),
             validate_certs=dict(type='bool', default=True),
@@ -48,10 +48,10 @@ class PulpAnsibleModule(AnsibleModule):
                 exception=PULPCORE_CLIENT_IMPORT_ERROR,
             )
         self._api_config = pulpcore.Configuration()
-        self._api_config.host = self.params.pop('api_url')
-        self._api_config.username = self.params.pop('username')
-        self._api_config.password = self.params.pop('password')
-        self._api_config.verify_ssl = self.params.pop('validate_certs')
+        self._api_config.host = self.params['pulp_url']
+        self._api_config.username = self.params['username']
+        self._api_config.password = self.params['password']
+        self._api_config.verify_ssl = self.params['validate_certs']
         self._api_config.safe_chars_for_path_param = '/'
         self._client = pulpcore.ApiClient(self._api_config)
         self._file_client = None

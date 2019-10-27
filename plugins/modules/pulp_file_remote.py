@@ -118,7 +118,7 @@ def main():
     )
 
     changed = False
-    state = module.params.pop('state')
+    state = module.params['state']
     name = module.params['name']
     url = module.params['url']
     download_concurrency = module.params['download_concurrency']
@@ -145,7 +145,11 @@ def main():
                     update_response = module.file_remotes_api.update(remote.href, remote)
                     module.wait_for_task(update_response.task)
             else:
-                remote = pulp_file.FileRemote(**{k: v for k, v in module.params.items() if v is not None})
+                remote = pulp_file.FileRemote(name=name, url=url)
+                if download_concurrency:
+                    remote.download_concurrency = download_concurrency
+                if policy:
+                    remote.policy = policy
                 if not module.check_mode:
                     remote = module.file_remotes_api.create(remote)
                 changed = True
