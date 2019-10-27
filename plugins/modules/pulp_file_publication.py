@@ -162,16 +162,8 @@ def main():
         else:
             module.exit_json(changed=changed, file_publication=None)
     else:
-        publications = []
-        offset = 0
-        search_result = module.file_publications_api.list(limit=module.PAGE_LIMIT, offset=offset)
-        publications.extend(search_result.results)
-        while search_result.next:
-            offset += module.PAGE_LIMIT
-            search_result = module.file_publications_api.list(limit=module.PAGE_LIMIT, offset=offset)
-            publications.extend(search_result.results)
-
-        module.exit_json(changed=changed, file_publications=[publication.to_dict() for publication in publications])
+        entities = module.list_all(module.file_publications_api)
+        module.exit_json(changed=changed, file_publications=[entity.to_dict() for entity in entities])
 
 
 if __name__ == '__main__':

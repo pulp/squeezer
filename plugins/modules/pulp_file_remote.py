@@ -164,16 +164,8 @@ def main():
         else:
             module.exit_json(changed=changed, file_remote=None)
     else:
-        remotes = []
-        offset = 0
-        search_result = module.file_remotes_api.list(limit=module.PAGE_LIMIT, offset=offset)
-        remotes.extend(search_result.results)
-        while search_result.next:
-            offset += module.PAGE_LIMIT
-            search_result = module.file_remotes_api.list(limit=module.PAGE_LIMIT, offset=offset)
-            remotes.extend(search_result.results)
-
-        module.exit_json(changed=changed, file_remotes=[remote.to_dict() for remote in remotes])
+        entities = module.list_all(module.file_remotes_api)
+        module.exit_json(changed=False, file_remotes=[entity.to_dict() for entity in entities])
 
 
 if __name__ == '__main__':

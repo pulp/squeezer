@@ -139,16 +139,8 @@ def main():
         else:
             module.exit_json(changed=changed, repository=None)
     else:
-        repositories = []
-        offset = 0
-        search_result = module.repositories_api.list(limit=module.PAGE_LIMIT, offset=offset)
-        repositories.extend(search_result.results)
-        while search_result.next:
-            offset += module.PAGE_LIMIT
-            search_result = module.repositories_api.list(limit=module.PAGE_LIMIT, offset=offset)
-            repositories.extend(search_result.results)
-
-        module.exit_json(changed=changed, repositories=[repository.to_dict() for repository in repositories])
+        entities = module.list_all(module.repositories_api)
+        module.exit_json(changed=False, repositories=[entity.to_dict() for entity in entities])
 
 
 if __name__ == '__main__':

@@ -120,3 +120,14 @@ class PulpAnsibleModule(AnsibleModule):
         if task.state != 'completed':
             self.fail_json(msg='Task failed to complete. ({}; {})'.format(task.state, task.error['description']))
         return task
+
+    def list_all(self, api):
+        entities = []
+        offset = 0
+        search_result = api.list(limit=self.PAGE_LIMIT, offset=offset)
+        entities.extend(search_result.results)
+        while search_result.next:
+            offset += module.PAGE_LIMIT
+            search_result = api.list(limit=self.PAGE_LIMIT, offset=offset)
+            entities.extend(search_result.results)
+        return entities

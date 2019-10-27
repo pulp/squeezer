@@ -64,7 +64,7 @@ EXAMPLES = r'''
     var: distribution_status
 
 - name: Create a file distribution
-  pulp_file_remote:
+  pulp_file_distribution:
     api_url: localhost:24817
     username: admin
     password: password
@@ -164,16 +164,8 @@ def main():
         else:
             module.exit_json(changed=changed, file_distribution=None)
     else:
-        distributions = []
-        offset = 0
-        search_result = module.file_distributions_api.list(limit=module.PAGE_LIMIT, offset=offset)
-        distributions.extend(search_result.results)
-        while search_result.next:
-            offset += module.PAGE_LIMIT
-            search_result = module.file_distributions_api.list(limit=module.PAGE_LIMIT, offset=offset)
-            distributions.extend(search_result.results)
-
-        module.exit_json(changed=changed, file_distributions=[distribution.to_dict() for distribution in distributions])
+        entities = module.list_all(module.file_distribution_api)
+        module.exit_json(changed=False, file_distributions=[entity.to_dict() for entity in entities])
 
 
 if __name__ == '__main__':
