@@ -87,83 +87,64 @@ RETURN = r'''
 
 
 from ansible.module_utils.pulp_helper import (
-    PulpAnsibleModule,
+    PulpEntityAnsibleModule,
     pulp_file,
 )
 
 
 def main():
-    module = PulpAnsibleModule(
+    module = PulpEntityAnsibleModule(
         argument_spec=dict(
             repository=dict(),
             version=dict(),
             manifest=dict(),
-            state=dict(
-                choices=['present', 'absent'],
-            ),
         ),
         required_if=(
             ['state', 'present', ['repository']],
             ['state', 'absent', ['repository']],
         ),
-        supports_check_mode=True,
+        entity_name='file_publication',
+        entity_plural='file_publications',
     )
 
-    changed = False
-    state = module.params['state']
     repository_name = module.params['repository']
     version = module.params['version']
-    manifest = module.params['manifest']
+    desired_attributes = {
+        key: module.params[key] for key in ['manifest'] if module.params[key] is not None
+    }
 
     if version:
         module.fail_json(msg="Selecting a repository version is not yet implemented.")
 
     if repository_name:
-        search_result = module.repositories_api.list(name=repository_name)
-        if search_result.count == 1:
-            repository = search_result.results[0]
-        else:
+        repository = module.find_entity(module.repositories_api, {'name': repository_name})
+        if repository is None:
             module.fail_json(msg="Failed to find repository ({repository_name}).".format(repository_name=repository_name))
         # TODO handle version properly
         repository_version_href = repository.latest_version_href
         # TODO proper search
-        # search_result = module.file_publications_api.list(repository_version=repository_version_href)
-        # if search_result.count == 1:
-        #     publication = search_result.results[0]
-        # else:
-        #     publication = None
+        # entity = module.find_entity(module.file_publications_api, {'repository_version': repository_version_href})
         # ---8<----8<---8<---
-        publication = None
+        entity = None
         search_result = module.file_publications_api.list()
         for item in search_result.results:
             if item.repository_version == repository_version_href:
-                publication = item
+                entity = item
                 break
         # ---8<----8<---8<---
-        if state == 'present':
-            if publication:
-                # publications cannot be updated
-                if manifest and manifest != publication.manifest:
-                    module.fail_json(msg="Publications cannot be modified.")
-            else:
-                publication = pulp_file.FilePublication(repository_version=repository_version_href, manifest=manifest)
-                if not module.check_mode:
-                    create_response = module.file_publications_api.create(publication)
-                    publication_href = module.wait_for_task(create_response.task).created_resources[0]
-                    publication = module.file_publications_api.read(publication_href)
-                changed = True
-        if state == 'absent' and publication is not None:
-            if not module.check_mode:
-                module.file_publications_api.delete(publication.href)
-            publication = None
-            changed = True
-        if publication:
-            module.exit_json(changed=changed, file_publication=publication.to_dict())
-        else:
-            module.exit_json(changed=changed, file_publication=None)
+        entity = module.ensure_entity_state(
+            entity_api=module.file_publications_api,
+            entity_class=pulp_file.FilePublication,
+            entity=entity,
+            natural_key={'repository_version': repository_version_href},
+            desired_attributes=desired_attributes,
+        )
+        if entity is not None:
+            entity = entity.to_dict()
+        module.exit_json(file_publication=entity)
     else:
         entities = module.list_all(module.file_publications_api)
-        module.exit_json(changed=changed, file_publications=[entity.to_dict() for entity in entities])
+        module.exit_json(file_publications=[entity.to_dict() for entity in entities])
 
 
 if __name__ == '__main__':

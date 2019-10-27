@@ -7,7 +7,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.1.0b3/python
+      - OpenAPI-Generator/0.1.0b4/python
     method: GET
     uri: http://pulp3-sandbox-debian10/pulp/api/v3/distributions/file/file/?name=file_test_distribution
   response:
@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 06 Oct 2019 10:58:56 GMT
+      - Sun, 27 Oct 2019 20:22:12 GMT
       Server:
       - nginx/1.14.2
       Vary:

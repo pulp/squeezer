@@ -94,78 +94,38 @@ RETURN = r'''
 
 
 from ansible.module_utils.pulp_helper import (
-    PulpAnsibleModule,
+    PulpEntityAnsibleModule,
     pulp_file,
 )
 
 
 def main():
-    module = PulpAnsibleModule(
+    module = PulpEntityAnsibleModule(
         argument_spec=dict(
             name=dict(),
             base_path=dict(),
             publication=dict(),
             content_guard=dict(),
-            state=dict(
-                choices=['present', 'absent'],
-            ),
         ),
         required_if=[
             ('state', 'present', ['name', 'base_path']),
             ('state', 'absent', ['name']),
         ],
-        supports_check_mode=True,
+        entity_name='file_distribution',
+        entity_plural='file_distributions',
     )
 
-    changed = False
-    state = module.params['state']
-    name = module.params['name']
-    base_path = module.params['base_path']
-    publication_href = module.params['publication']
-    content_guard = module.params['content_guard']
-
-    if content_guard:
+    if module.params['content_guard']:
         module.fail_json(msg="Content guard features are not yet supportet in this module.")
 
-    if name:
-        search_result = module.file_distributions_api.list(name=name)
-        if search_result.count == 1:
-            distribution = search_result.results[0]
-        else:
-            distribution = None
-        if state == 'present':
-            if distribution:
-                if base_path and distribution.base_path != base_path:
-                    distribution.base_path = base_path
-                    changed = True
-                if publication_href and distribution.publication != publication_href:
-                    distribution.publication = publication_href
-                    changed = True
-                if changed and not module.check_mode:
-                    update_response = module.file_distributions_api.update(distribution.href, distribution)
-                    module.wait_for_task(update_response.task)
-            else:
-                distribution = pulp_file.FileDistribution(name=name, base_path=base_path)
-                if publication_href:
-                    distribution.publication = publication_href
-                if not module.check_mode:
-                    create_response = module.file_distributions_api.create(distribution)
-                    distribution_href = module.wait_for_task(create_response.task).created_resources[0]
-                    distribution = module.file_distributions_api.read(distribution_href)
-                changed = True
-        if state == 'absent' and distribution is not None:
-            if not module.check_mode:
-                delete_response = module.file_distributions_api.delete(distribution.href)
-                module.wait_for_task(delete_response.task)
-                distribution = None
-            changed = True
-        if distribution:
-            module.exit_json(changed=changed, file_distribution=distribution.to_dict())
-        else:
-            module.exit_json(changed=changed, file_distribution=None)
-    else:
-        entities = module.list_all(module.file_distribution_api)
-        module.exit_json(changed=False, file_distributions=[entity.to_dict() for entity in entities])
+    natural_key = {
+        'name': module.params['name'],
+    }
+    desired_attributes = {
+        key: module.params[key] for key in ['base_path', 'content_guard', 'publication'] if module.params[key] is not None
+    }
+
+    module.process_entity(natural_key, desired_attributes)
 
 
 if __name__ == '__main__':

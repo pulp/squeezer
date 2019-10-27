@@ -65,31 +65,25 @@ def main():
             remote=dict(required=True),
             repository=dict(required=True),
         ),
-        supports_check_mode=True,
     )
 
-    changed = False
     remote_name = module.params['remote']
     repository_name = module.params['repository']
 
-    search_result = module.file_remotes_api.list(name=remote_name)
-    if search_result.count == 1:
-        remote = search_result.results[0]
-    else:
+    remote = module.find_entity(module.file_remotes_api, {'name': remote_name})
+    if remote is None:
         module.fail_json(msg="Remote '{}' not found.".format(remote_name))
 
-    search_result = module.repositories_api.list(name=repository_name)
-    if search_result.count == 1:
-        repository = search_result.results[0]
-    else:
+    repository = module.find_entity(module.repositories_api, {'name': repository_name})
+    if repository is None:
         module.fail_json(msg="Repository '{}' not found.".format(repository_name))
 
-    result = module.file_remotes_api.sync(remote._href, {'repository': repository._href})
+    result = module.file_remotes_api.sync(remote.pulp_href, {'repository': repository.pulp_href})
+    module._changed = True
     sync_task = module.wait_for_task(result.task)
-    changed = True
     repository_version = sync_task.created_resources[0]
 
-    module.exit_json(changed=changed, repository_version=repository_version)
+    module.exit_json(repository_version=repository_version)
 
 
 if __name__ == '__main__':

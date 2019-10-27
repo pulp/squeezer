@@ -51,7 +51,7 @@ from ansible.module_utils.pulp_helper import PulpAnsibleModule
 def main():
     module = PulpAnsibleModule()
     status = module.status_api.status_read()
-    module.exit_json(changed=False, status=status.to_dict())
+    module.exit_json(status=status.to_dict())
 
 
 if __name__ == '__main__':

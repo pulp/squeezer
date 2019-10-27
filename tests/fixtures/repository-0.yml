@@ -7,7 +7,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc6/python
+      - OpenAPI-Generator/3.0.0rc7/python
     method: GET
     uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/?name=test_repository
   response:
@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 03 Oct 2019 06:13:35 GMT
+      - Sun, 27 Oct 2019 17:50:18 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -41,25 +41,25 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc6/python
+      - OpenAPI-Generator/3.0.0rc7/python
     method: POST
     uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/
   response:
     body:
-      string: '{"_href":"/pulp/api/v3/repositories/9cceae8d-8ca4-4594-b7b4-1cd60a079025/","_created":"2019-10-03T06:13:35.529080Z","_versions_href":"/pulp/api/v3/repositories/9cceae8d-8ca4-4594-b7b4-1cd60a079025/versions/","_latest_version_href":null,"name":"test_repository","plugin_managed":false,"description":null}'
+      string: '{"pulp_href":"/pulp/api/v3/repositories/db7ccd87-b444-4283-a74f-6c9adfdb06ac/","pulp_created":"2019-10-27T17:50:18.319608Z","versions_href":"/pulp/api/v3/repositories/db7ccd87-b444-4283-a74f-6c9adfdb06ac/versions/","latest_version_href":null,"name":"test_repository","plugin_managed":false,"description":null}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '303'
+      - '309'
       Content-Type:
       - application/json
       Date:
-      - Thu, 03 Oct 2019 06:13:35 GMT
+      - Sun, 27 Oct 2019 17:50:18 GMT
       Location:
-      - /pulp/api/v3/repositories/9cceae8d-8ca4-4594-b7b4-1cd60a079025/
+      - /pulp/api/v3/repositories/db7ccd87-b444-4283-a74f-6c9adfdb06ac/
       Server:
       - nginx/1.14.2
       Vary:

@@ -41,6 +41,7 @@ class PulpAnsibleModule(AnsibleModule):
             validate_certs=dict(type='bool', default=True),
         )
         spec.update(argument_spec)
+        kwargs['supports_check_mode'] = kwargs.get('supports_check_mode', True)
         super(PulpAnsibleModule, self).__init__(argument_spec=spec, **kwargs)
         if not HAS_PULPCORE_CLIENT:
             self.fail_json(
@@ -62,6 +63,8 @@ class PulpAnsibleModule(AnsibleModule):
         self._status_api = None
         self._tasks_api = None
 
+        self._changed = False
+
     @property
     def file_client(self):
         if not self._file_client:
@@ -81,11 +84,19 @@ class PulpAnsibleModule(AnsibleModule):
         return self._file_distributions_api
 
     @property
+    def file_distribution_class(self):
+        return pulp_file.FileDistribution
+
+    @property
     def file_publications_api(self):
         if not self._file_publications_api:
             client = self.file_client
             self._file_publications_api = pulp_file.PublicationsFileApi(client)
         return self._file_publications_api
+
+    @property
+    def file_publication_class(self):
+        return pulp_file.FilePublication
 
     @property
     def file_remotes_api(self):
@@ -95,10 +106,18 @@ class PulpAnsibleModule(AnsibleModule):
         return self._file_remotes_api
 
     @property
+    def file_remote_class(self):
+        return pulp_file.FileRemote
+
+    @property
     def repositories_api(self):
         if not self._repositories_api:
             self._repositories_api = pulpcore.RepositoriesApi(self._client)
         return self._repositories_api
+
+    @property
+    def repository_class(self):
+        return pulpcore.Repository
 
     @property
     def status_api(self):
@@ -112,22 +131,121 @@ class PulpAnsibleModule(AnsibleModule):
             self._tasks_api = pulpcore.TasksApi(self._client)
         return self._tasks_api
 
+    def exit_json(self, changed=False, **kwargs):
+        changed |= self._changed
+        super(PulpAnsibleModule, self).exit_json(changed=changed, **kwargs)
+
     def wait_for_task(self, task_href):
         task = self.tasks_api.read(task_href)
         while task.state not in ['completed', 'failed', 'canceled']:
             sleep(2)
-            task = self.tasks_api.read(task.href)
+            task = self.tasks_api.read(task.pulp_href)
         if task.state != 'completed':
             self.fail_json(msg='Task failed to complete. ({}; {})'.format(task.state, task.error['description']))
         return task
 
-    def list_all(self, api):
+    def list_entities(self, entity_api):
         entities = []
         offset = 0
-        search_result = api.list(limit=self.PAGE_LIMIT, offset=offset)
+        search_result = entity_api.list(limit=self.PAGE_LIMIT, offset=offset)
         entities.extend(search_result.results)
         while search_result.next:
             offset += module.PAGE_LIMIT
-            search_result = api.list(limit=self.PAGE_LIMIT, offset=offset)
+            search_result = entity_api.list(limit=self.PAGE_LIMIT, offset=offset)
             entities.extend(search_result.results)
         return entities
+
+    def find_entity(self, entity_api, natural_key):
+        search_result = entity_api.list(**natural_key)
+        if search_result.count == 1:
+            return search_result.results[0]
+        else:
+            return None
+
+    def create_entity(self, entity_api, entity_class, natural_key, desired_attributes):
+        entity = entity_class(**natural_key, **desired_attributes)
+        if not self.check_mode:
+            response = entity_api.create(entity)
+            if getattr(response, 'task', None):
+                task = self.wait_for_task(response.task)
+                entity = entity_api.read(task.created_resources[0])
+            else:
+                entity = response
+        self._changed = True
+        return entity
+
+    def update_entity(self, entity_api, entity, desired_attributes):
+        changed = False
+        for key, value in desired_attributes.items():
+            if getattr(entity, key, None) != value:
+                setattr(entity, key, value)
+                changed = True
+        if changed:
+            if not hasattr(entity_api, 'update'):
+                self.fail_json(msg="This entity is immutable.")
+            if not self.check_mode:
+                response = entity_api.update(entity.pulp_href, entity)
+                if getattr(response, 'task', None):
+                    self.wait_for_task(response.task)
+                    entity = entity_api.read(entity.pulp_href)
+                else:
+                    entity = response
+        if changed:
+            self._changed = True
+        return entity
+
+    def delete_entity(self, entity_api, entity):
+        if not self.check_mode:
+            response = entity_api.delete(entity.pulp_href)
+            if getattr(response, 'task', None):
+                self.wait_for_task(response.task)
+        self._changed = True
+        return None
+
+    def ensure_entity_state(self, entity_api, entity_class, entity, natural_key, desired_attributes):
+        if self.params['state'] == 'present':
+            if entity:
+                entity = self.update_entity(entity_api, entity, desired_attributes)
+            else:
+                entity = self.create_entity(entity_api, entity_class, natural_key, desired_attributes)
+        if self.params['state'] == 'absent' and entity is not None:
+            entity = self.delete_entity(entity_api, entity)
+        return entity
+
+
+class PulpEntityAnsibleModule(PulpAnsibleModule):
+    def __init__(self, argument_spec={}, **kwargs):
+        self._entity_name = kwargs.pop('entity_name')
+        self._entity_plural = kwargs.pop('entity_plural')
+        spec = dict(
+            state=dict(
+                choices=['present', 'absent'],
+            ),
+        )
+        spec.update(argument_spec)
+        super(PulpEntityAnsibleModule, self).__init__(
+            argument_spec=spec,
+            **kwargs,
+        )
+        self._entity_api = getattr(self, self._entity_plural + '_api')
+        self._entity_class = getattr(self, self._entity_name + '_class')
+
+    def process_entity(self, natural_key, desired_attributes):
+        if None not in natural_key.values():
+            entity = self.find_entity(
+                entity_api=self._entity_api,
+                natural_key=natural_key,
+            )
+            entity = self.ensure_entity_state(
+                entity_api=self._entity_api,
+                entity_class=self._entity_class,
+                entity=entity,
+                natural_key=natural_key,
+                desired_attributes=desired_attributes,
+            )
+            if entity:
+                entity = entity.to_dict()
+            self.exit_json(**{self._entity_name: entity})
+        else:
+            entities = self.list_entities(self._entity_api)
+            self.exit_json(**{self._entity_plural: [entity.to_dict() for entity in entities]})

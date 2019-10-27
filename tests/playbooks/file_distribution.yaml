@@ -55,7 +55,7 @@
       pulp_file_distribution:
         name: file_test_distribution
         base_path: test_repo
-        publication: "{{ publication_result.file_publication.href }}"
+        publication: "{{ publication_result.file_publication.pulp_href }}"
         state: present
       register: result
     - name: Verify publish latest version of repository
@@ -65,13 +65,13 @@
           - result.file_distribution.name == "file_test_distribution"
           - result.file_distribution.base_path == "test_repo"
           - result.file_distribution.base_url == "/pulp/content/test_repo"
-          - result.file_distribution.publication == publication_result.file_publication.href
+          - result.file_distribution.publication == publication_result.file_publication.pulp_href
 
     - name: Distribute publication of repository (2nd try)
       pulp_file_distribution:
         name: file_test_distribution
         base_path: test_repo
-        publication: "{{ publication_result.file_publication.href }}"
+        publication: "{{ publication_result.file_publication.pulp_href }}"
         state: present
       register: result
     - name: Verify publish latest version of repository (2nd try)
@@ -90,7 +90,7 @@
           - result.file_distribution.name == "file_test_distribution"
           - result.file_distribution.base_path == "test_repo"
           - result.file_distribution.base_url == "/pulp/content/test_repo"
-          - result.file_distribution.publication == publication_result.file_publication.href
+          - result.file_distribution.publication == publication_result.file_publication.pulp_href
 
     - name: Delete distribution
       pulp_file_distribution:

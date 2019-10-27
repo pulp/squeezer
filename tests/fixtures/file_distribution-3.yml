@@ -7,23 +7,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.1.0b3/python
+      - OpenAPI-Generator/0.1.0b4/python
     method: GET
     uri: http://pulp3-sandbox-debian10/pulp/api/v3/distributions/file/file/?name=file_test_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"_href":"/pulp/api/v3/distributions/file/file/1997d893-16b7-490f-8ff1-e18f640e359f/","_created":"2019-10-06T10:58:52.420571Z","base_path":"test_repo","base_url":"/pulp/content/test_repo","content_guard":null,"name":"file_test_distribution","publication":"/pulp/api/v3/publications/file/file/9c3fc486-8ab0-4f9e-b8bc-9db2c41a3fd4/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/file/file/4fb0c26b-7190-4308-b3ce-a3c04e9e4df4/","pulp_created":"2019-10-27T20:22:05.616489Z","base_path":"test_repo","base_url":"/pulp/content/test_repo","content_guard":null,"name":"file_test_distribution","publication":"/pulp/api/v3/publications/file/file/e988b234-2376-4e5c-938d-1bdcc7e827e9/"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '383'
+      - '391'
       Content-Type:
       - application/json
       Date:
-      - Sun, 06 Oct 2019 10:58:55 GMT
+      - Sun, 27 Oct 2019 20:22:09 GMT
       Server:
       - nginx/1.14.2
       Vary:

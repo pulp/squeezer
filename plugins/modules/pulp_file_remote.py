@@ -92,13 +92,13 @@ RETURN = r'''
 
 
 from ansible.module_utils.pulp_helper import (
-    PulpAnsibleModule,
+    PulpEntityAnsibleModule,
     pulp_file,
 )
 
 
 def main():
-    module = PulpAnsibleModule(
+    module = PulpEntityAnsibleModule(
         argument_spec=dict(
             name=dict(),
             url=dict(),
@@ -106,66 +106,23 @@ def main():
             policy=dict(
                 choices=['immediate', 'on-demand', 'streamed'],
             ),
-            state=dict(
-                choices=['present', 'absent'],
-            ),
         ),
         required_if=[
             ('state', 'present', ['name']),
             ('state', 'absent', ['name']),
         ],
-        supports_check_mode=True,
+        entity_name='file_remote',
+        entity_plural='file_remotes',
     )
 
-    changed = False
-    state = module.params['state']
-    name = module.params['name']
-    url = module.params['url']
-    download_concurrency = module.params['download_concurrency']
-    policy = module.params['policy']
+    natural_key = {
+        'name': module.params['name'],
+    }
+    desired_attributes = {
+        key: module.params[key] for key in ['url', 'download_concurrency', 'policy'] if module.params[key] is not None
+    }
 
-    if name:
-        search_result = module.file_remotes_api.list(name=name)
-        if search_result.count == 1:
-            remote = search_result.results[0]
-        else:
-            remote = None
-        if state == 'present':
-            if remote:
-                if url and remote.url != url:
-                    remote.url = url
-                    changed = True
-                if download_concurrency and remote.download_concurrency != download_concurrency:
-                    remote.download_concurrency = download_concurrency
-                    changed = True
-                if policy and remote.policy != policy:
-                    remote.policy = policy
-                    changed = True
-                if changed and not module.check_mode:
-                    update_response = module.file_remotes_api.update(remote.href, remote)
-                    module.wait_for_task(update_response.task)
-            else:
-                remote = pulp_file.FileRemote(name=name, url=url)
-                if download_concurrency:
-                    remote.download_concurrency = download_concurrency
-                if policy:
-                    remote.policy = policy
-                if not module.check_mode:
-                    remote = module.file_remotes_api.create(remote)
-                changed = True
-        if state == 'absent' and remote is not None:
-            if not module.check_mode:
-                delete_response = module.file_remotes_api.delete(remote.href)
-                module.wait_for_task(delete_response.task)
-            remote = None
-            changed = True
-        if remote:
-            module.exit_json(changed=changed, file_remote=remote.to_dict())
-        else:
-            module.exit_json(changed=changed, file_remote=None)
-    else:
-        entities = module.list_all(module.file_remotes_api)
-        module.exit_json(changed=False, file_remotes=[entity.to_dict() for entity in entities])
+    module.process_entity(natural_key, desired_attributes)
 
 
 if __name__ == '__main__':

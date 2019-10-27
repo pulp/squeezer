@@ -79,68 +79,35 @@ RETURN = r'''
 
 
 from ansible.module_utils.pulp_helper import (
-    PulpAnsibleModule,
+    PulpEntityAnsibleModule,
     pulpcore,
 )
 
 
 def main():
-    module = PulpAnsibleModule(
+    module = PulpEntityAnsibleModule(
         argument_spec=dict(
             name=dict(),
             description=dict(),
-            state=dict(
-                choices=['present', 'absent'],
-            ),
         ),
         required_if=[
             ('state', 'present', ['name']),
             ('state', 'absent', ['name']),
         ],
-        supports_check_mode=True,
+        entity_name='repository',
+        entity_plural='repositories',
     )
 
-    changed = False
-    name = module.params['name']
-    description = module.params['description']
+    natural_key = {
+        'name': module.params['name'],
+    }
+    desired_attributes = {}
+    if module.params['description'] is not None:
+        # In case of an empty string we try to nullify the description
+        # Which does not yet work
+        desired_attributes['description'] = module.params['description'] or None
 
-    if name:
-        search_result = module.repositories_api.list(name=name)
-        if search_result.count == 1:
-            repository = search_result.results[0]
-        else:
-            repository = None
-        if module.params['state'] == 'present':
-            if repository:
-                if description is not None:
-                    if description == "":
-                        description = None
-                    if repository.description != description:
-                        repository.description = description
-                        changed = True
-                if changed and not module.check_mode:
-                    update_response = module.repositories_api.update(repository.href, repository)
-                    module.wait_for_task(update_response.task)
-            else:
-                if description == "":
-                    description = None
-                repository = pulpcore.Repository(name=name, description=description)
-                if not module.check_mode:
-                    repository = module.repositories_api.create(repository)
-                changed = True
-        if module.params['state'] == 'absent' and repository is not None:
-            if not module.check_mode:
-                delete_response = module.repositories_api.delete(repository.href)
-                module.wait_for_task(delete_response.task)
-            repository = None
-            changed = True
-        if repository:
-            module.exit_json(changed=changed, repository=repository.to_dict())
-        else:
-            module.exit_json(changed=changed, repository=None)
-    else:
-        entities = module.list_all(module.repositories_api)
-        module.exit_json(changed=False, repositories=[entity.to_dict() for entity in entities])
+    module.process_entity(natural_key, desired_attributes)
 
 
 if __name__ == '__main__':
