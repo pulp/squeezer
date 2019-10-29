@@ -1,0 +1,36 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0rc7/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/artifacts/?limit=20&offset=0
+  response:
+    body:
+      string: '{"count":4,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/7d1ca78f-0bd0-4c9d-b4b0-be63d88a516b/","pulp_created":"2019-10-27T19:27:24.870016Z","file":"artifact/16/6987992e69264c25a33864ecc63ad5f59254ca0f05e6cc2d8c4569ad5acffc","size":1024,"md5":"0a58b695a8d062960dfdb6b00a2c89c2","sha1":"2965a1adcac6c3486b449ccee20b0407f8df701d","sha224":"6f7e6ce3cc788bf09a42a1189fd129a3d1f4e545b2044fd2d20ffe4d","sha256":"166987992e69264c25a33864ecc63ad5f59254ca0f05e6cc2d8c4569ad5acffc","sha384":"3089d2d0d6df1e665cd072a7d2271f8def9528e0479ea6b0c7dd043821ee41df4d76a9ce40a5d713a0a3f02151c1d3a8","sha512":"39ad34c3f1c84985a272605601945b47b12443363cefe1b2050ca7f9a4bb6017c8a63e596dcadc00082b029d5f04824d2d2a999bc77f3eeb705c852ddc003121"},{"pulp_href":"/pulp/api/v3/artifacts/7a02aaf8-b603-4986-be80-5f3bfccbeac2/","pulp_created":"2019-10-27T19:27:24.871751Z","file":"artifact/9c/17a38d810fdb90a917ba83795606464b64ac72c8820da3f87b00e3548ce41b","size":1024,"md5":"fa303aadbfbea6fff3506e73278c13ab","sha1":"6078945f8250e66308e48b4ac3346b27da605b62","sha224":"4d073e7239a19cde880ff1ff976d66baea96162b4975757564b1387f","sha256":"9c17a38d810fdb90a917ba83795606464b64ac72c8820da3f87b00e3548ce41b","sha384":"48eabefcd8605a8c98c6dda0d2f0b842e22ecd2b509a6724a2c98b66792cff6f8e9e3a289a33c73ece32c036971aff1c","sha512":"8e698f314e206c4bd62e620677638aa823305a468a386cfd47c4623d0d5f5e8c1658fa99576b1aa6796f88d5cd4d24fb65dbd947fdb056c67be3dd3e3a265c3e"},{"pulp_href":"/pulp/api/v3/artifacts/ed6bbf98-b5a4-4591-bbcc-67e404905d81/","pulp_created":"2019-10-27T19:27:24.872249Z","file":"artifact/c3/d55071ad29fd313bb52e333dc4bbf338773c06490701e7b31f7561c57a464b","size":1024,"md5":"7d9d5f69d7873e4f0b9b6e2f75a6598e","sha1":"9a522b26941310794f108e54ce130a579a689949","sha224":"f2371ed2bbce663e644b02b55722fdcf437bbb39b39b30be77325297","sha256":"c3d55071ad29fd313bb52e333dc4bbf338773c06490701e7b31f7561c57a464b","sha384":"5bc10548d5b491e0ca075d7142b258e41c1216d9dc7d3d9707e3110ff18b5cb7e80bb0f703af2790f31a1a74fdbf658d","sha512":"3ae2fe20b526fd38a901d30da79f751d46ebb5031f9b2dbedb5f97dd2cdcb86dce3dcd6150f7e7b586a4e9b30d6b1fd9be4c3883521d53e6bac24ce935f70b11"},{"pulp_href":"/pulp/api/v3/artifacts/550381ba-a054-4fc6-a6b4-be2b02ddb617/","pulp_created":"2019-10-30T21:10:19.538797Z","file":"artifact/9a/09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","size":5,"md5":"502c3370995c203cce7e3f1ffba6859a","sha1":"733033d4ba6761c30fbd1086a70784f4fb317687","sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2852'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 30 Oct 2019 21:10:20 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

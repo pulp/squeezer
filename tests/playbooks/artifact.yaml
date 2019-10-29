@@ -1,0 +1,140 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults: &pulp_module_defaults
+    pulp_artifact: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+  tasks:
+    - name: Make artifact absent
+      pulp_artifact:
+        file: data/file1.txt
+        state: absent
+
+- hosts: tests
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  vars:
+    file1_sha256: "{{ lookup('file', 'data/file1.txt', lstrip=false, rstrip=false) | hash('sha256') }}"
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Create artifact by file
+      pulp_artifact:
+        file: data/file1.txt
+        state: present
+      register: result
+    - name: Verify create artifact by file
+      assert:
+        that:
+          - result.changed == true
+          - result.artifact.sha256 == file1_sha256
+
+    - name: Create artifact by file (2nd try)
+      pulp_artifact:
+        file: data/file1.txt
+        state: present
+      register: result
+    - name: Verify create artifact by file (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: List artifacts
+      pulp_artifact: {}
+      register: result
+    - name: Verify list artifacts
+      assert:
+        that:
+          - result.changed == false
+          - result.artifacts | length >= 1
+
+    - name: Read artifact by file
+      pulp_artifact:
+        file: data/file1.txt
+      register: result
+    - name: Verify read artifact by file
+      assert:
+        that:
+          - result.changed == false
+          - result.artifact.sha256 == file1_sha256
+
+    - name: Read artifact by sha256
+      pulp_artifact:
+        sha256: "{{ file1_sha256 }}"
+      register: result
+    - name: Verify read artifact by sha256
+      assert:
+        that:
+          - result.changed == false
+          - result.artifact.sha256 == file1_sha256
+
+    - name: Delete artifact by file
+      pulp_artifact:
+        file: data/file1.txt
+        state: absent
+      register: result
+    - name: Verify delete artifact by file
+      assert:
+        that:
+          - result.changed == true
+          - not result.artifact
+
+    - name: Delete artifact by file (2nd try)
+      pulp_artifact:
+        file: data/file1.txt
+        state: absent
+      register: result
+    - name: Verify delete artifact by file (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Create artifact with sha256
+      pulp_artifact:
+        file: data/file1.txt
+        sha256: "{{ file1_sha256 }}"
+        state: present
+      register: result
+    - name: Verify create artifact with sha256
+      assert:
+        that:
+          - result.changed == true
+          - result.artifact.sha256 == file1_sha256
+
+    - name: Create artifact with sha256 (2nd try)
+      pulp_artifact:
+        file: data/file1.txt
+        sha256: "{{ file1_sha256 }}"
+        state: present
+      register: result
+    - name: Verify create artifact with sha256 (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Delete artifact by sha256
+      pulp_artifact:
+        sha256: "{{ file1_sha256 }}"
+        state: absent
+      register: result
+    - name: Verify delete artifact by sha256
+      assert:
+        that:
+          - result.changed == true
+          - not result.artifact
+
+    - name: Delete artifact by sha256 (2nd try)
+      pulp_artifact:
+        sha256: "{{ file1_sha256 }}"
+        state: absent
+      register: result
+    - name: Verify delete artifact by sha256 (2nd try)
+      assert:
+        that:
+          - result.changed == false
+...

@@ -56,6 +56,7 @@ class PulpAnsibleModule(AnsibleModule):
         self._api_config.safe_chars_for_path_param = '/'
         self._client = pulpcore.ApiClient(self._api_config)
         self._file_client = None
+        self._artifacts_api = None
         self._file_distributions_api = None
         self._file_publications_api = None
         self._file_remotes_api = None
@@ -64,6 +65,16 @@ class PulpAnsibleModule(AnsibleModule):
         self._tasks_api = None
 
         self._changed = False
+
+    @property
+    def artifacts_api(self):
+        if not self._artifacts_api:
+            self._artifacts_api = pulpcore.ArtifactsApi(self._client)
+        return self._artifacts_api
+
+    @property
+    def artifact_class(self):
+        return pulpcore.Artifact
 
     @property
     def file_client(self):
@@ -163,9 +174,15 @@ class PulpAnsibleModule(AnsibleModule):
             return None
 
     def create_entity(self, entity_api, entity_class, natural_key, desired_attributes):
+        if not hasattr(entity_api, 'create'):
+            self.fail_json(msg="This entity is not creatable.")
         entity = entity_class(**natural_key, **desired_attributes)
         if not self.check_mode:
-            response = entity_api.create(entity)
+            # TODO Why is the ArtifactsApi strange with create?
+            if entity_api.__class__.__name__ == 'ArtifactsApi':
+                response = entity_api.create(**natural_key, **desired_attributes)
+            else:
+                response = entity_api.create(entity)
             if getattr(response, 'task', None):
                 task = self.wait_for_task(response.task)
                 entity = entity_api.read(task.created_resources[0])
@@ -195,6 +212,8 @@ class PulpAnsibleModule(AnsibleModule):
         return entity
 
     def delete_entity(self, entity_api, entity):
+        if not hasattr(entity_api, 'delete'):
+            self.fail_json(msg="This entity is not deletable.")
         if not self.check_mode:
             response = entity_api.delete(entity.pulp_href)
             if getattr(response, 'task', None):
