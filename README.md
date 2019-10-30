@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.com/mdellweg/pulp_ansible_modules.svg?branch=master)](https://travis-ci.com/mdellweg/pulp_ansible_modules)
+[![Build Status](https://travis-ci.com/mdellweg/ansible_modules_pulp.svg?branch=master)](https://travis-ci.com/mdellweg/ansible_modules_pulp)
 
-Pulp ansible modules
+ansible modules for Pulp aka Squeeze
 ===
 
 This project project aims to provide a complete set of ansible modules to control a pulp3 server in a descriptive way.
