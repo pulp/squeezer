@@ -88,25 +88,13 @@ RETURN = r'''
 import hashlib
 
 from ansible.module_utils.pulp_helper import (
+    CONTENT_CHUNK_SIZE,
     PulpEntityAnsibleModule,
 )
 
 
-CONTENT_CHUNK_SIZE = 4 * 1024 * 1024
-
-
-class PulpArtifactAnsibleModule(PulpEntityAnsibleModule):
-    def update_entity(self, entity_api, entity, desired_attributes):
-        if entity_api.__class__.__name__ == 'ArtifactsApi':
-            # Artifacts are immutable, and the only desired_attribute here is file
-            return entity
-        return super(PulpArtifactAnsibleModule, self).update_entity(
-            entity_api, entity, desired_attributes,
-        )
-
-
 def main():
-    module = PulpArtifactAnsibleModule(
+    module = PulpEntityAnsibleModule(
         argument_spec=dict(
             file=dict(),
             sha256=dict(),
@@ -142,7 +130,6 @@ def main():
         'file': module.params['file'],
     }
 
-    # TODO conditionally split file into chunks on upload
     module.process_entity(natural_key, desired_attributes)
 
 

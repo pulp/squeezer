@@ -3,6 +3,7 @@
 # copyright (c) 2019, Matthias Dellweg
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
+import os
 import traceback
 from time import sleep
 
@@ -29,9 +30,11 @@ except ImportError:
     PULP_FILE_CLIENT_IMPORT_ERROR = traceback.format_exc()
 
 
-class PulpAnsibleModule(AnsibleModule):
+PAGE_LIMIT = 20
+CONTENT_CHUNK_SIZE = 4 * 1024 * 1024  # 4 MB
 
-    PAGE_LIMIT = 20
+
+class PulpAnsibleModule(AnsibleModule):
 
     def __init__(self, argument_spec={}, **kwargs):
         spec = dict(
@@ -69,7 +72,19 @@ class PulpAnsibleModule(AnsibleModule):
     @property
     def artifacts_api(self):
         if not self._artifacts_api:
-            self._artifacts_api = pulpcore.ArtifactsApi(self._client)
+            class NewArtifactsApi(pulpcore.ArtifactsApi):
+                def create(self, entity, **kwargs):
+                    if os.stat(entity.file).st_size > CONTENT_CHUNK_SIZE:
+                        # TODO conditionally split file into chunks on upload
+                        raise NotImplementedError
+                    # TODO Why is the ArtifactsApi strange with create?
+                    payload = {
+                        'file': entity.file,
+                        'sha256': entity.sha256,
+                    }
+                    return super(NewArtifactsApi, self).create(**payload, **kwargs)
+
+            self._artifacts_api = NewArtifactsApi(self._client)
         return self._artifacts_api
 
     @property
@@ -158,11 +173,11 @@ class PulpAnsibleModule(AnsibleModule):
     def list_entities(self, entity_api):
         entities = []
         offset = 0
-        search_result = entity_api.list(limit=self.PAGE_LIMIT, offset=offset)
+        search_result = entity_api.list(limit=PAGE_LIMIT, offset=offset)
         entities.extend(search_result.results)
         while search_result.next:
-            offset += self.PAGE_LIMIT
-            search_result = entity_api.list(limit=self.PAGE_LIMIT, offset=offset)
+            offset += PAGE_LIMIT
+            search_result = entity_api.list(limit=PAGE_LIMIT, offset=offset)
             entities.extend(search_result.results)
         return entities
 
@@ -178,11 +193,7 @@ class PulpAnsibleModule(AnsibleModule):
             self.fail_json(msg="This entity is not creatable.")
         entity = entity_class(**natural_key, **desired_attributes)
         if not self.check_mode:
-            # TODO Why is the ArtifactsApi strange with create?
-            if entity_api.__class__.__name__ == 'ArtifactsApi':
-                response = entity_api.create(**natural_key, **desired_attributes)
-            else:
-                response = entity_api.create(entity)
+            response = entity_api.create(entity)
             if getattr(response, 'task', None):
                 task = self.wait_for_task(response.task)
                 entity = entity_api.read(task.created_resources[0])
@@ -193,6 +204,8 @@ class PulpAnsibleModule(AnsibleModule):
 
     def update_entity(self, entity_api, entity, desired_attributes):
         changed = False
+        # drop 'file' because artifacts as well as content units are immutable anyway
+        desired_attributes.pop('file', None)
         for key, value in desired_attributes.items():
             if getattr(entity, key, None) != value:
                 setattr(entity, key, value)
