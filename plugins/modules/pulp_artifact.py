@@ -85,12 +85,7 @@ RETURN = r'''
 '''
 
 
-import hashlib
-
-from ansible.module_utils.pulp_helper import (
-    CONTENT_CHUNK_SIZE,
-    PulpEntityAnsibleModule,
-)
+from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
 
 
 def main():
@@ -108,17 +103,12 @@ def main():
 
     sha256 = module.params['sha256']
     if module.params['file']:
-        checksum = hashlib.sha256()
-        with open(module.params['file'], 'rb') as f:
-            for chunk in iter(lambda: f.read(CONTENT_CHUNK_SIZE), b""):
-                checksum.update(chunk)
-            file_sha256 = checksum.hexdigest()
-
-            if sha256:
-                if sha256 != file_sha256:
-                    module.fail_json(msg="File checksum mismatch.")
-            else:
-                sha256 = file_sha256
+        file_sha256 = module.sha256(module.params['file'])
+        if sha256:
+            if sha256 != file_sha256:
+                module.fail_json(msg="File checksum mismatch.")
+        else:
+            sha256 = file_sha256
 
     if sha256 is None and module.params['state'] == 'absent':
         module.fail_json(msg="One of 'file' and 'sha256' is required if 'state' is 'abesent'.")

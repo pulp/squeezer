@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 30 Oct 2019 21:10:23 GMT
+      - Sun, 03 Nov 2019 18:24:03 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -34,23 +34,23 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: "--1f3f9669e8971c9eeb51d01cb4dae5ee\r\nContent-Disposition: form-data; name=\"\
+    body: "--0c0f59c490e17d88ca0ad2eecf6d800e\r\nContent-Disposition: form-data; name=\"\
       sha256\"\r\n\r\n9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee\r\
-      \n--1f3f9669e8971c9eeb51d01cb4dae5ee\r\nContent-Disposition: form-data; name=\"\
+      \n--0c0f59c490e17d88ca0ad2eecf6d800e\r\nContent-Disposition: form-data; name=\"\
       file\"; filename=\"file1.txt\"\r\nContent-Type: text/plain\r\n\r\npulp\n\r\n\
-      --1f3f9669e8971c9eeb51d01cb4dae5ee--\r\n"
+      --0c0f59c490e17d88ca0ad2eecf6d800e--\r\n"
     headers:
       Accept:
       - application/json
       Content-Type:
-      - multipart/form-data; boundary=1f3f9669e8971c9eeb51d01cb4dae5ee
+      - multipart/form-data; boundary=0c0f59c490e17d88ca0ad2eecf6d800e
       User-Agent:
       - OpenAPI-Generator/3.0.0rc7/python
     method: POST
     uri: http://pulp3-sandbox-debian10/pulp/api/v3/artifacts/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/artifacts/daecebad-f5e0-4cd2-b0cb-dc7e69c2322e/","pulp_created":"2019-10-30T21:10:23.621444Z","file":"artifact/9a/09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","size":5,"md5":"502c3370995c203cce7e3f1ffba6859a","sha1":"733033d4ba6761c30fbd1086a70784f4fb317687","sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}'
+      string: '{"pulp_href":"/pulp/api/v3/artifacts/562789fc-eae1-4b0a-8467-f511127eb4cf/","pulp_created":"2019-11-03T18:24:03.261841Z","file":"artifact/9a/09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","size":5,"md5":"502c3370995c203cce7e3f1ffba6859a","sha1":"733033d4ba6761c30fbd1086a70784f4fb317687","sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -61,9 +61,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 30 Oct 2019 21:10:23 GMT
+      - Sun, 03 Nov 2019 18:24:03 GMT
       Location:
-      - /pulp/api/v3/artifacts/daecebad-f5e0-4cd2-b0cb-dc7e69c2322e/
+      - /pulp/api/v3/artifacts/562789fc-eae1-4b0a-8467-f511127eb4cf/
       Server:
       - nginx/1.14.2
       Vary:

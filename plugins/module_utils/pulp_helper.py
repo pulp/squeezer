@@ -5,6 +5,7 @@
 
 import os
 import traceback
+from tempfile import TemporaryDirectory
 from time import sleep
 
 from ansible.module_utils.basic import (
@@ -31,7 +32,7 @@ except ImportError:
 
 
 PAGE_LIMIT = 20
-CONTENT_CHUNK_SIZE = 4 * 1024 * 1024  # 4 MB
+CONTENT_CHUNK_SIZE = 512 * 1024  # 1/2 MB
 
 
 class PulpAnsibleModule(AnsibleModule):
@@ -66,17 +67,20 @@ class PulpAnsibleModule(AnsibleModule):
         self._repositories_api = None
         self._status_api = None
         self._tasks_api = None
+        self._uploads_api = None
 
         self._changed = False
 
     @property
     def artifacts_api(self):
         if not self._artifacts_api:
+            module = self
+
             class NewArtifactsApi(pulpcore.ArtifactsApi):
                 def create(self, entity, **kwargs):
-                    if os.stat(entity.file).st_size > CONTENT_CHUNK_SIZE:
-                        # TODO conditionally split file into chunks on upload
-                        raise NotImplementedError
+                    size = os.stat(entity.file).st_size
+                    if size > CONTENT_CHUNK_SIZE:
+                        return module.chunked_upload(entity.file, entity.sha256, size)
                     # TODO Why is the ArtifactsApi strange with create?
                     payload = {
                         'file': entity.file,
@@ -157,6 +161,12 @@ class PulpAnsibleModule(AnsibleModule):
             self._tasks_api = pulpcore.TasksApi(self._client)
         return self._tasks_api
 
+    @property
+    def uploads_api(self):
+        if not self._uploads_api:
+            self._uploads_api = pulpcore.UploadsApi(self._client)
+        return self._uploads_api
+
     def exit_json(self, changed=False, **kwargs):
         changed |= self._changed
         super(PulpAnsibleModule, self).exit_json(changed=changed, **kwargs)
@@ -169,6 +179,41 @@ class PulpAnsibleModule(AnsibleModule):
         if task.state != 'completed':
             self.fail_json(msg='Task failed to complete. ({}; {})'.format(task.state, task.error['description']))
         return task
+
+    def chunked_upload(self, path, sha256, size):
+        offset = 0
+
+        upload = self.uploads_api.create(pulpcore.Upload(size=size))
+        try:
+            with open(path, 'rb') as f:
+                for chunk in iter(lambda: f.read(CONTENT_CHUNK_SIZE), b""):
+                    actual_chunk_size = len(chunk)
+                    content_range = 'bytes {start}-{end}/{size}'.format(
+                        start=offset,
+                        end=offset + actual_chunk_size - 1,
+                        size=size,
+                    )
+                    with TemporaryDirectory() as temp_dir:
+                        chunk_file_name = os.path.join(temp_dir, 'chunk.bin')
+                        with open(chunk_file_name, 'wb') as chunk_file:
+                            chunk_file.write(chunk)
+                        upload = self.uploads_api.update(
+                            upload_href=upload.pulp_href,
+                            file=chunk_file_name,
+                            content_range=content_range,
+                        )
+                    offset += actual_chunk_size
+
+                commit_response = self.uploads_api.commit(
+                    upload.pulp_href, pulpcore.UploadCommit(sha256=sha256)
+                )
+                commit_task = self.wait_for_task(commit_response.task)
+                artifact = self.artifacts_api.read(commit_task.created_resources[0])
+        except Exception:
+            self.uploads_api.delete(upload.pulp_href)
+            raise
+
+        return artifact
 
     def list_entities(self, entity_api):
         entities = []

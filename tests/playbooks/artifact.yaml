@@ -11,8 +11,11 @@
   tasks:
     - name: Make artifact absent
       pulp_artifact:
-        file: data/file1.txt
+        file: "{{ item }}"
         state: absent
+      loop:
+        - data/file1.txt
+        - data/file2.dat
 
 - hosts: tests
   gather_facts: false
@@ -134,6 +137,26 @@
         state: absent
       register: result
     - name: Verify delete artifact by sha256 (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Create artifact with chunked upload
+      pulp_artifact:
+        file: data/file2.dat
+        state: present
+      register: result
+    - name: Verify create artifact with chunked upload
+      assert:
+        that:
+          - result.changed == true
+
+    - name: Create artifact with chunked upload (2nd try)
+      pulp_artifact:
+        file: data/file2.dat
+        state: present
+      register: result
+    - name: Verify create artifact with chunked upload (2nd try)
       assert:
         that:
           - result.changed == false
