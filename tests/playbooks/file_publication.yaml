@@ -62,6 +62,37 @@
         that:
           - result.changed == false
 
+    - name: Publish latest version of repository via version number
+      pulp_file_publication:
+        repository: file_sync_test_repository
+        version: 1
+        state: present
+      register: result
+    - name: Verify publish latest version of repository via version number
+      assert:
+        that:
+          - result.changed == false
+
+    - name: List publications
+      pulp_file_publication: {}
+      register: result
+    - name: Verify list publications
+      assert:
+        that:
+          - result.changed == false
+          - result.file_publications | length >= 1
+
+    - name: Query publication of latest version of repository
+      pulp_file_publication:
+        repository: file_sync_test_repository
+      register: result
+    - name: Verify query publication of latest version of repository
+      assert:
+        that:
+          - result.changed == false
+          - result.file_publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
+          - result.file_publication.manifest == "PULP_MANIFEST"
+
     - name: Delete publication of latest version of repository
       pulp_file_publication:
         repository: file_sync_test_repository

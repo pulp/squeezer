@@ -27,7 +27,6 @@ options:
   version:
     description:
       - Version Number to be published
-      - Not yet implemented
     type: int
     required: false
   manifest:
@@ -113,15 +112,15 @@ def main():
         key: module.params[key] for key in ['manifest'] if module.params[key] is not None
     }
 
-    if version:
-        module.fail_json(msg="Selecting a repository version is not yet implemented.")
-
     if repository_name:
         repository = module.find_entity(module.repositories_api, {'name': repository_name})
         if repository is None:
             module.fail_json(msg="Failed to find repository ({repository_name}).".format(repository_name=repository_name))
         # TODO handle version properly
-        repository_version_href = repository.latest_version_href
+        if version:
+            repository_version_href = repository.versions_href + "{version}/".format(version=version)
+        else:
+            repository_version_href = repository.latest_version_href
         # TODO proper search
         # entity = module.find_entity(module.file_publications_api, {'repository_version': repository_version_href})
         # ---8<----8<---8<---
@@ -143,7 +142,7 @@ def main():
             entity = entity.to_dict()
         module.exit_json(file_publication=entity)
     else:
-        entities = module.list_all(module.file_publications_api)
+        entities = module.list_entities(module.file_publications_api)
         module.exit_json(file_publications=[entity.to_dict() for entity in entities])
 
 

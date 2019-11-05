@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 05 Nov 2019 07:59:49 GMT
+      - Tue, 05 Nov 2019 07:59:53 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -46,18 +46,18 @@ interactions:
     uri: http://pulp3-sandbox-debian10/pulp/api/v3/publications/file/file/
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/file/file/b37b252e-4ab2-43c5-9e28-c2a5cb30dc11/","pulp_created":"2019-11-05T07:59:47.063875Z","publisher":null,"repository_version":"/pulp/api/v3/repositories/afbb19a3-10e8-4a50-8027-8fdb605c4a30/versions/1/","distributions":[]}]}'
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '320'
+      - '52'
       Content-Type:
       - application/json
       Date:
-      - Tue, 05 Nov 2019 07:59:50 GMT
+      - Tue, 05 Nov 2019 07:59:53 GMT
       Server:
       - nginx/1.14.2
       Vary:

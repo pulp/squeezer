@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 05 Nov 2019 07:59:49 GMT
+      - Tue, 05 Nov 2019 07:59:52 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -57,7 +57,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 05 Nov 2019 07:59:50 GMT
+      - Tue, 05 Nov 2019 07:59:52 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -67,4 +67,34 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: null
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.1.0b4/python
+    method: DELETE
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/publications/file/file/b37b252e-4ab2-43c5-9e28-c2a5cb30dc11/
+  response:
+    body:
+      string: ''
+    headers:
+      Allow:
+      - GET, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Date:
+      - Tue, 05 Nov 2019 07:59:52 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 204
+      message: No Content
 version: 1
