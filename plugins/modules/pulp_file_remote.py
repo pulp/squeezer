@@ -75,7 +75,7 @@ EXAMPLES = r'''
     api_url: localhost:24817
     username: admin
     password: password
-    name: new_fiel_remote
+    name: new_file_remote
     state: absent
 '''
 

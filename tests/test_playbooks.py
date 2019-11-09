@@ -51,5 +51,4 @@ def run_playbook(playbook, extra_vars=None, limit=None):
 @pytest.mark.parametrize('test_name', TEST_NAMES)
 def test_playbook(tmpdir, test_name, record):
     run = run_playbook_vcr(tmpdir, test_name, record=record)
-    print(run.stdout.read())
     assert run.rc == 0

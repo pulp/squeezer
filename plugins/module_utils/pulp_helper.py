@@ -61,6 +61,7 @@ class PulpAnsibleModule(AnsibleModule):
         self._client = pulpcore.ApiClient(self._api_config)
         self._file_client = None
         self._artifacts_api = None
+        self._file_contents_api = None
         self._file_distributions_api = None
         self._file_publications_api = None
         self._file_remotes_api = None
@@ -105,6 +106,36 @@ class PulpAnsibleModule(AnsibleModule):
                 )
             self._file_client = pulp_file.ApiClient(self._api_config)
         return self._file_client
+
+    @property
+    def file_contents_api(self):
+        if not self._file_contents_api:
+
+            class NewFileContentsApi(pulp_file.ContentFilesApi):
+                def create(self, entity, **kwargs):
+                    # TODO Why is the FileContentsApi strange with create?
+                    payload = {
+                        'artifact': entity.artifact,
+                        'relative_path': entity.relative_path,
+                    }
+                    return super(NewFileContentsApi, self).create(**payload, **kwargs)
+
+            self._file_contents_api = NewFileContentsApi(self.file_client)
+        return self._file_contents_api
+
+    @property
+    def file_content_class(self):
+        module = self
+
+        class NewFileContent(pulp_file.FileContent):
+            def __init__(self, **kwargs):
+                # FileContent can only be searched by digest, while it wants srtifact to create.
+                if 'digest' in kwargs:
+                    artifact = module.find_entity(module.artifacts_api, {'sha256': kwargs.pop('digest')})
+                    kwargs['artifact'] = artifact.pulp_href
+                super(NewFileContent, self).__init__(**kwargs)
+
+        return NewFileContent
 
     @property
     def file_distributions_api(self):

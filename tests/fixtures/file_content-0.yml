@@ -1,0 +1,210 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.1.0b4/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/content/file/files/?relative_path=data%2Ffile1.txt&digest=9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee
+  response:
+    body:
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '52'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 09 Nov 2019 20:50:28 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0rc7/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/artifacts/?sha256=9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/9e91b14a-a1ff-48de-8c1c-8e74b48d03a0/","pulp_created":"2019-11-09T20:50:27.864726Z","file":"artifact/9a/09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","size":5,"md5":"502c3370995c203cce7e3f1ffba6859a","sha1":"733033d4ba6761c30fbd1086a70784f4fb317687","sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '749'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 09 Nov 2019 20:50:28 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: "--bd3889ffbb738ee59d786a2f6841aaa8\r\nContent-Disposition: form-data; name=\"\
+      artifact\"\r\n\r\n/pulp/api/v3/artifacts/9e91b14a-a1ff-48de-8c1c-8e74b48d03a0/\r\
+      \n--bd3889ffbb738ee59d786a2f6841aaa8\r\nContent-Disposition: form-data; name=\"\
+      relative_path\"\r\n\r\ndata/file1.txt\r\n--bd3889ffbb738ee59d786a2f6841aaa8--\r\
+      \n"
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - multipart/form-data; boundary=bd3889ffbb738ee59d786a2f6841aaa8
+      User-Agent:
+      - OpenAPI-Generator/0.1.0b4/python
+    method: POST
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/content/file/files/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/a7d7985f-ab11-4bc9-997f-d5d91decb6ed/"}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 09 Nov 2019 20:50:28 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0rc7/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/a7d7985f-ab11-4bc9-997f-d5d91decb6ed/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/a7d7985f-ab11-4bc9-997f-d5d91decb6ed/","pulp_created":"2019-11-09T20:50:28.812878Z","state":"running","name":"pulpcore.app.tasks.base.general_create","started_at":"2019-11-09T20:50:28.942729Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/cae387e9-16f5-4b5b-af80-5d422d56c7ed/","parent":null,"spawned_tasks":[],"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/artifacts/9e91b14a-a1ff-48de-8c1c-8e74b48d03a0/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '499'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 09 Nov 2019 20:50:28 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0rc7/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/a7d7985f-ab11-4bc9-997f-d5d91decb6ed/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/a7d7985f-ab11-4bc9-997f-d5d91decb6ed/","pulp_created":"2019-11-09T20:50:28.812878Z","state":"completed","name":"pulpcore.app.tasks.base.general_create","started_at":"2019-11-09T20:50:28.942729Z","finished_at":"2019-11-09T20:50:29.046106Z","error":null,"worker":"/pulp/api/v3/workers/cae387e9-16f5-4b5b-af80-5d422d56c7ed/","parent":null,"spawned_tasks":[],"progress_reports":[],"created_resources":["/pulp/api/v3/content/file/files/bc642423-44b4-435f-914e-bcfb09b864a8/"],"reserved_resources_record":["/pulp/api/v3/artifacts/9e91b14a-a1ff-48de-8c1c-8e74b48d03a0/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '597'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 09 Nov 2019 20:50:31 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.1.0b4/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/content/file/files/bc642423-44b4-435f-914e-bcfb09b864a8/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/content/file/files/bc642423-44b4-435f-914e-bcfb09b864a8/","pulp_created":"2019-11-09T20:50:29.022558Z","artifact":"/pulp/api/v3/artifacts/9e91b14a-a1ff-48de-8c1c-8e74b48d03a0/","relative_path":"data/file1.txt","md5":"502c3370995c203cce7e3f1ffba6859a","sha1":"733033d4ba6761c30fbd1086a70784f4fb317687","sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '720'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 09 Nov 2019 20:50:31 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
