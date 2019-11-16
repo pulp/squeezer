@@ -13,11 +13,11 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = r'''
 ---
-module: pulp_repository
-short_description: Manage repositories of a pulp api server instance
+module: pulp_file_repository
+short_description: Manage file repositories of a pulp api server instance
 version_added: "2.8"
 description:
-  - "This performes CRUD operations on repositories in a pulp api server instance."
+  - "This performes CRUD operations on file repositories in a pulp api server instance."
 options:
   name:
     description:
@@ -40,25 +40,25 @@ author:
 '''
 
 EXAMPLES = r'''
-- name: Read list of repositories from pulp api server
-  pulp_repository:
+- name: Read list of file repositories from pulp api server
+  pulp_file_repository:
     api_url: localhost:24817
     username: admin
     password: password
   register: repo_status
-- name: Report pulp repositories
+- name: Report pulp file repositories
   debug:
     var: repo_status
-- name: Create a repository
-  pulp_repository:
+- name: Create a file repository
+  pulp_file_repository:
     api_url: localhost:24817
     username: admin
     password: password
     name: new_repo
     description: A brand new repository with a description
     state: present
-- name: Delete a repository
-  pulp_repository:
+- name: Delete a file repository
+  pulp_file_repository:
     api_url: localhost:24817
     username: admin
     password: password
@@ -67,12 +67,12 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-  repositories:
-    description: List of repositories
+  file_repositories:
+    description: List of file repositories
     type: list
     return: when no name is given
-  repository:
-    description: Repository details
+  file_repository:
+    description: File repository details
     type: dict
     return: when name is given
 '''
@@ -93,8 +93,8 @@ def main():
             ('state', 'present', ['name']),
             ('state', 'absent', ['name']),
         ],
-        entity_name='repository',
-        entity_plural='repositories',
+        entity_name='file_repository',
+        entity_plural='file_repositories',
     )
 
     natural_key = {

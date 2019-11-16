@@ -1,2 +1,3 @@
-pulpcore-client==3.0.0rc7
-pulp_file-client==0.1.0b4
+pulpcore-client==3.0.0rc8
+pulp_file-client==0.1.0rc1
+ansible>=2.9

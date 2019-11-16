@@ -65,7 +65,7 @@ class PulpAnsibleModule(AnsibleModule):
         self._file_distributions_api = None
         self._file_publications_api = None
         self._file_remotes_api = None
-        self._repositories_api = None
+        self._file_repositories_api = None
         self._status_api = None
         self._tasks_api = None
         self._uploads_api = None
@@ -127,7 +127,7 @@ class PulpAnsibleModule(AnsibleModule):
     def file_content_class(self):
         module = self
 
-        class NewFileContent(pulp_file.FileContent):
+        class NewFileContent(pulp_file.FileFileContent):
             def __init__(self, **kwargs):
                 # FileContent can only be searched by digest, while it wants srtifact to create.
                 if 'digest' in kwargs:
@@ -146,7 +146,7 @@ class PulpAnsibleModule(AnsibleModule):
 
     @property
     def file_distribution_class(self):
-        return pulp_file.FileDistribution
+        return pulp_file.FileFileDistribution
 
     @property
     def file_publications_api(self):
@@ -157,7 +157,7 @@ class PulpAnsibleModule(AnsibleModule):
 
     @property
     def file_publication_class(self):
-        return pulp_file.FilePublication
+        return pulp_file.FileFilePublication
 
     @property
     def file_remotes_api(self):
@@ -168,17 +168,18 @@ class PulpAnsibleModule(AnsibleModule):
 
     @property
     def file_remote_class(self):
-        return pulp_file.FileRemote
+        return pulp_file.FileFileRemote
 
     @property
-    def repositories_api(self):
-        if not self._repositories_api:
-            self._repositories_api = pulpcore.RepositoriesApi(self._client)
-        return self._repositories_api
+    def file_repositories_api(self):
+        if not self._file_repositories_api:
+            client = self.file_client
+            self._file_repositories_api = pulp_file.RepositoriesFileApi(client)
+        return self._file_repositories_api
 
     @property
-    def repository_class(self):
-        return pulpcore.Repository
+    def file_repository_class(self):
+        return pulp_file.FileFileRepository
 
     @property
     def status_api(self):

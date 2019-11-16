@@ -12,15 +12,15 @@
       <<: *pulp_connection_details
     pulp_file_sync:
       <<: *pulp_connection_details
-    pulp_repository:
+    pulp_file_repository:
       <<: *pulp_connection_details
   tasks:
     - name: Make repository absent
-      pulp_repository:
+      pulp_file_repository:
         name: file_sync_test_repository
         state: absent
     - name: Make repository present
-      pulp_repository:
+      pulp_file_repository:
         name: file_sync_test_repository
         state: present
     - name: Make file_remote present
@@ -136,7 +136,7 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Make repository absent
-      pulp_repository:
+      pulp_file_repository:
         name: file_sync_test_repository
         state: absent
     - name: Make file_remote absent

@@ -74,11 +74,11 @@ def main():
     if remote is None:
         module.fail_json(msg="Remote '{}' not found.".format(remote_name))
 
-    repository = module.find_entity(module.repositories_api, {'name': repository_name})
+    repository = module.find_entity(module.file_repositories_api, {'name': repository_name})
     if repository is None:
         module.fail_json(msg="Repository '{}' not found.".format(repository_name))
 
-    result = module.file_remotes_api.sync(remote.pulp_href, {'repository': repository.pulp_href})
+    result = module.file_repositories_api.sync(repository.pulp_href, {'remote': remote.pulp_href})
     module._changed = True
     sync_task = module.wait_for_task(result.task)
     repository_version = sync_task.created_resources[0]

@@ -7,23 +7,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc7/python
+      - OpenAPI-Generator/0.1.0rc1/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/?name=file_sync_test_repository
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/file/file/?name=file_sync_test_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/cd53217f-d4fa-4512-9e4c-55a1a37d483e/","pulp_created":"2019-10-27T19:27:21.125732Z","versions_href":"/pulp/api/v3/repositories/cd53217f-d4fa-4512-9e4c-55a1a37d483e/versions/","latest_version_href":"/pulp/api/v3/repositories/cd53217f-d4fa-4512-9e4c-55a1a37d483e/versions/1/","name":"file_sync_test_repository","plugin_managed":false,"description":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/220a6d7c-0e5d-41c2-b140-37100b3e9e8e/","pulp_created":"2019-11-16T15:49:54.581881Z","versions_href":"/pulp/api/v3/repositories/file/file/220a6d7c-0e5d-41c2-b140-37100b3e9e8e/versions/","latest_version_href":"/pulp/api/v3/repositories/file/file/220a6d7c-0e5d-41c2-b140-37100b3e9e8e/versions/1/","name":"file_sync_test_repository","description":null}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '443'
+      - '450'
       Content-Type:
       - application/json
       Date:
-      - Sun, 27 Oct 2019 19:27:25 GMT
+      - Sat, 16 Nov 2019 15:49:59 GMT
       Server:
       - nginx/1.14.2
       Vary:

@@ -7,23 +7,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.1.0b4/python
+      - OpenAPI-Generator/0.1.0rc1/python
     method: GET
     uri: http://pulp3-sandbox-debian10/pulp/api/v3/remotes/file/file/?name=test_file_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/file/file/fb46b9b2-786e-4112-bdcd-4af3d8ce9d08/","pulp_created":"2019-10-27T19:22:51.931851Z","name":"test_file_remote","url":"https://repos.fedorapeople.org/pulp/pulp/fixtures/file/PULP_MANIFEST","ssl_ca_certificate":null,"ssl_client_certificate":null,"ssl_client_key":null,"ssl_validation":true,"proxy_url":null,"pulp_last_updated":"2019-10-27T19:22:53.483816Z","download_concurrency":20,"policy":"streamed"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/file/file/dcac78e3-22b6-4718-a365-c557ecb90765/","pulp_created":"2019-11-16T15:21:47.232799Z","name":"test_file_remote","url":"https://repos.fedorapeople.org/pulp/pulp/fixtures/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":null,"pulp_last_updated":"2019-11-16T15:21:48.701665Z","download_concurrency":20,"policy":"streamed"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '497'
+      - '471'
       Content-Type:
       - application/json
       Date:
-      - Sun, 27 Oct 2019 19:22:56 GMT
+      - Sat, 16 Nov 2019 15:21:51 GMT
       Server:
       - nginx/1.14.2
       Vary:

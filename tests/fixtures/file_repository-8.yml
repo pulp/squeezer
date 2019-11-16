@@ -7,9 +7,9 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc7/python
+      - OpenAPI-Generator/0.1.0rc1/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/?name=test_repository
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/file/file/?name=test_repository
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 27 Oct 2019 17:50:27 GMT
+      - Sat, 16 Nov 2019 15:32:30 GMT
       Server:
       - nginx/1.14.2
       Vary:

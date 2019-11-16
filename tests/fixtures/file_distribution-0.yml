@@ -7,23 +7,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc7/python
+      - OpenAPI-Generator/0.1.0rc1/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/?name=file_sync_test_repository
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/file/file/?name=file_sync_test_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ac925f00-d72a-4396-b200-f94a7949db7d/","pulp_created":"2019-10-27T20:21:56.345642Z","versions_href":"/pulp/api/v3/repositories/ac925f00-d72a-4396-b200-f94a7949db7d/versions/","latest_version_href":"/pulp/api/v3/repositories/ac925f00-d72a-4396-b200-f94a7949db7d/versions/1/","name":"file_sync_test_repository","plugin_managed":false,"description":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/15268588-f41f-4181-bee9-30f73edab56c/","pulp_created":"2019-11-16T16:05:46.169658Z","versions_href":"/pulp/api/v3/repositories/file/file/15268588-f41f-4181-bee9-30f73edab56c/versions/","latest_version_href":"/pulp/api/v3/repositories/file/file/15268588-f41f-4181-bee9-30f73edab56c/versions/1/","name":"file_sync_test_repository","description":null}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '443'
+      - '450'
       Content-Type:
       - application/json
       Date:
-      - Sun, 27 Oct 2019 20:22:04 GMT
+      - Sat, 16 Nov 2019 16:05:53 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -41,23 +41,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.1.0b4/python
+      - OpenAPI-Generator/0.1.0rc1/python
     method: GET
     uri: http://pulp3-sandbox-debian10/pulp/api/v3/publications/file/file/
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/file/file/e988b234-2376-4e5c-938d-1bdcc7e827e9/","pulp_created":"2019-10-27T20:22:01.388096Z","publisher":null,"repository_version":"/pulp/api/v3/repositories/ac925f00-d72a-4396-b200-f94a7949db7d/versions/1/","distributions":[]}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/file/file/fa80dc6b-193c-49ac-8fea-930d15724006/","pulp_created":"2019-11-16T16:05:51.169987Z","publisher":null,"repository_version":"/pulp/api/v3/repositories/file/file/15268588-f41f-4181-bee9-30f73edab56c/versions/1/","repository":"/pulp/api/v3/repositories/file/file/15268588-f41f-4181-bee9-30f73edab56c/","distributions":[],"manifest":"PULP_MANIFEST"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '320'
+      - '446'
       Content-Type:
       - application/json
       Date:
-      - Sun, 27 Oct 2019 20:22:04 GMT
+      - Sat, 16 Nov 2019 16:05:54 GMT
       Server:
       - nginx/1.14.2
       Vary:

@@ -85,10 +85,7 @@ RETURN = r'''
 '''
 
 
-from ansible.module_utils.pulp_helper import (
-    PulpEntityAnsibleModule,
-    pulp_file,
-)
+from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
 
 
 def main():
@@ -113,7 +110,7 @@ def main():
     }
 
     if repository_name:
-        repository = module.find_entity(module.repositories_api, {'name': repository_name})
+        repository = module.find_entity(module.file_repositories_api, {'name': repository_name})
         if repository is None:
             module.fail_json(msg="Failed to find repository ({repository_name}).".format(repository_name=repository_name))
         # TODO handle version properly
@@ -133,7 +130,7 @@ def main():
         # ---8<----8<---8<---
         entity = module.ensure_entity_state(
             entity_api=module.file_publications_api,
-            entity_class=pulp_file.FilePublication,
+            entity_class=module.file_publication_class,
             entity=entity,
             natural_key={'repository_version': repository_version_href},
             desired_attributes=desired_attributes,
