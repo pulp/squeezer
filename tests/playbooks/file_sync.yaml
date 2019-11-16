@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  collections:
+    - mdellweg.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -28,6 +30,8 @@
         state: present
 
 - hosts: tests
+  collections:
+    - mdellweg.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -66,6 +70,8 @@
           - result.repository.latest_version_href is match("/pulp/api/v3/repositories/file/file/.*/versions/1/")
 
 - hosts: localhost
+  collections:
+    - mdellweg.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml

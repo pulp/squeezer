@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  collections:
+    - mdellweg.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -40,6 +42,8 @@
         state: present
 
 - hosts: tests
+  collections:
+    - mdellweg.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -114,6 +118,8 @@
           - result.changed == false
 
 - hosts: localhost
+  collections:
+    - mdellweg.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml

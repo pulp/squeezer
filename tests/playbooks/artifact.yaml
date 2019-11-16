@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  collections:
+    - mdellweg.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -18,6 +20,8 @@
         - data/large_artifact.dat
 
 - hosts: tests
+  collections:
+    - mdellweg.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml

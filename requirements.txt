@@ -1,3 +1,11 @@
-pulpcore-client==3.0.0rc9
-pulp_file-client==0.1.0rc2
+pulpcore-client
+pulp_file-client
 ansible>=2.9
+ansible_runner
+flake8
+pylint
+pycodestyle
+voluptuous
+yamllint
+pytest
+vcrpy

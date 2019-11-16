@@ -1,5 +1,7 @@
+---
 pulp_url: http://localhost:24817
 pulp_username: admin
 pulp_password: password
 
 pulp_fixtures_url: "https://repos.fedorapeople.org/pulp/pulp/fixtures"
+...

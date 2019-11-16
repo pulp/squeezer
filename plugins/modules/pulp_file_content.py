@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # copyright (c) 2019, Matthias Dellweg
@@ -30,8 +31,8 @@ options:
       - Relative path of the file content unit
     type: str
 extends_documentation_fragment:
-  - pulp
-  - pulp.entity_state
+  - mdellweg.squeezer.pulp
+  - mdellweg.squeezer.pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
 '''
@@ -60,16 +61,16 @@ RETURN = r'''
   contents:
     description: List of file content units
     type: list
-    return: when digest or relative_path is not given
+    returned: when digest or relative_path is not given
   content:
     description: File content unit details
     type: dict
-    return: when digest and relative_path is given
+    returned: when digest and relative_path is given
 '''
 
 
-from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible.module_utils.pulp_file import PulpFileContent
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file import PulpFileContent
 
 
 def main():

@@ -1,10 +1,11 @@
-namespace: "pulp"
-name: "pulp"
+namespace: "mdellweg"
+name: "squeezer"
 authors:
   - "Matthias Dellweg <2500@gmx.de>"
+  - "Timo Funke <timoses@msn.com>"
 version: "0.0.1"
 license: "GPL-3.0-or-later"
+license_file: LICENSE
+readme: README.md
 tags:
   - pulp
-dependencies:
-  ansible.version: ">= 2.8.0"

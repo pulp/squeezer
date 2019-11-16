@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # copyright (c) 2019, Matthias Dellweg
@@ -22,7 +23,7 @@ description:
   - "This module queries a pulp api server instance for installed plugins and service connectivity."
 options: {}
 extends_documentation_fragment:
-  - pulp
+  - mdellweg.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
 '''
@@ -43,11 +44,14 @@ RETURN = r'''
   status:
     description: Pulp server status
     type: dict
-    return: always
+    returned: always
 '''
 
 
-from ansible.module_utils.pulp_helper import PulpAnsibleModule, PulpStatus
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import (
+    PulpAnsibleModule,
+    PulpStatus,
+)
 
 
 def main():

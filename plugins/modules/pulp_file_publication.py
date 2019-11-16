@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # copyright (c) 2019, Matthias Dellweg
@@ -37,8 +38,8 @@ options:
     type: str
     required: false
 extends_documentation_fragment:
-  - pulp
-  - pulp.entity_state
+  - mdellweg.squeezer.pulp
+  - mdellweg.squeezer.pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
 '''
@@ -73,16 +74,16 @@ RETURN = r'''
   file_publications:
     description: List of file publications
     type: list
-    return: when no repository is given
+    returned: when no repository is given
   file_publication:
     description: File publication details
     type: dict
-    return: when repository is given
+    returned: when repository is given
 '''
 
 
-from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible.module_utils.pulp_file import (
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file import (
     PulpFilePublication,
     PulpFileRepository,
 )
@@ -92,7 +93,7 @@ def main():
     module = PulpEntityAnsibleModule(
         argument_spec=dict(
             repository=dict(),
-            version=dict(),
+            version=dict(type='int'),
             manifest=dict(),
         ),
         required_if=(

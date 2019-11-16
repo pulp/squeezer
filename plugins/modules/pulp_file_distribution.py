@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # copyright (c) 2019, Matthias Dellweg
@@ -40,10 +41,10 @@ options:
     description:
       - Name of the content guard for the served content
     type: str
-    requried: false
+    required: false
 extends_documentation_fragment:
-  - pulp
-  - pulp.entity_state
+  - mdellweg.squeezer.pulp
+  - mdellweg.squeezer.pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
 '''
@@ -81,16 +82,16 @@ RETURN = r'''
   distributions:
     description: List of file distributions
     type: list
-    return: when no name is given
+    returned: when no name is given
   distribution:
     description: File distribution details
     type: dict
-    return: when name is given
+    returned: when name is given
 '''
 
 
-from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible.module_utils.pulp_file import PulpFileDistribution
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file import PulpFileDistribution
 
 
 def main():

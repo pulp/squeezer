@@ -34,7 +34,9 @@ CONTENT_CHUNK_SIZE = 512 * 1024  # 1/2 MB
 
 class PulpAnsibleModule(AnsibleModule):
 
-    def __init__(self, argument_spec={}, **kwargs):
+    def __init__(self, argument_spec=None, **kwargs):
+        if argument_spec is None:
+            argument_spec = {}
         self._changed = False
 
         spec = dict(
@@ -66,7 +68,9 @@ class PulpAnsibleModule(AnsibleModule):
 
 
 class PulpEntityAnsibleModule(PulpAnsibleModule):
-    def __init__(self, argument_spec={}, **kwargs):
+    def __init__(self, argument_spec=None, **kwargs):
+        if argument_spec is None:
+            argument_spec = {}
         spec = dict(
             state=dict(
                 choices=['present', 'absent'],
@@ -223,7 +227,7 @@ class PulpTask(PulpEntity):
             sleep(2)
             task = self.api.read(task.pulp_href)
         if task.state != 'completed':
-            self.module.fail_json(msg='Task failed to complete. ({}; {})'.format(task.state, task.error['description']))
+            self.module.fail_json(msg='Task failed to complete. ({1}; {2})'.format(task.state, task.error['description']))
         return task
 
 

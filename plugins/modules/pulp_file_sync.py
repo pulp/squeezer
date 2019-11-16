@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # copyright (c) 2019, Matthias Dellweg
@@ -32,7 +33,7 @@ options:
     type: str
     required: true
 extends_documentation_fragment:
-  - pulp
+  - mdellweg.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
 '''
@@ -55,11 +56,12 @@ RETURN = r'''
   repository_version:
     description: Repository version after synching
     type: dict
+    returned: always
 '''
 
 
-from ansible.module_utils.pulp_helper import PulpAnsibleModule
-from ansible.module_utils.pulp_file import (
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpAnsibleModule
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file import (
     PulpFileRemote,
     PulpFileRepository
 )
@@ -77,12 +79,12 @@ def main():
     remote_entity = remote.find()
 
     if remote_entity is None:
-        module.fail_json(msg="Remote '{}' not found.".format(module.params['remote']))
+        module.fail_json(msg="Remote '{1}' not found.".format(module.params['remote']))
 
     repository = PulpFileRepository(module, {'name': module.params['repository']})
     repository_entity = repository.find()
     if repository_entity is None:
-        module.fail_json(msg="Repository '{}' not found.".format(module.params['repository']))
+        module.fail_json(msg="Repository '{1}' not found.".format(module.params['repository']))
 
     repository_version = repository_entity.latest_version_href
     sync_task = repository.sync(remote_entity.pulp_href)

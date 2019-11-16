@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # copyright (c) 2019, Matthias Dellweg
@@ -31,8 +32,8 @@ options:
       - When specified together with file, it will be used to verify any transaction.
     type: str
 extends_documentation_fragment:
-  - pulp
-  - pulp.entity_state
+  - mdellweg.squeezer.pulp
+  - mdellweg.squeezer.pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
 '''
@@ -74,21 +75,24 @@ RETURN = r'''
   artifacts:
     description: List of artifacts
     type: list
-    return: when no file or sha256 is given
+    returned: when no file or sha256 is given
   artifact:
     description: Artifact details
     type: dict
-    return: when file or sha256 is given
+    returned: when file or sha256 is given
 '''
 
 
-from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule, PulpArtifact
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import (
+    PulpEntityAnsibleModule,
+    PulpArtifact,
+)
 
 
 def main():
     module = PulpEntityAnsibleModule(
         argument_spec=dict(
-            file=dict(),
+            file=dict(type='path'),
             sha256=dict(),
         ),
         required_if=[

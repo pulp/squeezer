@@ -1,5 +1,0 @@
-ansible>=2.8
-ansible_runner
-flake8
-pytest
-vcrpy

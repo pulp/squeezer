@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # copyright (c) 2019, Matthias Dellweg
@@ -50,8 +51,8 @@ options:
       - If True, TLS peer validation must be performed on remote synchronization.
     type: bool
 extends_documentation_fragment:
-  - pulp
-  - pulp.entity_state
+  - mdellweg.squeezer.pulp
+  - mdellweg.squeezer.pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
 '''
@@ -87,16 +88,16 @@ RETURN = r'''
   remotes:
     description: List of file remotes
     type: list
-    return: when no name is given
+    returned: when no name is given
   remote:
     description: File remote details
     type: dict
-    return: when name is given
+    returned: when name is given
 '''
 
 
-from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible.module_utils.pulp_file import PulpFileRemote
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file import PulpFileRemote
 
 
 def main():
@@ -104,12 +105,12 @@ def main():
         argument_spec=dict(
             name=dict(),
             url=dict(),
-            download_concurrency=dict(type=int),
+            download_concurrency=dict(type='int'),
             policy=dict(
                 choices=['immediate', 'on-demand', 'streamed'],
             ),
-            proxy_url=dict(type=str),
-            tls_validation=dict(type=bool),
+            proxy_url=dict(type='str'),
+            tls_validation=dict(type='bool'),
         ),
         required_if=[
             ('state', 'present', ['name']),

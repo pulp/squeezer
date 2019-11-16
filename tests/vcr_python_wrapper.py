@@ -6,6 +6,11 @@ import vcr
 import json
 import re
 
+try:
+    from urlparse import urlparse, urlunparse
+except ImportError:
+    from urllib.parse import urlparse, urlunparse
+
 
 # We need our own json level2 matcher, because, python2 and python3 do not save
 # dictionaries in the same order.
@@ -29,6 +34,11 @@ def amp_body_matcher(r1, r2):
         return r1.body.replace(boundary1, b'TILT') == r2.body.replace(boundary2, b'TILT')
     else:
         return r1.body == r2.body
+
+
+def filter_request_uri(request):
+    request.uri = urlunparse(urlparse(request.uri)._replace(netloc="pulp.example.org"))
+    return request
 
 
 VCR_PARAMS_FILE = os.environ.get('PAM_TEST_VCR_PARAMS_FILE')
@@ -56,11 +66,13 @@ else:
     # Call the original python script with vcr-cassette in place
     amp_vcr = vcr.VCR()
     amp_vcr.register_matcher('amp_body', amp_body_matcher)
-    with amp_vcr.use_cassette(cassette_file,
-                              record_mode=test_params['record_mode'],
-                              match_on=['method', 'path', 'query', 'amp_body'],
-                              filter_headers=['Authorization'],
-                              ):
+    with amp_vcr.use_cassette(
+        cassette_file,
+        record_mode=test_params['record_mode'],
+        match_on=['method', 'path', 'query', 'amp_body'],
+        filter_headers=['Authorization'],
+        before_record_request=filter_request_uri,
+    ):
         with open(sys.argv[0]) as f:
             code = compile(f.read(), sys.argv[0], 'exec')
             exec(code)
