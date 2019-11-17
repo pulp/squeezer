@@ -78,10 +78,13 @@ def main():
     if repository is None:
         module.fail_json(msg="Repository '{}' not found.".format(repository_name))
 
+    repository_version = repository.latest_version_href
     result = module.file_repositories_api.sync(repository.pulp_href, {'remote': remote.pulp_href})
-    module._changed = True
     sync_task = module.wait_for_task(result.task)
-    repository_version = sync_task.created_resources[0]
+
+    if sync_task.created_resources:
+        module._changed = True
+        repository_version = sync_task.created_resources[0]
 
     module.exit_json(repository_version=repository_version)
 

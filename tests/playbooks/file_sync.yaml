@@ -45,6 +45,17 @@
           - result.changed == true
           - result.repository_version is match("/pulp/api/v3/repositories/file/file/.*/versions/1/")
 
+    - name: Sync file_remote into repository (2nd try)
+      pulp_file_sync:
+        remote: file_sync_test_file_remote
+        repository: file_sync_test_repository
+      register: result
+    - name: Verify sync file_remote into repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+          - result.repository_version is match("/pulp/api/v3/repositories/file/file/.*/versions/1/")
+
     - name: Dump repository
       pulp_file_repository:
         name: file_sync_test_repository
