@@ -4,8 +4,9 @@
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 import os
+from shutil import rmtree
 import traceback
-from tempfile import TemporaryDirectory
+from tempfile import mkdtemp
 from time import sleep
 
 from ansible.module_utils.basic import (
@@ -87,7 +88,8 @@ class PulpAnsibleModule(AnsibleModule):
                         'file': entity.file,
                         'sha256': entity.sha256,
                     }
-                    return super(NewArtifactsApi, self).create(**payload, **kwargs)
+                    payload.update(kwargs)
+                    return super(NewArtifactsApi, self).create(**payload)
 
             self._artifacts_api = NewArtifactsApi(self._client)
         return self._artifacts_api
@@ -118,7 +120,8 @@ class PulpAnsibleModule(AnsibleModule):
                         'artifact': entity.artifact,
                         'relative_path': entity.relative_path,
                     }
-                    return super(NewFileContentsApi, self).create(**payload, **kwargs)
+                    payload.update(kwargs)
+                    return super(NewFileContentsApi, self).create(**payload)
 
             self._file_contents_api = NewFileContentsApi(self.file_client)
         return self._file_contents_api
@@ -225,15 +228,16 @@ class PulpAnsibleModule(AnsibleModule):
                         end=offset + actual_chunk_size - 1,
                         size=size,
                     )
-                    with TemporaryDirectory() as temp_dir:
-                        chunk_file_name = os.path.join(temp_dir, 'chunk.bin')
-                        with open(chunk_file_name, 'wb') as chunk_file:
-                            chunk_file.write(chunk)
-                        upload = self.uploads_api.update(
-                            upload_href=upload.pulp_href,
-                            file=chunk_file_name,
-                            content_range=content_range,
-                        )
+                    temp_dir = mkdtemp(dir="/tmp")
+                    chunk_file_name = os.path.join(temp_dir, 'chunk.bin')
+                    with open(chunk_file_name, 'wb') as chunk_file:
+                        chunk_file.write(chunk)
+                    upload = self.uploads_api.update(
+                        upload_href=upload.pulp_href,
+                        file=chunk_file_name,
+                        content_range=content_range,
+                    )
+                    rmtree(temp_dir)
                     offset += actual_chunk_size
 
                 commit_response = self.uploads_api.commit(
@@ -268,7 +272,10 @@ class PulpAnsibleModule(AnsibleModule):
     def create_entity(self, entity_api, entity_class, natural_key, desired_attributes):
         if not hasattr(entity_api, 'create'):
             self.fail_json(msg="This entity is not creatable.")
-        entity = entity_class(**natural_key, **desired_attributes)
+        kwargs = dict()
+        kwargs.update(natural_key)
+        kwargs.update(desired_attributes)
+        entity = entity_class(**kwargs)
         if not self.check_mode:
             response = entity_api.create(entity)
             if getattr(response, 'task', None):
@@ -334,7 +341,7 @@ class PulpEntityAnsibleModule(PulpAnsibleModule):
         spec.update(argument_spec)
         super(PulpEntityAnsibleModule, self).__init__(
             argument_spec=spec,
-            **kwargs,
+            **kwargs
         )
         self._entity_api = getattr(self, self._entity_plural + '_api')
         self._entity_class = getattr(self, self._entity_name + '_class')
