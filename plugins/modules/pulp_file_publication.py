@@ -76,18 +76,18 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-  file_publications:
+  publications:
     description: List of file publications
     type: list
     return: when no name is given
-  file_publication:
+  publication:
     description: File publication details
     type: dict
     return: when name is given
 '''
 
 
-from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
+from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule, PulpEntityController
 
 
 def main():
@@ -101,8 +101,9 @@ def main():
             ['state', 'present', ['repository']],
             ['state', 'absent', ['repository']],
         ),
-        entity_name='file_publication',
-        entity_plural='file_publications',
+        entity_name='publication',
+        entity_plural='publications',
+        entity_plugin='file'
     )
 
     repository_name = module.params['repository']
@@ -111,8 +112,10 @@ def main():
         key: module.params[key] for key in ['manifest'] if module.params[key] is not None
     }
 
+    repository_ctlr = PulpEntityController(module, 'repository', 'repositories', 'file')
+    publication_ctlr = PulpEntityController(module, 'publication', 'publications', 'file')
     if repository_name:
-        repository = module.find_entity(module.file_repositories_api, {'name': repository_name})
+        repository = repository_ctlr.find({'name': repository_name})
         if repository is None:
             module.fail_json(msg="Failed to find repository ({repository_name}).".format(repository_name=repository_name))
         # TODO handle version properly
@@ -124,25 +127,23 @@ def main():
         # entity = module.find_entity(module.file_publications_api, {'repository_version': repository_version_href})
         # ---8<----8<---8<---
         entity = None
-        search_result = module.file_publications_api.list()
+        search_result = publication_ctlr.api.list()
         for item in search_result.results:
             if item.repository_version == repository_version_href:
                 entity = item
                 break
         # ---8<----8<---8<---
         entity = module.ensure_entity_state(
-            entity_api=module.file_publications_api,
-            entity_class=module.file_publication_class,
             entity=entity,
             natural_key={'repository_version': repository_version_href},
             desired_attributes=desired_attributes,
         )
         if entity is not None:
             entity = entity.to_dict()
-        module.exit_json(file_publication=entity)
+        module.exit_json(publication=entity)
     else:
-        entities = module.list_entities(module.file_publications_api)
-        module.exit_json(file_publications=[entity.to_dict() for entity in entities])
+        entities = publication_ctlr.list()
+        module.exit_json(publications=[entity.to_dict() for entity in entities])
 
 
 if __name__ == '__main__':

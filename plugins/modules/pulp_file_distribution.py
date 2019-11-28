@@ -84,11 +84,11 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-  file_distributions:
+  distributions:
     description: List of file distributions
     type: list
     return: when no name is given
-  file_distribution:
+  distribution:
     description: File distribution details
     type: dict
     return: when name is given
@@ -110,8 +110,9 @@ def main():
             ('state', 'present', ['name', 'base_path']),
             ('state', 'absent', ['name']),
         ],
-        entity_name='file_distribution',
-        entity_plural='file_distributions',
+        entity_name='distribution',
+        entity_plural='distributions',
+        entity_plugin='file'
     )
 
     if module.params['content_guard']:

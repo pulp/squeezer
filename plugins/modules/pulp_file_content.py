@@ -63,11 +63,11 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-  file_contents:
+  contents:
     description: List of file content units
     type: list
     return: when digest or relative_path is not given
-  file_content:
+  content:
     description: File content unit details
     type: dict
     return: when digest and relative_path is given
@@ -89,8 +89,9 @@ def main():
             ('state', 'present', ['digest', 'relative_path']),
             ('state', 'absent', ['digest', 'relative_path']),
         ],
-        entity_name='file_content',
-        entity_plural='file_contents',
+        entity_name='content',
+        entity_plural='contents',
+        entity_plugin='file'
     )
 
     natural_key = {

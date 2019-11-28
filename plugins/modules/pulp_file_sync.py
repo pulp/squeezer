@@ -58,7 +58,7 @@ RETURN = r'''
 '''
 
 
-from ansible.module_utils.pulp_helper import PulpAnsibleModule
+from ansible.module_utils.pulp_helper import PulpAnsibleModule, PulpEntityController
 
 
 def main():
@@ -72,17 +72,20 @@ def main():
     remote_name = module.params['remote']
     repository_name = module.params['repository']
 
-    remote = module.find_entity(module.file_remotes_api, {'name': remote_name})
+    remote_ctlr = PulpEntityController(module, 'remote', 'remotes', 'file')
+
+    remote = remote_ctlr.find({'name': remote_name})
     if remote is None:
         module.fail_json(msg="Remote '{}' not found.".format(remote_name))
 
-    repository = module.find_entity(module.file_repositories_api, {'name': repository_name})
+    repository_ctlr = PulpEntityController(module, 'repository', 'repositories', 'file')
+    repository = repository_ctlr.find({'name': repository_name})
     if repository is None:
         module.fail_json(msg="Repository '{}' not found.".format(repository_name))
 
     repository_version = repository.latest_version_href
-    result = module.file_repositories_api.sync(repository.pulp_href, {'remote': remote.pulp_href})
-    sync_task = module.wait_for_task(result.task)
+    result = repository_ctlr.api.sync(repository.pulp_href, {'remote': remote.pulp_href})
+    sync_task = repository_ctlr.api_client.wait_for_task(result.task)
 
     if sync_task.created_resources:
         module._changed = True

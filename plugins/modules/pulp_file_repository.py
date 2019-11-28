@@ -69,11 +69,11 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-  file_repositories:
+  repositories:
     description: List of file repositories
     type: list
     return: when no name is given
-  file_repository:
+  repository:
     description: File repository details
     type: dict
     return: when name is given
@@ -95,8 +95,9 @@ def main():
             ('state', 'present', ['name']),
             ('state', 'absent', ['name']),
         ],
-        entity_name='file_repository',
-        entity_plural='file_repositories',
+        entity_name='repository',
+        entity_plural='repositories',
+        entity_plugin='file'
     )
 
     natural_key = {

@@ -47,12 +47,13 @@ RETURN = r'''
 '''
 
 
+from ansible.module_utils.pulp_core import PulpCoreApiClient
 from ansible.module_utils.pulp_helper import PulpAnsibleModule
 
 
 def main():
     module = PulpAnsibleModule()
-    status = module.status_api.status_read()
+    status = PulpCoreApiClient(module).status_api.status_read()
     module.exit_json(status=status.to_dict())
 
 

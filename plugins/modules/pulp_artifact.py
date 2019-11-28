@@ -101,6 +101,7 @@ def main():
         ],
         entity_name='artifact',
         entity_plural='artifacts',
+        entity_plugin='core'
     )
 
     sha256 = module.params['sha256']

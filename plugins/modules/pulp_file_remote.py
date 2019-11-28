@@ -82,11 +82,11 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-  file_remotes:
+  remotes:
     description: List of file remotes
     type: list
     return: when no name is given
-  file_remote:
+  remote:
     description: File remote details
     type: dict
     return: when name is given
@@ -112,8 +112,9 @@ def main():
             ('state', 'present', ['name']),
             ('state', 'absent', ['name']),
         ],
-        entity_name='file_remote',
-        entity_plural='file_remotes',
+        entity_name='remote',
+        entity_plural='remotes',
+        entity_plugin='file'
     )
 
     natural_key = {
