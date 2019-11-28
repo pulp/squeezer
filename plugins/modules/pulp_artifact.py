@@ -111,7 +111,7 @@ def main():
             sha256 = file_sha256
 
     if sha256 is None and module.params['state'] == 'absent':
-        module.fail_json(msg="One of 'file' and 'sha256' is required if 'state' is 'abesent'.")
+        module.fail_json(msg="One of 'file' and 'sha256' is required if 'state' is 'absent'.")
 
     natural_key = {
         'sha256': sha256,
