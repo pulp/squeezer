@@ -66,7 +66,7 @@ class PulpFileApiClient(PulpCoreApiClient):
 
         class NewFileContent(pulp_file.FileFileContent):
             def __init__(self, **kwargs):
-                # FileContent can only be searched by digest, while it wants srtifact to create.
+                # FileContent can only be searched by digest, while it wants artifact to create.
                 if 'digest' in kwargs:
                     entity_ctlr = PulpEntityController(module, 'artifact', 'artifacts', 'file')
                     artifact = entity_ctlr.find({'sha256': kwargs.pop('digest')})

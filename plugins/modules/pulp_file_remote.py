@@ -29,7 +29,7 @@ options:
     description:
       - URL to the upstream pulp manifest
     type: str
-  download_conncurrency:
+  download_concurrency:
     description:
       - How many downloads should be attempted in parallel
     type: int
