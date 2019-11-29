@@ -25,6 +25,7 @@
       pulp_file_remote:
         name: test_file_remote
         url: "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+        proxy_url: "http://proxy.int:3128"
         state: present
       register: result
     - name: Verify create file_remote
@@ -33,11 +34,13 @@
           - result.changed == true
           - result.file_remote.name == "test_file_remote"
           - result.file_remote.url == "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+          - result.file_remote.proxy_url == "http://proxy.int:3128"
 
     - name: Create file_remote (2nd try)
       pulp_file_remote:
         name: test_file_remote
         url: "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+        proxy_url: "http://proxy.int:3128"
         state: present
       register: result
     - name: Verify create file_remote (2nd try)
@@ -49,6 +52,7 @@
       pulp_file_remote:
         name: test_file_remote
         policy: streamed
+        tls_validation: false
         state: present
       register: result
     - name: Verify modify file_remote
@@ -56,11 +60,13 @@
         that:
           - result.changed == true
           - result.file_remote.policy == "streamed"
+          - result.file_remote.tls_validation == false
 
     - name: Modify file_remote (2nd try)
       pulp_file_remote:
         name: test_file_remote
         policy: streamed
+        tls_validation: false
         state: present
       register: result
     - name: Verify modify file_remote (2nd try)
@@ -88,6 +94,7 @@
           - result.changed == false
           - result.file_remote.name == "test_file_remote"
           - result.file_remote.url == "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+          - result.file_remote.proxy_url == "http://proxy.int:3128"
 
     - name: Delete file_remote
       pulp_file_remote:
