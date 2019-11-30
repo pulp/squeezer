@@ -232,15 +232,17 @@ class PulpAnsibleModule(AnsibleModule):
                         size=size,
                     )
                     temp_dir = mkdtemp(dir="/tmp")
-                    chunk_file_name = os.path.join(temp_dir, 'chunk.bin')
-                    with open(chunk_file_name, 'wb') as chunk_file:
-                        chunk_file.write(chunk)
-                    upload = self.uploads_api.update(
-                        upload_href=upload.pulp_href,
-                        file=chunk_file_name,
-                        content_range=content_range,
-                    )
-                    rmtree(temp_dir)
+                    try:
+                        chunk_file_name = os.path.join(temp_dir, 'chunk.bin')
+                        with open(chunk_file_name, 'wb') as chunk_file:
+                            chunk_file.write(chunk)
+                        upload = self.uploads_api.update(
+                            upload_href=upload.pulp_href,
+                            file=chunk_file_name,
+                            content_range=content_range,
+                        )
+                    finally:
+                        rmtree(temp_dir)
                     offset += actual_chunk_size
 
                 commit_response = self.uploads_api.commit(
