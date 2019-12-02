@@ -37,7 +37,8 @@
       assert:
         that:
           - result.changed == true
-          - result.file_content.sha256 == file1_sha256
+          - result.file_content.relative_path == "data/file1.txt"
+          - result.file_content.sha256 == file1_sha256 or ansible_check_mode
 
     - name: Create file content unit (2nd try)
       pulp_file_content:
