@@ -16,7 +16,7 @@ test:
 	pytest -v
 
 test_%: FORCE
-	pytest 'tests/test_playbooks.py::test_playbook[$*]'
+	pytest 'tests/test_playbooks.py::test_playbook[$*]' 'tests/test_playbooks.py::test_check_mode[$*]'
 
 record_%: FORCE
 	$(RM) tests/fixtures/$*-*.yml
