@@ -95,9 +95,7 @@ RETURN = r'''
 '''
 
 
-from ansible.module_utils.pulp_helper import (
-    PulpEntityAnsibleModule,
-)
+from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
 
 
 def main():
