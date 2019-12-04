@@ -7,12 +7,12 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc7/python
+      - OpenAPI-Generator/3.0.0rc9/python
     method: GET
     uri: http://pulp3-sandbox-debian10/pulp/api/v3/artifacts/?sha256=c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/5bc9492d-cd6a-4eb5-8695-eff069b214b0/","pulp_created":"2019-11-03T18:24:06.695861Z","file":"artifact/c4/aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","size":1049600,"md5":"3d283316360c56857e7c212cfecbbd83","sha1":"b8930b94f05c8ce5cc628813dcf3d88d2da75e8a","sha224":"bfba29a479f1bd11d35b7122e16bf88f672a7eb9d41c88c229fbc3e5","sha256":"c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","sha384":"c0ef7ed5e3abbf74c83c9f65d69835d513e2a3ab2dafaba149eb0054327535cf0d3cfd1c6925d4142624a543e3000144","sha512":"884b6ec520cf21e1d8625235ddfa0670e15c3ddb30fd3c89117c1d2213507448a87a713fb355a51aad84e31a6adae696d0f6166dfa222589fc67b395aa657899"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/8dfec6b4-57ef-4fcc-93e1-366f3b781379/","pulp_created":"2019-12-04T19:36:57.063433Z","file":"artifact/c4/aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","size":1049600,"md5":"3d283316360c56857e7c212cfecbbd83","sha1":"b8930b94f05c8ce5cc628813dcf3d88d2da75e8a","sha224":"bfba29a479f1bd11d35b7122e16bf88f672a7eb9d41c88c229fbc3e5","sha256":"c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","sha384":"c0ef7ed5e3abbf74c83c9f65d69835d513e2a3ab2dafaba149eb0054327535cf0d3cfd1c6925d4142624a543e3000144","sha512":"884b6ec520cf21e1d8625235ddfa0670e15c3ddb30fd3c89117c1d2213507448a87a713fb355a51aad84e31a6adae696d0f6166dfa222589fc67b395aa657899"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 03 Nov 2019 18:24:11 GMT
+      - Wed, 04 Dec 2019 19:37:02 GMT
       Server:
       - nginx/1.14.2
       Vary:

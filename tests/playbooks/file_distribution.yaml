@@ -58,13 +58,13 @@
         publication: "{{ publication_result.file_publication.pulp_href }}"
         state: present
       register: result
-    - name: Verify publish latest version of repository
+    - name: Verify distribute publication of repository
       assert:
         that:
           - result.changed == true
           - result.file_distribution.name == "file_test_distribution"
           - result.file_distribution.base_path == "test_repo"
-          - result.file_distribution.base_url is regex(".*/pulp/content/test_repo")
+          - result.file_distribution.base_url is regex(".*/pulp/content/test_repo") or ansible_check_mode
           - result.file_distribution.publication == publication_result.file_publication.pulp_href
 
     - name: Distribute publication of repository (2nd try)
@@ -74,7 +74,7 @@
         publication: "{{ publication_result.file_publication.pulp_href }}"
         state: present
       register: result
-    - name: Verify publish latest version of repository (2nd try)
+    - name: Verify distribute publication of repository (2nd try)
       assert:
         that:
           - result.changed == false
@@ -83,7 +83,7 @@
       pulp_file_distribution:
         name: file_test_distribution
       register: result
-    - name: Verify publish latest version of repository
+    - name: Verify read distribution
       assert:
         that:
           - result.changed == false

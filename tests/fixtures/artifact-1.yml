@@ -7,23 +7,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc7/python
+      - OpenAPI-Generator/3.0.0rc9/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/artifacts/?sha256=9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/artifacts/?sha256=fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/624ba165-0a6d-4ea4-b23e-da1deaa6ea69/","pulp_created":"2019-11-03T18:23:59.105148Z","file":"artifact/9a/09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","size":5,"md5":"502c3370995c203cce7e3f1ffba6859a","sha1":"733033d4ba6761c30fbd1086a70784f4fb317687","sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/6cce6a42-48dc-419f-8e4e-c5b6942faef1/","pulp_created":"2019-12-04T19:36:49.333766Z","file":"artifact/fd/769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","size":14,"md5":"a5331b2bb7c7f414a4daac69d00131b7","sha1":"5fb54ebdb124da07050de72896a91a3d3261d61c","sha224":"886567b3800902ffb4c668006cfada2c4acc41c2a437e3646ee8341c","sha256":"fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","sha384":"99c257daa3ab6599bf830d137119798f8741a4b776fc1c50f68c96f85aa98da82029bf6f919b2a78e4740be4d88a58b1","sha512":"39c0377d34bb4296ef4e739a1face204e5ff5fbb4e67ac046244887a7aede265c2a95a03543b68094f08353986d8cb7f3f8a59f5ffcb94eb1d73666ebbb9eeb5"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '749'
+      - '750'
       Content-Type:
       - application/json
       Date:
-      - Sun, 03 Nov 2019 18:23:59 GMT
+      - Wed, 04 Dec 2019 19:36:49 GMT
       Server:
       - nginx/1.14.2
       Vary:

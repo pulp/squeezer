@@ -7,9 +7,9 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc7/python
+      - OpenAPI-Generator/3.0.0rc9/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/artifacts/?sha256=9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/artifacts/?sha256=fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 03 Nov 2019 18:24:05 GMT
+      - Wed, 04 Dec 2019 19:36:55 GMT
       Server:
       - nginx/1.14.2
       Vary:
