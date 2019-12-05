@@ -9,26 +9,26 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/0.1.0rc2/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/remotes/file/file/?name=test_file_remote
+    uri: http://localhost:8080/pulp/api/v3/remotes/file/file/?name=test_file_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/file/file/3e2e0b94-1d87-4760-8e84-0219cd821097/","pulp_created":"2019-12-04T19:19:17.116791Z","name":"test_file_remote","url":"https://repos.fedorapeople.org/pulp/pulp/fixtures/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":null,"pulp_last_updated":"2019-12-04T19:19:18.655605Z","download_concurrency":20,"policy":"streamed"}]}'
+      string: !!python/unicode '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/file/file/616c3562-247e-40d6-b112-a1f9c38296e9/","pulp_created":"2019-12-05T10:20:02.873623Z","name":"test_file_remote","url":"https://repos.fedorapeople.org/pulp/pulp/fixtures/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_last_updated":"2019-12-05T10:20:04.405476Z","download_concurrency":20,"policy":"streamed"}]}'
     headers:
-      Allow:
+      allow:
       - GET, POST, HEAD, OPTIONS
-      Connection:
+      connection:
       - keep-alive
-      Content-Length:
-      - '471'
-      Content-Type:
+      content-length:
+      - '491'
+      content-type:
       - application/json
-      Date:
-      - Wed, 04 Dec 2019 19:19:23 GMT
-      Server:
-      - nginx/1.14.2
-      Vary:
+      date:
+      - Thu, 05 Dec 2019 10:20:06 GMT
+      server:
+      - nginx/1.16.1
+      vary:
       - Accept, Cookie
-      X-Frame-Options:
+      x-frame-options:
       - SAMEORIGIN
     status:
       code: 200
@@ -43,26 +43,26 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/0.1.0rc2/python
     method: DELETE
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/remotes/file/file/3e2e0b94-1d87-4760-8e84-0219cd821097/
+    uri: http://localhost:8080/pulp/api/v3/remotes/file/file/616c3562-247e-40d6-b112-a1f9c38296e9/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/753cca2d-5af3-4d8f-bf3d-7db94a15e68e/"}'
+      string: !!python/unicode '{"task":"/pulp/api/v3/tasks/8b2fd90b-e6a8-4799-9c54-e9b3706498f0/"}'
     headers:
-      Allow:
+      allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
+      connection:
       - keep-alive
-      Content-Length:
+      content-length:
       - '67'
-      Content-Type:
+      content-type:
       - application/json
-      Date:
-      - Wed, 04 Dec 2019 19:19:23 GMT
-      Server:
-      - nginx/1.14.2
-      Vary:
+      date:
+      - Thu, 05 Dec 2019 10:20:07 GMT
+      server:
+      - nginx/1.16.1
+      vary:
       - Accept, Cookie
-      X-Frame-Options:
+      x-frame-options:
       - SAMEORIGIN
     status:
       code: 202
@@ -77,60 +77,26 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/3.0.0rc9/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/753cca2d-5af3-4d8f-bf3d-7db94a15e68e/
+    uri: http://localhost:8080/pulp/api/v3/tasks/8b2fd90b-e6a8-4799-9c54-e9b3706498f0/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/753cca2d-5af3-4d8f-bf3d-7db94a15e68e/","pulp_created":"2019-12-04T19:19:23.297709Z","state":"waiting","name":"pulpcore.app.tasks.base.general_delete","started_at":null,"finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/b81140af-825e-431b-83d0-566cbc8bcfc4/","progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/file/file/3e2e0b94-1d87-4760-8e84-0219cd821097/"]}'
+      string: !!python/unicode '{"pulp_href":"/pulp/api/v3/tasks/8b2fd90b-e6a8-4799-9c54-e9b3706498f0/","pulp_created":"2019-12-05T10:20:07.114902Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2019-12-05T10:20:07.221421Z","finished_at":"2019-12-05T10:20:07.243613Z","error":null,"worker":"/pulp/api/v3/workers/12261344-e58c-4dac-a2ca-b8023dd5be57/","progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/file/file/616c3562-247e-40d6-b112-a1f9c38296e9/"]}'
     headers:
-      Allow:
+      allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
+      connection:
       - keep-alive
-      Content-Length:
-      - '449'
-      Content-Type:
-      - application/json
-      Date:
-      - Wed, 04 Dec 2019 19:19:23 GMT
-      Server:
-      - nginx/1.14.2
-      Vary:
-      - Accept, Cookie
-      X-Frame-Options:
-      - SAMEORIGIN
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      User-Agent:
-      - OpenAPI-Generator/3.0.0rc9/python
-    method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/753cca2d-5af3-4d8f-bf3d-7db94a15e68e/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/753cca2d-5af3-4d8f-bf3d-7db94a15e68e/","pulp_created":"2019-12-04T19:19:23.297709Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2019-12-04T19:19:23.512912Z","finished_at":"2019-12-04T19:19:23.632366Z","error":null,"worker":"/pulp/api/v3/workers/b81140af-825e-431b-83d0-566cbc8bcfc4/","progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/file/file/3e2e0b94-1d87-4760-8e84-0219cd821097/"]}'
-    headers:
-      Allow:
-      - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
+      content-length:
       - '501'
-      Content-Type:
+      content-type:
       - application/json
-      Date:
-      - Wed, 04 Dec 2019 19:19:25 GMT
-      Server:
-      - nginx/1.14.2
-      Vary:
+      date:
+      - Thu, 05 Dec 2019 10:20:07 GMT
+      server:
+      - nginx/1.16.1
+      vary:
       - Accept, Cookie
-      X-Frame-Options:
+      x-frame-options:
       - SAMEORIGIN
     status:
       code: 200

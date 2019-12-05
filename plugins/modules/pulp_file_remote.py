@@ -41,6 +41,14 @@ options:
       - immediate
       - on-demand
       - streamed
+  proxy_url:
+    description:
+      - The proxy URL. Format C(scheme://user:password@host:port) .
+    type: str
+  tls_validation:
+    description:
+      - If True, TLS peer validation must be performed on remote synchronization.
+    type: bool
   state:
     description:
       - State the remote should be in
@@ -107,6 +115,8 @@ def main():
             policy=dict(
                 choices=['immediate', 'on-demand', 'streamed'],
             ),
+            proxy_url=dict(type=str),
+            tls_validation=dict(type=bool),
         ),
         required_if=[
             ('state', 'present', ['name']),
@@ -120,7 +130,7 @@ def main():
         'name': module.params['name'],
     }
     desired_attributes = {
-        key: module.params[key] for key in ['url', 'download_concurrency', 'policy'] if module.params[key] is not None
+        key: module.params[key] for key in ['url', 'download_concurrency', 'policy', 'proxy_url', 'tls_validation'] if module.params[key] is not None
     }
 
     module.process_entity(natural_key, desired_attributes)
