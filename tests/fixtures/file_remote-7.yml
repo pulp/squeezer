@@ -9,26 +9,26 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/0.1.0rc2/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/remotes/file/file/?name=test_file_remote
+    uri: http://localhost:8080/pulp/api/v3/remotes/file/file/?name=test_file_remote
   response:
     body:
-      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+      string: !!python/unicode '{"count":0,"next":null,"previous":null,"results":[]}'
     headers:
-      Allow:
+      allow:
       - GET, POST, HEAD, OPTIONS
-      Connection:
+      connection:
       - keep-alive
-      Content-Length:
+      content-length:
       - '52'
-      Content-Type:
+      content-type:
       - application/json
-      Date:
-      - Wed, 04 Dec 2019 19:19:26 GMT
-      Server:
-      - nginx/1.14.2
-      Vary:
+      date:
+      - Thu, 05 Dec 2019 10:20:07 GMT
+      server:
+      - nginx/1.16.1
+      vary:
       - Accept, Cookie
-      X-Frame-Options:
+      x-frame-options:
       - SAMEORIGIN
     status:
       code: 200
