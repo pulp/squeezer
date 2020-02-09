@@ -29,14 +29,9 @@ options:
     description:
       - Description of the repository
     type: str
-  state:
-    description:
-      - State the repository should be in
-    choices:
-      - present
-      - absent
 extends_documentation_fragment:
   - pulp
+  - pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
 '''

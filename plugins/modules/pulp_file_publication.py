@@ -36,15 +36,9 @@ options:
       - Name of the pulp manifest file in the publication
     type: str
     required: false
-  state:
-    description:
-      - State the publication should be in
-    type: str
-    choices:
-      - present
-      - absent
 extends_documentation_fragment:
   - pulp
+  - pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
 '''

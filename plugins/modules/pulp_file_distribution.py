@@ -41,15 +41,9 @@ options:
       - Name of the content guard for the served content
     type: str
     requried: false
-  state:
-    description:
-      - State the distribution should be in
-    type: str
-    choices:
-      - present
-      - absent
 extends_documentation_fragment:
   - pulp
+  - pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
 '''

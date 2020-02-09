@@ -29,15 +29,9 @@ options:
     description:
       - Relative path of the file content unit
     type: str
-  state:
-    description:
-      - State the file content unit should be in
-    type: str
-    choices:
-      - present
-      - absent
 extends_documentation_fragment:
   - pulp
+  - pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
 '''

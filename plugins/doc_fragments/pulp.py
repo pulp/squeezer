@@ -31,3 +31,13 @@ options:
     type: bool
     default: true
 '''
+
+    ENTITY_STATE = r'''
+options:
+  state:
+    description:
+      - State the entity should be in
+    choices:
+      - present
+      - absent
+'''

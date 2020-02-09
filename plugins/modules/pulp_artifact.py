@@ -30,14 +30,9 @@ options:
       - sha256 digest of the artifact to query or delete.
       - When specified together with file, it will be used to verify any transaction.
     type: str
-  state:
-    description:
-      - State the artifact should be in
-    choices:
-      - present
-      - absent
 extends_documentation_fragment:
   - pulp
+  - pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
 '''

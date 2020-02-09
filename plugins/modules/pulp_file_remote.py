@@ -49,15 +49,9 @@ options:
     description:
       - If True, TLS peer validation must be performed on remote synchronization.
     type: bool
-  state:
-    description:
-      - State the remote should be in
-    type: str
-    choices:
-      - present
-      - absent
 extends_documentation_fragment:
   - pulp
+  - pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
 '''
