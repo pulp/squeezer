@@ -29,7 +29,7 @@ options:
     description:
       - URL to the upstream pulp manifest
     type: str
-  download_conncurrency:
+  download_concurrency:
     description:
       - How many downloads should be attempted in parallel
     type: int
@@ -90,20 +90,19 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-  file_remotes:
+  remotes:
     description: List of file remotes
     type: list
     return: when no name is given
-  file_remote:
+  remote:
     description: File remote details
     type: dict
     return: when name is given
 '''
 
 
-from ansible.module_utils.pulp_helper import (
-    PulpEntityAnsibleModule,
-)
+from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
+from ansible.module_utils.pulp_file import PulpFileRemote
 
 
 def main():
@@ -121,19 +120,15 @@ def main():
         required_if=[
             ('state', 'present', ['name']),
             ('state', 'absent', ['name']),
-        ],
-        entity_name='file_remote',
-        entity_plural='file_remotes',
+        ]
     )
 
-    natural_key = {
-        'name': module.params['name'],
-    }
+    natural_key = {'name': module.params['name']}
     desired_attributes = {
         key: module.params[key] for key in ['url', 'download_concurrency', 'policy', 'proxy_url', 'tls_validation'] if module.params[key] is not None
     }
 
-    module.process_entity(natural_key, desired_attributes)
+    PulpFileRemote(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

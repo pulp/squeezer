@@ -69,20 +69,19 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-  file_repositories:
+  repositories:
     description: List of file repositories
     type: list
     return: when no name is given
-  file_repository:
+  repository:
     description: File repository details
     type: dict
     return: when name is given
 '''
 
 
-from ansible.module_utils.pulp_helper import (
-    PulpEntityAnsibleModule,
-)
+from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
+from ansible.module_utils.pulp_file import PulpFileRepository
 
 
 def main():
@@ -94,21 +93,17 @@ def main():
         required_if=[
             ('state', 'present', ['name']),
             ('state', 'absent', ['name']),
-        ],
-        entity_name='file_repository',
-        entity_plural='file_repositories',
+        ]
     )
 
-    natural_key = {
-        'name': module.params['name'],
-    }
+    natural_key = {'name': module.params['name']}
     desired_attributes = {}
     if module.params['description'] is not None:
         # In case of an empty string we try to nullify the description
         # Which does not yet work
         desired_attributes['description'] = module.params['description'] or None
 
-    module.process_entity(natural_key, desired_attributes)
+    PulpFileRepository(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

@@ -28,7 +28,7 @@ options:
     required: false
   version:
     description:
-      - Version Number to be published
+      - Version number to be published
     type: int
     required: false
   manifest:
@@ -79,15 +79,19 @@ RETURN = r'''
   file_publications:
     description: List of file publications
     type: list
-    return: when no name is given
+    return: when no repository is given
   file_publication:
     description: File publication details
     type: dict
-    return: when name is given
+    return: when repository is given
 '''
 
 
 from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
+from ansible.module_utils.pulp_file import (
+    PulpFilePublication,
+    PulpFileRepository,
+)
 
 
 def main():
@@ -101,8 +105,6 @@ def main():
             ['state', 'present', ['repository']],
             ['state', 'absent', ['repository']],
         ),
-        entity_name='file_publication',
-        entity_plural='file_publications',
     )
 
     repository_name = module.params['repository']
@@ -112,37 +114,19 @@ def main():
     }
 
     if repository_name:
-        repository = module.find_entity(module.file_repositories_api, {'name': repository_name})
+        repository = PulpFileRepository(module, {'name': repository_name}).find()
         if repository is None:
             module.fail_json(msg="Failed to find repository ({repository_name}).".format(repository_name=repository_name))
-        # TODO handle version properly
+        # TODO check if version exists
         if version:
             repository_version_href = repository.versions_href + "{version}/".format(version=version)
         else:
             repository_version_href = repository.latest_version_href
-        # TODO proper search
-        # entity = module.find_entity(module.file_publications_api, {'repository_version': repository_version_href})
-        # ---8<----8<---8<---
-        entity = None
-        search_result = module.file_publications_api.list()
-        for item in search_result.results:
-            if item.repository_version == repository_version_href:
-                entity = item
-                break
-        # ---8<----8<---8<---
-        entity = module.ensure_entity_state(
-            entity_api=module.file_publications_api,
-            entity_class=module.file_publication_class,
-            entity=entity,
-            natural_key={'repository_version': repository_version_href},
-            desired_attributes=desired_attributes,
-        )
-        if entity is not None:
-            entity = entity.to_dict()
-        module.exit_json(file_publication=entity)
+        natural_key = {'repository_version': repository_version_href}
     else:
-        entities = module.list_entities(module.file_publications_api)
-        module.exit_json(file_publications=[entity.to_dict() for entity in entities])
+        natural_key = {'repository_version': None}
+
+    PulpFilePublication(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

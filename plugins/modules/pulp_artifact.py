@@ -87,7 +87,7 @@ RETURN = r'''
 '''
 
 
-from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
+from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule, PulpArtifact
 
 
 def main():
@@ -99,8 +99,6 @@ def main():
         required_if=[
             ('state', 'present', ['file']),
         ],
-        entity_name='artifact',
-        entity_plural='artifacts',
     )
 
     sha256 = module.params['sha256']
@@ -122,7 +120,7 @@ def main():
         'file': module.params['file'],
     }
 
-    module.process_entity(natural_key, desired_attributes)
+    PulpArtifact(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

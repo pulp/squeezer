@@ -31,7 +31,7 @@
       assert:
         that:
           - result.changed == true
-          - result.file_repository.name == 'test_repository'
+          - result.repository.name == 'test_repository'
 
     - name: Create repository (2nd try)
       pulp_file_repository:
@@ -53,7 +53,7 @@
       assert:
         that:
           - result.changed == true
-          - result.file_repository.description == "repository created via ansible"
+          - result.repository.description == "repository created via ansible"
 
     - name: Add description to repository (2nd try)
       pulp_file_repository:
@@ -75,7 +75,7 @@
       assert:
         that:
           - result.changed == false
-          - result.file_repository.description == "repository created via ansible"
+          - result.repository.description == "repository created via ansible"
 
     - name: List repositories
       pulp_file_repository: {}
@@ -84,7 +84,7 @@
       assert:
         that:
           - result.changed == false
-          - result.file_repositories | length >= 1
+          - result.repositories | length >= 1
 
     - name: Read repository
       pulp_file_repository:
@@ -94,8 +94,8 @@
       assert:
         that:
           - result.changed == false
-          - result.file_repository.name == 'test_repository'
-          - result.file_repository.description == "repository created via ansible"
+          - result.repository.name == 'test_repository'
+          - result.repository.description == "repository created via ansible"
 
     - name: Skip until nullifying fields is possible with the api bindings
       when: false
@@ -110,7 +110,7 @@
           assert:
             that:
               - result.changed == true
-              - not result.file_repository.description
+              - not result.repository.description
 
         - name: Remove description from repository (2nd try)
           pulp_file_repository:
@@ -132,7 +132,7 @@
       assert:
         that:
           - result.changed == true
-          - not result.file_repository
+          - not result.repository
 
     - name: Delete repository (2nd try)
       pulp_file_repository:

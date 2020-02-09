@@ -84,11 +84,11 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-  file_distributions:
+  distributions:
     description: List of file distributions
     type: list
     return: when no name is given
-  file_distribution:
+  distribution:
     description: File distribution details
     type: dict
     return: when name is given
@@ -96,6 +96,7 @@ RETURN = r'''
 
 
 from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
+from ansible.module_utils.pulp_file import PulpFileDistribution
 
 
 def main():
@@ -110,8 +111,6 @@ def main():
             ('state', 'present', ['name', 'base_path']),
             ('state', 'absent', ['name']),
         ],
-        entity_name='file_distribution',
-        entity_plural='file_distributions',
     )
 
     if module.params['content_guard']:
@@ -124,7 +123,7 @@ def main():
         key: module.params[key] for key in ['base_path', 'content_guard', 'publication'] if module.params[key] is not None
     }
 
-    module.process_entity(natural_key, desired_attributes)
+    PulpFileDistribution(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

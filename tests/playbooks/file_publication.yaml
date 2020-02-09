@@ -49,8 +49,8 @@
       assert:
         that:
           - result.changed == true
-          - result.file_publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
-          - result.file_publication.manifest == "PULP_MANIFEST"
+          - result.publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
+          - result.publication.manifest == "PULP_MANIFEST"
 
     - name: Publish latest version of repository (2nd try)
       pulp_file_publication:
@@ -80,7 +80,7 @@
       assert:
         that:
           - result.changed == false
-          - result.file_publications | length >= 1
+          - result.publications | length >= 1
 
     - name: Query publication of latest version of repository
       pulp_file_publication:
@@ -90,8 +90,8 @@
       assert:
         that:
           - result.changed == false
-          - result.file_publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
-          - result.file_publication.manifest == "PULP_MANIFEST"
+          - result.publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
+          - result.publication.manifest == "PULP_MANIFEST"
 
     - name: Delete publication of latest version of repository
       pulp_file_publication:
@@ -102,7 +102,7 @@
       assert:
         that:
           - result.changed == true
-          - not result.file_publication
+          - not result.publication
 
     - name: Delete publication of latest version of repository (2nd try)
       pulp_file_publication:
@@ -124,9 +124,9 @@
       assert:
         that:
           - result.changed == true
-          - result.file_publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
+          - result.publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
           # Manifest parameter is not reported from the file_plugin
-          # - result.file_publication.manifest == "LISTING"
+          # - result.publication.manifest == "LISTING"
 
 - hosts: localhost
   gather_facts: false

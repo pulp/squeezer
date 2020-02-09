@@ -55,23 +55,23 @@
       pulp_file_distribution:
         name: file_test_distribution
         base_path: test_repo
-        publication: "{{ publication_result.file_publication.pulp_href }}"
+        publication: "{{ publication_result.publication.pulp_href }}"
         state: present
       register: result
     - name: Verify distribute publication of repository
       assert:
         that:
           - result.changed == true
-          - result.file_distribution.name == "file_test_distribution"
-          - result.file_distribution.base_path == "test_repo"
-          - result.file_distribution.base_url is regex(".*/pulp/content/test_repo") or ansible_check_mode
-          - result.file_distribution.publication == publication_result.file_publication.pulp_href
+          - result.distribution.name == "file_test_distribution"
+          - result.distribution.base_path == "test_repo"
+          - result.distribution.base_url is regex(".*/pulp/content/test_repo") or ansible_check_mode
+          - result.distribution.publication == publication_result.publication.pulp_href
 
     - name: Distribute publication of repository (2nd try)
       pulp_file_distribution:
         name: file_test_distribution
         base_path: test_repo
-        publication: "{{ publication_result.file_publication.pulp_href }}"
+        publication: "{{ publication_result.publication.pulp_href }}"
         state: present
       register: result
     - name: Verify distribute publication of repository (2nd try)
@@ -87,10 +87,10 @@
       assert:
         that:
           - result.changed == false
-          - result.file_distribution.name == "file_test_distribution"
-          - result.file_distribution.base_path == "test_repo"
-          - result.file_distribution.base_url is regex(".*/pulp/content/test_repo")
-          - result.file_distribution.publication == publication_result.file_publication.pulp_href
+          - result.distribution.name == "file_test_distribution"
+          - result.distribution.base_path == "test_repo"
+          - result.distribution.base_url is regex(".*/pulp/content/test_repo")
+          - result.distribution.publication == publication_result.publication.pulp_href
 
     - name: Delete distribution
       pulp_file_distribution:
@@ -101,7 +101,7 @@
       assert:
         that:
           - result.changed == true
-          - not result.file_distribution
+          - not result.distribution
 
     - name: Delete distribution (2nd try)
       pulp_file_distribution:

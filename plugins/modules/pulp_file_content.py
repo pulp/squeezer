@@ -63,20 +63,19 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-  file_contents:
+  contents:
     description: List of file content units
     type: list
     return: when digest or relative_path is not given
-  file_content:
+  content:
     description: File content unit details
     type: dict
     return: when digest and relative_path is given
 '''
 
 
-from ansible.module_utils.pulp_helper import (
-    PulpEntityAnsibleModule,
-)
+from ansible.module_utils.pulp_helper import PulpEntityAnsibleModule
+from ansible.module_utils.pulp_file import PulpFileContent
 
 
 def main():
@@ -89,8 +88,6 @@ def main():
             ('state', 'present', ['digest', 'relative_path']),
             ('state', 'absent', ['digest', 'relative_path']),
         ],
-        entity_name='file_content',
-        entity_plural='file_contents',
     )
 
     natural_key = {
@@ -99,7 +96,7 @@ def main():
     }
     desired_attributes = {}
 
-    module.process_entity(natural_key, desired_attributes)
+    PulpFileContent(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':
