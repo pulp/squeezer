@@ -1,0 +1,107 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.1.0/python
+    method: DELETE
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/orphans/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/5545791f-2631-4ba6-95d4-8611bfcbf083/"}'
+    headers:
+      Allow:
+      - DELETE, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 10 Feb 2020 18:43:51 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.1.0/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/5545791f-2631-4ba6-95d4-8611bfcbf083/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/5545791f-2631-4ba6-95d4-8611bfcbf083/","pulp_created":"2020-02-10T18:43:51.442318Z","state":"running","name":"pulpcore.app.tasks.orphan.orphan_cleanup","started_at":"2020-02-10T18:43:51.608020Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/f0e54f7b-e0e5-4d2f-8bf1-41fa844c0cdd/","progress_reports":[{"message":"Clean
+        up orphan Content","code":"clean-up.content","state":"running","total":1,"done":0,"suffix":null}],"created_resources":[],"reserved_resources_record":[]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '520'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 10 Feb 2020 18:43:51 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.1.0/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/5545791f-2631-4ba6-95d4-8611bfcbf083/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/5545791f-2631-4ba6-95d4-8611bfcbf083/","pulp_created":"2020-02-10T18:43:51.442318Z","state":"completed","name":"pulpcore.app.tasks.orphan.orphan_cleanup","started_at":"2020-02-10T18:43:51.608020Z","finished_at":"2020-02-10T18:43:51.810099Z","error":null,"worker":"/pulp/api/v3/workers/f0e54f7b-e0e5-4d2f-8bf1-41fa844c0cdd/","progress_reports":[{"message":"Clean
+        up orphan Content","code":"clean-up.content","state":"completed","total":1,"done":1,"suffix":null},{"message":"Clean
+        up orphan Artifacts","code":"clean-up.content","state":"completed","total":1,"done":1,"suffix":null}],"created_resources":[],"reserved_resources_record":[]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '668'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 10 Feb 2020 18:43:53 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,72 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.1.0/python
+    method: DELETE
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/orphans/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/fe8ad7d8-5ce8-4877-96d6-3f6b4a409fa8/"}'
+    headers:
+      Allow:
+      - DELETE, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 10 Feb 2020 18:43:54 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.1.0/python
+    method: GET
+    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/fe8ad7d8-5ce8-4877-96d6-3f6b4a409fa8/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/fe8ad7d8-5ce8-4877-96d6-3f6b4a409fa8/","pulp_created":"2020-02-10T18:43:54.458446Z","state":"completed","name":"pulpcore.app.tasks.orphan.orphan_cleanup","started_at":"2020-02-10T18:43:54.530394Z","finished_at":"2020-02-10T18:43:54.586111Z","error":null,"worker":"/pulp/api/v3/workers/f0e54f7b-e0e5-4d2f-8bf1-41fa844c0cdd/","progress_reports":[{"message":"Clean
+        up orphan Content","code":"clean-up.content","state":"completed","total":0,"done":0,"suffix":null},{"message":"Clean
+        up orphan Artifacts","code":"clean-up.content","state":"completed","total":0,"done":0,"suffix":null}],"created_resources":[],"reserved_resources_record":[]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '668'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 10 Feb 2020 18:43:54 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

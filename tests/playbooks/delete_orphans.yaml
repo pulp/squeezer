@@ -1,0 +1,61 @@
+---
+- hosts: localhost
+  collections:
+    - mdellweg.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults: &pulp_module_defaults
+    pulp_delete_orphans: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+    pulp_artifact:
+      <<: *pulp_connection_details
+    pulp_file_content:
+      <<: *pulp_connection_details
+  tasks:
+    - name: Delete orphans
+      pulp_delete_orphans: {}
+    - name: Create artifact
+      pulp_artifact:
+        file: data/file1.txt
+        state: present
+      register: result
+    - name: Create file content unit
+      pulp_file_content:
+        digest: "{{ result.artifact.sha256 }}"
+        relative_path: "data/file1.txt"
+        state: present
+
+- hosts: tests
+  collections:
+    - mdellweg.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  vars:
+    file1_sha256: "{{ lookup('file', 'data/file1.txt', lstrip=false, rstrip=false) | hash('sha256') }}"
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Delete orphans
+      pulp_delete_orphans: {}
+      register: orphans
+    - name: Verify result
+      assert:
+        that:
+          - orphans.changed == true
+          - orphans.summary.artifacts == 1 or ansible_check_mode
+          - orphans.summary.content == 1 or ansible_check_mode
+
+    - name: Delete orphans
+      pulp_delete_orphans: {}
+      register: orphans
+    - name: Verify result
+      assert:
+        that:
+          - orphans.changed == true
+          - orphans.summary.artifacts == 0
+          - orphans.summary.content == 0
+...

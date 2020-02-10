@@ -208,6 +208,25 @@ class PulpArtifact(PulpEntity):
         return NewArtifactsApi(*args, **kwargs)
 
 
+class PulpOrphans(PulpEntity):
+    _api_client_class = pulpcore.ApiClient
+    _api_class = pulpcore.OrphansApi
+
+    def delete(self):
+        if not self.module.check_mode:
+            response = self.api.delete()
+            response = PulpTask(self.module).wait_for(response.task).to_dict()
+            response = response["progress_reports"]
+            response = {item["message"].split(" ")[-1].lower(): item["total"] for item in response}
+        else:
+            response = {
+                "artifacts": 0,
+                "content": 0,
+            }
+        self.module._changed = True
+        return response
+
+
 class PulpStatus(PulpEntity):
     _api_client_class = pulpcore.ApiClient
     _api_class = pulpcore.StatusApi
