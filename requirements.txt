@@ -1,4 +1,5 @@
 pulpcore-client~=3.2.0
+pulp_ansible-client>=0.2.0b8,<0.3
 pulp_file-client~=0.2.0
 ansible>=2.9
 ansible_runner
