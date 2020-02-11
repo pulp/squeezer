@@ -13,7 +13,12 @@ from ansible.module_utils.basic import missing_required_lib
 from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import (
     PulpArtifact,
     PulpEntity,
-    PulpTask,
+)
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_mixins import (
+    PulpDistributionMixin,
+    PulpPublicationMixin,
+    PulpRemoteMixin,
+    PulpRepositoryMixin,
 )
 
 try:
@@ -43,8 +48,6 @@ class PulpFileEntity(PulpEntity):
 
 
 class PulpFileContent(PulpFileEntity):
-    _api_class = pulp_file.ContentFilesApi
-
     _name_singular = 'content'
     _name_plural = 'contents'
 
@@ -76,47 +79,21 @@ class PulpFileContent(PulpFileEntity):
         return NewFileContent(*args, **kwargs)
 
 
-class PulpFileDistribution(PulpFileEntity):
+class PulpFileDistribution(PulpDistributionMixin, PulpFileEntity):
     _api_class = pulp_file.DistributionsFileApi
     _api_entity_class = pulp_file.FileFileDistribution
 
-    _name_singular = 'distribution'
-    _name_plural = 'distributions'
 
-
-class PulpFilePublication(PulpFileEntity):
+class PulpFilePublication(PulpPublicationMixin, PulpFileEntity):
     _api_class = pulp_file.PublicationsFileApi
     _api_entity_class = pulp_file.FileFilePublication
 
-    _name_singular = 'publication'
-    _name_plural = 'publications'
 
-    def find(self):
-        # Hack, because you cannot search for publications
-        repository_version_href = self.natural_key['repository_version']
-        search_result = self.list()
-        for item in search_result:
-            if item.repository_version == repository_version_href:
-                self.entity = item
-                break
-        return self.entity
-
-
-class PulpFileRemote(PulpFileEntity):
+class PulpFileRemote(PulpRemoteMixin, PulpFileEntity):
     _api_class = pulp_file.RemotesFileApi
     _api_entity_class = pulp_file.FileFileRemote
 
-    _name_singular = 'remote'
-    _name_plural = 'remotes'
 
-
-class PulpFileRepository(PulpFileEntity):
+class PulpFileRepository(PulpRepositoryMixin, PulpFileEntity):
     _api_class = pulp_file.RepositoriesFileApi
     _api_entity_class = pulp_file.FileFileRepository
-
-    _name_singular = 'repository'
-    _name_plural = 'repositories'
-
-    def sync(self, remote_href):
-        response = self.api.sync(self.entity.pulp_href, {'remote': remote_href})
-        return PulpTask(self.module).wait_for(response.task)

@@ -90,7 +90,7 @@ RETURN = r'''
 
 
 from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file import PulpFileDistribution
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file_helper import PulpFileDistribution
 
 
 def main():
