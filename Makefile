@@ -20,6 +20,7 @@ help:
 	@echo "  test_<test>    to run a specific unittest"
 	@echo "  record_<test>  to (re-)record the server answers for a specific test"
 	@echo "  clean_<test>   to run a specific test playbook with the teardown and cleanup tags"
+	@echo "  dist           to build the collection artifact"
 
 info:
 	@echo Building collection $(NAMESPACE)-$(NAME)-$(VERSION)
@@ -65,6 +66,8 @@ $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz: galaxy.yml LICENSE README.md  $(MODULES)
 	cp galaxy.yml LICENSE README.md build/src
 	cp -r plugins build/src
 	ansible-galaxy collection build build/src --force
+
+dist: $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
 
 clean:
 	rm -rf build
