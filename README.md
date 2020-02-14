@@ -12,6 +12,7 @@ A lot of inspiration has been drawn from [foreman-ansible-modules](https://githu
 Available modules
 ---
 
+* `pulp_ansible_remote`
 * `pulp_ansible_repository`
 * `pulp_artifact`
 * `pulp_delete_orphans`
