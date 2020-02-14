@@ -16,10 +16,10 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = r'''
 ---
-module: pulp_file_sync
-short_description: Synchronize a file remote on a pulp server
+module: pulp_ansible_sync
+short_description: Synchronize a ansible remote on a pulp server
 description:
-  - "This module synchronizes a file remote into a repository."
+  - "This module synchronizes a ansible remote into a repository."
 options:
   remote:
     description:
@@ -38,13 +38,13 @@ author:
 '''
 
 EXAMPLES = r'''
-- name: Sync file remote into repository
-  pulp_file_sync:
+- name: Sync ansible remote into repository
+  pulp_ansible_sync:
     api_url: localhost:24817
     username: admin
     password: password
-    repository: file_repo_1
-    remote: file_remote_1
+    repository: ansible_repo_1
+    remote: ansible_remote_1
   register: sync_result
 - name: Report synched repository version
   debug:
@@ -60,9 +60,9 @@ RETURN = r'''
 
 
 from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpAnsibleModule
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file_helper import (
-    PulpFileRemote,
-    PulpFileRepository
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_ansible_helper import (
+    PulpAnsibleRemote,
+    PulpAnsibleRepository
 )
 
 
@@ -74,16 +74,16 @@ def main():
         ),
     ) as module:
 
-        remote = PulpFileRemote(module, {'name': module.params['remote']})
+        remote = PulpAnsibleRemote(module, {'name': module.params['remote']})
         remote_entity = remote.find()
 
         if remote_entity is None:
-            raise Exception("Remote '{1}' not found.".format(module.params['remote']))
+            module.fail_json(msg="Remote '{1}' not found.".format(module.params['remote']))
 
-        repository = PulpFileRepository(module, {'name': module.params['repository']})
+        repository = PulpAnsibleRepository(module, {'name': module.params['repository']})
         repository_entity = repository.find()
         if repository_entity is None:
-            raise Exception("Repository '{1}' not found.".format(module.params['repository']))
+            module.fail_json(msg="Repository '{1}' not found.".format(module.params['repository']))
 
         repository_version = repository_entity.latest_version_href
         sync_task = repository.sync(remote_entity.pulp_href)

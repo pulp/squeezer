@@ -1,0 +1,214 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.2.0b9.dev01582669092/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/ansible/?name=sync_test_remote
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/ansible/16d7c834-9d8d-49bc-b15f-8291cf758ee9/","pulp_created":"2020-02-26T12:16:22.336165Z","name":"sync_test_remote","url":"https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":null,"pulp_last_updated":"2020-02-26T12:16:22.336179Z","download_concurrency":20,"policy":"immediate"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '474'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 26 Feb 2020 12:16:22 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.2.0b9.dev01582669092/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?name=sync_test_repository
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/a941a5bb-2f9d-4918-826a-effc60cda736/","pulp_created":"2020-02-26T12:16:21.788262Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/a941a5bb-2f9d-4918-826a-effc60cda736/versions/","latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/a941a5bb-2f9d-4918-826a-effc60cda736/versions/0/","name":"sync_test_repository","description":null}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '463'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 26 Feb 2020 12:16:22 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"remote": "/pulp/api/v3/remotes/ansible/ansible/16d7c834-9d8d-49bc-b15f-8291cf758ee9/"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.2.0b9.dev01582669092/python
+    method: POST
+    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/a941a5bb-2f9d-4918-826a-effc60cda736/sync/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/8e29cc83-0e9c-481a-bc3d-10d537995f2f/"}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 26 Feb 2020 12:16:23 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0rc9/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/8e29cc83-0e9c-481a-bc3d-10d537995f2f/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/8e29cc83-0e9c-481a-bc3d-10d537995f2f/","pulp_created":"2020-02-26T12:16:23.009041Z","state":"running","name":"pulp_ansible.app.tasks.synchronizing.synchronize","started_at":"2020-02-26T12:16:23.114656Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/8f92c0bf-581c-4ced-9fb5-7a0530afbc88/","progress_reports":[],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/ansible/16d7c834-9d8d-49bc-b15f-8291cf758ee9/","/pulp/api/v3/repositories/ansible/ansible/a941a5bb-2f9d-4918-826a-effc60cda736/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '576'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 26 Feb 2020 12:16:23 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0rc9/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/8e29cc83-0e9c-481a-bc3d-10d537995f2f/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/8e29cc83-0e9c-481a-bc3d-10d537995f2f/","pulp_created":"2020-02-26T12:16:23.009041Z","state":"running","name":"pulp_ansible.app.tasks.synchronizing.synchronize","started_at":"2020-02-26T12:16:23.114656Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/8f92c0bf-581c-4ced-9fb5-7a0530afbc88/","progress_reports":[{"message":"Downloading
+        Artifacts","code":"downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Associating
+        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null},{"message":"Parsing
+        Pages from Galaxy Roles API","code":"parsing.roles","state":"completed","total":1,"done":1,"suffix":null},{"message":"Parsing
+        Role Metadata","code":"parsing.metadata","state":"completed","total":null,"done":5,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/ansible/16d7c834-9d8d-49bc-b15f-8291cf758ee9/","/pulp/api/v3/repositories/ansible/ansible/a941a5bb-2f9d-4918-826a-effc60cda736/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1057'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 26 Feb 2020 12:16:25 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0rc9/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/8e29cc83-0e9c-481a-bc3d-10d537995f2f/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/8e29cc83-0e9c-481a-bc3d-10d537995f2f/","pulp_created":"2020-02-26T12:16:23.009041Z","state":"completed","name":"pulp_ansible.app.tasks.synchronizing.synchronize","started_at":"2020-02-26T12:16:23.114656Z","finished_at":"2020-02-26T12:16:27.287837Z","error":null,"worker":"/pulp/api/v3/workers/8f92c0bf-581c-4ced-9fb5-7a0530afbc88/","progress_reports":[{"message":"Downloading
+        Artifacts","code":"downloading.artifacts","state":"completed","total":null,"done":5,"suffix":null},{"message":"Associating
+        Content","code":"associating.content","state":"completed","total":null,"done":5,"suffix":null},{"message":"Parsing
+        Pages from Galaxy Roles API","code":"parsing.roles","state":"completed","total":1,"done":1,"suffix":null},{"message":"Parsing
+        Role Metadata","code":"parsing.metadata","state":"completed","total":null,"done":5,"suffix":null}],"created_resources":["/pulp/api/v3/repositories/ansible/ansible/a941a5bb-2f9d-4918-826a-effc60cda736/versions/1/"],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/ansible/16d7c834-9d8d-49bc-b15f-8291cf758ee9/","/pulp/api/v3/repositories/ansible/ansible/a941a5bb-2f9d-4918-826a-effc60cda736/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1176'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 26 Feb 2020 12:16:27 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
