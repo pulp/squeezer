@@ -49,6 +49,13 @@ class PulpAnsibleDistribution(PulpDistributionMixin, PulpAnsibleEntity):
     _api_class = pulp_ansible.DistributionsAnsibleApi
     _api_entity_class = pulp_ansible.AnsibleAnsibleDistribution
 
+    def update(self):
+        if 'repository' in self.desired_attributes:
+            self.entity.repository_version = None
+        if 'repository_version' in self.desired_attributes:
+            self.entity.repository = None
+        return super(PulpAnsibleDistribution, self).update()
+
 
 class PulpAnsibleRemote(PulpRemoteMixin, PulpAnsibleEntity):
     _api_class = pulp_ansible.RemotesAnsibleApi
