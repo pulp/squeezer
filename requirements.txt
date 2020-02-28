@@ -1,5 +1,5 @@
-pulpcore-client
-pulp_file-client
+pulpcore-client~=3.2.0
+pulp_file-client~=0.2.0
 ansible>=2.9
 ansible_runner
 flake8

@@ -22,10 +22,12 @@ version_added: "2.8"
 description:
   - "This performes CRUD operations on file content in a pulp api server instance."
 options:
-  digest:
+  sha256:
     description:
       - sha256 digest of the file content to query or manipulate
     type: str
+    aliases:
+      - digest
   relative_path:
     description:
       - Relative path of the file content unit
@@ -52,7 +54,7 @@ EXAMPLES = r'''
     api_url: localhost:24817
     username: admin
     password: password
-    digest: 0000111122223333444455556666777788889999aaaabbbbccccddddeeeeffff
+    sha256: 0000111122223333444455556666777788889999aaaabbbbccccddddeeeeffff
     relative_path: "data/important_file.txt"
     state: present
 '''
@@ -76,17 +78,17 @@ from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file import
 def main():
     module = PulpEntityAnsibleModule(
         argument_spec=dict(
-            digest=dict(),
+            sha256=dict(aliases=['digest']),
             relative_path=dict(),
         ),
         required_if=[
-            ('state', 'present', ['digest', 'relative_path']),
-            ('state', 'absent', ['digest', 'relative_path']),
+            ('state', 'present', ['sha256', 'relative_path']),
+            ('state', 'absent', ['sha256', 'relative_path']),
         ],
     )
 
     natural_key = {
-        'digest': module.params['digest'],
+        'sha256': module.params['sha256'],
         'relative_path': module.params['relative_path']
     }
     desired_attributes = {}
