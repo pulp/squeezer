@@ -7,5 +7,6 @@ pylint
 pycodestyle
 voluptuous
 yamllint
-pytest
+pytest>=4.4.0
+pytest-xdist
 vcrpy

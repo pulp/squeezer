@@ -6,4 +6,4 @@ python:
 install:
   - make test-setup
 script:
-  - make PYTHON_VERSION=${TRAVIS_PYTHON_VERSION} lint sanity test
+  - make SANITY_OPTS="--local" PYTHON_VERSION=${TRAVIS_PYTHON_VERSION} lint sanity test

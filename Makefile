@@ -3,11 +3,15 @@ NAME := $(shell python -c 'import yaml; print(yaml.safe_load(open("galaxy.yml"))
 VERSION := $(shell python -c 'import yaml; print(yaml.safe_load(open("galaxy.yml"))["version"])')
 MANIFEST := build/collections/ansible_collections/$(NAMESPACE)/$(NAME)/MANIFEST.json
 
-MODULES := $(shell find plugins/modules -name *.py)
-MODULE_UTILS := $(shell find plugins/module_utils -name *.py)
-DOC_FRAGMENTS := $(shell find plugins/doc_fragments -name *.py)
+PLUGIN_TYPES := $(filter-out __%,$(notdir $(wildcard plugins/*)))
+METADATA := galaxy.yml LICENSE README.md
+$(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(eval _$(PLUGIN_TYPE) := $(filter-out %__init__.py,$(wildcard plugins/$(PLUGIN_TYPE)/*.py))))
+DEPENDENCIES := $(METADATA) $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(_$(PLUGIN_TYPE)))
 
 PYTHON_VERSION = 3.7
+SANITY_OPTS = --venv
+TEST=
+PYTEST=pytest -n 4 --boxed -v
 
 default: help
 help:
@@ -16,6 +20,8 @@ help:
 	@echo "  info           to show infos about the collection"
 	@echo "  lint           to run code linting"
 	@echo "  test           to run unit tests"
+	@echo "  sanity         to run santy tests"
+	@echo "  setup          to set up test, lint"
 	@echo "  test-setup     to install test dependencies"
 	@echo "  test_<test>    to run a specific unittest"
 	@echo "  record_<test>  to (re-)record the server answers for a specific test"
@@ -23,29 +29,27 @@ help:
 	@echo "  dist           to build the collection artifact"
 
 info:
-	@echo Building collection $(NAMESPACE)-$(NAME)-$(VERSION)
-	@echo   modules: $(MODULES)
-	@echo   module_utils: $(MODULE_UTILS)
-	@echo   doc_fragments: $(DOC_FRAGMENTS)
+	@echo "Building collection $(NAMESPACE)-$(NAME)-$(VERSION)"
+	@echo $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),"\n  $(PLUGIN_TYPE): $(basename $(notdir $(_$(PLUGIN_TYPE))))")
 
-lint: $(MANIFEST)
+lint: tests/playbooks/vars/server.yaml $(MANIFEST)
 	yamllint -f parsable tests/playbooks
 	ansible-playbook --syntax-check tests/playbooks/*.yaml | grep -v '^$$'
-	flake8 --ignore=E402 --max-line-length=160 plugins tests
+	flake8 --ignore=E402 --max-line-length=160 plugins/ tests/
 
 sanity: $(MANIFEST)
 	# Fake a fresh git repo for ansible-test
-	cd $(<D) ; git init ; echo tests > .gitignore ; ansible-test sanity --local --python $(PYTHON_VERSION)
+	cd $(<D) ; git init ; echo tests > .gitignore ; ansible-test sanity $(SANITY_OPTS) --python $(PYTHON_VERSION)
 
 test: $(MANIFEST)
-	pytest -v tests
+	$(PYTEST) $(TEST)
 
 test_%: FORCE $(MANIFEST)
-	pytest 'tests/test_playbooks.py::test_playbook[$*]' 'tests/test_playbooks.py::test_check_mode[$*]'
+	pytest -v 'tests/test_playbooks.py::test_playbook[$*]' 'tests/test_playbooks.py::test_check_mode[$*]'
 
 record_%: FORCE $(MANIFEST)
 	$(RM) tests/fixtures/$*-*.yml
-	pytest 'tests/test_playbooks.py::test_playbook[$*]' --record
+	pytest -v 'tests/test_playbooks.py::test_playbook[$*]' --record
 
 clean_%: FORCE $(MANIFEST)
 	ansible-playbook --tags teardown,cleanup -i tests/inventory/hosts 'tests/playbooks/$*.yaml'
@@ -55,16 +59,19 @@ test-setup: tests/playbooks/vars/server.yaml
 	pip install -r requirements.txt
 
 tests/playbooks/vars/server.yaml:
-	cp tests/playbooks/vars/server.yaml.example tests/playbooks/vars/server.yaml
-	@echo "For recording, please adjust tests/playbooks/vars/server.yaml to match your reference server."
+	cp $@.example $@
+	@echo "For recording, please adjust $@ to match your reference server."
 
 $(MANIFEST): $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
-	ansible-galaxy collection install -p build/collections $+ --force
+	ansible-galaxy collection install -p build/collections $< --force
 
-$(NAMESPACE)-$(NAME)-$(VERSION).tar.gz: galaxy.yml LICENSE README.md  $(MODULES) $(MODULE_UTILS) $(DOC_FRAGMENTS)
-	mkdir -p build/src
-	cp galaxy.yml LICENSE README.md build/src
-	cp -r plugins build/src
+build/src/%: % | build
+	cp $< $@
+
+build:
+	-mkdir build build/src build/src/plugins $(addprefix build/src/plugins/,$(PLUGIN_TYPES))
+
+$(NAMESPACE)-$(NAME)-$(VERSION).tar.gz: $(addprefix build/src/,$(DEPENDENCIES)) | build
 	ansible-galaxy collection build build/src --force
 
 dist: $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
@@ -74,4 +81,4 @@ clean:
 
 FORCE:
 
-.PHONY: help lint sanity test test-setup FORCE
+.PHONY: help dist lint sanity test test-setup FORCE
