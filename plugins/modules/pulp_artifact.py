@@ -18,7 +18,6 @@ DOCUMENTATION = r'''
 ---
 module: pulp_artifact
 short_description: Manage artifacts of a pulp api server instance
-version_added: "2.8"
 description:
   - "This performes CRD operations on artifacts in a pulp api server instance."
 options:

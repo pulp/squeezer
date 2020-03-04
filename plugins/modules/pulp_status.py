@@ -18,7 +18,6 @@ DOCUMENTATION = r'''
 ---
 module: pulp_status
 short_description: Report status of a pulp api server instance
-version_added: "2.8"
 description:
   - "This module queries a pulp api server instance for installed plugins and service connectivity."
 options: {}

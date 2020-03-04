@@ -18,7 +18,6 @@ DOCUMENTATION = r'''
 ---
 module: pulp_file_remote
 short_description: Manage file remotes of a pulp api server instance
-version_added: "2.8"
 description:
   - "This performes CRUD operations on file remotes in a pulp api server instance."
 options:

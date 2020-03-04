@@ -18,7 +18,6 @@ DOCUMENTATION = r'''
 ---
 module: pulp_file_sync
 short_description: Synchronize a file remote on a pulp api server instance
-version_added: "2.8"
 description:
   - "This module synchronizes a file remote into a repository."
 options:

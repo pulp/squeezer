@@ -18,7 +18,6 @@ DOCUMENTATION = r'''
 ---
 module: pulp_delete_orphans
 short_description: Deletes all orphaned entities of a pulp server
-version_added: "2.8"
 description:
   - "This module deletes all orphaned artifacts and content units of a pulp server."
 options: {}

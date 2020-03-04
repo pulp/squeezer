@@ -18,7 +18,6 @@ DOCUMENTATION = r'''
 ---
 module: pulp_file_repository
 short_description: Manage file repositories of a pulp api server instance
-version_added: "2.8"
 description:
   - "This performes CRUD operations on file repositories in a pulp api server instance."
 options:
