@@ -15,6 +15,7 @@ Available modules
 * `pulp_ansible_distribution`
 * `pulp_ansible_remote`
 * `pulp_ansible_repository`
+* `pulp_ansible_role`
 * `pulp_ansible_sync`
 * `pulp_artifact`
 * `pulp_delete_orphans`

@@ -70,7 +70,7 @@ class PulpFileContent(PulpFileEntity):
         class NewFileContent(pulp_file.FileFileContent):
             def __init__(self, **kwargs):
                 # FileContent can only be searched by digest,
-                # while it wants srtifact to create.
+                # while it wants artifact to create.
                 if 'sha256' in kwargs:
                     artifact = PulpArtifact(scope.module, {'sha256': kwargs.pop('sha256')}).find()
                     kwargs['artifact'] = artifact.pulp_href

@@ -65,3 +65,11 @@ class PulpAnsibleRemote(PulpRemoteMixin, PulpAnsibleEntity):
 class PulpAnsibleRepository(PulpRepositoryMixin, PulpAnsibleEntity):
     _api_class = pulp_ansible.RepositoriesAnsibleApi
     _api_entity_class = pulp_ansible.AnsibleAnsibleRepository
+
+
+class PulpAnsibleRole(PulpAnsibleEntity):
+    _name_singular = 'content'
+    _name_plural = 'contents'
+
+    _api_class = pulp_ansible.ContentRolesApi
+    _api_entity_class = pulp_ansible.AnsibleRole
