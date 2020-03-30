@@ -94,7 +94,7 @@ from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file import
 
 
 def main():
-    module = PulpEntityAnsibleModule(
+    with PulpEntityAnsibleModule(
         argument_spec=dict(
             name=dict(),
             base_path=dict(),
@@ -105,19 +105,19 @@ def main():
             ('state', 'present', ['name', 'base_path']),
             ('state', 'absent', ['name']),
         ],
-    )
+    ) as module:
 
-    if module.params['content_guard']:
-        module.fail_json(msg="Content guard features are not yet supportet in this module.")
+        if module.params['content_guard']:
+            raise Exception("Content guard features are not yet supportet in this module.")
 
-    natural_key = {
-        'name': module.params['name'],
-    }
-    desired_attributes = {
-        key: module.params[key] for key in ['base_path', 'content_guard', 'publication'] if module.params[key] is not None
-    }
+        natural_key = {
+            'name': module.params['name'],
+        }
+        desired_attributes = {
+            key: module.params[key] for key in ['base_path', 'content_guard', 'publication'] if module.params[key] is not None
+        }
 
-    PulpFileDistribution(module, natural_key, desired_attributes).process()
+        PulpFileDistribution(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

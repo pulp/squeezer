@@ -80,7 +80,7 @@ from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file import
 
 
 def main():
-    module = PulpEntityAnsibleModule(
+    with PulpEntityAnsibleModule(
         argument_spec=dict(
             name=dict(),
             description=dict(),
@@ -89,16 +89,16 @@ def main():
             ('state', 'present', ['name']),
             ('state', 'absent', ['name']),
         ]
-    )
+    ) as module:
 
-    natural_key = {'name': module.params['name']}
-    desired_attributes = {}
-    if module.params['description'] is not None:
-        # In case of an empty string we try to nullify the description
-        # Which does not yet work
-        desired_attributes['description'] = module.params['description'] or None
+        natural_key = {'name': module.params['name']}
+        desired_attributes = {}
+        if module.params['description'] is not None:
+            # In case of an empty string we try to nullify the description
+            # Which does not yet work
+            desired_attributes['description'] = module.params['description'] or None
 
-    PulpFileRepository(module, natural_key, desired_attributes).process()
+        PulpFileRepository(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

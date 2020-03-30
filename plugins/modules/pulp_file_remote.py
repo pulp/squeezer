@@ -100,7 +100,7 @@ from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file import
 
 
 def main():
-    module = PulpEntityAnsibleModule(
+    with PulpEntityAnsibleModule(
         argument_spec=dict(
             name=dict(),
             url=dict(),
@@ -115,14 +115,14 @@ def main():
             ('state', 'present', ['name']),
             ('state', 'absent', ['name']),
         ]
-    )
+    ) as module:
 
-    natural_key = {'name': module.params['name']}
-    desired_attributes = {
-        key: module.params[key] for key in ['url', 'download_concurrency', 'policy', 'proxy_url', 'tls_validation'] if module.params[key] is not None
-    }
+        natural_key = {'name': module.params['name']}
+        desired_attributes = {
+            key: module.params[key] for key in ['url', 'download_concurrency', 'policy', 'proxy_url', 'tls_validation'] if module.params[key] is not None
+        }
 
-    PulpFileRemote(module, natural_key, desired_attributes).process()
+        PulpFileRemote(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':
