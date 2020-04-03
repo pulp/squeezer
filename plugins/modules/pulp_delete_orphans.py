@@ -50,9 +50,9 @@ from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper impo
 
 
 def main():
-    module = PulpAnsibleModule()
-    summary = PulpOrphans(module).delete()
-    module.exit_json(summary=summary)
+    with PulpAnsibleModule() as module:
+        summary = PulpOrphans(module).delete()
+        module.set_result('summary', summary)
 
 
 if __name__ == '__main__':

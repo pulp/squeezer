@@ -33,27 +33,26 @@ CONTENT_CHUNK_SIZE = 512 * 1024  # 1/2 MB
 
 
 class PulpAnsibleModule(AnsibleModule):
-
-    def __init__(self, argument_spec=None, **kwargs):
-        if argument_spec is None:
-            argument_spec = {}
-        self._changed = False
-
-        spec = dict(
+    def __init__(self, **kwargs):
+        argument_spec = dict(
             pulp_url=dict(required=True),
             username=dict(required=True),
             password=dict(required=True, no_log=True),
             validate_certs=dict(type='bool', default=True),
         )
-        spec.update(argument_spec)
-        kwargs['supports_check_mode'] = kwargs.get('supports_check_mode', True)
-        super(PulpAnsibleModule, self).__init__(argument_spec=spec, **kwargs)
+        argument_spec.update(kwargs.pop('argument_spec', {}))
+        supports_check_mode = kwargs.pop('supports_check_mode', True)
+        super(PulpAnsibleModule, self).__init__(argument_spec=argument_spec, supports_check_mode=supports_check_mode, **kwargs)
 
         if not HAS_PULPCORE_CLIENT:
             self.fail_json(
                 msg=missing_required_lib("pulpcore-client"),
                 exception=PULPCORE_CLIENT_IMPORT_ERROR,
             )
+
+    def __enter__(self):
+        self._changed = False
+        self._results = {}
 
         self.api_config = pulpcore.Configuration()
         self.api_config.host = self.params['pulp_url']
@@ -62,25 +61,31 @@ class PulpAnsibleModule(AnsibleModule):
         self.api_config.verify_ssl = self.params['validate_certs']
         self.api_config.safe_chars_for_path_param = '/'
 
-    def exit_json(self, changed=False, **kwargs):
-        changed |= self._changed
-        super(PulpAnsibleModule, self).exit_json(changed=changed, **kwargs)
+        return self
+
+    def __exit__(self, exc_class, exc_value, traceback):
+        if exc_class is not None:
+            if issubclass(exc_class, Exception):
+                self.fail_json(msg=str(exc_value), changed=self._changed)
+                return True
+        self.exit_json(changed=self._changed, **self._results)
+
+    def set_changed(self):
+        self._changed = True
+
+    def set_result(self, key, value):
+        self._results[key] = value
 
 
 class PulpEntityAnsibleModule(PulpAnsibleModule):
-    def __init__(self, argument_spec=None, **kwargs):
-        if argument_spec is None:
-            argument_spec = {}
-        spec = dict(
+    def __init__(self, **kwargs):
+        argument_spec = dict(
             state=dict(
                 choices=['present', 'absent'],
             ),
         )
-        spec.update(argument_spec)
-        super(PulpEntityAnsibleModule, self).__init__(
-            argument_spec=spec,
-            **kwargs
-        )
+        argument_spec.update(kwargs.pop('argument_spec', {}))
+        super(PulpEntityAnsibleModule, self).__init__(argument_spec=argument_spec, **kwargs)
 
 
 class PulpEntity(object):
@@ -113,7 +118,7 @@ class PulpEntity(object):
 
     def create(self):
         if not hasattr(self.api, 'create'):
-            self.module.fail_json(msg="This entity is not creatable.")
+            raise Exception("This entity is not creatable.")
         kwargs = dict()
         kwargs.update(self.natural_key)
         kwargs.update(self.desired_attributes)
@@ -125,7 +130,7 @@ class PulpEntity(object):
                 entity = self.api.read(task.created_resources[0])
             else:
                 entity = response
-        self.module._changed = True
+        self.module.set_changed()
         self.entity = entity
         return self.entity
 
@@ -140,7 +145,7 @@ class PulpEntity(object):
                 changed = True
         if changed:
             if not hasattr(self.api, 'update'):
-                self.module.fail_json(msg="This entity is immutable.")
+                raise Exception("This entity is immutable.")
             if not self.module.check_mode:
                 response = self.api.update(self.entity.pulp_href, self.entity)
                 if getattr(response, 'task', None):
@@ -149,17 +154,17 @@ class PulpEntity(object):
                 else:
                     entity = response
                 self.entity = entity
-            self.module._changed = True
+            self.module.set_changed()
         return self.entity
 
     def delete(self):
         if not hasattr(self.api, 'delete'):
-            self.module.fail_json(msg="This entity is not deletable.")
+            raise Exception("This entity is not deletable.")
         if not self.module.check_mode:
             response = self.api.delete(self.entity.pulp_href)
             if getattr(response, 'task', None):
                 PulpTask(self.module).wait_for(response.task)
-        self.module._changed = True
+        self.module.set_changed()
         return None
 
     def process(self):
@@ -175,10 +180,10 @@ class PulpEntity(object):
 
             if entity:
                 entity = entity.to_dict()
-            self.module.exit_json(**{self._name_singular: entity})
+            self.module.set_result(self._name_singular, entity)
         else:
             entities = self.list()
-            self.module.exit_json(**{self._name_plural: [entity.to_dict() for entity in entities]})
+            self.module.set_result(self._name_plural, [entity.to_dict() for entity in entities])
 
 
 class PulpArtifact(PulpEntity):
@@ -246,7 +251,7 @@ class PulpTask(PulpEntity):
             sleep(2)
             task = self.api.read(task.pulp_href)
         if task.state != 'completed':
-            self.module.fail_json(msg='Task failed to complete. ({1}; {2})'.format(task.state, task.error['description']))
+            raise Exception('Task failed to complete. ({1}; {2})'.format(task.state, task.error['description']))
         return task
 
 

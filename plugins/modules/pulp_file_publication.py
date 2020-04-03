@@ -89,7 +89,7 @@ from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file import
 
 
 def main():
-    module = PulpEntityAnsibleModule(
+    with PulpEntityAnsibleModule(
         argument_spec=dict(
             repository=dict(),
             version=dict(type='int'),
@@ -99,28 +99,28 @@ def main():
             ['state', 'present', ['repository']],
             ['state', 'absent', ['repository']],
         ),
-    )
+    ) as module:
 
-    repository_name = module.params['repository']
-    version = module.params['version']
-    desired_attributes = {
-        key: module.params[key] for key in ['manifest'] if module.params[key] is not None
-    }
+        repository_name = module.params['repository']
+        version = module.params['version']
+        desired_attributes = {
+            key: module.params[key] for key in ['manifest'] if module.params[key] is not None
+        }
 
-    if repository_name:
-        repository = PulpFileRepository(module, {'name': repository_name}).find()
-        if repository is None:
-            module.fail_json(msg="Failed to find repository ({repository_name}).".format(repository_name=repository_name))
-        # TODO check if version exists
-        if version:
-            repository_version_href = repository.versions_href + "{version}/".format(version=version)
+        if repository_name:
+            repository = PulpFileRepository(module, {'name': repository_name}).find()
+            if repository is None:
+                raise Exception("Failed to find repository ({repository_name}).".format(repository_name=repository_name))
+            # TODO check if version exists
+            if version:
+                repository_version_href = repository.versions_href + "{version}/".format(version=version)
+            else:
+                repository_version_href = repository.latest_version_href
+            natural_key = {'repository_version': repository_version_href}
         else:
-            repository_version_href = repository.latest_version_href
-        natural_key = {'repository_version': repository_version_href}
-    else:
-        natural_key = {'repository_version': None}
+            natural_key = {'repository_version': None}
 
-    PulpFilePublication(module, natural_key, desired_attributes).process()
+        PulpFilePublication(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

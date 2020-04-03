@@ -75,7 +75,7 @@ from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file import
 
 
 def main():
-    module = PulpEntityAnsibleModule(
+    with PulpEntityAnsibleModule(
         argument_spec=dict(
             sha256=dict(aliases=['digest']),
             relative_path=dict(),
@@ -84,15 +84,15 @@ def main():
             ('state', 'present', ['sha256', 'relative_path']),
             ('state', 'absent', ['sha256', 'relative_path']),
         ],
-    )
+    ) as module:
 
-    natural_key = {
-        'sha256': module.params['sha256'],
-        'relative_path': module.params['relative_path']
-    }
-    desired_attributes = {}
+        natural_key = {
+            'sha256': module.params['sha256'],
+            'relative_path': module.params['relative_path']
+        }
+        desired_attributes = {}
 
-    PulpFileContent(module, natural_key, desired_attributes).process()
+        PulpFileContent(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

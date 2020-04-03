@@ -89,7 +89,7 @@ from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper impo
 
 
 def main():
-    module = PulpEntityAnsibleModule(
+    with PulpEntityAnsibleModule(
         argument_spec=dict(
             file=dict(type='path'),
             sha256=dict(),
@@ -97,28 +97,28 @@ def main():
         required_if=[
             ('state', 'present', ['file']),
         ],
-    )
+    ) as module:
 
-    sha256 = module.params['sha256']
-    if module.params['file']:
-        file_sha256 = module.sha256(module.params['file'])
-        if sha256:
-            if sha256 != file_sha256:
-                module.fail_json(msg="File checksum mismatch.")
-        else:
-            sha256 = file_sha256
+        sha256 = module.params['sha256']
+        if module.params['file']:
+            file_sha256 = module.sha256(module.params['file'])
+            if sha256:
+                if sha256 != file_sha256:
+                    raise Exception("File checksum mismatch.")
+            else:
+                sha256 = file_sha256
 
-    if sha256 is None and module.params['state'] == 'absent':
-        module.fail_json(msg="One of 'file' and 'sha256' is required if 'state' is 'absent'.")
+        if sha256 is None and module.params['state'] == 'absent':
+            raise Exception("One of 'file' and 'sha256' is required if 'state' is 'absent'.")
 
-    natural_key = {
-        'sha256': sha256,
-    }
-    desired_attributes = {
-        'file': module.params['file'],
-    }
+        natural_key = {
+            'sha256': sha256,
+        }
+        desired_attributes = {
+            'file': module.params['file'],
+        }
 
-    PulpArtifact(module, natural_key, desired_attributes).process()
+        PulpArtifact(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

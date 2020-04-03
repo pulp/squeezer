@@ -54,9 +54,9 @@ from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper impo
 
 
 def main():
-    module = PulpAnsibleModule()
-    status = PulpStatus(module).api.status_read()
-    module.exit_json(status=status.to_dict())
+    with PulpAnsibleModule() as module:
+        status = PulpStatus(module).api.status_read()
+        module.set_result('status', status.to_dict())
 
 
 if __name__ == '__main__':
