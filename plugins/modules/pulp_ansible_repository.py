@@ -19,7 +19,7 @@ DOCUMENTATION = r'''
 module: pulp_ansible_repository
 short_description: Manage ansible repositories of a pulp api server instance
 description:
-  - "This performes CRUD operations on ansible repositories in a pulp api server instance."
+  - "This performs CRUD operations on ansible repositories in a pulp api server instance."
 options:
   name:
     description:

@@ -19,7 +19,7 @@ DOCUMENTATION = r'''
 module: pulp_file_distribution
 short_description: Manage file distributions of a pulp api server instance
 description:
-  - "This performes CRUD operations on file distributions in a pulp api server instance."
+  - "This performs CRUD operations on file distributions in a pulp api server instance."
 options:
   name:
     description:
@@ -39,6 +39,7 @@ options:
   content_guard:
     description:
       - Name of the content guard for the served content
+      - "Warning: This feature is not yet supported."
     type: str
     required: false
 extends_documentation_fragment:
@@ -108,7 +109,7 @@ def main():
     ) as module:
 
         if module.params['content_guard']:
-            raise Exception("Content guard features are not yet supportet in this module.")
+            raise Exception("Content guard features are not yet supported in this module.")
 
         natural_key = {
             'name': module.params['name'],

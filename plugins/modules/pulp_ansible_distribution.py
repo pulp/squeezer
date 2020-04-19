@@ -19,7 +19,7 @@ DOCUMENTATION = r'''
 module: pulp_ansible_distribution
 short_description: Manage ansible distributions of a pulp server
 description:
-  - "This performes CRUD operations on ansible distributions in a pulp server."
+  - "This performs CRUD operations on ansible distributions in a pulp server."
 options:
   name:
     description:
@@ -45,6 +45,7 @@ options:
   content_guard:
     description:
       - Name of the content guard for the served content
+      - "Warning: This feature is not yet supported."
     type: str
     required: false
 extends_documentation_fragment:
@@ -119,7 +120,7 @@ def main():
         version = module.params['version']
 
         if module.params['content_guard']:
-            module.fail_json(msg="Content guard features are not yet supportet in this module.")
+            module.fail_json(msg="Content guard features are not yet supported in this module.")
 
         natural_key = {
             'name': module.params['name'],

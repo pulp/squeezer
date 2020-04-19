@@ -19,7 +19,7 @@ DOCUMENTATION = r'''
 module: pulp_ansible_remote
 short_description: Manage ansible remotes of a pulp api server instance
 description:
-  - "This performes CRUD operations on ansible remotes in a pulp api server instance."
+  - "This performs CRUD operations on ansible remotes in a pulp api server instance."
 options:
   name:
     description:

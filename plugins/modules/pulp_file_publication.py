@@ -19,7 +19,7 @@ DOCUMENTATION = r'''
 module: pulp_file_publication
 short_description: Manage file publications of a pulp api server instance
 description:
-  - "This performes CRUD operations on file publications in a pulp api server instance."
+  - "This performs CRUD operations on file publications in a pulp api server instance."
 options:
   repository:
     description:

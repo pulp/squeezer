@@ -19,7 +19,7 @@ DOCUMENTATION = r'''
 module: pulp_ansible_role
 short_description: Manage ansible roles of a pulp server
 description:
-  - "This performes CRUD operations on ansible roles in a pulp server."
+  - "This performs CRUD operations on ansible roles in a pulp server."
 options:
   name:
     description:
