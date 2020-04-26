@@ -1,0 +1,90 @@
+---
+- hosts: localhost
+  collections:
+    - mdellweg.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  vars:
+    file1_sha256: "{{ lookup('file', 'data/file1.txt', lstrip=false, rstrip=false) | hash('sha256') }}"
+  module_defaults: &pulp_module_defaults
+    pulp_artifact: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+    pulp_ansible_role:
+      <<: *pulp_connection_details
+    pulp_delete_orphans:
+      <<: *pulp_connection_details
+  tasks:
+    - name: Delete orphaned objects
+      pulp_delete_orphans: {}
+    - name: Create artifact
+      pulp_artifact:
+        file: data/file1.txt
+        state: present
+
+- hosts: tests
+  collections:
+    - mdellweg.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  vars:
+    file1_sha256: "{{ lookup('file', 'data/file1.txt', lstrip=false, rstrip=false) | hash('sha256') }}"
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Search artifact
+      pulp_artifact:
+        sha256: "{{ file1_sha256 }}"
+      register: artifact_result
+    - name: Create ansible role
+      pulp_ansible_role:
+        name: test_role
+        namespace: test_namespace
+        version: 0.0.0
+        sha256: "{{ file1_sha256 }}"
+        state: present
+      register: result
+    - name: Verify create ansible role
+      assert:
+        that:
+          - result.changed == true
+          - result.content.name == "test_role"
+          - result.content.namespace == "test_namespace"
+
+    - name: Create ansible role (2nd try)
+      pulp_ansible_role:
+        name: test_role
+        namespace: test_namespace
+        version: 0.0.0
+        sha256: "{{ file1_sha256 }}"
+        state: present
+      register: result
+    - name: Verify create ansible role (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: List ansible roles
+      pulp_ansible_role: {}
+      register: result
+    - name: Verify list ansible roles
+      assert:
+        that:
+          - result.changed == false
+          - result.contents | length >= 1
+
+    - name: Read ansible role
+      pulp_ansible_role:
+        name: test_role
+        namespace: test_namespace
+        version: 0.0.0
+      register: result
+    - name: Verify read ansible role
+      assert:
+        that:
+          - result.changed == false
+          - result.content.artifact == artifact_result.artifact.pulp_href
+...

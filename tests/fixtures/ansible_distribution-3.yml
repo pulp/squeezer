@@ -1,0 +1,36 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.2.0b9.dev01582669092/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?name=test_distribution
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/ansible/ansible/2ab4f294-2800-4810-9fcf-550b9e01c05f/","pulp_created":"2020-02-26T15:38:25.238397Z","base_path":"test_repo","content_guard":null,"name":"test_distribution","repository":"/pulp/api/v3/repositories/ansible/ansible/8df7fe7f-64d9-45e0-80f1-22af28c12666/","repository_version":null,"client_url":"http://pulp3-sandbox-debian10.anubis.example.com/pulp_ansible/galaxy/test_repo"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '480'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 26 Feb 2020 15:40:19 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -16,10 +16,10 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = r'''
 ---
-module: pulp_file_remote
-short_description: Manage file remotes of a pulp api server instance
+module: pulp_ansible_remote
+short_description: Manage ansible remotes of a pulp api server instance
 description:
-  - "This performs CRUD operations on file remotes in a pulp api server instance."
+  - "This performs CRUD operations on ansible remotes in a pulp api server instance."
 options:
   name:
     description:
@@ -27,7 +27,7 @@ options:
     type: str
   url:
     description:
-      - URL to the upstream pulp manifest
+      - URL to the upstream galaxy api
     type: str
   download_concurrency:
     description:
@@ -39,8 +39,6 @@ options:
     type: str
     choices:
       - immediate
-      - on-demand
-      - streamed
   proxy_url:
     description:
       - The proxy URL. Format C(scheme://user:password@host:port) .
@@ -57,46 +55,46 @@ author:
 '''
 
 EXAMPLES = r'''
-- name: Read list of file remotes from pulp api server
-  pulp_file_remote:
+- name: Read list of ansible remotes from pulp api server
+  pulp_ansible_remote:
     api_url: localhost:24817
     username: admin
     password: password
   register: remote_status
-- name: Report pulp file remotes
+- name: Report pulp ansible remotes
   debug:
     var: remote_status
-- name: Create a file remote
-  pulp_file_remote:
+- name: Create a ansible remote
+  pulp_ansible_remote:
     api_url: localhost:24817
     username: admin
     password: password
-    name: new_file_remote
-    url: http://localhost/pub/file/pulp_manifest
+    name: new_ansible_remote
+    url: http://localhost/TODO
     state: present
-- name: Delete a file remote
-  pulp_file_remote:
+- name: Delete a ansible remote
+  pulp_ansible_remote:
     api_url: localhost:24817
     username: admin
     password: password
-    name: new_file_remote
+    name: new_ansible_remote
     state: absent
 '''
 
 RETURN = r'''
   remotes:
-    description: List of file remotes
+    description: List of ansible remotes
     type: list
     returned: when no name is given
   remote:
-    description: File remote details
+    description: Ansible remote details
     type: dict
     returned: when name is given
 '''
 
 
 from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file_helper import PulpFileRemote
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_ansible_helper import PulpAnsibleRemote
 
 
 def main():
@@ -106,7 +104,7 @@ def main():
             url=dict(),
             download_concurrency=dict(type='int'),
             policy=dict(
-                choices=['immediate', 'on-demand', 'streamed'],
+                choices=['immediate'],
             ),
             proxy_url=dict(type='str'),
             tls_validation=dict(type='bool'),
@@ -122,7 +120,7 @@ def main():
             key: module.params[key] for key in ['url', 'download_concurrency', 'policy', 'proxy_url', 'tls_validation'] if module.params[key] is not None
         }
 
-        PulpFileRemote(module, natural_key, desired_attributes).process()
+        PulpAnsibleRemote(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

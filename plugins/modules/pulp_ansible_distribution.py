@@ -16,10 +16,10 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = r'''
 ---
-module: pulp_file_distribution
-short_description: Manage file distributions of a pulp api server instance
+module: pulp_ansible_distribution
+short_description: Manage ansible distributions of a pulp server
 description:
-  - "This performs CRUD operations on file distributions in a pulp api server instance."
+  - "This performs CRUD operations on ansible distributions in a pulp server."
 options:
   name:
     description:
@@ -31,10 +31,16 @@ options:
       - Base path to distribute a publication
     type: str
     required: false
-  publication:
+  repository:
     description:
-      - Href of the publication to be served
+      - Name of the repository to be served
     type: str
+    required: false
+  version:
+    description:
+      - Version number of the repository to be served
+      - If not specified, the distribution will always serve the latest version.
+    type: int
     required: false
   content_guard:
     description:
@@ -50,48 +56,49 @@ author:
 '''
 
 EXAMPLES = r'''
-- name: Read list of file distributions from pulp api server
-  pulp_file_distribution:
+- name: Read list of ansible distributions from pulp api server
+  pulp_ansible_distribution:
     api_url: localhost:24817
     username: admin
     password: password
   register: distribution_status
-- name: Report pulp file distributions
+- name: Report pulp ansible distributions
   debug:
     var: distribution_status
 
-- name: Create a file distribution
-  pulp_file_distribution:
+- name: Create an ansible distribution
+  pulp_ansible_distribution:
     api_url: localhost:24817
     username: admin
     password: password
-    name: new_file_distribution
-    base_path: new/file/dist
-    publication: /pub/api/v3/publications/file/file/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/
+    name: new_ansible_distribution
+    base_path: new/ansible/dist
+    repository: my_repository
     state: present
-- name: Delete a file distribution
-  pulp_file_distribution:
+
+- name: Delete an ansible distribution
+  pulp_ansible_distribution:
     api_url: localhost:24817
     username: admin
     password: password
-    name: new_file_distribution
+    name: new_ansible_distribution
     state: absent
 '''
 
 RETURN = r'''
   distributions:
-    description: List of file distributions
+    description: List of ansible distributions
     type: list
     returned: when no name is given
   distribution:
-    description: File distribution details
+    description: Ansible distribution details
     type: dict
     returned: when name is given
 '''
 
 
 from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file_helper import PulpFileDistribution
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_ansible_helper import PulpAnsibleDistribution, PulpAnsibleRepository
 
 
 def main():
@@ -99,7 +106,8 @@ def main():
         argument_spec=dict(
             name=dict(),
             base_path=dict(),
-            publication=dict(),
+            repository=dict(),
+            version=dict(type='int'),
             content_guard=dict(),
         ),
         required_if=[
@@ -108,17 +116,30 @@ def main():
         ],
     ) as module:
 
+        repository_name = module.params['repository']
+        version = module.params['version']
+
         if module.params['content_guard']:
-            raise Exception("Content guard features are not yet supported in this module.")
+            module.fail_json(msg="Content guard features are not yet supported in this module.")
 
         natural_key = {
             'name': module.params['name'],
         }
         desired_attributes = {
-            key: module.params[key] for key in ['base_path', 'content_guard', 'publication'] if module.params[key] is not None
+            key: module.params[key] for key in ['base_path', 'content_guard'] if module.params[key] is not None
         }
 
-        PulpFileDistribution(module, natural_key, desired_attributes).process()
+        if repository_name:
+            repository = PulpAnsibleRepository(module, {'name': repository_name}).find()
+            if repository is None:
+                module.fail_json(msg="Failed to find repository ({repository_name}).".format(repository_name=repository_name))
+            # TODO check if version exists
+            if version:
+                desired_attributes['repository_version'] = repository.versions_href + "{version}/".format(version=version)
+            else:
+                desired_attributes['repository'] = repository.pulp_href
+
+        PulpAnsibleDistribution(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

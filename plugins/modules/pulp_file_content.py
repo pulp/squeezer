@@ -19,7 +19,7 @@ DOCUMENTATION = r'''
 module: pulp_file_content
 short_description: Manage file content of a pulp api server instance
 description:
-  - "This performes CRUD operations on file content in a pulp api server instance."
+  - "This performs CRUD operations on file content in a pulp api server instance."
 options:
   sha256:
     description:
@@ -71,7 +71,7 @@ RETURN = r'''
 
 
 from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file import PulpFileContent
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file_helper import PulpFileContent
 
 
 def main():

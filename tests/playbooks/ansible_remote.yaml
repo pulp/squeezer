@@ -1,0 +1,125 @@
+---
+- hosts: localhost
+  collections:
+    - mdellweg.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults: &pulp_module_defaults
+    pulp_ansible_remote: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+  tasks:
+    - name: Make remote absent
+      pulp_ansible_remote:
+        name: test_remote
+        state: absent
+
+- hosts: tests
+  collections:
+    - mdellweg.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Create remote
+      pulp_ansible_remote:
+        name: test_remote
+        url: "{{ pulp_fixtures_url }}/ansible/"
+        proxy_url: "http://proxy.int:3128"
+        state: present
+      register: result
+    - name: Verify create remote
+      assert:
+        that:
+          - result.changed == true
+          - result.remote.name == "test_remote"
+          - result.remote.url == "{{ pulp_fixtures_url }}/ansible/"
+          - result.remote.proxy_url == "http://proxy.int:3128"
+
+    - name: Create remote (2nd try)
+      pulp_ansible_remote:
+        name: test_remote
+        url: "{{ pulp_fixtures_url }}/ansible/"
+        proxy_url: "http://proxy.int:3128"
+        state: present
+      register: result
+    - name: Verify create remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Modify remote
+      pulp_ansible_remote:
+        name: test_remote
+        url: "{{ pulp_fixtures_url }}/ansible2/"
+        tls_validation: false
+        state: present
+      register: result
+    - name: Verify modify remote
+      assert:
+        that:
+          - result.changed == true
+          - result.remote.url == "{{ pulp_fixtures_url }}/ansible2/"
+          - result.remote.tls_validation == false
+
+    - name: Modify remote (2nd try)
+      pulp_ansible_remote:
+        name: test_remote
+        url: "{{ pulp_fixtures_url }}/ansible2/"
+        tls_validation: false
+        state: present
+      register: result
+    - name: Verify modify remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: List remotes
+      pulp_ansible_remote: {}
+      register: result
+    - name: Verify list remotes
+      assert:
+        that:
+          - result.changed == false
+          - result.remotes | length >= 1
+          - result.remotes | selectattr('name', 'match', 'test_remote') | list | length == 1
+
+    - name: Read remote
+      pulp_ansible_remote:
+        name: test_remote
+      register: result
+    - name: Verify read remote
+      assert:
+        that:
+          - result.changed == false
+          - result.remote.name == "test_remote"
+          - result.remote.url == "{{ pulp_fixtures_url }}/ansible2/"
+          - result.remote.policy == "immediate"
+          - result.remote.proxy_url == "http://proxy.int:3128"
+          - result.remote.tls_validation == false
+
+    - name: Delete remote
+      pulp_ansible_remote:
+        name: test_remote
+        state: absent
+      register: result
+    - name: Verify delete remote
+      assert:
+        that:
+          - result.changed == true
+          - not result.remote
+
+    - name: Delete remote (2nd try)
+      pulp_ansible_remote:
+        name: test_remote
+        state: absent
+      register: result
+    - name: Verify delete remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+...

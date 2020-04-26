@@ -16,10 +16,10 @@ ANSIBLE_METADATA = {
 
 DOCUMENTATION = r'''
 ---
-module: pulp_file_repository
-short_description: Manage file repositories of a pulp api server instance
+module: pulp_ansible_repository
+short_description: Manage ansible repositories of a pulp api server instance
 description:
-  - "This performs CRUD operations on file repositories in a pulp api server instance."
+  - "This performs CRUD operations on ansible repositories in a pulp api server instance."
 options:
   name:
     description:
@@ -37,25 +37,25 @@ author:
 '''
 
 EXAMPLES = r'''
-- name: Read list of file repositories from pulp api server
-  pulp_file_repository:
+- name: Read list of ansible repositories from pulp api server
+  pulp_ansible_repository:
     api_url: localhost:24817
     username: admin
     password: password
   register: repo_status
-- name: Report pulp file repositories
+- name: Report pulp ansible repositories
   debug:
     var: repo_status
-- name: Create a file repository
-  pulp_file_repository:
+- name: Create a ansible repository
+  pulp_ansible_repository:
     api_url: localhost:24817
     username: admin
     password: password
     name: new_repo
     description: A brand new repository with a description
     state: present
-- name: Delete a file repository
-  pulp_file_repository:
+- name: Delete a ansible repository
+  pulp_ansible_repository:
     api_url: localhost:24817
     username: admin
     password: password
@@ -65,18 +65,18 @@ EXAMPLES = r'''
 
 RETURN = r'''
   repositories:
-    description: List of file repositories
+    description: List of ansible repositories
     type: list
     returned: when no name is given
   repository:
-    description: File repository details
+    description: Ansible repository details
     type: dict
     returned: when name is given
 '''
 
 
 from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_file_helper import PulpFileRepository
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_ansible_helper import PulpAnsibleRepository
 
 
 def main():
@@ -98,7 +98,7 @@ def main():
             # Which does not yet work
             desired_attributes['description'] = module.params['description'] or None
 
-        PulpFileRepository(module, natural_key, desired_attributes).process()
+        PulpAnsibleRepository(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

@@ -1,0 +1,138 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.2.0b9.dev01581429120/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/ansible/?name=test_remote
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/ansible/be9c9410-f5f4-47a5-b928-5285d6a31b63/","pulp_created":"2020-02-14T10:51:42.782047Z","name":"test_remote","url":"https://repos.fedorapeople.org/pulp/pulp/fixtures/ansible2/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_last_updated":"2020-02-14T10:51:44.378631Z","download_concurrency":20,"policy":"immediate"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '484'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 14 Feb 2020 10:51:49 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/0.2.0b9.dev01581429120/python
+    method: DELETE
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/ansible/be9c9410-f5f4-47a5-b928-5285d6a31b63/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/afd389e1-0357-40bd-b43f-1e86dbc37298/"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 14 Feb 2020 10:51:49 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.1.0/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/afd389e1-0357-40bd-b43f-1e86dbc37298/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/afd389e1-0357-40bd-b43f-1e86dbc37298/","pulp_created":"2020-02-14T10:51:49.361302Z","state":"waiting","name":"pulpcore.app.tasks.base.general_delete","started_at":null,"finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/98977d65-f700-4365-b6b1-5f64114da203/","progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/ansible/be9c9410-f5f4-47a5-b928-5285d6a31b63/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '455'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 14 Feb 2020 10:51:49 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.1.0/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/afd389e1-0357-40bd-b43f-1e86dbc37298/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/afd389e1-0357-40bd-b43f-1e86dbc37298/","pulp_created":"2020-02-14T10:51:49.361302Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-02-14T10:51:49.523844Z","finished_at":"2020-02-14T10:51:49.622154Z","error":null,"worker":"/pulp/api/v3/workers/98977d65-f700-4365-b6b1-5f64114da203/","progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/ansible/be9c9410-f5f4-47a5-b928-5285d6a31b63/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '507'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 14 Feb 2020 10:51:51 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
