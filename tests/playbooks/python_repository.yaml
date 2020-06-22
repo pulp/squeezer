@@ -1,0 +1,150 @@
+---
+- hosts: localhost
+  collections:
+    - mdellweg.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults: &pulp_module_defaults
+    pulp_python_repository: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+  tasks:
+    - name: Make repository absent
+      pulp_python_repository:
+        name: test_python_repository
+        state: absent
+
+- hosts: tests
+  collections:
+    - mdellweg.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Create repository
+      pulp_python_repository:
+        name: test_python_repository
+        description: ""
+        state: present
+      register: result
+    - name: Verify create repository
+      assert:
+        that:
+          - result.changed == true
+          - result.repository.name == 'test_python_repository'
+
+    - name: Create repository (2nd try)
+      pulp_python_repository:
+        name: test_python_repository
+        state: present
+      register: result
+    - name: Verify create repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Add description to repository
+      pulp_python_repository:
+        name: test_python_repository
+        description: "repository created via ansible"
+        state: present
+      register: result
+    - name: Verify add description to repository
+      assert:
+        that:
+          - result.changed == true
+          - result.repository.description == "repository created via ansible"
+
+    - name: Add description to repository (2nd try)
+      pulp_python_repository:
+        name: test_python_repository
+        description: "repository created via ansible"
+        state: present
+      register: result
+    - name: Verify add description to repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Fake modify repository
+      pulp_python_repository:
+        name: test_python_repository
+        state: present
+      register: result
+    - name: Verify fake modify repository
+      assert:
+        that:
+          - result.changed == false
+          - result.repository.description == "repository created via ansible"
+
+    - name: List repositories
+      pulp_python_repository: {}
+      register: result
+    - name: Verify list repositories
+      assert:
+        that:
+          - result.changed == false
+          - result.repositories | length >= 1
+
+    - name: Read repository
+      pulp_python_repository:
+        name: test_python_repository
+      register: result
+    - name: Verify read repository
+      assert:
+        that:
+          - result.changed == false
+          - result.repository.name == 'test_python_repository'
+          - result.repository.description == "repository created via ansible"
+
+    - name: Skip until nullifying fields is possible with the api bindings
+      when: false
+      block:
+        - name: Remove description from repository
+          pulp_python_repository:
+            name: test_python_repository
+            description: ""
+            state: present
+          register: result
+        - name: Verify remove description from repository
+          assert:
+            that:
+              - result.changed == true
+              - not result.repository.description
+
+        - name: Remove description from repository (2nd try)
+          pulp_python_repository:
+            name: test_python_repository
+            description: ""
+            state: present
+          register: result
+        - name: Verify remove description from repository (2nd try)
+          assert:
+            that:
+              - result.changed == false
+
+    - name: Delete repository
+      pulp_python_repository:
+        name: test_python_repository
+        state: absent
+      register: result
+    - name: Verify delete repository
+      assert:
+        that:
+          - result.changed == true
+          - not result.repository
+
+    - name: Delete repository (2nd try)
+      pulp_python_repository:
+        name: test_python_repository
+        state: absent
+      register: result
+    - name: Verify delete repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+...
