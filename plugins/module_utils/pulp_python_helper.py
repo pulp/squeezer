@@ -27,12 +27,15 @@ try:
 except ImportError:
     class Dummy():
         def __getattr__(self, attr):
-            return object
+            return Dummy()
 
     pulp_python = Dummy()
 
     HAS_PULP_PYTHON_CLIENT = False
     PULP_PYTHON_CLIENT_IMPORT_ERROR = traceback.format_exc()
+
+
+ProjectSpecifier = pulp_python.models.project_specifier.ProjectSpecifier
 
 
 class PulpPythonEntity(PulpEntity):

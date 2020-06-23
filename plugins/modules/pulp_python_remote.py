@@ -1,0 +1,187 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+# copyright (c) 2020, Matthias Dellweg
+# GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
+from __future__ import absolute_import, division, print_function
+__metaclass__ = type
+
+
+DOCUMENTATION = r'''
+---
+module: pulp_python_remote
+short_description: Manage python remotes of a pulp api server instance
+description:
+  - "This performs CRUD operations on python remotes in a pulp api server instance."
+options:
+  name:
+    description:
+      - Name of the remote to query or manipulate
+    type: str
+  url:
+    description:
+      - URL to the upstream pulp manifest
+    type: str
+  download_concurrency:
+    description:
+      - How many downloads should be attempted in parallel
+    type: int
+  excludes:
+    description:
+      - List of packages to exclude from the sync.
+    type: list
+    elements: dict
+    suboptions:
+      name:
+        description:
+          - Package name
+        type: str
+        required: true
+      version_specifier:
+        description:
+          - Python version specifier
+        type: str
+        default: ""
+  includes:
+    description:
+      - List of packages to include in the sync.
+    type: list
+    elements: dict
+    suboptions:
+      name:
+        description:
+          - Package name
+        type: str
+        required: true
+      version_specifier:
+        description:
+          - Python version specifier
+        type: str
+        default: ""
+  policy:
+    description:
+      - Whether downloads should be performed immediately, or lazy.
+    type: str
+    choices:
+      - immediate
+      - on-demand
+      - streamed
+  prereleases:
+    description:
+      - Whether to include prereleases in the sync.
+    type: bool
+  proxy_url:
+    description:
+      - The proxy URL. Format C(scheme://user:password@host:port) .
+    type: str
+  tls_validation:
+    description:
+      - If True, TLS peer validation must be performed on remote synchronization.
+    type: bool
+extends_documentation_fragment:
+  - mdellweg.squeezer.pulp
+  - mdellweg.squeezer.pulp.entity_state
+author:
+  - Matthias Dellweg (@mdellweg)
+'''
+
+EXAMPLES = r'''
+- name: Read list of python remotes from pulp api server
+  pulp_python_remote:
+    api_url: localhost:24817
+    username: admin
+    password: password
+  register: remote_status
+- name: Report pulp python remotes
+  debug:
+    var: remote_status
+- name: Create a python remote
+  pulp_python_remote:
+    api_url: localhost:24817
+    username: admin
+    password: password
+    name: new_python_remote
+    url: https://pypi.org/
+    state: present
+- name: Delete a python remote
+  pulp_python_remote:
+    api_url: localhost:24817
+    username: admin
+    password: password
+    name: new_python_remote
+    state: absent
+'''
+
+RETURN = r'''
+  remotes:
+    description: List of python remotes
+    type: list
+    returned: when no name is given
+  remote:
+    description: Python remote details
+    type: dict
+    returned: when name is given
+'''
+
+
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
+from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_python_helper import PulpPythonRemote, ProjectSpecifier
+
+
+DESIRED_KEYS = {'url', 'download_concurrency', 'policy', 'proxy_url', 'tls_validation', 'prereleases'}
+
+
+def main():
+    with PulpEntityAnsibleModule(
+        argument_spec=dict(
+            name=dict(),
+            url=dict(),
+            download_concurrency=dict(type='int'),
+            policy=dict(
+                choices=['immediate', 'on-demand', 'streamed'],
+            ),
+            proxy_url=dict(type='str'),
+            tls_validation=dict(type='bool'),
+            includes=dict(
+                type='list',
+                elements='dict',
+                options=dict(
+                    name=dict(required=True),
+                    version_specifier=dict(default=''),
+                ),
+            ),
+            excludes=dict(
+                type='list',
+                elements='dict',
+                options=dict(
+                    name=dict(required=True),
+                    version_specifier=dict(default=''),
+                ),
+            ),
+            prereleases=dict(type='bool'),
+        ),
+        required_if=[
+            ('state', 'present', ['name']),
+            ('state', 'absent', ['name']),
+        ]
+    ) as module:
+
+        natural_key = {'name': module.params['name']}
+        desired_attributes = {
+            key: module.params[key] for key in DESIRED_KEYS if module.params[key] is not None
+        }
+
+        includes = module.params['includes']
+        if includes is not None:
+            desired_attributes['includes'] = [ProjectSpecifier(**include) for include in includes]
+
+        excludes = module.params['excludes']
+        if excludes is not None:
+            desired_attributes['excludes'] = [ProjectSpecifier(**exclude) for exclude in excludes]
+
+        PulpPythonRemote(module, natural_key, desired_attributes).process()
+
+
+if __name__ == '__main__':
+    main()

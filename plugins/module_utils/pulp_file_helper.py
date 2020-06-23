@@ -27,7 +27,7 @@ try:
 except ImportError:
     class Dummy():
         def __getattr__(self, attr):
-            return object
+            return Dummy()
 
     pulp_file = Dummy()
 
