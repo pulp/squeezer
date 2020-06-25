@@ -7,12 +7,6 @@
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
-ANSIBLE_METADATA = {
-    'metadata_version': '1.1',
-    'status': ['preview'],
-    'supported_by': 'community'
-}
-
 
 DOCUMENTATION = r'''
 ---
@@ -78,12 +72,12 @@ def main():
         remote_entity = remote.find()
 
         if remote_entity is None:
-            raise Exception("Remote '{1}' not found.".format(module.params['remote']))
+            raise Exception("Remote '{0}' not found.".format(module.params['remote']))
 
         repository = PulpFileRepository(module, {'name': module.params['repository']})
         repository_entity = repository.find()
         if repository_entity is None:
-            raise Exception("Repository '{1}' not found.".format(module.params['repository']))
+            raise Exception("Repository '{0}' not found.".format(module.params['repository']))
 
         repository_version = repository_entity.latest_version_href
         sync_task = repository.sync(remote_entity.pulp_href)
