@@ -251,7 +251,7 @@ class PulpTask(PulpEntity):
             sleep(2)
             task = self.api.read(task.pulp_href)
         if task.state != 'completed':
-            raise Exception('Task failed to complete. ({1}; {2})'.format(task.state, task.error['description']))
+            raise Exception('Task failed to complete. ({0}; {1})'.format(task.state, task.error['description']))
         return task
 
 
