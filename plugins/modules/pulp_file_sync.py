@@ -42,7 +42,7 @@ EXAMPLES = r'''
   register: sync_result
 - name: Report synched repository version
   debug:
-    var: sync_status.repository_version
+    var: sync_result.repository_version
 '''
 
 RETURN = r'''
