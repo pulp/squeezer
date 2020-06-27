@@ -101,9 +101,9 @@ class PulpEntity(object):
         search_result = self.api.list(**self.natural_key)
         if search_result.count == 1:
             self.entity = search_result.results[0]
-            return self.entity
         else:
-            return None
+            self.entity = None
+        return self.entity
 
     def list(self):
         entities = []
@@ -122,24 +122,23 @@ class PulpEntity(object):
         kwargs = dict()
         kwargs.update(self.natural_key)
         kwargs.update(self.desired_attributes)
-        entity = self._api_entity_class(**kwargs)
+        self.entity = self._api_entity_class(**kwargs)
         if not self.module.check_mode:
-            response = self.api.create(entity)
+            response = self.api.create(self.entity)
             if getattr(response, 'task', None):
-                task = PulpTask(self.module).wait_for(response.task)
-                entity = self.api.read(task.created_resources[0])
+                task = PulpTask(self.module, {'pulp_href': response.task}).wait_for()
+                self.entity = self.api.read(task.created_resources[0])
             else:
-                entity = response
+                self.entity = response
         self.module.set_changed()
-        self.entity = entity
         return self.entity
 
     def update(self):
         changed = False
-        desired_attributes = self.desired_attributes.copy()
-        # drop 'file' because artifacts as well as content units are immutable anyway
-        desired_attributes.pop('file', None)
-        for key, value in desired_attributes.items():
+        for key, value in self.desired_attributes.items():
+            # Skip 'file' because artifacts as well as content units are immutable anyway
+            if key == 'file':
+                continue
             if getattr(self.entity, key, None) != value:
                 setattr(self.entity, key, value)
                 changed = True
@@ -149,11 +148,10 @@ class PulpEntity(object):
             if not self.module.check_mode:
                 response = self.api.update(self.entity.pulp_href, self.entity)
                 if getattr(response, 'task', None):
-                    PulpTask(self.module).wait_for(response.task)
-                    entity = self.api.read(self.entity.pulp_href)
+                    PulpTask(self.module, {'pulp_href': response.task}).wait_for()
+                    self.entity = self.api.read(self.entity.pulp_href)
                 else:
-                    entity = response
-                self.entity = entity
+                    self.entity = response
             self.module.set_changed()
         return self.entity
 
@@ -163,24 +161,32 @@ class PulpEntity(object):
         if not self.module.check_mode:
             response = self.api.delete(self.entity.pulp_href)
             if getattr(response, 'task', None):
-                PulpTask(self.module).wait_for(response.task)
+                PulpTask(self.module, {'pulp_href': response.task}).wait_for()
+        self.entity = None
         self.module.set_changed()
-        return None
+        return self.entity
+
+    def process_special(self):
+        raise Exception("Invalid state ({0}) for entity.".format(self.module.params['state']))
 
     def process(self):
         if None not in self.natural_key.values():
-            entity = self.find()
-            if self.module.params['state'] == 'present':
-                if entity is None:
-                    entity = self.create()
+            self.find()
+            if self.module.params['state'] is None:
+                pass
+            elif self.module.params['state'] == 'present':
+                if self.entity is None:
+                    self.create()
                 else:
-                    entity = self.update()
-            elif self.module.params['state'] == 'absent' and entity is not None:
-                entity = self.delete()
+                    self.update()
+            elif self.module.params['state'] == 'absent':
+                if self.entity is not None:
+                    self.delete()
+            else:
+                self.process_special()
 
-            if entity:
-                entity = entity.to_dict()
-            self.module.set_result(self._name_singular, entity)
+            entity_dict = self.entity.to_dict() if self.entity else None
+            self.module.set_result(self._name_singular, entity_dict)
         else:
             entities = self.list()
             self.module.set_result(self._name_plural, [entity.to_dict() for entity in entities])
@@ -220,15 +226,15 @@ class PulpOrphans(PulpEntity):
     def delete(self):
         if not self.module.check_mode:
             response = self.api.delete()
-            response = PulpTask(self.module).wait_for(response.task).to_dict()
-            response = response["progress_reports"]
+            task = PulpTask(self.module, {'pulp_href': response.task}).wait_for().to_dict()
+            response = task["progress_reports"]
             response = {item["message"].split(" ")[-1].lower(): item["total"] for item in response}
         else:
             response = {
                 "artifacts": 0,
                 "content": 0,
             }
-        self.module._changed = True
+        self.module.set_changed()
         return response
 
 
@@ -245,14 +251,34 @@ class PulpTask(PulpEntity):
     _name_singular = 'task'
     _name_plural = 'tasks'
 
-    def wait_for(self, task_href):
-        task = self.api.read(task_href)
-        while task.state not in ['completed', 'failed', 'canceled']:
+    def find(self):
+        self.entity = self.api.read(self.natural_key["pulp_href"])
+        return self.entity
+
+    def process_special(self):
+        if self.module.params['state'] in ['canceled', 'completed']:
+            if self.entity is None:
+                raise Exception("Entity not found.")
+            if self.entity.state in ['waiting', 'running']:
+                self.module.set_changed()
+                self.entity.state = self.module.params['state']
+                if not self.module.check_mode:
+                    if self.module.params['state'] == 'canceled':
+                        self.api.tasks_cancel(self.entity.pulp_href, self.entity)
+                    self.wait_for(desired_state=self.module.params['state'])
+        else:
+            super(PulpTask, self).process_special()
+
+    def wait_for(self, desired_state='completed'):
+        self.find()
+        while self.entity.state not in ['completed', 'failed', 'canceled']:
             sleep(2)
-            task = self.api.read(task.pulp_href)
-        if task.state != 'completed':
-            raise Exception('Task failed to complete. ({0}; {1})'.format(task.state, task.error['description']))
-        return task
+            self.find()
+        if self.entity.state != desired_state:
+            if self.entity.state == 'failed':
+                raise Exception('Task failed to complete. ({0}; {1})'.format(self.entity.state, self.entity.error['description']))
+            raise Exception('Task did not reach {0} state'.format(desired_state))
+        return self.entity
 
 
 class PulpUpload(PulpEntity):
@@ -286,11 +312,11 @@ class PulpUpload(PulpEntity):
                         rmtree(temp_dir)
                     offset += actual_chunk_size
 
-                commit_response = self.api.commit(
+                response = self.api.commit(
                     upload.pulp_href, pulpcore.UploadCommit(sha256=sha256)
                 )
-                commit_task = PulpTask(self.module).wait_for(commit_response.task)
-                artifact_href = commit_task.created_resources[0]
+                task = PulpTask(self.module, {'pulp_href': response.task}).wait_for()
+                artifact_href = task.created_resources[0]
         except Exception:
             self.api.delete(upload.pulp_href)
             raise

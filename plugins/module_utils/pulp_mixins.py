@@ -42,4 +42,4 @@ class PulpRepositoryMixin():
 
     def sync(self, remote_href):
         response = self.api.sync(self.entity.pulp_href, {'remote': remote_href})
-        return PulpTask(self.module).wait_for(response.task)
+        return PulpTask(self.module, {'pulp_href': response.task}).wait_for()
