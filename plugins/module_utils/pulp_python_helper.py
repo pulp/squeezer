@@ -82,7 +82,7 @@ class PulpPythonContent(PulpPythonEntity):
         return NewPythonContent(*args, **kwargs)
 
 
-class PulpPypiDistribution(PulpDistributionMixin, PulpPythonEntity):
+class PulpPythonDistribution(PulpDistributionMixin, PulpPythonEntity):
     _api_class = pulp_python.DistributionsPypiApi
     _api_entity_class = pulp_python.PythonPythonDistribution
 

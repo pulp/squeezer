@@ -1,0 +1,138 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0b9/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/?name=test_python_distribution
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/python/pypi/0dab4b50-3735-41be-9eda-a0f9b6890f4b/","pulp_created":"2020-06-27T22:59:53.501409Z","base_path":"test_python_base_path","base_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp/content/test_python_base_path/","content_guard":null,"name":"test_python_distribution","publication":"/pulp/api/v3/publications/python/pypi/a02ddfb8-90bc-4cc1-adc4-ecc927158ffd/"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '467'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 27 Jun 2020 22:59:56 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0b9/python
+    method: DELETE
+    uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/0dab4b50-3735-41be-9eda-a0f9b6890f4b/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/768baa64-f476-4eae-8c02-c60fe5258244/"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 27 Jun 2020 22:59:56 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.2.1/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/768baa64-f476-4eae-8c02-c60fe5258244/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/768baa64-f476-4eae-8c02-c60fe5258244/","pulp_created":"2020-06-27T22:59:56.748431Z","state":"running","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-06-27T22:59:56.812084Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '482'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 27 Jun 2020 22:59:56 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.2.1/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/768baa64-f476-4eae-8c02-c60fe5258244/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/768baa64-f476-4eae-8c02-c60fe5258244/","pulp_created":"2020-06-27T22:59:56.748431Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-06-27T22:59:56.812084Z","finished_at":"2020-06-27T22:59:56.844017Z","error":null,"worker":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '509'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 27 Jun 2020 22:59:58 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
