@@ -19,21 +19,21 @@
   tasks:
     - name: Make repository absent
       pulp_file_repository:
-        name: file_sync_test_repository
+        name: test_file_repository
         state: absent
     - name: Make repository present
       pulp_file_repository:
-        name: file_sync_test_repository
+        name: test_file_repository
         state: present
-    - name: Make file_remote present
+    - name: Make remote present
       pulp_file_remote:
-        name: file_sync_test_file_remote
+        name: test_file_remote
         url: "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
         state: present
-    - name: Sync file_remote into repository
+    - name: Sync remote into repository
       pulp_file_sync:
-        remote: file_sync_test_file_remote
-        repository: file_sync_test_repository
+        remote: test_file_remote
+        repository: test_file_repository
 
 - hosts: tests
   collections:
@@ -46,7 +46,7 @@
   tasks:
     - name: Publish latest version of repository
       pulp_file_publication:
-        repository: file_sync_test_repository
+        repository: test_file_repository
         state: present
       register: result
     - name: Verify publish latest version of repository
@@ -58,7 +58,7 @@
 
     - name: Publish latest version of repository (2nd try)
       pulp_file_publication:
-        repository: file_sync_test_repository
+        repository: test_file_repository
         state: present
       register: result
     - name: Verify publish latest version of repository (2nd try)
@@ -68,7 +68,7 @@
 
     - name: Publish latest version of repository via version number
       pulp_file_publication:
-        repository: file_sync_test_repository
+        repository: test_file_repository
         version: 1
         state: present
       register: result
@@ -88,7 +88,7 @@
 
     - name: Query publication of latest version of repository
       pulp_file_publication:
-        repository: file_sync_test_repository
+        repository: test_file_repository
       register: result
     - name: Verify query publication of latest version of repository
       assert:
@@ -99,7 +99,7 @@
 
     - name: Delete publication of latest version of repository
       pulp_file_publication:
-        repository: file_sync_test_repository
+        repository: test_file_repository
         state: absent
       register: result
     - name: Verify delete publication of latest version of repository
@@ -110,7 +110,7 @@
 
     - name: Delete publication of latest version of repository (2nd try)
       pulp_file_publication:
-        repository: file_sync_test_repository
+        repository: test_file_repository
         state: absent
       register: result
     - name: Verify delete publication of latest version of repository (2nd try)
@@ -120,7 +120,7 @@
 
     - name: Publish latest version of repository with different manifest
       pulp_file_publication:
-        repository: file_sync_test_repository
+        repository: test_file_repository
         manifest: "LISTING"
         state: present
       register: result
@@ -143,10 +143,10 @@
   tasks:
     - name: Make repository absent
       pulp_file_repository:
-        name: file_sync_test_repository
+        name: test_file_repository
         state: absent
     - name: Make file_remote absent
       pulp_file_remote:
-        name: file_sync_test_file_remote
+        name: test_file_remote
         state: absent
 ...

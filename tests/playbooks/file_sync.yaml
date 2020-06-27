@@ -17,15 +17,15 @@
   tasks:
     - name: Make repository absent
       pulp_file_repository:
-        name: file_sync_test_repository
+        name: test_file_repository
         state: absent
     - name: Make repository present
       pulp_file_repository:
-        name: file_sync_test_repository
+        name: test_file_repository
         state: present
     - name: Make file_remote present
       pulp_file_remote:
-        name: file_sync_test_file_remote
+        name: test_file_remote
         url: "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
         state: present
 
@@ -40,8 +40,8 @@
   tasks:
     - name: Sync file_remote into repository
       pulp_file_sync:
-        remote: file_sync_test_file_remote
-        repository: file_sync_test_repository
+        remote: test_file_remote
+        repository: test_file_repository
       register: result
     - name: Verify sync file_remote into repository
       assert:
@@ -51,8 +51,8 @@
 
     - name: Sync file_remote into repository (2nd try)
       pulp_file_sync:
-        remote: file_sync_test_file_remote
-        repository: file_sync_test_repository
+        remote: test_file_remote
+        repository: test_file_repository
       register: result
     - name: Verify sync file_remote into repository (2nd try)
       assert:
@@ -62,7 +62,7 @@
 
     - name: Dump repository
       pulp_file_repository:
-        name: file_sync_test_repository
+        name: test_file_repository
       register: result
     - name: Verify repository_version in repository
       assert:
@@ -80,10 +80,10 @@
   tasks:
     - name: Make repository absent
       pulp_file_repository:
-        name: file_sync_test_repository
+        name: test_file_repository
         state: absent
     - name: Make file_remote absent
       pulp_file_remote:
-        name: file_sync_test_file_remote
+        name: test_file_remote
         state: absent
 ...

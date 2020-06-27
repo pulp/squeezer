@@ -7,23 +7,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.2.0b10/python
+      - OpenAPI-Generator/0.2.0b15.dev01593040995/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/content/ansible/roles/?name=test_role&namespace=test_namespace&version=0.0.0
+    uri: http://pulp.example.org/pulp/api/v3/content/ansible/roles/?name=test_ansible_role&namespace=test_namespace&version=0.0.0
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"artifact":"/pulp/api/v3/artifacts/b6a88bb0-8afd-427a-9ef5-5b0cb3ec4b3f/","pulp_href":"/pulp/api/v3/content/ansible/roles/e35184be-08eb-4aa3-8b82-15cb13ed5319/","pulp_created":"2020-03-08T12:27:49.504463Z","version":"0.0.0","name":"test_role","namespace":"test_namespace"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"artifact":"/pulp/api/v3/artifacts/09c0dc8e-7ffa-4fc5-a144-bf47d2c316ee/","pulp_created":"2020-06-27T19:17:34.875163Z","pulp_href":"/pulp/api/v3/content/ansible/roles/7f7358f5-c52f-4520-9e5a-1e90535899f4/","version":"0.0.0","name":"test_ansible_role","namespace":"test_namespace"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '325'
+      - '333'
       Content-Type:
       - application/json
       Date:
-      - Sun, 08 Mar 2020 12:28:01 GMT
+      - Sat, 27 Jun 2020 19:17:35 GMT
       Server:
       - nginx/1.14.2
       Vary:

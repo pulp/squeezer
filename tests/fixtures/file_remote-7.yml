@@ -7,28 +7,28 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.1.0rc2/python
+      - OpenAPI-Generator/0.2.0/python
     method: GET
-    uri: http://localhost:8080/pulp/api/v3/remotes/file/file/?name=test_file_remote
+    uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/?name=test_file_remote
   response:
     body:
-      string: !!python/unicode '{"count":0,"next":null,"previous":null,"results":[]}'
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
     headers:
-      allow:
+      Allow:
       - GET, POST, HEAD, OPTIONS
-      connection:
+      Connection:
       - keep-alive
-      content-length:
+      Content-Length:
       - '52'
-      content-type:
+      Content-Type:
       - application/json
-      date:
-      - Thu, 05 Dec 2019 10:20:07 GMT
-      server:
-      - nginx/1.16.1
-      vary:
+      Date:
+      - Sat, 27 Jun 2020 19:10:38 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
       - Accept, Cookie
-      x-frame-options:
+      X-Frame-Options:
       - SAMEORIGIN
     status:
       code: 200

@@ -41,7 +41,7 @@
       register: artifact_result
     - name: Create ansible role
       pulp_ansible_role:
-        name: test_role
+        name: test_ansible_role
         namespace: test_namespace
         version: 0.0.0
         sha256: "{{ file1_sha256 }}"
@@ -51,12 +51,12 @@
       assert:
         that:
           - result.changed == true
-          - result.content.name == "test_role"
+          - result.content.name == "test_ansible_role"
           - result.content.namespace == "test_namespace"
 
     - name: Create ansible role (2nd try)
       pulp_ansible_role:
-        name: test_role
+        name: test_ansible_role
         namespace: test_namespace
         version: 0.0.0
         sha256: "{{ file1_sha256 }}"
@@ -78,7 +78,7 @@
 
     - name: Read ansible role
       pulp_ansible_role:
-        name: test_role
+        name: test_ansible_role
         namespace: test_namespace
         version: 0.0.0
       register: result

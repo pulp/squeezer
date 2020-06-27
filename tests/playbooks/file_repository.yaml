@@ -13,7 +13,7 @@
   tasks:
     - name: Make repository absent
       pulp_file_repository:
-        name: test_repository
+        name: test_file_repository
         state: absent
 
 - hosts: tests
@@ -27,7 +27,7 @@
   tasks:
     - name: Create repository
       pulp_file_repository:
-        name: test_repository
+        name: test_file_repository
         description: ""
         state: present
       register: result
@@ -35,11 +35,11 @@
       assert:
         that:
           - result.changed == true
-          - result.repository.name == 'test_repository'
+          - result.repository.name == 'test_file_repository'
 
     - name: Create repository (2nd try)
       pulp_file_repository:
-        name: test_repository
+        name: test_file_repository
         state: present
       register: result
     - name: Verify create repository (2nd try)
@@ -49,7 +49,7 @@
 
     - name: Add description to repository
       pulp_file_repository:
-        name: test_repository
+        name: test_file_repository
         description: "repository created via ansible"
         state: present
       register: result
@@ -61,7 +61,7 @@
 
     - name: Add description to repository (2nd try)
       pulp_file_repository:
-        name: test_repository
+        name: test_file_repository
         description: "repository created via ansible"
         state: present
       register: result
@@ -72,7 +72,7 @@
 
     - name: Fake modify repository
       pulp_file_repository:
-        name: test_repository
+        name: test_file_repository
         state: present
       register: result
     - name: Verify fake modify repository
@@ -92,13 +92,13 @@
 
     - name: Read repository
       pulp_file_repository:
-        name: test_repository
+        name: test_file_repository
       register: result
     - name: Verify read repository
       assert:
         that:
           - result.changed == false
-          - result.repository.name == 'test_repository'
+          - result.repository.name == 'test_file_repository'
           - result.repository.description == "repository created via ansible"
 
     - name: Skip until nullifying fields is possible with the api bindings
@@ -106,7 +106,7 @@
       block:
         - name: Remove description from repository
           pulp_file_repository:
-            name: test_repository
+            name: test_file_repository
             description: ""
             state: present
           register: result
@@ -118,7 +118,7 @@
 
         - name: Remove description from repository (2nd try)
           pulp_file_repository:
-            name: test_repository
+            name: test_file_repository
             description: ""
             state: present
           register: result
@@ -129,7 +129,7 @@
 
     - name: Delete repository
       pulp_file_repository:
-        name: test_repository
+        name: test_file_repository
         state: absent
       register: result
     - name: Verify delete repository
@@ -140,7 +140,7 @@
 
     - name: Delete repository (2nd try)
       pulp_file_repository:
-        name: test_repository
+        name: test_file_repository
         state: absent
       register: result
     - name: Verify delete repository (2nd try)

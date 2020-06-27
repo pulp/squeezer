@@ -7,23 +7,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.2.0b9.dev01581429120/python
+      - OpenAPI-Generator/0.2.0b15.dev01593040995/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/ansible/?name=test_remote
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/ansible/?name=test_ansible_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/ansible/be9c9410-f5f4-47a5-b928-5285d6a31b63/","pulp_created":"2020-02-14T10:51:42.782047Z","name":"test_remote","url":"https://repos.fedorapeople.org/pulp/pulp/fixtures/ansible/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_last_updated":"2020-02-14T10:51:42.782068Z","download_concurrency":20,"policy":"immediate"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/ansible/7dcb3ac2-227e-46f8-be29-f3375ffde96e/","pulp_created":"2020-06-27T19:15:46.384726Z","name":"test_ansible_remote","url":"https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-06-27T19:15:46.384738Z","download_concurrency":20,"policy":"immediate"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '482'
+      - '528'
       Content-Type:
       - application/json
       Date:
-      - Fri, 14 Feb 2020 10:51:43 GMT
+      - Sat, 27 Jun 2020 19:15:47 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -34,10 +34,10 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"pulp_href": "/pulp/api/v3/remotes/ansible/ansible/be9c9410-f5f4-47a5-b928-5285d6a31b63/",
-      "pulp_created": "2020-02-14T10:51:42.782047+00:00", "name": "test_remote", "url":
-      "https://repos.fedorapeople.org/pulp/pulp/fixtures/ansible2/", "tls_validation":
-      false, "proxy_url": "http://proxy.int:3128", "pulp_last_updated": "2020-02-14T10:51:42.782068+00:00",
+    body: '{"pulp_href": "/pulp/api/v3/remotes/ansible/ansible/7dcb3ac2-227e-46f8-be29-f3375ffde96e/",
+      "pulp_created": "2020-06-27T19:15:46.384726+00:00", "name": "test_ansible_remote",
+      "url": "https://galaxy.ansible.com/api/v1/roles/?namespace__name=pulp", "tls_validation":
+      false, "proxy_url": "http://proxy.int:3128", "pulp_last_updated": "2020-06-27T19:15:46.384738+00:00",
       "download_concurrency": 20, "policy": "immediate"}'
     headers:
       Accept:
@@ -45,12 +45,12 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.2.0b9.dev01581429120/python
+      - OpenAPI-Generator/0.2.0b15.dev01593040995/python
     method: PUT
-    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/ansible/be9c9410-f5f4-47a5-b928-5285d6a31b63/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/ansible/7dcb3ac2-227e-46f8-be29-f3375ffde96e/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/fd27332e-73a8-4ad7-b3e7-ee81a85e22b7/"}'
+      string: '{"task":"/pulp/api/v3/tasks/13e21091-573f-4ab0-b1be-110943618682/"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -61,7 +61,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 14 Feb 2020 10:51:44 GMT
+      - Sat, 27 Jun 2020 19:15:47 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -79,23 +79,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.1.0/python
+      - OpenAPI-Generator/3.2.1/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/fd27332e-73a8-4ad7-b3e7-ee81a85e22b7/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/13e21091-573f-4ab0-b1be-110943618682/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/fd27332e-73a8-4ad7-b3e7-ee81a85e22b7/","pulp_created":"2020-02-14T10:51:44.129402Z","state":"waiting","name":"pulpcore.app.tasks.base.general_update","started_at":null,"finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/b4683b9d-7777-4cef-b40d-12dd77bccf40/","progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/ansible/be9c9410-f5f4-47a5-b928-5285d6a31b63/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/13e21091-573f-4ab0-b1be-110943618682/","pulp_created":"2020-06-27T19:15:47.127951Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","started_at":"2020-06-27T19:15:47.200703Z","finished_at":"2020-06-27T19:15:47.221976Z","error":null,"worker":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/ansible/7dcb3ac2-227e-46f8-be29-f3375ffde96e/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '455'
+      - '561'
       Content-Type:
       - application/json
       Date:
-      - Fri, 14 Feb 2020 10:51:44 GMT
+      - Sat, 27 Jun 2020 19:15:47 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -113,57 +113,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.1.0/python
+      - OpenAPI-Generator/0.2.0b15.dev01593040995/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/fd27332e-73a8-4ad7-b3e7-ee81a85e22b7/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/ansible/7dcb3ac2-227e-46f8-be29-f3375ffde96e/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/fd27332e-73a8-4ad7-b3e7-ee81a85e22b7/","pulp_created":"2020-02-14T10:51:44.129402Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","started_at":"2020-02-14T10:51:44.309483Z","finished_at":"2020-02-14T10:51:44.400739Z","error":null,"worker":"/pulp/api/v3/workers/b4683b9d-7777-4cef-b40d-12dd77bccf40/","progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/ansible/be9c9410-f5f4-47a5-b928-5285d6a31b63/"]}'
-    headers:
-      Allow:
-      - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '507'
-      Content-Type:
-      - application/json
-      Date:
-      - Fri, 14 Feb 2020 10:51:46 GMT
-      Server:
-      - nginx/1.14.2
-      Vary:
-      - Accept, Cookie
-      X-Frame-Options:
-      - SAMEORIGIN
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-      User-Agent:
-      - OpenAPI-Generator/0.2.0b9.dev01581429120/python
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/ansible/be9c9410-f5f4-47a5-b928-5285d6a31b63/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/remotes/ansible/ansible/be9c9410-f5f4-47a5-b928-5285d6a31b63/","pulp_created":"2020-02-14T10:51:42.782047Z","name":"test_remote","url":"https://repos.fedorapeople.org/pulp/pulp/fixtures/ansible2/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_last_updated":"2020-02-14T10:51:44.378631Z","download_concurrency":20,"policy":"immediate"}'
+      string: '{"pulp_href":"/pulp/api/v3/remotes/ansible/ansible/7dcb3ac2-227e-46f8-be29-f3375ffde96e/","pulp_created":"2020-06-27T19:15:46.384726Z","name":"test_ansible_remote","url":"https://galaxy.ansible.com/api/v1/roles/?namespace__name=pulp","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-06-27T19:15:47.219005Z","download_concurrency":20,"policy":"immediate"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '432'
+      - '474'
       Content-Type:
       - application/json
       Date:
-      - Fri, 14 Feb 2020 10:51:46 GMT
+      - Sat, 27 Jun 2020 19:15:47 GMT
       Server:
       - nginx/1.14.2
       Vary:

@@ -7,9 +7,9 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.2.0b9.dev01582669092/python
+      - OpenAPI-Generator/0.2.0b15.dev01593040995/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?name=test_distribution
+    uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?name=test_ansible_distribution
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 26 Feb 2020 15:40:20 GMT
+      - Sat, 27 Jun 2020 19:28:50 GMT
       Server:
       - nginx/1.14.2
       Vary:

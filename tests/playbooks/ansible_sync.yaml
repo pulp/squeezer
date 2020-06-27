@@ -17,15 +17,15 @@
   tasks:
     - name: Make repository absent
       pulp_ansible_repository:
-        name: sync_test_repository
+        name: test_ansible_repository
         state: absent
     - name: Make repository present
       pulp_ansible_repository:
-        name: sync_test_repository
+        name: test_ansible_repository
         state: present
     - name: Make remote present
       pulp_ansible_remote:
-        name: sync_test_remote
+        name: test_ansible_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
         state: present
 
@@ -40,8 +40,8 @@
   tasks:
     - name: Sync remote into repository
       pulp_ansible_sync:
-        remote: sync_test_remote
-        repository: sync_test_repository
+        remote: test_ansible_remote
+        repository: test_ansible_repository
       register: result
     - name: Verify sync remote into repository
       assert:
@@ -51,8 +51,8 @@
 
     - name: Sync remote into repository (2nd try)
       pulp_ansible_sync:
-        remote: sync_test_remote
-        repository: sync_test_repository
+        remote: test_ansible_remote
+        repository: test_ansible_repository
       register: result
     - name: Verify sync remote into repository (2nd try)
       assert:
@@ -62,7 +62,7 @@
 
     - name: Dump repository
       pulp_ansible_repository:
-        name: sync_test_repository
+        name: test_ansible_repository
       register: result
     - name: Verify repository_version in repository
       assert:
@@ -80,10 +80,10 @@
   tasks:
     - name: Make repository absent
       pulp_ansible_repository:
-        name: sync_test_repository
+        name: test_ansible_repository
         state: absent
     - name: Make ansible_remote absent
       pulp_ansible_remote:
-        name: sync_test_remote
+        name: test_ansible_remote
         state: absent
 ...

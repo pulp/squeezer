@@ -21,24 +21,28 @@
   tasks:
     - name: Make repository absent
       pulp_file_repository:
-        name: file_sync_test_repository
+        name: test_file_repository
+        state: absent
+    - name: Make distribution absent
+      pulp_file_distribution:
+        name: test_file_distribution
         state: absent
     - name: Make repository present
       pulp_file_repository:
-        name: file_sync_test_repository
+        name: test_file_repository
         state: present
-    - name: Make file_remote present
+    - name: Make remote present
       pulp_file_remote:
-        name: file_sync_test_file_remote
+        name: test_file_remote
         url: "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
         state: present
-    - name: Sync file_remote into repository
+    - name: Sync remote into repository
       pulp_file_sync:
-        remote: file_sync_test_file_remote
-        repository: file_sync_test_repository
+        remote: test_file_remote
+        repository: test_file_repository
     - name: Publish latest version of repository
       pulp_file_publication:
-        repository: file_sync_test_repository
+        repository: test_file_repository
         state: present
 
 - hosts: tests
@@ -52,13 +56,13 @@
   tasks:
     - name: Retrieve publication of repository
       pulp_file_publication:
-        repository: file_sync_test_repository
+        repository: test_file_repository
       register: publication_result
 
     - name: Distribute publication of repository
       pulp_file_distribution:
-        name: file_test_distribution
-        base_path: test_repo
+        name: test_file_distribution
+        base_path: test_file_base_path
         publication: "{{ publication_result.publication.pulp_href }}"
         state: present
       register: result
@@ -66,15 +70,15 @@
       assert:
         that:
           - result.changed == true
-          - result.distribution.name == "file_test_distribution"
-          - result.distribution.base_path == "test_repo"
-          - result.distribution.base_url is regex(".*/pulp/content/test_repo") or ansible_check_mode
+          - result.distribution.name == "test_file_distribution"
+          - result.distribution.base_path == "test_file_base_path"
+          - result.distribution.base_url is regex(".*/pulp/content/test_file_base_path") or ansible_check_mode
           - result.distribution.publication == publication_result.publication.pulp_href
 
     - name: Distribute publication of repository (2nd try)
       pulp_file_distribution:
-        name: file_test_distribution
-        base_path: test_repo
+        name: test_file_distribution
+        base_path: test_file_base_path
         publication: "{{ publication_result.publication.pulp_href }}"
         state: present
       register: result
@@ -85,20 +89,20 @@
 
     - name: Read distribution
       pulp_file_distribution:
-        name: file_test_distribution
+        name: test_file_distribution
       register: result
     - name: Verify read distribution
       assert:
         that:
           - result.changed == false
-          - result.distribution.name == "file_test_distribution"
-          - result.distribution.base_path == "test_repo"
-          - result.distribution.base_url is regex(".*/pulp/content/test_repo")
+          - result.distribution.name == "test_file_distribution"
+          - result.distribution.base_path == "test_file_base_path"
+          - result.distribution.base_url is regex(".*/pulp/content/test_file_base_path")
           - result.distribution.publication == publication_result.publication.pulp_href
 
     - name: Delete distribution
       pulp_file_distribution:
-        name: file_test_distribution
+        name: test_file_distribution
         state: absent
       register: result
     - name: Verify delete distribution
@@ -109,7 +113,7 @@
 
     - name: Delete distribution (2nd try)
       pulp_file_distribution:
-        name: file_test_distribution
+        name: test_file_distribution
         state: absent
       register: result
     - name: Verify delete distribution (2nd try)
@@ -128,10 +132,14 @@
   tasks:
     - name: Make repository absent
       pulp_file_repository:
-        name: file_sync_test_repository
+        name: test_file_repository
         state: absent
     - name: Make file_remote absent
       pulp_file_remote:
-        name: file_sync_test_file_remote
+        name: test_file_remote
+        state: absent
+    - name: Make distribution absent
+      pulp_file_distribution:
+        name: test_file_distribution
         state: absent
 ...

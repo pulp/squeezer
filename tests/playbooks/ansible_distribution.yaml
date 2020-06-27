@@ -19,21 +19,21 @@
   tasks:
     - name: Make repository absent
       pulp_ansible_repository:
-        name: test_repository
+        name: test_ansible_repository
         state: absent
     - name: Make repository present
       pulp_ansible_repository:
-        name: test_repository
+        name: test_ansible_repository
         state: present
     - name: Make remote present
       pulp_ansible_remote:
-        name: test_remote
+        name: test_ansible_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
         state: present
     - name: Sync remote into repository
       pulp_ansible_sync:
-        remote: test_remote
-        repository: test_repository
+        remote: test_ansible_remote
+        repository: test_ansible_repository
 
 - hosts: tests
   collections:
@@ -46,30 +46,30 @@
   tasks:
     - name: Retrieve repository information
       pulp_ansible_repository:
-        name: test_repository
+        name: test_ansible_repository
       register: repository_result
 
     - name: Distribute latest version of repository
       pulp_ansible_distribution:
-        name: test_distribution
-        base_path: test_repo
-        repository: test_repository
+        name: test_ansible_distribution
+        base_path: test_ansible_base_path
+        repository: test_ansible_repository
         state: present
       register: result
     - name: Verify distribute latest version of repository
       assert:
         that:
           - result.changed == true
-          - result.distribution.name == "test_distribution"
-          - result.distribution.base_path == "test_repo"
-          - result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_repo") or ansible_check_mode
+          - result.distribution.name == "test_ansible_distribution"
+          - result.distribution.base_path == "test_ansible_base_path"
+          - result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_ansible_base_path") or ansible_check_mode
           - result.distribution.repository == repository_result.repository.pulp_href
 
     - name: Distribute latest version of repository (2nd try)
       pulp_ansible_distribution:
-        name: test_distribution
-        base_path: test_repo
-        repository: test_repository
+        name: test_ansible_distribution
+        base_path: test_ansible_base_path
+        repository: test_ansible_repository
         state: present
       register: result
     - name: Verify distribute latest version of repository (2nd try)
@@ -79,21 +79,21 @@
 
     - name: Read distribution
       pulp_ansible_distribution:
-        name: test_distribution
+        name: test_ansible_distribution
       register: result
     - name: Verify read distribution
       assert:
         that:
           - result.changed == false
-          - result.distribution.name == "test_distribution"
-          - result.distribution.base_path == "test_repo"
-          - result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_repo")
+          - result.distribution.name == "test_ansible_distribution"
+          - result.distribution.base_path == "test_ansible_base_path"
+          - result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_ansible_base_path")
           - result.distribution.repository == repository_result.repository.pulp_href
           - result.distribution.repository_version == None
 
     - name: Delete distribution
       pulp_ansible_distribution:
-        name: test_distribution
+        name: test_ansible_distribution
         state: absent
       register: result
     - name: Verify delete distribution
@@ -104,7 +104,7 @@
 
     - name: Delete distribution (2nd try)
       pulp_ansible_distribution:
-        name: test_distribution
+        name: test_ansible_distribution
         state: absent
       register: result
     - name: Verify delete distribution (2nd try)
@@ -114,9 +114,9 @@
 
     - name: Distribute specific version of repository
       pulp_ansible_distribution:
-        name: test_distribution
-        base_path: test_repo
-        repository: test_repository
+        name: test_ansible_distribution
+        base_path: test_ansible_base_path
+        repository: test_ansible_repository
         version: 1
         state: present
       register: result
@@ -124,17 +124,17 @@
       assert:
         that:
           - result.changed == true
-          - result.distribution.name == "test_distribution"
-          - result.distribution.base_path == "test_repo"
-          - result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_repo") or ansible_check_mode
+          - result.distribution.name == "test_ansible_distribution"
+          - result.distribution.base_path == "test_ansible_base_path"
+          - result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_ansible_base_path") or ansible_check_mode
           - result.distribution.repository == None
           - result.distribution.repository_version == repository_result.repository.versions_href + '1/'
 
     - name: Distribute specific version of repository (2nd try)
       pulp_ansible_distribution:
-        name: test_distribution
-        base_path: test_repo
-        repository: test_repository
+        name: test_ansible_distribution
+        base_path: test_ansible_base_path
+        repository: test_ansible_repository
         version: 1
         state: present
       register: result
@@ -154,10 +154,10 @@
   tasks:
     - name: Make repository absent
       pulp_ansible_repository:
-        name: test_repository
+        name: test_ansible_repository
         state: absent
     - name: Make ansible_remote absent
       pulp_ansible_remote:
-        name: test_remote
+        name: test_ansible_remote
         state: absent
 ...

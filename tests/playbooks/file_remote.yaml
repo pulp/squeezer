@@ -28,7 +28,7 @@
     - name: Create file_remote
       pulp_file_remote:
         name: test_file_remote
-        url: "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+        url: "https://example.org/file/PULP_MANIFEST"
         proxy_url: "http://proxy.int:3128"
         state: present
       register: result
@@ -37,13 +37,13 @@
         that:
           - result.changed == true
           - result.remote.name == "test_file_remote"
-          - result.remote.url == "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+          - result.remote.url == "https://example.org/file/PULP_MANIFEST"
           - result.remote.proxy_url == "http://proxy.int:3128"
 
     - name: Create file_remote (2nd try)
       pulp_file_remote:
         name: test_file_remote
-        url: "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+        url: "https://example.org/file/PULP_MANIFEST"
         proxy_url: "http://proxy.int:3128"
         state: present
       register: result
@@ -97,7 +97,7 @@
         that:
           - result.changed == false
           - result.remote.name == "test_file_remote"
-          - result.remote.url == "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
+          - result.remote.url == "https://example.org/file/PULP_MANIFEST"
           - result.remote.proxy_url == "http://proxy.int:3128"
           - result.remote.tls_validation == false
 

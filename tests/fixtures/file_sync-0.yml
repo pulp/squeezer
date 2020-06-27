@@ -7,23 +7,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.1.0rc2/python
+      - OpenAPI-Generator/0.2.0/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/remotes/file/file/?name=file_sync_test_file_remote
+    uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/?name=test_file_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/file/file/793295af-f9f5-42e6-8a82-56218cbfc957/","pulp_created":"2019-12-04T19:18:12.130629Z","name":"file_sync_test_file_remote","url":"https://repos.fedorapeople.org/pulp/pulp/fixtures/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":null,"pulp_last_updated":"2019-12-04T19:18:12.130645Z","download_concurrency":20,"policy":"immediate"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/file/file/c43bf329-d078-42a9-bd58-4d8c2d43377c/","pulp_created":"2020-06-27T19:55:13.953586Z","name":"test_file_remote","url":"https://fixtures.pulpproject.org/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":null,"username":null,"password":null,"pulp_last_updated":"2020-06-27T19:55:13.953598Z","download_concurrency":20,"policy":"immediate"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '482'
+      - '487'
       Content-Type:
       - application/json
       Date:
-      - Wed, 04 Dec 2019 19:18:12 GMT
+      - Sat, 27 Jun 2020 19:55:14 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -41,23 +41,23 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.1.0rc2/python
+      - OpenAPI-Generator/0.2.0/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/file/file/?name=file_sync_test_repository
+    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/d04c71ec-6244-465b-b71e-c00daf4dcbbc/","pulp_created":"2019-12-04T19:18:11.421363Z","versions_href":"/pulp/api/v3/repositories/file/file/d04c71ec-6244-465b-b71e-c00daf4dcbbc/versions/","latest_version_href":"/pulp/api/v3/repositories/file/file/d04c71ec-6244-465b-b71e-c00daf4dcbbc/versions/0/","name":"file_sync_test_repository","description":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/4b324afd-01bb-4d4c-a49b-3a38da45c48e/","pulp_created":"2020-06-27T19:55:13.511724Z","versions_href":"/pulp/api/v3/repositories/file/file/4b324afd-01bb-4d4c-a49b-3a38da45c48e/versions/","latest_version_href":"/pulp/api/v3/repositories/file/file/4b324afd-01bb-4d4c-a49b-3a38da45c48e/versions/0/","name":"test_file_repository","description":null}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '450'
+      - '445'
       Content-Type:
       - application/json
       Date:
-      - Wed, 04 Dec 2019 19:18:12 GMT
+      - Sat, 27 Jun 2020 19:55:14 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -68,19 +68,19 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"remote": "/pulp/api/v3/remotes/file/file/793295af-f9f5-42e6-8a82-56218cbfc957/"}'
+    body: '{"remote": "/pulp/api/v3/remotes/file/file/c43bf329-d078-42a9-bd58-4d8c2d43377c/"}'
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.1.0rc2/python
+      - OpenAPI-Generator/0.2.0/python
     method: POST
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/repositories/file/file/d04c71ec-6244-465b-b71e-c00daf4dcbbc/sync/
+    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/4b324afd-01bb-4d4c-a49b-3a38da45c48e/sync/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/147475f8-6458-4453-848c-86f26034e9e2/"}'
+      string: '{"task":"/pulp/api/v3/tasks/9991855f-9d76-4cae-8432-8a8d03e61ae3/"}'
     headers:
       Allow:
       - POST, OPTIONS
@@ -91,7 +91,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 04 Dec 2019 19:18:13 GMT
+      - Sat, 27 Jun 2020 19:55:14 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -109,23 +109,26 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc9/python
+      - OpenAPI-Generator/3.2.1/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/147475f8-6458-4453-848c-86f26034e9e2/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/9991855f-9d76-4cae-8432-8a8d03e61ae3/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/147475f8-6458-4453-848c-86f26034e9e2/","pulp_created":"2019-12-04T19:18:13.065718Z","state":"waiting","name":"pulp_file.app.tasks.synchronizing.synchronize","started_at":null,"finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/f26dcccd-db9a-438c-980b-2c59e647d126/","progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/file/file/793295af-f9f5-42e6-8a82-56218cbfc957/","/pulp/api/v3/repositories/file/file/d04c71ec-6244-465b-b71e-c00daf4dcbbc/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/9991855f-9d76-4cae-8432-8a8d03e61ae3/","pulp_created":"2020-06-27T19:55:14.519401Z","state":"running","name":"pulp_file.app.tasks.synchronizing.synchronize","started_at":"2020-06-27T19:55:14.591991Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/8b341052-0432-46c3-80f4-34d4e92ac585/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Downloading
+        Metadata","code":"downloading.metadata","state":"running","total":null,"done":0,"suffix":null},{"message":"Downloading
+        Artifacts","code":"downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Associating
+        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/file/file/c43bf329-d078-42a9-bd58-4d8c2d43377c/","/pulp/api/v3/repositories/file/file/4b324afd-01bb-4d4c-a49b-3a38da45c48e/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '532'
+      - '971'
       Content-Type:
       - application/json
       Date:
-      - Wed, 04 Dec 2019 19:18:13 GMT
+      - Sat, 27 Jun 2020 19:55:14 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -143,27 +146,27 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc9/python
+      - OpenAPI-Generator/3.2.1/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/147475f8-6458-4453-848c-86f26034e9e2/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/9991855f-9d76-4cae-8432-8a8d03e61ae3/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/147475f8-6458-4453-848c-86f26034e9e2/","pulp_created":"2019-12-04T19:18:13.065718Z","state":"completed","name":"pulp_file.app.tasks.synchronizing.synchronize","started_at":"2019-12-04T19:18:13.238131Z","finished_at":"2019-12-04T19:18:14.327447Z","error":null,"worker":"/pulp/api/v3/workers/f26dcccd-db9a-438c-980b-2c59e647d126/","progress_reports":[{"message":"Downloading
-        Metadata","code":"downloading.metadata","state":"completed","total":null,"done":1,"suffix":null},{"message":"Downloading
+      string: '{"pulp_href":"/pulp/api/v3/tasks/9991855f-9d76-4cae-8432-8a8d03e61ae3/","pulp_created":"2020-06-27T19:55:14.519401Z","state":"completed","name":"pulp_file.app.tasks.synchronizing.synchronize","started_at":"2020-06-27T19:55:14.591991Z","finished_at":"2020-06-27T19:55:15.576687Z","error":null,"worker":"/pulp/api/v3/workers/8b341052-0432-46c3-80f4-34d4e92ac585/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Downloading
+        Metadata","code":"downloading.metadata","state":"completed","total":null,"done":1,"suffix":null},{"message":"Parsing
+        Metadata Lines","code":"parsing.metadata","state":"completed","total":3,"done":3,"suffix":null},{"message":"Downloading
         Artifacts","code":"downloading.artifacts","state":"completed","total":null,"done":0,"suffix":null},{"message":"Associating
-        Content","code":"associating.content","state":"completed","total":null,"done":3,"suffix":null},{"message":"Parsing
-        Metadata Lines","code":"parsing.metadata","state":"completed","total":3,"done":3,"suffix":null}],"created_resources":["/pulp/api/v3/repositories/file/file/d04c71ec-6244-465b-b71e-c00daf4dcbbc/versions/1/"],"reserved_resources_record":["/pulp/api/v3/remotes/file/file/793295af-f9f5-42e6-8a82-56218cbfc957/","/pulp/api/v3/repositories/file/file/d04c71ec-6244-465b-b71e-c00daf4dcbbc/"]}'
+        Content","code":"associating.content","state":"completed","total":null,"done":3,"suffix":null}],"created_resources":["/pulp/api/v3/repositories/file/file/4b324afd-01bb-4d4c-a49b-3a38da45c48e/versions/1/"],"reserved_resources_record":["/pulp/api/v3/remotes/file/file/c43bf329-d078-42a9-bd58-4d8c2d43377c/","/pulp/api/v3/repositories/file/file/4b324afd-01bb-4d4c-a49b-3a38da45c48e/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '1148'
+      - '1202'
       Content-Type:
       - application/json
       Date:
-      - Wed, 04 Dec 2019 19:18:15 GMT
+      - Sat, 27 Jun 2020 19:55:16 GMT
       Server:
       - nginx/1.14.2
       Vary:

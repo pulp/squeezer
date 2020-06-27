@@ -7,27 +7,27 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc9/python
+      - OpenAPI-Generator/3.2.1/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/status/
+    uri: http://pulp.example.org/pulp/api/v3/status/
   response:
     body:
-      string: '{"versions":[{"component":"pulpcore","version":"3.0.0rc9"},{"component":"pulp_file","version":"0.1.0rc2"}],"online_workers":[{"pulp_created":"2019-12-04T18:54:35.795998Z","pulp_href":"/pulp/api/v3/workers/f26dcccd-db9a-438c-980b-2c59e647d126/","name":"14883@pulp3-sandbox-debian10.horus.example.com","last_heartbeat":"2019-12-04T19:17:57.456802Z"},{"pulp_created":"2019-12-04T18:53:03.616567Z","pulp_href":"/pulp/api/v3/workers/98f25448-0881-4992-a9d6-c52f2c28b3fd/","name":"resource-manager","last_heartbeat":"2019-12-04T19:18:03.256213Z"},{"pulp_created":"2019-12-04T18:54:36.853565Z","pulp_href":"/pulp/api/v3/workers/b81140af-825e-431b-83d0-566cbc8bcfc4/","name":"14914@pulp3-sandbox-debian10.horus.example.com","last_heartbeat":"2019-12-04T19:18:03.478417Z"}],"online_content_apps":[{"name":"15007@pulp3-sandbox-debian10","last_heartbeat":"2019-12-04T19:18:03.743743Z"},{"name":"15008@pulp3-sandbox-debian10","last_heartbeat":"2019-12-04T19:18:03.788502Z"}],"database_connection":{"connected":true},"redis_connection":{"connected":true},"storage":{"total":19550347264,"used":1709375488,"free":16824274944}}'
+      string: '{"versions":[{"component":"pulpcore","version":"3.4.1"},{"component":"pulp_python","version":"3.0.0b9"},{"component":"pulp_file","version":"1.0.1"},{"component":"pulp_ansible","version":"0.2.0b14"}],"online_workers":[{"pulp_created":"2020-06-26T20:29:47.691649Z","pulp_href":"/pulp/api/v3/workers/8b341052-0432-46c3-80f4-34d4e92ac585/","name":"3313@pulp3-sandbox-debian10.shu.example.com","last_heartbeat":"2020-06-27T19:55:45.799136Z"},{"pulp_created":"2020-06-22T11:36:20.831354Z","pulp_href":"/pulp/api/v3/workers/3f57b4b7-d7a8-4ed4-bcf9-79680abceaee/","name":"resource-manager","last_heartbeat":"2020-06-27T19:55:53.039355Z"},{"pulp_created":"2020-06-26T20:29:47.881908Z","pulp_href":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","name":"3311@pulp3-sandbox-debian10.shu.example.com","last_heartbeat":"2020-06-27T19:55:53.139375Z"}],"online_content_apps":[{"name":"2755@pulp3-sandbox-debian10","last_heartbeat":"2020-06-27T19:55:52.653717Z"},{"name":"2756@pulp3-sandbox-debian10","last_heartbeat":"2020-06-27T19:55:52.653930Z"}],"database_connection":{"connected":true},"redis_connection":{"connected":true},"storage":{"total":19550347264,"used":1965363200,"free":16568287232}}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '1111'
+      - '1195'
       Content-Type:
       - application/json
       Date:
-      - Wed, 04 Dec 2019 19:18:08 GMT
+      - Sat, 27 Jun 2020 19:55:54 GMT
       Server:
       - nginx/1.14.2
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Frame-Options:
       - SAMEORIGIN
     status:
