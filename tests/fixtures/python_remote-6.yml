@@ -1,0 +1,104 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0b9/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/remotes/python/python/?name=test_python_remote
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/python/python/82f758b8-a0fe-4a25-8bd1-2742042f8c72/","pulp_created":"2020-06-27T22:03:09.994876Z","name":"test_python_remote","url":"https://pypi.org/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-06-27T22:03:10.836017Z","download_concurrency":20,"policy":"streamed","includes":[{"name":"aaaa","version_specifier":""},{"name":"bbbb","version_specifier":">=0.1"}],"excludes":[{"name":"cccc","version_specifier":""}],"prereleases":true}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '645'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 27 Jun 2020 22:03:14 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.0.0b9/python
+    method: DELETE
+    uri: http://pulp.example.org/pulp/api/v3/remotes/python/python/82f758b8-a0fe-4a25-8bd1-2742042f8c72/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/2e40d791-0873-4765-a61d-a4a0102f1f27/"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 27 Jun 2020 22:03:14 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - OpenAPI-Generator/3.2.1/python
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/2e40d791-0873-4765-a61d-a4a0102f1f27/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/2e40d791-0873-4765-a61d-a4a0102f1f27/","pulp_created":"2020-06-27T22:03:14.451468Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-06-27T22:03:14.527135Z","finished_at":"2020-06-27T22:03:14.545740Z","error":null,"worker":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/python/python/82f758b8-a0fe-4a25-8bd1-2742042f8c72/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '559'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 27 Jun 2020 22:03:14 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
