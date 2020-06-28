@@ -9,10 +9,10 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/0.2.0/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository
+    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/da5d7c74-8bc7-4fca-8d61-f1c98db8affa/","pulp_created":"2020-06-27T19:37:07.887036Z","versions_href":"/pulp/api/v3/repositories/file/file/da5d7c74-8bc7-4fca-8d61-f1c98db8affa/versions/","latest_version_href":"/pulp/api/v3/repositories/file/file/da5d7c74-8bc7-4fca-8d61-f1c98db8affa/versions/1/","name":"test_file_repository","description":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/9a928901-0fb0-493c-899f-edbfce83a778/","pulp_created":"2020-06-28T12:56:25.190160Z","versions_href":"/pulp/api/v3/repositories/file/file/9a928901-0fb0-493c-899f-edbfce83a778/versions/","latest_version_href":"/pulp/api/v3/repositories/file/file/9a928901-0fb0-493c-899f-edbfce83a778/versions/1/","name":"test_file_repository","description":null}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 19:37:14 GMT
+      - Sun, 28 Jun 2020 12:56:34 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -46,7 +46,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/publications/file/file/?limit=20&offset=0
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/file/file/11e7af96-9943-46c5-80bb-4851e1844fe8/","pulp_created":"2020-06-27T19:37:11.731051Z","repository_version":"/pulp/api/v3/repositories/file/file/da5d7c74-8bc7-4fca-8d61-f1c98db8affa/versions/1/","repository":"/pulp/api/v3/repositories/file/file/da5d7c74-8bc7-4fca-8d61-f1c98db8affa/","distributions":[],"manifest":"PULP_MANIFEST"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/file/file/686ca9e4-fc5b-46ab-b6b5-ca53efb65c38/","pulp_created":"2020-06-28T12:56:31.522058Z","repository_version":"/pulp/api/v3/repositories/file/file/9a928901-0fb0-493c-899f-edbfce83a778/versions/1/","repository":"/pulp/api/v3/repositories/file/file/9a928901-0fb0-493c-899f-edbfce83a778/","distributions":[],"manifest":"PULP_MANIFEST"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -57,7 +57,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 19:37:14 GMT
+      - Sun, 28 Jun 2020 12:56:34 GMT
       Server:
       - nginx/1.14.2
       Vary:

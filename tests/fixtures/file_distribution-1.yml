@@ -9,7 +9,7 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/0.2.0/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/?name=test_file_distribution
+    uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/?name=test_file_distribution&limit=1
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 19:37:14 GMT
+      - Sun, 28 Jun 2020 12:56:34 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -35,7 +35,7 @@ interactions:
       message: OK
 - request:
     body: '{"base_path": "test_file_base_path", "name": "test_file_distribution",
-      "publication": "/pulp/api/v3/publications/file/file/11e7af96-9943-46c5-80bb-4851e1844fe8/"}'
+      "publication": "/pulp/api/v3/publications/file/file/686ca9e4-fc5b-46ab-b6b5-ca53efb65c38/"}'
     headers:
       Accept:
       - application/json
@@ -47,7 +47,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/e691c69b-83f1-48a9-9d74-2e8aafa7232b/"}'
+      string: '{"task":"/pulp/api/v3/tasks/179ce6cf-068d-4e4b-a579-0406c5a9d36e/"}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -58,7 +58,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 19:37:14 GMT
+      - Sun, 28 Jun 2020 12:56:34 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -78,10 +78,10 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/3.2.1/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/e691c69b-83f1-48a9-9d74-2e8aafa7232b/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/179ce6cf-068d-4e4b-a579-0406c5a9d36e/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/e691c69b-83f1-48a9-9d74-2e8aafa7232b/","pulp_created":"2020-06-27T19:37:14.752577Z","state":"running","name":"pulpcore.app.tasks.base.general_create","started_at":"2020-06-27T19:37:14.826527Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/179ce6cf-068d-4e4b-a579-0406c5a9d36e/","pulp_created":"2020-06-28T12:56:34.650751Z","state":"running","name":"pulpcore.app.tasks.base.general_create","started_at":"2020-06-28T12:56:34.736597Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
@@ -92,7 +92,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 19:37:14 GMT
+      - Sun, 28 Jun 2020 12:56:34 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -112,10 +112,10 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/3.2.1/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/e691c69b-83f1-48a9-9d74-2e8aafa7232b/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/179ce6cf-068d-4e4b-a579-0406c5a9d36e/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/e691c69b-83f1-48a9-9d74-2e8aafa7232b/","pulp_created":"2020-06-27T19:37:14.752577Z","state":"completed","name":"pulpcore.app.tasks.base.general_create","started_at":"2020-06-27T19:37:14.826527Z","finished_at":"2020-06-27T19:37:14.920010Z","error":null,"worker":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/distributions/file/file/03241d08-bdfe-42f3-866b-5b760f1bfe5f/"],"reserved_resources_record":["/api/v3/distributions/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/179ce6cf-068d-4e4b-a579-0406c5a9d36e/","pulp_created":"2020-06-28T12:56:34.650751Z","state":"completed","name":"pulpcore.app.tasks.base.general_create","started_at":"2020-06-28T12:56:34.736597Z","finished_at":"2020-06-28T12:56:34.851590Z","error":null,"worker":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/distributions/file/file/e81a926e-3c37-4dd3-9450-cc027ee6eb8c/"],"reserved_resources_record":["/api/v3/distributions/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
@@ -126,7 +126,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 19:37:16 GMT
+      - Sun, 28 Jun 2020 12:56:36 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -146,10 +146,10 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/0.2.0/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/03241d08-bdfe-42f3-866b-5b760f1bfe5f/
+    uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/e81a926e-3c37-4dd3-9450-cc027ee6eb8c/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/distributions/file/file/03241d08-bdfe-42f3-866b-5b760f1bfe5f/","pulp_created":"2020-06-27T19:37:14.908738Z","base_path":"test_file_base_path","base_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp/content/test_file_base_path/","content_guard":null,"name":"test_file_distribution","publication":"/pulp/api/v3/publications/file/file/11e7af96-9943-46c5-80bb-4851e1844fe8/"}'
+      string: '{"pulp_href":"/pulp/api/v3/distributions/file/file/e81a926e-3c37-4dd3-9450-cc027ee6eb8c/","pulp_created":"2020-06-28T12:56:34.840173Z","base_path":"test_file_base_path","base_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp/content/test_file_base_path/","content_guard":null,"name":"test_file_distribution","publication":"/pulp/api/v3/publications/file/file/686ca9e4-fc5b-46ab-b6b5-ca53efb65c38/"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -160,7 +160,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 19:37:17 GMT
+      - Sun, 28 Jun 2020 12:56:37 GMT
       Server:
       - nginx/1.14.2
       Vary:

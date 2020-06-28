@@ -9,10 +9,10 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/3.0.0b9/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/?name=test_python_repository
+    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/?name=test_python_repository&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/python/python/89b5f4b4-d6d6-45d6-9c99-1120b7fcd630/","pulp_created":"2020-06-27T21:49:45.881628Z","versions_href":"/pulp/api/v3/repositories/python/python/89b5f4b4-d6d6-45d6-9c99-1120b7fcd630/versions/","latest_version_href":"/pulp/api/v3/repositories/python/python/89b5f4b4-d6d6-45d6-9c99-1120b7fcd630/versions/0/","name":"test_python_repository","description":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/python/python/e1041ec5-f048-4911-b6e5-25d5475bc5a6/","pulp_created":"2020-06-28T12:58:32.135785Z","versions_href":"/pulp/api/v3/repositories/python/python/e1041ec5-f048-4911-b6e5-25d5475bc5a6/versions/","latest_version_href":"/pulp/api/v3/repositories/python/python/e1041ec5-f048-4911-b6e5-25d5475bc5a6/versions/0/","name":"test_python_repository","description":null}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 21:49:46 GMT
+      - Sun, 28 Jun 2020 12:58:32 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -34,9 +34,9 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"pulp_href": "/pulp/api/v3/repositories/python/python/89b5f4b4-d6d6-45d6-9c99-1120b7fcd630/",
-      "pulp_created": "2020-06-27T21:49:45.881628+00:00", "versions_href": "/pulp/api/v3/repositories/python/python/89b5f4b4-d6d6-45d6-9c99-1120b7fcd630/versions/",
-      "latest_version_href": "/pulp/api/v3/repositories/python/python/89b5f4b4-d6d6-45d6-9c99-1120b7fcd630/versions/0/",
+    body: '{"pulp_href": "/pulp/api/v3/repositories/python/python/e1041ec5-f048-4911-b6e5-25d5475bc5a6/",
+      "pulp_created": "2020-06-28T12:58:32.135785+00:00", "versions_href": "/pulp/api/v3/repositories/python/python/e1041ec5-f048-4911-b6e5-25d5475bc5a6/versions/",
+      "latest_version_href": "/pulp/api/v3/repositories/python/python/e1041ec5-f048-4911-b6e5-25d5475bc5a6/versions/0/",
       "name": "test_python_repository", "description": "repository created via ansible"}'
     headers:
       Accept:
@@ -46,10 +46,10 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/3.0.0b9/python
     method: PUT
-    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/89b5f4b4-d6d6-45d6-9c99-1120b7fcd630/
+    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/e1041ec5-f048-4911-b6e5-25d5475bc5a6/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/bbb59f26-6996-437c-a54e-87d927222802/"}'
+      string: '{"task":"/pulp/api/v3/tasks/c31c4132-bd40-46c2-9e3d-bc229f55bf7a/"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -60,7 +60,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 21:49:46 GMT
+      - Sun, 28 Jun 2020 12:58:32 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -80,10 +80,10 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/3.2.1/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/bbb59f26-6996-437c-a54e-87d927222802/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/c31c4132-bd40-46c2-9e3d-bc229f55bf7a/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/bbb59f26-6996-437c-a54e-87d927222802/","pulp_created":"2020-06-27T21:49:46.619573Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","started_at":"2020-06-27T21:49:46.692150Z","finished_at":"2020-06-27T21:49:46.711141Z","error":null,"worker":"/pulp/api/v3/workers/8b341052-0432-46c3-80f4-34d4e92ac585/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/python/python/89b5f4b4-d6d6-45d6-9c99-1120b7fcd630/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/c31c4132-bd40-46c2-9e3d-bc229f55bf7a/","pulp_created":"2020-06-28T12:58:32.971102Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","started_at":"2020-06-28T12:58:33.052153Z","finished_at":"2020-06-28T12:58:33.069158Z","error":null,"worker":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/python/python/e1041ec5-f048-4911-b6e5-25d5475bc5a6/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
@@ -94,7 +94,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 21:49:46 GMT
+      - Sun, 28 Jun 2020 12:58:33 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -114,10 +114,10 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/3.0.0b9/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/89b5f4b4-d6d6-45d6-9c99-1120b7fcd630/
+    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/e1041ec5-f048-4911-b6e5-25d5475bc5a6/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/repositories/python/python/89b5f4b4-d6d6-45d6-9c99-1120b7fcd630/","pulp_created":"2020-06-27T21:49:45.881628Z","versions_href":"/pulp/api/v3/repositories/python/python/89b5f4b4-d6d6-45d6-9c99-1120b7fcd630/versions/","latest_version_href":"/pulp/api/v3/repositories/python/python/89b5f4b4-d6d6-45d6-9c99-1120b7fcd630/versions/0/","name":"test_python_repository","description":"repository
+      string: '{"pulp_href":"/pulp/api/v3/repositories/python/python/e1041ec5-f048-4911-b6e5-25d5475bc5a6/","pulp_created":"2020-06-28T12:58:32.135785Z","versions_href":"/pulp/api/v3/repositories/python/python/e1041ec5-f048-4911-b6e5-25d5475bc5a6/versions/","latest_version_href":"/pulp/api/v3/repositories/python/python/e1041ec5-f048-4911-b6e5-25d5475bc5a6/versions/0/","name":"test_python_repository","description":"repository
         created via ansible"}'
     headers:
       Allow:
@@ -129,7 +129,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 21:49:46 GMT
+      - Sun, 28 Jun 2020 12:58:33 GMT
       Server:
       - nginx/1.14.2
       Vary:

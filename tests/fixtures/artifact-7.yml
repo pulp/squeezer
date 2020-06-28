@@ -7,9 +7,9 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc9/python
+      - OpenAPI-Generator/3.2.1/python
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/artifacts/?sha256=fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700
+    uri: http://pulp.example.org/pulp/api/v3/artifacts/?sha256=fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700&limit=1
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 04 Dec 2019 19:36:53 GMT
+      - Sun, 28 Jun 2020 12:55:55 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -34,23 +34,23 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: "--cdbf3268509152738afc6b2599e7c330\r\nContent-Disposition: form-data; name=\"\
+    body: "--4ddb16b30380d89bbf5f61c9ad04704a\r\nContent-Disposition: form-data; name=\"\
       sha256\"\r\n\r\nfd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700\r\
-      \n--cdbf3268509152738afc6b2599e7c330\r\nContent-Disposition: form-data; name=\"\
+      \n--4ddb16b30380d89bbf5f61c9ad04704a\r\nContent-Disposition: form-data; name=\"\
       file\"; filename=\"small_artifact.dat\"\r\nContent-Type: application/octet-stream\r\
-      \n\r\npulp artifact\n\r\n--cdbf3268509152738afc6b2599e7c330--\r\n"
+      \n\r\npulp artifact\n\r\n--4ddb16b30380d89bbf5f61c9ad04704a--\r\n"
     headers:
       Accept:
       - application/json
       Content-Type:
-      - multipart/form-data; boundary=cdbf3268509152738afc6b2599e7c330
+      - multipart/form-data; boundary=4ddb16b30380d89bbf5f61c9ad04704a
       User-Agent:
-      - OpenAPI-Generator/3.0.0rc9/python
+      - OpenAPI-Generator/3.2.1/python
     method: POST
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/artifacts/
+    uri: http://pulp.example.org/pulp/api/v3/artifacts/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/artifacts/0599f751-4e33-45c2-a135-66893798ac4f/","pulp_created":"2019-12-04T19:36:53.502923Z","file":"artifact/fd/769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","size":14,"md5":"a5331b2bb7c7f414a4daac69d00131b7","sha1":"5fb54ebdb124da07050de72896a91a3d3261d61c","sha224":"886567b3800902ffb4c668006cfada2c4acc41c2a437e3646ee8341c","sha256":"fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","sha384":"99c257daa3ab6599bf830d137119798f8741a4b776fc1c50f68c96f85aa98da82029bf6f919b2a78e4740be4d88a58b1","sha512":"39c0377d34bb4296ef4e739a1face204e5ff5fbb4e67ac046244887a7aede265c2a95a03543b68094f08353986d8cb7f3f8a59f5ffcb94eb1d73666ebbb9eeb5"}'
+      string: '{"pulp_href":"/pulp/api/v3/artifacts/a83ed093-a820-4a36-a140-4a842c9304fa/","pulp_created":"2020-06-28T12:55:55.598536Z","file":"artifact/fd/769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","size":14,"md5":"a5331b2bb7c7f414a4daac69d00131b7","sha1":"5fb54ebdb124da07050de72896a91a3d3261d61c","sha224":"886567b3800902ffb4c668006cfada2c4acc41c2a437e3646ee8341c","sha256":"fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","sha384":"99c257daa3ab6599bf830d137119798f8741a4b776fc1c50f68c96f85aa98da82029bf6f919b2a78e4740be4d88a58b1","sha512":"39c0377d34bb4296ef4e739a1face204e5ff5fbb4e67ac046244887a7aede265c2a95a03543b68094f08353986d8cb7f3f8a59f5ffcb94eb1d73666ebbb9eeb5"}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -61,9 +61,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 04 Dec 2019 19:36:53 GMT
+      - Sun, 28 Jun 2020 12:55:55 GMT
       Location:
-      - /pulp/api/v3/artifacts/0599f751-4e33-45c2-a135-66893798ac4f/
+      - /pulp/api/v3/artifacts/a83ed093-a820-4a36-a140-4a842c9304fa/
       Server:
       - nginx/1.14.2
       Vary:

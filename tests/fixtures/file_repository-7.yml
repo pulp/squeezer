@@ -9,10 +9,10 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/0.2.0/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository
+    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/0f7d511e-fb03-42b5-ada8-3fd2ba76ba46/","pulp_created":"2020-06-27T19:54:05.899870Z","versions_href":"/pulp/api/v3/repositories/file/file/0f7d511e-fb03-42b5-ada8-3fd2ba76ba46/versions/","latest_version_href":"/pulp/api/v3/repositories/file/file/0f7d511e-fb03-42b5-ada8-3fd2ba76ba46/versions/0/","name":"test_file_repository","description":"repository
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/c85a2050-0aec-4f46-8bbb-f15933816443/","pulp_created":"2020-06-28T12:57:17.771620Z","versions_href":"/pulp/api/v3/repositories/file/file/c85a2050-0aec-4f46-8bbb-f15933816443/versions/","latest_version_href":"/pulp/api/v3/repositories/file/file/c85a2050-0aec-4f46-8bbb-f15933816443/versions/0/","name":"test_file_repository","description":"repository
         created via ansible"}]}'
     headers:
       Allow:
@@ -24,7 +24,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 19:54:08 GMT
+      - Sun, 28 Jun 2020 12:57:20 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -44,10 +44,10 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/0.2.0/python
     method: DELETE
-    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/0f7d511e-fb03-42b5-ada8-3fd2ba76ba46/
+    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/c85a2050-0aec-4f46-8bbb-f15933816443/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/b3b49dfb-4bdb-4569-b361-ba7a8a9df027/"}'
+      string: '{"task":"/pulp/api/v3/tasks/9ee616f8-639c-435c-ac83-8a911e834b43/"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -58,7 +58,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 19:54:08 GMT
+      - Sun, 28 Jun 2020 12:57:20 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -78,10 +78,10 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/3.2.1/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/b3b49dfb-4bdb-4569-b361-ba7a8a9df027/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/9ee616f8-639c-435c-ac83-8a911e834b43/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/b3b49dfb-4bdb-4569-b361-ba7a8a9df027/","pulp_created":"2020-06-27T19:54:08.505036Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-06-27T19:54:08.578061Z","finished_at":"2020-06-27T19:54:08.599964Z","error":null,"worker":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/file/file/0f7d511e-fb03-42b5-ada8-3fd2ba76ba46/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/9ee616f8-639c-435c-ac83-8a911e834b43/","pulp_created":"2020-06-28T12:57:20.928218Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-06-28T12:57:21.003993Z","finished_at":"2020-06-28T12:57:21.034251Z","error":null,"worker":"/pulp/api/v3/workers/8b341052-0432-46c3-80f4-34d4e92ac585/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/file/file/c85a2050-0aec-4f46-8bbb-f15933816443/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
@@ -92,7 +92,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 19:54:08 GMT
+      - Sun, 28 Jun 2020 12:57:21 GMT
       Server:
       - nginx/1.14.2
       Vary:

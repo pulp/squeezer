@@ -9,10 +9,10 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/0.2.0/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository
+    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/0f7d511e-fb03-42b5-ada8-3fd2ba76ba46/","pulp_created":"2020-06-27T19:54:05.899870Z","versions_href":"/pulp/api/v3/repositories/file/file/0f7d511e-fb03-42b5-ada8-3fd2ba76ba46/versions/","latest_version_href":"/pulp/api/v3/repositories/file/file/0f7d511e-fb03-42b5-ada8-3fd2ba76ba46/versions/0/","name":"test_file_repository","description":"repository
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/c85a2050-0aec-4f46-8bbb-f15933816443/","pulp_created":"2020-06-28T12:57:17.771620Z","versions_href":"/pulp/api/v3/repositories/file/file/c85a2050-0aec-4f46-8bbb-f15933816443/versions/","latest_version_href":"/pulp/api/v3/repositories/file/file/c85a2050-0aec-4f46-8bbb-f15933816443/versions/0/","name":"test_file_repository","description":"repository
         created via ansible"}]}'
     headers:
       Allow:
@@ -24,7 +24,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 19:54:08 GMT
+      - Sun, 28 Jun 2020 12:57:20 GMT
       Server:
       - nginx/1.14.2
       Vary:

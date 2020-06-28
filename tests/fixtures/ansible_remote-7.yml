@@ -7,9 +7,9 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - OpenAPI-Generator/0.2.0b15.dev01593040995/python
+      - OpenAPI-Generator/0.2.0b15.dev01593213817/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/ansible/?name=test_ansible_remote
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/ansible/?name=test_ansible_remote&limit=1
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 19:15:49 GMT
+      - Sun, 28 Jun 2020 12:54:56 GMT
       Server:
       - nginx/1.14.2
       Vary:

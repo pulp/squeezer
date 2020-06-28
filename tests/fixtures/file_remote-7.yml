@@ -9,7 +9,7 @@ interactions:
       User-Agent:
       - OpenAPI-Generator/0.2.0/python
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/?name=test_file_remote
+    uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/?name=test_file_remote&limit=1
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -23,7 +23,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 27 Jun 2020 19:10:38 GMT
+      - Sun, 28 Jun 2020 12:57:11 GMT
       Server:
       - nginx/1.14.2
       Vary:
