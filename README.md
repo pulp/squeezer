@@ -25,7 +25,13 @@ Available modules
 * `pulp_file_remote`
 * `pulp_file_repository`
 * `pulp_file_sync`
+* `python_distribution`
+* `python_publication`
+* `python_remote`
+* `python_repository`
+* `python_sync`
 * `pulp_status`
+* `task`
 
 Installation
 ---
