@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/pulp/squeezer.svg?branch=master)](https://travis-ci.com/pulp/squeezer)
+![Build Status](https://github.com/pulp/squeezer/workflows/CI/badge.svg)
 
 Squeezer, an Ansible collection modules for Pulp
 ===
