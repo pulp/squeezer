@@ -16,7 +16,7 @@ description:
   - "This module deletes all orphaned artifacts and content units of a pulp server."
 options: {}
 extends_documentation_fragment:
-  - mdellweg.squeezer.pulp
+  - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
 '''
@@ -37,7 +37,7 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import (
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import (
     PulpAnsibleModule,
     PulpOrphans,
 )

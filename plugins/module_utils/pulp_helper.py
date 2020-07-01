@@ -98,7 +98,7 @@ class PulpEntity(object):
         self.desired_attributes = desired_attributes
 
     def find(self):
-        search_result = self.api.list(**self.natural_key, limit=1)
+        search_result = self.api.list(limit=1, **self.natural_key)
         if search_result.count == 1:
             self.entity = search_result.results[0]
         else:

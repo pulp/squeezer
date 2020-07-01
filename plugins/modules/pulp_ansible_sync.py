@@ -26,7 +26,7 @@ options:
     type: str
     required: true
 extends_documentation_fragment:
-  - mdellweg.squeezer.pulp
+  - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
 '''
@@ -53,8 +53,8 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpAnsibleModule
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_ansible_helper import (
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import PulpAnsibleModule
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_ansible_helper import (
     PulpAnsibleRemote,
     PulpAnsibleRepository
 )

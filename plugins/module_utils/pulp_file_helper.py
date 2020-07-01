@@ -10,11 +10,11 @@ import traceback
 
 from ansible.module_utils.basic import missing_required_lib
 
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import (
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import (
     PulpArtifact,
     PulpEntity,
 )
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_mixins import (
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_mixins import (
     PulpDistributionMixin,
     PulpPublicationMixin,
     PulpRemoteMixin,
