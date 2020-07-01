@@ -80,8 +80,8 @@ options:
       - If True, TLS peer validation must be performed on remote synchronization.
     type: bool
 extends_documentation_fragment:
-  - mdellweg.squeezer.pulp
-  - mdellweg.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp
+  - pulp.squeezer.pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
 '''
@@ -125,8 +125,8 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_python_helper import PulpPythonRemote, ProjectSpecifier
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_python_helper import PulpPythonRemote, ProjectSpecifier
 
 
 DESIRED_KEYS = {'url', 'download_concurrency', 'policy', 'proxy_url', 'tls_validation', 'prereleases'}

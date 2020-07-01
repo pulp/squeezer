@@ -6,7 +6,7 @@
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import (
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import (
     PulpTask,
 )
 

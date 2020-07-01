@@ -1,10 +1,10 @@
-[![Build Status](https://travis-ci.com/mdellweg/ansible_modules_pulp.svg?branch=master)](https://travis-ci.com/mdellweg/ansible_modules_pulp)
+[![Build Status](https://travis-ci.com/pulp/squeezer.svg?branch=master)](https://travis-ci.com/pulp/squeezer)
 
-ansible modules for Pulp aka Squeezer
+Squeezer, an Ansible collection modules for Pulp
 ===
 
 This collection provides a set of ansible modules to control a [pulp](https://pulpproject.org) server (version 3) in a descriptive way.
-This is neither to be confused with [ansible-pulp](https://github.com/pulp/ansible-pulp) to install pulp,
+This is neither to be confused with [pulp\_installer](https://github.com/pulp/pulp_installer) to install pulp,
 nor [pulp\_ansible](https://github.com/pulp/pulp_ansible) to manage ansible content in pulp.
 
 A lot of inspiration has been drawn from [foreman-ansible-modules](https://github.com/theforeman/foreman-ansible-modules).
@@ -41,7 +41,7 @@ After building the collection artifact with `make dist`, you can install the res
 Documentation
 ---
 
-You can find the inline documentation of each module with `ansible_doc mdellweg.squeezer.pulp_<...>`.
+You can find the inline documentation of each module with `ansible_doc pulp.squeezer.pulp_<...>`.
 
 Testing
 ---

@@ -1,4 +1,4 @@
-namespace: "mdellweg"
+namespace: "pulp"
 name: "squeezer"
 authors:
   - "Matthias Dellweg <2500@gmx.de>"

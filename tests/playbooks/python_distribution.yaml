@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   collections:
-    - mdellweg.squeezer
+    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -49,7 +49,7 @@
 
 - hosts: tests
   collections:
-    - mdellweg.squeezer
+    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -125,7 +125,7 @@
 
 - hosts: localhost
   collections:
-    - mdellweg.squeezer
+    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml

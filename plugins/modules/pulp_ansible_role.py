@@ -34,8 +34,8 @@ options:
     aliases:
       - digest
 extends_documentation_fragment:
-  - mdellweg.squeezer.pulp
-  - mdellweg.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp
+  - pulp.squeezer.pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
 '''
@@ -74,8 +74,8 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule, PulpArtifact
-from ansible_collections.mdellweg.squeezer.plugins.module_utils.pulp_ansible_helper import PulpAnsibleRole
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule, PulpArtifact
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_ansible_helper import PulpAnsibleRole
 
 
 def main():
