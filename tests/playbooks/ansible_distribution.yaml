@@ -62,7 +62,7 @@
           - result.changed == true
           - result.distribution.name == "test_ansible_distribution"
           - result.distribution.base_path == "test_ansible_base_path"
-          - result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_ansible_base_path") or ansible_check_mode
+          - ansible_check_mode or result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_ansible_base_path")
           - result.distribution.repository == repository_result.repository.pulp_href
 
     - name: Distribute latest version of repository (2nd try)
@@ -126,7 +126,7 @@
           - result.changed == true
           - result.distribution.name == "test_ansible_distribution"
           - result.distribution.base_path == "test_ansible_base_path"
-          - result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_ansible_base_path") or ansible_check_mode
+          - ansible_check_mode or result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_ansible_base_path")
           - result.distribution.repository == None
           - result.distribution.repository_version == repository_result.repository.versions_href + '1/'
 

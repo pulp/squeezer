@@ -72,7 +72,7 @@
           - result.changed == true
           - result.distribution.name == "test_file_distribution"
           - result.distribution.base_path == "test_file_base_path"
-          - result.distribution.base_url is regex(".*/pulp/content/test_file_base_path") or ansible_check_mode
+          - ansible_check_mode or result.distribution.base_url is regex(".*/pulp/content/test_file_base_path")
           - result.distribution.publication == publication_result.publication.pulp_href
 
     - name: Distribute publication of repository (2nd try)

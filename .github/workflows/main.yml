@@ -1,0 +1,79 @@
+name: CI
+
+on: [push, pull_request]
+
+env:
+  COLORTERM: 'yes'
+  TERM: 'xterm-256color'
+  PYTEST_ADDOPTS: '--color=yes'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["2.7", "3.6", "3.7", "3.8"]
+        ansible:
+          - stable-2.8
+          - stable-2.9
+          - devel
+        exclude:
+          - python: "2.7"
+            ansible: "stable-2.8"
+          - python: "2.7"
+            ansible: "stable-2.9"
+          - python: "3.6"
+            ansible: "stable-2.8"
+          - python: "3.6"
+            ansible: "stable-2.9"
+          - python: "3.7"
+            ansible: "stable-2.8"
+          - python: "3.7"
+            ansible: "stable-2.9"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install Ansible
+        run: pip install git+https://github.com/ansible/ansible.git@${{ matrix.ansible }}#egg=ansible
+      - name: Set Environment to use mazer
+        run: |
+          echo "::set-env name=COLLECTION_COMMAND::mazer"
+          echo "::set-env name=COLLECTION_COMMAND_SUFFIX::"
+          pip install mazer
+        if: matrix.ansible == 'stable-2.8'
+      - name: Install dependencies
+        run: make test-setup
+      - name: Run basic tests
+        run: make test
+
+  sanity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: Install Ansible
+        run: pip install git+https://github.com/ansible/ansible.git@devel#egg=ansible
+      - name: Install dependencies
+        run: make test-setup
+      - name: Run sanity check
+        run: make SANITY_OPTS="--local" PYTHON_VERSION="3.8" sanity
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: Install dependencies
+        run: pip install flake8 yamllint
+      - name: Run linter
+        run: make lint

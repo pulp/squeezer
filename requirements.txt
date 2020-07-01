@@ -2,7 +2,7 @@ pulpcore-client~=3.2.0
 pulp_ansible-client~=0.2.0b10
 pulp_file-client~=0.2.0
 pulp_python-client~=3.0.0b9
-ansible>=2.9
+ansible
 ansible_runner
 flake8
 pylint
