@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_task
+module: task
 short_description: Manage tasks of a pulp api server instance
 description:
   - "This performs list, show and cancel operations on tasks in a pulp server."
@@ -35,7 +35,7 @@ author:
 
 EXAMPLES = r'''
 - name: Read list of tasks from pulp server
-  pulp_tasks:
+  tasks:
     api_url: localhost:24817
     username: admin
     password: password
@@ -45,7 +45,7 @@ EXAMPLES = r'''
     var: task_summary
 # TODO
 - name: Create a file remote
-  pulp_file_remote:
+  file_remote:
     api_url: localhost:24817
     username: admin
     password: password
@@ -53,7 +53,7 @@ EXAMPLES = r'''
     url: http://localhost/pub/file/pulp_manifest
     state: present
 - name: Delete a file remote
-  pulp_file_remote:
+  file_remote:
     api_url: localhost:24817
     username: admin
     password: password

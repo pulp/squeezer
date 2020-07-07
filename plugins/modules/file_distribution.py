@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_file_distribution
+module: file_distribution
 short_description: Manage file distributions of a pulp api server instance
 description:
   - "This performs CRUD operations on file distributions in a pulp api server instance."
@@ -45,7 +45,7 @@ author:
 
 EXAMPLES = r'''
 - name: Read list of file distributions from pulp api server
-  pulp_file_distribution:
+  file_distribution:
     api_url: localhost:24817
     username: admin
     password: password
@@ -55,7 +55,7 @@ EXAMPLES = r'''
     var: distribution_status
 
 - name: Create a file distribution
-  pulp_file_distribution:
+  file_distribution:
     api_url: localhost:24817
     username: admin
     password: password
@@ -64,7 +64,7 @@ EXAMPLES = r'''
     publication: /pub/api/v3/publications/file/file/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/
     state: present
 - name: Delete a file distribution
-  pulp_file_distribution:
+  file_distribution:
     api_url: localhost:24817
     username: admin
     password: password

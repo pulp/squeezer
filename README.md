@@ -12,25 +12,25 @@ A lot of inspiration has been drawn from [foreman-ansible-modules](https://githu
 Available modules
 ---
 
-* `pulp_ansible_distribution`
-* `pulp_ansible_remote`
-* `pulp_ansible_repository`
-* `pulp_ansible_role`
-* `pulp_ansible_sync`
-* `pulp_artifact`
-* `pulp_delete_orphans`
-* `pulp_file_content`
-* `pulp_file_distribution`
-* `pulp_file_publication`
-* `pulp_file_remote`
-* `pulp_file_repository`
-* `pulp_file_sync`
+* `ansible_distribution`
+* `ansible_remote`
+* `ansible_repository`
+* `ansible_role`
+* `ansible_sync`
+* `artifact`
+* `delete_orphans`
+* `file_content`
+* `file_distribution`
+* `file_publication`
+* `file_remote`
+* `file_repository`
+* `file_sync`
 * `python_distribution`
 * `python_publication`
 * `python_remote`
 * `python_repository`
 * `python_sync`
-* `pulp_status`
+* `status`
 * `task`
 
 Installation

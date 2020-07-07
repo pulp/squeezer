@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_python_remote
+module: python_remote
 short_description: Manage python remotes of a pulp api server instance
 description:
   - "This performs CRUD operations on python remotes in a pulp api server instance."
@@ -88,7 +88,7 @@ author:
 
 EXAMPLES = r'''
 - name: Read list of python remotes from pulp api server
-  pulp_python_remote:
+  python_remote:
     api_url: localhost:24817
     username: admin
     password: password
@@ -97,7 +97,7 @@ EXAMPLES = r'''
   debug:
     var: remote_status
 - name: Create a python remote
-  pulp_python_remote:
+  python_remote:
     api_url: localhost:24817
     username: admin
     password: password
@@ -105,7 +105,7 @@ EXAMPLES = r'''
     url: https://pypi.org/
     state: present
 - name: Delete a python remote
-  pulp_python_remote:
+  python_remote:
     api_url: localhost:24817
     username: admin
     password: password

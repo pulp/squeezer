@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_ansible_sync
+module: ansible_sync
 short_description: Synchronize a ansible remote on a pulp server
 description:
   - "This module synchronizes a ansible remote into a repository."
@@ -33,7 +33,7 @@ author:
 
 EXAMPLES = r'''
 - name: Sync ansible remote into repository
-  pulp_ansible_sync:
+  ansible_sync:
     api_url: localhost:24817
     username: admin
     password: password

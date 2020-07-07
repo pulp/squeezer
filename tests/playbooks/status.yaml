@@ -6,13 +6,13 @@
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    pulp_status: &pulp_connection_details
+    status: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
   tasks:
     - name: Query pulp status
-      pulp_status: {}
+      status: {}
       register: pulp_status
     - name: Verify result
       assert:

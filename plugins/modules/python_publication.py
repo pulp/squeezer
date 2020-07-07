@@ -10,10 +10,10 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_file_publication
-short_description: Manage file publications of a pulp api server instance
+module: python_publication
+short_description: Manage python publications of a pulp api server instance
 description:
-  - "This performs CRUD operations on file publications in a pulp api server instance."
+  - "This performs CRUD operations on python publications in a pulp api server instance."
 options:
   repository:
     description:
@@ -25,11 +25,6 @@ options:
       - Version number to be published
     type: int
     required: false
-  manifest:
-    description:
-      - Name of the pulp manifest file in the publication
-    type: str
-    required: false
 extends_documentation_fragment:
   - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
@@ -38,47 +33,47 @@ author:
 '''
 
 EXAMPLES = r'''
-- name: Read list of file publications from pulp api server
-  pulp_file_publication:
+- name: Read list of python publications
+  python_publication:
     api_url: localhost:24817
     username: admin
     password: password
   register: publication_status
-- name: Report pulp file publications
+- name: Report pulp python publications
   debug:
     var: publication_status
-- name: Create a file publication
-  pulp_file_publication:
+- name: Create a python publication
+  python_publication:
     api_url: localhost:24817
     username: admin
     password: password
-    repository: my_file_repo
+    repository: my_python_repo
     state: present
-- name: Delete a file publication
-  pulp_file_publication:
+- name: Delete a python publication
+  file_publication:
     api_url: localhost:24817
     username: admin
     password: password
-    repository: my_file_repo
+    repository: my_python_repo
     state: absent
 '''
 
 RETURN = r'''
   publications:
-    description: List of file publications
+    description: List of python publications
     type: list
     returned: when no repository is given
   publication:
-    description: File publication details
+    description: Python publication details
     type: dict
     returned: when repository is given
 '''
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_file_helper import (
-    PulpFilePublication,
-    PulpFileRepository,
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_python_helper import (
+    PulpPythonPublication,
+    PulpPythonRepository,
 )
 
 
@@ -87,7 +82,6 @@ def main():
         argument_spec=dict(
             repository=dict(),
             version=dict(type='int'),
-            manifest=dict(),
         ),
         required_if=(
             ['state', 'present', ['repository']],
@@ -97,12 +91,10 @@ def main():
 
         repository_name = module.params['repository']
         version = module.params['version']
-        desired_attributes = {
-            key: module.params[key] for key in ['manifest'] if module.params[key] is not None
-        }
+        desired_attributes = {}
 
         if repository_name:
-            repository = PulpFileRepository(module, {'name': repository_name}).find()
+            repository = PulpPythonRepository(module, {'name': repository_name}).find()
             if repository is None:
                 raise Exception("Failed to find repository ({repository_name}).".format(repository_name=repository_name))
             # TODO check if version exists
@@ -114,7 +106,7 @@ def main():
         else:
             natural_key = {'repository_version': None}
 
-        PulpFilePublication(module, natural_key, desired_attributes).process()
+        PulpPythonPublication(module, natural_key, desired_attributes).process()
 
 
 if __name__ == '__main__':

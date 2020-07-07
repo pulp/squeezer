@@ -6,32 +6,32 @@
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    pulp_file_publication: &pulp_connection_details
+    file_publication: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
-    pulp_file_remote:
+    file_remote:
       <<: *pulp_connection_details
-    pulp_file_sync:
+    file_sync:
       <<: *pulp_connection_details
-    pulp_file_repository:
+    file_repository:
       <<: *pulp_connection_details
   tasks:
     - name: Make repository absent
-      pulp_file_repository:
+      file_repository:
         name: test_file_repository
         state: absent
     - name: Make repository present
-      pulp_file_repository:
+      file_repository:
         name: test_file_repository
         state: present
     - name: Make remote present
-      pulp_file_remote:
+      file_remote:
         name: test_file_remote
         url: "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
         state: present
     - name: Sync remote into repository
-      pulp_file_sync:
+      file_sync:
         remote: test_file_remote
         repository: test_file_repository
 
@@ -45,7 +45,7 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Publish latest version of repository
-      pulp_file_publication:
+      file_publication:
         repository: test_file_repository
         state: present
       register: result
@@ -57,7 +57,7 @@
           - result.publication.manifest == "PULP_MANIFEST"
 
     - name: Publish latest version of repository (2nd try)
-      pulp_file_publication:
+      file_publication:
         repository: test_file_repository
         state: present
       register: result
@@ -67,7 +67,7 @@
           - result.changed == false
 
     - name: Publish latest version of repository via version number
-      pulp_file_publication:
+      file_publication:
         repository: test_file_repository
         version: 1
         state: present
@@ -78,7 +78,7 @@
           - result.changed == false
 
     - name: List publications
-      pulp_file_publication: {}
+      file_publication: {}
       register: result
     - name: Verify list publications
       assert:
@@ -87,7 +87,7 @@
           - result.publications | length >= 1
 
     - name: Query publication of latest version of repository
-      pulp_file_publication:
+      file_publication:
         repository: test_file_repository
       register: result
     - name: Verify query publication of latest version of repository
@@ -98,7 +98,7 @@
           - result.publication.manifest == "PULP_MANIFEST"
 
     - name: Delete publication of latest version of repository
-      pulp_file_publication:
+      file_publication:
         repository: test_file_repository
         state: absent
       register: result
@@ -109,7 +109,7 @@
           - not result.publication
 
     - name: Delete publication of latest version of repository (2nd try)
-      pulp_file_publication:
+      file_publication:
         repository: test_file_repository
         state: absent
       register: result
@@ -119,7 +119,7 @@
           - result.changed == false
 
     - name: Publish latest version of repository with different manifest
-      pulp_file_publication:
+      file_publication:
         repository: test_file_repository
         manifest: "LISTING"
         state: present
@@ -142,11 +142,11 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Make repository absent
-      pulp_file_repository:
+      file_repository:
         name: test_file_repository
         state: absent
     - name: Make remote absent
-      pulp_file_remote:
+      file_remote:
         name: test_file_remote
         state: absent
 ...

@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_file_repository
+module: file_repository
 short_description: Manage file repositories of a pulp api server instance
 description:
   - "This performs CRUD operations on file repositories in a pulp api server instance."
@@ -32,7 +32,7 @@ author:
 
 EXAMPLES = r'''
 - name: Read list of file repositories from pulp api server
-  pulp_file_repository:
+  file_repository:
     api_url: localhost:24817
     username: admin
     password: password
@@ -41,7 +41,7 @@ EXAMPLES = r'''
   debug:
     var: repo_status
 - name: Create a file repository
-  pulp_file_repository:
+  file_repository:
     api_url: localhost:24817
     username: admin
     password: password
@@ -49,7 +49,7 @@ EXAMPLES = r'''
     description: A brand new repository with a description
     state: present
 - name: Delete a file repository
-  pulp_file_repository:
+  file_repository:
     api_url: localhost:24817
     username: admin
     password: password

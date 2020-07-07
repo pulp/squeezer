@@ -6,13 +6,13 @@
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    pulp_python_repository: &pulp_connection_details
+    python_repository: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
   tasks:
     - name: Make repository absent
-      pulp_python_repository:
+      python_repository:
         name: test_python_repository
         state: absent
 
@@ -26,7 +26,7 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Create repository
-      pulp_python_repository:
+      python_repository:
         name: test_python_repository
         description: ""
         state: present
@@ -38,7 +38,7 @@
           - result.repository.name == 'test_python_repository'
 
     - name: Create repository (2nd try)
-      pulp_python_repository:
+      python_repository:
         name: test_python_repository
         state: present
       register: result
@@ -48,7 +48,7 @@
           - result.changed == false
 
     - name: Add description to repository
-      pulp_python_repository:
+      python_repository:
         name: test_python_repository
         description: "repository created via ansible"
         state: present
@@ -60,7 +60,7 @@
           - result.repository.description == "repository created via ansible"
 
     - name: Add description to repository (2nd try)
-      pulp_python_repository:
+      python_repository:
         name: test_python_repository
         description: "repository created via ansible"
         state: present
@@ -71,7 +71,7 @@
           - result.changed == false
 
     - name: Fake modify repository
-      pulp_python_repository:
+      python_repository:
         name: test_python_repository
         state: present
       register: result
@@ -82,7 +82,7 @@
           - result.repository.description == "repository created via ansible"
 
     - name: List repositories
-      pulp_python_repository: {}
+      python_repository: {}
       register: result
     - name: Verify list repositories
       assert:
@@ -91,7 +91,7 @@
           - result.repositories | length >= 1
 
     - name: Read repository
-      pulp_python_repository:
+      python_repository:
         name: test_python_repository
       register: result
     - name: Verify read repository
@@ -105,7 +105,7 @@
       when: false
       block:
         - name: Remove description from repository
-          pulp_python_repository:
+          python_repository:
             name: test_python_repository
             description: ""
             state: present
@@ -117,7 +117,7 @@
               - not result.repository.description
 
         - name: Remove description from repository (2nd try)
-          pulp_python_repository:
+          python_repository:
             name: test_python_repository
             description: ""
             state: present
@@ -128,7 +128,7 @@
               - result.changed == false
 
     - name: Delete repository
-      pulp_python_repository:
+      python_repository:
         name: test_python_repository
         state: absent
       register: result
@@ -139,7 +139,7 @@
           - not result.repository
 
     - name: Delete repository (2nd try)
-      pulp_python_repository:
+      python_repository:
         name: test_python_repository
         state: absent
       register: result

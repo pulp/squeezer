@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_python_distribution
+module: python_distribution
 short_description: Manage python distributions of a pulp api server instance
 description:
   - "This performs CRUD operations on python distributions in a pulp api server instance."
@@ -45,7 +45,7 @@ author:
 
 EXAMPLES = r'''
 - name: Read list of python distributions
-  pulp_python_distribution:
+  python_distribution:
     api_url: localhost:24817
     username: admin
     password: password
@@ -55,7 +55,7 @@ EXAMPLES = r'''
     var: distribution_status
 
 - name: Create a python distribution
-  pulp_python_distribution:
+  python_distribution:
     api_url: localhost:24817
     username: admin
     password: password
@@ -65,7 +65,7 @@ EXAMPLES = r'''
     state: present
 
 - name: Delete a python distribution
-  pulp_python_distribution:
+  python_distribution:
     api_url: localhost:24817
     username: admin
     password: password
