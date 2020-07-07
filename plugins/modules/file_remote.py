@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_file_remote
+module: file_remote
 short_description: Manage file remotes of a pulp api server instance
 description:
   - "This performs CRUD operations on file remotes in a pulp api server instance."
@@ -52,7 +52,7 @@ author:
 
 EXAMPLES = r'''
 - name: Read list of file remotes from pulp api server
-  pulp_file_remote:
+  file_remote:
     api_url: localhost:24817
     username: admin
     password: password
@@ -61,7 +61,7 @@ EXAMPLES = r'''
   debug:
     var: remote_status
 - name: Create a file remote
-  pulp_file_remote:
+  file_remote:
     api_url: localhost:24817
     username: admin
     password: password
@@ -69,7 +69,7 @@ EXAMPLES = r'''
     url: http://localhost/pub/file/pulp_manifest
     state: present
 - name: Delete a file remote
-  pulp_file_remote:
+  file_remote:
     api_url: localhost:24817
     username: admin
     password: password

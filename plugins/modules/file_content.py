@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_file_content
+module: file_content
 short_description: Manage file content of a pulp api server instance
 description:
   - "This performs CRUD operations on file content in a pulp api server instance."
@@ -34,7 +34,7 @@ author:
 
 EXAMPLES = r'''
 - name: Read list of file content units from pulp api server
-  pulp_file_content:
+  file_content:
     api_url: localhost:24817
     username: admin
     password: password
@@ -43,7 +43,7 @@ EXAMPLES = r'''
   debug:
     var: content_status
 - name: Create a file content unit
-  pulp_file_content:
+  file_content:
     api_url: localhost:24817
     username: admin
     password: password

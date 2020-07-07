@@ -6,45 +6,45 @@
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    pulp_file_remote: &pulp_connection_details
+    file_remote: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
-    pulp_file_sync:
+    file_sync:
       <<: *pulp_connection_details
-    pulp_file_repository:
+    file_repository:
       <<: *pulp_connection_details
-    pulp_task:
+    task:
       <<: *pulp_connection_details
-    pulp_delete_orphans:
+    delete_orphans:
       <<: *pulp_connection_details
   tasks:
     - name: Make repository absent
-      pulp_file_repository:
+      file_repository:
         name: test_file_repository
         state: absent
     - name: Delete remaining artifacts and content
-      pulp_delete_orphans: {}
+      delete_orphans: {}
     - name: Make repository present
-      pulp_file_repository:
+      file_repository:
         name: test_file_repository
         state: present
     - name: Make remote present
-      pulp_file_remote:
+      file_remote:
         name: test_file_remote
         url: "{{ pulp_fixtures_url }}/file-large/PULP_MANIFEST"
         download_concurrency: 1
         state: present
     - name: List all tasks
-      pulp_task: {}
+      task: {}
       register: result
     - name: Delete all tasks
-      pulp_task:
+      task:
         pulp_href: "{{ item.pulp_href }}"
         state: absent
       loop: "{{ result.tasks }}"
     - name: Sync remote into repository (async)
-      pulp_file_sync:
+      file_sync:
         remote: test_file_remote
         repository: test_file_repository
       register: sync_task
@@ -61,7 +61,7 @@
     <<: *pulp_module_defaults
   tasks:
     - name: List tasks
-      pulp_task: {}
+      task: {}
       register: result
       until: result.tasks | length == 1
       retries: 5
@@ -75,7 +75,7 @@
         task_href: "{{ result.tasks[0].pulp_href }}"
 
     - name: Show task
-      pulp_task:
+      task:
         pulp_href: "{{ task_href }}"
       register: result
     - name: Verify show task
@@ -87,7 +87,7 @@
           - result.task.state == "running"
 
     - name: Cancel task
-      pulp_task:
+      task:
         pulp_href: "{{ task_href }}"
         state: canceled
       register: result
@@ -99,7 +99,7 @@
           - result.task.state == "canceled"
 
     - name: Cancel task(2nd try)
-      pulp_task:
+      task:
         pulp_href: "{{ task_href }}"
         state: canceled
       register: result
@@ -111,7 +111,7 @@
           - result.task.state == "canceled"
 
     - name: Wait for canceld task
-      pulp_task:
+      task:
         pulp_href: "{{ task_href }}"
         state: completed
       register: result
@@ -132,11 +132,11 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Make repository absent
-      pulp_file_repository:
+      file_repository:
         name: test_file_repository
         state: absent
     - name: Make remote absent
-      pulp_file_remote:
+      file_remote:
         name: test_file_remote
         state: absent
 ...

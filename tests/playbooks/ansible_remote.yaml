@@ -6,13 +6,13 @@
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    pulp_ansible_remote: &pulp_connection_details
+    ansible_remote: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
   tasks:
     - name: Make remote absent
-      pulp_ansible_remote:
+      ansible_remote:
         name: test_ansible_remote
         state: absent
 
@@ -26,7 +26,7 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Create remote
-      pulp_ansible_remote:
+      ansible_remote:
         name: test_ansible_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
         proxy_url: "http://proxy.int:3128"
@@ -41,7 +41,7 @@
           - result.remote.proxy_url == "http://proxy.int:3128"
 
     - name: Create remote (2nd try)
-      pulp_ansible_remote:
+      ansible_remote:
         name: test_ansible_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
         proxy_url: "http://proxy.int:3128"
@@ -53,7 +53,7 @@
           - result.changed == false
 
     - name: Modify remote
-      pulp_ansible_remote:
+      ansible_remote:
         name: test_ansible_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=pulp"
         tls_validation: false
@@ -67,7 +67,7 @@
           - result.remote.tls_validation == false
 
     - name: Modify remote (2nd try)
-      pulp_ansible_remote:
+      ansible_remote:
         name: test_ansible_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=pulp"
         tls_validation: false
@@ -79,7 +79,7 @@
           - result.changed == false
 
     - name: List remotes
-      pulp_ansible_remote: {}
+      ansible_remote: {}
       register: result
     - name: Verify list remotes
       assert:
@@ -89,7 +89,7 @@
           - result.remotes | selectattr('name', 'match', 'test_ansible_remote') | list | length == 1
 
     - name: Read remote
-      pulp_ansible_remote:
+      ansible_remote:
         name: test_ansible_remote
       register: result
     - name: Verify read remote
@@ -103,7 +103,7 @@
           - result.remote.tls_validation == false
 
     - name: Delete remote
-      pulp_ansible_remote:
+      ansible_remote:
         name: test_ansible_remote
         state: absent
       register: result
@@ -114,7 +114,7 @@
           - not result.remote
 
     - name: Delete remote (2nd try)
-      pulp_ansible_remote:
+      ansible_remote:
         name: test_ansible_remote
         state: absent
       register: result

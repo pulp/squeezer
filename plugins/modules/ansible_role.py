@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_ansible_role
+module: ansible_role
 short_description: Manage ansible roles of a pulp server
 description:
   - "This performs CRUD operations on ansible roles in a pulp server."
@@ -42,7 +42,7 @@ author:
 
 EXAMPLES = r'''
 - name: Read list of file content units from pulp api server
-  pulp_ansible_role:
+  ansible_role:
     api_url: localhost:24817
     username: admin
     password: password
@@ -51,7 +51,7 @@ EXAMPLES = r'''
   debug:
     var: content_status
 - name: Create an ansible role
-  pulp_ansible_role:
+  ansible_role:
     api_url: localhost:24817
     username: admin
     password: password

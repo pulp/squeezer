@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_ansible_distribution
+module: ansible_distribution
 short_description: Manage ansible distributions of a pulp server
 description:
   - "This performs CRUD operations on ansible distributions in a pulp server."
@@ -51,7 +51,7 @@ author:
 
 EXAMPLES = r'''
 - name: Read list of ansible distributions from pulp api server
-  pulp_ansible_distribution:
+  ansible_distribution:
     api_url: localhost:24817
     username: admin
     password: password
@@ -61,7 +61,7 @@ EXAMPLES = r'''
     var: distribution_status
 
 - name: Create an ansible distribution
-  pulp_ansible_distribution:
+  ansible_distribution:
     api_url: localhost:24817
     username: admin
     password: password
@@ -71,7 +71,7 @@ EXAMPLES = r'''
     state: present
 
 - name: Delete an ansible distribution
-  pulp_ansible_distribution:
+  ansible_distribution:
     api_url: localhost:24817
     username: admin
     password: password

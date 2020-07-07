@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_python_repository
+module: python_repository
 short_description: Manage python repositories of a pulp api server instance
 description:
   - "This performs CRUD operations on python repositories in a pulp api server instance."
@@ -32,7 +32,7 @@ author:
 
 EXAMPLES = r'''
 - name: Read list of python repositories from pulp api server
-  pulp_python_repository:
+  python_repository:
     api_url: localhost:24817
     username: admin
     password: password
@@ -41,7 +41,7 @@ EXAMPLES = r'''
   debug:
     var: repo_status
 - name: Create a python repository
-  pulp_python_repository:
+  python_repository:
     api_url: localhost:24817
     username: admin
     password: password
@@ -49,7 +49,7 @@ EXAMPLES = r'''
     description: A brand new repository with a description
     state: present
 - name: Delete a python repository
-  pulp_python_repository:
+  python_repository:
     api_url: localhost:24817
     username: admin
     password: password

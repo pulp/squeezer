@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_artifact
+module: artifact
 short_description: Manage artifacts of a pulp api server instance
 description:
   - "This performs CRD operations on artifacts in a pulp api server instance."
@@ -33,7 +33,7 @@ author:
 
 EXAMPLES = r'''
 - name: Read list of artifacts from pulp server
-  pulp_artifact:
+  artifact:
     api_url: localhost:24817
     username: admin
     password: password
@@ -42,21 +42,21 @@ EXAMPLES = r'''
   debug:
     var: artifact_status
 - name: Upload a file
-  pulp_artifact:
+  artifact:
     api_url: localhost:24817
     username: admin
     password: password
     file: local_artifact.txt
     state: present
 - name: Delete an artifact by specifying a file
-  pulp_atifact:
+  artifact:
     api_url: localhost:24817
     username: admin
     password: password
     file: local_artifact.txt
     state: absent
 - name: Delete an artifact by specifying the digest
-  pulp_atifact:
+  artifact:
     api_url: localhost:24817
     username: admin
     password: password

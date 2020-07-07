@@ -10,10 +10,10 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: pulp_status
-short_description: Report status of a pulp api server instance
+module: delete_orphans
+short_description: Deletes all orphaned entities of a pulp server
 description:
-  - "This module queries a pulp api server instance for installed plugins and service connectivity."
+  - "This module deletes all orphaned artifacts and content units of a pulp server."
 options: {}
 extends_documentation_fragment:
   - pulp.squeezer.pulp
@@ -22,20 +22,16 @@ author:
 '''
 
 EXAMPLES = r'''
-- name: Read status from pulp api server
-  pulp_status:
+- name: Delete orphans
+  delete_orphans:
     api_url: localhost:24817
     username: admin
     password: password
-  register: pulp_status
-- name: Report pulp status
-  debug:
-    var: pulp_status
 '''
 
 RETURN = r'''
-  status:
-    description: Pulp server status
+  summary:
+    description: Summary of deleted entities
     type: dict
     returned: always
 '''
@@ -43,14 +39,14 @@ RETURN = r'''
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import (
     PulpAnsibleModule,
-    PulpStatus,
+    PulpOrphans,
 )
 
 
 def main():
     with PulpAnsibleModule() as module:
-        status = PulpStatus(module).api.status_read()
-        module.set_result('status', status.to_dict())
+        summary = PulpOrphans(module).delete()
+        module.set_result('summary', summary)
 
 
 if __name__ == '__main__':
