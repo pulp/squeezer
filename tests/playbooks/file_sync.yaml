@@ -28,6 +28,10 @@
         name: test_file_remote
         url: "{{ pulp_fixtures_url }}/file/PULP_MANIFEST"
         state: present
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
 
 - hosts: tests
   collections:

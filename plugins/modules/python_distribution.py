@@ -85,8 +85,7 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_python_helper import PulpPythonDistribution
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import PulpEntityAnsibleModule, PulpPythonDistribution
 
 
 def main():

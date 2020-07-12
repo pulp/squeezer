@@ -4,12 +4,16 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/artifacts/?sha256=fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700&limit=1
+    uri: http://pulp.example.org/pulp/api/v3/artifacts/?limit=1&sha256=fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -17,13 +21,13 @@ interactions:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '52'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:55:56 GMT
+      - Sun, 19 Jul 2020 17:41:05 GMT
       Server:
       - nginx/1.14.2
       Vary:

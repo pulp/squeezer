@@ -36,6 +36,10 @@
       python_sync:
         remote: test_python_remote
         repository: test_python_repository
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
 
 - hosts: tests
   collections:

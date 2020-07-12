@@ -4,12 +4,16 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/0.2.0/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/?name=test_file_remote&limit=1
+    uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/?limit=1&name=test_file_remote
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -17,13 +21,13 @@ interactions:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '52'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:57:11 GMT
+      - Fri, 17 Jul 2020 15:48:33 GMT
       Server:
       - nginx/1.14.2
       Vary:

@@ -50,6 +50,10 @@
       register: sync_task
       async: 120
       poll: 0
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
 
 - hosts: tests
   collections:

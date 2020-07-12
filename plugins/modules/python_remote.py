@@ -125,11 +125,10 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_python_helper import PulpPythonRemote, ProjectSpecifier
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import PulpEntityAnsibleModule, PulpPythonRemote
 
 
-DESIRED_KEYS = {'url', 'download_concurrency', 'policy', 'proxy_url', 'tls_validation', 'prereleases'}
+DESIRED_KEYS = {'url', 'download_concurrency', 'policy', 'proxy_url', 'tls_validation', 'prereleases', 'includes', 'excludes'}
 
 
 def main():
@@ -171,14 +170,6 @@ def main():
         desired_attributes = {
             key: module.params[key] for key in DESIRED_KEYS if module.params[key] is not None
         }
-
-        includes = module.params['includes']
-        if includes is not None:
-            desired_attributes['includes'] = [ProjectSpecifier(**include) for include in includes]
-
-        excludes = module.params['excludes']
-        if excludes is not None:
-            desired_attributes['excludes'] = [ProjectSpecifier(**exclude) for exclude in excludes]
 
         PulpPythonRemote(module, natural_key, desired_attributes).process()
 

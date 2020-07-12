@@ -15,6 +15,10 @@
       ansible_repository:
         name: test_ansible_repository
         state: absent
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
 
 - hosts: tests
   collections:
@@ -101,31 +105,28 @@
           - result.repository.name == 'test_ansible_repository'
           - result.repository.description == "repository created via ansible"
 
-    - name: Skip until nullifying fields is possible with the api bindings
-      when: false
-      block:
-        - name: Remove description from repository
-          ansible_repository:
-            name: test_ansible_repository
-            description: ""
-            state: present
-          register: result
-        - name: Verify remove description from repository
-          assert:
-            that:
-              - result.changed == true
-              - not result.repository.description
+    - name: Remove description from repository
+      ansible_repository:
+        name: test_ansible_repository
+        description: ""
+        state: present
+      register: result
+    - name: Verify remove description from repository
+      assert:
+        that:
+          - result.changed == true
+          - not result.repository.description
 
-        - name: Remove description from repository (2nd try)
-          ansible_repository:
-            name: test_ansible_repository
-            description: ""
-            state: present
-          register: result
-        - name: Verify remove description from repository (2nd try)
-          assert:
-            that:
-              - result.changed == false
+    - name: Remove description from repository (2nd try)
+      ansible_repository:
+        name: test_ansible_repository
+        description: ""
+        state: present
+      register: result
+    - name: Verify remove description from repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
 
     - name: Delete repository
       ansible_repository:

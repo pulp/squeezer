@@ -4,26 +4,30 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/0.2.0/python
+      - Python-urllib/3.8
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/content/file/files/?limit=20&offset=0
   response:
     body:
-      string: '{"count":4,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/file/files/9891abc0-9877-424a-9011-ff2aa63c35a3/","pulp_created":"2020-06-28T12:56:15.130655Z","artifact":"/pulp/api/v3/artifacts/4f5b98af-69fa-44eb-a114-5b3e850a7694/","relative_path":"data/file1.txt","md5":"502c3370995c203cce7e3f1ffba6859a","sha1":"733033d4ba6761c30fbd1086a70784f4fb317687","sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"},{"pulp_href":"/pulp/api/v3/content/file/files/d81bf2dc-b298-476a-a864-5ff60b557523/","pulp_created":"2020-06-27T18:50:15.443619Z","artifact":"/pulp/api/v3/artifacts/265336d8-194b-4c7c-966c-9cd17fe79a75/","relative_path":"3.iso","md5":"4e77204fdfe01f2ade76bc1f40b9a15b","sha1":"3c76a42b1d90f8a81453d5ba908d7a3e633be608","sha224":"009e62db9b62ab919ac79635e7ae3632dc0c3d3af4c03bec16bb2dd2","sha256":"bfd98c5543feb484581714123e8e7f52af9263d6794e77c723894619d75a5034","sha384":"db89d2e0ecff142df138ad1f04194c8594ed5ea4b1ba5c025d2d247ac887af63fa6e442a9a1b34f19154a246563f9141","sha512":"13a7cdcbe5266a3355bbe5b59bd6159a2b9ff233b137e593559163ba652ebb2953c9ddad26c68b85c0f4d4dc474e0dd5112ed623d49634a306a310970a93fe4d"},{"pulp_href":"/pulp/api/v3/content/file/files/2943720a-ddb9-407e-8d94-8ebeb430bd3c/","pulp_created":"2020-06-27T18:50:15.442099Z","artifact":"/pulp/api/v3/artifacts/263dfc1a-ad42-4e01-9e67-41b752c850d7/","relative_path":"2.iso","md5":"6d2ff72ded03b53127986a31f0274999","sha1":"17774c55f111272dd6c1429d98a4e806090de6fa","sha224":"ccc5dfc83c195aeed3f18c2bac0be6d997a8c3862b4943584926e87b","sha256":"bca4539394799d6ee9d863465b76ea12f51f95e7d87dee1558dd8430ee75bb7c","sha384":"f945823306c26c4aef1fbefaa09f740429593150adcd7f846db66b2e8a6589fd8773e495f6d4d0d0bd753976f71676d3","sha512":"d7abb4ceb2844de9035a1e990e1fc45e081500a2e5c0492d0a3ca4e4220e0e5ab7173aef1ac408ff01ee28b66b72743bc1d6e9e8e7f9d20b43dcfe38d28dcf40"},{"pulp_href":"/pulp/api/v3/content/file/files/a386a6f2-4804-4bcd-a976-b0ada6e60ef0/","pulp_created":"2020-06-27T18:50:15.440129Z","artifact":"/pulp/api/v3/artifacts/bea3b5ba-73de-47b8-a472-916a1f6215a4/","relative_path":"1.iso","md5":"4a0a5bb0213434a6d1201dfed4a8794a","sha1":"defacef42f93870f8feb02e259d9a1a5a514a166","sha224":"3702bf8e258fae69f849d915e7d3a7817d280642b81b0f11725f5fd7","sha256":"0277b750a47e23de8a391ca5ccfa00e8dbb19419814a229d31f1d7ba382783d2","sha384":"b94405fecb0b7c9f36400c5e0ccf7f18f11b070fcdb1cb7a96ce84d9f2aaaad226467de274d2799e33baf97432de8d2e","sha512":"7cd23d8af23eac48a07c0bedb82167add16b09584a3f34032005df9667185b328075a70f71c6a23677aaa49028c9aed3767bed1d5d65420e467b58cbe1a39197"}]}'
+      string: '{"count":4,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/file/files/89ec85ac-c325-4797-b048-664defd81822/","pulp_created":"2020-07-21T07:27:24.537410Z","artifact":"/pulp/api/v3/artifacts/6b25bd16-d98f-4f11-983f-17d3f17fd659/","relative_path":"data/file1.txt","md5":"502c3370995c203cce7e3f1ffba6859a","sha1":"733033d4ba6761c30fbd1086a70784f4fb317687","sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"},{"pulp_href":"/pulp/api/v3/content/file/files/3641d552-7e0c-4ee2-8bce-9c59973a6ba3/","pulp_created":"2020-07-20T12:50:04.079047Z","artifact":"/pulp/api/v3/artifacts/0770baed-a0ea-4de6-b683-a7346b2130b4/","relative_path":"2.iso","md5":"90c4b2d66db58b417bb71e9d73240ddd","sha1":"81d9d927c823f6f1ee049277e4051cc7f8c6c209","sha224":"6173ebbe710ac10dc2edce54e8c650dcba22aa3f71b68b8ee8aa7deb","sha256":"c8cb77dd8aa7cfb2527c3ee4ca0eb853e722095f626ea267f5c57eef35ece249","sha384":"d8fead6cfec4104e5eb7683c2a5597c8e3b976f33f87a6f1d00ae3e68a6377c1e5efe3fc0d7bb69510bb8e7226b4f453","sha512":"daaac4c66e7ffed66f5257e85585a816f5f1428dca205d50d9e0fccaa55c44742b0e43f06667442dbbc67b8ba9a57c19cd3a49162320b3f8db5473a8fc6d0e8d"},{"pulp_href":"/pulp/api/v3/content/file/files/58086818-6a39-42bd-99de-c5f0f3a409bd/","pulp_created":"2020-07-20T12:50:04.077602Z","artifact":"/pulp/api/v3/artifacts/c44b91a8-f85e-462e-bf47-251383463a85/","relative_path":"3.iso","md5":"8514193e5e060398e75496af02249d97","sha1":"709cf0fc402abfcc9280ce9ced30696c6a8c981e","sha224":"8bd50ce420556de439fe10831c8a4bcc503de771a8b70f3ca5cad223","sha256":"2177ac29ea1c50df6ccb58c21d58943d669de3c0501d343803b623fb0ac9117c","sha384":"e1cd7c0c0d35821a7d8cc64703df85d95fe5a186dfbd8a2219df4d17b26db967fd7e400c02ca61330563b73e51b536bb","sha512":"a9c6c9c8faf80fb407a42a955fe3d92a87894dc50480d5c194d2668aab0ceb816e8e295d3bc214af5c4e4873100469e0e67125cc0c8bf86e5fe0443e90c79d0a"},{"pulp_href":"/pulp/api/v3/content/file/files/6e3b0521-5c57-4f99-938c-cbcc0b456d67/","pulp_created":"2020-07-20T12:50:04.075430Z","artifact":"/pulp/api/v3/artifacts/66b5bd37-9559-47e8-bb74-024f4e2f34c6/","relative_path":"1.iso","md5":"590e3561f4e5a4bbff6ae5e27826f731","sha1":"b8da1c290d785ebedc67153fd2f15c3ab3011f47","sha224":"bef31a4780d0e0a60d22f0d33f946e29f4f782795a17aedefa2dd3d1","sha256":"277011a07d9502a4c36840de32118b66f9ab25b43f9a4b18c5ee7ce86a61597f","sha384":"2db3159a1c9d78b4bfb5ec42216c86b4fadd46066247db3bc0fbceda51d5edf97b4a1cf693248b6b6b7bddb1396fead5","sha512":"6a5d10180f573fe9319524d2f79f7c38167d57c7b57aae9a153ddfb8e7aa1bb57308e4dcd70f9e85ffa185fd70914e61b1255e58f80272ae408b26326a00d124"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '2908'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:56:18 GMT
+      - Tue, 21 Jul 2020 07:27:27 GMT
       Server:
       - nginx/1.14.2
       Vary:

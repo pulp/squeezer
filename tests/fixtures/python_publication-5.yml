@@ -4,26 +4,30 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.0.0b9/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/?name=test_python_repository&limit=1
+    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/?limit=1&name=test_python_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/python/python/6e999eac-8945-4f71-ac83-c4233f141991/","pulp_created":"2020-06-28T12:58:05.978988Z","versions_href":"/pulp/api/v3/repositories/python/python/6e999eac-8945-4f71-ac83-c4233f141991/versions/","latest_version_href":"/pulp/api/v3/repositories/python/python/6e999eac-8945-4f71-ac83-c4233f141991/versions/1/","name":"test_python_repository","description":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/python/python/f92b01e0-9cf3-472b-a0e0-f623a7ef7c89/","pulp_created":"2020-07-21T19:10:22.466451Z","versions_href":"/pulp/api/v3/repositories/python/python/f92b01e0-9cf3-472b-a0e0-f623a7ef7c89/versions/","latest_version_href":"/pulp/api/v3/repositories/python/python/f92b01e0-9cf3-472b-a0e0-f623a7ef7c89/versions/1/","name":"test_python_repository","description":null}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '459'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:58:14 GMT
+      - Tue, 21 Jul 2020 19:10:31 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -38,26 +42,30 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.0.0b9/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/publications/python/pypi/?limit=20&offset=0
+    uri: http://pulp.example.org/pulp/api/v3/publications/python/pypi/?limit=1&repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Fpython%2Fpython%2Ff92b01e0-9cf3-472b-a0e0-f623a7ef7c89%2Fversions%2F1%2F
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/python/pypi/938c45b5-a882-4087-8584-4d0ccb59c736/","pulp_created":"2020-06-28T12:58:10.159672Z","repository_version":"/pulp/api/v3/repositories/python/python/6e999eac-8945-4f71-ac83-c4233f141991/versions/1/","repository":"/pulp/api/v3/repositories/python/python/6e999eac-8945-4f71-ac83-c4233f141991/","distributions":[]}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/python/pypi/ab72bb66-b640-4c32-a95f-8880b534cb38/","pulp_created":"2020-07-21T19:10:26.624874Z","repository_version":"/pulp/api/v3/repositories/python/python/f92b01e0-9cf3-472b-a0e0-f623a7ef7c89/versions/1/","repository":"/pulp/api/v3/repositories/python/python/f92b01e0-9cf3-472b-a0e0-f623a7ef7c89/","distributions":[]}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '412'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:58:14 GMT
+      - Tue, 21 Jul 2020 19:10:31 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -70,12 +78,18 @@ interactions:
 - request:
     body: null
     headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.0.0b9/python
+      - Python-urllib/3.8
     method: DELETE
-    uri: http://pulp.example.org/pulp/api/v3/publications/python/pypi/938c45b5-a882-4087-8584-4d0ccb59c736/
+    uri: http://pulp.example.org/pulp/api/v3/publications/python/pypi/ab72bb66-b640-4c32-a95f-8880b534cb38/
   response:
     body:
       string: ''
@@ -83,11 +97,11 @@ interactions:
       Allow:
       - GET, DELETE, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '0'
       Date:
-      - Sun, 28 Jun 2020 12:58:14 GMT
+      - Tue, 21 Jul 2020 19:10:31 GMT
       Server:
       - nginx/1.14.2
       Vary:

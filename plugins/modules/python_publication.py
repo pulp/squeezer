@@ -70,8 +70,8 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_python_helper import (
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+    PulpEntityAnsibleModule,
     PulpPythonPublication,
     PulpPythonRepository,
 )
@@ -94,14 +94,15 @@ def main():
         desired_attributes = {}
 
         if repository_name:
-            repository = PulpPythonRepository(module, {'name': repository_name}).find()
-            if repository is None:
+            repository = PulpPythonRepository(module, {'name': repository_name})
+            repository.find()
+            if repository.entity is None:
                 raise Exception("Failed to find repository ({repository_name}).".format(repository_name=repository_name))
             # TODO check if version exists
             if version:
-                repository_version_href = repository.versions_href + "{version}/".format(version=version)
+                repository_version_href = repository.entity["versions_href"] + "{version}/".format(version=version)
             else:
-                repository_version_href = repository.latest_version_href
+                repository_version_href = repository.entity["latest_version_href"]
             natural_key = {'repository_version': repository_version_href}
         else:
             natural_key = {'repository_version': None}

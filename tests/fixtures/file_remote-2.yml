@@ -4,26 +4,30 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/0.2.0/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/?name=test_file_remote&limit=1
+    uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/?limit=1&name=test_file_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/file/file/0f1b191d-5bfa-4f6b-ad51-76e0a09de341/","pulp_created":"2020-06-28T12:57:08.111385Z","name":"test_file_remote","url":"https://example.org/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-06-28T12:57:08.111398Z","download_concurrency":20,"policy":"immediate"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/file/file/bf68f22b-9761-4b2f-95f3-01449e5f5859/","pulp_created":"2020-07-17T15:48:28.405756Z","name":"test_file_remote","url":"https://example.org/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-07-17T15:48:28.405768Z","download_concurrency":20,"policy":"immediate"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '493'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:57:08 GMT
+      - Fri, 17 Jul 2020 15:48:29 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -34,34 +38,41 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"pulp_href": "/pulp/api/v3/remotes/file/file/0f1b191d-5bfa-4f6b-ad51-76e0a09de341/",
-      "pulp_created": "2020-06-28T12:57:08.111385+00:00", "name": "test_file_remote",
-      "url": "https://example.org/file/PULP_MANIFEST", "tls_validation": false, "proxy_url":
-      "http://proxy.int:3128", "pulp_last_updated": "2020-06-28T12:57:08.111398+00:00",
+    body: '{"pulp_href": "/pulp/api/v3/remotes/file/file/bf68f22b-9761-4b2f-95f3-01449e5f5859/",
+      "pulp_created": "2020-07-17T15:48:28.405756Z", "name": "test_file_remote", "url":
+      "https://example.org/file/PULP_MANIFEST", "ca_cert": null, "client_cert": null,
+      "client_key": null, "tls_validation": false, "proxy_url": "http://proxy.int:3128",
+      "username": null, "password": null, "pulp_last_updated": "2020-07-17T15:48:28.405768Z",
       "download_concurrency": 20, "policy": "streamed"}'
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
+      Content-Length:
+      - '468'
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/0.2.0/python
+      - Python-urllib/3.8
     method: PUT
-    uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/0f1b191d-5bfa-4f6b-ad51-76e0a09de341/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/bf68f22b-9761-4b2f-95f3-01449e5f5859/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/b934dd72-c6a5-4847-870a-443a195d3674/"}'
+      string: '{"task":"/pulp/api/v3/tasks/96a7c11a-10e1-4e38-ac2e-2743e4be7417/"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '67'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:57:08 GMT
+      - Fri, 17 Jul 2020 15:48:29 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -76,26 +87,30 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/b934dd72-c6a5-4847-870a-443a195d3674/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/96a7c11a-10e1-4e38-ac2e-2743e4be7417/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/b934dd72-c6a5-4847-870a-443a195d3674/","pulp_created":"2020-06-28T12:57:08.961999Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","started_at":"2020-06-28T12:57:09.040851Z","finished_at":"2020-06-28T12:57:09.062168Z","error":null,"worker":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/file/file/0f1b191d-5bfa-4f6b-ad51-76e0a09de341/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/96a7c11a-10e1-4e38-ac2e-2743e4be7417/","pulp_created":"2020-07-17T15:48:29.336804Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","started_at":"2020-07-17T15:48:29.412122Z","finished_at":"2020-07-17T15:48:29.429418Z","error":null,"worker":"/pulp/api/v3/workers/baef34d4-e248-4e67-8e4b-470bbbd635f7/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/file/file/bf68f22b-9761-4b2f-95f3-01449e5f5859/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '555'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:57:09 GMT
+      - Fri, 17 Jul 2020 15:48:29 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -110,26 +125,30 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/0.2.0/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/0f1b191d-5bfa-4f6b-ad51-76e0a09de341/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/bf68f22b-9761-4b2f-95f3-01449e5f5859/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/remotes/file/file/0f1b191d-5bfa-4f6b-ad51-76e0a09de341/","pulp_created":"2020-06-28T12:57:08.111385Z","name":"test_file_remote","url":"https://example.org/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-06-28T12:57:09.058673Z","download_concurrency":20,"policy":"streamed"}'
+      string: '{"pulp_href":"/pulp/api/v3/remotes/file/file/bf68f22b-9761-4b2f-95f3-01449e5f5859/","pulp_created":"2020-07-17T15:48:28.405756Z","name":"test_file_remote","url":"https://example.org/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-07-17T15:48:29.426395Z","download_concurrency":20,"policy":"streamed"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '441'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:57:09 GMT
+      - Fri, 17 Jul 2020 15:48:29 GMT
       Server:
       - nginx/1.14.2
       Vary:

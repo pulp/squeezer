@@ -91,8 +91,7 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_ansible_helper import PulpAnsibleDistribution, PulpAnsibleRepository
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import PulpEntityAnsibleModule, PulpAnsibleDistribution, PulpAnsibleRepository
 
 
 def main():
@@ -124,14 +123,15 @@ def main():
         }
 
         if repository_name:
-            repository = PulpAnsibleRepository(module, {'name': repository_name}).find()
-            if repository is None:
+            repository = PulpAnsibleRepository(module, {'name': repository_name})
+            repository.find()
+            if repository.entity is None:
                 module.fail_json(msg="Failed to find repository ({repository_name}).".format(repository_name=repository_name))
             # TODO check if version exists
             if version:
-                desired_attributes['repository_version'] = repository.versions_href + "{version}/".format(version=version)
+                desired_attributes['repository_version'] = repository.entity["versions_href"] + "{version}/".format(version=version)
             else:
-                desired_attributes['repository'] = repository.pulp_href
+                desired_attributes['repository'] = repository.href
 
         PulpAnsibleDistribution(module, natural_key, desired_attributes).process()
 
