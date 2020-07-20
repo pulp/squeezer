@@ -38,7 +38,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Install Ansible
-        run: pip install git+https://github.com/ansible/ansible.git@${{ matrix.ansible }}#egg=ansible
+        run: pip install git+https://github.com/ansible/ansible.git@${{ matrix.ansible }}
       - name: Set Environment to use mazer
         run: |
           echo "::set-env name=COLLECTION_COMMAND::mazer"
@@ -59,7 +59,7 @@ jobs:
         with:
           python-version: "3.8"
       - name: Install Ansible
-        run: pip install git+https://github.com/ansible/ansible.git@devel#egg=ansible
+        run: pip install git+https://github.com/ansible/ansible.git@devel
       - name: Install dependencies
         run: make test-setup
       - name: Run sanity check
