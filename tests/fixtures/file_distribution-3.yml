@@ -16,18 +16,18 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/?limit=1&name=test_file_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/file/file/e0e4e089-5161-465a-a4e1-4602ea76ba12/","pulp_created":"2020-07-21T12:48:09.560939Z","base_path":"test_file_base_path","base_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp/content/test_file_base_path/","content_guard":null,"name":"test_file_distribution","publication":"/pulp/api/v3/publications/file/file/5e913bf5-4e1b-43bd-89dc-342369f6e388/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/file/file/5897f6d1-acd9-4e0e-bff7-89cfa899514a/","pulp_created":"2020-07-23T11:02:40.519326Z","base_path":"test_file_base_path","base_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp/content/test_file_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/d9d34196-6bf5-4bb0-8ab5-17276781fa68/","name":"test_file_distribution","publication":"/pulp/api/v3/publications/file/file/b2a7de66-0701-4f57-832e-7a2fc9a44c40/"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '457'
+      - '534'
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 12:48:12 GMT
+      - Thu, 23 Jul 2020 11:02:43 GMT
       Server:
       - nginx/1.14.2
       Vary:

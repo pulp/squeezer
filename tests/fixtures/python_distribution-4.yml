@@ -16,18 +16,18 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/?limit=1&name=test_python_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/python/pypi/36d5ff94-0481-4f6e-b455-648fb36fed04/","pulp_created":"2020-07-21T19:11:09.617141Z","base_path":"test_python_base_path","base_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp/content/test_python_base_path/","content_guard":null,"name":"test_python_distribution","publication":"/pulp/api/v3/publications/python/pypi/07753ee4-9e49-4e95-be66-ee27e683ad3a/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/python/pypi/ebea2267-63a5-41b4-86ed-9d331ad6ad84/","pulp_created":"2020-07-23T11:34:21.868958Z","base_path":"test_python_base_path","base_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp/content/test_python_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/35f805ee-812c-453a-884c-777a8e5537a0/","name":"test_python_distribution","publication":"/pulp/api/v3/publications/python/pypi/a038601f-58f7-4742-b3fc-bd61002a06b8/"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '467'
+      - '544'
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 19:11:12 GMT
+      - Thu, 23 Jul 2020 11:34:25 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -51,10 +51,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: DELETE
-    uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/36d5ff94-0481-4f6e-b455-648fb36fed04/
+    uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/ebea2267-63a5-41b4-86ed-9d331ad6ad84/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/433b8783-cdbc-4228-81bf-8b37819407ee/"}'
+      string: '{"task":"/pulp/api/v3/tasks/8e1c388e-9f8b-42c0-9a49-257b6ec1acb7/"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -65,7 +65,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 19:11:12 GMT
+      - Thu, 23 Jul 2020 11:34:25 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -89,10 +89,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/433b8783-cdbc-4228-81bf-8b37819407ee/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/8e1c388e-9f8b-42c0-9a49-257b6ec1acb7/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/433b8783-cdbc-4228-81bf-8b37819407ee/","pulp_created":"2020-07-21T19:11:12.878566Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-07-21T19:11:12.958816Z","finished_at":"2020-07-21T19:11:12.977006Z","error":null,"worker":"/pulp/api/v3/workers/8951d6f5-260c-4da5-a49b-a2fc99c570ae/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/8e1c388e-9f8b-42c0-9a49-257b6ec1acb7/","pulp_created":"2020-07-23T11:34:25.121883Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-07-23T11:34:25.195920Z","finished_at":"2020-07-23T11:34:25.212734Z","error":null,"worker":"/pulp/api/v3/workers/3be5e0a7-2cdf-4729-a263-6fc9dd8c7320/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
@@ -103,7 +103,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 19:11:13 GMT
+      - Thu, 23 Jul 2020 11:34:25 GMT
       Server:
       - nginx/1.14.2
       Vary:

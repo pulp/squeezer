@@ -13,7 +13,7 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/?limit=1&name=test_python_distribution
+    uri: http://pulp.example.org/pulp/api/v3/contentguards/certguard/x509/?limit=1&name=test_x509_cert_guard
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -27,7 +27,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2020 11:34:25 GMT
+      - Wed, 22 Jul 2020 19:18:52 GMT
       Server:
       - nginx/1.14.2
       Vary:

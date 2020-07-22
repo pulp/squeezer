@@ -88,6 +88,8 @@ RETURN = r"""
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpEntityAnsibleModule,
     PulpFileDistribution,
+    PulpContentGuard,
+    SqueezerException,
 )
 
 
@@ -102,19 +104,28 @@ def main():
         ],
     ) as module:
 
-        if module.params["content_guard"]:
-            raise Exception(
-                "Content guard features are not yet supported in this module."
-            )
+        content_guard_name = module.params["content_guard"]
 
         natural_key = {
             "name": module.params["name"],
         }
         desired_attributes = {
             key: module.params[key]
-            for key in ["base_path", "content_guard", "publication"]
+            for key in ["base_path", "publication"]
             if module.params[key] is not None
         }
+
+        if content_guard_name is not None:
+            if content_guard_name:
+                content_guard = PulpContentGuard(module, {"name": content_guard_name})
+                content_guard.find()
+                if content_guard.entity is None:
+                    raise SqueezerException(
+                        "Content guard {0} not found.".format(content_guard_name)
+                    )
+                desired_attributes["content_guard"] = content_guard.href
+            else:
+                desired_attributes["content_guard"] = None
 
         PulpFileDistribution(module, natural_key, desired_attributes).process()
 

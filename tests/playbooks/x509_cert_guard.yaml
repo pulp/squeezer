@@ -1,0 +1,152 @@
+---
+- hosts: localhost
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults: &pulp_module_defaults
+    x509_cert_guard: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+  tasks:
+    - name: Make cert guard absent
+      x509_cert_guard:
+        name: test_x509_cert_guard
+        state: absent
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
+
+- hosts: tests
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Create cert guard
+      x509_cert_guard:
+        name: test_x509_cert_guard
+        description: ""
+        ca_certificate: "{{ lookup('file', 'data/ca.pem') }}"
+        state: present
+      register: result
+    - name: Verify create cert guard
+      assert:
+        that:
+          - result.changed == true
+          - result.content_guard.name == 'test_x509_cert_guard'
+
+    - name: Create cert guard (2nd try)
+      x509_cert_guard:
+        name: test_x509_cert_guard
+        state: present
+      register: result
+    - name: Verify create cert guard (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Add description to cert guard
+      x509_cert_guard:
+        name: test_x509_cert_guard
+        description: "cert guard created via ansible"
+        state: present
+      register: result
+    - name: Verify add description to cert guard
+      assert:
+        that:
+          - result.changed == true
+          - result.content_guard.description == "cert guard created via ansible"
+
+    - name: Add description to cert guard (2nd try)
+      x509_cert_guard:
+        name: test_x509_cert_guard
+        description: "cert guard created via ansible"
+        state: present
+      register: result
+    - name: Verify add description to cert guard (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Fake modify cert guard
+      x509_cert_guard:
+        name: test_x509_cert_guard
+        state: present
+      register: result
+    - name: Verify fake modify cert guard
+      assert:
+        that:
+          - result.changed == false
+          - result.content_guard.description == "cert guard created via ansible"
+
+    - name: List repositories
+      x509_cert_guard: {}
+      register: result
+    - name: Verify list repositories
+      assert:
+        that:
+          - result.changed == false
+          - result.content_guards | length >= 1
+
+    - name: Read cert guard
+      x509_cert_guard:
+        name: test_x509_cert_guard
+      register: result
+    - name: Verify read cert guard
+      assert:
+        that:
+          - result.changed == false
+          - result.content_guard.name == 'test_x509_cert_guard'
+          - result.content_guard.description == "cert guard created via ansible"
+
+    - name: Remove description from cert guard
+      x509_cert_guard:
+        name: test_x509_cert_guard
+        description: ""
+        state: present
+      register: result
+    - name: Verify remove description from cert guard
+      assert:
+        that:
+          - result.changed == true
+          - not result.content_guard.description
+
+    - name: Remove description from cert guard (2nd try)
+      x509_cert_guard:
+        name: test_x509_cert_guard
+        description: ""
+        state: present
+      register: result
+    - name: Verify remove description from cert guard (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Delete cert guard
+      x509_cert_guard:
+        name: test_x509_cert_guard
+        state: absent
+      register: result
+    - name: Verify delete cert guard
+      assert:
+        that:
+          - result.changed == true
+          - not result.content_guard
+
+    - name: Delete cert guard (2nd try)
+      x509_cert_guard:
+        name: test_x509_cert_guard
+        state: absent
+      register: result
+    - name: Verify delete cert guard (2nd try)
+      assert:
+        that:
+          - result.changed == false
+...

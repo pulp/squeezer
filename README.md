@@ -30,6 +30,7 @@ A lot of inspiration has been drawn from [foreman-ansible-modules](https://githu
 * `python_sync`
 * `status`
 * `task`
+* `x509_cert_guard`
 
 ## Installation
 
