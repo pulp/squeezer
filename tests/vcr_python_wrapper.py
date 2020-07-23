@@ -7,16 +7,18 @@ import json
 import re
 
 try:
-    from urlparse import urlparse, urlunparse
+    from urlparse import urlparse, urlunparse, parse_qs
 except ImportError:
-    from urllib.parse import urlparse, urlunparse
+    from urllib.parse import urlparse, urlunparse, parse_qs
 
 
 # We need our own json level2 matcher, because, python2 and python3 do not save
 # dictionaries in the same order.
 # Also multipart bounderies must be ignored.
 def amp_body_matcher(r1, r2):
-    if r1.headers.get('content-type') == 'application/json' and r2.headers.get('content-type') == 'application/json':
+    c1 = r1.headers.get('content-type')
+    c2 = r2.headers.get('content-type')
+    if c1 == 'application/json' and c2 == 'application/json':
         if r1.body is None or r2.body is None:
             return r1.body == r2.body
         body1 = json.loads(r1.body.decode('utf8'))
@@ -26,7 +28,9 @@ def amp_body_matcher(r1, r2):
         if 'search' in body2:
             body2['search'] = ','.join(sorted(re.findall(r'([^=,]*="(?:[^"]|\\")*")', body2['search'])))
         return body1 == body2
-    elif r1.headers.get('content-type').startswith('multipart/form-data') and r2.headers.get('content-type').startswith('multipart/form-data'):
+    elif c1.startswith('application/x-www-form-urlencoded') and c2.startswith('application/x-www-form-urlencoded'):
+        return parse_qs(r1.body) == parse_qs(r1.body)
+    elif c1.startswith('multipart/form-data') and c2.startswith('multipart/form-data'):
         if r1.body is None or r2.body is None:
             return r1.body == r2.body
         boundary1 = re.findall(r'boundary=(\S.*)', r1.headers['content-type'])[0].encode()

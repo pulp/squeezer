@@ -24,7 +24,7 @@ author:
 EXAMPLES = r'''
 - name: Read status from pulp api server
   status:
-    api_url: localhost:24817
+    pulp_url: localhost:24817
     username: admin
     password: password
   register: pulp_status
@@ -41,16 +41,15 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import (
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpAnsibleModule,
-    PulpStatus,
 )
 
 
 def main():
     with PulpAnsibleModule() as module:
-        status = PulpStatus(module).api.status_read()
-        module.set_result('status', status.to_dict())
+        status = module.pulp_api.call("status_read")
+        module.set_result("status", status)
 
 
 if __name__ == '__main__':

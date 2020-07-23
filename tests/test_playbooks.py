@@ -37,6 +37,7 @@ def run_playbook_vcr(tmpdir, test_name, extra_vars=None, record=False, check_mod
     params_file = tmpdir.join('test_params_{}.json'.format(test_name))
     params_file.write(json.dumps(test_params))
     os.environ['PAM_TEST_VCR_PARAMS_FILE'] = params_file.strpath
+    os.environ["XDG_CACHE_HOME"] = tmpdir.join("cache").strpath
     return run_playbook(playbook, extra_vars=extra_vars, limit=limit, check_mode=check_mode)
 
 

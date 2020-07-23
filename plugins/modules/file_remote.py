@@ -89,8 +89,7 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_file_helper import PulpFileRemote
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import PulpEntityAnsibleModule, PulpFileRemote
 
 
 def main():

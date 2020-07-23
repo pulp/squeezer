@@ -4,26 +4,30 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.0.0b9/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/python/python/?name=test_python_remote&limit=1
+    uri: http://pulp.example.org/pulp/api/v3/remotes/python/python/?limit=1&name=test_python_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/python/python/509d60f8-5174-427d-8a56-10b41951f4d8/","pulp_created":"2020-06-28T12:58:42.514363Z","name":"test_python_remote","url":"https://fixtures.pulpproject.org/python-pypi/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":null,"username":null,"password":null,"pulp_last_updated":"2020-06-28T12:58:42.514376Z","download_concurrency":20,"policy":"immediate","includes":[{"name":"shelf-reader","version_specifier":""}],"excludes":[],"prereleases":false}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/python/python/71e930d9-4c09-4116-93ea-4269657ac19c/","pulp_created":"2020-07-21T18:59:28.059168Z","name":"test_python_remote","url":"https://fixtures.pulpproject.org/python-pypi/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":null,"username":null,"password":null,"pulp_last_updated":"2020-07-21T18:59:28.059181Z","download_concurrency":20,"policy":"immediate","includes":[{"name":"shelf-reader","version_specifier":""}],"excludes":[],"prereleases":false}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '581'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:58:45 GMT
+      - Tue, 21 Jul 2020 19:05:33 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -38,26 +42,30 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.0.0b9/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/?name=test_python_repository&limit=1
+    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/?limit=1&name=test_python_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/python/python/e2f2464b-b507-43f9-930b-ba304660fdc2/","pulp_created":"2020-06-28T12:58:41.968864Z","versions_href":"/pulp/api/v3/repositories/python/python/e2f2464b-b507-43f9-930b-ba304660fdc2/versions/","latest_version_href":"/pulp/api/v3/repositories/python/python/e2f2464b-b507-43f9-930b-ba304660fdc2/versions/1/","name":"test_python_repository","description":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/python/python/f30b4944-fff0-4fca-a54d-f28491acbbe2/","pulp_created":"2020-07-21T19:05:29.458044Z","versions_href":"/pulp/api/v3/repositories/python/python/f30b4944-fff0-4fca-a54d-f28491acbbe2/versions/","latest_version_href":"/pulp/api/v3/repositories/python/python/f30b4944-fff0-4fca-a54d-f28491acbbe2/versions/1/","name":"test_python_repository","description":null}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '459'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:58:45 GMT
+      - Tue, 21 Jul 2020 19:05:33 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -68,30 +76,36 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"remote": "/pulp/api/v3/remotes/python/python/509d60f8-5174-427d-8a56-10b41951f4d8/"}'
+    body: '{"remote": "/pulp/api/v3/remotes/python/python/71e930d9-4c09-4116-93ea-4269657ac19c/"}'
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
+      Content-Length:
+      - 86
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.0.0b9/python
+      - Python-urllib/3.8
     method: POST
-    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/e2f2464b-b507-43f9-930b-ba304660fdc2/sync/
+    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/f30b4944-fff0-4fca-a54d-f28491acbbe2/sync/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/c4eeb066-af8e-4a5b-ac53-27a9f13f3da5/"}'
+      string: '{"task":"/pulp/api/v3/tasks/f6ec80c7-74f9-4d77-97d4-344dbdbfdad2/"}'
     headers:
       Allow:
       - POST, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '67'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:58:46 GMT
+      - Tue, 21 Jul 2020 19:05:33 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -106,28 +120,30 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/c4eeb066-af8e-4a5b-ac53-27a9f13f3da5/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/f6ec80c7-74f9-4d77-97d4-344dbdbfdad2/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/c4eeb066-af8e-4a5b-ac53-27a9f13f3da5/","pulp_created":"2020-06-28T12:58:46.004723Z","state":"running","name":"pulp_python.app.tasks.sync.sync","started_at":"2020-06-28T12:58:46.089726Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/8b341052-0432-46c3-80f4-34d4e92ac585/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Fetching
-        Project Metadata","code":"fetching.project","state":"running","total":null,"done":0,"suffix":null},{"message":"Downloading
-        Artifacts","code":"downloading.artifacts","state":"running","total":null,"done":0,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/repositories/python/python/e2f2464b-b507-43f9-930b-ba304660fdc2/","/pulp/api/v3/remotes/python/python/509d60f8-5174-427d-8a56-10b41951f4d8/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/f6ec80c7-74f9-4d77-97d4-344dbdbfdad2/","pulp_created":"2020-07-21T19:05:33.593929Z","state":"running","name":"pulp_python.app.tasks.sync.sync","started_at":"2020-07-21T19:05:33.676277Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/1ab9d43f-f365-49b0-b6a7-6af68d4f63e9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/repositories/python/python/f30b4944-fff0-4fca-a54d-f28491acbbe2/","/pulp/api/v3/remotes/python/python/71e930d9-4c09-4116-93ea-4269657ac19c/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - '849'
+      - '609'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:58:46 GMT
+      - Tue, 21 Jul 2020 19:05:33 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -142,29 +158,33 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/c4eeb066-af8e-4a5b-ac53-27a9f13f3da5/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/f6ec80c7-74f9-4d77-97d4-344dbdbfdad2/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/c4eeb066-af8e-4a5b-ac53-27a9f13f3da5/","pulp_created":"2020-06-28T12:58:46.004723Z","state":"completed","name":"pulp_python.app.tasks.sync.sync","started_at":"2020-06-28T12:58:46.089726Z","finished_at":"2020-06-28T12:58:47.700603Z","error":null,"worker":"/pulp/api/v3/workers/8b341052-0432-46c3-80f4-34d4e92ac585/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Fetching
-        Project Metadata","code":"fetching.project","state":"completed","total":null,"done":1,"suffix":null},{"message":"Downloading
-        Artifacts","code":"downloading.artifacts","state":"completed","total":null,"done":0,"suffix":null},{"message":"Associating
-        Content","code":"associating.content","state":"completed","total":null,"done":0,"suffix":null}],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/python/python/e2f2464b-b507-43f9-930b-ba304660fdc2/","/pulp/api/v3/remotes/python/python/509d60f8-5174-427d-8a56-10b41951f4d8/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/f6ec80c7-74f9-4d77-97d4-344dbdbfdad2/","pulp_created":"2020-07-21T19:05:33.593929Z","state":"completed","name":"pulp_python.app.tasks.sync.sync","started_at":"2020-07-21T19:05:33.676277Z","finished_at":"2020-07-21T19:05:35.547624Z","error":null,"worker":"/pulp/api/v3/workers/1ab9d43f-f365-49b0-b6a7-6af68d4f63e9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Downloading
+        Artifacts","code":"downloading.artifacts","state":"completed","total":null,"done":0,"suffix":null},{"message":"Fetching
+        Project Metadata","code":"fetching.project","state":"completed","total":null,"done":1,"suffix":null},{"message":"Associating
+        Content","code":"associating.content","state":"completed","total":null,"done":0,"suffix":null}],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/python/python/f30b4944-fff0-4fca-a54d-f28491acbbe2/","/pulp/api/v3/remotes/python/python/71e930d9-4c09-4116-93ea-4269657ac19c/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '995'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:58:48 GMT
+      - Tue, 21 Jul 2020 19:05:35 GMT
       Server:
       - nginx/1.14.2
       Vary:

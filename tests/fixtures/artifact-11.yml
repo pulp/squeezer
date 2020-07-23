@@ -4,12 +4,16 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/artifacts/?sha256=c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7&limit=1
+    uri: http://pulp.example.org/pulp/api/v3/artifacts/?limit=1&sha256=c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -17,13 +21,13 @@ interactions:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '52'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:55:57 GMT
+      - Sun, 19 Jul 2020 17:41:05 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -38,28 +42,34 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
+      Content-Length:
+      - 17
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: POST
     uri: http://pulp.example.org/pulp/api/v3/uploads/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/uploads/0a7bf848-04c0-4b59-ac63-79a0f8ab3c51/","pulp_created":"2020-06-28T12:55:57.280290Z","size":1049600}'
+      string: '{"pulp_href":"/pulp/api/v3/uploads/589ff487-f67f-4f38-b15f-88cb3b8cef1b/","pulp_created":"2020-07-19T17:41:05.721782Z","size":1049600}'
     headers:
       Allow:
       - GET, POST, HEAD
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '134'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:55:57 GMT
+      - Sun, 19 Jul 2020 17:41:05 GMT
       Location:
-      - /pulp/api/v3/uploads/0a7bf848-04c0-4b59-ac63-79a0f8ab3c51/
+      - /pulp/api/v3/uploads/589ff487-f67f-4f38-b15f-88cb3b8cef1b/
       Server:
       - nginx/1.14.2
       Vary:
@@ -70,9 +80,8 @@ interactions:
       code: 201
       message: Created
 - request:
-    body: "--90c6866aebfdbcfcc9844a6d861cd82c\r\nContent-Disposition: form-data; name=\"\
-      file\"; filename=\"chunk.bin\"\r\nContent-Type: application/octet-stream\r\n\
-      \r\n\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    body: "--c69c141d919c465d9a478a2a0dd5aa94\r\nContent-Disposition: file; name=\"\
+      file\"; filename=\"file\"\r\nContent-Type: application/octet-stream\r\n\r\n\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
@@ -13869,32 +13878,39 @@ interactions:
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
-      \0\0\0\0\r\n--90c6866aebfdbcfcc9844a6d861cd82c--\r\n"
+      \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+      \0\r\n--c69c141d919c465d9a478a2a0dd5aa94--"
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
+      Content-Length:
+      - 524461
       Content-Range:
       - bytes 0-524287/1049600
       Content-Type:
-      - multipart/form-data; boundary=90c6866aebfdbcfcc9844a6d861cd82c
+      - multipart/form-data; boundary=c69c141d919c465d9a478a2a0dd5aa94
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: PUT
-    uri: http://pulp.example.org/pulp/api/v3/uploads/0a7bf848-04c0-4b59-ac63-79a0f8ab3c51/
+    uri: http://pulp.example.org/pulp/api/v3/uploads/589ff487-f67f-4f38-b15f-88cb3b8cef1b/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/uploads/0a7bf848-04c0-4b59-ac63-79a0f8ab3c51/","pulp_created":"2020-06-28T12:55:57.280290Z","size":1049600}'
+      string: '{"pulp_href":"/pulp/api/v3/uploads/589ff487-f67f-4f38-b15f-88cb3b8cef1b/","pulp_created":"2020-07-19T17:41:05.721782Z","size":1049600}'
     headers:
       Allow:
       - GET, HEAD, PUT, DELETE
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '134'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:55:57 GMT
+      - Sun, 19 Jul 2020 17:41:05 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -13905,9 +13921,8 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: "--dfa7d9156a7bd6882295a70ce86ee4fa\r\nContent-Disposition: form-data; name=\"\
-      file\"; filename=\"chunk.bin\"\r\nContent-Type: application/octet-stream\r\n\
-      \r\n\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    body: "--c8ed9b349c5b46a6bb194e5b6d031094\r\nContent-Disposition: file; name=\"\
+      file\"; filename=\"file\"\r\nContent-Type: application/octet-stream\r\n\r\n\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
@@ -27704,32 +27719,39 @@ interactions:
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
-      \0\0\0\0\r\n--dfa7d9156a7bd6882295a70ce86ee4fa--\r\n"
+      \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+      \0\r\n--c8ed9b349c5b46a6bb194e5b6d031094--"
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
+      Content-Length:
+      - 524461
       Content-Range:
       - bytes 524288-1048575/1049600
       Content-Type:
-      - multipart/form-data; boundary=dfa7d9156a7bd6882295a70ce86ee4fa
+      - multipart/form-data; boundary=c8ed9b349c5b46a6bb194e5b6d031094
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: PUT
-    uri: http://pulp.example.org/pulp/api/v3/uploads/0a7bf848-04c0-4b59-ac63-79a0f8ab3c51/
+    uri: http://pulp.example.org/pulp/api/v3/uploads/589ff487-f67f-4f38-b15f-88cb3b8cef1b/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/uploads/0a7bf848-04c0-4b59-ac63-79a0f8ab3c51/","pulp_created":"2020-06-28T12:55:57.280290Z","size":1049600}'
+      string: '{"pulp_href":"/pulp/api/v3/uploads/589ff487-f67f-4f38-b15f-88cb3b8cef1b/","pulp_created":"2020-07-19T17:41:05.721782Z","size":1049600}'
     headers:
       Allow:
       - GET, HEAD, PUT, DELETE
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '134'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:55:57 GMT
+      - Sun, 19 Jul 2020 17:41:05 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -27740,9 +27762,8 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: "--0381ad85ed7a1d09a8b8d5cc6b77e370\r\nContent-Disposition: form-data; name=\"\
-      file\"; filename=\"chunk.bin\"\r\nContent-Type: application/octet-stream\r\n\
-      \r\n\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    body: "--6101a9b4abea45c1bb48a27c47ebb966\r\nContent-Disposition: file; name=\"\
+      file\"; filename=\"file\"\r\nContent-Type: application/octet-stream\r\n\r\n\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
@@ -27769,32 +27790,38 @@ interactions:
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
       \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
-      \r\n--0381ad85ed7a1d09a8b8d5cc6b77e370--\r\n"
+      \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\r\n--6101a9b4abea45c1bb48a27c47ebb966--"
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
+      Content-Length:
+      - 1197
       Content-Range:
       - bytes 1048576-1049599/1049600
       Content-Type:
-      - multipart/form-data; boundary=0381ad85ed7a1d09a8b8d5cc6b77e370
+      - multipart/form-data; boundary=6101a9b4abea45c1bb48a27c47ebb966
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: PUT
-    uri: http://pulp.example.org/pulp/api/v3/uploads/0a7bf848-04c0-4b59-ac63-79a0f8ab3c51/
+    uri: http://pulp.example.org/pulp/api/v3/uploads/589ff487-f67f-4f38-b15f-88cb3b8cef1b/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/uploads/0a7bf848-04c0-4b59-ac63-79a0f8ab3c51/","pulp_created":"2020-06-28T12:55:57.280290Z","size":1049600}'
+      string: '{"pulp_href":"/pulp/api/v3/uploads/589ff487-f67f-4f38-b15f-88cb3b8cef1b/","pulp_created":"2020-07-19T17:41:05.721782Z","size":1049600}'
     headers:
       Allow:
       - GET, HEAD, PUT, DELETE
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '134'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:55:57 GMT
+      - Sun, 19 Jul 2020 17:41:06 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -27809,26 +27836,32 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
+      Content-Length:
+      - 78
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: POST
-    uri: http://pulp.example.org/pulp/api/v3/uploads/0a7bf848-04c0-4b59-ac63-79a0f8ab3c51/commit/
+    uri: http://pulp.example.org/pulp/api/v3/uploads/589ff487-f67f-4f38-b15f-88cb3b8cef1b/commit/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/427553ed-3cf6-4dd8-bb0c-3525e3d5fc6d/"}'
+      string: '{"task":"/pulp/api/v3/tasks/640572c0-a489-4a84-aeb5-0efbcddc7b4c/"}'
     headers:
       Allow:
       - POST
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '67'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:55:57 GMT
+      - Sun, 19 Jul 2020 17:41:06 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -27843,26 +27876,30 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/427553ed-3cf6-4dd8-bb0c-3525e3d5fc6d/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/640572c0-a489-4a84-aeb5-0efbcddc7b4c/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/427553ed-3cf6-4dd8-bb0c-3525e3d5fc6d/","pulp_created":"2020-06-28T12:55:57.772707Z","state":"running","name":"pulpcore.app.tasks.upload.commit","started_at":"2020-06-28T12:55:57.850820Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/uploads/0a7bf848-04c0-4b59-ac63-79a0f8ab3c51/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/640572c0-a489-4a84-aeb5-0efbcddc7b4c/","pulp_created":"2020-07-19T17:41:06.137382Z","state":"running","name":"pulpcore.app.tasks.upload.commit","started_at":"2020-07-19T17:41:06.200455Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/baef34d4-e248-4e67-8e4b-470bbbd635f7/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/uploads/589ff487-f67f-4f38-b15f-88cb3b8cef1b/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '512'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:55:57 GMT
+      - Sun, 19 Jul 2020 17:41:06 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -27877,26 +27914,30 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/427553ed-3cf6-4dd8-bb0c-3525e3d5fc6d/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/640572c0-a489-4a84-aeb5-0efbcddc7b4c/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/427553ed-3cf6-4dd8-bb0c-3525e3d5fc6d/","pulp_created":"2020-06-28T12:55:57.772707Z","state":"completed","name":"pulpcore.app.tasks.upload.commit","started_at":"2020-06-28T12:55:57.850820Z","finished_at":"2020-06-28T12:55:57.917271Z","error":null,"worker":"/pulp/api/v3/workers/c3729fc8-c87c-46ad-97de-a628e298af99/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/artifacts/59351eea-4f0f-4523-869b-07aaedc888c5/"],"reserved_resources_record":["/pulp/api/v3/uploads/0a7bf848-04c0-4b59-ac63-79a0f8ab3c51/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/640572c0-a489-4a84-aeb5-0efbcddc7b4c/","pulp_created":"2020-07-19T17:41:06.137382Z","state":"completed","name":"pulpcore.app.tasks.upload.commit","started_at":"2020-07-19T17:41:06.200455Z","finished_at":"2020-07-19T17:41:06.276793Z","error":null,"worker":"/pulp/api/v3/workers/baef34d4-e248-4e67-8e4b-470bbbd635f7/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/artifacts/22ea93bd-eb14-4168-8367-d50934b44054/"],"reserved_resources_record":["/pulp/api/v3/uploads/589ff487-f67f-4f38-b15f-88cb3b8cef1b/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '601'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:56:00 GMT
+      - Sun, 19 Jul 2020 17:41:08 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -27911,26 +27952,30 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/artifacts/59351eea-4f0f-4523-869b-07aaedc888c5/
+    uri: http://pulp.example.org/pulp/api/v3/artifacts/22ea93bd-eb14-4168-8367-d50934b44054/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/artifacts/59351eea-4f0f-4523-869b-07aaedc888c5/","pulp_created":"2020-06-28T12:55:57.906833Z","file":"artifact/c4/aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","size":1049600,"md5":"3d283316360c56857e7c212cfecbbd83","sha1":"b8930b94f05c8ce5cc628813dcf3d88d2da75e8a","sha224":"bfba29a479f1bd11d35b7122e16bf88f672a7eb9d41c88c229fbc3e5","sha256":"c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","sha384":"c0ef7ed5e3abbf74c83c9f65d69835d513e2a3ab2dafaba149eb0054327535cf0d3cfd1c6925d4142624a543e3000144","sha512":"884b6ec520cf21e1d8625235ddfa0670e15c3ddb30fd3c89117c1d2213507448a87a713fb355a51aad84e31a6adae696d0f6166dfa222589fc67b395aa657899"}'
+      string: '{"pulp_href":"/pulp/api/v3/artifacts/22ea93bd-eb14-4168-8367-d50934b44054/","pulp_created":"2020-07-19T17:41:06.261769Z","file":"artifact/c4/aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","size":1049600,"md5":"3d283316360c56857e7c212cfecbbd83","sha1":"b8930b94f05c8ce5cc628813dcf3d88d2da75e8a","sha224":"bfba29a479f1bd11d35b7122e16bf88f672a7eb9d41c88c229fbc3e5","sha256":"c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","sha384":"c0ef7ed5e3abbf74c83c9f65d69835d513e2a3ab2dafaba149eb0054327535cf0d3cfd1c6925d4142624a543e3000144","sha512":"884b6ec520cf21e1d8625235ddfa0670e15c3ddb30fd3c89117c1d2213507448a87a713fb355a51aad84e31a6adae696d0f6166dfa222589fc67b395aa657899"}'
     headers:
       Allow:
       - GET, DELETE, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '703'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:56:00 GMT
+      - Sun, 19 Jul 2020 17:41:08 GMT
       Server:
       - nginx/1.14.2
       Vary:

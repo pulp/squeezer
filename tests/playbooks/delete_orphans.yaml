@@ -27,6 +27,10 @@
         digest: "{{ result.artifact.sha256 }}"
         relative_path: "data/file1.txt"
         state: present
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
 
 - hosts: tests
   collections:

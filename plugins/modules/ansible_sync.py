@@ -53,8 +53,8 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import PulpAnsibleModule
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_ansible_helper import (
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+    PulpAnsibleModule,
     PulpAnsibleRemote,
     PulpAnsibleRepository
 )
@@ -69,22 +69,22 @@ def main():
     ) as module:
 
         remote = PulpAnsibleRemote(module, {'name': module.params['remote']})
-        remote_entity = remote.find()
+        remote.find()
 
-        if remote_entity is None:
+        if remote.entity is None:
             module.fail_json(msg="Remote '{0}' not found.".format(module.params['remote']))
 
         repository = PulpAnsibleRepository(module, {'name': module.params['repository']})
-        repository_entity = repository.find()
-        if repository_entity is None:
+        repository.find()
+        if repository.entity is None:
             module.fail_json(msg="Repository '{0}' not found.".format(module.params['repository']))
 
-        repository_version = repository_entity.latest_version_href
-        sync_task = repository.sync(remote_entity.pulp_href)
+        repository_version = repository.entity["latest_version_href"]
+        sync_task = repository.sync(remote.href)
 
-        if sync_task.created_resources:
-            module._changed = True
-            repository_version = sync_task.created_resources[0]
+        if sync_task["created_resources"]:
+            module.set_changed()
+            repository_version = sync_task["created_resources"][0]
 
         module.set_result('repository_version', repository_version)
 

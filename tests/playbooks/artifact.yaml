@@ -18,6 +18,10 @@
       loop:
         - data/small_artifact.dat
         - data/large_artifact.dat
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
 
 - hosts: tests
   collections:

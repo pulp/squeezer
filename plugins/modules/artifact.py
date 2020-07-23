@@ -76,7 +76,7 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import (
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpEntityAnsibleModule,
     PulpArtifact,
 )
@@ -108,11 +108,11 @@ def main():
         natural_key = {
             'sha256': sha256,
         }
-        desired_attributes = {
+        uploads = {
             'file': module.params['file'],
         }
 
-        PulpArtifact(module, natural_key, desired_attributes).process()
+        PulpArtifact(module, natural_key, uploads=uploads).process()
 
 
 if __name__ == '__main__':

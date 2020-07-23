@@ -74,8 +74,18 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule, PulpArtifact
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_ansible_helper import PulpAnsibleRole
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import PulpEntityAnsibleModule, PulpArtifact, PulpEntity
+
+
+class PulpAnsibleRole(PulpEntity):
+    _name_singular = "content"
+    _name_plural = "contents"
+
+    _pulp_href = "role_href"
+    _list_id = "content_ansible_roles_list"
+    _read_id = "content_ansible_roles_read"
+    _create_id = "content_ansible_roles_create"
+    _delete_id = "content_ansible_roles_delete"
 
 
 def main():
@@ -99,7 +109,9 @@ def main():
         }
         desired_attributes = {}
         if module.params['sha256']:
-            desired_attributes['artifact'] = PulpArtifact(module, {'sha256': module.params['sha256']}).find().pulp_href
+            artifact = PulpArtifact(module, {'sha256': module.params['sha256']})
+            artifact.find()
+            desired_attributes['artifact'] = artifact.href
 
         PulpAnsibleRole(module, natural_key, desired_attributes).process()
 

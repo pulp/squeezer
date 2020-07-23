@@ -73,7 +73,7 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule, PulpTask
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import PulpEntityAnsibleModule, PulpTask
 
 
 def main():
@@ -85,7 +85,9 @@ def main():
             ),
         ),
         required_if=[
+            ('state', 'absent', ['pulp_href']),
             ('state', 'canceled', ['pulp_href']),
+            ('state', 'completed', ['pulp_href']),
         ]
     ) as module:
 

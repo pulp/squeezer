@@ -4,27 +4,31 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/0.2.0b15.dev01593213817/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?name=test_ansible_repository&limit=1
+    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?limit=1&name=test_ansible_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/5de6abce-d43d-4f24-a854-72574de74f9d/","pulp_created":"2020-06-28T12:55:02.842098Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/5de6abce-d43d-4f24-a854-72574de74f9d/versions/","latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/5de6abce-d43d-4f24-a854-72574de74f9d/versions/0/","name":"test_ansible_repository","description":"repository
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/","pulp_created":"2020-07-21T19:13:27.936655Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/versions/","latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/versions/0/","name":"test_ansible_repository","description":"repository
         created via ansible"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '494'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:55:05 GMT
+      - Tue, 21 Jul 2020 19:13:30 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -35,30 +39,39 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: null
+    body: '{"pulp_href": "/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/",
+      "pulp_created": "2020-07-21T19:13:27.936655Z", "versions_href": "/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/versions/",
+      "latest_version_href": "/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/versions/0/",
+      "name": "test_ansible_repository", "description": null}'
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
+      Content-Length:
+      - 425
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/0.2.0b15.dev01593213817/python
-    method: DELETE
-    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/5de6abce-d43d-4f24-a854-72574de74f9d/
+      - Python-urllib/3.8
+    method: PUT
+    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/f93f4dca-59f0-41b8-9869-a9a5c1b288b9/"}'
+      string: '{"task":"/pulp/api/v3/tasks/3013b30c-d73b-47cc-8825-8d98fb203b0e/"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '67'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:55:05 GMT
+      - Tue, 21 Jul 2020 19:13:30 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -73,26 +86,68 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.2.1/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/f93f4dca-59f0-41b8-9869-a9a5c1b288b9/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/3013b30c-d73b-47cc-8825-8d98fb203b0e/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/f93f4dca-59f0-41b8-9869-a9a5c1b288b9/","pulp_created":"2020-06-28T12:55:05.991510Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-06-28T12:55:06.069632Z","finished_at":"2020-06-28T12:55:06.102314Z","error":null,"worker":"/pulp/api/v3/workers/8b341052-0432-46c3-80f4-34d4e92ac585/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/ansible/ansible/5de6abce-d43d-4f24-a854-72574de74f9d/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/3013b30c-d73b-47cc-8825-8d98fb203b0e/","pulp_created":"2020-07-21T19:13:30.834757Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","started_at":"2020-07-21T19:13:30.910307Z","finished_at":"2020-07-21T19:13:30.923840Z","error":null,"worker":"/pulp/api/v3/workers/8951d6f5-260c-4da5-a49b-a2fc99c570ae/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '566'
       Content-Type:
       - application/json
       Date:
-      - Sun, 28 Jun 2020 12:55:06 GMT
+      - Tue, 21 Jul 2020 19:13:30 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian10
+      User-Agent:
+      - Python-urllib/3.8
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/","pulp_created":"2020-07-21T19:13:27.936655Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/versions/","latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/versions/0/","name":"test_ansible_repository","description":null}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '414'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 21 Jul 2020 19:13:31 GMT
       Server:
       - nginx/1.14.2
       Vary:

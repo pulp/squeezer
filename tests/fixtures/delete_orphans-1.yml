@@ -4,26 +4,30 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.1.0/python
+      - Python-urllib/3.8
     method: DELETE
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/orphans/
+    uri: http://pulp.example.org/pulp/api/v3/orphans/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/fe8ad7d8-5ce8-4877-96d6-3f6b4a409fa8/"}'
+      string: '{"task":"/pulp/api/v3/tasks/846339da-7555-4eae-8c4c-30d66767f327/"}'
     headers:
       Allow:
       - DELETE, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
       - '67'
       Content-Type:
       - application/json
       Date:
-      - Mon, 10 Feb 2020 18:43:54 GMT
+      - Mon, 13 Jul 2020 11:44:55 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -38,28 +42,32 @@ interactions:
     headers:
       Accept:
       - application/json
+      Connection:
+      - close
       Content-Type:
       - application/json
+      Host:
+      - pulp3-sandbox-debian10
       User-Agent:
-      - OpenAPI-Generator/3.1.0/python
+      - Python-urllib/3.8
     method: GET
-    uri: http://pulp3-sandbox-debian10/pulp/api/v3/tasks/fe8ad7d8-5ce8-4877-96d6-3f6b4a409fa8/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/846339da-7555-4eae-8c4c-30d66767f327/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/fe8ad7d8-5ce8-4877-96d6-3f6b4a409fa8/","pulp_created":"2020-02-10T18:43:54.458446Z","state":"completed","name":"pulpcore.app.tasks.orphan.orphan_cleanup","started_at":"2020-02-10T18:43:54.530394Z","finished_at":"2020-02-10T18:43:54.586111Z","error":null,"worker":"/pulp/api/v3/workers/f0e54f7b-e0e5-4d2f-8bf1-41fa844c0cdd/","progress_reports":[{"message":"Clean
+      string: '{"pulp_href":"/pulp/api/v3/tasks/846339da-7555-4eae-8c4c-30d66767f327/","pulp_created":"2020-07-13T11:44:55.844100Z","state":"completed","name":"pulpcore.app.tasks.orphan.orphan_cleanup","started_at":"2020-07-13T11:44:55.878097Z","finished_at":"2020-07-13T11:44:55.894577Z","error":null,"worker":"/pulp/api/v3/workers/768a19e3-a327-46ae-9048-3a5707ca6122/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Clean
         up orphan Content","code":"clean-up.content","state":"completed","total":0,"done":0,"suffix":null},{"message":"Clean
         up orphan Artifacts","code":"clean-up.content","state":"completed","total":0,"done":0,"suffix":null}],"created_resources":[],"reserved_resources_record":[]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - keep-alive
+      - close
       Content-Length:
-      - '668'
+      - '722'
       Content-Type:
       - application/json
       Date:
-      - Mon, 10 Feb 2020 18:43:54 GMT
+      - Mon, 13 Jul 2020 11:44:55 GMT
       Server:
       - nginx/1.14.2
       Vary:

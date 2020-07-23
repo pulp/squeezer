@@ -69,8 +69,7 @@ RETURN = r'''
 '''
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_helper import PulpEntityAnsibleModule
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_ansible_helper import PulpAnsibleRepository
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import PulpEntityAnsibleModule, PulpAnsibleRepository
 
 
 def main():
@@ -89,7 +88,6 @@ def main():
         desired_attributes = {}
         if module.params['description'] is not None:
             # In case of an empty string we try to nullify the description
-            # Which does not yet work
             desired_attributes['description'] = module.params['description'] or None
 
         PulpAnsibleRepository(module, natural_key, desired_attributes).process()
