@@ -3,13 +3,14 @@
 # copyright (c) 2019, Matthias Dellweg
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-from __future__ import (absolute_import, division, print_function)
+from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
 class ModuleDocFragment(object):
     # Common pulp documentation fragment
-    DOCUMENTATION = r'''
+    DOCUMENTATION = r"""
 requirements:
   - pulpcore-client
 options:
@@ -33,9 +34,9 @@ options:
       - Whether SSL certificates should be verified.
     type: bool
     default: true
-'''
+"""
 
-    ENTITY_STATE = r'''
+    ENTITY_STATE = r"""
 options:
   state:
     description:
@@ -44,4 +45,4 @@ options:
     choices:
       - present
       - absent
-'''
+"""

@@ -5,10 +5,11 @@
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
-DOCUMENTATION = r'''
+DOCUMENTATION = r"""
 ---
 module: file_remote
 short_description: Manage file remotes of a pulp api server instance
@@ -48,9 +49,9 @@ extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
-'''
+"""
 
-EXAMPLES = r'''
+EXAMPLES = r"""
 - name: Read list of file remotes from pulp api server
   file_remote:
     api_url: localhost:24817
@@ -75,9 +76,9 @@ EXAMPLES = r'''
     password: password
     name: new_file_remote
     state: absent
-'''
+"""
 
-RETURN = r'''
+RETURN = r"""
   remotes:
     description: List of file remotes
     type: list
@@ -86,10 +87,13 @@ RETURN = r'''
     description: File remote details
     type: dict
     returned: when name is given
-'''
+"""
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import PulpEntityAnsibleModule, PulpFileRemote
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+    PulpEntityAnsibleModule,
+    PulpFileRemote,
+)
 
 
 def main():
@@ -97,26 +101,29 @@ def main():
         argument_spec=dict(
             name=dict(),
             url=dict(),
-            download_concurrency=dict(type='int'),
-            policy=dict(
-                choices=['immediate', 'on-demand', 'streamed'],
-            ),
-            proxy_url=dict(type='str'),
-            tls_validation=dict(type='bool'),
+            download_concurrency=dict(type="int"),
+            policy=dict(choices=["immediate", "on-demand", "streamed"],),
+            proxy_url=dict(type="str"),
+            tls_validation=dict(type="bool"),
         ),
-        required_if=[
-            ('state', 'present', ['name']),
-            ('state', 'absent', ['name']),
-        ]
+        required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
 
-        natural_key = {'name': module.params['name']}
+        natural_key = {"name": module.params["name"]}
         desired_attributes = {
-            key: module.params[key] for key in ['url', 'download_concurrency', 'policy', 'proxy_url', 'tls_validation'] if module.params[key] is not None
+            key: module.params[key]
+            for key in [
+                "url",
+                "download_concurrency",
+                "policy",
+                "proxy_url",
+                "tls_validation",
+            ]
+            if module.params[key] is not None
         }
 
         PulpFileRemote(module, natural_key, desired_attributes).process()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

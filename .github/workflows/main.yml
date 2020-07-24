@@ -74,6 +74,6 @@ jobs:
         with:
           python-version: "3.8"
       - name: Install dependencies
-        run: pip install flake8 yamllint
+        run: pip install black yamllint
       - name: Run linter
         run: make lint

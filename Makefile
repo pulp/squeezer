@@ -36,7 +36,7 @@ info:
 lint: $(MANIFEST) | tests/playbooks/vars/server.yaml
 	yamllint -f parsable tests/playbooks
 	ansible-playbook --syntax-check tests/playbooks/*.yaml | grep -v '^$$'
-	flake8 --ignore=E402 --max-line-length=160 plugins/ tests/
+	black . --diff --check
 
 sanity: $(MANIFEST) | tests/playbooks/vars/server.yaml
 	# Fake a fresh git repo for ansible-test

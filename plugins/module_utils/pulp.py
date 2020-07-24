@@ -4,6 +4,7 @@
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 import os
@@ -28,11 +29,15 @@ class PulpAnsibleModule(AnsibleModule):
             pulp_url=dict(required=True),
             username=dict(required=True),
             password=dict(required=True, no_log=True),
-            validate_certs=dict(type='bool', default=True),
+            validate_certs=dict(type="bool", default=True),
         )
-        argument_spec.update(kwargs.pop('argument_spec', {}))
-        supports_check_mode = kwargs.pop('supports_check_mode', True)
-        super(PulpAnsibleModule, self).__init__(argument_spec=argument_spec, supports_check_mode=supports_check_mode, **kwargs)
+        argument_spec.update(kwargs.pop("argument_spec", {}))
+        supports_check_mode = kwargs.pop("supports_check_mode", True)
+        super(PulpAnsibleModule, self).__init__(
+            argument_spec=argument_spec,
+            supports_check_mode=supports_check_mode,
+            **kwargs
+        )
 
     def __enter__(self):
         self._changed = False
@@ -42,7 +47,7 @@ class PulpAnsibleModule(AnsibleModule):
             doc_path="/pulp/api/v3/docs/api.json",
             username=self.params["username"],
             password=self.params["password"],
-            validate_certs=self.params['validate_certs'],
+            validate_certs=self.params["validate_certs"],
         )
 
         return self
@@ -58,7 +63,9 @@ class PulpAnsibleModule(AnsibleModule):
                 self.fail_json(
                     msg=str(exc_value),
                     changed=self._changed,
-                    exception="\n".join(traceback.format_exception(exc_class, exc_value, tb)),
+                    exception="\n".join(
+                        traceback.format_exception(exc_class, exc_value, tb)
+                    ),
                 )
                 return True
 
@@ -71,13 +78,11 @@ class PulpAnsibleModule(AnsibleModule):
 
 class PulpEntityAnsibleModule(PulpAnsibleModule):
     def __init__(self, **kwargs):
-        argument_spec = dict(
-            state=dict(
-                choices=['present', 'absent'],
-            ),
+        argument_spec = dict(state=dict(choices=["present", "absent"],),)
+        argument_spec.update(kwargs.pop("argument_spec", {}))
+        super(PulpEntityAnsibleModule, self).__init__(
+            argument_spec=argument_spec, **kwargs
         )
-        argument_spec.update(kwargs.pop('argument_spec', {}))
-        super(PulpEntityAnsibleModule, self).__init__(argument_spec=argument_spec, **kwargs)
 
 
 class PulpEntity(object):
@@ -114,7 +119,9 @@ class PulpEntity(object):
         offset = 0
         search_result = {"next": True}
         while search_result["next"]:
-            search_result = self.module.pulp_api.call(self._list_id, parameters={"limit": PAGE_LIMIT, "offset": offset})
+            search_result = self.module.pulp_api.call(
+                self._list_id, parameters={"limit": PAGE_LIMIT, "offset": offset}
+            )
             entities.extend(search_result["results"])
             offset += PAGE_LIMIT
         return entities
@@ -122,7 +129,9 @@ class PulpEntity(object):
     def read(self):
         if not hasattr(self, "_read_id"):
             raise SqueezerException("This entity is not readable.")
-        self.entity = self.module.pulp_api.call(self._read_id, parameters=self.primary_key)
+        self.entity = self.module.pulp_api.call(
+            self._read_id, parameters=self.primary_key
+        )
 
     def create(self):
         if not hasattr(self, "_create_id"):
@@ -131,7 +140,9 @@ class PulpEntity(object):
         self.entity.update(self.natural_key)
         self.entity.update(self.desired_attributes)
         if not self.module.check_mode:
-            response = self.module.pulp_api.call(self._create_id, body=self.entity, uploads=self.uploads)
+            response = self.module.pulp_api.call(
+                self._create_id, body=self.entity, uploads=self.uploads
+            )
             if response and "task" in response:
                 task = PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
                 self.entity = {"pulp_href": task["created_resources"][0]}
@@ -150,7 +161,9 @@ class PulpEntity(object):
             if not hasattr(self, "_update_id"):
                 raise SqueezerException("This entity is immutable.")
             if not self.module.check_mode:
-                response = self.module.pulp_api.call(self._update_id, parameters=self.primary_key, body=self.entity)
+                response = self.module.pulp_api.call(
+                    self._update_id, parameters=self.primary_key, body=self.entity
+                )
                 if response and "task" in response:
                     PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
                     self.read()
@@ -162,7 +175,9 @@ class PulpEntity(object):
         if not hasattr(self, "_delete_id"):
             raise SqueezerException("This entity is not deletable.")
         if not self.module.check_mode:
-            response = self.module.pulp_api.call(self._delete_id, parameters=self.primary_key)
+            response = self.module.pulp_api.call(
+                self._delete_id, parameters=self.primary_key
+            )
             if response and "task" in response:
                 PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
         self.entity = None
@@ -171,23 +186,27 @@ class PulpEntity(object):
     def sync(self, remote_href):
         if not hasattr(self, "_sync_id"):
             raise SqueezerException("This entity is not syncable.")
-        response = self.module.pulp_api.call(self._sync_id, parameters=self.primary_key, body={"remote": remote_href})
-        return PulpTask(self.module, {'pulp_href': response["task"]}).wait_for()
+        response = self.module.pulp_api.call(
+            self._sync_id, parameters=self.primary_key, body={"remote": remote_href}
+        )
+        return PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
 
     def process_special(self):
-        raise SqueezerException("Invalid state ({0}) for entity.".format(self.module.params['state']))
+        raise SqueezerException(
+            "Invalid state ({0}) for entity.".format(self.module.params["state"])
+        )
 
     def process(self):
         if None not in self.natural_key.values():
             self.find()
-            if self.module.params['state'] is None:
+            if self.module.params["state"] is None:
                 pass
-            elif self.module.params['state'] == 'present':
+            elif self.module.params["state"] == "present":
                 if self.entity is None:
                     self.create()
                 else:
                     self.update()
-            elif self.module.params['state'] == 'absent':
+            elif self.module.params["state"] == "absent":
                 if self.entity is not None:
                     self.delete()
             else:
@@ -206,15 +225,17 @@ class PulpArtifact(PulpEntity):
     _create_id = "artifacts_create"
     _delete_id = "artifacts_delete"
 
-    _name_singular = 'artifact'
-    _name_plural = 'artifacts'
+    _name_singular = "artifact"
+    _name_plural = "artifacts"
 
     def create(self):
         filename = self.uploads["file"]
         size = os.stat(filename).st_size
         if size > CONTENT_CHUNK_SIZE:
             if not self.module.check_mode:
-                artifact_href = PulpUpload.chunked_upload(self.module, filename, self.natural_key["sha256"], size)
+                artifact_href = PulpUpload.chunked_upload(
+                    self.module, filename, self.natural_key["sha256"], size
+                )
                 self.entity = {"pulp_href": artifact_href}
                 self.read()
             else:
@@ -234,7 +255,10 @@ class PulpOrphans(PulpEntity):
             response = self.module.pulp_api.call(self._delete_id)
             task = PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
             response = task["progress_reports"]
-            response = {item["message"].split(" ")[-1].lower(): item["total"] for item in response}
+            response = {
+                item["message"].split(" ")[-1].lower(): item["total"]
+                for item in response
+            }
         else:
             response = {
                 "artifacts": 0,
@@ -267,7 +291,11 @@ class PulpTask(PulpEntity):
                 self.entity["state"] = self.module.params["state"]
                 if not self.module.check_mode:
                     if self.module.params["state"] == "canceled":
-                        self.module.pulp_api.call(self._cancel_id, parameters=self.primary_key, body=self.entity)
+                        self.module.pulp_api.call(
+                            self._cancel_id,
+                            parameters=self.primary_key,
+                            body=self.entity,
+                        )
                     self.wait_for(desired_state=self.module.params["state"])
         else:
             super(PulpTask, self).process_special()
@@ -279,7 +307,11 @@ class PulpTask(PulpEntity):
             self.read()
         if self.entity["state"] != desired_state:
             if self.entity["state"] == "failed":
-                raise Exception("Task failed to complete. ({0}; {1})".format(self.entity["state"], self.entity["error"]["description"]))
+                raise Exception(
+                    "Task failed to complete. ({0}; {1})".format(
+                        self.entity["state"], self.entity["error"]["description"]
+                    )
+                )
             raise Exception("Task did not reach {0} state".format(desired_state))
         return self.entity
 
@@ -302,14 +334,14 @@ class PulpUpload(PulpEntity):
                 for chunk in iter(lambda: f.read(CONTENT_CHUNK_SIZE), b""):
                     actual_chunk_size = len(chunk)
                     content_range = "bytes {start}-{end}/{size}".format(
-                        start=offset,
-                        end=offset + actual_chunk_size - 1,
-                        size=size,
+                        start=offset, end=offset + actual_chunk_size - 1, size=size,
                     )
                     parameters = upload.primary_key
                     parameters["Content-Range"] = content_range
                     uploads = {"file": chunk}
-                    module.pulp_api.call(cls._update_id, parameters=parameters, uploads=uploads)
+                    module.pulp_api.call(
+                        cls._update_id, parameters=parameters, uploads=uploads
+                    )
                     offset += actual_chunk_size
 
                 response = module.pulp_api.call(
@@ -327,6 +359,7 @@ class PulpUpload(PulpEntity):
 
 
 # File entities
+
 
 class PulpFileContent(PulpEntity):
     _href = "file_content_href"
@@ -402,6 +435,7 @@ class PulpFileRepository(PulpEntity):
 
 # Ansible entities
 
+
 class PulpAnsibleDistribution(PulpEntity):
     _href = "ansible_distribution_href"
     _list_id = "distributions_ansible_ansible_list"
@@ -440,6 +474,7 @@ class PulpAnsibleRepository(PulpEntity):
 
 
 # Python entities
+
 
 class PulpPythonDistribution(PulpEntity):
     _href = "python_distribution_href"

@@ -5,10 +5,11 @@
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
-DOCUMENTATION = r'''
+DOCUMENTATION = r"""
 ---
 module: python_remote
 short_description: Manage python remotes of a pulp api server instance
@@ -84,9 +85,9 @@ extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
-'''
+"""
 
-EXAMPLES = r'''
+EXAMPLES = r"""
 - name: Read list of python remotes from pulp api server
   python_remote:
     api_url: localhost:24817
@@ -111,9 +112,9 @@ EXAMPLES = r'''
     password: password
     name: new_python_remote
     state: absent
-'''
+"""
 
-RETURN = r'''
+RETURN = r"""
   remotes:
     description: List of python remotes
     type: list
@@ -122,13 +123,25 @@ RETURN = r'''
     description: Python remote details
     type: dict
     returned: when name is given
-'''
+"""
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import PulpEntityAnsibleModule, PulpPythonRemote
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+    PulpEntityAnsibleModule,
+    PulpPythonRemote,
+)
 
 
-DESIRED_KEYS = {'url', 'download_concurrency', 'policy', 'proxy_url', 'tls_validation', 'prereleases', 'includes', 'excludes'}
+DESIRED_KEYS = {
+    "url",
+    "download_concurrency",
+    "policy",
+    "proxy_url",
+    "tls_validation",
+    "prereleases",
+    "includes",
+    "excludes",
+}
 
 
 def main():
@@ -136,43 +149,38 @@ def main():
         argument_spec=dict(
             name=dict(),
             url=dict(),
-            download_concurrency=dict(type='int'),
-            policy=dict(
-                choices=['immediate', 'on-demand', 'streamed'],
-            ),
-            proxy_url=dict(type='str'),
-            tls_validation=dict(type='bool'),
+            download_concurrency=dict(type="int"),
+            policy=dict(choices=["immediate", "on-demand", "streamed"],),
+            proxy_url=dict(type="str"),
+            tls_validation=dict(type="bool"),
             includes=dict(
-                type='list',
-                elements='dict',
+                type="list",
+                elements="dict",
                 options=dict(
-                    name=dict(required=True),
-                    version_specifier=dict(default=''),
+                    name=dict(required=True), version_specifier=dict(default=""),
                 ),
             ),
             excludes=dict(
-                type='list',
-                elements='dict',
+                type="list",
+                elements="dict",
                 options=dict(
-                    name=dict(required=True),
-                    version_specifier=dict(default=''),
+                    name=dict(required=True), version_specifier=dict(default=""),
                 ),
             ),
-            prereleases=dict(type='bool'),
+            prereleases=dict(type="bool"),
         ),
-        required_if=[
-            ('state', 'present', ['name']),
-            ('state', 'absent', ['name']),
-        ]
+        required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
 
-        natural_key = {'name': module.params['name']}
+        natural_key = {"name": module.params["name"]}
         desired_attributes = {
-            key: module.params[key] for key in DESIRED_KEYS if module.params[key] is not None
+            key: module.params[key]
+            for key in DESIRED_KEYS
+            if module.params[key] is not None
         }
 
         PulpPythonRemote(module, natural_key, desired_attributes).process()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
