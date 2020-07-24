@@ -5,10 +5,11 @@
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
-DOCUMENTATION = r'''
+DOCUMENTATION = r"""
 ---
 module: file_distribution
 short_description: Manage file distributions of a pulp api server instance
@@ -41,9 +42,9 @@ extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
-'''
+"""
 
-EXAMPLES = r'''
+EXAMPLES = r"""
 - name: Read list of file distributions from pulp api server
   file_distribution:
     api_url: localhost:24817
@@ -70,9 +71,9 @@ EXAMPLES = r'''
     password: password
     name: new_file_distribution
     state: absent
-'''
+"""
 
-RETURN = r'''
+RETURN = r"""
   distributions:
     description: List of file distributions
     type: list
@@ -81,38 +82,42 @@ RETURN = r'''
     description: File distribution details
     type: dict
     returned: when name is given
-'''
+"""
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import PulpEntityAnsibleModule, PulpFileDistribution
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+    PulpEntityAnsibleModule,
+    PulpFileDistribution,
+)
 
 
 def main():
     with PulpEntityAnsibleModule(
         argument_spec=dict(
-            name=dict(),
-            base_path=dict(),
-            publication=dict(),
-            content_guard=dict(),
+            name=dict(), base_path=dict(), publication=dict(), content_guard=dict(),
         ),
         required_if=[
-            ('state', 'present', ['name', 'base_path']),
-            ('state', 'absent', ['name']),
+            ("state", "present", ["name", "base_path"]),
+            ("state", "absent", ["name"]),
         ],
     ) as module:
 
-        if module.params['content_guard']:
-            raise Exception("Content guard features are not yet supported in this module.")
+        if module.params["content_guard"]:
+            raise Exception(
+                "Content guard features are not yet supported in this module."
+            )
 
         natural_key = {
-            'name': module.params['name'],
+            "name": module.params["name"],
         }
         desired_attributes = {
-            key: module.params[key] for key in ['base_path', 'content_guard', 'publication'] if module.params[key] is not None
+            key: module.params[key]
+            for key in ["base_path", "content_guard", "publication"]
+            if module.params[key] is not None
         }
 
         PulpFileDistribution(module, natural_key, desired_attributes).process()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

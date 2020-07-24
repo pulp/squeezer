@@ -5,10 +5,11 @@
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
-DOCUMENTATION = r'''
+DOCUMENTATION = r"""
 ---
 module: task
 short_description: Manage tasks of a pulp api server instance
@@ -31,9 +32,9 @@ extends_documentation_fragment:
   - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
-'''
+"""
 
-EXAMPLES = r'''
+EXAMPLES = r"""
 - name: Read list of tasks from pulp server
   tasks:
     api_url: localhost:24817
@@ -59,9 +60,9 @@ EXAMPLES = r'''
     password: password
     name: new_file_remote
     state: absent
-'''
+"""
 
-RETURN = r'''
+RETURN = r"""
   tasks:
     description: List of tasks
     type: list
@@ -70,32 +71,32 @@ RETURN = r'''
     description: Task details
     type: dict
     returned: when id is given
-'''
+"""
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import PulpEntityAnsibleModule, PulpTask
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+    PulpEntityAnsibleModule,
+    PulpTask,
+)
 
 
 def main():
     with PulpEntityAnsibleModule(
         argument_spec=dict(
-            pulp_href=dict(),
-            state=dict(
-                choices=['absent', 'canceled', 'completed'],
-            ),
+            pulp_href=dict(), state=dict(choices=["absent", "canceled", "completed"],),
         ),
         required_if=[
-            ('state', 'absent', ['pulp_href']),
-            ('state', 'canceled', ['pulp_href']),
-            ('state', 'completed', ['pulp_href']),
-        ]
+            ("state", "absent", ["pulp_href"]),
+            ("state", "canceled", ["pulp_href"]),
+            ("state", "completed", ["pulp_href"]),
+        ],
     ) as module:
 
-        natural_key = {'pulp_href': module.params['pulp_href']}
+        natural_key = {"pulp_href": module.params["pulp_href"]}
         desired_attributes = {}
 
         PulpTask(module, natural_key, desired_attributes).process()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

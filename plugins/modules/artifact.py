@@ -5,10 +5,11 @@
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
-DOCUMENTATION = r'''
+DOCUMENTATION = r"""
 ---
 module: artifact
 short_description: Manage artifacts of a pulp api server instance
@@ -29,9 +30,9 @@ extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
-'''
+"""
 
-EXAMPLES = r'''
+EXAMPLES = r"""
 - name: Read list of artifacts from pulp server
   artifact:
     api_url: localhost:24817
@@ -62,9 +63,9 @@ EXAMPLES = r'''
     password: password
     sha256: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
     state: absent
-'''
+"""
 
-RETURN = r'''
+RETURN = r"""
   artifacts:
     description: List of artifacts
     type: list
@@ -73,7 +74,7 @@ RETURN = r'''
     description: Artifact details
     type: dict
     returned: when file or sha256 is given
-'''
+"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
@@ -84,36 +85,33 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 
 def main():
     with PulpEntityAnsibleModule(
-        argument_spec=dict(
-            file=dict(type='path'),
-            sha256=dict(),
-        ),
-        required_if=[
-            ('state', 'present', ['file']),
-        ],
+        argument_spec=dict(file=dict(type="path"), sha256=dict()),
+        required_if=[("state", "present", ["file"])],
     ) as module:
 
-        sha256 = module.params['sha256']
-        if module.params['file']:
-            file_sha256 = module.sha256(module.params['file'])
+        sha256 = module.params["sha256"]
+        if module.params["file"]:
+            file_sha256 = module.sha256(module.params["file"])
             if sha256:
                 if sha256 != file_sha256:
                     raise Exception("File checksum mismatch.")
             else:
                 sha256 = file_sha256
 
-        if sha256 is None and module.params['state'] == 'absent':
-            raise Exception("One of 'file' and 'sha256' is required if 'state' is 'absent'.")
+        if sha256 is None and module.params["state"] == "absent":
+            raise Exception(
+                "One of 'file' and 'sha256' is required if 'state' is 'absent'."
+            )
 
         natural_key = {
-            'sha256': sha256,
+            "sha256": sha256,
         }
         uploads = {
-            'file': module.params['file'],
+            "file": module.params["file"],
         }
 
         PulpArtifact(module, natural_key, uploads=uploads).process()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

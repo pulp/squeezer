@@ -4,6 +4,7 @@
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 import errno
@@ -17,6 +18,7 @@ from ansible.module_utils.six.moves.urllib.parse import urlencode, urljoin
 
 
 if six.PY2:
+
     def makedirs(path, exist_ok=False):
         try:
             os.makedirs(path)
@@ -24,12 +26,22 @@ if six.PY2:
             # emulate 'mkdir -p'
             if not (exist_ok and exc.errno == errno.EEXIST and os.path.isdir(path)):
                 raise
+
+
 else:
     makedirs = os.makedirs
 
 
-class OpenAPI():
-    def __init__(self, base_url, doc_path, username=None, password=None, validate_certs=True, refresh_cache=False):
+class OpenAPI:
+    def __init__(
+        self,
+        base_url,
+        doc_path,
+        username=None,
+        password=None,
+        validate_certs=True,
+        refresh_cache=False,
+    ):
         self.base_url = base_url
         self.doc_path = doc_path
 
@@ -63,7 +75,11 @@ class OpenAPI():
         except IOError:
             makedirs(os.path.dirname(apidoc_cache), exist_ok=True)
             with open(apidoc_cache, "wb") as f:
-                f.write(self._session.open("GET", urljoin(self.base_url, self.doc_path)).read())
+                f.write(
+                    self._session.open(
+                        "GET", urljoin(self.base_url, self.doc_path)
+                    ).read()
+                )
             with open(apidoc_cache) as f:
                 data = f.read()
         self.api_spec = json.loads(data)
@@ -73,61 +89,105 @@ class OpenAPI():
                 method_entry["operationId"]: (method, path)
                 for path, path_entry in self.api_spec["paths"].items()
                 for method, method_entry in path_entry.items()
-                if method in {"get", "put", "post", "delete", "options", "head", "patch", "trace"}
+                if method
+                in {"get", "put", "post", "delete", "options", "head", "patch", "trace"}
             }
         else:
             raise NotImplementedError("Unknown schema version")
 
     def extract_params(self, param_type, path_spec, method_spec, params):
-        param_spec = {entry["name"]: entry for entry in path_spec.get("parameters", []) if entry["in"] == param_type}
-        param_spec.update({entry["name"]: entry for entry in method_spec.get("parameters", []) if entry["in"] == param_type})
+        param_spec = {
+            entry["name"]: entry
+            for entry in path_spec.get("parameters", [])
+            if entry["in"] == param_type
+        }
+        param_spec.update(
+            {
+                entry["name"]: entry
+                for entry in method_spec.get("parameters", [])
+                if entry["in"] == param_type
+            }
+        )
         result = {}
         for name in list(params.keys()):
             if name in param_spec:
                 param_spec.pop(name)
                 result[name] = params.pop(name)
-        remaining_required = [item["name"] for item in param_spec.values() if item["required"]]
+        remaining_required = [
+            item["name"] for item in param_spec.values() if item["required"]
+        ]
         if any(remaining_required):
-            raise Exception("Required parameters [{0}] missing for {1}.".format(", ".join(remaining_required), param_type))
+            raise Exception(
+                "Required parameters [{0}] missing for {1}.".format(
+                    ", ".join(remaining_required), param_type
+                )
+            )
         return result
 
     def render_body(self, path_spec, method_spec, headers, body=None, uploads=None):
         if not (body or uploads):
             return None
-        content_types = method_spec.get("consumes") or path_spec.get("consumes") or self.api_spec.get("consumes")
+        content_types = (
+            method_spec.get("consumes")
+            or path_spec.get("consumes")
+            or self.api_spec.get("consumes")
+        )
         if uploads:
             body = body or {}
-            if any((content_type.startswith("multipart/form-data") for content_type in content_types)):
+            if any(
+                (
+                    content_type.startswith("multipart/form-data")
+                    for content_type in content_types
+                )
+            ):
                 boundary = uuid.uuid4().hex
                 part_boundary = b"--" + to_bytes(boundary, errors="surrogate_or_strict")
 
                 form = []
                 for key, value in body.items():
-                    form.extend([
-                        part_boundary,
-                        b"Content-Disposition: form-data; name=\"" + to_bytes(key, errors="surrogate_or_strict") + b"\"",
-                        b"",
-                        to_bytes(value, errors="surrogate_or_strict"),
-                    ])
+                    b_key = to_bytes(key, errors="surrogate_or_strict")
+                    form.extend(
+                        [
+                            part_boundary,
+                            b'Content-Disposition: form-data; name="%s"' % b_key,
+                            b"",
+                            to_bytes(value, errors="surrogate_or_strict"),
+                        ]
+                    )
                 for key, file_data in uploads.items():
                     b_key = to_bytes(key, errors="surrogate_or_strict")
-                    form.extend([
-                        part_boundary,
-                        b"Content-Disposition: file; name=\"" + b_key + b"\"; filename=\"" + b_key + b"\"",
-                        b"Content-Type: application/octet-stream",
-                        b"",
-                        file_data,
-                    ])
+                    form.extend(
+                        [
+                            part_boundary,
+                            b'Content-Disposition: file; name="%s"; filename="%s"'
+                            % (b_key, b_key),
+                            b"Content-Type: application/octet-stream",
+                            b"",
+                            file_data,
+                        ]
+                    )
                 form.append(part_boundary + b"--")
                 data = b"\r\n".join(form)
-                headers["Content-Type"] = "multipart/form-data; boundary={boundary}".format(boundary=boundary)
+                headers[
+                    "Content-Type"
+                ] = "multipart/form-data; boundary={boundary}".format(boundary=boundary)
             else:
                 raise Exception("No suitable content type for file upload specified.")
         else:
-            if any((content_type.startswith("application/json") for content_type in content_types)):
+            if any(
+                (
+                    content_type.startswith("application/json")
+                    for content_type in content_types
+                )
+            ):
                 data = json.dumps(body)
                 headers["Content-Type"] = "application/json"
-            elif any((content_type.startswith("application/x-www-form-urlencoded") for content_type in content_types)):
+            elif any(
+                (
+                    content_type.startswith("application/x-www-form-urlencoded")
+                    for content_type in content_types
+                )
+            ):
                 data = urlencode(body)
                 headers["Content-Type"] = "application/x-www-form-urlencoded"
             else:
@@ -150,13 +210,21 @@ class OpenAPI():
 
         headers = self.extract_params("header", path_spec, method_spec, parameters)
 
-        for name, value in self.extract_params("path", path_spec, method_spec, parameters).items():
+        for name, value in self.extract_params(
+            "path", path_spec, method_spec, parameters
+        ).items():
             path = path.replace("{" + name + "}", value)
 
-        query_string = urlencode(self.extract_params("query", path_spec, method_spec, parameters), doseq=True)
+        query_string = urlencode(
+            self.extract_params("query", path_spec, method_spec, parameters), doseq=True
+        )
 
         if any(parameters):
-            raise Exception("Parameter [{names}] not available for {operation_id}.".format(names=", ".join(parameters.keys()), operation_id=operation_id))
+            raise Exception(
+                "Parameter [{names}] not available for {operation_id}.".format(
+                    names=", ".join(parameters.keys()), operation_id=operation_id
+                )
+            )
         url = urljoin(self.base_url, path)
         if query_string:
             url += "?" + query_string
