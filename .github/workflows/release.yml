@@ -7,9 +7,8 @@ on:
 
 jobs:
   release:
-
     runs-on: ubuntu-latest
-
+    if: github.repository == "pulp/squeezer"
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
