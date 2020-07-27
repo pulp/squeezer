@@ -16,6 +16,8 @@
       <<: *pulp_connection_details
     ansible_repository:
       <<: *pulp_connection_details
+    x509_cert_guard:
+      <<: *pulp_connection_details
   tasks:
     - name: Make distribution absent
       ansible_distribution:
@@ -38,6 +40,11 @@
       ansible_sync:
         remote: test_ansible_remote
         repository: test_ansible_repository
+    - name: Make content guard present
+      x509_cert_guard:
+        name: test_content_guard
+        ca_certificate: "{{ lookup('file', 'data/ca.pem') }}"
+        state: present
     - name: Clean openapi cache
       file:
         path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
@@ -62,6 +69,7 @@
         name: test_ansible_distribution
         base_path: test_ansible_base_path
         repository: test_ansible_repository
+        content_guard: test_content_guard
         state: present
       register: result
     - name: Verify distribute latest version of repository
@@ -72,6 +80,7 @@
           - result.distribution.base_path == "test_ansible_base_path"
           - ansible_check_mode or result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_ansible_base_path")
           - result.distribution.repository == repository_result.repository.pulp_href
+          - result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
 
     - name: Distribute latest version of repository (2nd try)
       ansible_distribution:
@@ -98,6 +107,7 @@
           - result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_ansible_base_path")
           - result.distribution.repository == repository_result.repository.pulp_href
           - result.distribution.repository_version == None
+          - result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
 
     - name: Delete distribution
       ansible_distribution:
@@ -167,5 +177,9 @@
     - name: Make ansible_remote absent
       ansible_remote:
         name: test_ansible_remote
+        state: absent
+    - name: Make content guard absent
+      x509_cert_guard:
+        name: test_content_guard
         state: absent
 ...

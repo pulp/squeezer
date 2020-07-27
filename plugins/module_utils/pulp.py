@@ -358,6 +358,31 @@ class PulpUpload(PulpEntity):
         return artifact_href
 
 
+# Content Guards
+
+
+class PulpContentGuard(PulpEntity):
+    # TODO find an endpoint to enumerate all ContentGuards
+    _href = "x509_cert_guard_href"
+    _list_id = "contentguards_certguard_x509_list"
+    _read_id = "contentguards_certguard_x509_read"
+
+    _name_singular = "content_guard"
+    _name_plural = "content_guards"
+
+
+class PulpX509CertGuard(PulpEntity):
+    _href = "x509_cert_guard_href"
+    _list_id = "contentguards_certguard_x509_list"
+    _read_id = "contentguards_certguard_x509_read"
+    _create_id = "contentguards_certguard_x509_create"
+    _update_id = "contentguards_certguard_x509_update"
+    _delete_id = "contentguards_certguard_x509_delete"
+
+    _name_singular = "content_guard"
+    _name_plural = "content_guards"
+
+
 # File entities
 
 

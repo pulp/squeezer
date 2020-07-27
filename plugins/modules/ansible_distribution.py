@@ -96,6 +96,8 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpEntityAnsibleModule,
     PulpAnsibleDistribution,
     PulpAnsibleRepository,
+    PulpContentGuard,
+    SqueezerException,
 )
 
 
@@ -116,18 +118,14 @@ def main():
 
         repository_name = module.params["repository"]
         version = module.params["version"]
-
-        if module.params["content_guard"]:
-            module.fail_json(
-                msg="Content guard features are not yet supported in this module."
-            )
+        content_guard_name = module.params["content_guard"]
 
         natural_key = {
             "name": module.params["name"],
         }
         desired_attributes = {
             key: module.params[key]
-            for key in ["base_path", "content_guard"]
+            for key in ["base_path"]
             if module.params[key] is not None
         }
 
@@ -135,7 +133,7 @@ def main():
             repository = PulpAnsibleRepository(module, {"name": repository_name})
             repository.find()
             if repository.entity is None:
-                module.fail_json(
+                raise SqueezerException(
                     msg="Failed to find repository ({repository_name}).".format(
                         repository_name=repository_name
                     )
@@ -147,6 +145,18 @@ def main():
                 ] + "{version}/".format(version=version)
             else:
                 desired_attributes["repository"] = repository.href
+
+        if content_guard_name is not None:
+            if content_guard_name:
+                content_guard = PulpContentGuard(module, {"name": content_guard_name})
+                content_guard.find()
+                if content_guard.entity is None:
+                    raise SqueezerException(
+                        "Content guard {0} not found.".format(content_guard_name)
+                    )
+                desired_attributes["content_guard"] = content_guard.href
+            else:
+                desired_attributes["content_guard"] = None
 
         PulpAnsibleDistribution(module, natural_key, desired_attributes).process()
 
