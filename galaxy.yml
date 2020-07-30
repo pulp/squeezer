@@ -3,7 +3,7 @@ name: "squeezer"
 authors:
   - "Matthias Dellweg <2500@gmx.de>"
   - "Timo Funke <timoses@msn.com>"
-version: "0.0.1"
+version: "0.0.2"
 license_file: LICENSE
 readme: README.md
 tags:
