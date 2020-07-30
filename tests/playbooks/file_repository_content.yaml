@@ -1,0 +1,144 @@
+---
+- hosts: localhost
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  vars:
+    file1_sha256: "{{ lookup('file', 'data/file1.txt', lstrip=false, rstrip=false) | hash('sha256') }}"
+  module_defaults: &pulp_module_defaults
+    artifact: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+    file_content:
+      <<: *pulp_connection_details
+    file_repository:
+      <<: *pulp_connection_details
+    file_repository_content:
+      <<: *pulp_connection_details
+  tasks:
+    - name: Create artifact
+      artifact:
+        file: data/file1.txt
+        state: present
+      register: artifact_result
+    - name: Create file content unit
+      file_content:
+        digest: "{{ artifact_result.artifact.sha256 }}"
+        relative_path: "{{ item }}"
+        state: present
+      loop:
+        - "data/file1.txt"
+        - "data/file2.txt"
+        - "data/file3.txt"
+    - name: Make repository absent
+      file_repository:
+        name: test_file_repository
+        state: absent
+    - name: Make repository present
+      file_repository:
+        name: test_file_repository
+        state: present
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
+
+- hosts: tests
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  vars:
+    file1_sha256: "{{ lookup('file', 'data/file1.txt', lstrip=false, rstrip=false) | hash('sha256') }}"
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Add content
+      file_repository_content:
+        repository: test_file_repository
+        present_content:
+          - sha256: "{{ file1_sha256 }}"
+            relative_path: "data/file1.txt"
+          - sha256: "{{ file1_sha256 }}"
+            relative_path: "data/file2.txt"
+      register: result
+    - name: Verify add content
+      assert:
+        that:
+          - result.changed == true
+          - result.content_added | length == 2
+          - result.content_removed | length == 0
+
+    - name: Add content (2nd try)
+      file_repository_content:
+        repository: test_file_repository
+        present_content:
+          - digest: "{{ file1_sha256 }}"
+            relative_path: "data/file1.txt"
+        absent_content:
+          - digest: "0123456789abcdef"
+            relative_path: "data/non_existent_file"
+      register: result
+    - name: Verify add content (2nd try)
+      assert:
+        that:
+          - result.changed == false
+          - result.content_added | length == 0
+          - result.content_removed | length == 0
+
+    - name: Add and remove content
+      file_repository_content:
+        repository: test_file_repository
+        present_content:
+          - sha256: "{{ file1_sha256 }}"
+            relative_path: "data/file2.txt"
+          - sha256: "{{ file1_sha256 }}"
+            relative_path: "data/file3.txt"
+        absent_content:
+          - sha256: "{{ file1_sha256 }}"
+            relative_path: "data/file1.txt"
+      register: result
+    - name: Verify add and remove content
+      assert:
+        that:
+          - result.changed == true
+          - result.content_added | length == 1
+          - result.content_removed | length == 1
+
+    - name: Add and remove content (2nd try)
+      file_repository_content:
+        repository: test_file_repository
+        present_content:
+          - sha256: "{{ file1_sha256 }}"
+            relative_path: "data/file2.txt"
+          - sha256: "{{ file1_sha256 }}"
+            relative_path: "data/file3.txt"
+        absent_content:
+          - sha256: "{{ file1_sha256 }}"
+            relative_path: "data/file1.txt"
+      register: result
+    - name: Verify add and remove content (2nd try)
+      assert:
+        that:
+          - result.changed == false
+          - result.content_added | length == 0
+          - result.content_removed | length == 0
+
+- hosts: localhost
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Make repository absent
+      file_repository:
+        name: test_file_repository
+        state: absent
+...
