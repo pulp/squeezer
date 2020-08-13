@@ -363,16 +363,22 @@ class PulpUpload(PulpEntity):
 
 class PulpContentGuard(PulpEntity):
     # TODO find an endpoint to enumerate all ContentGuards
-    _href = "x509_cert_guard_href"
     _list_id = "contentguards_certguard_x509_list"
     _read_id = "contentguards_certguard_x509_read"
 
     _name_singular = "content_guard"
     _name_plural = "content_guards"
 
+    @property
+    def _href(self):
+        return (
+            "x509_cert_guard_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "certguard_x509_cert_guard_href"
+        )
+
 
 class PulpX509CertGuard(PulpEntity):
-    _href = "x509_cert_guard_href"
     _list_id = "contentguards_certguard_x509_list"
     _read_id = "contentguards_certguard_x509_read"
     _create_id = "contentguards_certguard_x509_create"
@@ -382,18 +388,33 @@ class PulpX509CertGuard(PulpEntity):
     _name_singular = "content_guard"
     _name_plural = "content_guards"
 
+    @property
+    def _href(self):
+        return (
+            "x509_cert_guard_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "certguard_x509_cert_guard_href"
+        )
+
 
 # File entities
 
 
 class PulpFileContent(PulpEntity):
-    _href = "file_content_href"
     _list_id = "content_file_files_list"
     _read_id = "content_file_files_read"
     _create_id = "content_file_files_create"
 
     _name_singular = "content"
     _name_plural = "contents"
+
+    @property
+    def _href(self):
+        return (
+            "file_content_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "file_file_content_href"
+        )
 
     def create(self):
         sha256_digest = self.natural_key.pop("sha256")
@@ -409,7 +430,6 @@ class PulpFileContent(PulpEntity):
 
 
 class PulpFileDistribution(PulpEntity):
-    _href = "file_distribution_href"
     _list_id = "distributions_file_file_list"
     _read_id = "distributions_file_file_read"
     _create_id = "distributions_file_file_create"
@@ -419,9 +439,16 @@ class PulpFileDistribution(PulpEntity):
     _name_singular = "distribution"
     _name_plural = "distributions"
 
+    @property
+    def _href(self):
+        return (
+            "file_distribution_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "file_file_distribution_href"
+        )
+
 
 class PulpFilePublication(PulpEntity):
-    _href = "file_publication_href"
     _list_id = "publications_file_file_list"
     _read_id = "publications_file_file_read"
     _create_id = "publications_file_file_create"
@@ -431,9 +458,16 @@ class PulpFilePublication(PulpEntity):
     _name_singular = "publication"
     _name_plural = "publications"
 
+    @property
+    def _href(self):
+        return (
+            "file_publication_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "file_file_publication_href"
+        )
+
 
 class PulpFileRemote(PulpEntity):
-    _href = "file_remote_href"
     _list_id = "remotes_file_file_list"
     _read_id = "remotes_file_file_read"
     _create_id = "remotes_file_file_create"
@@ -444,9 +478,16 @@ class PulpFileRemote(PulpEntity):
     _name_singular = "remote"
     _name_plural = "remotes"
 
+    @property
+    def _href(self):
+        return (
+            "file_remote_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "file_file_remote_href"
+        )
+
 
 class PulpFileRepository(PulpEntity):
-    _href = "file_repository_href"
     _list_id = "repositories_file_file_list"
     _read_id = "repositories_file_file_read"
     _create_id = "repositories_file_file_create"
@@ -457,12 +498,19 @@ class PulpFileRepository(PulpEntity):
     _name_singular = "repository"
     _name_plural = "repositories"
 
+    @property
+    def _href(self):
+        return (
+            "file_repository_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "file_file_repository_href"
+        )
+
 
 # Ansible entities
 
 
 class PulpAnsibleDistribution(PulpEntity):
-    _href = "ansible_distribution_href"
     _list_id = "distributions_ansible_ansible_list"
     _read_id = "distributions_ansible_ansible_read"
     _create_id = "distributions_ansible_ansible_create"
@@ -472,9 +520,16 @@ class PulpAnsibleDistribution(PulpEntity):
     _name_singular = "distribution"
     _name_plural = "distributions"
 
+    @property
+    def _href(self):
+        return (
+            "ansible_distribution_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "ansible_ansible_distribution_href"
+        )
+
 
 class PulpAnsibleRemote(PulpEntity):
-    _href = "ansible_remote_href"
     _list_id = "remotes_ansible_ansible_list"
     _read_id = "remotes_ansible_ansible_read"
     _create_id = "remotes_ansible_ansible_create"
@@ -484,9 +539,16 @@ class PulpAnsibleRemote(PulpEntity):
     _name_singular = "remote"
     _name_plural = "remotes"
 
+    @property
+    def _href(self):
+        return (
+            "ansible_remote_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "ansible_ansible_remote_href"
+        )
+
 
 class PulpAnsibleRepository(PulpEntity):
-    _href = "ansible_repository_href"
     _list_id = "repositories_ansible_ansible_list"
     _read_id = "repositories_ansible_ansible_read"
     _create_id = "repositories_ansible_ansible_create"
@@ -497,12 +559,19 @@ class PulpAnsibleRepository(PulpEntity):
     _name_singular = "repository"
     _name_plural = "repositories"
 
+    @property
+    def _href(self):
+        return (
+            "ansible_repository_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "ansible_ansible_repository_href"
+        )
+
 
 # Python entities
 
 
 class PulpPythonDistribution(PulpEntity):
-    _href = "python_distribution_href"
     _list_id = "distributions_python_pypi_list"
     _read_id = "distributions_python_pypi_read"
     _create_id = "distributions_python_pypi_create"
@@ -512,9 +581,16 @@ class PulpPythonDistribution(PulpEntity):
     _name_singular = "distribution"
     _name_plural = "distributions"
 
+    @property
+    def _href(self):
+        return (
+            "python_distribution_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "python_python_distribution_href"
+        )
+
 
 class PulpPythonPublication(PulpEntity):
-    _href = "python_publication_href"
     _list_id = "publications_python_pypi_list"
     _read_id = "publications_python_pypi_read"
     _create_id = "publications_python_pypi_create"
@@ -523,9 +599,16 @@ class PulpPythonPublication(PulpEntity):
     _name_singular = "publication"
     _name_plural = "publications"
 
+    @property
+    def _href(self):
+        return (
+            "python_publication_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "python_python_publication_href"
+        )
+
 
 class PulpPythonRemote(PulpEntity):
-    _href = "python_remote_href"
     _list_id = "remotes_python_python_list"
     _read_id = "remotes_python_python_read"
     _create_id = "remotes_python_python_create"
@@ -535,9 +618,16 @@ class PulpPythonRemote(PulpEntity):
     _name_singular = "remote"
     _name_plural = "remotes"
 
+    @property
+    def _href(self):
+        return (
+            "python_remote_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "python_python_remote_href"
+        )
+
 
 class PulpPythonRepository(PulpEntity):
-    _href = "python_repository_href"
     _list_id = "repositories_python_python_list"
     _read_id = "repositories_python_python_read"
     _create_id = "repositories_python_python_create"
@@ -547,3 +637,11 @@ class PulpPythonRepository(PulpEntity):
 
     _name_singular = "repository"
     _name_plural = "repositories"
+
+    @property
+    def _href(self):
+        return (
+            "python_repository_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "python_python_repository_href"
+        )

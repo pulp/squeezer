@@ -85,15 +85,17 @@ class OpenAPI:
         self.api_spec = json.loads(data)
         if self.api_spec.get("swagger") == "2.0":
             self.openapi_version = 2
-            self.operations = {
-                method_entry["operationId"]: (method, path)
-                for path, path_entry in self.api_spec["paths"].items()
-                for method, method_entry in path_entry.items()
-                if method
-                in {"get", "put", "post", "delete", "options", "head", "patch", "trace"}
-            }
+        elif self.api_spec.get("openapi", "").startswith("3."):
+            self.openapi_version = 3
         else:
             raise NotImplementedError("Unknown schema version")
+        self.operations = {
+            method_entry["operationId"]: (method, path)
+            for path, path_entry in self.api_spec["paths"].items()
+            for method, method_entry in path_entry.items()
+            if method
+            in {"get", "put", "post", "delete", "options", "head", "patch", "trace"}
+        }
 
     def extract_params(self, param_type, path_spec, method_spec, params):
         param_spec = {
@@ -114,7 +116,7 @@ class OpenAPI:
                 param_spec.pop(name)
                 result[name] = params.pop(name)
         remaining_required = [
-            item["name"] for item in param_spec.values() if item["required"]
+            item["name"] for item in param_spec.values() if item.get("required", False)
         ]
         if any(remaining_required):
             raise Exception(
@@ -127,11 +129,14 @@ class OpenAPI:
     def render_body(self, path_spec, method_spec, headers, body=None, uploads=None):
         if not (body or uploads):
             return None
-        content_types = (
-            method_spec.get("consumes")
-            or path_spec.get("consumes")
-            or self.api_spec.get("consumes")
-        )
+        if self.openapi_version == 2:
+            content_types = (
+                method_spec.get("consumes")
+                or path_spec.get("consumes")
+                or self.api_spec.get("consumes")
+            )
+        else:
+            content_types = list(method_spec["requestBody"]["content"].keys())
         if uploads:
             body = body or {}
             if any(

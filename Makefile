@@ -88,6 +88,8 @@ endif
 
 dist: $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
 
+install: $(MANIFEST)
+
 publish: $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
 	ansible-galaxy collection publish --api-key $(GALAXY_API_KEY) $<
 
@@ -96,4 +98,4 @@ clean:
 
 FORCE:
 
-.PHONY: help dist lint sanity test test-setup publish FORCE
+.PHONY: help dist install lint sanity test test-setup publish FORCE
