@@ -28,6 +28,11 @@ A lot of inspiration has been drawn from [foreman-ansible-modules](https://githu
 * `python_remote`
 * `python_repository`
 * `python_sync`
+* `rpm_distribution`
+* `rpm_publication`
+* `rpm_remote`
+* `rpm_repository`
+* `rpm_sync`
 * `status`
 * `task`
 * `x509_cert_guard`

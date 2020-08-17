@@ -1,0 +1,116 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - 172.30.100.21
+      User-Agent:
+      - Python-urllib/3.6
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/distributions/rpm/rpm/?limit=1&name=test_rpm_distribution
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/rpm/rpm/2d943f47-3890-43c6-a333-085d3f7c1f7b/","pulp_created":"2020-08-18T01:16:07.422647Z","base_path":"test_rpm_base_path","base_url":"https://pulp.example.org/pulp/content/test_rpm_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/e5cf58b3-ee2a-49d4-8da9-af462dd3c64b/","name":"test_rpm_distribution","publication":"/pulp/api/v3/publications/rpm/rpm/59f15b83-1f13-4f3c-93c1-b056e26f471f/"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '533'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Aug 2020 01:16:14 GMT
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - 172.30.100.21
+      User-Agent:
+      - Python-urllib/3.6
+    method: DELETE
+    uri: http://pulp.example.org/pulp/api/v3/distributions/rpm/rpm/2d943f47-3890-43c6-a333-085d3f7c1f7b/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/dc002f97-40db-411a-8a0c-fdf5fa1073d8/"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Aug 2020 01:16:15 GMT
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - 172.30.100.21
+      User-Agent:
+      - Python-urllib/3.6
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/dc002f97-40db-411a-8a0c-fdf5fa1073d8/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/dc002f97-40db-411a-8a0c-fdf5fa1073d8/","pulp_created":"2020-08-18T01:16:15.245972Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-08-18T01:16:15.471960Z","finished_at":"2020-08-18T01:16:15.535194Z","error":null,"worker":"/pulp/api/v3/workers/f5f98eef-bf47-44d4-94ad-b92294951492/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '509'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Aug 2020 01:16:15 GMT
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

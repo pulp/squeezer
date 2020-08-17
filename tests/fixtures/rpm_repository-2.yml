@@ -1,0 +1,162 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - 172.30.100.21
+      User-Agent:
+      - Python-urllib/3.6
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/","pulp_created":"2020-08-17T20:55:58.936296Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/versions/","latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/versions/0/","name":"test_rpm_repository","description":null,"remote":null,"metadata_signing_service":null,"retain_package_versions":0}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '512'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 17 Aug 2020 20:56:02 GMT
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"pulp_href": "/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/",
+      "pulp_created": "2020-08-17T20:55:58.936296Z", "versions_href": "/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/versions/",
+      "latest_version_href": "/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/versions/0/",
+      "name": "test_rpm_repository", "description": "repository created via ansible",
+      "remote": null, "metadata_signing_service": null, "retain_package_versions":
+      0}'
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Length:
+      - 505
+      Content-Type:
+      - application/json
+      Host:
+      - 172.30.100.21
+      User-Agent:
+      - Python-urllib/3.6
+    method: PUT
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/cf6671c9-eba0-4be5-93ad-31b45d1e714f/"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 17 Aug 2020 20:56:02 GMT
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - 172.30.100.21
+      User-Agent:
+      - Python-urllib/3.6
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/cf6671c9-eba0-4be5-93ad-31b45d1e714f/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/cf6671c9-eba0-4be5-93ad-31b45d1e714f/","pulp_created":"2020-08-17T20:56:02.678327Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","started_at":"2020-08-17T20:56:02.888487Z","finished_at":"2020-08-17T20:56:02.952842Z","error":null,"worker":"/pulp/api/v3/workers/605c71fa-153e-4213-95ef-6870472df008/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '558'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 17 Aug 2020 20:56:03 GMT
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - 172.30.100.21
+      User-Agent:
+      - Python-urllib/3.6
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/","pulp_created":"2020-08-17T20:55:58.936296Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/versions/","latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/versions/0/","name":"test_rpm_repository","description":"repository
+        created via ansible","remote":null,"metadata_signing_service":null,"retain_package_versions":0}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '488'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 17 Aug 2020 20:56:03 GMT
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

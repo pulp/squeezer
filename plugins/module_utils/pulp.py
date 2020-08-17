@@ -651,3 +651,82 @@ class PulpPythonRepository(PulpEntity):
             if self.module.pulp_api.openapi_version == 2
             else "python_python_repository_href"
         )
+
+
+# RPM entities
+
+
+class PulpRpmDistribution(PulpEntity):
+    _list_id = "distributions_rpm_rpm_list"
+    _read_id = "distributions_rpm_rpm_read"
+    _create_id = "distributions_rpm_rpm_create"
+    _update_id = "distributions_rpm_rpm_update"
+    _delete_id = "distributions_rpm_rpm_delete"
+
+    _name_singular = "distribution"
+    _name_plural = "distributions"
+
+    @property
+    def _href(self):
+        return (
+            "rpm_distribution_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "rpm_rpm_distribution_href"
+        )
+
+
+class PulpRpmPublication(PulpEntity):
+    _list_id = "publications_rpm_rpm_list"
+    _read_id = "publications_rpm_rpm_read"
+    _create_id = "publications_rpm_rpm_create"
+    _delete_id = "publications_rpm_rpm_delete"
+
+    _name_singular = "publication"
+    _name_plural = "publications"
+
+    @property
+    def _href(self):
+        return (
+            "rpm_publication_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "rpm_rpm_publication_href"
+        )
+
+
+class PulpRpmRemote(PulpEntity):
+    _list_id = "remotes_rpm_rpm_list"
+    _read_id = "remotes_rpm_rpm_read"
+    _create_id = "remotes_rpm_rpm_create"
+    _update_id = "remotes_rpm_rpm_update"
+    _delete_id = "remotes_rpm_rpm_delete"
+
+    _name_singular = "remote"
+    _name_plural = "remotes"
+
+    @property
+    def _href(self):
+        return (
+            "rpm_remote_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "rpm_rpm_remote_href"
+        )
+
+
+class PulpRpmRepository(PulpEntity):
+    _list_id = "repositories_rpm_rpm_list"
+    _read_id = "repositories_rpm_rpm_read"
+    _create_id = "repositories_rpm_rpm_create"
+    _update_id = "repositories_rpm_rpm_update"
+    _delete_id = "repositories_rpm_rpm_delete"
+    _sync_id = "repositories_rpm_rpm_sync"
+
+    _name_singular = "repository"
+    _name_plural = "repositories"
+
+    @property
+    def _href(self):
+        return (
+            "rpm_repository_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "rpm_rpm_repository_href"
+        )

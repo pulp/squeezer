@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - 172.30.100.21
+      User-Agent:
+      - Python-urllib/3.6
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/distributions/rpm/rpm/?limit=1&name=test_rpm_distribution
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/rpm/rpm/2d943f47-3890-43c6-a333-085d3f7c1f7b/","pulp_created":"2020-08-18T01:16:07.422647Z","base_path":"test_rpm_base_path","base_url":"https://pulp.example.org/pulp/content/test_rpm_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/e5cf58b3-ee2a-49d4-8da9-af462dd3c64b/","name":"test_rpm_distribution","publication":"/pulp/api/v3/publications/rpm/rpm/59f15b83-1f13-4f3c-93c1-b056e26f471f/"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '533'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 18 Aug 2020 01:16:13 GMT
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
