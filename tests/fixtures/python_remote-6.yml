@@ -16,18 +16,18 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/remotes/python/python/?limit=1&name=test_python_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/python/python/ecc39839-5413-46a4-acb1-3f20a6f260cf/","pulp_created":"2020-07-21T18:51:18.774681Z","name":"test_python_remote","url":"https://pypi.org/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-07-21T18:51:19.812949Z","download_concurrency":20,"policy":"streamed","includes":[{"name":"aaaa","version_specifier":""},{"name":"bbbb","version_specifier":">=0.1"}],"excludes":[{"name":"cccc","version_specifier":""}],"prereleases":true}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/python/python/e7111a29-06ed-4842-8a90-b52b7fc540ea/","pulp_created":"2020-08-17T08:39:16.107376Z","name":"test_python_remote","url":"https://pypi.org/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-08-17T08:39:17.106101Z","download_concurrency":20,"policy":"on_demand","includes":[{"name":"aaaa","version_specifier":""},{"name":"bbbb","version_specifier":">=0.1"}],"excludes":[{"name":"cccc","version_specifier":""}],"prereleases":true}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '645'
+      - '646'
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 18:51:23 GMT
+      - Mon, 17 Aug 2020 08:39:18 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -51,10 +51,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: DELETE
-    uri: http://pulp.example.org/pulp/api/v3/remotes/python/python/ecc39839-5413-46a4-acb1-3f20a6f260cf/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/python/python/e7111a29-06ed-4842-8a90-b52b7fc540ea/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/54365dd7-8642-4d43-b6a9-3ac66da6c76d/"}'
+      string: '{"task":"/pulp/api/v3/tasks/3c944653-6fe7-47d0-af97-e995b7385c21/"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -65,7 +65,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 18:51:23 GMT
+      - Mon, 17 Aug 2020 08:39:18 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -89,10 +89,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/54365dd7-8642-4d43-b6a9-3ac66da6c76d/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/3c944653-6fe7-47d0-af97-e995b7385c21/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/54365dd7-8642-4d43-b6a9-3ac66da6c76d/","pulp_created":"2020-07-21T18:51:23.421351Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-07-21T18:51:23.497796Z","finished_at":"2020-07-21T18:51:23.514895Z","error":null,"worker":"/pulp/api/v3/workers/8951d6f5-260c-4da5-a49b-a2fc99c570ae/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/python/python/ecc39839-5413-46a4-acb1-3f20a6f260cf/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/3c944653-6fe7-47d0-af97-e995b7385c21/","pulp_created":"2020-08-17T08:39:18.494179Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-08-17T08:39:18.558889Z","finished_at":"2020-08-17T08:39:18.576535Z","error":null,"worker":"/pulp/api/v3/workers/cd9295d3-cf46-427a-a568-0e46f1310114/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/python/python/e7111a29-06ed-4842-8a90-b52b7fc540ea/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
@@ -103,7 +103,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 18:51:23 GMT
+      - Mon, 17 Aug 2020 08:39:18 GMT
       Server:
       - nginx/1.14.2
       Vary:
