@@ -16,18 +16,18 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/?limit=20&offset=0
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/file/file/bf68f22b-9761-4b2f-95f3-01449e5f5859/","pulp_created":"2020-07-17T15:48:28.405756Z","name":"test_file_remote","url":"https://example.org/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-07-17T15:48:29.426395Z","download_concurrency":20,"policy":"streamed"}]}'
+      string: '{"count":2,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/file/file/c9a17600-c700-4e1b-8706-93c0c6438e37/","pulp_created":"2020-08-17T08:40:54.960275Z","name":"test_file_remote","url":"https://example.org/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-08-17T08:40:55.984925Z","download_concurrency":20,"policy":"on_demand"},{"pulp_href":"/pulp/api/v3/remotes/file/file/f88c5404-6b00-4948-9457-55e344ee433d/","pulp_created":"2020-08-07T10:52:46.573592Z","name":"file_sync_test_file_remote","url":"https://fixtures.pulpproject.org/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":null,"username":null,"password":null,"pulp_last_updated":"2020-08-07T10:52:46.573603Z","download_concurrency":20,"policy":"immediate"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '493'
+      - '940'
       Content-Type:
       - application/json
       Date:
-      - Fri, 17 Jul 2020 15:48:30 GMT
+      - Mon, 17 Aug 2020 08:40:56 GMT
       Server:
       - nginx/1.14.2
       Vary:

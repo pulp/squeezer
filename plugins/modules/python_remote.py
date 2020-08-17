@@ -66,7 +66,7 @@ options:
     type: str
     choices:
       - immediate
-      - on-demand
+      - on_demand
       - streamed
   prereleases:
     description:
@@ -150,7 +150,7 @@ def main():
             name=dict(),
             url=dict(),
             download_concurrency=dict(type="int"),
-            policy=dict(choices=["immediate", "on-demand", "streamed"],),
+            policy=dict(choices=["immediate", "on_demand", "streamed"],),
             proxy_url=dict(type="str"),
             tls_validation=dict(type="bool"),
             includes=dict(
