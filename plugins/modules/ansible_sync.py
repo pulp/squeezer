@@ -67,21 +67,12 @@ def main():
     ) as module:
 
         remote = PulpAnsibleRemote(module, {"name": module.params["remote"]})
-        remote.find()
-
-        if remote.entity is None:
-            module.fail_json(
-                msg="Remote '{0}' not found.".format(module.params["remote"])
-            )
+        remote.find(failsafe=False)
 
         repository = PulpAnsibleRepository(
             module, {"name": module.params["repository"]}
         )
-        repository.find()
-        if repository.entity is None:
-            module.fail_json(
-                msg="Repository '{0}' not found.".format(module.params["repository"])
-            )
+        repository.find(failsafe=False)
 
         repository_version = repository.entity["latest_version_href"]
         sync_task = repository.sync(remote.href)

@@ -67,17 +67,10 @@ def main():
     ) as module:
 
         remote = PulpPythonRemote(module, {"name": module.params["remote"]})
-        remote.find()
-
-        if remote.entity is None:
-            raise Exception("Remote '{0}' not found.".format(module.params["remote"]))
+        remote.find(failsafe=False)
 
         repository = PulpPythonRepository(module, {"name": module.params["repository"]})
-        repository.find()
-        if repository.entity is None:
-            raise Exception(
-                "Repository '{0}' not found.".format(module.params["repository"])
-            )
+        repository.find(failsafe=False)
 
         repository_version = repository.entity["latest_version_href"]
         sync_task = repository.sync(remote.href)

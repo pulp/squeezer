@@ -131,13 +131,7 @@ def main():
 
         if repository_name:
             repository = PulpAnsibleRepository(module, {"name": repository_name})
-            repository.find()
-            if repository.entity is None:
-                raise SqueezerException(
-                    msg="Failed to find repository ({repository_name}).".format(
-                        repository_name=repository_name
-                    )
-                )
+            repository.find(failsafe=False)
             # TODO check if version exists
             if version:
                 desired_attributes["repository_version"] = repository.entity[
@@ -149,11 +143,7 @@ def main():
         if content_guard_name is not None:
             if content_guard_name:
                 content_guard = PulpContentGuard(module, {"name": content_guard_name})
-                content_guard.find()
-                if content_guard.entity is None:
-                    raise SqueezerException(
-                        "Content guard {0} not found.".format(content_guard_name)
-                    )
+                content_guard.find(failsafe=False)
                 desired_attributes["content_guard"] = content_guard.href
             else:
                 desired_attributes["content_guard"] = None

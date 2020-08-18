@@ -93,13 +93,7 @@ def main():
 
         if repository_name:
             repository = PulpPythonRepository(module, {"name": repository_name})
-            repository.find()
-            if repository.entity is None:
-                raise Exception(
-                    "Failed to find repository ({repository_name}).".format(
-                        repository_name=repository_name
-                    )
-                )
+            repository.find(failsafe=False)
             # TODO check if version exists
             if version:
                 repository_version_href = repository.entity[

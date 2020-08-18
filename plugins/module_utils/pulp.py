@@ -101,7 +101,7 @@ class PulpEntity(object):
     def primary_key(self):
         return {self._href: self.entity["pulp_href"]}
 
-    def find(self):
+    def find(self, failsafe=True):
         if not hasattr(self, "_list_id"):
             raise SqueezerException("This entity is not enumeratable.")
         parameters = {"limit": 1}
@@ -109,8 +109,14 @@ class PulpEntity(object):
         search_result = self.module.pulp_api.call(self._list_id, parameters=parameters)
         if search_result["count"] == 1:
             self.entity = search_result["results"][0]
-        else:
+        elif failsafe:
             self.entity = None
+        else:
+            raise SqueezerException(
+                "Failed to find {entity_type} ({entity_key}).".format(
+                    entity_type=self._name_singular, entity_key=self.natural_key,
+                )
+            )
 
     def list(self):
         if not hasattr(self, "_list_id"):
