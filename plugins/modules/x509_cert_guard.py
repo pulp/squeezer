@@ -90,7 +90,7 @@ def main():
         natural_key = {"name": module.params["name"]}
         desired_attributes = {}
         if module.params["description"] is not None:
-            # In case of an empty string we try to nullify the description
+            # In case of an empty string we nullify the description
             desired_attributes["description"] = module.params["description"] or None
         if module.params["ca_certificate"] is not None:
             desired_attributes["ca_certificate"] = module.params["ca_certificate"]

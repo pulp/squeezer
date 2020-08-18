@@ -118,11 +118,7 @@ def main():
         if content_guard_name is not None:
             if content_guard_name:
                 content_guard = PulpContentGuard(module, {"name": content_guard_name})
-                content_guard.find()
-                if content_guard.entity is None:
-                    raise SqueezerException(
-                        "Content guard {0} not found.".format(content_guard_name)
-                    )
+                content_guard.find(failsafe=False)
                 desired_attributes["content_guard"] = content_guard.href
             else:
                 desired_attributes["content_guard"] = None
