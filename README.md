@@ -29,6 +29,7 @@ A lot of inspiration has been drawn from [foreman-ansible-modules](https://githu
 * `python_repository`
 * `python_sync`
 * `rpm_distribution`
+* `rpm_package`
 * `rpm_publication`
 * `rpm_remote`
 * `rpm_repository`
