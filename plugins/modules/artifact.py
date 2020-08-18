@@ -103,12 +103,8 @@ def main():
                 "One of 'file' and 'sha256' is required if 'state' is 'absent'."
             )
 
-        natural_key = {
-            "sha256": sha256,
-        }
-        uploads = {
-            "file": module.params["file"],
-        }
+        natural_key = {"sha256": sha256}
+        uploads = {"file": module.params["file"]}
 
         PulpArtifact(module, natural_key, uploads=uploads).process()
 

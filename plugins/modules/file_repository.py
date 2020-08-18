@@ -78,7 +78,7 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 
 def main():
     with PulpEntityAnsibleModule(
-        argument_spec=dict(name=dict(), description=dict(),),
+        argument_spec=dict(name=dict(), description=dict()),
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
 

@@ -78,7 +78,7 @@ class PulpAnsibleModule(AnsibleModule):
 
 class PulpEntityAnsibleModule(PulpAnsibleModule):
     def __init__(self, **kwargs):
-        argument_spec = dict(state=dict(choices=["present", "absent"],),)
+        argument_spec = dict(state=dict(choices=["present", "absent"]))
         argument_spec.update(kwargs.pop("argument_spec", {}))
         super(PulpEntityAnsibleModule, self).__init__(
             argument_spec=argument_spec, **kwargs
@@ -260,10 +260,7 @@ class PulpOrphans(PulpEntity):
                 for item in response
             }
         else:
-            response = {
-                "artifacts": 0,
-                "content": 0,
-            }
+            response = {"artifacts": 0, "content": 0}
         self.module.set_changed()
         return response
 
@@ -334,7 +331,7 @@ class PulpUpload(PulpEntity):
                 for chunk in iter(lambda: f.read(CONTENT_CHUNK_SIZE), b""):
                     actual_chunk_size = len(chunk)
                     content_range = "bytes {start}-{end}/{size}".format(
-                        start=offset, end=offset + actual_chunk_size - 1, size=size,
+                        start=offset, end=offset + actual_chunk_size - 1, size=size
                     )
                     parameters = upload.primary_key
                     parameters["Content-Range"] = content_range

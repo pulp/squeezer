@@ -120,9 +120,7 @@ def main():
         version = module.params["version"]
         content_guard_name = module.params["content_guard"]
 
-        natural_key = {
-            "name": module.params["name"],
-        }
+        natural_key = {"name": module.params["name"]}
         desired_attributes = {
             key: module.params[key]
             for key in ["base_path"]

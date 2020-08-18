@@ -86,7 +86,7 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 def main():
     with PulpEntityAnsibleModule(
         argument_spec=dict(
-            repository=dict(), version=dict(type="int"), manifest=dict(),
+            repository=dict(), version=dict(type="int"), manifest=dict()
         ),
         required_if=(
             ["state", "present", ["repository"]],

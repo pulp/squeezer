@@ -96,7 +96,7 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 def main():
     with PulpEntityAnsibleModule(
         argument_spec=dict(
-            name=dict(), base_path=dict(), publication=dict(), content_guard=dict(),
+            name=dict(), base_path=dict(), publication=dict(), content_guard=dict()
         ),
         required_if=[
             ("state", "present", ["name", "base_path"]),
@@ -106,9 +106,7 @@ def main():
 
         content_guard_name = module.params["content_guard"]
 
-        natural_key = {
-            "name": module.params["name"],
-        }
+        natural_key = {"name": module.params["name"]}
         desired_attributes = {
             key: module.params[key]
             for key in ["base_path", "publication"]

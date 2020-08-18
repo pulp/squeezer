@@ -64,7 +64,7 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 
 def main():
     with PulpAnsibleModule(
-        argument_spec=dict(remote=dict(required=True), repository=dict(required=True),),
+        argument_spec=dict(remote=dict(required=True), repository=dict(required=True))
     ) as module:
 
         remote = PulpFileRemote(module, {"name": module.params["remote"]})

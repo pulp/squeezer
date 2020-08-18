@@ -100,7 +100,7 @@ def main():
             name=dict(),
             url=dict(),
             download_concurrency=dict(type="int"),
-            policy=dict(choices=["immediate"],),
+            policy=dict(choices=["immediate"]),
             proxy_url=dict(type="str"),
             tls_validation=dict(type="bool"),
         ),

@@ -45,10 +45,7 @@ class OpenAPI:
         self.base_url = base_url
         self.doc_path = doc_path
 
-        headers = {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-        }
+        headers = {"Content-Type": "application/json", "Accept": "application/json"}
         self._session = Request(
             url_username=username,
             url_password=password,

@@ -73,7 +73,7 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 
 def main():
     with PulpEntityAnsibleModule(
-        argument_spec=dict(sha256=dict(aliases=["digest"]), relative_path=dict(),),
+        argument_spec=dict(sha256=dict(aliases=["digest"]), relative_path=dict()),
         required_if=[
             ("state", "present", ["sha256", "relative_path"]),
             ("state", "absent", ["sha256", "relative_path"]),
