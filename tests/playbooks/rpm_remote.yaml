@@ -1,0 +1,128 @@
+---
+- hosts: localhost
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults: &pulp_module_defaults
+    rpm_remote: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+  tasks:
+    - name: Make rpm_remote absent
+      rpm_remote:
+        name: test_rpm_remote
+        state: absent
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
+
+- hosts: tests
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Create remote
+      rpm_remote:
+        name: test_rpm_remote
+        url: "http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/"
+        proxy_url: "http://proxy.int:3128"
+        state: present
+      register: result
+    - name: Verify create remote
+      assert:
+        that:
+          - result.changed == true
+          - result.remote.name == "test_rpm_remote"
+          - result.remote.url == "http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/"
+          - result.remote.proxy_url == "http://proxy.int:3128"
+
+    - name: Create remote (2nd try)
+      rpm_remote:
+        name: test_rpm_remote
+        url: "http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/"
+        proxy_url: "http://proxy.int:3128"
+        state: present
+      register: result
+    - name: Verify create remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Modify remote
+      rpm_remote:
+        name: test_rpm_remote
+        policy: on_demand
+        tls_validation: false
+        state: present
+      register: result
+    - name: Verify modify remote
+      assert:
+        that:
+          - result.changed == true
+          - result.remote.policy == "on_demand"
+          - result.remote.tls_validation == false
+
+    - name: Modify remote (2nd try)
+      rpm_remote:
+        name: test_rpm_remote
+        policy: on_demand
+        tls_validation: false
+        state: present
+      register: result
+    - name: Verify modify remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: List remotes
+      rpm_remote: {}
+      register: result
+    - name: Verify list remotes
+      assert:
+        that:
+          - result.changed == false
+          - result.remotes | length >= 1
+          - result.remotes | selectattr('name', 'match', 'test_rpm_remote') | list | length == 1
+
+    - name: Read remote
+      rpm_remote:
+        name: test_rpm_remote
+      register: result
+    - name: Verify read remote
+      assert:
+        that:
+          - result.changed == false
+          - result.remote.name == "test_rpm_remote"
+          - result.remote.url == "http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/"
+          - result.remote.proxy_url == "http://proxy.int:3128"
+          - result.remote.tls_validation == false
+
+    - name: Delete remote
+      rpm_remote:
+        name: test_rpm_remote
+        state: absent
+      register: result
+    - name: Verify delete remote
+      assert:
+        that:
+          - result.changed == true
+          - not result.remote
+
+    - name: Delete remote (2nd try)
+      rpm_remote:
+        name: test_rpm_remote
+        state: absent
+      register: result
+    - name: Verify delete remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+...
