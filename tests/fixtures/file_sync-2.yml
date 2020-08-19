@@ -16,18 +16,18 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?limit=1&name=test_file_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/578daf10-efba-40be-b442-f49ea38e623c/","pulp_created":"2020-07-21T09:20:01.997172Z","versions_href":"/pulp/api/v3/repositories/file/file/578daf10-efba-40be-b442-f49ea38e623c/versions/","latest_version_href":"/pulp/api/v3/repositories/file/file/578daf10-efba-40be-b442-f49ea38e623c/versions/1/","name":"test_file_repository","description":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/975ba116-6b53-4cf9-94f1-b226b4a7207a/","pulp_created":"2020-08-19T09:53:36.279550Z","versions_href":"/pulp/api/v3/repositories/file/file/975ba116-6b53-4cf9-94f1-b226b4a7207a/versions/","latest_version_href":"/pulp/api/v3/repositories/file/file/975ba116-6b53-4cf9-94f1-b226b4a7207a/versions/1/","name":"test_file_repository","description":null,"remote":null}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '445'
+      - '459'
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 09:20:09 GMT
+      - Wed, 19 Aug 2020 09:53:44 GMT
       Server:
       - nginx/1.14.2
       Vary:

@@ -16,18 +16,18 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/artifacts/?limit=20&offset=0
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/dc1a2038-6da3-4e23-824e-879d0af8e162/","pulp_created":"2020-07-19T17:41:01.595453Z","file":"artifact/fd/769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","size":14,"md5":"a5331b2bb7c7f414a4daac69d00131b7","sha1":"5fb54ebdb124da07050de72896a91a3d3261d61c","sha224":"886567b3800902ffb4c668006cfada2c4acc41c2a437e3646ee8341c","sha256":"fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","sha384":"99c257daa3ab6599bf830d137119798f8741a4b776fc1c50f68c96f85aa98da82029bf6f919b2a78e4740be4d88a58b1","sha512":"39c0377d34bb4296ef4e739a1face204e5ff5fbb4e67ac046244887a7aede265c2a95a03543b68094f08353986d8cb7f3f8a59f5ffcb94eb1d73666ebbb9eeb5"}]}'
+      string: '{"count":2,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/168352bf-5c4b-443a-bb69-31b2743e7d71/","pulp_created":"2020-08-19T09:52:12.668288Z","file":"artifact/fd/769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","size":14,"md5":"a5331b2bb7c7f414a4daac69d00131b7","sha1":"5fb54ebdb124da07050de72896a91a3d3261d61c","sha224":"886567b3800902ffb4c668006cfada2c4acc41c2a437e3646ee8341c","sha256":"fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","sha384":"99c257daa3ab6599bf830d137119798f8741a4b776fc1c50f68c96f85aa98da82029bf6f919b2a78e4740be4d88a58b1","sha512":"39c0377d34bb4296ef4e739a1face204e5ff5fbb4e67ac046244887a7aede265c2a95a03543b68094f08353986d8cb7f3f8a59f5ffcb94eb1d73666ebbb9eeb5"},{"pulp_href":"/pulp/api/v3/artifacts/aba5346c-8e74-4825-a39a-ebde9e2f6694/","pulp_created":"2020-08-19T09:52:03.526652Z","file":"artifact/9a/09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","size":5,"md5":"502c3370995c203cce7e3f1ffba6859a","sha1":"733033d4ba6761c30fbd1086a70784f4fb317687","sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '750'
+      - '1448'
       Content-Type:
       - application/json
       Date:
-      - Sun, 19 Jul 2020 17:41:02 GMT
+      - Wed, 19 Aug 2020 09:52:14 GMT
       Server:
       - nginx/1.14.2
       Vary:

@@ -90,7 +90,6 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpEntityAnsibleModule,
     PulpPythonDistribution,
     PulpContentGuard,
-    SqueezerException,
 )
 
 

@@ -16,7 +16,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/artifacts/?limit=1&sha256=fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/dc1a2038-6da3-4e23-824e-879d0af8e162/","pulp_created":"2020-07-19T17:41:01.595453Z","file":"artifact/fd/769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","size":14,"md5":"a5331b2bb7c7f414a4daac69d00131b7","sha1":"5fb54ebdb124da07050de72896a91a3d3261d61c","sha224":"886567b3800902ffb4c668006cfada2c4acc41c2a437e3646ee8341c","sha256":"fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","sha384":"99c257daa3ab6599bf830d137119798f8741a4b776fc1c50f68c96f85aa98da82029bf6f919b2a78e4740be4d88a58b1","sha512":"39c0377d34bb4296ef4e739a1face204e5ff5fbb4e67ac046244887a7aede265c2a95a03543b68094f08353986d8cb7f3f8a59f5ffcb94eb1d73666ebbb9eeb5"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/168352bf-5c4b-443a-bb69-31b2743e7d71/","pulp_created":"2020-08-19T09:52:12.668288Z","file":"artifact/fd/769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","size":14,"md5":"a5331b2bb7c7f414a4daac69d00131b7","sha1":"5fb54ebdb124da07050de72896a91a3d3261d61c","sha224":"886567b3800902ffb4c668006cfada2c4acc41c2a437e3646ee8341c","sha256":"fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","sha384":"99c257daa3ab6599bf830d137119798f8741a4b776fc1c50f68c96f85aa98da82029bf6f919b2a78e4740be4d88a58b1","sha512":"39c0377d34bb4296ef4e739a1face204e5ff5fbb4e67ac046244887a7aede265c2a95a03543b68094f08353986d8cb7f3f8a59f5ffcb94eb1d73666ebbb9eeb5"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -27,7 +27,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 19 Jul 2020 17:41:03 GMT
+      - Wed, 19 Aug 2020 09:52:14 GMT
       Server:
       - nginx/1.14.2
       Vary:
