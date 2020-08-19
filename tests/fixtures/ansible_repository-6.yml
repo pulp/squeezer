@@ -16,19 +16,19 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?limit=1&name=test_ansible_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/","pulp_created":"2020-07-21T19:13:27.936655Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/versions/","latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/07f359b0-12ce-4fdf-a0db-59b0aa82838b/versions/0/","name":"test_ansible_repository","description":"repository
-        created via ansible"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/1ce4cfb4-0487-4fdc-a67b-e671f8ed60dc/","pulp_created":"2020-08-19T10:56:03.774226Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/1ce4cfb4-0487-4fdc-a67b-e671f8ed60dc/versions/","latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/1ce4cfb4-0487-4fdc-a67b-e671f8ed60dc/versions/0/","name":"test_ansible_repository","description":"repository
+        created via ansible","remote":null}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '494'
+      - '508'
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 19:13:30 GMT
+      - Wed, 19 Aug 2020 10:56:09 GMT
       Server:
       - nginx/1.14.2
       Vary:

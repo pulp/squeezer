@@ -16,7 +16,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/content/ansible/roles/?limit=1&name=test_ansible_role&namespace=test_namespace&version=0.0.0
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/ansible/roles/d3b4a35b-caf5-421e-b11f-b978fcac991c/","artifact":"/pulp/api/v3/artifacts/6b25bd16-d98f-4f11-983f-17d3f17fd659/","pulp_created":"2020-07-20T08:37:53.569224Z","version":"0.0.0","name":"test_ansible_role","namespace":"test_namespace"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/ansible/roles/c4449989-6488-48a8-ac57-eaccf6bcb63e/","pulp_created":"2020-08-19T10:55:50.854060Z","artifact":"/pulp/api/v3/artifacts/c8b534c2-ca10-4f6d-b886-c268148fbaec/","version":"0.0.0","name":"test_ansible_role","namespace":"test_namespace"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -27,7 +27,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Jul 2020 08:37:54 GMT
+      - Wed, 19 Aug 2020 10:55:51 GMT
       Server:
       - nginx/1.14.2
       Vary:

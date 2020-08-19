@@ -90,7 +90,7 @@ RETURN = r"""
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpEntityAnsibleModule,
-    PulpAnsibleRemote,
+    PulpAnsibleRoleRemote,
 )
 
 
@@ -120,7 +120,7 @@ def main():
             if module.params[key] is not None
         }
 
-        PulpAnsibleRemote(module, natural_key, desired_attributes).process()
+        PulpAnsibleRoleRemote(module, natural_key, desired_attributes).process()
 
 
 if __name__ == "__main__":

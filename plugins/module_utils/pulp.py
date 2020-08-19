@@ -535,23 +535,26 @@ class PulpAnsibleDistribution(PulpEntity):
         )
 
 
-class PulpAnsibleRemote(PulpEntity):
-    _list_id = "remotes_ansible_ansible_list"
-    _read_id = "remotes_ansible_ansible_read"
-    _create_id = "remotes_ansible_ansible_create"
-    _update_id = "remotes_ansible_ansible_update"
-    _delete_id = "remotes_ansible_ansible_delete"
-
+class PulpAnsibleRoleRemote(PulpEntity):
     _name_singular = "remote"
     _name_plural = "remotes"
 
-    @property
-    def _href(self):
-        return (
-            "ansible_remote_href"
-            if self.module.pulp_api.openapi_version == 2
-            else "ansible_ansible_remote_href"
-        )
+    def __init__(self, *args, **kwargs):
+        super(PulpAnsibleRoleRemote, self).__init__(*args, **kwargs)
+        if self.module.pulp_api.openapi_version == 2:
+            self._list_id = "remotes_ansible_ansible_list"
+            self._read_id = "remotes_ansible_ansible_read"
+            self._create_id = "remotes_ansible_ansible_create"
+            self._update_id = "remotes_ansible_ansible_update"
+            self._delete_id = "remotes_ansible_ansible_delete"
+            self._href = "ansible_remote_href"
+        else:
+            self._list_id = "remotes_ansible_role_list"
+            self._read_id = "remotes_ansible_role_read"
+            self._create_id = "remotes_ansible_role_create"
+            self._update_id = "remotes_ansible_role_update"
+            self._delete_id = "remotes_ansible_role_delete"
+            self._href = "ansible_role_remote_href"
 
 
 class PulpAnsibleRepository(PulpEntity):
