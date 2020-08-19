@@ -7,6 +7,7 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
+import re
 import os
 import traceback
 from time import sleep
@@ -202,6 +203,9 @@ class PulpEntity(object):
             "Invalid state ({0}) for entity.".format(self.module.params["state"])
         )
 
+    def presentation(self, entity):
+        return entity
+
     def process(self):
         if None not in self.natural_key.values():
             self.find()
@@ -218,10 +222,12 @@ class PulpEntity(object):
             else:
                 self.process_special()
 
-            self.module.set_result(self._name_singular, self.entity)
+            self.module.set_result(self._name_singular, self.presentation(self.entity))
         else:
             entities = self.list()
-            self.module.set_result(self._name_plural, entities)
+            self.module.set_result(
+                self._name_plural, [self.presentation(entity) for entity in entities]
+            )
 
 
 class PulpArtifact(PulpEntity):
@@ -634,6 +640,43 @@ class PulpPythonRemote(PulpEntity):
             if self.module.pulp_api.openapi_version == 2
             else "python_python_remote_href"
         )
+
+    @classmethod
+    def _backport_specifier(cls, specifier):
+        match_result = re.fullmatch(r"([-\w]*)(.*)", specifier)
+        return {
+            "name": match_result.group(1),
+            "version_specifier": match_result.group(2),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(PulpPythonRemote, self).__init__(*args, **kwargs)
+        if self.desired_attributes and self.module.pulp_api.openapi_version == 2:
+            # Hack to support the old format
+            if "includes" in self.desired_attributes:
+                self.desired_attributes["includes"] = [
+                    self._backport_specifier(specifier)
+                    for specifier in self.desired_attributes["includes"]
+                ]
+            if "excludes" in self.desired_attributes:
+                self.desired_attributes["excludes"] = [
+                    self._backport_specifier(specifier)
+                    for specifier in self.desired_attributes["excludes"]
+                ]
+
+    def presentation(self, entity):
+        if entity and self.module.pulp_api.openapi_version == 2:
+            if "includes" in entity:
+                entity["includes"] = [
+                    specifier["name"] + specifier["version_specifier"]
+                    for specifier in entity["includes"]
+                ]
+            if "excludes" in entity:
+                entity["excludes"] = [
+                    specifier["name"] + specifier["version_specifier"]
+                    for specifier in entity["excludes"]
+                ]
+        return entity
 
 
 class PulpPythonRepository(PulpEntity):

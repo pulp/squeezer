@@ -37,8 +37,9 @@
       python_remote:
         name: test_python_remote
         url: "{{ pulp_fixtures_url }}/python-pypi/"
+        proxy_url: ""
         includes:
-          - name: shelf-reader
+          - shelf-reader
         state: present
     - name: Sync remote into repository
       python_sync:

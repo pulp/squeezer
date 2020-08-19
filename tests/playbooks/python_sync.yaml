@@ -28,7 +28,7 @@
         name: test_python_remote
         url: "{{ pulp_fixtures_url }}/python-pypi/"
         includes:
-          - name: shelf-reader
+          - shelf-reader
         state: present
     - name: Clean openapi cache
       file:

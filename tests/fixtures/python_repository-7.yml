@@ -16,19 +16,19 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/?limit=1&name=test_python_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/python/python/e301b735-a3e9-49ba-8fbd-99bbb9f6f7b3/","pulp_created":"2020-07-21T19:13:06.958011Z","versions_href":"/pulp/api/v3/repositories/python/python/e301b735-a3e9-49ba-8fbd-99bbb9f6f7b3/versions/","latest_version_href":"/pulp/api/v3/repositories/python/python/e301b735-a3e9-49ba-8fbd-99bbb9f6f7b3/versions/0/","name":"test_python_repository","description":"repository
-        created via ansible"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/python/python/7ede1232-e59e-4ab1-87ed-594886318027/","pulp_created":"2020-08-19T15:32:30.806089Z","versions_href":"/pulp/api/v3/repositories/python/python/7ede1232-e59e-4ab1-87ed-594886318027/versions/","latest_version_href":"/pulp/api/v3/repositories/python/python/7ede1232-e59e-4ab1-87ed-594886318027/versions/0/","name":"test_python_repository","description":"repository
+        created via ansible","remote":null}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '487'
+      - '501'
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 19:13:09 GMT
+      - Wed, 19 Aug 2020 15:32:36 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -39,17 +39,17 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"pulp_href": "/pulp/api/v3/repositories/python/python/e301b735-a3e9-49ba-8fbd-99bbb9f6f7b3/",
-      "pulp_created": "2020-07-21T19:13:06.958011Z", "versions_href": "/pulp/api/v3/repositories/python/python/e301b735-a3e9-49ba-8fbd-99bbb9f6f7b3/versions/",
-      "latest_version_href": "/pulp/api/v3/repositories/python/python/e301b735-a3e9-49ba-8fbd-99bbb9f6f7b3/versions/0/",
-      "name": "test_python_repository", "description": null}'
+    body: '{"pulp_href": "/pulp/api/v3/repositories/python/python/7ede1232-e59e-4ab1-87ed-594886318027/",
+      "pulp_created": "2020-08-19T15:32:30.806089Z", "versions_href": "/pulp/api/v3/repositories/python/python/7ede1232-e59e-4ab1-87ed-594886318027/versions/",
+      "latest_version_href": "/pulp/api/v3/repositories/python/python/7ede1232-e59e-4ab1-87ed-594886318027/versions/0/",
+      "name": "test_python_repository", "description": null, "remote": null}'
     headers:
       Accept:
       - application/json
       Connection:
       - close
       Content-Length:
-      - 418
+      - 434
       Content-Type:
       - application/json
       Host:
@@ -57,10 +57,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: PUT
-    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/e301b735-a3e9-49ba-8fbd-99bbb9f6f7b3/
+    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/7ede1232-e59e-4ab1-87ed-594886318027/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/e8d92b03-74d5-4e80-897a-47ae44f422e1/"}'
+      string: '{"task":"/pulp/api/v3/tasks/fcd32611-4a08-46c7-83be-59d7a72e7d30/"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -71,7 +71,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 19:13:09 GMT
+      - Wed, 19 Aug 2020 15:32:37 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -95,10 +95,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/e8d92b03-74d5-4e80-897a-47ae44f422e1/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/fcd32611-4a08-46c7-83be-59d7a72e7d30/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/e8d92b03-74d5-4e80-897a-47ae44f422e1/","pulp_created":"2020-07-21T19:13:09.826222Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","started_at":"2020-07-21T19:13:09.902991Z","finished_at":"2020-07-21T19:13:09.919843Z","error":null,"worker":"/pulp/api/v3/workers/1ab9d43f-f365-49b0-b6a7-6af68d4f63e9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/python/python/e301b735-a3e9-49ba-8fbd-99bbb9f6f7b3/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/fcd32611-4a08-46c7-83be-59d7a72e7d30/","pulp_created":"2020-08-19T15:32:37.073175Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","started_at":"2020-08-19T15:32:37.176727Z","finished_at":"2020-08-19T15:32:37.201869Z","error":null,"worker":"/pulp/api/v3/workers/650e9bc1-bc0b-4e16-bea4-2c92d8fe434c/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/python/python/7ede1232-e59e-4ab1-87ed-594886318027/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
@@ -109,7 +109,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 19:13:09 GMT
+      - Wed, 19 Aug 2020 15:32:37 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -133,21 +133,21 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/e301b735-a3e9-49ba-8fbd-99bbb9f6f7b3/
+    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/7ede1232-e59e-4ab1-87ed-594886318027/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/repositories/python/python/e301b735-a3e9-49ba-8fbd-99bbb9f6f7b3/","pulp_created":"2020-07-21T19:13:06.958011Z","versions_href":"/pulp/api/v3/repositories/python/python/e301b735-a3e9-49ba-8fbd-99bbb9f6f7b3/versions/","latest_version_href":"/pulp/api/v3/repositories/python/python/e301b735-a3e9-49ba-8fbd-99bbb9f6f7b3/versions/0/","name":"test_python_repository","description":null}'
+      string: '{"pulp_href":"/pulp/api/v3/repositories/python/python/7ede1232-e59e-4ab1-87ed-594886318027/","pulp_created":"2020-08-19T15:32:30.806089Z","versions_href":"/pulp/api/v3/repositories/python/python/7ede1232-e59e-4ab1-87ed-594886318027/versions/","latest_version_href":"/pulp/api/v3/repositories/python/python/7ede1232-e59e-4ab1-87ed-594886318027/versions/0/","name":"test_python_repository","description":null,"remote":null}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '407'
+      - '421'
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 19:13:10 GMT
+      - Wed, 19 Aug 2020 15:32:37 GMT
       Server:
       - nginx/1.14.2
       Vary:

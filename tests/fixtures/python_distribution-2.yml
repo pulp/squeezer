@@ -16,7 +16,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/?limit=1&name=test_python_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/python/pypi/ebea2267-63a5-41b4-86ed-9d331ad6ad84/","pulp_created":"2020-07-23T11:34:21.868958Z","base_path":"test_python_base_path","base_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp/content/test_python_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/35f805ee-812c-453a-884c-777a8e5537a0/","name":"test_python_distribution","publication":"/pulp/api/v3/publications/python/pypi/a038601f-58f7-4742-b3fc-bd61002a06b8/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/python/pypi/23fde299-b688-478f-bef0-56bb3fd72055/","pulp_created":"2020-08-19T15:31:50.070613Z","base_path":"test_python_base_path","base_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp/content/test_python_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/c7ab46b0-ce82-423d-8bb5-2231f5a731c8/","name":"test_python_distribution","publication":"/pulp/api/v3/publications/python/pypi/c8605c7f-1480-486f-be81-d53ba4b4efe2/"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -27,7 +27,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2020 11:34:24 GMT
+      - Wed, 19 Aug 2020 15:31:52 GMT
       Server:
       - nginx/1.14.2
       Vary:

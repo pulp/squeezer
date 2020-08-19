@@ -30,36 +30,14 @@ options:
     type: int
   excludes:
     description:
-      - List of packages to exclude from the sync.
+      - List of packages with optional version specifier to exclude from the sync.
     type: list
-    elements: dict
-    suboptions:
-      name:
-        description:
-          - Package name
-        type: str
-        required: true
-      version_specifier:
-        description:
-          - Python version specifier
-        type: str
-        default: ""
+    elements: str
   includes:
     description:
-      - List of packages to include in the sync.
+      - List of packages with optional version specifier to include in the sync.
     type: list
-    elements: dict
-    suboptions:
-      name:
-        description:
-          - Package name
-        type: str
-        required: true
-      version_specifier:
-        description:
-          - Python version specifier
-        type: str
-        default: ""
+    elements: str
   policy:
     description:
       - Whether downloads should be performed immediately, or lazy.
@@ -136,7 +114,6 @@ DESIRED_KEYS = {
     "url",
     "download_concurrency",
     "policy",
-    "proxy_url",
     "tls_validation",
     "prereleases",
     "includes",
@@ -150,23 +127,11 @@ def main():
             name=dict(),
             url=dict(),
             download_concurrency=dict(type="int"),
-            policy=dict(choices=["immediate", "on_demand", "streamed"],),
-            proxy_url=dict(type="str"),
+            policy=dict(choices=["immediate", "on_demand", "streamed"]),
+            proxy_url=dict(),
             tls_validation=dict(type="bool"),
-            includes=dict(
-                type="list",
-                elements="dict",
-                options=dict(
-                    name=dict(required=True), version_specifier=dict(default=""),
-                ),
-            ),
-            excludes=dict(
-                type="list",
-                elements="dict",
-                options=dict(
-                    name=dict(required=True), version_specifier=dict(default=""),
-                ),
-            ),
+            includes=dict(type="list", elements="str"),
+            excludes=dict(type="list", elements="str"),
             prereleases=dict(type="bool"),
         ),
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
@@ -178,6 +143,9 @@ def main():
             for key in DESIRED_KEYS
             if module.params[key] is not None
         }
+        if module.params["proxy_url"] is not None:
+            # In case of an empty string we nullify
+            desired_attributes["proxy_url"] = module.params["proxy_url"] or None
 
         PulpPythonRemote(module, natural_key, desired_attributes).process()
 
