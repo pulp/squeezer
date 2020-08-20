@@ -16,7 +16,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/orphans/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/846339da-7555-4eae-8c4c-30d66767f327/"}'
+      string: '{"task":"/pulp/api/v3/tasks/d6fcf41a-2fec-416b-a7e8-f62546476548/"}'
     headers:
       Allow:
       - DELETE, OPTIONS
@@ -27,7 +27,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 13 Jul 2020 11:44:55 GMT
+      - Wed, 19 Aug 2020 09:52:29 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -51,10 +51,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/846339da-7555-4eae-8c4c-30d66767f327/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/d6fcf41a-2fec-416b-a7e8-f62546476548/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/846339da-7555-4eae-8c4c-30d66767f327/","pulp_created":"2020-07-13T11:44:55.844100Z","state":"completed","name":"pulpcore.app.tasks.orphan.orphan_cleanup","started_at":"2020-07-13T11:44:55.878097Z","finished_at":"2020-07-13T11:44:55.894577Z","error":null,"worker":"/pulp/api/v3/workers/768a19e3-a327-46ae-9048-3a5707ca6122/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Clean
+      string: '{"pulp_href":"/pulp/api/v3/tasks/d6fcf41a-2fec-416b-a7e8-f62546476548/","pulp_created":"2020-08-19T09:52:29.485159Z","state":"completed","name":"pulpcore.app.tasks.orphan.orphan_cleanup","started_at":"2020-08-19T09:52:29.541777Z","finished_at":"2020-08-19T09:52:29.558590Z","error":null,"worker":"/pulp/api/v3/workers/01ad5d61-91e9-4bbf-94f5-cc49696f7a8b/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Clean
         up orphan Content","code":"clean-up.content","state":"completed","total":0,"done":0,"suffix":null},{"message":"Clean
         up orphan Artifacts","code":"clean-up.content","state":"completed","total":0,"done":0,"suffix":null}],"created_resources":[],"reserved_resources_record":[]}'
     headers:
@@ -67,7 +67,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 13 Jul 2020 11:44:55 GMT
+      - Wed, 19 Aug 2020 09:52:29 GMT
       Server:
       - nginx/1.14.2
       Vary:

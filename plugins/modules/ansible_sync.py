@@ -56,7 +56,7 @@ RETURN = r"""
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpAnsibleModule,
-    PulpAnsibleRemote,
+    PulpAnsibleRoleRemote,
     PulpAnsibleRepository,
 )
 
@@ -66,7 +66,7 @@ def main():
         argument_spec=dict(remote=dict(required=True), repository=dict(required=True),),
     ) as module:
 
-        remote = PulpAnsibleRemote(module, {"name": module.params["remote"]})
+        remote = PulpAnsibleRoleRemote(module, {"name": module.params["remote"]})
         remote.find(failsafe=False)
 
         repository = PulpAnsibleRepository(

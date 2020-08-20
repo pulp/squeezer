@@ -63,11 +63,10 @@
         tls_validation: false
         prereleases: true
         includes:
-          - name: "aaaa"
-          - name: "bbbb"
-            version_specifier: ">=0.1"
+          - "aaaa"
+          - "bbbb>=0.1"
         excludes:
-          - name: "cccc"
+          - "cccc"
         state: present
       register: result
     - name: Verify modify remote
@@ -77,9 +76,9 @@
           - result.remote.policy == "on_demand"
           - result.remote.tls_validation == false
           - result.remote.prereleases == true
-          - result.remote.includes[0].name == "aaaa"
-          - result.remote.includes[1].version_specifier == ">=0.1"
-          - result.remote.excludes[0].name == "cccc"
+          - result.remote.includes[0] == "aaaa"
+          - result.remote.includes[1] == "bbbb>=0.1"
+          - result.remote.excludes[0] == "cccc"
 
     - name: Modify remote (2nd try)
       python_remote:
@@ -88,11 +87,10 @@
         tls_validation: false
         prereleases: true
         includes:
-          - name: "aaaa"
-          - name: "bbbb"
-            version_specifier: ">=0.1"
+          - "aaaa"
+          - "bbbb>=0.1"
         excludes:
-          - name: "cccc"
+          - "cccc"
         state: present
       register: result
     - name: Verify modify remote (2nd try)

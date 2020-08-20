@@ -13,21 +13,21 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/ansible/?limit=1&name=test_ansible_remote
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/role/?limit=1&name=test_ansible_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/ansible/9ec41fe5-397a-4db0-99c3-5b74a9e959f3/","pulp_created":"2020-07-20T23:30:12.022104Z","name":"test_ansible_remote","url":"https://galaxy.ansible.com/api/v1/roles/?namespace__name=pulp","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-07-20T23:30:13.040379Z","download_concurrency":20,"policy":"immediate"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/role/6965f12e-15b1-4394-8d01-ae76c4105ec5/","pulp_created":"2020-08-19T10:55:54.664973Z","name":"test_ansible_remote","url":"https://galaxy.ansible.com/api/v1/roles/?namespace__name=pulp","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-08-19T10:55:56.455045Z","download_concurrency":10,"policy":"immediate"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '526'
+      - '523'
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Jul 2020 23:30:14 GMT
+      - Wed, 19 Aug 2020 10:55:57 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -51,10 +51,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: DELETE
-    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/ansible/9ec41fe5-397a-4db0-99c3-5b74a9e959f3/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/role/6965f12e-15b1-4394-8d01-ae76c4105ec5/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/adb41a78-b9d5-4ce9-b73f-d76fffc782d8/"}'
+      string: '{"task":"/pulp/api/v3/tasks/36a7feb6-b921-4427-b8b7-1ae23481fe01/"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -65,7 +65,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Jul 2020 23:30:14 GMT
+      - Wed, 19 Aug 2020 10:55:57 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -89,21 +89,21 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/adb41a78-b9d5-4ce9-b73f-d76fffc782d8/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/36a7feb6-b921-4427-b8b7-1ae23481fe01/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/adb41a78-b9d5-4ce9-b73f-d76fffc782d8/","pulp_created":"2020-07-20T23:30:14.536506Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-07-20T23:30:14.614044Z","finished_at":"2020-07-20T23:30:14.630374Z","error":null,"worker":"/pulp/api/v3/workers/11122dbf-112a-4d8e-a384-d8dfb08361ed/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/ansible/9ec41fe5-397a-4db0-99c3-5b74a9e959f3/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/36a7feb6-b921-4427-b8b7-1ae23481fe01/","pulp_created":"2020-08-19T10:55:57.893002Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-08-19T10:55:57.989449Z","finished_at":"2020-08-19T10:55:58.013374Z","error":null,"worker":"/pulp/api/v3/workers/650e9bc1-bc0b-4e16-bea4-2c92d8fe434c/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/role/6965f12e-15b1-4394-8d01-ae76c4105ec5/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '561'
+      - '558'
       Content-Type:
       - application/json
       Date:
-      - Mon, 20 Jul 2020 23:30:14 GMT
+      - Wed, 19 Aug 2020 10:55:58 GMT
       Server:
       - nginx/1.14.2
       Vary:

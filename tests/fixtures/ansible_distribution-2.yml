@@ -16,18 +16,18 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?limit=1&name=test_ansible_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/8492b28e-d5a4-4469-813f-9cc778a9746d/","pulp_created":"2020-07-23T11:29:22.247709Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/8492b28e-d5a4-4469-813f-9cc778a9746d/versions/","latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/8492b28e-d5a4-4469-813f-9cc778a9746d/versions/1/","name":"test_ansible_repository","description":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/2a88181b-f7f1-41c9-9382-5af0837187f4/","pulp_created":"2020-08-19T10:56:15.720939Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/2a88181b-f7f1-41c9-9382-5af0837187f4/versions/","latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/2a88181b-f7f1-41c9-9382-5af0837187f4/versions/1/","name":"test_ansible_repository","description":null,"remote":null}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '466'
+      - '480'
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2020 11:29:38 GMT
+      - Wed, 19 Aug 2020 10:56:32 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -54,7 +54,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?limit=1&name=test_ansible_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/ansible/ansible/e1a9da36-54bc-4426-969f-12637eb8270c/","pulp_created":"2020-07-23T11:29:35.740125Z","base_path":"test_ansible_base_path","content_guard":"/pulp/api/v3/contentguards/certguard/x509/18666cd8-1969-4690-b64b-b8cb3eb8a91f/","name":"test_ansible_distribution","repository":"/pulp/api/v3/repositories/ansible/ansible/8492b28e-d5a4-4469-813f-9cc778a9746d/","repository_version":null,"client_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp_ansible/galaxy/test_ansible_base_path"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/ansible/ansible/1f3c82d9-13b8-4034-a9c2-30563b2b6874/","pulp_created":"2020-08-19T10:56:30.404960Z","base_path":"test_ansible_base_path","content_guard":"/pulp/api/v3/contentguards/certguard/x509/1c568842-2b84-443e-8132-c379f70ea3af/","name":"test_ansible_distribution","repository":"/pulp/api/v3/repositories/ansible/ansible/2a88181b-f7f1-41c9-9382-5af0837187f4/","repository_version":null,"client_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp_ansible/galaxy/test_ansible_base_path"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -65,7 +65,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2020 11:29:38 GMT
+      - Wed, 19 Aug 2020 10:56:32 GMT
       Server:
       - nginx/1.14.2
       Vary:

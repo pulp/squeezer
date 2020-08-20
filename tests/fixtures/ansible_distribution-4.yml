@@ -16,7 +16,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?limit=1&name=test_ansible_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/ansible/ansible/e1a9da36-54bc-4426-969f-12637eb8270c/","pulp_created":"2020-07-23T11:29:35.740125Z","base_path":"test_ansible_base_path","content_guard":"/pulp/api/v3/contentguards/certguard/x509/18666cd8-1969-4690-b64b-b8cb3eb8a91f/","name":"test_ansible_distribution","repository":"/pulp/api/v3/repositories/ansible/ansible/8492b28e-d5a4-4469-813f-9cc778a9746d/","repository_version":null,"client_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp_ansible/galaxy/test_ansible_base_path"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/ansible/ansible/1f3c82d9-13b8-4034-a9c2-30563b2b6874/","pulp_created":"2020-08-19T10:56:30.404960Z","base_path":"test_ansible_base_path","content_guard":"/pulp/api/v3/contentguards/certguard/x509/1c568842-2b84-443e-8132-c379f70ea3af/","name":"test_ansible_distribution","repository":"/pulp/api/v3/repositories/ansible/ansible/2a88181b-f7f1-41c9-9382-5af0837187f4/","repository_version":null,"client_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp_ansible/galaxy/test_ansible_base_path"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -27,7 +27,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2020 11:29:38 GMT
+      - Wed, 19 Aug 2020 10:56:33 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -51,10 +51,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: DELETE
-    uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/e1a9da36-54bc-4426-969f-12637eb8270c/
+    uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/1f3c82d9-13b8-4034-a9c2-30563b2b6874/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/bd49e7ab-1a00-40fb-b501-1c0b21ee1d2e/"}'
+      string: '{"task":"/pulp/api/v3/tasks/fa4ed88a-98da-46d6-9e8c-956a79ffb6b2/"}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -65,7 +65,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2020 11:29:39 GMT
+      - Wed, 19 Aug 2020 10:56:33 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -89,10 +89,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/bd49e7ab-1a00-40fb-b501-1c0b21ee1d2e/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/fa4ed88a-98da-46d6-9e8c-956a79ffb6b2/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/bd49e7ab-1a00-40fb-b501-1c0b21ee1d2e/","pulp_created":"2020-07-23T11:29:39.060932Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-07-23T11:29:39.134481Z","finished_at":"2020-07-23T11:29:39.147618Z","error":null,"worker":"/pulp/api/v3/workers/3be5e0a7-2cdf-4729-a263-6fc9dd8c7320/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/fa4ed88a-98da-46d6-9e8c-956a79ffb6b2/","pulp_created":"2020-08-19T10:56:33.701530Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-08-19T10:56:33.793294Z","finished_at":"2020-08-19T10:56:33.818497Z","error":null,"worker":"/pulp/api/v3/workers/650e9bc1-bc0b-4e16-bea4-2c92d8fe434c/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
@@ -103,7 +103,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 23 Jul 2020 11:29:39 GMT
+      - Wed, 19 Aug 2020 10:56:33 GMT
       Server:
       - nginx/1.14.2
       Vary:

@@ -16,18 +16,18 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/content/file/files/?limit=20&offset=0
   response:
     body:
-      string: '{"count":4,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/file/files/89ec85ac-c325-4797-b048-664defd81822/","pulp_created":"2020-07-21T07:27:24.537410Z","artifact":"/pulp/api/v3/artifacts/6b25bd16-d98f-4f11-983f-17d3f17fd659/","relative_path":"data/file1.txt","md5":"502c3370995c203cce7e3f1ffba6859a","sha1":"733033d4ba6761c30fbd1086a70784f4fb317687","sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"},{"pulp_href":"/pulp/api/v3/content/file/files/3641d552-7e0c-4ee2-8bce-9c59973a6ba3/","pulp_created":"2020-07-20T12:50:04.079047Z","artifact":"/pulp/api/v3/artifacts/0770baed-a0ea-4de6-b683-a7346b2130b4/","relative_path":"2.iso","md5":"90c4b2d66db58b417bb71e9d73240ddd","sha1":"81d9d927c823f6f1ee049277e4051cc7f8c6c209","sha224":"6173ebbe710ac10dc2edce54e8c650dcba22aa3f71b68b8ee8aa7deb","sha256":"c8cb77dd8aa7cfb2527c3ee4ca0eb853e722095f626ea267f5c57eef35ece249","sha384":"d8fead6cfec4104e5eb7683c2a5597c8e3b976f33f87a6f1d00ae3e68a6377c1e5efe3fc0d7bb69510bb8e7226b4f453","sha512":"daaac4c66e7ffed66f5257e85585a816f5f1428dca205d50d9e0fccaa55c44742b0e43f06667442dbbc67b8ba9a57c19cd3a49162320b3f8db5473a8fc6d0e8d"},{"pulp_href":"/pulp/api/v3/content/file/files/58086818-6a39-42bd-99de-c5f0f3a409bd/","pulp_created":"2020-07-20T12:50:04.077602Z","artifact":"/pulp/api/v3/artifacts/c44b91a8-f85e-462e-bf47-251383463a85/","relative_path":"3.iso","md5":"8514193e5e060398e75496af02249d97","sha1":"709cf0fc402abfcc9280ce9ced30696c6a8c981e","sha224":"8bd50ce420556de439fe10831c8a4bcc503de771a8b70f3ca5cad223","sha256":"2177ac29ea1c50df6ccb58c21d58943d669de3c0501d343803b623fb0ac9117c","sha384":"e1cd7c0c0d35821a7d8cc64703df85d95fe5a186dfbd8a2219df4d17b26db967fd7e400c02ca61330563b73e51b536bb","sha512":"a9c6c9c8faf80fb407a42a955fe3d92a87894dc50480d5c194d2668aab0ceb816e8e295d3bc214af5c4e4873100469e0e67125cc0c8bf86e5fe0443e90c79d0a"},{"pulp_href":"/pulp/api/v3/content/file/files/6e3b0521-5c57-4f99-938c-cbcc0b456d67/","pulp_created":"2020-07-20T12:50:04.075430Z","artifact":"/pulp/api/v3/artifacts/66b5bd37-9559-47e8-bb74-024f4e2f34c6/","relative_path":"1.iso","md5":"590e3561f4e5a4bbff6ae5e27826f731","sha1":"b8da1c290d785ebedc67153fd2f15c3ab3011f47","sha224":"bef31a4780d0e0a60d22f0d33f946e29f4f782795a17aedefa2dd3d1","sha256":"277011a07d9502a4c36840de32118b66f9ab25b43f9a4b18c5ee7ce86a61597f","sha384":"2db3159a1c9d78b4bfb5ec42216c86b4fadd46066247db3bc0fbceda51d5edf97b4a1cf693248b6b6b7bddb1396fead5","sha512":"6a5d10180f573fe9319524d2f79f7c38167d57c7b57aae9a153ddfb8e7aa1bb57308e4dcd70f9e85ffa185fd70914e61b1255e58f80272ae408b26326a00d124"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/file/files/270e3ac1-49b9-48bb-b80e-485f5ec08109/","pulp_created":"2020-08-19T09:52:33.030308Z","artifact":"/pulp/api/v3/artifacts/05173f97-659b-4b7d-ae54-af63e0555cf4/","relative_path":"data/file1.txt","md5":"502c3370995c203cce7e3f1ffba6859a","sha1":"733033d4ba6761c30fbd1086a70784f4fb317687","sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '2908'
+      - '772'
       Content-Type:
       - application/json
       Date:
-      - Tue, 21 Jul 2020 07:27:27 GMT
+      - Wed, 19 Aug 2020 09:52:36 GMT
       Server:
       - nginx/1.14.2
       Vary:

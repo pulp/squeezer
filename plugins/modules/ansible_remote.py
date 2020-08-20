@@ -90,7 +90,7 @@ RETURN = r"""
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpEntityAnsibleModule,
-    PulpAnsibleRemote,
+    PulpAnsibleRoleRemote,
 )
 
 
@@ -100,7 +100,7 @@ def main():
             name=dict(),
             url=dict(),
             download_concurrency=dict(type="int"),
-            policy=dict(choices=["immediate"],),
+            policy=dict(choices=["immediate"]),
             proxy_url=dict(type="str"),
             tls_validation=dict(type="bool"),
         ),
@@ -110,17 +110,14 @@ def main():
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
             key: module.params[key]
-            for key in [
-                "url",
-                "download_concurrency",
-                "policy",
-                "proxy_url",
-                "tls_validation",
-            ]
+            for key in ["url", "download_concurrency", "policy", "tls_validation"]
             if module.params[key] is not None
         }
+        if module.params["proxy_url"] is not None:
+            # In case of an empty string we nullify
+            desired_attributes["proxy_url"] = module.params["proxy_url"] or None
 
-        PulpAnsibleRemote(module, natural_key, desired_attributes).process()
+        PulpAnsibleRoleRemote(module, natural_key, desired_attributes).process()
 
 
 if __name__ == "__main__":

@@ -58,7 +58,6 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpAnsibleModule,
     PulpFileRemote,
     PulpFileRepository,
-    SqueezerException,
 )
 
 
