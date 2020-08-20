@@ -16,6 +16,14 @@ short_description: Synchronize a ansible remote on a pulp server
 description:
   - "This module synchronizes a ansible remote into a repository."
 options:
+  content_type:
+    description:
+      - Content type of the remote to be synched
+    type: str
+    choices:
+      - collection
+      - role
+    default: role
   remote:
     description:
       - Name of the remote to synchronize
@@ -56,6 +64,7 @@ RETURN = r"""
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpAnsibleModule,
+    PulpAnsibleCollectionRemote,
     PulpAnsibleRoleRemote,
     PulpAnsibleRepository,
 )
@@ -63,10 +72,19 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 
 def main():
     with PulpAnsibleModule(
-        argument_spec=dict(remote=dict(required=True), repository=dict(required=True),),
+        argument_spec=dict(
+            content_type=dict(choices=["collection", "role"], default="role"),
+            remote=dict(required=True),
+            repository=dict(required=True),
+        ),
     ) as module:
 
-        remote = PulpAnsibleRoleRemote(module, {"name": module.params["remote"]})
+        if module.params["content_type"] == "collection":
+            RemoteClass = PulpAnsibleCollectionRemote
+        else:
+            RemoteClass = PulpAnsibleRoleRemote
+
+        remote = RemoteClass(module, {"name": module.params["remote"]})
         remote.find(failsafe=False)
 
         repository = PulpAnsibleRepository(

@@ -13,7 +13,7 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/role/?limit=1&name=test_ansible_role_remote
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/collection/?limit=1&name=test_ansible_collection_remote
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -27,7 +27,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Aug 2020 17:23:55 GMT
+      - Thu, 20 Aug 2020 17:23:58 GMT
       Server:
       - nginx/1.14.2
       Vary:
