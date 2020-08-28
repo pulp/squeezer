@@ -543,6 +543,18 @@ class PulpAnsibleDistribution(PulpEntity):
         )
 
 
+class PulpAnsibleCollectionRemote(PulpEntity):
+    _list_id = "remotes_ansible_collection_list"
+    _read_id = "remotes_ansible_collection_read"
+    _create_id = "remotes_ansible_collection_create"
+    _update_id = "remotes_ansible_collection_update"
+    _delete_id = "remotes_ansible_collection_delete"
+    _href = "ansible_collection_remote_href"
+
+    _name_singular = "remote"
+    _name_plural = "remotes"
+
+
 class PulpAnsibleRoleRemote(PulpEntity):
     _name_singular = "remote"
     _name_plural = "remotes"

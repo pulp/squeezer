@@ -16,6 +16,14 @@ short_description: Manage ansible remotes of a pulp api server instance
 description:
   - "This performs CRUD operations on ansible remotes in a pulp api server instance."
 options:
+  content_type:
+    description:
+      - Content type of the remote
+    type: str
+    choices:
+      - collection
+      - role
+    default: role
   name:
     description:
       - Name of the remote to query or manipulate
@@ -90,6 +98,7 @@ RETURN = r"""
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpEntityAnsibleModule,
+    PulpAnsibleCollectionRemote,
     PulpAnsibleRoleRemote,
 )
 
@@ -97,6 +106,7 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 def main():
     with PulpEntityAnsibleModule(
         argument_spec=dict(
+            content_type=dict(choices=["collection", "role"], default="role"),
             name=dict(),
             url=dict(),
             download_concurrency=dict(type="int"),
@@ -106,6 +116,11 @@ def main():
         ),
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
+
+        if module.params["content_type"] == "collection":
+            RemoteClass = PulpAnsibleCollectionRemote
+        else:
+            RemoteClass = PulpAnsibleRoleRemote
 
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
@@ -117,7 +132,7 @@ def main():
             # In case of an empty string we nullify
             desired_attributes["proxy_url"] = module.params["proxy_url"] or None
 
-        PulpAnsibleRoleRemote(module, natural_key, desired_attributes).process()
+        RemoteClass(module, natural_key, desired_attributes).process()
 
 
 if __name__ == "__main__":

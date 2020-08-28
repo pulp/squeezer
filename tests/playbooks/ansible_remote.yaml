@@ -13,8 +13,13 @@
   tasks:
     - name: Make remote absent
       ansible_remote:
-        name: test_ansible_remote
+        name: "test_ansible_{{ item }}_remote"
         state: absent
+        content_type: "{{ item }}"
+      loop:
+        - role
+        - collection
+
     - name: Clean openapi cache
       file:
         path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
@@ -29,100 +34,216 @@
   module_defaults:
     <<: *pulp_module_defaults
   tasks:
-    - name: Create remote
+    #########################
+    # Tests for role remote #
+    #########################
+
+    - name: Create role remote
       ansible_remote:
-        name: test_ansible_remote
+        name: test_ansible_role_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
         proxy_url: "http://proxy.int:3128"
         state: present
       register: result
-    - name: Verify create remote
+    - name: Verify create role remote
       assert:
         that:
           - result.changed == true
-          - result.remote.name == "test_ansible_remote"
+          - result.remote.name == "test_ansible_role_remote"
           - result.remote.url == "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
           - result.remote.proxy_url == "http://proxy.int:3128"
 
-    - name: Create remote (2nd try)
+    - name: Create role remote (2nd try)
       ansible_remote:
-        name: test_ansible_remote
+        content_type: role
+        name: test_ansible_role_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
         proxy_url: "http://proxy.int:3128"
         state: present
       register: result
-    - name: Verify create remote (2nd try)
+    - name: Verify create role remote (2nd try)
       assert:
         that:
           - result.changed == false
 
-    - name: Modify remote
+    - name: Modify role remote
       ansible_remote:
-        name: test_ansible_remote
+        name: test_ansible_role_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=pulp"
         tls_validation: false
         state: present
       register: result
-    - name: Verify modify remote
+    - name: Verify modify role remote
       assert:
         that:
           - result.changed == true
           - result.remote.url == "https://galaxy.ansible.com/api/v1/roles/?namespace__name=pulp"
           - result.remote.tls_validation == false
 
-    - name: Modify remote (2nd try)
+    - name: Modify role remote (2nd try)
       ansible_remote:
-        name: test_ansible_remote
+        content_type: role
+        name: test_ansible_role_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=pulp"
         tls_validation: false
         state: present
       register: result
-    - name: Verify modify remote (2nd try)
+    - name: Verify modify role remote (2nd try)
       assert:
         that:
           - result.changed == false
 
-    - name: List remotes
+    - name: List role remotes
       ansible_remote: {}
       register: result
-    - name: Verify list remotes
+    - name: Verify list role remotes
       assert:
         that:
           - result.changed == false
-          - result.remotes | length >= 1
-          - result.remotes | selectattr('name', 'match', 'test_ansible_remote') | list | length == 1
+          - result.remotes | selectattr('name', 'match', 'test_ansible_role_remote') | list | length == 1
 
-    - name: Read remote
+    - name: Read role remote
       ansible_remote:
-        name: test_ansible_remote
+        content_type: role
+        name: test_ansible_role_remote
       register: result
-    - name: Verify read remote
+    - name: Verify read role remote
       assert:
         that:
           - result.changed == false
-          - result.remote.name == "test_ansible_remote"
+          - result.remote.name == "test_ansible_role_remote"
           - result.remote.url == "https://galaxy.ansible.com/api/v1/roles/?namespace__name=pulp"
           - result.remote.policy == "immediate"
           - result.remote.proxy_url == "http://proxy.int:3128"
           - result.remote.tls_validation == false
 
-    - name: Delete remote
+    - name: Delete role remote
       ansible_remote:
-        name: test_ansible_remote
+        name: test_ansible_role_remote
         state: absent
       register: result
-    - name: Verify delete remote
+    - name: Verify delete role remote
       assert:
         that:
           - result.changed == true
           - not result.remote
 
-    - name: Delete remote (2nd try)
+    - name: Delete role remote (2nd try)
       ansible_remote:
-        name: test_ansible_remote
+        content_type: role
+        name: test_ansible_role_remote
         state: absent
       register: result
-    - name: Verify delete remote (2nd try)
+    - name: Verify delete role remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    ###############################
+    # Tests for collection remote #
+    ###############################
+
+    - name: Create collection remote
+      ansible_remote:
+        content_type: collection
+        name: test_ansible_collection_remote
+        url: "https://galaxy-dev.ansible.com/api/v2/collections/testing/ansible_testing_content"
+        proxy_url: "http://proxy.int:3128"
+        state: present
+      register: result
+    - name: Verify create collection remote
+      assert:
+        that:
+          - result.changed == true
+          - result.remote.name == "test_ansible_collection_remote"
+          - result.remote.url == "https://galaxy-dev.ansible.com/api/v2/collections/testing/ansible_testing_content"
+          - result.remote.proxy_url == "http://proxy.int:3128"
+
+    - name: Create collection remote (2nd try)
+      ansible_remote:
+        content_type: collection
+        name: test_ansible_collection_remote
+        url: "https://galaxy-dev.ansible.com/api/v2/collections/testing/ansible_testing_content"
+        proxy_url: "http://proxy.int:3128"
+        state: present
+      register: result
+    - name: Verify create collection remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Modify collection remote
+      ansible_remote:
+        content_type: collection
+        name: test_ansible_collection_remote
+        url: "https://galaxy-dev.ansible.com/api/v2/collections/pulp/squeezer"
+        tls_validation: false
+        state: present
+      register: result
+    - name: Verify modify collection remote
+      assert:
+        that:
+          - result.changed == true
+          - result.remote.url == "https://galaxy-dev.ansible.com/api/v2/collections/pulp/squeezer"
+          - result.remote.tls_validation == false
+
+    - name: Modify collection remote (2nd try)
+      ansible_remote:
+        content_type: collection
+        name: test_ansible_collection_remote
+        url: "https://galaxy-dev.ansible.com/api/v2/collections/pulp/squeezer"
+        tls_validation: false
+        state: present
+      register: result
+    - name: Verify modify collection remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: List collection remotes
+      ansible_remote:
+        content_type: collection
+      register: result
+    - name: Verify list collection remotes
+      assert:
+        that:
+          - result.changed == false
+          - result.remotes | selectattr('name', 'match', 'test_ansible_collection_remote') | list | length == 1
+
+    - name: Read collection remote
+      ansible_remote:
+        content_type: collection
+        name: test_ansible_collection_remote
+      register: result
+    - name: Verify read collection remote
+      assert:
+        that:
+          - result.changed == false
+          - result.remote.name == "test_ansible_collection_remote"
+          - result.remote.url == "https://galaxy-dev.ansible.com/api/v2/collections/pulp/squeezer"
+          - result.remote.policy == "immediate"
+          - result.remote.proxy_url == "http://proxy.int:3128"
+          - result.remote.tls_validation == false
+
+    - name: Delete collection remote
+      ansible_remote:
+        content_type: collection
+        name: test_ansible_collection_remote
+        state: absent
+      register: result
+    - name: Verify collection delete remote
+      assert:
+        that:
+          - result.changed == true
+          - not result.remote
+
+    - name: Delete collection remote (2nd try)
+      ansible_remote:
+        content_type: collection
+        name: test_ansible_collection_remote
+        state: absent
+      register: result
+    - name: Verify collection delete remote (2nd try)
       assert:
         that:
           - result.changed == false

@@ -13007,22 +13007,22 @@ interactions:
         : \"string\",\n                        \"description\": \"The base (relative)\
         \ path component of the published url. Avoid paths that                  \
         \   overlap with other distribution base paths (e.g. \\\"foo\\\" and \\\"\
-        foo/bar\\\")\"\n                    },\n                    \"name\": {\n\
+        foo/bar\\\")\"\n                    },\n                    \"repository\"\
+        : {\n                        \"type\": \"string\",\n                     \
+        \   \"format\": \"uri\",\n                        \"nullable\": true,\n  \
+        \                      \"description\": \"The latest RepositoryVersion for\
+        \ this Repository will be served.\"\n                    },\n            \
+        \        \"repository_version\": {\n                        \"type\": \"string\"\
+        ,\n                        \"format\": \"uri\",\n                        \"\
+        nullable\": true,\n                        \"description\": \"RepositoryVersion\
+        \ to be served\"\n                    },\n                    \"name\": {\n\
         \                        \"type\": \"string\",\n                        \"\
         description\": \"A unique name. Ex, `rawhide` and `stable`.\"\n          \
         \          },\n                    \"content_guard\": {\n                \
         \        \"type\": \"string\",\n                        \"format\": \"uri\"\
         ,\n                        \"description\": \"An optional content-guard. If\
-        \ none is specified, a default one will be used.\"\n                    },\n\
-        \                    \"repository_version\": {\n                        \"\
-        type\": \"string\",\n                        \"format\": \"uri\",\n      \
-        \                  \"nullable\": true,\n                        \"description\"\
-        : \"RepositoryVersion to be served\"\n                    },\n           \
-        \         \"repository\": {\n                        \"type\": \"string\"\
-        ,\n                        \"format\": \"uri\",\n                        \"\
-        nullable\": true,\n                        \"description\": \"The latest RepositoryVersion\
-        \ for this Repository will be served.\"\n                    }\n         \
-        \       }\n            },\n            \"Patchedcontainer.ContainerRemote\"\
+        \ none is specified, a default one will be used.\"\n                    }\n\
+        \                }\n            },\n            \"Patchedcontainer.ContainerRemote\"\
         : {\n                \"type\": \"object\",\n                \"description\"\
         : \"A Serializer for ContainerRemote.\",\n                \"properties\":\
         \ {\n                    \"name\": {\n                        \"type\": \"\
@@ -13876,114 +13876,113 @@ interactions:
         \ a default for the ``ref_name`` attribute in the\\nModelSerializers's ``Meta``\
         \ class. This ensures that the OpenAPI definitions\\nof plugins are namespaced\
         \ properly.\",\n                \"properties\": {\n                    \"\
-        pulp_href\": {\n                        \"type\": \"string\",\n          \
-        \              \"format\": \"uri\",\n                        \"readOnly\"\
-        : true\n                    },\n                    \"pulp_created\": {\n\
-        \                        \"type\": \"string\",\n                        \"\
-        format\": \"date-time\",\n                        \"readOnly\": true,\n  \
-        \                      \"description\": \"Timestamp of creation.\"\n     \
-        \               },\n                    \"name\": {\n                    \
-        \    \"type\": \"string\",\n                        \"readOnly\": true,\n\
-        \                        \"description\": \"The name of the worker.\"\n  \
-        \                  },\n                    \"last_heartbeat\": {\n       \
-        \                 \"type\": \"string\",\n                        \"format\"\
-        : \"date-time\",\n                        \"readOnly\": true,\n          \
-        \              \"description\": \"Timestamp of the last time the worker talked\
-        \ to the service.\"\n                    }\n                }\n          \
-        \  },\n            \"ansible.AnsibleDistribution\": {\n                \"\
-        type\": \"object\",\n                \"description\": \"Serializer for Ansible\
-        \ Distributions.\",\n                \"properties\": {\n                 \
-        \   \"base_path\": {\n                        \"type\": \"string\",\n    \
-        \                    \"description\": \"The base (relative) path component\
-        \ of the published url. Avoid paths that                     overlap with\
-        \ other distribution base paths (e.g. \\\"foo\\\" and \\\"foo/bar\\\")\"\n\
-        \                    },\n                    \"content_guard\": {\n      \
-        \                  \"type\": \"string\",\n                        \"format\"\
-        : \"uri\",\n                        \"nullable\": true,\n                \
-        \        \"description\": \"An optional content-guard.\"\n               \
-        \     },\n                    \"name\": {\n                        \"type\"\
-        : \"string\",\n                        \"description\": \"A unique name. Ex,\
-        \ `rawhide` and `stable`.\"\n                    },\n                    \"\
-        repository\": {\n                        \"type\": \"string\",\n         \
-        \               \"format\": \"uri\",\n                        \"nullable\"\
-        : true,\n                        \"description\": \"The latest RepositoryVersion\
-        \ for this Repository will be served.\"\n                    },\n        \
-        \            \"repository_version\": {\n                        \"type\":\
-        \ \"string\",\n                        \"format\": \"uri\",\n            \
-        \            \"nullable\": true,\n                        \"description\"\
-        : \"RepositoryVersion to be served\"\n                    }\n            \
-        \    },\n                \"required\": [\n                    \"base_path\"\
-        ,\n                    \"name\"\n                ]\n            },\n     \
-        \       \"ansible.AnsibleDistributionResponse\": {\n                \"type\"\
-        : \"object\",\n                \"description\": \"Serializer for Ansible Distributions.\"\
-        ,\n                \"properties\": {\n                    \"pulp_href\": {\n\
-        \                        \"type\": \"string\",\n                        \"\
-        format\": \"uri\",\n                        \"readOnly\": true\n         \
-        \           },\n                    \"pulp_created\": {\n                \
-        \        \"type\": \"string\",\n                        \"format\": \"date-time\"\
+        pulp_created\": {\n                        \"type\": \"string\",\n       \
+        \                 \"format\": \"date-time\",\n                        \"readOnly\"\
+        : true,\n                        \"description\": \"Timestamp of creation.\"\
+        \n                    },\n                    \"pulp_href\": {\n         \
+        \               \"type\": \"string\",\n                        \"format\"\
+        : \"uri\",\n                        \"readOnly\": true\n                 \
+        \   },\n                    \"name\": {\n                        \"type\"\
+        : \"string\",\n                        \"readOnly\": true,\n             \
+        \           \"description\": \"The name of the worker.\"\n               \
+        \     },\n                    \"last_heartbeat\": {\n                    \
+        \    \"type\": \"string\",\n                        \"format\": \"date-time\"\
         ,\n                        \"readOnly\": true,\n                        \"\
-        description\": \"Timestamp of creation.\"\n                    },\n      \
-        \              \"base_path\": {\n                        \"type\": \"string\"\
-        ,\n                        \"description\": \"The base (relative) path component\
-        \ of the published url. Avoid paths that                     overlap with\
-        \ other distribution base paths (e.g. \\\"foo\\\" and \\\"foo/bar\\\")\"\n\
-        \                    },\n                    \"content_guard\": {\n      \
-        \                  \"type\": \"string\",\n                        \"format\"\
-        : \"uri\",\n                        \"nullable\": true,\n                \
-        \        \"description\": \"An optional content-guard.\"\n               \
-        \     },\n                    \"name\": {\n                        \"type\"\
-        : \"string\",\n                        \"description\": \"A unique name. Ex,\
-        \ `rawhide` and `stable`.\"\n                    },\n                    \"\
-        repository\": {\n                        \"type\": \"string\",\n         \
-        \               \"format\": \"uri\",\n                        \"nullable\"\
-        : true,\n                        \"description\": \"The latest RepositoryVersion\
-        \ for this Repository will be served.\"\n                    },\n        \
-        \            \"repository_version\": {\n                        \"type\":\
-        \ \"string\",\n                        \"format\": \"uri\",\n            \
+        description\": \"Timestamp of the last time the worker talked to the service.\"\
+        \n                    }\n                }\n            },\n            \"\
+        ansible.AnsibleDistribution\": {\n                \"type\": \"object\",\n\
+        \                \"description\": \"Serializer for Ansible Distributions.\"\
+        ,\n                \"properties\": {\n                    \"base_path\": {\n\
+        \                        \"type\": \"string\",\n                        \"\
+        description\": \"The base (relative) path component of the published url.\
+        \ Avoid paths that                     overlap with other distribution base\
+        \ paths (e.g. \\\"foo\\\" and \\\"foo/bar\\\")\"\n                    },\n\
+        \                    \"content_guard\": {\n                        \"type\"\
+        : \"string\",\n                        \"format\": \"uri\",\n            \
         \            \"nullable\": true,\n                        \"description\"\
-        : \"RepositoryVersion to be served\"\n                    },\n           \
-        \         \"client_url\": {\n                        \"readOnly\": true,\n\
-        \                        \"description\": \"The URL of a Collection content\
-        \ source.\"\n                    }\n                },\n                \"\
-        required\": [\n                    \"base_path\",\n                    \"\
-        name\"\n                ]\n            },\n            \"ansible.AnsibleRepository\"\
-        : {\n                \"type\": \"object\",\n                \"description\"\
-        : \"Serializer for Ansible Repositories.\",\n                \"properties\"\
-        : {\n                    \"name\": {\n                        \"type\": \"\
-        string\",\n                        \"description\": \"A unique name for this\
-        \ repository.\"\n                    },\n                    \"description\"\
+        : \"An optional content-guard.\"\n                    },\n               \
+        \     \"name\": {\n                        \"type\": \"string\",\n       \
+        \                 \"description\": \"A unique name. Ex, `rawhide` and `stable`.\"\
+        \n                    },\n                    \"repository\": {\n        \
+        \                \"type\": \"string\",\n                        \"format\"\
+        : \"uri\",\n                        \"nullable\": true,\n                \
+        \        \"description\": \"The latest RepositoryVersion for this Repository\
+        \ will be served.\"\n                    },\n                    \"repository_version\"\
         : {\n                        \"type\": \"string\",\n                     \
-        \   \"nullable\": true,\n                        \"description\": \"An optional\
-        \ description.\"\n                    },\n                    \"remote\":\
-        \ {\n                        \"type\": \"string\",\n                     \
-        \   \"format\": \"uri\",\n                        \"nullable\": true\n   \
-        \                 }\n                },\n                \"required\": [\n\
-        \                    \"name\"\n                ]\n            },\n       \
-        \     \"ansible.AnsibleRepositoryResponse\": {\n                \"type\":\
-        \ \"object\",\n                \"description\": \"Serializer for Ansible Repositories.\"\
-        ,\n                \"properties\": {\n                    \"pulp_href\": {\n\
-        \                        \"type\": \"string\",\n                        \"\
-        format\": \"uri\",\n                        \"readOnly\": true\n         \
-        \           },\n                    \"pulp_created\": {\n                \
-        \        \"type\": \"string\",\n                        \"format\": \"date-time\"\
-        ,\n                        \"readOnly\": true,\n                        \"\
-        description\": \"Timestamp of creation.\"\n                    },\n      \
-        \              \"versions_href\": {\n                        \"type\": \"\
-        string\",\n                        \"format\": \"uri\",\n                \
-        \        \"readOnly\": true\n                    },\n                    \"\
-        latest_version_href\": {\n                        \"type\": \"string\",\n\
-        \                        \"format\": \"uri\",\n                        \"\
-        readOnly\": true\n                    },\n                    \"name\": {\n\
-        \                        \"type\": \"string\",\n                        \"\
-        description\": \"A unique name for this repository.\"\n                  \
-        \  },\n                    \"description\": {\n                        \"\
-        type\": \"string\",\n                        \"nullable\": true,\n       \
-        \                 \"description\": \"An optional description.\"\n        \
-        \            },\n                    \"remote\": {\n                     \
-        \   \"type\": \"string\",\n                        \"format\": \"uri\",\n\
-        \                        \"nullable\": true\n                    }\n     \
-        \           },\n                \"required\": [\n                    \"name\"\
-        \n                ]\n            },\n            \"ansible.CollectionRemote\"\
+        \   \"format\": \"uri\",\n                        \"nullable\": true,\n  \
+        \                      \"description\": \"RepositoryVersion to be served\"\
+        \n                    }\n                },\n                \"required\"\
+        : [\n                    \"base_path\",\n                    \"name\"\n  \
+        \              ]\n            },\n            \"ansible.AnsibleDistributionResponse\"\
+        : {\n                \"type\": \"object\",\n                \"description\"\
+        : \"Serializer for Ansible Distributions.\",\n                \"properties\"\
+        : {\n                    \"pulp_href\": {\n                        \"type\"\
+        : \"string\",\n                        \"format\": \"uri\",\n            \
+        \            \"readOnly\": true\n                    },\n                \
+        \    \"pulp_created\": {\n                        \"type\": \"string\",\n\
+        \                        \"format\": \"date-time\",\n                    \
+        \    \"readOnly\": true,\n                        \"description\": \"Timestamp\
+        \ of creation.\"\n                    },\n                    \"base_path\"\
+        : {\n                        \"type\": \"string\",\n                     \
+        \   \"description\": \"The base (relative) path component of the published\
+        \ url. Avoid paths that                     overlap with other distribution\
+        \ base paths (e.g. \\\"foo\\\" and \\\"foo/bar\\\")\"\n                  \
+        \  },\n                    \"content_guard\": {\n                        \"\
+        type\": \"string\",\n                        \"format\": \"uri\",\n      \
+        \                  \"nullable\": true,\n                        \"description\"\
+        : \"An optional content-guard.\"\n                    },\n               \
+        \     \"name\": {\n                        \"type\": \"string\",\n       \
+        \                 \"description\": \"A unique name. Ex, `rawhide` and `stable`.\"\
+        \n                    },\n                    \"repository\": {\n        \
+        \                \"type\": \"string\",\n                        \"format\"\
+        : \"uri\",\n                        \"nullable\": true,\n                \
+        \        \"description\": \"The latest RepositoryVersion for this Repository\
+        \ will be served.\"\n                    },\n                    \"repository_version\"\
+        : {\n                        \"type\": \"string\",\n                     \
+        \   \"format\": \"uri\",\n                        \"nullable\": true,\n  \
+        \                      \"description\": \"RepositoryVersion to be served\"\
+        \n                    },\n                    \"client_url\": {\n        \
+        \                \"readOnly\": true,\n                        \"description\"\
+        : \"The URL of a Collection content source.\"\n                    }\n   \
+        \             },\n                \"required\": [\n                    \"\
+        base_path\",\n                    \"name\"\n                ]\n          \
+        \  },\n            \"ansible.AnsibleRepository\": {\n                \"type\"\
+        : \"object\",\n                \"description\": \"Serializer for Ansible Repositories.\"\
+        ,\n                \"properties\": {\n                    \"name\": {\n  \
+        \                      \"type\": \"string\",\n                        \"description\"\
+        : \"A unique name for this repository.\"\n                    },\n       \
+        \             \"description\": {\n                        \"type\": \"string\"\
+        ,\n                        \"nullable\": true,\n                        \"\
+        description\": \"An optional description.\"\n                    },\n    \
+        \                \"remote\": {\n                        \"type\": \"string\"\
+        ,\n                        \"format\": \"uri\",\n                        \"\
+        nullable\": true\n                    }\n                },\n            \
+        \    \"required\": [\n                    \"name\"\n                ]\n  \
+        \          },\n            \"ansible.AnsibleRepositoryResponse\": {\n    \
+        \            \"type\": \"object\",\n                \"description\": \"Serializer\
+        \ for Ansible Repositories.\",\n                \"properties\": {\n      \
+        \              \"pulp_href\": {\n                        \"type\": \"string\"\
+        ,\n                        \"format\": \"uri\",\n                        \"\
+        readOnly\": true\n                    },\n                    \"pulp_created\"\
+        : {\n                        \"type\": \"string\",\n                     \
+        \   \"format\": \"date-time\",\n                        \"readOnly\": true,\n\
+        \                        \"description\": \"Timestamp of creation.\"\n   \
+        \                 },\n                    \"versions_href\": {\n         \
+        \               \"type\": \"string\",\n                        \"format\"\
+        : \"uri\",\n                        \"readOnly\": true\n                 \
+        \   },\n                    \"latest_version_href\": {\n                 \
+        \       \"type\": \"string\",\n                        \"format\": \"uri\"\
+        ,\n                        \"readOnly\": true\n                    },\n  \
+        \                  \"name\": {\n                        \"type\": \"string\"\
+        ,\n                        \"description\": \"A unique name for this repository.\"\
+        \n                    },\n                    \"description\": {\n       \
+        \                 \"type\": \"string\",\n                        \"nullable\"\
+        : true,\n                        \"description\": \"An optional description.\"\
+        \n                    },\n                    \"remote\": {\n            \
+        \            \"type\": \"string\",\n                        \"format\": \"\
+        uri\",\n                        \"nullable\": true\n                    }\n\
+        \                },\n                \"required\": [\n                   \
+        \ \"name\"\n                ]\n            },\n            \"ansible.CollectionRemote\"\
         : {\n                \"type\": \"object\",\n                \"description\"\
         : \"A serializer for Collection Remotes.\",\n                \"properties\"\
         : {\n                    \"name\": {\n                        \"type\": \"\
@@ -14551,62 +14550,62 @@ interactions:
         ,\n                        \"description\": \"The base (relative) path component\
         \ of the published url. Avoid paths that                     overlap with\
         \ other distribution base paths (e.g. \\\"foo\\\" and \\\"foo/bar\\\")\"\n\
-        \                    },\n                    \"name\": {\n               \
-        \         \"type\": \"string\",\n                        \"description\":\
-        \ \"A unique name. Ex, `rawhide` and `stable`.\"\n                    },\n\
+        \                    },\n                    \"repository\": {\n         \
+        \               \"type\": \"string\",\n                        \"format\"\
+        : \"uri\",\n                        \"nullable\": true,\n                \
+        \        \"description\": \"The latest RepositoryVersion for this Repository\
+        \ will be served.\"\n                    },\n                    \"repository_version\"\
+        : {\n                        \"type\": \"string\",\n                     \
+        \   \"format\": \"uri\",\n                        \"nullable\": true,\n  \
+        \                      \"description\": \"RepositoryVersion to be served\"\
+        \n                    },\n                    \"name\": {\n              \
+        \          \"type\": \"string\",\n                        \"description\"\
+        : \"A unique name. Ex, `rawhide` and `stable`.\"\n                    },\n\
         \                    \"content_guard\": {\n                        \"type\"\
         : \"string\",\n                        \"format\": \"uri\",\n            \
         \            \"description\": \"An optional content-guard. If none is specified,\
-        \ a default one will be used.\"\n                    },\n                \
-        \    \"repository_version\": {\n                        \"type\": \"string\"\
-        ,\n                        \"format\": \"uri\",\n                        \"\
-        nullable\": true,\n                        \"description\": \"RepositoryVersion\
-        \ to be served\"\n                    },\n                    \"repository\"\
-        : {\n                        \"type\": \"string\",\n                     \
-        \   \"format\": \"uri\",\n                        \"nullable\": true,\n  \
-        \                      \"description\": \"The latest RepositoryVersion for\
-        \ this Repository will be served.\"\n                    }\n             \
-        \   },\n                \"required\": [\n                    \"base_path\"\
-        ,\n                    \"name\"\n                ]\n            },\n     \
-        \       \"container.ContainerDistributionResponse\": {\n                \"\
-        type\": \"object\",\n                \"description\": \"A serializer for ContainerDistribution.\"\
+        \ a default one will be used.\"\n                    }\n                },\n\
+        \                \"required\": [\n                    \"base_path\",\n   \
+        \                 \"name\"\n                ]\n            },\n          \
+        \  \"container.ContainerDistributionResponse\": {\n                \"type\"\
+        : \"object\",\n                \"description\": \"A serializer for ContainerDistribution.\"\
         ,\n                \"properties\": {\n                    \"base_path\": {\n\
         \                        \"type\": \"string\",\n                        \"\
         description\": \"The base (relative) path component of the published url.\
         \ Avoid paths that                     overlap with other distribution base\
         \ paths (e.g. \\\"foo\\\" and \\\"foo/bar\\\")\"\n                    },\n\
+        \                    \"repository\": {\n                        \"type\":\
+        \ \"string\",\n                        \"format\": \"uri\",\n            \
+        \            \"nullable\": true,\n                        \"description\"\
+        : \"The latest RepositoryVersion for this Repository will be served.\"\n \
+        \                   },\n                    \"pulp_created\": {\n        \
+        \                \"type\": \"string\",\n                        \"format\"\
+        : \"date-time\",\n                        \"readOnly\": true,\n          \
+        \              \"description\": \"Timestamp of creation.\"\n             \
+        \       },\n                    \"repository_version\": {\n              \
+        \          \"type\": \"string\",\n                        \"format\": \"uri\"\
+        ,\n                        \"nullable\": true,\n                        \"\
+        description\": \"RepositoryVersion to be served\"\n                    },\n\
         \                    \"name\": {\n                        \"type\": \"string\"\
         ,\n                        \"description\": \"A unique name. Ex, `rawhide`\
-        \ and `stable`.\"\n                    },\n                    \"pulp_href\"\
+        \ and `stable`.\"\n                    },\n                    \"content_guard\"\
         : {\n                        \"type\": \"string\",\n                     \
-        \   \"format\": \"uri\",\n                        \"readOnly\": true\n   \
-        \                 },\n                    \"pulp_created\": {\n          \
-        \              \"type\": \"string\",\n                        \"format\":\
-        \ \"date-time\",\n                        \"readOnly\": true,\n          \
-        \              \"description\": \"Timestamp of creation.\"\n             \
-        \       },\n                    \"content_guard\": {\n                   \
-        \     \"type\": \"string\",\n                        \"format\": \"uri\",\n\
-        \                        \"description\": \"An optional content-guard. If\
-        \ none is specified, a default one will be used.\"\n                    },\n\
-        \                    \"repository_version\": {\n                        \"\
-        type\": \"string\",\n                        \"format\": \"uri\",\n      \
-        \                  \"nullable\": true,\n                        \"description\"\
-        : \"RepositoryVersion to be served\"\n                    },\n           \
-        \         \"repository\": {\n                        \"type\": \"string\"\
-        ,\n                        \"format\": \"uri\",\n                        \"\
-        nullable\": true,\n                        \"description\": \"The latest RepositoryVersion\
-        \ for this Repository will be served.\"\n                    },\n        \
-        \            \"registry_path\": {\n                        \"type\": \"string\"\
-        ,\n                        \"readOnly\": true,\n                        \"\
-        description\": \"The Registry hostame/name/ to use with docker pull command\
-        \ defined by this distribution.\"\n                    }\n               \
-        \ },\n                \"required\": [\n                    \"base_path\",\n\
-        \                    \"name\"\n                ]\n            },\n       \
-        \     \"container.ContainerPushRepository\": {\n                \"type\":\
-        \ \"object\",\n                \"description\": \"Serializer for Container\
-        \ Push Repositories.\",\n                \"properties\": {\n             \
-        \       \"name\": {\n                        \"type\": \"string\",\n     \
-        \                   \"description\": \"A unique name for this repository.\"\
+        \   \"format\": \"uri\",\n                        \"description\": \"An optional\
+        \ content-guard. If none is specified, a default one will be used.\"\n   \
+        \                 },\n                    \"pulp_href\": {\n             \
+        \           \"type\": \"string\",\n                        \"format\": \"\
+        uri\",\n                        \"readOnly\": true\n                    },\n\
+        \                    \"registry_path\": {\n                        \"type\"\
+        : \"string\",\n                        \"readOnly\": true,\n             \
+        \           \"description\": \"The Registry hostame/name/ to use with docker\
+        \ pull command defined by this distribution.\"\n                    }\n  \
+        \              },\n                \"required\": [\n                    \"\
+        base_path\",\n                    \"name\"\n                ]\n          \
+        \  },\n            \"container.ContainerPushRepository\": {\n            \
+        \    \"type\": \"object\",\n                \"description\": \"Serializer\
+        \ for Container Push Repositories.\",\n                \"properties\": {\n\
+        \                    \"name\": {\n                        \"type\": \"string\"\
+        ,\n                        \"description\": \"A unique name for this repository.\"\
         \n                    },\n                    \"description\": {\n       \
         \                 \"type\": \"string\",\n                        \"nullable\"\
         : true,\n                        \"description\": \"An optional description.\"\
@@ -15611,7 +15610,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Aug 2020 10:58:13 GMT
+      - Thu, 20 Aug 2020 17:52:26 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -15635,21 +15634,21 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/role/?limit=1&name=test_ansible_remote
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/role/?limit=1&name=test_ansible_role_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/role/a1f80db3-de07-420e-8c11-6ea4c9cbd9e9/","pulp_created":"2020-08-19T10:58:12.342959Z","name":"test_ansible_remote","url":"https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":null,"username":null,"password":null,"pulp_last_updated":"2020-08-19T10:58:12.342991Z","download_concurrency":10,"policy":"immediate"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/role/2fccbfe2-6a69-4c58-924a-02fd728d00b0/","pulp_created":"2020-08-20T17:47:57.610658Z","name":"test_ansible_role_remote","url":"https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":null,"username":null,"password":null,"pulp_last_updated":"2020-08-20T17:47:57.610675Z","download_concurrency":10,"policy":"immediate"}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '506'
+      - '511'
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Aug 2020 10:58:13 GMT
+      - Thu, 20 Aug 2020 17:52:27 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -15676,7 +15675,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?limit=1&name=test_ansible_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/327f57bb-4ca5-4c0d-a7fe-b00f1556f8ea/","pulp_created":"2020-08-19T10:58:11.928577Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/327f57bb-4ca5-4c0d-a7fe-b00f1556f8ea/versions/","latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/327f57bb-4ca5-4c0d-a7fe-b00f1556f8ea/versions/0/","name":"test_ansible_repository","description":null,"remote":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/845a5f3b-3161-4c61-89c3-1200464dd314/","pulp_created":"2020-08-20T17:52:23.073134Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/845a5f3b-3161-4c61-89c3-1200464dd314/versions/","latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/845a5f3b-3161-4c61-89c3-1200464dd314/versions/0/","name":"test_ansible_repository","description":null,"remote":null}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -15687,7 +15686,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Aug 2020 10:58:13 GMT
+      - Thu, 20 Aug 2020 17:52:27 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -15698,7 +15697,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"remote": "/pulp/api/v3/remotes/ansible/role/a1f80db3-de07-420e-8c11-6ea4c9cbd9e9/"}'
+    body: '{"remote": "/pulp/api/v3/remotes/ansible/role/2fccbfe2-6a69-4c58-924a-02fd728d00b0/"}'
     headers:
       Accept:
       - application/json
@@ -15713,10 +15712,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: POST
-    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/327f57bb-4ca5-4c0d-a7fe-b00f1556f8ea/sync/
+    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/845a5f3b-3161-4c61-89c3-1200464dd314/sync/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/0cb23abd-77f4-4701-8c8c-5fcc98159e7b/"}'
+      string: '{"task":"/pulp/api/v3/tasks/eb08ba3a-e7d8-49c8-a061-c462bb11c72c/"}'
     headers:
       Allow:
       - POST, OPTIONS
@@ -15727,7 +15726,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Aug 2020 10:58:13 GMT
+      - Thu, 20 Aug 2020 17:52:27 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -15751,21 +15750,21 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/0cb23abd-77f4-4701-8c8c-5fcc98159e7b/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/eb08ba3a-e7d8-49c8-a061-c462bb11c72c/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/0cb23abd-77f4-4701-8c8c-5fcc98159e7b/","pulp_created":"2020-08-19T10:58:13.383727Z","state":"running","name":"pulp_ansible.app.tasks.roles.synchronize","started_at":"2020-08-19T10:58:13.496501Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/650e9bc1-bc0b-4e16-bea4-2c92d8fe434c/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/role/a1f80db3-de07-420e-8c11-6ea4c9cbd9e9/","/pulp/api/v3/repositories/ansible/ansible/327f57bb-4ca5-4c0d-a7fe-b00f1556f8ea/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/eb08ba3a-e7d8-49c8-a061-c462bb11c72c/","pulp_created":"2020-08-20T17:52:27.185496Z","state":"running","name":"pulp_ansible.app.tasks.roles.synchronize","started_at":"2020-08-20T17:52:27.282646Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/89468586-21ff-4ad2-8fd6-a8e71e3c1e4f/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/role/2fccbfe2-6a69-4c58-924a-02fd728d00b0/","/pulp/api/v3/repositories/ansible/ansible/845a5f3b-3161-4c61-89c3-1200464dd314/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '615'
+      - '619'
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Aug 2020 10:58:13 GMT
+      - Thu, 20 Aug 2020 17:52:27 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -15789,14 +15788,14 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/0cb23abd-77f4-4701-8c8c-5fcc98159e7b/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/eb08ba3a-e7d8-49c8-a061-c462bb11c72c/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/0cb23abd-77f4-4701-8c8c-5fcc98159e7b/","pulp_created":"2020-08-19T10:58:13.383727Z","state":"running","name":"pulp_ansible.app.tasks.roles.synchronize","started_at":"2020-08-19T10:58:13.496501Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/650e9bc1-bc0b-4e16-bea4-2c92d8fe434c/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Downloading
+      string: '{"pulp_href":"/pulp/api/v3/tasks/eb08ba3a-e7d8-49c8-a061-c462bb11c72c/","pulp_created":"2020-08-20T17:52:27.185496Z","state":"running","name":"pulp_ansible.app.tasks.roles.synchronize","started_at":"2020-08-20T17:52:27.282646Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/89468586-21ff-4ad2-8fd6-a8e71e3c1e4f/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Downloading
         Artifacts","code":"downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Associating
         Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null},{"message":"Parsing
         Pages from Galaxy Roles API","code":"parsing.roles","state":"completed","total":1,"done":1,"suffix":null},{"message":"Parsing
-        Role Metadata","code":"parsing.metadata","state":"completed","total":null,"done":5,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/role/a1f80db3-de07-420e-8c11-6ea4c9cbd9e9/","/pulp/api/v3/repositories/ansible/ansible/327f57bb-4ca5-4c0d-a7fe-b00f1556f8ea/"]}'
+        Role Metadata","code":"parsing.metadata","state":"completed","total":null,"done":5,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/role/2fccbfe2-6a69-4c58-924a-02fd728d00b0/","/pulp/api/v3/repositories/ansible/ansible/845a5f3b-3161-4c61-89c3-1200464dd314/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
@@ -15807,7 +15806,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Aug 2020 10:58:15 GMT
+      - Thu, 20 Aug 2020 17:52:29 GMT
       Server:
       - nginx/1.14.2
       Vary:
@@ -15831,140 +15830,14 @@ interactions:
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/0cb23abd-77f4-4701-8c8c-5fcc98159e7b/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/eb08ba3a-e7d8-49c8-a061-c462bb11c72c/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/0cb23abd-77f4-4701-8c8c-5fcc98159e7b/","pulp_created":"2020-08-19T10:58:13.383727Z","state":"running","name":"pulp_ansible.app.tasks.roles.synchronize","started_at":"2020-08-19T10:58:13.496501Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/650e9bc1-bc0b-4e16-bea4-2c92d8fe434c/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Associating
-        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null},{"message":"Parsing
-        Pages from Galaxy Roles API","code":"parsing.roles","state":"completed","total":1,"done":1,"suffix":null},{"message":"Parsing
-        Role Metadata","code":"parsing.metadata","state":"completed","total":null,"done":5,"suffix":null},{"message":"Downloading
-        Artifacts","code":"downloading.artifacts","state":"running","total":null,"done":1,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/role/a1f80db3-de07-420e-8c11-6ea4c9cbd9e9/","/pulp/api/v3/repositories/ansible/ansible/327f57bb-4ca5-4c0d-a7fe-b00f1556f8ea/"]}'
-    headers:
-      Allow:
-      - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - close
-      Content-Length:
-      - '1100'
-      Content-Type:
-      - application/json
-      Date:
-      - Wed, 19 Aug 2020 10:58:17 GMT
-      Server:
-      - nginx/1.14.2
-      Vary:
-      - Accept, Cookie
-      X-Frame-Options:
-      - SAMEORIGIN
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian10
-      User-Agent:
-      - Python-urllib/3.8
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/0cb23abd-77f4-4701-8c8c-5fcc98159e7b/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/0cb23abd-77f4-4701-8c8c-5fcc98159e7b/","pulp_created":"2020-08-19T10:58:13.383727Z","state":"running","name":"pulp_ansible.app.tasks.roles.synchronize","started_at":"2020-08-19T10:58:13.496501Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/650e9bc1-bc0b-4e16-bea4-2c92d8fe434c/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Associating
-        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null},{"message":"Parsing
-        Pages from Galaxy Roles API","code":"parsing.roles","state":"completed","total":1,"done":1,"suffix":null},{"message":"Parsing
-        Role Metadata","code":"parsing.metadata","state":"completed","total":null,"done":5,"suffix":null},{"message":"Downloading
-        Artifacts","code":"downloading.artifacts","state":"running","total":null,"done":3,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/role/a1f80db3-de07-420e-8c11-6ea4c9cbd9e9/","/pulp/api/v3/repositories/ansible/ansible/327f57bb-4ca5-4c0d-a7fe-b00f1556f8ea/"]}'
-    headers:
-      Allow:
-      - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - close
-      Content-Length:
-      - '1100'
-      Content-Type:
-      - application/json
-      Date:
-      - Wed, 19 Aug 2020 10:58:19 GMT
-      Server:
-      - nginx/1.14.2
-      Vary:
-      - Accept, Cookie
-      X-Frame-Options:
-      - SAMEORIGIN
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian10
-      User-Agent:
-      - Python-urllib/3.8
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/0cb23abd-77f4-4701-8c8c-5fcc98159e7b/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/0cb23abd-77f4-4701-8c8c-5fcc98159e7b/","pulp_created":"2020-08-19T10:58:13.383727Z","state":"running","name":"pulp_ansible.app.tasks.roles.synchronize","started_at":"2020-08-19T10:58:13.496501Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/650e9bc1-bc0b-4e16-bea4-2c92d8fe434c/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Associating
-        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null},{"message":"Parsing
-        Pages from Galaxy Roles API","code":"parsing.roles","state":"completed","total":1,"done":1,"suffix":null},{"message":"Parsing
-        Role Metadata","code":"parsing.metadata","state":"completed","total":null,"done":5,"suffix":null},{"message":"Downloading
-        Artifacts","code":"downloading.artifacts","state":"running","total":null,"done":3,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/role/a1f80db3-de07-420e-8c11-6ea4c9cbd9e9/","/pulp/api/v3/repositories/ansible/ansible/327f57bb-4ca5-4c0d-a7fe-b00f1556f8ea/"]}'
-    headers:
-      Allow:
-      - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - close
-      Content-Length:
-      - '1100'
-      Content-Type:
-      - application/json
-      Date:
-      - Wed, 19 Aug 2020 10:58:22 GMT
-      Server:
-      - nginx/1.14.2
-      Vary:
-      - Accept, Cookie
-      X-Frame-Options:
-      - SAMEORIGIN
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian10
-      User-Agent:
-      - Python-urllib/3.8
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/0cb23abd-77f4-4701-8c8c-5fcc98159e7b/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/0cb23abd-77f4-4701-8c8c-5fcc98159e7b/","pulp_created":"2020-08-19T10:58:13.383727Z","state":"completed","name":"pulp_ansible.app.tasks.roles.synchronize","started_at":"2020-08-19T10:58:13.496501Z","finished_at":"2020-08-19T10:58:23.526739Z","error":null,"worker":"/pulp/api/v3/workers/650e9bc1-bc0b-4e16-bea4-2c92d8fe434c/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Parsing
+      string: '{"pulp_href":"/pulp/api/v3/tasks/eb08ba3a-e7d8-49c8-a061-c462bb11c72c/","pulp_created":"2020-08-20T17:52:27.185496Z","state":"completed","name":"pulp_ansible.app.tasks.roles.synchronize","started_at":"2020-08-20T17:52:27.282646Z","finished_at":"2020-08-20T17:52:30.332812Z","error":null,"worker":"/pulp/api/v3/workers/89468586-21ff-4ad2-8fd6-a8e71e3c1e4f/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Parsing
         Pages from Galaxy Roles API","code":"parsing.roles","state":"completed","total":1,"done":1,"suffix":null},{"message":"Parsing
         Role Metadata","code":"parsing.metadata","state":"completed","total":null,"done":5,"suffix":null},{"message":"Downloading
         Artifacts","code":"downloading.artifacts","state":"completed","total":null,"done":5,"suffix":null},{"message":"Associating
-        Content","code":"associating.content","state":"completed","total":null,"done":5,"suffix":null}],"created_resources":["/pulp/api/v3/repositories/ansible/ansible/327f57bb-4ca5-4c0d-a7fe-b00f1556f8ea/versions/1/"],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/role/a1f80db3-de07-420e-8c11-6ea4c9cbd9e9/","/pulp/api/v3/repositories/ansible/ansible/327f57bb-4ca5-4c0d-a7fe-b00f1556f8ea/"]}'
+        Content","code":"associating.content","state":"completed","total":null,"done":5,"suffix":null}],"created_resources":["/pulp/api/v3/repositories/ansible/ansible/845a5f3b-3161-4c61-89c3-1200464dd314/versions/1/"],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/role/2fccbfe2-6a69-4c58-924a-02fd728d00b0/","/pulp/api/v3/repositories/ansible/ansible/845a5f3b-3161-4c61-89c3-1200464dd314/"]}'
     headers:
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
@@ -15975,7 +15848,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 19 Aug 2020 10:58:24 GMT
+      - Thu, 20 Aug 2020 17:52:31 GMT
       Server:
       - nginx/1.14.2
       Vary:
