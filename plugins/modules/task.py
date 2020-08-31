@@ -83,7 +83,10 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 def main():
     with PulpEntityAnsibleModule(
         argument_spec=dict(
-            pulp_href=dict(), state=dict(choices=["absent", "canceled", "completed"],),
+            pulp_href=dict(),
+            state=dict(
+                choices=["absent", "canceled", "completed"],
+            ),
         ),
         required_if=[
             ("state", "absent", ["pulp_href"]),
