@@ -108,10 +108,12 @@ class PulpEntity(object):
     def primary_key(self):
         return {self._href: self.entity["pulp_href"]}
 
-    def find(self, failsafe=True):
+    def find(self, failsafe=True, parameters=None):
         if not hasattr(self, "_list_id"):
             raise SqueezerException("This entity is not enumeratable.")
-        parameters = {"limit": 1}
+        if parameters is None:
+            parameters = {}
+        parameters["limit"] = 1
         parameters.update(self.natural_key)
         search_result = self.module.pulp_api.call(self._list_id, parameters=parameters)
         if search_result["count"] == 1:
@@ -515,6 +517,7 @@ class PulpFileRepository(PulpEntity):
     _update_id = "repositories_file_file_update"
     _delete_id = "repositories_file_file_delete"
     _sync_id = "repositories_file_file_sync"
+    _modify_id = "repositories_file_file_modify"
 
     _name_singular = "repository"
     _name_plural = "repositories"
@@ -525,6 +528,42 @@ class PulpFileRepository(PulpEntity):
             "file_repository_href"
             if self.module.pulp_api.openapi_version == 2
             else "file_file_repository_href"
+        )
+
+    def modify(self, content_to_add, content_to_remove, base_version):
+        if not self.module.check_mode:
+            payload = {
+                "add_content_units": content_to_add,
+                "remove_content_units": content_to_remove,
+            }
+            if base_version:
+                payload["base_version"] = base_version
+            response = self.module.pulp_api.call(
+                self._modify_id, parameters=self.primary_key, body=payload
+            )
+            task = PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
+            repository_version = task["created_resources"][0]
+        else:
+            repository_version = base_version
+        self.module.set_changed()
+        return repository_version
+
+
+class PulpFileRepositoryVersion(PulpEntity):
+    _list_id = "repositories_file_file_versions_list"
+    _read_id = "repositories_file_file_versions_read"
+    _delete_id = "repositories_file_file_versions_delete"
+    _repair_id = "repositories_file_file_versions_repair"
+
+    _name_singular = "repository_version"
+    _name_plural = "repository_versions"
+
+    @property
+    def _href(self):
+        return (
+            "file_repository_version_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "file_file_repository_version_href"
         )
 
 
