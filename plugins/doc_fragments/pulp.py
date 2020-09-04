@@ -17,21 +17,25 @@ options:
   pulp_url:
     description:
       - URL of the server to connect to (without 'pulp/api/v3').
+      - If no value is specified, the value of the environment variable C(SQUEEZER_PULP_URL) will be used as a fallback.
     type: str
     required: true
   username:
     description:
       - Username of api user.
+      - If no value is specified, the value of the environment variable C(SQUEEZER_USERNAME) will be used as a fallback.
     type: str
     required: true
   password:
     description:
       - Password of api user.
+      - If no value is specified, the value of the environment variable C(SQUEEZER_PASSWORD) will be used as a fallback.
     type: str
     required: true
   validate_certs:
     description:
       - Whether SSL certificates should be verified.
+      - If no value is specified, the value of the environment variable C(SQUEEZER_VALIDATE_CERTS) will be used as a fallback.
     type: bool
     default: true
 """
