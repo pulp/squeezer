@@ -14,7 +14,7 @@ import os
 import traceback
 from time import sleep
 
-from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.basic import AnsibleModule, env_fallback
 from ansible_collections.pulp.squeezer.plugins.module_utils.openapi import OpenAPI
 
 
@@ -29,10 +29,22 @@ class SqueezerException(Exception):
 class PulpAnsibleModule(AnsibleModule):
     def __init__(self, **kwargs):
         argument_spec = dict(
-            pulp_url=dict(required=True),
-            username=dict(required=True),
-            password=dict(required=True, no_log=True),
-            validate_certs=dict(type="bool", default=True),
+            pulp_url=dict(
+                required=True, fallback=(env_fallback, ["SQUEEZER_PULP_URL"])
+            ),
+            username=dict(
+                required=True, fallback=(env_fallback, ["SQUEEZER_USERNAME"])
+            ),
+            password=dict(
+                required=True,
+                no_log=True,
+                fallback=(env_fallback, ["SQUEEZER_PASSWORD"]),
+            ),
+            validate_certs=dict(
+                type="bool",
+                default=True,
+                fallback=(env_fallback, ["SQUEEZER_VALIDATE_CERTS"]),
+            ),
         )
         argument_spec.update(kwargs.pop("argument_spec", {}))
         supports_check_mode = kwargs.pop("supports_check_mode", True)
