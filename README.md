@@ -8,35 +8,6 @@ nor [pulp\_ansible](https://github.com/pulp/pulp_ansible) to manage ansible cont
 
 A lot of inspiration has been drawn from [foreman-ansible-modules](https://github.com/theforeman/foreman-ansible-modules).
 
-## Available modules
-
-* `ansible_distribution`
-* `ansible_remote`
-* `ansible_repository`
-* `ansible_role`
-* `ansible_sync`
-* `artifact`
-* `delete_orphans`
-* `file_content`
-* `file_distribution`
-* `file_publication`
-* `file_remote`
-* `file_repository`
-* `file_sync`
-* `python_distribution`
-* `python_publication`
-* `python_remote`
-* `python_repository`
-* `python_sync`
-* `rpm_distribution`
-* `rpm_publication`
-* `rpm_remote`
-* `rpm_repository`
-* `rpm_sync`
-* `status`
-* `task`
-* `x509_cert_guard`
-
 ## Installation
 
 ### Install from Ansible Galaxy
