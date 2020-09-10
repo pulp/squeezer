@@ -4,7 +4,7 @@ authors:
   - "Matthias Dellweg <2500@gmx.de>"
   - "Timo Funke <timoses@msn.com>"
   - "Jacob Floyd <cognifloyd@gmail.com>"
-version: "0.0.3"
+version: "0.0.4"
 license_file: LICENSE
 readme: README.md
 tags:
