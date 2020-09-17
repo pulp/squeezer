@@ -45,6 +45,7 @@ class PulpAnsibleModule(AnsibleModule):
                 default=True,
                 fallback=(env_fallback, ["SQUEEZER_VALIDATE_CERTS"]),
             ),
+            refresh_api_cache=dict(type="bool", default=False),
         )
         argument_spec.update(kwargs.pop("argument_spec", {}))
         supports_check_mode = kwargs.pop("supports_check_mode", True)
@@ -63,6 +64,7 @@ class PulpAnsibleModule(AnsibleModule):
             username=self.params["username"],
             password=self.params["password"],
             validate_certs=self.params["validate_certs"],
+            refresh_cache=self.params["refresh_api_cache"],
         )
 
         return self

@@ -11,8 +11,6 @@ __metaclass__ = type
 class ModuleDocFragment(object):
     # Common pulp documentation fragment
     DOCUMENTATION = r"""
-requirements:
-  - pulpcore-client
 options:
   pulp_url:
     description:
@@ -38,6 +36,12 @@ options:
       - If no value is specified, the value of the environment variable C(SQUEEZER_VALIDATE_CERTS) will be used as a fallback.
     type: bool
     default: true
+  refresh_api_cache:
+    description:
+      - Whether the cached API specification should be invalidated.
+      - It is recommended to use this once with the M(pulp.squeezer.status) module at the beginning of the playbook.
+    type: bool
+    default: false
 """
 
     ENTITY_STATE = r"""
