@@ -24,7 +24,6 @@ if sys.version_info[0] == 2:
 def run_playbook_vcr(
     tmpdir, test_name, extra_vars=None, record=False, check_mode=False
 ):
-    playbook = test_name + ".yaml"
     if extra_vars is None:
         extra_vars = {}
     limit = None
@@ -45,12 +44,13 @@ def run_playbook_vcr(
     os.environ["PAM_TEST_VCR_PARAMS_FILE"] = params_file.strpath
     os.environ["XDG_CACHE_HOME"] = tmpdir.join("cache").strpath
     return run_playbook(
-        playbook, extra_vars=extra_vars, limit=limit, check_mode=check_mode
+        test_name, extra_vars=extra_vars, limit=limit, check_mode=check_mode
     )
 
 
-def run_playbook(playbook, extra_vars=None, limit=None, check_mode=False):
+def run_playbook(test_name, extra_vars=None, limit=None, check_mode=False):
     # Assemble parameters for playbook call
+    playbook = test_name + ".yaml"
     os.environ["ANSIBLE_CONFIG"] = os.path.join(os.getcwd(), "ansible.cfg")
     kwargs = {}
     kwargs["playbook"] = os.path.join(os.getcwd(), "tests", "playbooks", playbook)
@@ -66,8 +66,12 @@ def run_playbook(playbook, extra_vars=None, limit=None, check_mode=False):
 
 
 @pytest.mark.parametrize("test_name", TEST_NAMES)
-def test_playbook(tmpdir, test_name, record):
-    run = run_playbook_vcr(tmpdir, test_name, record=record)
+def test_playbook(tmpdir, test_name, vcrmode):
+    if vcrmode == "live":
+        run = run_playbook(test_name)
+    else:
+        record = vcrmode == "record"
+        run = run_playbook_vcr(tmpdir, test_name, record=record)
     assert run.rc == 0
 
 
