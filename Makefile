@@ -106,4 +106,4 @@ clean:
 
 FORCE:
 
-.PHONY: help dist install lint sanity test test-setup publish FORCE
+.PHONY: help dist install lint sanity test livetest test-setup publish FORCE
