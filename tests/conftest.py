@@ -3,10 +3,14 @@ import pytest
 
 def pytest_addoption(parser):
     parser.addoption(
-        "--record", action="store_true", help="record new server-responses"
+        "--vcrmode",
+        action="store",
+        default="replay",
+        choices=["replay", "record", "live"],
+        help="mode for vcr recording; one of ['replay', 'record', 'live']",
     )
 
 
 @pytest.fixture
-def record(request):
-    return request.config.getoption("record")
+def vcrmode(request):
+    return request.config.getoption("vcrmode")

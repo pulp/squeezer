@@ -18,17 +18,19 @@ PYTEST = pytest -n 4 --boxed -v
 default: help
 help:
 	@echo "Please use \`make <target>' where <target> is one of:"
-	@echo "  help           to show this message"
-	@echo "  info           to show infos about the collection"
-	@echo "  lint           to run code linting"
-	@echo "  test           to run unit tests"
-	@echo "  sanity         to run santy tests"
-	@echo "  setup          to set up test, lint"
-	@echo "  test-setup     to install test dependencies"
-	@echo "  test_<test>    to run a specific unittest"
-	@echo "  record_<test>  to (re-)record the server answers for a specific test"
-	@echo "  clean_<test>   to run a specific test playbook with the teardown and cleanup tags"
-	@echo "  dist           to build the collection artifact"
+	@echo "  help             to show this message"
+	@echo "  info             to show infos about the collection"
+	@echo "  lint             to run code linting"
+	@echo "  test             to run unit tests"
+	@echo "  livetest         to run test playbooks live (without vcr)"
+	@echo "  sanity           to run santy tests"
+	@echo "  setup            to set up test, lint"
+	@echo "  test-setup       to install test dependencies"
+	@echo "  test_<test>      to run a specific unittest"
+	@echo "  livetest_<test>  to run a specific unittest"
+	@echo "  record_<test>    to (re-)record the server answers for a specific test"
+	@echo "  clean_<test>     to run a specific test playbook with the teardown and cleanup tags"
+	@echo "  dist             to build the collection artifact"
 
 info:
 	@echo "Building collection $(NAMESPACE)-$(NAME)-$(VERSION)"
@@ -47,12 +49,18 @@ sanity: $(MANIFEST) | tests/playbooks/vars/server.yaml
 test: $(MANIFEST) | tests/playbooks/vars/server.yaml
 	$(PYTEST) $(TEST)
 
+livetest: $(MANIFEST) | tests/playbooks/vars/server.yaml
+	pytest -v 'tests/test_playbooks.py::test_playbook' --vcrmode live
+
 test_%: FORCE $(MANIFEST) | tests/playbooks/vars/server.yaml
 	pytest -v 'tests/test_playbooks.py::test_playbook[$*]' 'tests/test_playbooks.py::test_check_mode[$*]'
 
+livetest_%: FORCE $(MANIFEST) | tests/playbooks/vars/server.yaml
+	pytest -v 'tests/test_playbooks.py::test_playbook[$*]' --vcrmode live
+
 record_%: FORCE $(MANIFEST)
 	$(RM) tests/fixtures/$*-*.yml
-	pytest -v 'tests/test_playbooks.py::test_playbook[$*]' --record
+	pytest -v 'tests/test_playbooks.py::test_playbook[$*]' --vcrmode record
 
 clean_%: FORCE $(MANIFEST) | tests/playbooks/vars/server.yaml
 	ansible-playbook --tags teardown,cleanup -i tests/inventory/hosts 'tests/playbooks/$*.yaml'

@@ -14,7 +14,11 @@
       password: "{{ pulp_password }}"
     file_content:
       <<: *pulp_connection_details
+    delete_orphans:
+      <<: *pulp_connection_details
   tasks:
+    - name: Delete orphans
+      delete_orphans: {}
     - name: Create artifact
       artifact:
         file: data/file1.txt
