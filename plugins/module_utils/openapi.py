@@ -42,8 +42,14 @@ class OpenAPI:
         validate_certs=True,
         refresh_cache=False,
     ):
-        self.base_url = base_url
         self.doc_path = doc_path
+
+        if base_url.startswith("unix:"):
+            self.unix_socket = base_url.replace("unix:", "")
+            self.base_url = "http://localhost/"
+        else:
+            self.unix_socket = None
+            self.base_url = base_url
 
         headers = {
             "Content-Type": "application/json",
@@ -100,7 +106,9 @@ class OpenAPI:
         }
 
     def _download_api(self):
-        return self._session.open("GET", urljoin(self.base_url, self.doc_path)).read()
+        return self._session.open(
+            "GET", urljoin(self.base_url, self.doc_path), unix_socket=self.unix_socket
+        ).read()
 
     def extract_params(self, param_type, path_spec, method_spec, params):
         param_spec = {
@@ -241,7 +249,9 @@ class OpenAPI:
 
         data = self.render_body(path_spec, method_spec, headers, body, uploads)
 
-        result = self._session.open(method, url, data=data, headers=headers).read()
+        result = self._session.open(
+            method, url, data=data, headers=headers, unix_socket=self.unix_socket
+        ).read()
         if result:
             return json.loads(result)
         return None
