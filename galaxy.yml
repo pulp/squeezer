@@ -5,7 +5,7 @@ authors:
   - "Timo Funke <timoses@msn.com>"
   - "Jacob Floyd <cognifloyd@gmail.com>"
   - "Yanis Guenane <yguenane@redhat.com>"
-version: "0.0.6"
+version: "0.0.7-dev"
 license_file: LICENSE
 readme: README.md
 tags:
