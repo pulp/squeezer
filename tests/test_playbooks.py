@@ -38,7 +38,12 @@ def run_playbook_vcr(
         limit = "tests"
 
     # Dump recording parameters to json-file and pass its name by environment
-    test_params = {"test_name": test_name, "serial": 0, "record_mode": record_mode}
+    test_params = {
+        "test_name": test_name,
+        "serial": 0,
+        "record_mode": record_mode,
+        "check_mode": check_mode,
+    }
     params_file = tmpdir.join("test_params_{}.json".format(test_name))
     params_file.write(json.dumps(test_params))
     os.environ["PAM_TEST_VCR_PARAMS_FILE"] = params_file.strpath

@@ -12,6 +12,16 @@ except ImportError:
     from urllib.parse import urlparse, urlunparse, parse_qs
 
 
+def safe_method_matcher(r1, r2):
+    assert r1.method not in [
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+    ], "Method {0} not allowed in check_mode".format(r1.method)
+    assert r1.method == r2.method
+
+
 # We need our own json level2 matcher, because, python2 and python3 do not save
 # dictionaries in the same order.
 # Also multipart bounderies must be ignored.
@@ -83,11 +93,18 @@ else:
 
     # Call the original python script with vcr-cassette in place
     amp_vcr = vcr.VCR()
+
+    method_matcher = "method"
+    if test_params["check_mode"]:
+        amp_vcr.register_matcher("safe_method_matcher", safe_method_matcher)
+        method_matcher = "safe_method_matcher"
+
     amp_vcr.register_matcher("amp_body", amp_body_matcher)
+
     with amp_vcr.use_cassette(
         cassette_file,
         record_mode=test_params["record_mode"],
-        match_on=["method", "path", "query", "amp_body"],
+        match_on=[method_matcher, "path", "query", "amp_body"],
         filter_headers=["Authorization"],
         before_record_request=filter_request_uri,
     ):
