@@ -50,8 +50,9 @@
     - name: Verify sync remote into repository
       assert:
         that:
-          - result.changed == true
-          - result.repository_version is match("/pulp/api/v3/repositories/rpm/rpm/.*/versions/1/")
+          - result.changed == (not ansible_check_mode)
+          - ansible_check_mode or (result.repository_version is match("/pulp/api/v3/repositories/rpm/rpm/.*/versions/1/"))
+          - (not ansible_check_mode) or (result.repository_version is match("/pulp/api/v3/repositories/rpm/rpm/.*/versions/0/"))
 
     - name: Sync remote into repository (2nd try)
       rpm_sync:

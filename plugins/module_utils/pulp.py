@@ -253,6 +253,20 @@ class PulpEntity(object):
             )
 
 
+class PulpRepository(PulpEntity):
+    def process_sync(self, remote):
+        repository_version = self.entity["latest_version_href"]
+        # In check_mode, assume nothing changed
+        if not self.module.check_mode:
+            sync_task = self.sync(remote.href)
+
+            if sync_task["created_resources"]:
+                self.module.set_changed()
+                repository_version = sync_task["created_resources"][0]
+
+        self.module.set_result("repository_version", repository_version)
+
+
 class PulpArtifact(PulpEntity):
     _href = "artifact_href"
     _list_id = "artifacts_list"
@@ -524,7 +538,7 @@ class PulpFileRemote(PulpEntity):
         )
 
 
-class PulpFileRepository(PulpEntity):
+class PulpFileRepository(PulpRepository):
     _list_id = "repositories_file_file_list"
     _read_id = "repositories_file_file_read"
     _create_id = "repositories_file_file_create"
@@ -637,7 +651,7 @@ class PulpAnsibleRoleRemote(PulpEntity):
             self._href = "ansible_role_remote_href"
 
 
-class PulpAnsibleRepository(PulpEntity):
+class PulpAnsibleRepository(PulpRepository):
     _list_id = "repositories_ansible_ansible_list"
     _read_id = "repositories_ansible_ansible_read"
     _create_id = "repositories_ansible_ansible_create"
@@ -753,7 +767,7 @@ class PulpPythonRemote(PulpEntity):
         return entity
 
 
-class PulpPythonRepository(PulpEntity):
+class PulpPythonRepository(PulpRepository):
     _list_id = "repositories_python_python_list"
     _read_id = "repositories_python_python_read"
     _create_id = "repositories_python_python_create"
@@ -832,7 +846,7 @@ class PulpRpmRemote(PulpEntity):
         )
 
 
-class PulpRpmRepository(PulpEntity):
+class PulpRpmRepository(PulpRepository):
     _list_id = "repositories_rpm_rpm_list"
     _read_id = "repositories_rpm_rpm_read"
     _create_id = "repositories_rpm_rpm_create"

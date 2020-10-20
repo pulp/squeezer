@@ -15,6 +15,7 @@ module: rpm_sync
 short_description: Synchronize a rpm remote on a pulp server
 description:
   - "This module synchronizes a rpm remote into a repository."
+  - "In check_mode this module assumes, nothing changed upstream."
 options:
   remote:
     description:
@@ -72,14 +73,7 @@ def main():
         repository = PulpRpmRepository(module, {"name": module.params["repository"]})
         repository.find(failsafe=False)
 
-        repository_version = repository.entity["latest_version_href"]
-        sync_task = repository.sync(remote.href)
-
-        if sync_task["created_resources"]:
-            module._changed = True
-            repository_version = sync_task["created_resources"][0]
-
-        module.set_result("repository_version", repository_version)
+        repository.process_sync(remote)
 
 
 if __name__ == "__main__":
