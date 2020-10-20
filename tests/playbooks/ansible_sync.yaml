@@ -56,8 +56,9 @@
     - name: Verify sync role remote into repository
       assert:
         that:
-          - result.changed == true
-          - result.repository_version is match("/pulp/api/v3/repositories/ansible/ansible/.*/versions/1/")
+          - result.changed == (not ansible_check_mode)
+          - ansible_check_mode or (result.repository_version is match("/pulp/api/v3/repositories/ansible/ansible/.*/versions/1/"))
+          - (not ansible_check_mode) or (result.repository_version is match("/pulp/api/v3/repositories/ansible/ansible/.*/versions/0/"))
 
     - name: Sync role remote into repository (2nd try)
       ansible_sync:
@@ -88,8 +89,9 @@
     - name: Verify sync collection remote into repository
       assert:
         that:
-          - result.changed == true
-          - result.repository_version is match("/pulp/api/v3/repositories/ansible/ansible/.*/versions/2/")
+          - result.changed == (not ansible_check_mode)
+          - ansible_check_mode or (result.repository_version is match("/pulp/api/v3/repositories/ansible/ansible/.*/versions/2/"))
+          - (not ansible_check_mode) or (result.repository_version is match("/pulp/api/v3/repositories/ansible/ansible/.*/versions/1/"))
 
     - name: Sync collection remote into repository (2nd try)
       ansible_sync:
