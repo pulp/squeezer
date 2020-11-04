@@ -6,15 +6,15 @@
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    file_repository: &pulp_connection_details
+    deb_repository: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
   tasks:
     - name: Make repository absent
-      file_repository:
-        name: test_file_repository
+      deb_repository:
+        name: test_deb_repository
         state: absent
     - name: Clean openapi cache
       file:
@@ -31,8 +31,8 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Create repository
-      file_repository:
-        name: test_file_repository
+      deb_repository:
+        name: test_deb_repository
         description: ""
         state: present
       register: result
@@ -40,11 +40,11 @@
       assert:
         that:
           - result.changed == true
-          - result.repository.name == 'test_file_repository'
+          - result.repository.name == 'test_deb_repository'
 
     - name: Create repository (2nd try)
-      file_repository:
-        name: test_file_repository
+      deb_repository:
+        name: test_deb_repository
         state: present
       register: result
     - name: Verify create repository (2nd try)
@@ -53,8 +53,8 @@
           - result.changed == false
 
     - name: Add description to repository
-      file_repository:
-        name: test_file_repository
+      deb_repository:
+        name: test_deb_repository
         description: "repository created via ansible"
         state: present
       register: result
@@ -65,8 +65,8 @@
           - result.repository.description == "repository created via ansible"
 
     - name: Add description to repository (2nd try)
-      file_repository:
-        name: test_file_repository
+      deb_repository:
+        name: test_deb_repository
         description: "repository created via ansible"
         state: present
       register: result
@@ -76,8 +76,8 @@
           - result.changed == false
 
     - name: Fake modify repository
-      file_repository:
-        name: test_file_repository
+      deb_repository:
+        name: test_deb_repository
         state: present
       register: result
     - name: Verify fake modify repository
@@ -87,7 +87,7 @@
           - result.repository.description == "repository created via ansible"
 
     - name: List repositories
-      file_repository: {}
+      deb_repository: {}
       register: result
     - name: Verify list repositories
       assert:
@@ -96,19 +96,19 @@
           - result.repositories | length >= 1
 
     - name: Read repository
-      file_repository:
-        name: test_file_repository
+      deb_repository:
+        name: test_deb_repository
       register: result
     - name: Verify read repository
       assert:
         that:
           - result.changed == false
-          - result.repository.name == 'test_file_repository'
+          - result.repository.name == 'test_deb_repository'
           - result.repository.description == "repository created via ansible"
 
     - name: Remove description from repository
-      file_repository:
-        name: test_file_repository
+      deb_repository:
+        name: test_deb_repository
         description: ""
         state: present
       register: result
@@ -119,8 +119,8 @@
           - not result.repository.description
 
     - name: Remove description from repository (2nd try)
-      file_repository:
-        name: test_file_repository
+      deb_repository:
+        name: test_deb_repository
         description: ""
         state: present
       register: result
@@ -130,8 +130,8 @@
           - result.changed == false
 
     - name: Delete repository
-      file_repository:
-        name: test_file_repository
+      deb_repository:
+        name: test_deb_repository
         state: absent
       register: result
     - name: Verify delete repository
@@ -141,8 +141,8 @@
           - not result.repository
 
     - name: Delete repository (2nd try)
-      file_repository:
-        name: test_file_repository
+      deb_repository:
+        name: test_deb_repository
         state: absent
       register: result
     - name: Verify delete repository (2nd try)

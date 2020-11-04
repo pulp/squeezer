@@ -266,6 +266,24 @@ class PulpRepository(PulpEntity):
 
         self.module.set_result("repository_version", repository_version)
 
+    def modify(self, content_to_add, content_to_remove, base_version):
+        if not self.module.check_mode:
+            payload = {
+                "add_content_units": content_to_add,
+                "remove_content_units": content_to_remove,
+            }
+            if base_version:
+                payload["base_version"] = base_version
+            response = self.module.pulp_api.call(
+                self._modify_id, parameters=self.primary_key, body=payload
+            )
+            task = PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
+            repository_version = task["created_resources"][0]
+        else:
+            repository_version = base_version
+        self.module.set_changed()
+        return repository_version
+
 
 class PulpArtifact(PulpEntity):
     _href = "artifact_href"
@@ -558,24 +576,6 @@ class PulpFileRepository(PulpRepository):
             else "file_file_repository_href"
         )
 
-    def modify(self, content_to_add, content_to_remove, base_version):
-        if not self.module.check_mode:
-            payload = {
-                "add_content_units": content_to_add,
-                "remove_content_units": content_to_remove,
-            }
-            if base_version:
-                payload["base_version"] = base_version
-            response = self.module.pulp_api.call(
-                self._modify_id, parameters=self.primary_key, body=payload
-            )
-            task = PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
-            repository_version = task["created_resources"][0]
-        else:
-            repository_version = base_version
-        self.module.set_changed()
-        return repository_version
-
 
 class PulpFileRepositoryVersion(PulpEntity):
     _list_id = "repositories_file_file_versions_list"
@@ -592,6 +592,30 @@ class PulpFileRepositoryVersion(PulpEntity):
             "file_repository_version_href"
             if self.module.pulp_api.openapi_version == 2
             else "file_file_repository_version_href"
+        )
+
+
+# Debian entities
+
+
+class PulpDebRepository(PulpRepository):
+    _list_id = "repositories_deb_apt_list"
+    _read_id = "repositories_deb_apt_read"
+    _create_id = "repositories_deb_apt_create"
+    _update_id = "repositories_deb_apt_update"
+    _delete_id = "repositories_deb_apt_delete"
+    _sync_id = "repositories_deb_apt_sync"
+    _modify_id = "repositories_deb_apt_modify"
+
+    _name_singular = "repository"
+    _name_plural = "repositories"
+
+    @property
+    def _href(self):
+        return (
+            "deb_repository_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "deb_apt_repository_href"
         )
 
 

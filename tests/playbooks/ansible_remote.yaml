@@ -10,6 +10,7 @@
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
+      validate_certs: "{{ pulp_validate_certs | default(true) }}"
   tasks:
     - name: Make remote absent
       ansible_remote:
