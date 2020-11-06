@@ -1,0 +1,133 @@
+---
+- hosts: localhost
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults: &pulp_module_defaults
+    deb_remote: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+      validate_certs: "{{ pulp_validate_certs | default(true) }}"
+  tasks:
+    - name: Make remote absent
+      deb_remote:
+        name: test_deb_remote
+        state: absent
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
+
+- hosts: tests
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Create remote
+      deb_remote:
+        name: test_deb_remote
+        url: "https://example.org/deb/"
+        distributions: ragnarok
+        proxy_url: "http://proxy.int:3128"
+        state: present
+      register: result
+    - name: Verify create remote
+      assert:
+        that:
+          - result.changed == true
+          - result.remote.name == "test_deb_remote"
+          - result.remote.url == "https://example.org/deb/"
+          - result.remote.distributions == "ragnarok"
+          - result.remote.proxy_url == "http://proxy.int:3128"
+
+    - name: Create remote (2nd try)
+      deb_remote:
+        name: test_deb_remote
+        url: "https://example.org/deb/"
+        distributions: ragnarok
+        proxy_url: "http://proxy.int:3128"
+        state: present
+      register: result
+    - name: Verify create remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Modify remote
+      deb_remote:
+        name: test_deb_remote
+        policy: on_demand
+        tls_validation: false
+        state: present
+      register: result
+    - name: Verify modify remote
+      assert:
+        that:
+          - result.changed == true
+          - result.remote.policy == "on_demand"
+          - result.remote.tls_validation == false
+
+    - name: Modify remote (2nd try)
+      deb_remote:
+        name: test_deb_remote
+        policy: on_demand
+        tls_validation: false
+        state: present
+      register: result
+    - name: Verify modify remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: List remotes
+      deb_remote: {}
+      register: result
+    - name: Verify list remotes
+      assert:
+        that:
+          - result.changed == false
+          - result.remotes | length >= 1
+          - result.remotes | selectattr('name', 'match', 'test_deb_remote') | list | length == 1
+
+    - name: Read remote
+      deb_remote:
+        name: test_deb_remote
+      register: result
+    - name: Verify read remote
+      assert:
+        that:
+          - result.changed == false
+          - result.remote.name == "test_deb_remote"
+          - result.remote.url == "https://example.org/deb/"
+          - result.remote.distributions == "ragnarok"
+          - result.remote.proxy_url == "http://proxy.int:3128"
+          - result.remote.tls_validation == false
+
+    - name: Delete remote
+      deb_remote:
+        name: test_deb_remote
+        state: absent
+      register: result
+    - name: Verify delete remote
+      assert:
+        that:
+          - result.changed == true
+          - not result.remote
+
+    - name: Delete remote (2nd try)
+      deb_remote:
+        name: test_deb_remote
+        state: absent
+      register: result
+    - name: Verify delete remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+...

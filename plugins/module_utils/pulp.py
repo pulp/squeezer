@@ -598,6 +598,26 @@ class PulpFileRepositoryVersion(PulpEntity):
 # Debian entities
 
 
+class PulpDebRemote(PulpEntity):
+    _list_id = "remotes_deb_apt_list"
+    _read_id = "remotes_deb_apt_read"
+    _create_id = "remotes_deb_apt_create"
+    _delete_id = "remotes_deb_apt_delete"
+    _update_id = "remotes_deb_apt_update"
+    _partial_update = "remotes_deb_apt_partial_update"
+
+    _name_singular = "remote"
+    _name_plural = "remotes"
+
+    @property
+    def _href(self):
+        return (
+            "deb_remote_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "deb_apt_remote_href"
+        )
+
+
 class PulpDebRepository(PulpRepository):
     _list_id = "repositories_deb_apt_list"
     _read_id = "repositories_deb_apt_read"
