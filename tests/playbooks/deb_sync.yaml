@@ -1,0 +1,96 @@
+---
+- hosts: localhost
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults: &pulp_module_defaults
+    deb_remote: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+      validate_certs: "{{ pulp_validate_certs | default(true) }}"
+    deb_sync:
+      <<: *pulp_connection_details
+    deb_repository:
+      <<: *pulp_connection_details
+  tasks:
+    - name: Make repository absent
+      deb_repository:
+        name: test_deb_repository
+        state: absent
+    - name: Make repository present
+      deb_repository:
+        name: test_deb_repository
+        state: present
+    - name: Make remote present
+      deb_remote:
+        name: test_deb_remote
+        url: "{{ pulp_fixtures_url }}/debian/"
+        distributions: "ragnarok"
+        state: present
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
+
+- hosts: tests
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Sync remote into repository
+      deb_sync:
+        remote: test_deb_remote
+        repository: test_deb_repository
+      register: result
+    - name: Verify sync remote into repository
+      assert:
+        that:
+          - result.changed == (not ansible_check_mode)
+          - ansible_check_mode or (result.repository_version is match("/pulp/api/v3/repositories/deb/apt/.*/versions/1/"))
+          - (not ansible_check_mode) or (result.repository_version is match("/pulp/api/v3/repositories/deb/apt/.*/versions/0/"))
+
+    - name: Sync remote into repository (2nd try)
+      deb_sync:
+        remote: test_deb_remote
+        repository: test_deb_repository
+      register: result
+    - name: Verify sync remote into repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+          - result.repository_version is match("/pulp/api/v3/repositories/deb/apt/.*/versions/1/")
+
+    - name: Dump repository
+      deb_repository:
+        name: test_deb_repository
+      register: result
+    - name: Verify repository_version in repository
+      assert:
+        that:
+          - result.repository.latest_version_href is match("/pulp/api/v3/repositories/deb/apt/.*/versions/1/")
+
+- hosts: localhost
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Make repository absent
+      deb_repository:
+        name: test_deb_repository
+        state: absent
+    - name: Make remote absent
+      deb_remote:
+        name: test_deb_remote
+        state: absent
+...
