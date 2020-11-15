@@ -1,0 +1,165 @@
+---
+- hosts: localhost
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults: &pulp_module_defaults
+    deb_distribution: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+      validate_certs: "{{ pulp_validate_certs | default(true) }}"
+    deb_publication:
+      <<: *pulp_connection_details
+    deb_remote:
+      <<: *pulp_connection_details
+    deb_sync:
+      <<: *pulp_connection_details
+    deb_repository:
+      <<: *pulp_connection_details
+    x509_cert_guard:
+      <<: *pulp_connection_details
+  tasks:
+    - name: Make repository absent
+      deb_repository:
+        name: test_deb_repository
+        state: absent
+    - name: Make distribution absent
+      deb_distribution:
+        name: test_deb_distribution
+        state: absent
+    - name: Make repository present
+      deb_repository:
+        name: test_deb_repository
+        state: present
+    - name: Make remote present
+      deb_remote:
+        name: test_deb_remote
+        url: "{{ pulp_fixtures_url }}/debian/"
+        distributions: ragnarok
+        state: present
+    - name: Sync remote into repository
+      deb_sync:
+        remote: test_deb_remote
+        repository: test_deb_repository
+    - name: Publish latest version of repository
+      deb_publication:
+        repository: test_deb_repository
+        state: present
+    - name: Make content guard present
+      x509_cert_guard:
+        name: test_content_guard
+        ca_certificate: "{{ lookup('file', 'data/ca.pem') }}"
+        state: present
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
+
+- hosts: tests
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Retrieve publication of repository
+      deb_publication:
+        repository: test_deb_repository
+      register: publication_result
+
+    - name: Distribute publication of repository
+      deb_distribution:
+        name: test_deb_distribution
+        base_path: test_deb_base_path
+        publication: "{{ publication_result.publication.pulp_href }}"
+        content_guard: test_content_guard
+        state: present
+      register: result
+    - name: Verify distribute publication of repository
+      assert:
+        that:
+          - result.changed == true
+          - result.distribution.name == "test_deb_distribution"
+          - result.distribution.base_path == "test_deb_base_path"
+          - ansible_check_mode or result.distribution.base_url is regex(".*/pulp/content/test_deb_base_path")
+          - result.distribution.publication == publication_result.publication.pulp_href
+          - result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
+
+    - name: Distribute publication of repository (2nd try)
+      deb_distribution:
+        name: test_deb_distribution
+        base_path: test_deb_base_path
+        publication: "{{ publication_result.publication.pulp_href }}"
+        state: present
+      register: result
+    - name: Verify distribute publication of repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Read distribution
+      deb_distribution:
+        name: test_deb_distribution
+      register: result
+    - name: Verify read distribution
+      assert:
+        that:
+          - result.changed == false
+          - result.distribution.name == "test_deb_distribution"
+          - result.distribution.base_path == "test_deb_base_path"
+          - result.distribution.base_url is regex(".*/pulp/content/test_deb_base_path")
+          - result.distribution.publication == publication_result.publication.pulp_href
+          - result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
+
+    - name: Delete distribution
+      deb_distribution:
+        name: test_deb_distribution
+        state: absent
+      register: result
+    - name: Verify delete distribution
+      assert:
+        that:
+          - result.changed == true
+          - not result.distribution
+
+    - name: Delete distribution (2nd try)
+      deb_distribution:
+        name: test_deb_distribution
+        state: absent
+      register: result
+    - name: Verify delete distribution (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+- hosts: localhost
+  collections:
+    - pulp.squeezer
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Make repository absent
+      deb_repository:
+        name: test_deb_repository
+        state: absent
+    - name: Make file_remote absent
+      deb_remote:
+        name: test_deb_remote
+        state: absent
+    - name: Make distribution absent
+      deb_distribution:
+        name: test_deb_distribution
+        state: absent
+    - name: Make content guard absent
+      x509_cert_guard:
+        name: test_content_guard
+        state: absent
+...
