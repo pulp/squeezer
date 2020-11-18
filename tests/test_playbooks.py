@@ -9,6 +9,8 @@ TEST_NAMES = [
     name[:-5] for name in os.listdir("tests/playbooks") if name.endswith(".yaml")
 ]
 
+IGNORED_WARNINGS = []
+
 
 # Clean environment from anything that could cause encoding problems
 if sys.version_info[0] == 2:
@@ -78,6 +80,16 @@ def test_playbook(tmpdir, test_name, vcrmode):
         record = vcrmode == "record"
         run = run_playbook_vcr(tmpdir, test_name, record=record)
     assert run.rc == 0
+
+    for event in run.events:
+        event_warnings = [
+            warning
+            for warning in event.get("event_data", {})
+            .get("res", {})
+            .get("warnings", [])
+            if warning not in IGNORED_WARNINGS
+        ]
+        assert [] == event_warnings, str(event_warnings)
 
 
 @pytest.mark.parametrize("test_name", TEST_NAMES)
