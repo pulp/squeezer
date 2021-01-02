@@ -42,15 +42,35 @@ RETURN = r"""
 """
 
 
+from distutils.version import LooseVersion
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpAnsibleModule,
 )
 
 
+def has_pulpcore_3_9(component_versions):
+    pulpcore_version = component_versions["pulpcore"]
+    return LooseVersion(pulpcore_version) >= LooseVersion("3.9")
+
+
 def main():
     with PulpAnsibleModule() as module:
-        status = module.pulp_api.call("status_read")
-        module.set_result("status", status)
+        result = module.pulp_api.call("status_read")
+        # verify cached api doc against server versions
+        component_versions = {
+            item["component"]: item["version"] for item in result.get("versions", [])
+        }
+        cached_component_versions = module.pulp_api.api_spec.get("info", {}).get(
+            "x-pulp-app-versions", {}
+        )
+        if (
+            has_pulpcore_3_9(component_versions)
+            and component_versions != cached_component_versions
+        ):
+            module.warn("Notice: Cached api is outdated. Refreshing...")
+            module.pulp_api.load_api(refresh_cache=True)
+            result = module.pulp_api.call("status_read")
+        module.set_result("status", result)
 
 
 if __name__ == "__main__":

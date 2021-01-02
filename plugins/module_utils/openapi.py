@@ -77,7 +77,7 @@ class OpenAPI:
         try:
             if refresh_cache:
                 raise IOError()
-            with open(apidoc_cache) as f:
+            with open(apidoc_cache, "rb") as f:
                 data = f.read()
             self._parse_api(data)
         except Exception:
@@ -191,7 +191,7 @@ class OpenAPI:
                 ] = "multipart/form-data; boundary={boundary}".format(boundary=boundary)
             else:
                 raise Exception("No suitable content type for file upload specified.")
-        else:
+        elif body:
             if any(
                 (
                     content_type.startswith("application/json")
