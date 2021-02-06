@@ -51,7 +51,7 @@ EXAMPLES = r"""
     repository: my_deb_repo
     state: present
 - name: Delete a deb publication
-  file_publication:
+  deb_publication:
     api_url: localhost:24817
     username: admin
     password: password
