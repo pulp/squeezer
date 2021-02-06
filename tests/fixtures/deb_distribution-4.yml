@@ -1,0 +1,120 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.8
+    method: GET
+    uri: https://pulp.example.org/pulp/api/v3/distributions/deb/apt/?limit=1&name=test_deb_distribution
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/deb/apt/c08b861c-a0b7-4631-9e9f-82c2bc403e60/","pulp_created":"2020-11-15T18:00:42.984807Z","base_path":"test_deb_base_path","base_url":"https://pulp3-sandbox-debian-testing.shu.example.com/pulp/content/test_deb_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/8597ddb5-aabb-4957-a2e6-dea5cdb064ee/","name":"test_deb_distribution","publication":"/pulp/api/v3/publications/deb/apt/4361ee6a-d988-4ecd-b44c-6939dfa20ddb/"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '534'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 15 Nov 2020 18:00:46 GMT
+      Server:
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.8
+    method: DELETE
+    uri: https://pulp.example.org/pulp/api/v3/distributions/deb/apt/c08b861c-a0b7-4631-9e9f-82c2bc403e60/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/929d94dd-e219-4b9a-8764-0ac229dde319/"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 15 Nov 2020 18:00:46 GMT
+      Server:
+      - nginx/1.18.0
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.8
+    method: GET
+    uri: https://pulp.example.org/pulp/api/v3/tasks/929d94dd-e219-4b9a-8764-0ac229dde319/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/929d94dd-e219-4b9a-8764-0ac229dde319/","pulp_created":"2020-11-15T18:00:46.326330Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-11-15T18:00:46.421425Z","finished_at":"2020-11-15T18:00:46.448825Z","error":null,"worker":"/pulp/api/v3/workers/7b9ce0f7-6a40-4a4d-9846-dbbb472e9345/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '509'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 15 Nov 2020 18:00:46 GMT
+      Server:
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian10
+      User-Agent:
+      - Python-urllib/3.8
+    method: GET
+    uri: https://pulp.example.org/pulp/api/v3/remotes/deb/apt/?limit=20&offset=0
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/deb/apt/921aecf3-dbd1-40ac-8a48-5089ac339455/","pulp_created":"2020-11-06T09:57:15.953888Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-11-06T09:57:17.927153Z","download_concurrency":10,"policy":"on_demand","distributions":"ragnarok","components":null,"architectures":null,"sync_sources":false,"sync_udebs":false,"sync_installer":false,"gpgkey":null}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '620'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 06 Nov 2020 09:57:18 GMT
+      Server:
+      - nginx/1.14.2
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

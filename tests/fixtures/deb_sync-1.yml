@@ -1,0 +1,198 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.8
+    method: GET
+    uri: https://pulp.example.org/pulp/api/v3/remotes/deb/apt/?limit=1&name=test_deb_remote
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/deb/apt/dcba60a5-2a16-40b2-a8f1-2fdf7276e771/","pulp_created":"2020-11-12T07:32:22.914817Z","name":"test_deb_remote","url":"https://fixtures.pulpproject.org/debian/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":null,"username":null,"password":null,"pulp_last_updated":"2020-11-12T07:34:36.316125Z","download_concurrency":10,"policy":"immediate","distributions":"ragnarok","components":null,"architectures":null,"sync_sources":false,"sync_udebs":false,"sync_installer":false,"gpgkey":null}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '616'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 12 Nov 2020 07:34:45 GMT
+      Server:
+      - nginx/1.18.0
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.8
+    method: GET
+    uri: https://pulp.example.org/pulp/api/v3/repositories/deb/apt/?limit=1&name=test_deb_repository
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/742a6987-765f-437e-835d-9164d6a8ebc9/","pulp_created":"2020-11-12T07:34:35.686384Z","versions_href":"/pulp/api/v3/repositories/deb/apt/742a6987-765f-437e-835d-9164d6a8ebc9/versions/","latest_version_href":"/pulp/api/v3/repositories/deb/apt/742a6987-765f-437e-835d-9164d6a8ebc9/versions/1/","name":"test_deb_repository","description":null,"remote":null}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '452'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 12 Nov 2020 07:34:45 GMT
+      Server:
+      - nginx/1.18.0
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"remote": "/pulp/api/v3/remotes/deb/apt/dcba60a5-2a16-40b2-a8f1-2fdf7276e771/"}'
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Length:
+      - 80
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.8
+    method: POST
+    uri: https://pulp.example.org/pulp/api/v3/repositories/deb/apt/742a6987-765f-437e-835d-9164d6a8ebc9/sync/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/22a761c9-de95-4168-a764-934379d81b3a/"}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 12 Nov 2020 07:34:46 GMT
+      Server:
+      - nginx/1.18.0
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.8
+    method: GET
+    uri: https://pulp.example.org/pulp/api/v3/tasks/22a761c9-de95-4168-a764-934379d81b3a/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/22a761c9-de95-4168-a764-934379d81b3a/","pulp_created":"2020-11-12T07:34:46.006222Z","state":"running","name":"pulp_deb.app.tasks.synchronizing.synchronize","started_at":"2020-11-12T07:34:46.109173Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/1518e9f3-f267-47ff-bf86-e3bfffee8771/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/deb/apt/dcba60a5-2a16-40b2-a8f1-2fdf7276e771/","/pulp/api/v3/repositories/deb/apt/742a6987-765f-437e-835d-9164d6a8ebc9/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '610'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 12 Nov 2020 07:34:46 GMT
+      Server:
+      - nginx/1.18.0
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.8
+    method: GET
+    uri: https://pulp.example.org/pulp/api/v3/tasks/22a761c9-de95-4168-a764-934379d81b3a/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/22a761c9-de95-4168-a764-934379d81b3a/","pulp_created":"2020-11-12T07:34:46.006222Z","state":"completed","name":"pulp_deb.app.tasks.synchronizing.synchronize","started_at":"2020-11-12T07:34:46.109173Z","finished_at":"2020-11-12T07:34:47.284543Z","error":null,"worker":"/pulp/api/v3/workers/1518e9f3-f267-47ff-bf86-e3bfffee8771/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Downloading
+        Artifacts","code":"downloading.artifacts","state":"completed","total":null,"done":3,"suffix":null},{"message":"Update
+        ReleaseFile units","code":"update.release_file","state":"completed","total":null,"done":1,"suffix":null},{"message":"Update
+        PackageIndex units","code":"update.packageindex","state":"completed","total":null,"done":4,"suffix":null},{"message":"Associating
+        Content","code":"associating.content","state":"completed","total":null,"done":0,"suffix":null}],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/deb/apt/dcba60a5-2a16-40b2-a8f1-2fdf7276e771/","/pulp/api/v3/repositories/deb/apt/742a6987-765f-437e-835d-9164d6a8ebc9/"]}'
+    headers:
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '1123'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 12 Nov 2020 07:34:48 GMT
+      Server:
+      - nginx/1.18.0
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

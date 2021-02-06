@@ -12,6 +12,7 @@
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
+      validate_certs: "{{ pulp_validate_certs | default(true) }}"
     ansible_role:
       <<: *pulp_connection_details
     delete_orphans:
