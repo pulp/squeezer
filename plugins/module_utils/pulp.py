@@ -335,6 +335,26 @@ class PulpOrphans(PulpEntity):
         return response
 
 
+class PulpAccessPolicy(PulpEntity):
+    _href = "access_policy_href"
+    _list_id = "access_policies_list"
+    _read_id = "access_policies_read"
+    _update_id = "access_policies_partial_update"
+
+    _name_singular = "access_policy"
+    _name_plural = "access_policies"
+
+    def find(self):
+        self.entity = next(
+            (
+                entity
+                for entity in self.list()
+                if entity["viewset_name"] == self.natural_key["viewset_name"]
+            ),
+            None,
+        )
+
+
 class PulpTask(PulpEntity):
     _href = "task_href"
     _list_id = "tasks_list"

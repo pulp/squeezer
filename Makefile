@@ -41,6 +41,7 @@ lint: $(MANIFEST) | tests/playbooks/vars/server.yaml
 	yamllint -f parsable tests/playbooks
 	ansible-playbook --syntax-check tests/playbooks/*.yaml | grep -v '^$$'
 	black . --diff --check
+	@echo "🙊 Code 🙉 LGTM 🙈"
 
 sanity: $(MANIFEST) | tests/playbooks/vars/server.yaml
 	# Fake a fresh git repo for ansible-test
