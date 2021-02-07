@@ -7,7 +7,7 @@ authors:
   - "Yanis Guenane <yguenane@redhat.com>"
   - "Evgeni Golov <evgeni@golov.de>"
   - "Hamed Abdelli <abdelli.hamed@yahoo.fr>"
-version: "0.0.7"
+version: "0.0.8-dev"
 license_file: LICENSE
 readme: README.md
 tags:
