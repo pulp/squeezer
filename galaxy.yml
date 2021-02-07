@@ -5,6 +5,8 @@ authors:
   - "Timo Funke <timoses@msn.com>"
   - "Jacob Floyd <cognifloyd@gmail.com>"
   - "Yanis Guenane <yguenane@redhat.com>"
+  - "Evgeni Golov <evgeni@golov.de>"
+  - "Hamed Abdelli <abdelli.hamed@yahoo.fr>"
 version: "0.0.7-dev"
 license_file: LICENSE
 readme: README.md
