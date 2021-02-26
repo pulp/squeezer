@@ -9,27 +9,31 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - localhost:24817
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/remotes/deb/apt/?limit=1&name=test_deb_remote
+    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/?limit=1&name=test_deb_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/deb/apt/921aecf3-dbd1-40ac-8a48-5089ac339455/","pulp_created":"2020-11-06T09:57:15.953888Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-11-06T09:57:17.927153Z","download_concurrency":10,"policy":"on_demand","distributions":"ragnarok","components":null,"architectures":null,"sync_sources":false,"sync_udebs":false,"sync_installer":false,"gpgkey":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/deb/apt/47050271-5840-4aeb-b437-a8178896bdb4/","pulp_created":"2021-02-27T23:25:57.815181Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_labels":{},"pulp_last_updated":"2021-02-27T23:26:00.870894Z","download_concurrency":10,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"rate_limit":null,"distributions":"ragnarok","components":"jotunheimr","architectures":"ppc64","sync_sources":false,"sync_udebs":false,"sync_installer":false,"gpgkey":null,"ignore_missing_package_indices":false}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '620'
+      - '802'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 1cf63c4a35e142c3a7825ce1a09fad06
       Date:
-      - Fri, 06 Nov 2020 09:57:19 GMT
+      - Sat, 27 Feb 2021 23:26:08 GMT
       Server:
-      - nginx/1.14.2
+      - gunicorn/20.0.4
       Vary:
       - Accept, Cookie
       X-Frame-Options:
@@ -47,15 +51,17 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - localhost:24817
       User-Agent:
       - Python-urllib/3.8
     method: DELETE
-    uri: https://pulp.example.org/pulp/api/v3/remotes/deb/apt/921aecf3-dbd1-40ac-8a48-5089ac339455/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/47050271-5840-4aeb-b437-a8178896bdb4/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/b48e112d-e90c-426c-8a2a-a602bc595389/"}'
+      string: '{"task":"/pulp/api/v3/tasks/524f1350-0784-4dee-8b08-d8ebdb0518bb/"}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
@@ -64,10 +70,12 @@ interactions:
       - '67'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 9da8770b05114f90892edce31683b153
       Date:
-      - Fri, 06 Nov 2020 09:57:19 GMT
+      - Sat, 27 Feb 2021 23:26:08 GMT
       Server:
-      - nginx/1.14.2
+      - gunicorn/20.0.4
       Vary:
       - Accept, Cookie
       X-Frame-Options:
@@ -85,27 +93,73 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - localhost:24817
       User-Agent:
       - Python-urllib/3.8
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/b48e112d-e90c-426c-8a2a-a602bc595389/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/524f1350-0784-4dee-8b08-d8ebdb0518bb/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/b48e112d-e90c-426c-8a2a-a602bc595389/","pulp_created":"2020-11-06T09:57:19.555942Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-11-06T09:57:19.640066Z","finished_at":"2020-11-06T09:57:19.667431Z","error":null,"worker":"/pulp/api/v3/workers/4d8bebc0-c1eb-4a59-8ff0-71a92fbd067a/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/deb/apt/921aecf3-dbd1-40ac-8a48-5089ac339455/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/524f1350-0784-4dee-8b08-d8ebdb0518bb/","pulp_created":"2021-02-27T23:26:08.690763Z","state":"running","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"9da8770b05114f90892edce31683b153","started_at":"2021-02-27T23:26:08.887104Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/f0b7f335-3462-4658-b163-b4bdf056f395/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/deb/apt/47050271-5840-4aeb-b437-a8178896bdb4/"]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '553'
+      - '575'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 1efb17b485d34927b27ba34312b975a2
       Date:
-      - Fri, 06 Nov 2020 09:57:19 GMT
+      - Sat, 27 Feb 2021 23:26:08 GMT
       Server:
-      - nginx/1.14.2
+      - gunicorn/20.0.4
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:24817
+      User-Agent:
+      - Python-urllib/3.8
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/524f1350-0784-4dee-8b08-d8ebdb0518bb/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/524f1350-0784-4dee-8b08-d8ebdb0518bb/","pulp_created":"2021-02-27T23:26:08.690763Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"9da8770b05114f90892edce31683b153","started_at":"2021-02-27T23:26:08.887104Z","finished_at":"2021-02-27T23:26:09.032483Z","error":null,"worker":"/pulp/api/v3/workers/f0b7f335-3462-4658-b163-b4bdf056f395/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/deb/apt/47050271-5840-4aeb-b437-a8178896bdb4/"]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '602'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 698d935e91e345649da7803fdb34f762
+      Date:
+      - Sat, 27 Feb 2021 23:26:11 GMT
+      Server:
+      - gunicorn/20.0.4
       Vary:
       - Accept, Cookie
       X-Frame-Options:
