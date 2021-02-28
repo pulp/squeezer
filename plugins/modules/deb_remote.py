@@ -24,6 +24,14 @@ options:
     description:
       - URL to the upstream pulp manifest
     type: str
+  architectures:
+    description:
+      - Whitespace separated list of architectures to sync.
+    type: str
+  components:
+    description:
+      - Whitespace separated list of components to sync.
+    type: str
   distributions:
     description:
       - Whitespace separated list of distributions to sync.
@@ -72,6 +80,9 @@ EXAMPLES = r"""
     password: password
     name: new_deb_remote
     url: http://localhost/pub/deb/pulp_manifest
+    architectures: amd64
+    components: 'main contrib non-free'
+    distributions: buster
     state: present
 - name: Delete a deb remote
   deb_remote:
@@ -105,6 +116,8 @@ def main():
         argument_spec=dict(
             name=dict(),
             url=dict(),
+            architectures=dict(),
+            components=dict(),
             distributions=dict(),
             download_concurrency=dict(type="int"),
             policy=dict(choices=["immediate", "on_demand", "streamed"]),
@@ -119,6 +132,8 @@ def main():
             key: module.params[key]
             for key in [
                 "url",
+                "architectures",
+                "components",
                 "distributions",
                 "download_concurrency",
                 "policy",

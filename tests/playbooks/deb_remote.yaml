@@ -34,6 +34,8 @@
       deb_remote:
         name: test_deb_remote
         url: "https://example.org/deb/"
+        architectures: ppc64
+        components: jotunheimr
         distributions: ragnarok
         proxy_url: "http://proxy.int:3128"
         state: present
@@ -44,6 +46,8 @@
           - result.changed == true
           - result.remote.name == "test_deb_remote"
           - result.remote.url == "https://example.org/deb/"
+          - result.remote.architectures == "ppc64"
+          - result.remote.components == "jotunheimr"
           - result.remote.distributions == "ragnarok"
           - result.remote.proxy_url == "http://proxy.int:3128"
 
@@ -51,6 +55,8 @@
       deb_remote:
         name: test_deb_remote
         url: "https://example.org/deb/"
+        architectures: ppc64
+        components: jotunheimr
         distributions: ragnarok
         proxy_url: "http://proxy.int:3128"
         state: present
@@ -106,6 +112,8 @@
           - result.changed == false
           - result.remote.name == "test_deb_remote"
           - result.remote.url == "https://example.org/deb/"
+          - result.remote.architectures == "ppc64"
+          - result.remote.components == "jotunheimr"
           - result.remote.distributions == "ragnarok"
           - result.remote.proxy_url == "http://proxy.int:3128"
           - result.remote.tls_validation == false
