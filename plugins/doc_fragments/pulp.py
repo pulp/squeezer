@@ -54,3 +54,13 @@ options:
       - present
       - absent
 """
+
+    READONLY_ENTITY_STATE = r"""
+options:
+  state:
+    description:
+      - State the entity should be in
+    type: str
+    choices:
+      - present
+"""

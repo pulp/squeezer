@@ -1,0 +1,98 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://pulp.example.org/pulp/api/v3/access_policies/?limit=20&offset=0
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/access_policies/89b0798f-c061-48cf-8e34-8ac10a507892/","pulp_created":"2021-01-29T10:01:26.275199Z","permissions_assignment":[{"function":"add_for_object_creator","parameters":null,"permissions":["core.view_task","core.change_task","core.delete_task"]}],"statements":[{"action":["list"],"effect":"allow","condition":null,"principal":"authenticated"},{"action":["retrieve"],"effect":"allow","condition":"has_model_or_obj_perms:core.view_task","principal":"authenticated"},{"action":["destroy"],"effect":"allow","condition":"has_model_or_obj_perms:core.delete_task","principal":"authenticated"},{"action":["update","partial_update"],"effect":"allow","condition":"has_model_or_obj_perms:core.change_task","principal":"authenticated"}],"viewset_name":"tasks"}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '834'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - a0f27263b3e44c69841c132853b58664
+      Date:
+      - Sat, 06 Feb 2021 13:56:42 GMT
+      Server:
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"pulp_href": "/pulp/api/v3/access_policies/89b0798f-c061-48cf-8e34-8ac10a507892/",
+      "pulp_created": "2021-01-29T10:01:26.275199Z", "permissions_assignment": [{"function":
+      "add_for_object_creator", "parameters": null, "permissions": ["core.view_task",
+      "core.change_task", "core.delete_task"]}], "statements": [{"action": ["list"],
+      "principal": "authenticated", "effect": "allow", "condition": null}, {"action":
+      ["retrieve"], "principal": "authenticated", "condition": "has_model_or_obj_perms:core.view_task",
+      "effect": "allow"}], "viewset_name": "tasks"}'
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Length:
+      - 553
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.9
+    method: PATCH
+    uri: https://pulp.example.org/pulp/api/v3/access_policies/89b0798f-c061-48cf-8e34-8ac10a507892/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/access_policies/89b0798f-c061-48cf-8e34-8ac10a507892/","pulp_created":"2021-01-29T10:01:26.275199Z","permissions_assignment":[{"function":"add_for_object_creator","parameters":null,"permissions":["core.view_task","core.change_task","core.delete_task"]}],"statements":[{"action":["list"],"principal":"authenticated","effect":"allow","condition":null},{"action":["retrieve"],"principal":"authenticated","condition":"has_model_or_obj_perms:core.view_task","effect":"allow"}],"viewset_name":"tasks"}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PUT, PATCH, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '522'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 6fda6b6c36ce45369c1afa8425c6d826
+      Date:
+      - Sat, 06 Feb 2021 13:56:42 GMT
+      Server:
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
