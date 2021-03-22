@@ -51,7 +51,7 @@ EXAMPLES = r"""
     repository: my_rpm_repo
     state: present
 - name: Delete a rpm publication
-  file_publication:
+  rpm_publication:
     api_url: localhost:24817
     username: admin
     password: password
