@@ -18,6 +18,7 @@ jobs:
           - stable-2.8
           - stable-2.9
           - stable-2.10
+          - stable-2.11
           - devel
         exclude:
           - python: "2.7"
@@ -26,18 +27,24 @@ jobs:
             ansible: "stable-2.9"
           - python: "2.7"
             ansible: "stable-2.10"
+          - python: "2.7"
+            ansible: "stable-2.11"
           - python: "3.6"
             ansible: "stable-2.8"
           - python: "3.6"
             ansible: "stable-2.9"
           - python: "3.6"
             ansible: "stable-2.10"
+          - python: "3.6"
+            ansible: "stable-2.11"
           - python: "3.7"
             ansible: "stable-2.8"
           - python: "3.7"
             ansible: "stable-2.9"
           - python: "3.7"
             ansible: "stable-2.10"
+          - python: "3.7"
+            ansible: "stable-2.11"
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
