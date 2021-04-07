@@ -7,7 +7,8 @@ authors:
   - "Yanis Guenane <yguenane@redhat.com>"
   - "Evgeni Golov <evgeni@golov.de>"
   - "Hamed Abdelli <abdelli.hamed@yahoo.fr>"
-version: "0.0.8-dev"
+  - "Piotr Parczewski <piotr@stackhpc.com>"
+version: "0.0.8"
 license_file: LICENSE
 readme: README.md
 tags:
