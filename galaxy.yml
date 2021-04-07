@@ -11,5 +11,6 @@ authors:
 version: "0.0.9-dev"
 license_file: LICENSE
 readme: README.md
+repository: "https://github.com/pulp/squeezer"
 tags:
   - pulp
