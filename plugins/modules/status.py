@@ -49,7 +49,7 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 
 
 def has_pulpcore_3_9(component_versions):
-    pulpcore_version = component_versions["pulpcore"]
+    pulpcore_version = component_versions.get("core") or component_versions["pulpcore"]
     return LooseVersion(pulpcore_version) >= LooseVersion("3.9")
 
 
