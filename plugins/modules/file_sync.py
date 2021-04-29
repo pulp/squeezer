@@ -27,6 +27,10 @@ options:
       - Name of the repository
     type: str
     required: true
+  mirror:
+    description:
+      - If True, synchronization will run in "mirror" mode instead of "additive"
+    type: bool
 extends_documentation_fragment:
   - pulp.squeezer.pulp
 author:
@@ -67,6 +71,7 @@ def main():
         argument_spec=dict(
             remote=dict(required=True),
             repository=dict(required=True),
+            mirror=dict(type="bool"),
         ),
     ) as module:
 
@@ -76,7 +81,7 @@ def main():
         repository = PulpFileRepository(module, {"name": module.params["repository"]})
         repository.find(failsafe=False)
 
-        repository.process_sync(remote)
+        repository.process_sync(remote, module.params["mirror"])
 
 
 if __name__ == "__main__":
