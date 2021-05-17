@@ -115,6 +115,28 @@ class PulpEntityAnsibleModule(PulpAnsibleModule):
         )
 
 
+class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
+    def __init__(self, **kwargs):
+        argument_spec = dict(
+            name=dict(),
+            url=dict(),
+            download_concurrency=dict(type="int"),
+            remote_username=dict(no_log=True),
+            remote_password=dict(no_log=True),
+            ca_cert=dict(),
+            client_cert=dict(),
+            client_key=dict(no_log=True),
+            tls_validation=dict(type="bool"),
+            proxy_url=dict(),
+            proxy_username=dict(no_log=True),
+            proxy_password=dict(no_log=True),
+        )
+        argument_spec.update(kwargs.pop("argument_spec", {}))
+        super(PulpRemoteAnsibleModule, self).__init__(
+            argument_spec=argument_spec, **kwargs
+        )
+
+
 class PulpEntity(object):
     def __init__(self, module, natural_key=None, desired_attributes=None, uploads=None):
         self.module = module
@@ -309,6 +331,17 @@ class PulpRepository(PulpEntity):
             repository_version = base_version
         self.module.set_changed()
         return repository_version
+
+
+class PulpRemote(PulpEntity):
+    def presentation(self, entity):
+        if entity is not None:
+            entity.pop("remote_username", None)
+            entity.pop("remote_password", None)
+            entity.pop("proxy_username", None)
+            entity.pop("proxy_password", None)
+            entity.pop("client_key", None)
+        return entity
 
 
 class PulpArtifact(PulpEntity):
@@ -583,7 +616,7 @@ class PulpFilePublication(PulpEntity):
         )
 
 
-class PulpFileRemote(PulpEntity):
+class PulpFileRemote(PulpRemote):
     _list_id = "remotes_file_file_list"
     _read_id = "remotes_file_file_read"
     _create_id = "remotes_file_file_create"
@@ -684,7 +717,7 @@ class PulpDebPublication(PulpEntity):
         )
 
 
-class PulpDebRemote(PulpEntity):
+class PulpDebRemote(PulpRemote):
     _list_id = "remotes_deb_apt_list"
     _read_id = "remotes_deb_apt_read"
     _create_id = "remotes_deb_apt_create"
@@ -749,7 +782,7 @@ class PulpAnsibleDistribution(PulpEntity):
         )
 
 
-class PulpAnsibleCollectionRemote(PulpEntity):
+class PulpAnsibleCollectionRemote(PulpRemote):
     _list_id = "remotes_ansible_collection_list"
     _read_id = "remotes_ansible_collection_read"
     _create_id = "remotes_ansible_collection_create"
@@ -805,7 +838,7 @@ class PulpAnsibleCollectionRemote(PulpEntity):
     #     return entity
 
 
-class PulpAnsibleRoleRemote(PulpEntity):
+class PulpAnsibleRoleRemote(PulpRemote):
     _name_singular = "remote"
     _name_plural = "remotes"
 
@@ -891,7 +924,7 @@ class PulpPythonPublication(PulpEntity):
         )
 
 
-class PulpPythonRemote(PulpEntity):
+class PulpPythonRemote(PulpRemote):
     _list_id = "remotes_python_python_list"
     _read_id = "remotes_python_python_read"
     _create_id = "remotes_python_python_create"
@@ -1010,7 +1043,7 @@ class PulpRpmPublication(PulpEntity):
         )
 
 
-class PulpRpmRemote(PulpEntity):
+class PulpRpmRemote(PulpRemote):
     _list_id = "remotes_rpm_rpm_list"
     _read_id = "remotes_rpm_rpm_read"
     _create_id = "remotes_rpm_rpm_create"

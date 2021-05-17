@@ -25113,9 +25113,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - ae2ad5bf90534341b8f971d657d6fa92
+      - 8a8ba09b2d3340f6a245663e3510e582
       Date:
-      - Thu, 22 Jul 2021 17:24:53 GMT
+      - Sun, 25 Jul 2021 09:02:59 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:
@@ -25157,9 +25157,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 5ba84217ab164bf6b7d8ccb1e1a92d52
+      - 2b8261c56b4d43d1b8e1e8decaa5ea6f
       Date:
-      - Thu, 22 Jul 2021 17:24:54 GMT
+      - Sun, 25 Jul 2021 09:02:59 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:
@@ -25191,7 +25191,7 @@ interactions:
     uri: https://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/4cda12f7-2ba6-4695-bdfe-8c5ed652c8d5/","pulp_created":"2021-07-22T17:24:54.294794Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-22T17:24:54.294824Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"sles_auth_token":null}'
+      string: '{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/b532cbda-064e-4e61-964c-26e2ba405cc5/","pulp_created":"2021-07-25T09:02:59.691097Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-25T09:02:59.691112Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"sles_auth_token":null}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25204,11 +25204,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 4693ccab8e634889b1e5448b49579390
+      - e1b72ff7db6d4044bc398fe8d6a0ff68
       Date:
-      - Thu, 22 Jul 2021 17:24:54 GMT
+      - Sun, 25 Jul 2021 09:02:59 GMT
       Location:
-      - /pulp/api/v3/remotes/rpm/rpm/4cda12f7-2ba6-4695-bdfe-8c5ed652c8d5/
+      - /pulp/api/v3/remotes/rpm/rpm/b532cbda-064e-4e61-964c-26e2ba405cc5/
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:

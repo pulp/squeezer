@@ -1,0 +1,132 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/?limit=1&name=test_rpm_remote
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/b532cbda-064e-4e61-964c-26e2ba405cc5/","pulp_created":"2021-07-25T09:02:59.691097Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":"abcd","client_cert":"efgh","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-25T09:03:03.902166Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"sles_auth_token":null}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '654'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - d4fb7a4eb8b6460db839b118000dce93
+      Date:
+      - Sun, 25 Jul 2021 09:03:05 GMT
+      Server:
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.9
+    method: DELETE
+    uri: https://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/b532cbda-064e-4e61-964c-26e2ba405cc5/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/792d32be-924a-4a0e-b39f-cf37e05801d2/"}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 14bdc1ca78a84469b09d7d9ee42e9a55
+      Date:
+      - Sun, 25 Jul 2021 09:03:05 GMT
+      Server:
+      - nginx/1.18.0
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: https://pulp.example.org/pulp/api/v3/tasks/792d32be-924a-4a0e-b39f-cf37e05801d2/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/792d32be-924a-4a0e-b39f-cf37e05801d2/","pulp_created":"2021-07-25T09:03:05.272279Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"14bdc1ca78a84469b09d7d9ee42e9a55","started_at":"2021-07-25T09:03:05.309829Z","finished_at":"2021-07-25T09:03:05.340349Z","error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/rpm/rpm/b532cbda-064e-4e61-964c-26e2ba405cc5/"]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '602'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - e7723087bdfe44ec9a53ba69b4c99601
+      Date:
+      - Sun, 25 Jul 2021 09:03:05 GMT
+      Server:
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
+      Vary:
+      - Accept, Cookie
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
