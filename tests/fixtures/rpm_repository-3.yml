@@ -9,15 +9,15 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian-testing
+      - pulp3-sandbox-debian11
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: https://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/7e477c17-9496-4869-9356-846d7fa91c97/","pulp_created":"2021-07-22T17:25:18.708533Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/7e477c17-9496-4869-9356-846d7fa91c97/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/7e477c17-9496-4869-9356-846d7fa91c97/versions/0/","name":"test_rpm_repository","description":"repository
-        created via ansible","retained_versions":null,"remote":null,"autopublish":false,"metadata_signing_service":null,"retain_package_versions":0,"metadata_checksum_type":null,"package_checksum_type":null,"gpgcheck":0,"repo_gpgcheck":0,"sqlite_metadata":false}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/","pulp_created":"2022-04-07T11:53:27.398244Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/versions/0/","name":"test_rpm_repository","description":"repository
+        created via ansible","retain_repo_versions":null,"remote":null,"autopublish":false,"metadata_signing_service":null,"retain_package_versions":0,"metadata_checksum_type":null,"package_checksum_type":null,"gpgcheck":0,"repo_gpgcheck":0,"sqlite_metadata":false}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -26,21 +26,23 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '716'
+      - '719'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 42bf9c942ec34cb498063000da1eba93
+      - ca83a6410d004b28a61ed9cb9414cd6f
       Date:
-      - Thu, 22 Jul 2021 17:25:25 GMT
+      - Thu, 07 Apr 2022 11:53:31 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
       - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
       Vary:
       - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK
