@@ -70,7 +70,7 @@ author:
 EXAMPLES = r"""
 - name: Add or remove content
   file_repository_content:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     repository: my_repo

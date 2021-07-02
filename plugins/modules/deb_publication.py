@@ -36,7 +36,7 @@ author:
 EXAMPLES = r"""
 - name: Read list of deb publications
   deb_publication:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
   register: publication_status
@@ -45,14 +45,14 @@ EXAMPLES = r"""
     var: publication_status
 - name: Create a deb publication
   deb_publication:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     repository: my_deb_repo
     state: present
 - name: Delete a deb publication
   deb_publication:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     repository: my_deb_repo

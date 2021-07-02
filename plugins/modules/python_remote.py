@@ -68,7 +68,7 @@ author:
 EXAMPLES = r"""
 - name: Read list of python remotes from pulp api server
   python_remote:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
   register: remote_status
@@ -77,7 +77,7 @@ EXAMPLES = r"""
     var: remote_status
 - name: Create a python remote
   python_remote:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_python_remote
@@ -85,7 +85,7 @@ EXAMPLES = r"""
     state: present
 - name: Delete a python remote
   python_remote:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_python_remote

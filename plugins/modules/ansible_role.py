@@ -44,7 +44,7 @@ author:
 EXAMPLES = r"""
 - name: Read list of file content units from pulp api server
   ansible_role:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
   register: content_status
@@ -53,7 +53,7 @@ EXAMPLES = r"""
     var: content_status
 - name: Create an ansible role
   ansible_role:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     namespace: geometry

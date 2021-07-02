@@ -47,7 +47,7 @@ author:
 EXAMPLES = r"""
 - name: Read list of deb distributions from pulp api server
   deb_distribution:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
   register: distribution_status
@@ -57,7 +57,7 @@ EXAMPLES = r"""
 
 - name: Create a deb distribution
   deb_distribution:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_deb_distribution
@@ -66,7 +66,7 @@ EXAMPLES = r"""
     state: present
 - name: Delete a deb distribution
   deb_distribution:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_deb_distribution

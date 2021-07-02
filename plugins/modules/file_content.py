@@ -36,7 +36,7 @@ author:
 EXAMPLES = r"""
 - name: Read list of file content units from pulp api server
   file_content:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
   register: content_status
@@ -45,7 +45,7 @@ EXAMPLES = r"""
     var: content_status
 - name: Create a file content unit
   file_content:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     sha256: 0000111122223333444455556666777788889999aaaabbbbccccddddeeeeffff

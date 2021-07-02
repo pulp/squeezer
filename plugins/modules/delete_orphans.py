@@ -25,7 +25,7 @@ author:
 EXAMPLES = r"""
 - name: Delete orphans
   delete_orphans:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
 """

@@ -36,7 +36,7 @@ author:
 EXAMPLES = r"""
 - name: Sync deb remote into repository
   deb_sync:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     repository: repo_1

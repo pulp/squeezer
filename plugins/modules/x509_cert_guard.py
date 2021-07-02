@@ -38,7 +38,7 @@ author:
 EXAMPLES = r"""
 - name: Read list of x509 cert guards from pulp api server
   x509_cert_guard:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
   register: guard_status
@@ -47,7 +47,7 @@ EXAMPLES = r"""
     var: guard_status
 - name: Create a x509 cert guard
   x509_cert_guard:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_cert_guard
@@ -56,7 +56,7 @@ EXAMPLES = r"""
     state: present
 - name: Delete a x509 cert guard
   x509_cert_guard:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_cert_guard

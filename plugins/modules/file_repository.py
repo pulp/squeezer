@@ -34,7 +34,7 @@ author:
 EXAMPLES = r"""
 - name: Read list of file repositories from pulp api server
   file_repository:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
   register: repo_status
@@ -43,7 +43,7 @@ EXAMPLES = r"""
     var: repo_status
 - name: Create a file repository
   file_repository:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_repo
@@ -51,7 +51,7 @@ EXAMPLES = r"""
     state: present
 - name: Delete a file repository
   file_repository:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_repo

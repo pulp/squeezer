@@ -37,7 +37,7 @@ author:
 EXAMPLES = r"""
 - name: Read list of tasks from pulp server
   tasks:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
   register: task_summary
@@ -47,7 +47,7 @@ EXAMPLES = r"""
 # TODO
 - name: Create a file remote
   file_remote:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_file_remote
@@ -55,7 +55,7 @@ EXAMPLES = r"""
     state: present
 - name: Delete a file remote
   file_remote:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_file_remote
