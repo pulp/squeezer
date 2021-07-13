@@ -44,7 +44,7 @@ author:
 EXAMPLES = r"""
 - name: Sync ansible remote into repository
   ansible_sync:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     repository: ansible_repo_1

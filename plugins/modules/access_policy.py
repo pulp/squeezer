@@ -76,7 +76,7 @@ author:
 EXAMPLES = r"""
 - name: Dump all access policies
   access_policy:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
   register: access_policies_status
@@ -86,7 +86,7 @@ EXAMPLES = r"""
 
 - name: View the access policy for tasks
   access_policy:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     viewset_name: "tasks"
@@ -97,7 +97,7 @@ EXAMPLES = r"""
 
 - name: Modify the access policy for tasks
   file_remote:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     viewset_name: "tasks"

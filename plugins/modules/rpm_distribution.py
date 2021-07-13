@@ -47,7 +47,7 @@ author:
 EXAMPLES = r"""
 - name: Read list of rpm distributions
   rpm_distribution:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
   register: distribution_status
@@ -57,7 +57,7 @@ EXAMPLES = r"""
 
 - name: Create a rpm distribution
   rpm_distribution:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_rpm_distribution
@@ -67,7 +67,7 @@ EXAMPLES = r"""
 
 - name: Delete a rpm distribution
   rpm_distribution:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_rpm_distribution

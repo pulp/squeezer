@@ -35,7 +35,7 @@ author:
 EXAMPLES = r"""
 - name: Read list of artifacts from pulp server
   artifact:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
   register: artifact_status
@@ -44,21 +44,21 @@ EXAMPLES = r"""
     var: artifact_status
 - name: Upload a file
   artifact:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     file: local_artifact.txt
     state: present
 - name: Delete an artifact by specifying a file
   artifact:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     file: local_artifact.txt
     state: absent
 - name: Delete an artifact by specifying the digest
   artifact:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     sha256: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef

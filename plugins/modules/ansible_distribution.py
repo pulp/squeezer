@@ -53,7 +53,7 @@ author:
 EXAMPLES = r"""
 - name: Read list of ansible distributions from pulp api server
   ansible_distribution:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
   register: distribution_status
@@ -63,7 +63,7 @@ EXAMPLES = r"""
 
 - name: Create an ansible distribution
   ansible_distribution:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_ansible_distribution
@@ -73,7 +73,7 @@ EXAMPLES = r"""
 
 - name: Delete an ansible distribution
   ansible_distribution:
-    api_url: localhost:24817
+    pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_ansible_distribution
