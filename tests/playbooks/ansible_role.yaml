@@ -1,27 +1,25 @@
 ---
 - hosts: localhost
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
   vars:
     file1_sha256: "{{ lookup('file', 'data/file1.txt', lstrip=false, rstrip=false) | hash('sha256') }}"
   module_defaults: &pulp_module_defaults
-    artifact: &pulp_connection_details
+    pulp.squeezer.artifact: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
-    ansible_role:
+    pulp.squeezer.ansible_role:
       <<: *pulp_connection_details
-    delete_orphans:
+    pulp.squeezer.delete_orphans:
       <<: *pulp_connection_details
   tasks:
     - name: Delete orphaned objects
-      delete_orphans: {}
+      pulp.squeezer.delete_orphans: {}
     - name: Create artifact
-      artifact:
+      pulp.squeezer.artifact:
         file: data/file1.txt
         state: present
     - name: Clean openapi cache
@@ -30,8 +28,6 @@
         state: absent
 
 - hosts: tests
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -41,11 +37,11 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Search artifact
-      artifact:
+      pulp.squeezer.artifact:
         sha256: "{{ file1_sha256 }}"
       register: artifact_result
     - name: Create ansible role
-      ansible_role:
+      pulp.squeezer.ansible_role:
         name: test_ansible_role
         namespace: test_namespace
         version: 0.0.0
@@ -60,7 +56,7 @@
           - result.content.namespace == "test_namespace"
 
     - name: Create ansible role (2nd try)
-      ansible_role:
+      pulp.squeezer.ansible_role:
         name: test_ansible_role
         namespace: test_namespace
         version: 0.0.0
@@ -73,7 +69,7 @@
           - result.changed == false
 
     - name: List ansible roles
-      ansible_role: {}
+      pulp.squeezer.ansible_role: {}
       register: result
     - name: Verify list ansible roles
       assert:
@@ -82,7 +78,7 @@
           - result.contents | length >= 1
 
     - name: Read ansible role
-      ansible_role:
+      pulp.squeezer.ansible_role:
         name: test_ansible_role
         namespace: test_namespace
         version: 0.0.0

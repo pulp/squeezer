@@ -1,40 +1,38 @@
 ---
 - hosts: localhost
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    python_publication: &pulp_connection_details
+    pulp.squeezer.python_publication: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
-    python_remote:
+    pulp.squeezer.python_remote:
       <<: *pulp_connection_details
-    python_sync:
+    pulp.squeezer.python_sync:
       <<: *pulp_connection_details
-    python_repository:
+    pulp.squeezer.python_repository:
       <<: *pulp_connection_details
   tasks:
     - name: Make repository absent
-      python_repository:
+      pulp.squeezer.python_repository:
         name: test_python_repository
         state: absent
     - name: Make repository present
-      python_repository:
+      pulp.squeezer.python_repository:
         name: test_python_repository
         state: present
     - name: Make remote present
-      python_remote:
+      pulp.squeezer.python_remote:
         name: test_python_remote
         url: "{{ pulp_fixtures_url }}/python-pypi/"
         includes:
           - shelf-reader
         state: present
     - name: Sync remote into repository
-      python_sync:
+      pulp.squeezer.python_sync:
         remote: test_python_remote
         repository: test_python_repository
     - name: Clean openapi cache
@@ -43,8 +41,6 @@
         state: absent
 
 - hosts: tests
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -52,7 +48,7 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Publish latest version of repository
-      python_publication:
+      pulp.squeezer.python_publication:
         repository: test_python_repository
         state: present
       register: result
@@ -63,7 +59,7 @@
           - result.publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
 
     - name: Publish latest version of repository (2nd try)
-      python_publication:
+      pulp.squeezer.python_publication:
         repository: test_python_repository
         state: present
       register: result
@@ -73,7 +69,7 @@
           - result.changed == false
 
     - name: Publish latest version of repository via version number
-      python_publication:
+      pulp.squeezer.python_publication:
         repository: test_python_repository
         version: 1
         state: present
@@ -84,7 +80,7 @@
           - result.changed == false
 
     - name: List publications
-      python_publication: {}
+      pulp.squeezer.python_publication: {}
       register: result
     - name: Verify list publications
       assert:
@@ -93,7 +89,7 @@
           - result.publications | length >= 1
 
     - name: Query publication of latest version of repository
-      python_publication:
+      pulp.squeezer.python_publication:
         repository: test_python_repository
       register: result
     - name: Verify query publication of latest version of repository
@@ -103,7 +99,7 @@
           - result.publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
 
     - name: Delete publication of latest version of repository
-      python_publication:
+      pulp.squeezer.python_publication:
         repository: test_python_repository
         state: absent
       register: result
@@ -114,7 +110,7 @@
           - not result.publication
 
     - name: Delete publication of latest version of repository (2nd try)
-      python_publication:
+      pulp.squeezer.python_publication:
         repository: test_python_repository
         state: absent
       register: result
@@ -124,8 +120,6 @@
           - result.changed == false
 
 - hosts: localhost
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -133,11 +127,11 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Make repository absent
-      python_repository:
+      pulp.squeezer.python_repository:
         name: test_python_repository
         state: absent
     - name: Make remote absent
-      python_remote:
+      pulp.squeezer.python_remote:
         name: test_python_remote
         state: absent
 ...

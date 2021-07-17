@@ -7,7 +7,7 @@ ROLES := $(wildcard roles/*)
 PLUGIN_TYPES := $(filter-out __%,$(notdir $(wildcard plugins/*)))
 METADATA := galaxy.yml LICENSE README.md
 $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(eval _$(PLUGIN_TYPE) := $(filter-out %__init__.py,$(wildcard plugins/$(PLUGIN_TYPE)/*.py))))
-DEPENDENCIES := $(METADATA) $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(_$(PLUGIN_TYPE))) $(foreach ROLE,$(ROLES),$(wildcard $(ROLE)/*/*))
+DEPENDENCIES := $(METADATA) $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(_$(PLUGIN_TYPE))) $(foreach ROLE,$(ROLES),$(wildcard $(ROLE)/*/*)) $(foreach ROLE,$(ROLES),$(ROLE)/README.md)
 
 PYTHON_VERSION = $(shell python -c 'import sys; print("{}.{}".format(sys.version_info.major, sys.version_info.minor))')
 COLLECTION_COMMAND ?= ansible-galaxy
@@ -27,7 +27,7 @@ help:
 	@echo "  setup            to set up test, lint"
 	@echo "  test-setup       to install test dependencies"
 	@echo "  test_<test>      to run a specific unittest"
-	@echo "  livetest_<test>  to run a specific unittest"
+	@echo "  livetest_<test>  to run a specific unittest live (without vcr)"
 	@echo "  record_<test>    to (re-)record the server answers for a specific test"
 	@echo "  clean_<test>     to run a specific test playbook with the teardown and cleanup tags"
 	@echo "  dist             to build the collection artifact"

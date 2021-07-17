@@ -1,19 +1,17 @@
 ---
 - hosts: localhost
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    ansible_repository: &pulp_connection_details
+    pulp.squeezer.ansible_repository: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
   tasks:
     - name: Make repository absent
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
         state: absent
     - name: Clean openapi cache
@@ -22,8 +20,6 @@
         state: absent
 
 - hosts: tests
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -31,7 +27,7 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Create repository
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
         description: ""
         state: present
@@ -43,7 +39,7 @@
           - result.repository.name == 'test_ansible_repository'
 
     - name: Create repository (2nd try)
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
         state: present
       register: result
@@ -53,7 +49,7 @@
           - result.changed == false
 
     - name: Add description to repository
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
         description: "repository created via ansible"
         state: present
@@ -65,7 +61,7 @@
           - result.repository.description == "repository created via ansible"
 
     - name: Add description to repository (2nd try)
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
         description: "repository created via ansible"
         state: present
@@ -76,7 +72,7 @@
           - result.changed == false
 
     - name: Fake modify repository
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
         state: present
       register: result
@@ -87,7 +83,7 @@
           - result.repository.description == "repository created via ansible"
 
     - name: List repositories
-      ansible_repository: {}
+      pulp.squeezer.ansible_repository: {}
       register: result
     - name: Verify list repositories
       assert:
@@ -96,7 +92,7 @@
           - result.repositories | length >= 1
 
     - name: Read repository
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
       register: result
     - name: Verify read repository
@@ -107,7 +103,7 @@
           - result.repository.description == "repository created via ansible"
 
     - name: Remove description from repository
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
         description: ""
         state: present
@@ -119,7 +115,7 @@
           - not result.repository.description
 
     - name: Remove description from repository (2nd try)
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
         description: ""
         state: present
@@ -130,7 +126,7 @@
           - result.changed == false
 
     - name: Delete repository
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
         state: absent
       register: result
@@ -141,7 +137,7 @@
           - not result.repository
 
     - name: Delete repository (2nd try)
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
         state: absent
       register: result

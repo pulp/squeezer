@@ -1,19 +1,17 @@
 ---
 - hosts: localhost
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    file_remote: &pulp_connection_details
+    pulp.squeezer.file_remote: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
   tasks:
     - name: Make file_remote absent
-      file_remote:
+      pulp.squeezer.file_remote:
         name: test_file_remote
         state: absent
     - name: Clean openapi cache
@@ -22,8 +20,6 @@
         state: absent
 
 - hosts: tests
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -31,7 +27,7 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Create file_remote
-      file_remote:
+      pulp.squeezer.file_remote:
         name: test_file_remote
         url: "https://example.org/file/PULP_MANIFEST"
         proxy_url: "http://proxy.int:3128"
@@ -46,7 +42,7 @@
           - result.remote.proxy_url == "http://proxy.int:3128"
 
     - name: Create file_remote (2nd try)
-      file_remote:
+      pulp.squeezer.file_remote:
         name: test_file_remote
         url: "https://example.org/file/PULP_MANIFEST"
         proxy_url: "http://proxy.int:3128"
@@ -58,7 +54,7 @@
           - result.changed == false
 
     - name: Modify file_remote
-      file_remote:
+      pulp.squeezer.file_remote:
         name: test_file_remote
         policy: on_demand
         tls_validation: false
@@ -72,7 +68,7 @@
           - result.remote.tls_validation == false
 
     - name: Modify file_remote (2nd try)
-      file_remote:
+      pulp.squeezer.file_remote:
         name: test_file_remote
         policy: on_demand
         tls_validation: false
@@ -84,7 +80,7 @@
           - result.changed == false
 
     - name: List file remotes
-      file_remote: {}
+      pulp.squeezer.file_remote: {}
       register: result
     - name: Verify list file remotes
       assert:
@@ -94,7 +90,7 @@
           - result.remotes | selectattr('name', 'match', 'test_file_remote') | list | length == 1
 
     - name: Read file_remote
-      file_remote:
+      pulp.squeezer.file_remote:
         name: test_file_remote
       register: result
     - name: Verify read file_remote
@@ -107,7 +103,7 @@
           - result.remote.tls_validation == false
 
     - name: Delete file_remote
-      file_remote:
+      pulp.squeezer.file_remote:
         name: test_file_remote
         state: absent
       register: result
@@ -118,7 +114,7 @@
           - not result.remote
 
     - name: Delete file_remote (2nd try)
-      file_remote:
+      pulp.squeezer.file_remote:
         name: test_file_remote
         state: absent
       register: result

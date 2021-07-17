@@ -1,19 +1,17 @@
 ---
 - hosts: localhost
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    python_remote: &pulp_connection_details
+    pulp.squeezer.python_remote: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
   tasks:
     - name: Make python_remote absent
-      python_remote:
+      pulp.squeezer.python_remote:
         name: test_python_remote
         state: absent
     - name: Clean openapi cache
@@ -22,8 +20,6 @@
         state: absent
 
 - hosts: tests
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -31,7 +27,7 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Create remote
-      python_remote:
+      pulp.squeezer.python_remote:
         name: test_python_remote
         url: "https://pypi.org/"
         proxy_url: "http://proxy.int:3128"
@@ -46,7 +42,7 @@
           - result.remote.proxy_url == "http://proxy.int:3128"
 
     - name: Create remote (2nd try)
-      python_remote:
+      pulp.squeezer.python_remote:
         name: test_python_remote
         url: "https://pypi.org/"
         proxy_url: "http://proxy.int:3128"
@@ -58,7 +54,7 @@
           - result.changed == false
 
     - name: Modify remote
-      python_remote:
+      pulp.squeezer.python_remote:
         name: test_python_remote
         policy: on_demand
         tls_validation: false
@@ -82,7 +78,7 @@
           - result.remote.excludes[0] == "cccc"
 
     - name: Modify remote (2nd try)
-      python_remote:
+      pulp.squeezer.python_remote:
         name: test_python_remote
         policy: on_demand
         tls_validation: false
@@ -100,7 +96,7 @@
           - result.changed == false
 
     - name: List remotes
-      python_remote: {}
+      pulp.squeezer.python_remote: {}
       register: result
     - name: Verify list remotes
       assert:
@@ -110,7 +106,7 @@
           - result.remotes | selectattr('name', 'match', 'test_python_remote') | list | length == 1
 
     - name: Read remote
-      python_remote:
+      pulp.squeezer.python_remote:
         name: test_python_remote
       register: result
     - name: Verify read remote
@@ -123,7 +119,7 @@
           - result.remote.tls_validation == false
 
     - name: Delete remote
-      python_remote:
+      pulp.squeezer.python_remote:
         name: test_python_remote
         state: absent
       register: result
@@ -134,7 +130,7 @@
           - not result.remote
 
     - name: Delete remote (2nd try)
-      python_remote:
+      pulp.squeezer.python_remote:
         name: test_python_remote
         state: absent
       register: result
