@@ -1,36 +1,34 @@
 ---
 - hosts: localhost
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    ansible_remote: &pulp_connection_details
+    pulp.squeezer.ansible_remote: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
-    ansible_sync:
+    pulp.squeezer.ansible_sync:
       <<: *pulp_connection_details
-    ansible_repository:
+    pulp.squeezer.ansible_repository:
       <<: *pulp_connection_details
   tasks:
     - name: Make repository absent
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
         state: absent
     - name: Make repository present
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
         state: present
     - name: Make role remote present
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         name: test_ansible_role_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
         state: present
     - name: Make collection remote present
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
         url: "https://galaxy-dev.ansible.com/api/v2/collections/testing/ansible_testing_content"
@@ -41,8 +39,6 @@
         state: absent
 
 - hosts: tests
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -50,7 +46,7 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Sync role remote into repository
-      ansible_sync:
+      pulp.squeezer.ansible_sync:
         remote: test_ansible_role_remote
         repository: test_ansible_repository
       register: result
@@ -62,7 +58,7 @@
           - (not ansible_check_mode) or (result.repository_version is match("/pulp/api/v3/repositories/ansible/ansible/.*/versions/0/"))
 
     - name: Sync role remote into repository (2nd try)
-      ansible_sync:
+      pulp.squeezer.ansible_sync:
         remote: test_ansible_role_remote
         repository: test_ansible_repository
       register: result
@@ -73,7 +69,7 @@
           - result.repository_version is match("/pulp/api/v3/repositories/ansible/ansible/.*/versions/1/")
 
     - name: Dump repository
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
       register: result
     - name: Verify repository_version in repository
@@ -82,7 +78,7 @@
           - result.repository.latest_version_href is match("/pulp/api/v3/repositories/ansible/ansible/.*/versions/1/")
 
     - name: Sync collection remote into repository
-      ansible_sync:
+      pulp.squeezer.ansible_sync:
         content_type: collection
         remote: test_ansible_collection_remote
         repository: test_ansible_repository
@@ -95,7 +91,7 @@
           - (not ansible_check_mode) or (result.repository_version is match("/pulp/api/v3/repositories/ansible/ansible/.*/versions/1/"))
 
     - name: Sync collection remote into repository (2nd try)
-      ansible_sync:
+      pulp.squeezer.ansible_sync:
         content_type: collection
         remote: test_ansible_collection_remote
         repository: test_ansible_repository
@@ -107,8 +103,6 @@
           - result.repository_version is match("/pulp/api/v3/repositories/ansible/ansible/.*/versions/2/")
 
 - hosts: localhost
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -116,15 +110,15 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Make repository absent
-      ansible_repository:
+      pulp.squeezer.ansible_repository:
         name: test_ansible_repository
         state: absent
     - name: Make role remote absent
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         name: test_ansible_role_remote
         state: absent
     - name: Make collection remote absent
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
         state: absent

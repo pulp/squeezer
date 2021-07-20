@@ -1,30 +1,28 @@
 ---
 - hosts: localhost
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    delete_orphans: &pulp_connection_details
+    pulp.squeezer.delete_orphans: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
-    artifact:
+    pulp.squeezer.artifact:
       <<: *pulp_connection_details
-    file_content:
+    pulp.squeezer.file_content:
       <<: *pulp_connection_details
   tasks:
     - name: Delete orphans
-      delete_orphans: {}
+      pulp.squeezer.delete_orphans: {}
     - name: Create artifact
-      artifact:
+      pulp.squeezer.artifact:
         file: data/file1.txt
         state: present
       register: result
     - name: Create file content unit
-      file_content:
+      pulp.squeezer.file_content:
         digest: "{{ result.artifact.sha256 }}"
         relative_path: "data/file1.txt"
         state: present
@@ -34,8 +32,6 @@
         state: absent
 
 - hosts: tests
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -45,7 +41,7 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Delete orphans
-      delete_orphans: {}
+      pulp.squeezer.delete_orphans: {}
       register: orphans
     - name: Verify result
       assert:
@@ -55,7 +51,7 @@
           - orphans.summary.content == 1 or ansible_check_mode
 
     - name: Delete orphans
-      delete_orphans: {}
+      pulp.squeezer.delete_orphans: {}
       register: orphans
     - name: Verify result
       assert:

@@ -1,19 +1,17 @@
 ---
 - hosts: localhost
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    access_policy: &pulp_connection_details
+    pulp.squeezer.access_policy: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
   tasks:
     - name: Backup access policy for tasks
-      access_policy:
+      pulp.squeezer.access_policy:
         viewset_name: tasks
       register:
         saved_access_policy
@@ -23,8 +21,6 @@
         state: absent
 
 - hosts: tests
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -32,14 +28,14 @@
     <<: *pulp_module_defaults
   tasks:
     - name: List access policies
-      access_policy: {}
+      pulp.squeezer.access_policy: {}
       register: result
     - name: Verify list access policies
       assert:
         that:
           - result.access_policies | length > 0
     - name: Show task access policy
-      access_policy:
+      pulp.squeezer.access_policy:
         viewset_name: tasks
       register: result
     - name: Verify show task access policy
@@ -47,7 +43,7 @@
         that:
           - result.access_policy.statements | length > 0
     - name: Change task access_policy
-      access_policy:
+      pulp.squeezer.access_policy:
         viewset_name: tasks
         statements:
           - action:
@@ -66,7 +62,7 @@
         that:
           - result.changed
     - name: Change task access_policy (2nd try)
-      access_policy:
+      pulp.squeezer.access_policy:
         viewset_name: tasks
         statements:
           - action:
@@ -86,8 +82,6 @@
           - not result.changed
 
 - hosts: localhost
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -95,7 +89,7 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Reset access policy for tasks
-      access_policy:
+      pulp.squeezer.access_policy:
         viewset_name: tasks
         statements: "{{ saved_access_policy.access_policy.statements }}"
         permissions_assignment: "{{ saved_access_policy.access_policy.permissions_assignment }}"

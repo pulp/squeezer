@@ -1,19 +1,17 @@
 ---
 - hosts: localhost
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    deb_remote: &pulp_connection_details
+    pulp.squeezer.deb_remote: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
   tasks:
     - name: Make remote absent
-      deb_remote:
+      pulp.squeezer.deb_remote:
         name: test_deb_remote
         state: absent
     - name: Clean openapi cache
@@ -22,8 +20,6 @@
         state: absent
 
 - hosts: tests
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -31,7 +27,7 @@
     <<: *pulp_module_defaults
   tasks:
     - name: Create remote
-      deb_remote:
+      pulp.squeezer.deb_remote:
         name: test_deb_remote
         url: "https://example.org/deb/"
         architectures: ppc64
@@ -52,7 +48,7 @@
           - result.remote.proxy_url == "http://proxy.int:3128"
 
     - name: Create remote (2nd try)
-      deb_remote:
+      pulp.squeezer.deb_remote:
         name: test_deb_remote
         url: "https://example.org/deb/"
         architectures: ppc64
@@ -67,7 +63,7 @@
           - result.changed == false
 
     - name: Modify remote
-      deb_remote:
+      pulp.squeezer.deb_remote:
         name: test_deb_remote
         policy: on_demand
         tls_validation: false
@@ -81,7 +77,7 @@
           - result.remote.tls_validation == false
 
     - name: Modify remote (2nd try)
-      deb_remote:
+      pulp.squeezer.deb_remote:
         name: test_deb_remote
         policy: on_demand
         tls_validation: false
@@ -93,7 +89,7 @@
           - result.changed == false
 
     - name: List remotes
-      deb_remote: {}
+      pulp.squeezer.deb_remote: {}
       register: result
     - name: Verify list remotes
       assert:
@@ -103,7 +99,7 @@
           - result.remotes | selectattr('name', 'match', 'test_deb_remote') | list | length == 1
 
     - name: Read remote
-      deb_remote:
+      pulp.squeezer.deb_remote:
         name: test_deb_remote
       register: result
     - name: Verify read remote
@@ -119,7 +115,7 @@
           - result.remote.tls_validation == false
 
     - name: Delete remote
-      deb_remote:
+      pulp.squeezer.deb_remote:
         name: test_deb_remote
         state: absent
       register: result
@@ -130,7 +126,7 @@
           - not result.remote
 
     - name: Delete remote (2nd try)
-      deb_remote:
+      pulp.squeezer.deb_remote:
         name: test_deb_remote
         state: absent
       register: result

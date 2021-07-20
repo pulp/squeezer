@@ -1,19 +1,17 @@
 ---
 - hosts: localhost
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
-    ansible_remote: &pulp_connection_details
+    pulp.squeezer.ansible_remote: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
   tasks:
     - name: Make remote absent
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         name: "test_ansible_{{ item }}_remote"
         state: absent
         content_type: "{{ item }}"
@@ -27,8 +25,6 @@
         state: absent
 
 - hosts: tests
-  collections:
-    - pulp.squeezer
   gather_facts: false
   vars_files:
     - vars/server.yaml
@@ -40,7 +36,7 @@
     #########################
 
     - name: Create role remote
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         name: test_ansible_role_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
         proxy_url: "http://proxy.int:3128"
@@ -55,7 +51,7 @@
           - result.remote.proxy_url == "http://proxy.int:3128"
 
     - name: Create role remote (2nd try)
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: role
         name: test_ansible_role_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
@@ -68,7 +64,7 @@
           - result.changed == false
 
     - name: Modify role remote
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         name: test_ansible_role_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=pulp"
         tls_validation: false
@@ -82,7 +78,7 @@
           - result.remote.tls_validation == false
 
     - name: Modify role remote (2nd try)
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: role
         name: test_ansible_role_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=pulp"
@@ -95,7 +91,7 @@
           - result.changed == false
 
     - name: List role remotes
-      ansible_remote: {}
+      pulp.squeezer.ansible_remote: {}
       register: result
     - name: Verify list role remotes
       assert:
@@ -104,7 +100,7 @@
           - result.remotes | selectattr('name', 'match', 'test_ansible_role_remote') | list | length == 1
 
     - name: Read role remote
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: role
         name: test_ansible_role_remote
       register: result
@@ -119,7 +115,7 @@
           - result.remote.tls_validation == false
 
     - name: Delete role remote
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         name: test_ansible_role_remote
         state: absent
       register: result
@@ -130,7 +126,7 @@
           - not result.remote
 
     - name: Delete role remote (2nd try)
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: role
         name: test_ansible_role_remote
         state: absent
@@ -145,7 +141,7 @@
     ###############################
 
     - name: Create collection remote
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
         url: "https://galaxy-dev.ansible.com/api/v2/collections/testing/ansible_testing_content"
@@ -161,7 +157,7 @@
           - result.remote.proxy_url == "http://proxy.int:3128"
 
     - name: Create collection remote (2nd try)
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
         url: "https://galaxy-dev.ansible.com/api/v2/collections/testing/ansible_testing_content"
@@ -174,7 +170,7 @@
           - result.changed == false
 
     - name: Modify collection remote
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
         url: "https://galaxy-dev.ansible.com/api/v2/collections/pulp/squeezer"
@@ -189,7 +185,7 @@
           - result.remote.tls_validation == false
 
     - name: Modify collection remote (2nd try)
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
         url: "https://galaxy-dev.ansible.com/api/v2/collections/pulp/squeezer"
@@ -202,7 +198,7 @@
           - result.changed == false
 
     - name: List collection remotes
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: collection
       register: result
     - name: Verify list collection remotes
@@ -212,7 +208,7 @@
           - result.remotes | selectattr('name', 'match', 'test_ansible_collection_remote') | list | length == 1
 
     - name: Read collection remote
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
       register: result
@@ -227,7 +223,7 @@
           - result.remote.tls_validation == false
 
     - name: Delete collection remote
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
         state: absent
@@ -239,7 +235,7 @@
           - not result.remote
 
     - name: Delete collection remote (2nd try)
-      ansible_remote:
+      pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
         state: absent
