@@ -15,6 +15,7 @@ import traceback
 from time import sleep
 
 from ansible.module_utils.basic import AnsibleModule, env_fallback
+from ansible.module_utils.six.moves.urllib.error import HTTPError
 from ansible_collections.pulp.squeezer.plugins.module_utils.openapi import OpenAPI
 
 
@@ -75,6 +76,12 @@ class PulpAnsibleModule(AnsibleModule):
         else:
             if issubclass(exc_class, SqueezerException):
                 self.fail_json(msg=str(exc_value), changed=self._changed)
+                return True
+            elif issubclass(exc_class, HTTPError):
+                self.fail_json(
+                    msg="{0} {1}".format(str(exc_value), str(exc_value.fp.read())),
+                    changed=self._changed,
+                )
                 return True
             elif issubclass(exc_class, Exception):
                 self.fail_json(
