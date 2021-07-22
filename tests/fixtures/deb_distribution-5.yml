@@ -11,13 +11,15 @@ interactions:
       Host:
       - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
     uri: https://pulp.example.org/pulp/api/v3/distributions/deb/apt/?limit=1&name=test_deb_distribution
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
@@ -26,8 +28,10 @@ interactions:
       - '52'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 135a94621ab24b4b95aefaf020386409
       Date:
-      - Sun, 15 Nov 2020 18:00:46 GMT
+      - Thu, 22 Jul 2021 17:18:24 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:

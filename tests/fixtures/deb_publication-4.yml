@@ -11,23 +11,27 @@ interactions:
       Host:
       - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
     uri: https://pulp.example.org/pulp/api/v3/repositories/deb/apt/?limit=1&name=test_deb_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/75996843-9298-420b-baed-69e94d3756bb/","pulp_created":"2020-11-15T11:12:20.966460Z","versions_href":"/pulp/api/v3/repositories/deb/apt/75996843-9298-420b-baed-69e94d3756bb/versions/","latest_version_href":"/pulp/api/v3/repositories/deb/apt/75996843-9298-420b-baed-69e94d3756bb/versions/1/","name":"test_deb_repository","description":null,"remote":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/05a4d75c-2fde-4de8-a171-f8fd07d3134e/","pulp_created":"2021-07-22T17:18:29.439396Z","versions_href":"/pulp/api/v3/repositories/deb/apt/05a4d75c-2fde-4de8-a171-f8fd07d3134e/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/05a4d75c-2fde-4de8-a171-f8fd07d3134e/versions/1/","name":"test_deb_repository","description":null,"retained_versions":null,"remote":null}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '452'
+      - '494'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - df76b512137547dca6daf7a1a3d38331
       Date:
-      - Sun, 15 Nov 2020 11:12:31 GMT
+      - Thu, 22 Jul 2021 17:18:40 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:
@@ -51,13 +55,15 @@ interactions:
       Host:
       - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/publications/deb/apt/?limit=1&repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Fdeb%2Fapt%2F75996843-9298-420b-baed-69e94d3756bb%2Fversions%2F1%2F
+    uri: https://pulp.example.org/pulp/api/v3/publications/deb/apt/?limit=1&repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Fdeb%2Fapt%2F05a4d75c-2fde-4de8-a171-f8fd07d3134e%2Fversions%2F1%2F
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/deb/apt/760fa254-795f-4952-88df-00ac69e392a8/","pulp_created":"2020-11-15T11:12:25.932908Z","repository_version":"/pulp/api/v3/repositories/deb/apt/75996843-9298-420b-baed-69e94d3756bb/versions/1/","repository":"/pulp/api/v3/repositories/deb/apt/75996843-9298-420b-baed-69e94d3756bb/","simple":true,"structured":false,"signing_service":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/deb/apt/9b6fca3a-9e4d-4c82-82fd-bd7118018d57/","pulp_created":"2021-07-22T17:18:34.691873Z","repository_version":"/pulp/api/v3/repositories/deb/apt/05a4d75c-2fde-4de8-a171-f8fd07d3134e/versions/1/","repository":"/pulp/api/v3/repositories/deb/apt/05a4d75c-2fde-4de8-a171-f8fd07d3134e/","simple":true,"structured":false,"signing_service":null}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
@@ -66,8 +72,10 @@ interactions:
       - '433'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 9353ce3574c2400b850c7c7505fb7c26
       Date:
-      - Sun, 15 Nov 2020 11:12:31 GMT
+      - Thu, 22 Jul 2021 17:18:40 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:

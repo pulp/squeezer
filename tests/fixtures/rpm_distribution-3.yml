@@ -9,27 +9,33 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - 172.30.100.21
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.6
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/rpm/rpm/?limit=1&name=test_rpm_distribution
+    uri: https://pulp.example.org/pulp/api/v3/distributions/rpm/rpm/?limit=1&name=test_rpm_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/rpm/rpm/2d943f47-3890-43c6-a333-085d3f7c1f7b/","pulp_created":"2020-08-18T01:16:07.422647Z","base_path":"test_rpm_base_path","base_url":"https://pulp.example.org/pulp/content/test_rpm_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/e5cf58b3-ee2a-49d4-8da9-af462dd3c64b/","name":"test_rpm_distribution","publication":"/pulp/api/v3/publications/rpm/rpm/59f15b83-1f13-4f3c-93c1-b056e26f471f/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/rpm/rpm/63c4c54b-7d54-4515-9f4e-260f3dd3b7a9/","pulp_created":"2021-07-22T17:23:45.576654Z","base_path":"test_rpm_base_path","base_url":"https://pulp3-sandbox-debian-testing.shu.example.com/pulp/content/test_rpm_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/8081976b-6165-403e-98bd-ff6735908a14/","pulp_labels":{},"name":"test_rpm_distribution","repository":null,"publication":"/pulp/api/v3/publications/rpm/rpm/af5e9704-1d1b-4ae9-96be-68e0d6d33441/"}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '533'
+      - '569'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 266e53a8db54415b99c64c19fb92f576
       Date:
-      - Tue, 18 Aug 2020 01:16:13 GMT
+      - Thu, 22 Jul 2021 17:23:50 GMT
       Server:
-      - nginx/1.14.1
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

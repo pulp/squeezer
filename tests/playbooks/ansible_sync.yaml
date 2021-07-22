@@ -31,7 +31,7 @@
       pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
-        url: "https://galaxy-dev.ansible.com/api/v2/collections/testing/ansible_testing_content"
+        url: "https://galaxy.ansible.com/api/v2/collections/pulp/squeezer/"
         state: present
     - name: Clean openapi cache
       file:

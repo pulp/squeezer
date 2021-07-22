@@ -9,27 +9,33 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
     uri: https://pulp.example.org/pulp/api/v3/repositories/deb/apt/?limit=1&name=test_deb_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/e8ae6480-eb8d-4128-91f7-f4c4a8ff554b/","pulp_created":"2020-11-04T15:23:35.538593Z","versions_href":"/pulp/api/v3/repositories/deb/apt/e8ae6480-eb8d-4128-91f7-f4c4a8ff554b/versions/","latest_version_href":"/pulp/api/v3/repositories/deb/apt/e8ae6480-eb8d-4128-91f7-f4c4a8ff554b/versions/0/","name":"test_deb_repository","description":null,"remote":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/be632b3f-140b-4405-803f-3d4cf1d142df/","pulp_created":"2021-07-22T17:18:55.842020Z","versions_href":"/pulp/api/v3/repositories/deb/apt/be632b3f-140b-4405-803f-3d4cf1d142df/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/be632b3f-140b-4405-803f-3d4cf1d142df/versions/0/","name":"test_deb_repository","description":null,"retained_versions":null,"remote":null}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '452'
+      - '494'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 02462423783b463e87da658f84eb9f52
       Date:
-      - Wed, 04 Nov 2020 15:23:42 GMT
+      - Thu, 22 Jul 2021 17:19:01 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:
@@ -47,15 +53,17 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: DELETE
-    uri: https://pulp.example.org/pulp/api/v3/repositories/deb/apt/e8ae6480-eb8d-4128-91f7-f4c4a8ff554b/
+    uri: https://pulp.example.org/pulp/api/v3/repositories/deb/apt/be632b3f-140b-4405-803f-3d4cf1d142df/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/e6db7b41-3d4c-45b1-9899-f94ed5da2db1/"}'
+      string: '{"task":"/pulp/api/v3/tasks/5d7b1d7c-65e2-4487-834d-62a09ae178bf/"}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
@@ -64,10 +72,12 @@ interactions:
       - '67'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 9e35cf9affde44a2920e6bafac1ee7f5
       Date:
-      - Wed, 04 Nov 2020 15:23:42 GMT
+      - Thu, 22 Jul 2021 17:19:01 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
       Vary:
       - Accept, Cookie
       X-Frame-Options:
@@ -85,27 +95,33 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/e6db7b41-3d4c-45b1-9899-f94ed5da2db1/
+    uri: https://pulp.example.org/pulp/api/v3/tasks/5d7b1d7c-65e2-4487-834d-62a09ae178bf/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/e6db7b41-3d4c-45b1-9899-f94ed5da2db1/","pulp_created":"2020-11-04T15:23:42.534734Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-11-04T15:23:42.615414Z","finished_at":"2020-11-04T15:23:42.649548Z","error":null,"worker":"/pulp/api/v3/workers/f6ef7dba-1fab-47a5-8cd6-1e35e9e751d3/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/deb/apt/e8ae6480-eb8d-4128-91f7-f4c4a8ff554b/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/5d7b1d7c-65e2-4487-834d-62a09ae178bf/","pulp_created":"2021-07-22T17:19:01.507920Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"9e35cf9affde44a2920e6bafac1ee7f5","started_at":"2021-07-22T17:19:01.548151Z","finished_at":"2021-07-22T17:19:01.580493Z","error":null,"worker":"/pulp/api/v3/workers/30d32cf9-3d5a-4c76-b1dd-819457773527/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/deb/apt/be632b3f-140b-4405-803f-3d4cf1d142df/"]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '558'
+      - '607'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - f2b33f38cbb04521a7f187d618562bb6
       Date:
-      - Wed, 04 Nov 2020 15:23:42 GMT
+      - Thu, 22 Jul 2021 17:19:01 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

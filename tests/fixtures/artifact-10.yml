@@ -9,15 +9,17 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/artifacts/?limit=1&sha256=fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700
+    uri: https://pulp.example.org/pulp/api/v3/artifacts/?limit=1&sha256=fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
@@ -26,10 +28,14 @@ interactions:
       - '52'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 9aff279a63fc45f7afd0dabed8cc70fd
       Date:
-      - Wed, 19 Aug 2020 09:52:17 GMT
+      - Thu, 22 Jul 2021 17:18:01 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

@@ -9,15 +9,17 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/content/ansible/roles/?limit=1&name=test_ansible_role&namespace=test_namespace&version=0.0.0
+    uri: https://pulp.example.org/pulp/api/v3/content/ansible/roles/?limit=1&name=test_ansible_role&namespace=test_namespace&version=0.0.0
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/ansible/roles/c4449989-6488-48a8-ac57-eaccf6bcb63e/","pulp_created":"2020-08-19T10:55:50.854060Z","artifact":"/pulp/api/v3/artifacts/c8b534c2-ca10-4f6d-b886-c268148fbaec/","version":"0.0.0","name":"test_ansible_role","namespace":"test_namespace"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"artifact":"/pulp/api/v3/artifacts/ec0c2d0e-c964-4c8d-a96c-00b2d4c6148f/","pulp_created":"2021-07-22T17:17:33.941511Z","pulp_href":"/pulp/api/v3/content/ansible/roles/50125848-2634-4fa1-8267-69f9336203d8/","version":"0.0.0","name":"test_ansible_role","namespace":"test_namespace"}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
@@ -26,10 +28,14 @@ interactions:
       - '333'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 013807e905bb403fb029540ac13e2b36
       Date:
-      - Wed, 19 Aug 2020 10:55:51 GMT
+      - Thu, 22 Jul 2021 17:17:35 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

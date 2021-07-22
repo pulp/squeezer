@@ -9,11 +9,11 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - localhost:24817
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/?limit=1&name=test_deb_remote
+    uri: https://pulp.example.org/pulp/api/v3/remotes/deb/apt/?limit=1&name=test_deb_remote
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -29,11 +29,13 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 7b151cfff4b34997b4159957a71cbae5
+      - 0344a7199fbd443aae578ff7b0e1dfd2
       Date:
-      - Sat, 27 Feb 2021 23:26:12 GMT
+      - Thu, 22 Jul 2021 17:18:51 GMT
       Server:
-      - gunicorn/20.0.4
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

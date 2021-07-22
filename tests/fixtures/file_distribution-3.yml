@@ -9,27 +9,33 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/?limit=1&name=test_file_distribution
+    uri: https://pulp.example.org/pulp/api/v3/distributions/file/file/?limit=1&name=test_file_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/file/file/7c071faa-2d14-4b73-ba31-7c541d4a636d/","pulp_created":"2020-08-19T09:52:51.226002Z","base_path":"test_file_base_path","base_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp/content/test_file_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/c8f0d6cd-8f80-4cd2-9fd5-4b9effc46f02/","name":"test_file_distribution","publication":"/pulp/api/v3/publications/file/file/5631613c-ac47-45a8-863d-b110917cb1c4/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/file/file/63aaf3c4-9c0d-4241-a2e0-2baa65992de2/","pulp_created":"2021-07-22T17:19:56.666140Z","base_path":"test_file_base_path","base_url":"https://pulp3-sandbox-debian-testing.shu.example.com/pulp/content/test_file_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/c86721cb-7b3a-48ff-ab08-d6db68244ffe/","pulp_labels":{},"name":"test_file_distribution","repository":null,"publication":"/pulp/api/v3/publications/file/file/459f00b9-d1aa-45f1-b019-650d1c9ad74a/"}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '534'
+      - '576'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - fee1ea9d601145519f043996b504a319
       Date:
-      - Wed, 19 Aug 2020 09:52:54 GMT
+      - Thu, 22 Jul 2021 17:19:59 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:
