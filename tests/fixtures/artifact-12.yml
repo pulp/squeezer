@@ -9,27 +9,33 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/artifacts/?limit=1&sha256=c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7
+    uri: https://pulp.example.org/pulp/api/v3/artifacts/?limit=1&sha256=c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/0926e2b7-ee5b-449d-a696-4c9470f3ceb5/","pulp_created":"2020-08-19T09:52:17.976480Z","file":"artifact/c4/aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","size":1049600,"md5":"3d283316360c56857e7c212cfecbbd83","sha1":"b8930b94f05c8ce5cc628813dcf3d88d2da75e8a","sha224":"bfba29a479f1bd11d35b7122e16bf88f672a7eb9d41c88c229fbc3e5","sha256":"c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","sha384":"c0ef7ed5e3abbf74c83c9f65d69835d513e2a3ab2dafaba149eb0054327535cf0d3cfd1c6925d4142624a543e3000144","sha512":"884b6ec520cf21e1d8625235ddfa0670e15c3ddb30fd3c89117c1d2213507448a87a713fb355a51aad84e31a6adae696d0f6166dfa222589fc67b395aa657899"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/fd3dc4e9-6207-47ac-9f48-8eed663544e6/","pulp_created":"2021-07-22T17:18:01.967036Z","file":"artifact/c4/aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","size":1049600,"md5":null,"sha1":null,"sha224":"bfba29a479f1bd11d35b7122e16bf88f672a7eb9d41c88c229fbc3e5","sha256":"c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","sha384":"c0ef7ed5e3abbf74c83c9f65d69835d513e2a3ab2dafaba149eb0054327535cf0d3cfd1c6925d4142624a543e3000144","sha512":"884b6ec520cf21e1d8625235ddfa0670e15c3ddb30fd3c89117c1d2213507448a87a713fb355a51aad84e31a6adae696d0f6166dfa222589fc67b395aa657899"}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '755'
+      - '687'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 06bd3140869e4743809871fa049d93ef
       Date:
-      - Wed, 19 Aug 2020 09:52:21 GMT
+      - Thu, 22 Jul 2021 17:18:03 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

@@ -9,28 +9,34 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?limit=1&name=test_ansible_repository
+    uri: https://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?limit=1&name=test_ansible_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/1ce4cfb4-0487-4fdc-a67b-e671f8ed60dc/","pulp_created":"2020-08-19T10:56:03.774226Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/1ce4cfb4-0487-4fdc-a67b-e671f8ed60dc/versions/","latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/1ce4cfb4-0487-4fdc-a67b-e671f8ed60dc/versions/0/","name":"test_ansible_repository","description":"repository
-        created via ansible","remote":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/bced27bb-112c-478a-bbfe-a27aa1f9a734/","pulp_created":"2021-07-22T17:17:18.540648Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/bced27bb-112c-478a-bbfe-a27aa1f9a734/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/bced27bb-112c-478a-bbfe-a27aa1f9a734/versions/0/","name":"test_ansible_repository","description":"repository
+        created via ansible","retained_versions":null,"remote":null,"last_synced_metadata_time":null}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '508'
+      - '583'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - e88c498f99bc4d359403809e1389f2fe
       Date:
-      - Wed, 19 Aug 2020 10:56:08 GMT
+      - Thu, 22 Jul 2021 17:17:21 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

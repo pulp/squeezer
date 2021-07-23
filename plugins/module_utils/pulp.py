@@ -15,6 +15,8 @@ import traceback
 from time import sleep
 
 from ansible.module_utils.basic import AnsibleModule, env_fallback
+
+# from ansible.module_utils.common import yaml
 from ansible.module_utils.six.moves.urllib.error import HTTPError
 from ansible_collections.pulp.squeezer.plugins.module_utils.openapi import OpenAPI
 
@@ -189,23 +191,40 @@ class PulpEntity(object):
         self.module.set_changed()
 
     def update(self):
-        changed = False
+        changes = {}
         for key, value in self.desired_attributes.items():
             if self.entity.get(key) != value:
                 self.entity[key] = value
-                changed = True
-        if changed:
-            if not hasattr(self, "_update_id"):
+                changes[key] = value
+        if changes:
+            if hasattr(self, "_partial_update_id"):
+                if not self.module.check_mode:
+                    response = self.module.pulp_api.call(
+                        self._partial_update_id,
+                        parameters=self.primary_key,
+                        body=changes,
+                    )
+                    if response and "task" in response:
+                        PulpTask(
+                            self.module, {"pulp_href": response["task"]}
+                        ).wait_for()
+                        self.read()
+                    else:
+                        self.entity = response
+            elif hasattr(self, "_update_id"):
+                if not self.module.check_mode:
+                    response = self.module.pulp_api.call(
+                        self._update_id, parameters=self.primary_key, body=self.entity
+                    )
+                    if response and "task" in response:
+                        PulpTask(
+                            self.module, {"pulp_href": response["task"]}
+                        ).wait_for()
+                        self.read()
+                    else:
+                        self.entity = response
+            else:
                 raise SqueezerException("This entity is immutable.")
-            if not self.module.check_mode:
-                response = self.module.pulp_api.call(
-                    self._update_id, parameters=self.primary_key, body=self.entity
-                )
-                if response and "task" in response:
-                    PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
-                    self.read()
-                else:
-                    self.entity = response
             self.module.set_changed()
 
     def delete(self):
@@ -346,7 +365,7 @@ class PulpAccessPolicy(PulpEntity):
     _href = "access_policy_href"
     _list_id = "access_policies_list"
     _read_id = "access_policies_read"
-    _update_id = "access_policies_partial_update"
+    _partial_update_id = "access_policies_partial_update"
 
     _name_singular = "access_policy"
     _name_plural = "access_policies"
@@ -479,6 +498,7 @@ class PulpX509CertGuard(PulpEntity):
     _read_id = "contentguards_certguard_x509_read"
     _create_id = "contentguards_certguard_x509_create"
     _update_id = "contentguards_certguard_x509_update"
+    _partial_update_id = "contentguards_certguard_x509_partial_update"
     _delete_id = "contentguards_certguard_x509_delete"
 
     _name_singular = "content_guard"
@@ -530,6 +550,7 @@ class PulpFileDistribution(PulpEntity):
     _read_id = "distributions_file_file_read"
     _create_id = "distributions_file_file_create"
     _update_id = "distributions_file_file_update"
+    _partial_update_id = "distributions_file_file_partial_update"
     _delete_id = "distributions_file_file_delete"
 
     _name_singular = "distribution"
@@ -548,7 +569,6 @@ class PulpFilePublication(PulpEntity):
     _list_id = "publications_file_file_list"
     _read_id = "publications_file_file_read"
     _create_id = "publications_file_file_create"
-    _update_id = "publications_file_file_update"
     _delete_id = "publications_file_file_delete"
 
     _name_singular = "publication"
@@ -567,9 +587,9 @@ class PulpFileRemote(PulpEntity):
     _list_id = "remotes_file_file_list"
     _read_id = "remotes_file_file_read"
     _create_id = "remotes_file_file_create"
-    _delete_id = "remotes_file_file_delete"
     _update_id = "remotes_file_file_update"
-    _partial_update = "remotes_file_file_partial_update"
+    _partial_update_id = "remotes_file_file_partial_update"
+    _delete_id = "remotes_file_file_delete"
 
     _name_singular = "remote"
     _name_plural = "remotes"
@@ -588,6 +608,7 @@ class PulpFileRepository(PulpRepository):
     _read_id = "repositories_file_file_read"
     _create_id = "repositories_file_file_create"
     _update_id = "repositories_file_file_update"
+    _partial_update_id = "repositories_file_file_partial_update"
     _delete_id = "repositories_file_file_delete"
     _sync_id = "repositories_file_file_sync"
     _modify_id = "repositories_file_file_modify"
@@ -630,6 +651,7 @@ class PulpDebDistribution(PulpEntity):
     _read_id = "distributions_deb_apt_read"
     _create_id = "distributions_deb_apt_create"
     _update_id = "distributions_deb_apt_update"
+    _partial_update_id = "distributions_deb_apt_partial_update"
     _delete_id = "distributions_deb_apt_delete"
 
     _name_singular = "distribution"
@@ -648,7 +670,6 @@ class PulpDebPublication(PulpEntity):
     _list_id = "publications_deb_apt_list"
     _read_id = "publications_deb_apt_read"
     _create_id = "publications_deb_apt_create"
-    _update_id = "publications_deb_apt_update"
     _delete_id = "publications_deb_apt_delete"
 
     _name_singular = "publication"
@@ -667,9 +688,9 @@ class PulpDebRemote(PulpEntity):
     _list_id = "remotes_deb_apt_list"
     _read_id = "remotes_deb_apt_read"
     _create_id = "remotes_deb_apt_create"
-    _delete_id = "remotes_deb_apt_delete"
     _update_id = "remotes_deb_apt_update"
-    _partial_update = "remotes_deb_apt_partial_update"
+    _partial_update_id = "remotes_deb_apt_partial_update"
+    _delete_id = "remotes_deb_apt_delete"
 
     _name_singular = "remote"
     _name_plural = "remotes"
@@ -688,6 +709,7 @@ class PulpDebRepository(PulpRepository):
     _read_id = "repositories_deb_apt_read"
     _create_id = "repositories_deb_apt_create"
     _update_id = "repositories_deb_apt_update"
+    _partial_update_id = "repositories_deb_apt_partial_update"
     _delete_id = "repositories_deb_apt_delete"
     _sync_id = "repositories_deb_apt_sync"
     _modify_id = "repositories_deb_apt_modify"
@@ -712,6 +734,7 @@ class PulpAnsibleDistribution(PulpEntity):
     _read_id = "distributions_ansible_ansible_read"
     _create_id = "distributions_ansible_ansible_create"
     _update_id = "distributions_ansible_ansible_update"
+    _partial_update_id = "distributions_ansible_ansible_partial_update"
     _delete_id = "distributions_ansible_ansible_delete"
 
     _name_singular = "distribution"
@@ -731,11 +754,55 @@ class PulpAnsibleCollectionRemote(PulpEntity):
     _read_id = "remotes_ansible_collection_read"
     _create_id = "remotes_ansible_collection_create"
     _update_id = "remotes_ansible_collection_update"
+    _partial_update_id = "remotes_ansible_collection_partial_update"
     _delete_id = "remotes_ansible_collection_delete"
     _href = "ansible_collection_remote_href"
 
     _name_singular = "remote"
     _name_plural = "remotes"
+
+    def __init__(self, *args, **kwargs):
+        super(PulpAnsibleCollectionRemote, self).__init__(*args, **kwargs)
+        if self.desired_attributes:
+            collections = self.desired_attributes.pop("collections", None)
+            if collections is not None:
+                collection_list = "\n".join(
+                    ("  - " + collection for collection in sorted(collections))
+                )
+                self.desired_attributes["requirements_file"] = (
+                    "collections:\n" + collection_list
+                )
+
+    def presentation(self, entity):
+        if entity:
+            requirements_file = entity.pop("requirements_file", None)
+            if requirements_file is not None:
+                entity["collections"] = sorted(
+                    (
+                        collection.strip("- ")
+                        for collection in requirements_file.split("\n")
+                        if "collections:" not in collection
+                    )
+                )
+        return entity
+
+    # def __init__(self, *args, **kwargs):
+    #     super(PulpAnsibleCollectionRemote, self).__init__(*args, **kwargs)
+    #     if self.desired_attributes:
+    #         collections = self.desired_attributes.pop("collections", None)
+    #         if collections is not None:
+    #             self.desired_attributes["requirements_file"] = yaml.yaml_dump(
+    #                 {"collections": sorted(collections)}
+    #             ).removesuffix("\n")
+
+    # def presentation(self, entity):
+    #     if entity:
+    #         requirements_file = entity.pop("requirements_file", None)
+    #         if requirements_file is not None:
+    #             entity["collections"] = sorted(
+    #                 yaml.yaml_load(requirements_file)["collections"]
+    #             )
+    #     return entity
 
 
 class PulpAnsibleRoleRemote(PulpEntity):
@@ -749,6 +816,7 @@ class PulpAnsibleRoleRemote(PulpEntity):
             self._read_id = "remotes_ansible_ansible_read"
             self._create_id = "remotes_ansible_ansible_create"
             self._update_id = "remotes_ansible_ansible_update"
+            self._partial_update_id = "remotes_ansible_ansible_partial_update"
             self._delete_id = "remotes_ansible_ansible_delete"
             self._href = "ansible_remote_href"
         else:
@@ -756,6 +824,7 @@ class PulpAnsibleRoleRemote(PulpEntity):
             self._read_id = "remotes_ansible_role_read"
             self._create_id = "remotes_ansible_role_create"
             self._update_id = "remotes_ansible_role_update"
+            self._partial_update_id = "remotes_ansible_role_partial_update"
             self._delete_id = "remotes_ansible_role_delete"
             self._href = "ansible_role_remote_href"
 
@@ -765,6 +834,7 @@ class PulpAnsibleRepository(PulpRepository):
     _read_id = "repositories_ansible_ansible_read"
     _create_id = "repositories_ansible_ansible_create"
     _update_id = "repositories_ansible_ansible_update"
+    _partial_update_id = "repositories_ansible_ansible_partial_update"
     _delete_id = "repositories_ansible_ansible_delete"
     _sync_id = "repositories_ansible_ansible_sync"
 
@@ -788,6 +858,7 @@ class PulpPythonDistribution(PulpEntity):
     _read_id = "distributions_python_pypi_read"
     _create_id = "distributions_python_pypi_create"
     _update_id = "distributions_python_pypi_update"
+    _partial_update_id = "distributions_python_pypi_partial_update"
     _delete_id = "distributions_python_pypi_delete"
 
     _name_singular = "distribution"
@@ -825,6 +896,7 @@ class PulpPythonRemote(PulpEntity):
     _read_id = "remotes_python_python_read"
     _create_id = "remotes_python_python_create"
     _update_id = "remotes_python_python_update"
+    _partial_update_id = "remotes_python_python_partial_update"
     _delete_id = "remotes_python_python_delete"
 
     _name_singular = "remote"
@@ -881,6 +953,7 @@ class PulpPythonRepository(PulpRepository):
     _read_id = "repositories_python_python_read"
     _create_id = "repositories_python_python_create"
     _update_id = "repositories_python_python_update"
+    _partial_update_id = "repositories_python_python_partial_update"
     _delete_id = "repositories_python_python_delete"
     _sync_id = "repositories_python_python_sync"
 
@@ -904,6 +977,7 @@ class PulpRpmDistribution(PulpEntity):
     _read_id = "distributions_rpm_rpm_read"
     _create_id = "distributions_rpm_rpm_create"
     _update_id = "distributions_rpm_rpm_update"
+    _partial_update_id = "distributions_rpm_rpm_partial_update"
     _delete_id = "distributions_rpm_rpm_delete"
 
     _name_singular = "distribution"
@@ -941,6 +1015,7 @@ class PulpRpmRemote(PulpEntity):
     _read_id = "remotes_rpm_rpm_read"
     _create_id = "remotes_rpm_rpm_create"
     _update_id = "remotes_rpm_rpm_update"
+    _partial_update_id = "remotes_rpm_rpm_partial_update"
     _delete_id = "remotes_rpm_rpm_delete"
 
     _name_singular = "remote"
@@ -960,6 +1035,7 @@ class PulpRpmRepository(PulpRepository):
     _read_id = "repositories_rpm_rpm_read"
     _create_id = "repositories_rpm_rpm_create"
     _update_id = "repositories_rpm_rpm_update"
+    _partial_update_id = "repositories_rpm_rpm_partial_update"
     _delete_id = "repositories_rpm_rpm_delete"
     _sync_id = "repositories_rpm_rpm_sync"
 

@@ -9,15 +9,17 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: DELETE
-    uri: http://pulp.example.org/pulp/api/v3/orphans/
+    uri: https://pulp.example.org/pulp/api/v3/orphans/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/d6fcf41a-2fec-416b-a7e8-f62546476548/"}'
+      string: '{"task":"/pulp/api/v3/tasks/ff9df7c0-e7a6-46e0-a295-a196b44cc416/"}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - DELETE, OPTIONS
       Connection:
@@ -26,10 +28,12 @@ interactions:
       - '67'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - df76719ba9644544af16a61337659176
       Date:
-      - Wed, 19 Aug 2020 09:52:29 GMT
+      - Thu, 22 Jul 2021 17:19:34 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
       Vary:
       - Accept, Cookie
       X-Frame-Options:
@@ -47,29 +51,35 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/d6fcf41a-2fec-416b-a7e8-f62546476548/
+    uri: https://pulp.example.org/pulp/api/v3/tasks/ff9df7c0-e7a6-46e0-a295-a196b44cc416/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/d6fcf41a-2fec-416b-a7e8-f62546476548/","pulp_created":"2020-08-19T09:52:29.485159Z","state":"completed","name":"pulpcore.app.tasks.orphan.orphan_cleanup","started_at":"2020-08-19T09:52:29.541777Z","finished_at":"2020-08-19T09:52:29.558590Z","error":null,"worker":"/pulp/api/v3/workers/01ad5d61-91e9-4bbf-94f5-cc49696f7a8b/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Clean
+      string: '{"pulp_href":"/pulp/api/v3/tasks/ff9df7c0-e7a6-46e0-a295-a196b44cc416/","pulp_created":"2021-07-22T17:19:34.409921Z","state":"completed","name":"pulpcore.app.tasks.orphan.orphan_cleanup","logging_cid":"df76719ba9644544af16a61337659176","started_at":"2021-07-22T17:19:34.442132Z","finished_at":"2021-07-22T17:19:34.463088Z","error":null,"worker":"/pulp/api/v3/workers/30d32cf9-3d5a-4c76-b1dd-819457773527/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Clean
         up orphan Content","code":"clean-up.content","state":"completed","total":0,"done":0,"suffix":null},{"message":"Clean
         up orphan Artifacts","code":"clean-up.content","state":"completed","total":0,"done":0,"suffix":null}],"created_resources":[],"reserved_resources_record":[]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '722'
+      - '771'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - a4dc664fcc5d43729ce8053497d3b094
       Date:
-      - Wed, 19 Aug 2020 09:52:29 GMT
+      - Thu, 22 Jul 2021 17:19:34 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

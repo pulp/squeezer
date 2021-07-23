@@ -9,27 +9,33 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - 172.30.100.21
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.6
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
+    uri: https://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/","pulp_created":"2020-08-17T20:55:58.936296Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/versions/","latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/584e8c13-70e4-414f-bd40-cf0dee9a036f/versions/0/","name":"test_rpm_repository","description":null,"remote":null,"metadata_signing_service":null,"retain_package_versions":0}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/7e477c17-9496-4869-9356-846d7fa91c97/","pulp_created":"2021-07-22T17:25:18.708533Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/7e477c17-9496-4869-9356-846d7fa91c97/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/7e477c17-9496-4869-9356-846d7fa91c97/versions/0/","name":"test_rpm_repository","description":null,"retained_versions":null,"remote":null,"autopublish":false,"metadata_signing_service":null,"retain_package_versions":0,"metadata_checksum_type":null,"package_checksum_type":null,"gpgcheck":0,"repo_gpgcheck":0,"sqlite_metadata":false}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '512'
+      - '688'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 4fb4cb58d604436cb73c3792c6f25d7e
       Date:
-      - Mon, 17 Aug 2020 20:56:00 GMT
+      - Thu, 22 Jul 2021 17:25:23 GMT
       Server:
-      - nginx/1.14.1
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

@@ -9,15 +9,17 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - 172.30.100.21
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.6
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
+    uri: https://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
@@ -26,10 +28,14 @@ interactions:
       - '52'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - bf613dc3511642a6b03cbf5a8c58aafd
       Date:
-      - Mon, 17 Aug 2020 20:56:18 GMT
+      - Thu, 22 Jul 2021 17:25:33 GMT
       Server:
-      - nginx/1.14.1
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

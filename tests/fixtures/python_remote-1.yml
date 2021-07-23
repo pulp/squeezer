@@ -9,27 +9,33 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/python/python/?limit=1&name=test_python_remote
+    uri: https://pulp.example.org/pulp/api/v3/remotes/python/python/?limit=1&name=test_python_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/python/python/54c2de04-35e0-4250-97ff-119089bed817/","pulp_created":"2020-08-19T15:32:23.291195Z","name":"test_python_remote","url":"https://pypi.org/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-08-19T15:32:23.291205Z","download_concurrency":10,"policy":"immediate","includes":[],"excludes":[],"prereleases":false}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/python/python/7aa8f317-b64d-4ee3-916d-0bdbc43f1431/","pulp_created":"2021-07-22T17:22:02.715445Z","name":"test_python_remote","url":"https://pypi.org/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-22T17:22:02.715458Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"includes":[],"excludes":[],"prereleases":false,"package_types":[],"keep_latest_packages":0,"exclude_platforms":[]}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '526'
+      - '711'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - e659479f8e014722afc1a019bc2e904e
       Date:
-      - Wed, 19 Aug 2020 15:32:24 GMT
+      - Thu, 22 Jul 2021 17:22:05 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

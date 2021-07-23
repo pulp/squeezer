@@ -11,23 +11,27 @@ interactions:
       Host:
       - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
     uri: https://pulp.example.org/pulp/api/v3/distributions/deb/apt/?limit=1&name=test_deb_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/deb/apt/c08b861c-a0b7-4631-9e9f-82c2bc403e60/","pulp_created":"2020-11-15T18:00:42.984807Z","base_path":"test_deb_base_path","base_url":"https://pulp3-sandbox-debian-testing.shu.example.com/pulp/content/test_deb_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/8597ddb5-aabb-4957-a2e6-dea5cdb064ee/","name":"test_deb_distribution","publication":"/pulp/api/v3/publications/deb/apt/4361ee6a-d988-4ecd-b44c-6939dfa20ddb/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/deb/apt/45ff96c1-a113-4630-9508-d5c884c55f3d/","pulp_created":"2021-07-22T17:18:20.527462Z","base_path":"test_deb_base_path","base_url":"https://pulp3-sandbox-debian-testing.shu.example.com/pulp/content/test_deb_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/940aaa30-ff1f-4c03-8bf1-f12f4792eb78/","pulp_labels":{},"name":"test_deb_distribution","repository":null,"publication":"/pulp/api/v3/publications/deb/apt/08b057ff-1dca-43ca-95bd-32b2c7c1360c/"}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '534'
+      - '569'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 4b48c0cfdb394bda9524f2c8af303a7d
       Date:
-      - Sun, 15 Nov 2020 18:00:46 GMT
+      - Thu, 22 Jul 2021 17:18:23 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:
@@ -51,13 +55,15 @@ interactions:
       Host:
       - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: DELETE
-    uri: https://pulp.example.org/pulp/api/v3/distributions/deb/apt/c08b861c-a0b7-4631-9e9f-82c2bc403e60/
+    uri: https://pulp.example.org/pulp/api/v3/distributions/deb/apt/45ff96c1-a113-4630-9508-d5c884c55f3d/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/929d94dd-e219-4b9a-8764-0ac229dde319/"}'
+      string: '{"task":"/pulp/api/v3/tasks/61dc148b-746b-4101-aaa1-ef5067f21478/"}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
@@ -66,8 +72,10 @@ interactions:
       - '67'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 1f02897e890a4c0b9b0a23d083610a2c
       Date:
-      - Sun, 15 Nov 2020 18:00:46 GMT
+      - Thu, 22 Jul 2021 17:18:23 GMT
       Server:
       - nginx/1.18.0
       Vary:
@@ -89,23 +97,27 @@ interactions:
       Host:
       - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/929d94dd-e219-4b9a-8764-0ac229dde319/
+    uri: https://pulp.example.org/pulp/api/v3/tasks/61dc148b-746b-4101-aaa1-ef5067f21478/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/929d94dd-e219-4b9a-8764-0ac229dde319/","pulp_created":"2020-11-15T18:00:46.326330Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-11-15T18:00:46.421425Z","finished_at":"2020-11-15T18:00:46.448825Z","error":null,"worker":"/pulp/api/v3/workers/7b9ce0f7-6a40-4a4d-9846-dbbb472e9345/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/61dc148b-746b-4101-aaa1-ef5067f21478/","pulp_created":"2021-07-22T17:18:23.886313Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"1f02897e890a4c0b9b0a23d083610a2c","started_at":"2021-07-22T17:18:23.928432Z","finished_at":"2021-07-22T17:18:23.977698Z","error":null,"worker":"/pulp/api/v3/workers/30d32cf9-3d5a-4c76-b1dd-819457773527/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '509'
+      - '558'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 72586bb9cddb42baa865323abcd835c5
       Date:
-      - Sun, 15 Nov 2020 18:00:46 GMT
+      - Thu, 22 Jul 2021 17:18:24 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:

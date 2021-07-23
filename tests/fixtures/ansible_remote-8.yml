@@ -9,15 +9,17 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/collection/?limit=1&name=test_ansible_collection_remote
+    uri: https://pulp.example.org/pulp/api/v3/remotes/ansible/collection/?limit=1&name=test_ansible_collection_remote
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
@@ -26,10 +28,14 @@ interactions:
       - '52'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 38fc485a81534e9199cb067b690ce7c7
       Date:
-      - Thu, 20 Aug 2020 17:23:56 GMT
+      - Fri, 23 Jul 2021 10:41:58 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:
@@ -38,41 +44,49 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"name": "test_ansible_collection_remote", "url": "https://galaxy-dev.ansible.com/api/v2/collections/testing/ansible_testing_content",
-      "proxy_url": "http://proxy.int:3128"}'
+    body: '{"name": "test_ansible_collection_remote", "url": "https://galaxy-dev.ansible.com/",
+      "proxy_url": "http://proxy.int:3128", "requirements_file": "collections:\n  -
+      testing.ansible_testing_content"}'
     headers:
       Accept:
       - application/json
       Connection:
       - close
       Content-Length:
-      - 172
+      - 196
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: POST
-    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/collection/
+    uri: https://pulp.example.org/pulp/api/v3/remotes/ansible/collection/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/remotes/ansible/collection/4fc3b09d-fc2d-4a27-b7c6-56cf3f557bbd/","pulp_created":"2020-08-20T17:23:56.194200Z","name":"test_ansible_collection_remote","url":"https://galaxy-dev.ansible.com/api/v2/collections/testing/ansible_testing_content","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-08-20T17:23:56.194211Z","download_concurrency":10,"policy":"immediate","requirements_file":null,"auth_url":null,"token":null}'
+      string: '{"pulp_href":"/pulp/api/v3/remotes/ansible/collection/cf9bd00b-a807-4a0c-ac35-38e64cf7b7bf/","pulp_created":"2021-07-23T10:41:58.358207Z","name":"test_ansible_collection_remote","url":"https://galaxy-dev.ansible.com/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-23T10:41:58.358217Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"requirements_file":"collections:\n  -
+        testing.ansible_testing_content","auth_url":null,"token":null,"sync_dependencies":true}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '561'
+      - '701'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - bb5d0fe80a7941a1abfe41c486cff967
       Date:
-      - Thu, 20 Aug 2020 17:23:56 GMT
+      - Fri, 23 Jul 2021 10:41:58 GMT
       Location:
-      - /pulp/api/v3/remotes/ansible/collection/4fc3b09d-fc2d-4a27-b7c6-56cf3f557bbd/
+      - /pulp/api/v3/remotes/ansible/collection/cf9bd00b-a807-4a0c-ac35-38e64cf7b7bf/
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

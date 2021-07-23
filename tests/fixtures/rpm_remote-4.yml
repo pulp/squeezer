@@ -9,27 +9,33 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - 172.30.100.21
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.6
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/?limit=20&offset=0
+    uri: https://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/?limit=20&offset=0
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/a37d981a-3803-42bf-b494-1f09f95b73ef/","pulp_created":"2020-08-17T23:50:47.585799Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_last_updated":"2020-08-17T23:50:51.661000Z","download_concurrency":10,"policy":"on_demand","sles_auth_token":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/4cda12f7-2ba6-4695-bdfe-8c5ed652c8d5/","pulp_created":"2021-07-22T17:24:54.294794Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-22T17:25:00.375923Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"sles_auth_token":null}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '535'
+      - '650'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - be65e7a732344d15a612cbee475278cb
       Date:
-      - Mon, 17 Aug 2020 23:50:55 GMT
+      - Thu, 22 Jul 2021 17:25:02 GMT
       Server:
-      - nginx/1.14.1
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

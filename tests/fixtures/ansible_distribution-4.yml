@@ -9,27 +9,33 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?limit=1&name=test_ansible_distribution
+    uri: https://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?limit=1&name=test_ansible_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/ansible/ansible/1f3c82d9-13b8-4034-a9c2-30563b2b6874/","pulp_created":"2020-08-19T10:56:30.404960Z","base_path":"test_ansible_base_path","content_guard":"/pulp/api/v3/contentguards/certguard/x509/1c568842-2b84-443e-8132-c379f70ea3af/","name":"test_ansible_distribution","repository":"/pulp/api/v3/repositories/ansible/ansible/2a88181b-f7f1-41c9-9382-5af0837187f4/","repository_version":null,"client_url":"http://pulp3-sandbox-debian10.shu.example.com/pulp_ansible/galaxy/test_ansible_base_path"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/ansible/ansible/489634ea-929c-4b0f-bedb-a1b28f06ab09/","pulp_created":"2021-07-22T17:16:52.303772Z","base_path":"test_ansible_base_path","content_guard":"/pulp/api/v3/contentguards/certguard/x509/a0b1b556-881d-40ea-810e-567887df8a6e/","name":"test_ansible_distribution","repository":"/pulp/api/v3/repositories/ansible/ansible/60a5abfb-b3f6-4c9e-bb36-4d5b912128fd/","repository_version":null,"client_url":"http://pulp3-sandbox-debian-testing.shu.example.com/pulp_ansible/galaxy/test_ansible_base_path/","pulp_labels":{}}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '588'
+      - '612'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 47f51cb060f44309a9fb0990be4d4d67
       Date:
-      - Wed, 19 Aug 2020 10:56:33 GMT
+      - Thu, 22 Jul 2021 17:16:55 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:
@@ -47,15 +53,17 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: DELETE
-    uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/1f3c82d9-13b8-4034-a9c2-30563b2b6874/
+    uri: https://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/489634ea-929c-4b0f-bedb-a1b28f06ab09/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/fa4ed88a-98da-46d6-9e8c-956a79ffb6b2/"}'
+      string: '{"task":"/pulp/api/v3/tasks/7abe191d-fd8d-467c-89d9-d6cbbe3d7e4b/"}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
@@ -64,10 +72,12 @@ interactions:
       - '67'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 10a30fd073c145a3ba173fc11d7cc070
       Date:
-      - Wed, 19 Aug 2020 10:56:33 GMT
+      - Thu, 22 Jul 2021 17:16:55 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
       Vary:
       - Accept, Cookie
       X-Frame-Options:
@@ -85,27 +95,33 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/fa4ed88a-98da-46d6-9e8c-956a79ffb6b2/
+    uri: https://pulp.example.org/pulp/api/v3/tasks/7abe191d-fd8d-467c-89d9-d6cbbe3d7e4b/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/fa4ed88a-98da-46d6-9e8c-956a79ffb6b2/","pulp_created":"2020-08-19T10:56:33.701530Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","started_at":"2020-08-19T10:56:33.793294Z","finished_at":"2020-08-19T10:56:33.818497Z","error":null,"worker":"/pulp/api/v3/workers/650e9bc1-bc0b-4e16-bea4-2c92d8fe434c/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/7abe191d-fd8d-467c-89d9-d6cbbe3d7e4b/","pulp_created":"2021-07-22T17:16:55.778633Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"10a30fd073c145a3ba173fc11d7cc070","started_at":"2021-07-22T17:16:55.823933Z","finished_at":"2021-07-22T17:16:55.854443Z","error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '509'
+      - '558'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - b18069ec493949b0857bbb9cdd8556b3
       Date:
-      - Wed, 19 Aug 2020 10:56:33 GMT
+      - Thu, 22 Jul 2021 17:16:55 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

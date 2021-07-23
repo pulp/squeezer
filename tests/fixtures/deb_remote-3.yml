@@ -9,14 +9,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - localhost:24817
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/?limit=1&name=test_deb_remote
+    uri: https://pulp.example.org/pulp/api/v3/remotes/deb/apt/?limit=1&name=test_deb_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/deb/apt/47050271-5840-4aeb-b437-a8178896bdb4/","pulp_created":"2021-02-27T23:25:57.815181Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"client_key":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","username":null,"password":null,"pulp_labels":{},"pulp_last_updated":"2021-02-27T23:26:00.870894Z","download_concurrency":10,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"rate_limit":null,"distributions":"ragnarok","components":"jotunheimr","architectures":"ppc64","sync_sources":false,"sync_udebs":false,"sync_installer":false,"gpgkey":null,"ignore_missing_package_indices":false}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/deb/apt/35944368-5369-469c-8029-25612313ad07/","pulp_created":"2021-07-22T17:18:46.726920Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-22T17:18:49.339683Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"distributions":"ragnarok","components":"jotunheimr","architectures":"ppc64","sync_sources":false,"sync_udebs":false,"sync_installer":false,"gpgkey":null,"ignore_missing_package_indices":false}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,15 +25,17 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '802'
+      - '788'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 669dd35f856c4915a3c6df3fa42a8a33
+      - 6b9aa1d4898f4fbca680a27ba244a266
       Date:
-      - Sat, 27 Feb 2021 23:26:04 GMT
+      - Thu, 22 Jul 2021 17:18:49 GMT
       Server:
-      - gunicorn/20.0.4
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

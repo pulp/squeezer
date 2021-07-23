@@ -9,17 +9,19 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/contentguards/certguard/x509/?limit=1&name=test_x509_cert_guard
+    uri: https://pulp.example.org/pulp/api/v3/contentguards/certguard/x509/?limit=1&name=test_x509_cert_guard
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/contentguards/certguard/x509/5aa4dff4-70f3-4f6f-9ad2-ef4d66cfab31/","pulp_created":"2020-08-19T09:54:54.228119Z","name":"test_x509_cert_guard","description":"cert
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/contentguards/certguard/x509/e17b0280-823e-49fd-83c3-ba2f832843e8/","pulp_created":"2021-07-22T17:26:45.125156Z","name":"test_x509_cert_guard","description":"cert
         guard created via ansible","ca_certificate":"-----BEGIN CERTIFICATE-----\nMIICrTCCAZUCFAp0n3Mrg78x+8rAn8x1EGxVhKYrMA0GCSqGSIb3DQEBBQUAMBMx\nETAPBgNVBAMMCHNuYWtlb2lsMB4XDTIwMDcyMjE5MDUwNFoXDTIwMDgyMTE5MDUw\nNFowEzERMA8GA1UEAwwIc25ha2VvaWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\nggEKAoIBAQDKIwKvUax3A/5dODykWzJm0RWjnQAcxfuLbaZcPVDEo/Q8lBkaLEDl\nURAm8e9/uLJjcMyjl2LLlsJYOlcqbjNSwf/5D693IcTRO53C1xWvZ+IGGokweY0m\n8G3SFf5BKmji1OmT8l7iA35Wg0ist/QemQIaSV+n0B/yArdbkfcedPoiudzLOmx6\nEwSCdu9Xl4g29zLzBOWCHuZ0ghNbSWu0cQbkm1syM993BIH31bKdjImUTVg1HlqV\nxi1Y9EVQ3fFE/00DYsgANvSHa3YZsLCgl6gzab5repKP96vjX34JsZi1ayJXXYBz\ncjQPG0e9gpoqHROmKNJj+Up7lySrmSuLAgMBAAEwDQYJKoZIhvcNAQEFBQADggEB\nAI7zqZRPIWdbPWUKFZJNF6GsaBpLR0RkgukPo7vOF5WhOwez2fL+gsh5cffmcTyX\nEOkE53mHkI8z0yg+GtfOqv4GsUJe3VquoFvNYXAVZNGP/p6FFnihIymGbRFHGZSP\ns7g0yVwuI65VkaROtE7YI1pp7y8dPpvkQqAiZvUCC8cYIwYxavZLArVoRiilXz/f\nfuJoP99TyE3mRbLYamvrGDqLGMO8I4JAfgUbaiEEj5nJsUxWkhliSvWPjXuvytsy\nRlL+GSgPFNqTQ1eLKb4boTgM84ngSMeT47BZn2nipFg78ChwU8GOJ7G3sPYjKhIp\nRyEremCPzDNgO6asTRhn9ro=\n-----END
         CERTIFICATE-----"}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
@@ -28,10 +30,14 @@ interactions:
       - '1293'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 16bca5ed10aa41b09bbb8281d4b2abba
       Date:
-      - Wed, 19 Aug 2020 09:54:57 GMT
+      - Thu, 22 Jul 2021 17:26:54 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:
@@ -40,31 +46,30 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"pulp_href": "/pulp/api/v3/contentguards/certguard/x509/5aa4dff4-70f3-4f6f-9ad2-ef4d66cfab31/",
-      "pulp_created": "2020-08-19T09:54:54.228119Z", "name": "test_x509_cert_guard",
-      "description": null, "ca_certificate": "-----BEGIN CERTIFICATE-----\nMIICrTCCAZUCFAp0n3Mrg78x+8rAn8x1EGxVhKYrMA0GCSqGSIb3DQEBBQUAMBMx\nETAPBgNVBAMMCHNuYWtlb2lsMB4XDTIwMDcyMjE5MDUwNFoXDTIwMDgyMTE5MDUw\nNFowEzERMA8GA1UEAwwIc25ha2VvaWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\nggEKAoIBAQDKIwKvUax3A/5dODykWzJm0RWjnQAcxfuLbaZcPVDEo/Q8lBkaLEDl\nURAm8e9/uLJjcMyjl2LLlsJYOlcqbjNSwf/5D693IcTRO53C1xWvZ+IGGokweY0m\n8G3SFf5BKmji1OmT8l7iA35Wg0ist/QemQIaSV+n0B/yArdbkfcedPoiudzLOmx6\nEwSCdu9Xl4g29zLzBOWCHuZ0ghNbSWu0cQbkm1syM993BIH31bKdjImUTVg1HlqV\nxi1Y9EVQ3fFE/00DYsgANvSHa3YZsLCgl6gzab5repKP96vjX34JsZi1ayJXXYBz\ncjQPG0e9gpoqHROmKNJj+Up7lySrmSuLAgMBAAEwDQYJKoZIhvcNAQEFBQADggEB\nAI7zqZRPIWdbPWUKFZJNF6GsaBpLR0RkgukPo7vOF5WhOwez2fL+gsh5cffmcTyX\nEOkE53mHkI8z0yg+GtfOqv4GsUJe3VquoFvNYXAVZNGP/p6FFnihIymGbRFHGZSP\ns7g0yVwuI65VkaROtE7YI1pp7y8dPpvkQqAiZvUCC8cYIwYxavZLArVoRiilXz/f\nfuJoP99TyE3mRbLYamvrGDqLGMO8I4JAfgUbaiEEj5nJsUxWkhliSvWPjXuvytsy\nRlL+GSgPFNqTQ1eLKb4boTgM84ngSMeT47BZn2nipFg78ChwU8GOJ7G3sPYjKhIp\nRyEremCPzDNgO6asTRhn9ro=\n-----END
-      CERTIFICATE-----"}'
+    body: '{"description": null}'
     headers:
       Accept:
       - application/json
       Connection:
       - close
       Content-Length:
-      - 1222
+      - 21
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
-    method: PUT
-    uri: http://pulp.example.org/pulp/api/v3/contentguards/certguard/x509/5aa4dff4-70f3-4f6f-9ad2-ef4d66cfab31/
+      - Python-urllib/3.9
+    method: PATCH
+    uri: https://pulp.example.org/pulp/api/v3/contentguards/certguard/x509/e17b0280-823e-49fd-83c3-ba2f832843e8/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/contentguards/certguard/x509/5aa4dff4-70f3-4f6f-9ad2-ef4d66cfab31/","pulp_created":"2020-08-19T09:54:54.228119Z","name":"test_x509_cert_guard","description":null,"ca_certificate":"-----BEGIN
+      string: '{"pulp_href":"/pulp/api/v3/contentguards/certguard/x509/e17b0280-823e-49fd-83c3-ba2f832843e8/","pulp_created":"2021-07-22T17:26:45.125156Z","name":"test_x509_cert_guard","description":null,"ca_certificate":"-----BEGIN
         CERTIFICATE-----\nMIICrTCCAZUCFAp0n3Mrg78x+8rAn8x1EGxVhKYrMA0GCSqGSIb3DQEBBQUAMBMx\nETAPBgNVBAMMCHNuYWtlb2lsMB4XDTIwMDcyMjE5MDUwNFoXDTIwMDgyMTE5MDUw\nNFowEzERMA8GA1UEAwwIc25ha2VvaWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\nggEKAoIBAQDKIwKvUax3A/5dODykWzJm0RWjnQAcxfuLbaZcPVDEo/Q8lBkaLEDl\nURAm8e9/uLJjcMyjl2LLlsJYOlcqbjNSwf/5D693IcTRO53C1xWvZ+IGGokweY0m\n8G3SFf5BKmji1OmT8l7iA35Wg0ist/QemQIaSV+n0B/yArdbkfcedPoiudzLOmx6\nEwSCdu9Xl4g29zLzBOWCHuZ0ghNbSWu0cQbkm1syM993BIH31bKdjImUTVg1HlqV\nxi1Y9EVQ3fFE/00DYsgANvSHa3YZsLCgl6gzab5repKP96vjX34JsZi1ayJXXYBz\ncjQPG0e9gpoqHROmKNJj+Up7lySrmSuLAgMBAAEwDQYJKoZIhvcNAQEFBQADggEB\nAI7zqZRPIWdbPWUKFZJNF6GsaBpLR0RkgukPo7vOF5WhOwez2fL+gsh5cffmcTyX\nEOkE53mHkI8z0yg+GtfOqv4GsUJe3VquoFvNYXAVZNGP/p6FFnihIymGbRFHGZSP\ns7g0yVwuI65VkaROtE7YI1pp7y8dPpvkQqAiZvUCC8cYIwYxavZLArVoRiilXz/f\nfuJoP99TyE3mRbLYamvrGDqLGMO8I4JAfgUbaiEEj5nJsUxWkhliSvWPjXuvytsy\nRlL+GSgPFNqTQ1eLKb4boTgM84ngSMeT47BZn2nipFg78ChwU8GOJ7G3sPYjKhIp\nRyEremCPzDNgO6asTRhn9ro=\n-----END
         CERTIFICATE-----"}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
@@ -73,10 +78,14 @@ interactions:
       - '1213'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 9de0c66859de49ef834756f7b58b6b6e
       Date:
-      - Wed, 19 Aug 2020 09:54:57 GMT
+      - Thu, 22 Jul 2021 17:26:54 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

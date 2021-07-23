@@ -9,28 +9,34 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian10
+      - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
     uri: https://pulp.example.org/pulp/api/v3/repositories/deb/apt/?limit=1&name=test_deb_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/e8ae6480-eb8d-4128-91f7-f4c4a8ff554b/","pulp_created":"2020-11-04T15:23:35.538593Z","versions_href":"/pulp/api/v3/repositories/deb/apt/e8ae6480-eb8d-4128-91f7-f4c4a8ff554b/versions/","latest_version_href":"/pulp/api/v3/repositories/deb/apt/e8ae6480-eb8d-4128-91f7-f4c4a8ff554b/versions/0/","name":"test_deb_repository","description":"repository
-        created via ansible","remote":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/be632b3f-140b-4405-803f-3d4cf1d142df/","pulp_created":"2021-07-22T17:18:55.842020Z","versions_href":"/pulp/api/v3/repositories/deb/apt/be632b3f-140b-4405-803f-3d4cf1d142df/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/be632b3f-140b-4405-803f-3d4cf1d142df/versions/0/","name":"test_deb_repository","description":"repository
+        created via ansible","retained_versions":null,"remote":null}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '480'
+      - '522'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - dd62f3ab6ebb44d9887a15b15796a009
       Date:
-      - Wed, 04 Nov 2020 15:23:40 GMT
+      - Thu, 22 Jul 2021 17:18:59 GMT
       Server:
-      - nginx/1.14.2
+      - nginx/1.18.0
+      Strict-Transport-Security:
+      - max-age=15768000
       Vary:
       - Accept, Cookie
       X-Frame-Options:

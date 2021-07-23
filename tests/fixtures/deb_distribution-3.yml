@@ -11,23 +11,27 @@ interactions:
       Host:
       - pulp3-sandbox-debian-testing
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
     uri: https://pulp.example.org/pulp/api/v3/distributions/deb/apt/?limit=1&name=test_deb_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/deb/apt/c08b861c-a0b7-4631-9e9f-82c2bc403e60/","pulp_created":"2020-11-15T18:00:42.984807Z","base_path":"test_deb_base_path","base_url":"https://pulp3-sandbox-debian-testing.shu.example.com/pulp/content/test_deb_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/8597ddb5-aabb-4957-a2e6-dea5cdb064ee/","name":"test_deb_distribution","publication":"/pulp/api/v3/publications/deb/apt/4361ee6a-d988-4ecd-b44c-6939dfa20ddb/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/deb/apt/45ff96c1-a113-4630-9508-d5c884c55f3d/","pulp_created":"2021-07-22T17:18:20.527462Z","base_path":"test_deb_base_path","base_url":"https://pulp3-sandbox-debian-testing.shu.example.com/pulp/content/test_deb_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/940aaa30-ff1f-4c03-8bf1-f12f4792eb78/","pulp_labels":{},"name":"test_deb_distribution","repository":null,"publication":"/pulp/api/v3/publications/deb/apt/08b057ff-1dca-43ca-95bd-32b2c7c1360c/"}]}'
     headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '534'
+      - '569'
       Content-Type:
       - application/json
+      Correlation-ID:
+      - 448799cb3b004e278b6315374f873df9
       Date:
-      - Sun, 15 Nov 2020 18:00:45 GMT
+      - Thu, 22 Jul 2021 17:18:23 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:
