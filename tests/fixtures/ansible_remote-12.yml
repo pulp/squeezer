@@ -16,7 +16,8 @@ interactions:
     uri: https://pulp.example.org/pulp/api/v3/remotes/ansible/collection/?limit=20&offset=0
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/collection/f31f5e48-7d5e-4649-95f0-ae7512477ebb/","pulp_created":"2021-07-22T17:17:11.135930Z","name":"test_ansible_collection_remote","url":"https://galaxy-dev.ansible.com/api/v2/collections/pulp/squeezer/","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-22T17:17:11.997546Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"requirements_file":null,"auth_url":null,"token":null,"sync_dependencies":true}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/collection/cf9bd00b-a807-4a0c-ac35-38e64cf7b7bf/","pulp_created":"2021-07-23T10:41:58.358207Z","name":"test_ansible_collection_remote","url":"https://galaxy-dev.ansible.com/","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-23T10:41:59.190842Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"requirements_file":"collections:\n  -
+        pulp.squeezer","auth_url":null,"token":null,"sync_dependencies":true}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,13 +26,13 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '740'
+      - '736'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 0814201d497643f89fafb4ab363926d6
+      - 6122d01ed00a4787a1e161833888bd21
       Date:
-      - Thu, 22 Jul 2021 17:17:12 GMT
+      - Fri, 23 Jul 2021 10:42:00 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:

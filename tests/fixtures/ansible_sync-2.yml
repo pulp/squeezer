@@ -16,7 +16,7 @@ interactions:
     uri: https://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?limit=1&name=test_ansible_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/52240374-7a6a-4f2c-bde9-87512a56ba78/","pulp_created":"2021-07-22T17:17:38.580058Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/52240374-7a6a-4f2c-bde9-87512a56ba78/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/52240374-7a6a-4f2c-bde9-87512a56ba78/versions/1/","name":"test_ansible_repository","description":null,"retained_versions":null,"remote":null,"last_synced_metadata_time":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/","pulp_created":"2021-07-23T10:05:33.172686Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/versions/1/","name":"test_ansible_repository","description":null,"retained_versions":null,"remote":null,"last_synced_metadata_time":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -29,9 +29,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 37d4dac4e8874cc599c7b57552dba6f1
+      - fdcd7812e68c40be80d3699ff6bed445
       Date:
-      - Thu, 22 Jul 2021 17:17:48 GMT
+      - Fri, 23 Jul 2021 10:05:45 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:

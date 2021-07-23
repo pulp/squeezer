@@ -15,6 +15,8 @@ import traceback
 from time import sleep
 
 from ansible.module_utils.basic import AnsibleModule, env_fallback
+
+# from ansible.module_utils.common import yaml
 from ansible.module_utils.six.moves.urllib.error import HTTPError
 from ansible_collections.pulp.squeezer.plugins.module_utils.openapi import OpenAPI
 
@@ -198,10 +200,14 @@ class PulpEntity(object):
             if hasattr(self, "_partial_update_id"):
                 if not self.module.check_mode:
                     response = self.module.pulp_api.call(
-                        self._partial_update_id, parameters=self.primary_key, body=changes
+                        self._partial_update_id,
+                        parameters=self.primary_key,
+                        body=changes,
                     )
                     if response and "task" in response:
-                        PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
+                        PulpTask(
+                            self.module, {"pulp_href": response["task"]}
+                        ).wait_for()
                         self.read()
                     else:
                         self.entity = response
@@ -211,7 +217,9 @@ class PulpEntity(object):
                         self._update_id, parameters=self.primary_key, body=self.entity
                     )
                     if response and "task" in response:
-                        PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
+                        PulpTask(
+                            self.module, {"pulp_href": response["task"]}
+                        ).wait_for()
                         self.read()
                     else:
                         self.entity = response
@@ -752,6 +760,49 @@ class PulpAnsibleCollectionRemote(PulpEntity):
 
     _name_singular = "remote"
     _name_plural = "remotes"
+
+    def __init__(self, *args, **kwargs):
+        super(PulpAnsibleCollectionRemote, self).__init__(*args, **kwargs)
+        if self.desired_attributes:
+            collections = self.desired_attributes.pop("collections", None)
+            if collections is not None:
+                collection_list = "\n".join(
+                    ("  - " + collection for collection in sorted(collections))
+                )
+                self.desired_attributes["requirements_file"] = (
+                    "collections:\n" + collection_list
+                )
+
+    def presentation(self, entity):
+        if entity:
+            requirements_file = entity.pop("requirements_file", None)
+            if requirements_file is not None:
+                entity["collections"] = sorted(
+                    (
+                        collection.strip("- ")
+                        for collection in requirements_file.split("\n")
+                        if "collections:" not in collection
+                    )
+                )
+        return entity
+
+    # def __init__(self, *args, **kwargs):
+    #     super(PulpAnsibleCollectionRemote, self).__init__(*args, **kwargs)
+    #     if self.desired_attributes:
+    #         collections = self.desired_attributes.pop("collections", None)
+    #         if collections is not None:
+    #             self.desired_attributes["requirements_file"] = yaml.yaml_dump(
+    #                 {"collections": sorted(collections)}
+    #             ).removesuffix("\n")
+
+    # def presentation(self, entity):
+    #     if entity:
+    #         requirements_file = entity.pop("requirements_file", None)
+    #         if requirements_file is not None:
+    #             entity["collections"] = sorted(
+    #                 yaml.yaml_load(requirements_file)["collections"]
+    #             )
+    #     return entity
 
 
 class PulpAnsibleRoleRemote(PulpEntity):

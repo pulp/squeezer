@@ -144,7 +144,9 @@
       pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
-        url: "https://galaxy-dev.ansible.com/api/v2/collections/testing/ansible_testing_content/"
+        url: "https://galaxy-dev.ansible.com/"
+        collections:
+          - testing.ansible_testing_content
         proxy_url: "http://proxy.int:3128"
         state: present
       register: result
@@ -153,14 +155,17 @@
         that:
           - result.changed == true
           - result.remote.name == "test_ansible_collection_remote"
-          - result.remote.url == "https://galaxy-dev.ansible.com/api/v2/collections/testing/ansible_testing_content/"
+          - result.remote.url == "https://galaxy-dev.ansible.com/"
+          - result.remote.collections == ["testing.ansible_testing_content"]
           - result.remote.proxy_url == "http://proxy.int:3128"
 
     - name: Create collection remote (2nd try)
       pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
-        url: "https://galaxy-dev.ansible.com/api/v2/collections/testing/ansible_testing_content/"
+        url: "https://galaxy-dev.ansible.com/"
+        collections:
+          - testing.ansible_testing_content
         proxy_url: "http://proxy.int:3128"
         state: present
       register: result
@@ -173,7 +178,9 @@
       pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
-        url: "https://galaxy-dev.ansible.com/api/v2/collections/pulp/squeezer/"
+        url: "https://galaxy-dev.ansible.com/"
+        collections:
+          - pulp.squeezer
         tls_validation: false
         state: present
       register: result
@@ -181,14 +188,17 @@
       assert:
         that:
           - result.changed == true
-          - result.remote.url == "https://galaxy-dev.ansible.com/api/v2/collections/pulp/squeezer/"
+          - result.remote.url == "https://galaxy-dev.ansible.com/"
+          - result.remote.collections == ["pulp.squeezer"]
           - result.remote.tls_validation == false
 
     - name: Modify collection remote (2nd try)
       pulp.squeezer.ansible_remote:
         content_type: collection
         name: test_ansible_collection_remote
-        url: "https://galaxy-dev.ansible.com/api/v2/collections/pulp/squeezer/"
+        url: "https://galaxy-dev.ansible.com/"
+        collections:
+          - pulp.squeezer
         tls_validation: false
         state: present
       register: result
@@ -217,7 +227,8 @@
         that:
           - result.changed == false
           - result.remote.name == "test_ansible_collection_remote"
-          - result.remote.url == "https://galaxy-dev.ansible.com/api/v2/collections/pulp/squeezer/"
+          - result.remote.url == "https://galaxy-dev.ansible.com/"
+          - result.remote.collections == ["pulp.squeezer"]
           - result.remote.policy == "immediate"
           - result.remote.proxy_url == "http://proxy.int:3128"
           - result.remote.tls_validation == false

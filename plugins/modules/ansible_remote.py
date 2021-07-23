@@ -32,6 +32,11 @@ options:
     description:
       - URL to the upstream galaxy api
     type: str
+  collections:
+    description:
+      - List of collection names to sync
+    type: list
+    elements: str
   download_concurrency:
     description:
       - How many downloads should be attempted in parallel
@@ -67,13 +72,25 @@ EXAMPLES = r"""
 - name: Report pulp ansible remotes
   debug:
     var: remote_status
-- name: Create a ansible remote
+- name: Create a ansible role remote
   ansible_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
+    content_type: role
     name: new_ansible_remote
-    url: http://localhost/TODO
+    url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
+    state: present
+- name: Create a ansible collection remote
+  ansible_remote:
+    pulp_url: https://pulp.example.org
+    username: admin
+    password: password
+    content_type: collection
+    name: new_ansible_collection_remote
+    url: "https://galaxy-dev.ansible.com/"
+    collections:
+      - testing.ansible_testing_content
     state: present
 - name: Delete a ansible remote
   ansible_remote:
@@ -100,6 +117,7 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpEntityAnsibleModule,
     PulpAnsibleCollectionRemote,
     PulpAnsibleRoleRemote,
+    SqueezerException,
 )
 
 
@@ -109,6 +127,7 @@ def main():
             content_type=dict(choices=["collection", "role"], default="role"),
             name=dict(),
             url=dict(),
+            collections=dict(type="list", elements="str"),
             download_concurrency=dict(type="int"),
             policy=dict(choices=["immediate"]),
             proxy_url=dict(type="str"),
@@ -121,11 +140,21 @@ def main():
             RemoteClass = PulpAnsibleCollectionRemote
         else:
             RemoteClass = PulpAnsibleRoleRemote
+            if module.params["collections"] is not None:
+                raise SqueezerException(
+                    "'collections' can only be used for collection remotes."
+                )
 
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
             key: module.params[key]
-            for key in ["url", "download_concurrency", "policy", "tls_validation"]
+            for key in [
+                "url",
+                "collections",
+                "download_concurrency",
+                "policy",
+                "tls_validation",
+            ]
             if module.params[key] is not None
         }
         if module.params["proxy_url"] is not None:

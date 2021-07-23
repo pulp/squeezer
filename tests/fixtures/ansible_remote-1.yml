@@ -16,7 +16,7 @@ interactions:
     uri: https://pulp.example.org/pulp/api/v3/remotes/ansible/role/?limit=1&name=test_ansible_role_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/role/9fca5f95-2541-4385-b2c1-4bde9f92dee7/","pulp_created":"2021-07-22T17:17:05.981638Z","name":"test_ansible_role_remote","url":"https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-22T17:17:05.981648Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/role/50b01163-a9fd-4212-bb1f-f5c182b62da2/","pulp_created":"2021-07-23T10:41:53.434398Z","name":"test_ansible_role_remote","url":"https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-23T10:41:53.434410Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -29,9 +29,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 96f948f4f7fc4cd0990621b112d4edb7
+      - 888a989efca049b7a70cf61db79465e6
       Date:
-      - Thu, 22 Jul 2021 17:17:08 GMT
+      - Fri, 23 Jul 2021 10:41:55 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:

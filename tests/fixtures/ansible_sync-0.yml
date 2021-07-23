@@ -25113,9 +25113,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - b7f283ed662f40a59ca72f3d6497dc56
+      - c05230f047854f919d98bec53b1ca378
       Date:
-      - Thu, 22 Jul 2021 17:17:40 GMT
+      - Fri, 23 Jul 2021 10:05:35 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:
@@ -25144,7 +25144,7 @@ interactions:
     uri: https://pulp.example.org/pulp/api/v3/remotes/ansible/role/?limit=1&name=test_ansible_role_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/role/34268eb4-818c-45b1-ab0d-9f4a98c306cb/","pulp_created":"2021-07-22T17:17:39.068071Z","name":"test_ansible_role_remote","url":"https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":null,"pulp_labels":{},"pulp_last_updated":"2021-07-22T17:17:39.068081Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/role/3a5bd9d1-07f0-4f0a-ae33-deeb2caf319b/","pulp_created":"2021-07-23T10:04:30.302486Z","name":"test_ansible_role_remote","url":"https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":null,"pulp_labels":{},"pulp_last_updated":"2021-07-23T10:04:30.302496Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25157,9 +25157,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 54f717a5d59c4c3eac2d6aedd087419a
+      - 4471e2c4bf77410d85551e3524832a3a
       Date:
-      - Thu, 22 Jul 2021 17:17:40 GMT
+      - Fri, 23 Jul 2021 10:05:35 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:
@@ -25188,7 +25188,7 @@ interactions:
     uri: https://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?limit=1&name=test_ansible_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/52240374-7a6a-4f2c-bde9-87512a56ba78/","pulp_created":"2021-07-22T17:17:38.580058Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/52240374-7a6a-4f2c-bde9-87512a56ba78/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/52240374-7a6a-4f2c-bde9-87512a56ba78/versions/0/","name":"test_ansible_repository","description":null,"retained_versions":null,"remote":null,"last_synced_metadata_time":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/","pulp_created":"2021-07-23T10:05:33.172686Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/versions/0/","name":"test_ansible_repository","description":null,"retained_versions":null,"remote":null,"last_synced_metadata_time":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25201,9 +25201,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - fcd5417beef044ee8e0c6cf5dbcdc21a
+      - 5354c4efe01e47afa97ec3a02cb3bdd9
       Date:
-      - Thu, 22 Jul 2021 17:17:40 GMT
+      - Fri, 23 Jul 2021 10:05:35 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:
@@ -25216,7 +25216,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"remote": "/pulp/api/v3/remotes/ansible/role/34268eb4-818c-45b1-ab0d-9f4a98c306cb/"}'
+    body: '{"remote": "/pulp/api/v3/remotes/ansible/role/3a5bd9d1-07f0-4f0a-ae33-deeb2caf319b/"}'
     headers:
       Accept:
       - application/json
@@ -25231,10 +25231,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.9
     method: POST
-    uri: https://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/52240374-7a6a-4f2c-bde9-87512a56ba78/sync/
+    uri: https://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/sync/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/c527e698-6efd-4d76-9026-44ab7cd47c9a/"}'
+      string: '{"task":"/pulp/api/v3/tasks/e8d17c7c-7726-4a50-a842-ca0e3e1fd8df/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25247,9 +25247,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 3562658f7f154fe9a5b0b91a5ee4a4a8
+      - 80e1f054910a41b6aefd0ec6bc04fe01
       Date:
-      - Thu, 22 Jul 2021 17:17:40 GMT
+      - Fri, 23 Jul 2021 10:05:35 GMT
       Server:
       - nginx/1.18.0
       Vary:
@@ -25273,14 +25273,14 @@ interactions:
       User-Agent:
       - Python-urllib/3.9
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/c527e698-6efd-4d76-9026-44ab7cd47c9a/
+    uri: https://pulp.example.org/pulp/api/v3/tasks/e8d17c7c-7726-4a50-a842-ca0e3e1fd8df/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/c527e698-6efd-4d76-9026-44ab7cd47c9a/","pulp_created":"2021-07-22T17:17:40.960637Z","state":"running","name":"pulp_ansible.app.tasks.roles.synchronize","logging_cid":"3562658f7f154fe9a5b0b91a5ee4a4a8","started_at":"2021-07-22T17:17:40.996996Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Downloading
-        Artifacts","code":"sync.downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Associating
-        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null},{"message":"Parsing
+      string: '{"pulp_href":"/pulp/api/v3/tasks/e8d17c7c-7726-4a50-a842-ca0e3e1fd8df/","pulp_created":"2021-07-23T10:05:35.974704Z","state":"running","name":"pulp_ansible.app.tasks.roles.synchronize","logging_cid":"80e1f054910a41b6aefd0ec6bc04fe01","started_at":"2021-07-23T10:05:36.013772Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Parsing
         Role Metadata","code":"sync.parsing.metadata","state":"running","total":null,"done":0,"suffix":null},{"message":"Parsing
-        Pages from Galaxy Roles API","code":"sync.parsing.roles","state":"running","total":null,"done":0,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/repositories/ansible/ansible/52240374-7a6a-4f2c-bde9-87512a56ba78/","/pulp/api/v3/remotes/ansible/role/34268eb4-818c-45b1-ab0d-9f4a98c306cb/"]}'
+        Pages from Galaxy Roles API","code":"sync.parsing.roles","state":"running","total":null,"done":0,"suffix":null},{"message":"Downloading
+        Artifacts","code":"sync.downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Associating
+        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/role/3a5bd9d1-07f0-4f0a-ae33-deeb2caf319b/","/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25293,9 +25293,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 402535cd8d8e4d25a65d957dfcf9d389
+      - 93ea354984b24cb8a10cfe5b9f59b12a
       Date:
-      - Thu, 22 Jul 2021 17:17:41 GMT
+      - Fri, 23 Jul 2021 10:05:36 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:
@@ -25321,14 +25321,14 @@ interactions:
       User-Agent:
       - Python-urllib/3.9
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/c527e698-6efd-4d76-9026-44ab7cd47c9a/
+    uri: https://pulp.example.org/pulp/api/v3/tasks/e8d17c7c-7726-4a50-a842-ca0e3e1fd8df/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/c527e698-6efd-4d76-9026-44ab7cd47c9a/","pulp_created":"2021-07-22T17:17:40.960637Z","state":"completed","name":"pulp_ansible.app.tasks.roles.synchronize","logging_cid":"3562658f7f154fe9a5b0b91a5ee4a4a8","started_at":"2021-07-22T17:17:40.996996Z","finished_at":"2021-07-22T17:17:42.992716Z","error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Parsing
+      string: '{"pulp_href":"/pulp/api/v3/tasks/e8d17c7c-7726-4a50-a842-ca0e3e1fd8df/","pulp_created":"2021-07-23T10:05:35.974704Z","state":"completed","name":"pulp_ansible.app.tasks.roles.synchronize","logging_cid":"80e1f054910a41b6aefd0ec6bc04fe01","started_at":"2021-07-23T10:05:36.013772Z","finished_at":"2021-07-23T10:05:38.188471Z","error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Associating
+        Content","code":"associating.content","state":"completed","total":null,"done":5,"suffix":null},{"message":"Parsing
         Pages from Galaxy Roles API","code":"sync.parsing.roles","state":"completed","total":1,"done":1,"suffix":null},{"message":"Parsing
         Role Metadata","code":"sync.parsing.metadata","state":"completed","total":null,"done":5,"suffix":null},{"message":"Downloading
-        Artifacts","code":"sync.downloading.artifacts","state":"completed","total":null,"done":5,"suffix":null},{"message":"Associating
-        Content","code":"associating.content","state":"completed","total":null,"done":5,"suffix":null}],"created_resources":["/pulp/api/v3/repositories/ansible/ansible/52240374-7a6a-4f2c-bde9-87512a56ba78/versions/1/"],"reserved_resources_record":["/pulp/api/v3/repositories/ansible/ansible/52240374-7a6a-4f2c-bde9-87512a56ba78/","/pulp/api/v3/remotes/ansible/role/34268eb4-818c-45b1-ab0d-9f4a98c306cb/"]}'
+        Artifacts","code":"sync.downloading.artifacts","state":"completed","total":null,"done":5,"suffix":null}],"created_resources":["/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/versions/1/"],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/role/3a5bd9d1-07f0-4f0a-ae33-deeb2caf319b/","/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25341,9 +25341,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - b35fd1ff59734e349d6737c4fc4a06af
+      - 65b5ed557f5a474c804c5fecfae0c164
       Date:
-      - Thu, 22 Jul 2021 17:17:43 GMT
+      - Fri, 23 Jul 2021 10:05:38 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:
