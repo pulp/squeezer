@@ -16,7 +16,7 @@ interactions:
     uri: https://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/?limit=1&name=test_rpm_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/4cda12f7-2ba6-4695-bdfe-8c5ed652c8d5/","pulp_created":"2021-07-22T17:24:54.294794Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-22T17:24:54.294824Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"sles_auth_token":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/b532cbda-064e-4e61-964c-26e2ba405cc5/","pulp_created":"2021-07-25T09:02:59.691097Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-25T09:02:59.691112Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"sles_auth_token":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -29,9 +29,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 8c4bbd92a2f2407bb6c4cb4d7fee3a4f
+      - e1370cf00ec840a6894c9fd0055487f9
       Date:
-      - Thu, 22 Jul 2021 17:25:00 GMT
+      - Sun, 25 Jul 2021 09:03:02 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:
@@ -44,14 +44,15 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"policy": "on_demand", "tls_validation": false}'
+    body: '{"policy": "on_demand", "tls_validation": false, "ca_cert": "abcd", "client_cert":
+      "efgh"}'
     headers:
       Accept:
       - application/json
       Connection:
       - close
       Content-Length:
-      - 48
+      - 90
       Content-Type:
       - application/json
       Host:
@@ -59,10 +60,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.9
     method: PATCH
-    uri: https://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/4cda12f7-2ba6-4695-bdfe-8c5ed652c8d5/
+    uri: https://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/b532cbda-064e-4e61-964c-26e2ba405cc5/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/48ae8bc6-2e08-4e3b-8f31-d1880cde095a/"}'
+      string: '{"task":"/pulp/api/v3/tasks/2c12cf71-fd4a-42ab-91ae-98292a5753b6/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -75,9 +76,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 9d0f23ea1c4446b789c963147d72d78f
+      - e8af4da6ba9e4a9b8c9cbb8eb8d9f9e1
       Date:
-      - Thu, 22 Jul 2021 17:25:00 GMT
+      - Sun, 25 Jul 2021 09:03:02 GMT
       Server:
       - nginx/1.18.0
       Vary:
@@ -101,10 +102,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.9
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/48ae8bc6-2e08-4e3b-8f31-d1880cde095a/
+    uri: https://pulp.example.org/pulp/api/v3/tasks/2c12cf71-fd4a-42ab-91ae-98292a5753b6/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/48ae8bc6-2e08-4e3b-8f31-d1880cde095a/","pulp_created":"2021-07-22T17:25:00.221439Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","logging_cid":"9d0f23ea1c4446b789c963147d72d78f","started_at":"2021-07-22T17:25:00.314332Z","finished_at":"2021-07-22T17:25:00.383191Z","error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/rpm/rpm/4cda12f7-2ba6-4695-bdfe-8c5ed652c8d5/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/2c12cf71-fd4a-42ab-91ae-98292a5753b6/","pulp_created":"2021-07-25T09:03:02.132406Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","logging_cid":"e8af4da6ba9e4a9b8c9cbb8eb8d9f9e1","started_at":"2021-07-25T09:03:02.174198Z","finished_at":"2021-07-25T09:03:02.195401Z","error":null,"worker":"/pulp/api/v3/workers/30d32cf9-3d5a-4c76-b1dd-819457773527/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/rpm/rpm/b532cbda-064e-4e61-964c-26e2ba405cc5/"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -117,9 +118,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 71f7b73e1def4139b87437ca41039209
+      - fd8f4b960a6d4667b96b93a8f66c95fb
       Date:
-      - Thu, 22 Jul 2021 17:25:00 GMT
+      - Sun, 25 Jul 2021 09:03:02 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:
@@ -145,10 +146,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.9
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/4cda12f7-2ba6-4695-bdfe-8c5ed652c8d5/
+    uri: https://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/b532cbda-064e-4e61-964c-26e2ba405cc5/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/4cda12f7-2ba6-4695-bdfe-8c5ed652c8d5/","pulp_created":"2021-07-22T17:24:54.294794Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-22T17:25:00.375923Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"sles_auth_token":null}'
+      string: '{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/b532cbda-064e-4e61-964c-26e2ba405cc5/","pulp_created":"2021-07-25T09:02:59.691097Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":"abcd","client_cert":"efgh","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-25T09:03:02.191972Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"sles_auth_token":null}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -157,13 +158,13 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '598'
+      - '602'
       Content-Type:
       - application/json
       Correlation-ID:
-      - f072598e49a84a879b869d7bcd5f451f
+      - 46e5edb64f974957a9c9866718bb37f5
       Date:
-      - Thu, 22 Jul 2021 17:25:00 GMT
+      - Sun, 25 Jul 2021 09:03:02 GMT
       Server:
       - nginx/1.18.0
       Strict-Transport-Security:

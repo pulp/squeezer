@@ -24,40 +24,21 @@ options:
       - collection
       - role
     default: role
-  name:
-    description:
-      - Name of the remote to query or manipulate
-    type: str
-  url:
-    description:
-      - URL to the upstream galaxy api
-    type: str
   collections:
     description:
       - List of collection names to sync
     type: list
     elements: str
-  download_concurrency:
-    description:
-      - How many downloads should be attempted in parallel
-    type: int
   policy:
     description:
       - Whether downloads should be performed immediately, or lazy.
     type: str
     choices:
       - immediate
-  proxy_url:
-    description:
-      - The proxy URL. Format C(scheme://user:password@host:port) .
-    type: str
-  tls_validation:
-    description:
-      - If True, TLS peer validation must be performed on remote synchronization.
-    type: bool
 extends_documentation_fragment:
   - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp.remote
 author:
   - Matthias Dellweg (@mdellweg)
 """
@@ -114,7 +95,7 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpEntityAnsibleModule,
+    PulpRemoteAnsibleModule,
     PulpAnsibleCollectionRemote,
     PulpAnsibleRoleRemote,
     SqueezerException,
@@ -122,16 +103,11 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 
 
 def main():
-    with PulpEntityAnsibleModule(
+    with PulpRemoteAnsibleModule(
         argument_spec=dict(
             content_type=dict(choices=["collection", "role"], default="role"),
-            name=dict(),
-            url=dict(),
             collections=dict(type="list", elements="str"),
-            download_concurrency=dict(type="int"),
             policy=dict(choices=["immediate"]),
-            proxy_url=dict(type="str"),
-            tls_validation=dict(type="bool"),
         ),
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
@@ -157,9 +133,26 @@ def main():
             ]
             if module.params[key] is not None
         }
-        if module.params["proxy_url"] is not None:
-            # In case of an empty string we nullify
-            desired_attributes["proxy_url"] = module.params["proxy_url"] or None
+
+        # Nullifiable values
+        if module.params["remote_username"] is not None:
+            desired_attributes["username"] = module.params["remote_username"] or None
+        if module.params["remote_password"] is not None:
+            desired_attributes["password"] = module.params["remote_password"] or None
+        desired_attributes.update(
+            {
+                key: module.params[key] or None
+                for key in [
+                    "proxy_url",
+                    "proxy_username",
+                    "proxy_password",
+                    "ca_cert",
+                    "client_cert",
+                    "client_key",
+                ]
+                if module.params[key] is not None
+            }
+        )
 
         RemoteClass(module, natural_key, desired_attributes).process()
 

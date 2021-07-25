@@ -58,6 +58,8 @@
         name: test_rpm_remote
         policy: on_demand
         tls_validation: false
+        ca_cert: "abcd"
+        client_cert: "efgh"
         state: present
       register: result
     - name: Verify modify remote
@@ -66,18 +68,57 @@
           - result.changed == true
           - result.remote.policy == "on_demand"
           - result.remote.tls_validation == false
+          - result.remote.ca_cert == "abcd"
+          - result.remote.client_cert == "efgh"
 
     - name: Modify remote (2nd try)
       pulp.squeezer.rpm_remote:
         name: test_rpm_remote
         policy: on_demand
         tls_validation: false
+        ca_cert: "abcd"
+        client_cert: "efgh"
         state: present
       register: result
     - name: Verify modify remote (2nd try)
       assert:
         that:
           - result.changed == false
+
+    - name: Add credentials remote
+      pulp.squeezer.rpm_remote:
+        name: test_rpm_remote
+        remote_username: "ruser"
+        remote_password: "rpass"
+        proxy_username: "puser"
+        proxy_password: "ppass"
+        client_key: "ijkl"
+        state: present
+      register: result
+    - name: Verify modify remote
+      assert:
+        that:
+          - result.changed == true
+          - result.remote.remote_username is undefined
+          - result.remote.remote_password is undefined
+          - result.remote.proxy_username is undefined
+          - result.remote.proxy_password is undefined
+          - result.remote.client_key is undefined
+
+    - name: Add credentials remote (2nd try)
+      pulp.squeezer.rpm_remote:
+        name: test_rpm_remote
+        remote_username: "ruser"
+        remote_password: "rpass"
+        proxy_username: "puser"
+        proxy_password: "ppass"
+        client_key: "ijkl"
+        state: present
+      register: result
+    - name: Verify modify remote (2nd try)
+      assert:
+        that:
+          - result.changed == true
 
     - name: List remotes
       pulp.squeezer.rpm_remote: {}
@@ -101,6 +142,13 @@
           - result.remote.url == "http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/"
           - result.remote.proxy_url == "http://proxy.int:3128"
           - result.remote.tls_validation == false
+          - result.remote.remote_username is undefined
+          - result.remote.remote_password is undefined
+          - result.remote.proxy_username is undefined
+          - result.remote.proxy_password is undefined
+          - result.remote.ca_cert == "abcd"
+          - result.remote.client_cert == "efgh"
+          - result.remote.client_key is undefined
 
     - name: Delete remote
       pulp.squeezer.rpm_remote:
