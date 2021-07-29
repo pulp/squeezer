@@ -160,6 +160,10 @@ def main():
             for key in ["statements", "permissions_assignment"]
             if module.params[key] is not None
         }
+        if "statements" in desired_attributes:
+            for statement in desired_attributes["statements"]:
+                if statement["condition"] is None:
+                    del statement["condition"]
 
         PulpAccessPolicy(module, natural_key, desired_attributes).process()
 
