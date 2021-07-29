@@ -1,5 +1,5 @@
 ---
-pulp_url: http://localhost:24817
+pulp_url: http://localhost:8080
 pulp_username: admin
 pulp_password: password
 
