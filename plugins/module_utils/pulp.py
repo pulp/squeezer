@@ -1082,3 +1082,85 @@ class PulpRpmRepository(PulpRepository):
             if self.module.pulp_api.openapi_version == 2
             else "rpm_rpm_repository_href"
         )
+
+
+# Container entities
+
+
+class PulpContainerDistribution(PulpEntity):
+    _list_id = "distributions_container_container_list"
+    _read_id = "distributions_container_container_read"
+    _create_id = "distributions_container_container_create"
+    _update_id = "distributions_container_container_update"
+    _partial_update_id = "distributions_container_container_partial_update"
+    _delete_id = "distributions_container_container_delete"
+
+    _name_singular = "distribution"
+    _name_plural = "distributions"
+
+    @property
+    def _href(self):
+        return (
+            "container_distribution_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "container_container_distribution_href"
+        )
+
+
+class PulpContainerPublication(PulpEntity):
+    _list_id = "publications_container_container_list"
+    _read_id = "publications_container_container_read"
+    _create_id = "publications_container_container_create"
+    _delete_id = "publications_container_container_delete"
+
+    _name_singular = "publication"
+    _name_plural = "publications"
+
+    @property
+    def _href(self):
+        return (
+            "container_publication_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "container_container_publication_href"
+        )
+
+
+class PulpContainerRemote(PulpRemote):
+    _list_id = "remotes_container_container_list"
+    _read_id = "remotes_container_container_read"
+    _create_id = "remotes_container_container_create"
+    _update_id = "remotes_container_container_update"
+    _partial_update_id = "remotes_container_container_partial_update"
+    _delete_id = "remotes_container_container_delete"
+
+    _name_singular = "remote"
+    _name_plural = "remotes"
+
+    @property
+    def _href(self):
+        return (
+            "container_remote_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "container_container_remote_href"
+        )
+
+
+class PulpContainerRepository(PulpRepository):
+    _list_id = "repositories_container_container_list"
+    _read_id = "repositories_container_container_read"
+    _create_id = "repositories_container_container_create"
+    _update_id = "repositories_container_container_update"
+    _partial_update_id = "repositories_container_container_partial_update"
+    _delete_id = "repositories_container_container_delete"
+    _sync_id = "repositories_container_container_sync"
+
+    _name_singular = "repository"
+    _name_plural = "repositories"
+
+    @property
+    def _href(self):
+        return (
+            "container_repository_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "container_container_repository_href"
+        )

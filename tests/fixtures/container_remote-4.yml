@@ -1,0 +1,189 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:8080
+      User-Agent:
+      - Python-urllib/3.6
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/remotes/container/container/?limit=1&name=test_container_remote
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/container/container/dda84941-07c2-454a-a1a1-5fa4f2fc9638/","pulp_created":"2021-10-06T08:37:26.226198Z","name":"test_container_remote","url":"https://registry-1.docker.io","ca_cert":"abcd","client_cert":"efgh","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-10-06T08:37:27.629461Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"upstream_name":"test_container_remote","include_tags":null,"exclude_tags":null}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '701'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - d6c3ff16a09c4d9d9ca7b5884cf1f93a
+      Date:
+      - Wed, 06 Oct 2021 08:37:29 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"username": "ruser", "password": "rpass", "proxy_username": "puser", "proxy_password":
+      "ppass", "client_key": "ijkl"}'
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Length:
+      - 118
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:8080
+      User-Agent:
+      - Python-urllib/3.6
+    method: PATCH
+    uri: http://pulp.example.org/pulp/api/v3/remotes/container/container/dda84941-07c2-454a-a1a1-5fa4f2fc9638/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/9ef11292-00df-4756-a949-c3aae87f263d/"}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - aa6015a9175348d092be16f0cfb5a0fa
+      Date:
+      - Wed, 06 Oct 2021 08:37:29 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:8080
+      User-Agent:
+      - Python-urllib/3.6
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/9ef11292-00df-4756-a949-c3aae87f263d/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/9ef11292-00df-4756-a949-c3aae87f263d/","pulp_created":"2021-10-06T08:37:29.217818Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","logging_cid":"aa6015a9175348d092be16f0cfb5a0fa","started_at":"2021-10-06T08:37:29.256517Z","finished_at":"2021-10-06T08:37:29.280579Z","error":null,"worker":"/pulp/api/v3/workers/bf579222-6200-4151-a16c-bf607b2e8935/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/container/container/dda84941-07c2-454a-a1a1-5fa4f2fc9638/"]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '614'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 1b5c62477c184b61a6dc3b8a521ffd96
+      Date:
+      - Wed, 06 Oct 2021 08:37:29 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:8080
+      User-Agent:
+      - Python-urllib/3.6
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/remotes/container/container/dda84941-07c2-454a-a1a1-5fa4f2fc9638/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/remotes/container/container/dda84941-07c2-454a-a1a1-5fa4f2fc9638/","pulp_created":"2021-10-06T08:37:26.226198Z","name":"test_container_remote","url":"https://registry-1.docker.io","ca_cert":"abcd","client_cert":"efgh","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-10-06T08:37:29.275065Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"upstream_name":"test_container_remote","include_tags":null,"exclude_tags":null}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '649'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 981dd3f5bc5c4de5b773ab0ac0bf023e
+      Date:
+      - Wed, 06 Oct 2021 08:37:29 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+version: 1

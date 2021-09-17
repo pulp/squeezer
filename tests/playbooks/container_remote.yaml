@@ -1,0 +1,181 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults: &pulp_module_defaults
+    pulp.squeezer.container_remote: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+      validate_certs: "{{ pulp_validate_certs | default(true) }}"
+  tasks:
+    - name: Make container_remote absent
+      pulp.squeezer.container_remote:
+        name: test_container_remote
+        state: absent
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
+
+- hosts: tests
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Create remote
+      pulp.squeezer.container_remote:
+        name: test_container_remote
+        upstream_name: test_container_remote
+        url: "https://registry-1.docker.io"
+        proxy_url: "http://proxy.int:3128"
+        state: present
+      register: result
+    - name: Verify create remote
+      assert:
+        that:
+          - result.changed == true
+          - result.remote.name == "test_container_remote"
+          - result.remote.upstream_name == "test_container_remote"
+          - result.remote.url == "https://registry-1.docker.io"
+          - result.remote.proxy_url == "http://proxy.int:3128"
+
+    - name: Create remote (2nd try)
+      pulp.squeezer.container_remote:
+        name: test_container_remote
+        upstream_name: test_container_remote
+        url: "https://registry-1.docker.io"
+        proxy_url: "http://proxy.int:3128"
+        state: present
+      register: result
+    - name: Verify create remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Modify remote
+      pulp.squeezer.container_remote:
+        name: test_container_remote
+        upstream_name: test_container_remote
+        policy: on_demand
+        tls_validation: false
+        ca_cert: "abcd"
+        client_cert: "efgh"
+        state: present
+      register: result
+    - name: Verify modify remote
+      assert:
+        that:
+          - result.changed == true
+          - result.remote.policy == "on_demand"
+          - result.remote.tls_validation == false
+          - result.remote.ca_cert == "abcd"
+          - result.remote.client_cert == "efgh"
+
+    - name: Modify remote (2nd try)
+      pulp.squeezer.container_remote:
+        name: test_container_remote
+        upstream_name: test_container_remote
+        policy: on_demand
+        tls_validation: false
+        ca_cert: "abcd"
+        client_cert: "efgh"
+        state: present
+      register: result
+    - name: Verify modify remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Add credentials remote
+      pulp.squeezer.container_remote:
+        name: test_container_remote
+        upstream_name: test_container_remote
+        remote_username: "ruser"
+        remote_password: "rpass"
+        proxy_username: "puser"
+        proxy_password: "ppass"
+        client_key: "ijkl"
+        state: present
+      register: result
+    - name: Verify modify remote
+      assert:
+        that:
+          - result.changed == true
+          - result.remote.remote_username is undefined
+          - result.remote.remote_password is undefined
+          - result.remote.proxy_username is undefined
+          - result.remote.proxy_password is undefined
+          - result.remote.client_key is undefined
+
+    - name: Add credentials remote (2nd try)
+      pulp.squeezer.container_remote:
+        name: test_container_remote
+        upstream_name: test_container_remote
+        remote_username: "ruser"
+        remote_password: "rpass"
+        proxy_username: "puser"
+        proxy_password: "ppass"
+        client_key: "ijkl"
+        state: present
+      register: result
+    - name: Verify modify remote (2nd try)
+      assert:
+        that:
+          - result.changed == true
+
+    - name: List remotes
+      pulp.squeezer.container_remote: {}
+      register: result
+    - name: Verify list remotes
+      assert:
+        that:
+          - result.changed == false
+          - result.remotes | length >= 1
+          - result.remotes | selectattr('name', 'match', 'test_container_remote') | list | length == 1
+
+    - name: Read remote
+      pulp.squeezer.container_remote:
+        name: test_container_remote
+      register: result
+    - name: Verify read remote
+      assert:
+        that:
+          - result.changed == false
+          - result.remote.name == "test_container_remote"
+          - result.remote.upstream_name == "test_container_remote"
+          - result.remote.url == "https://registry-1.docker.io"
+          - result.remote.proxy_url == "http://proxy.int:3128"
+          - result.remote.tls_validation == false
+          - result.remote.remote_username is undefined
+          - result.remote.remote_password is undefined
+          - result.remote.proxy_username is undefined
+          - result.remote.proxy_password is undefined
+          - result.remote.ca_cert == "abcd"
+          - result.remote.client_cert == "efgh"
+          - result.remote.client_key is undefined
+
+    - name: Delete remote
+      pulp.squeezer.container_remote:
+        name: test_container_remote
+        state: absent
+      register: result
+    - name: Verify delete remote
+      assert:
+        that:
+          - result.changed == true
+          - not result.remote
+
+    - name: Delete remote (2nd try)
+      pulp.squeezer.container_remote:
+        name: test_container_remote
+        state: absent
+      register: result
+    - name: Verify delete remote (2nd try)
+      assert:
+        that:
+          - result.changed == false
+...
