@@ -76,10 +76,11 @@ RETURN = r"""
     returned: when file or sha256 is given
 """
 
-
+import os
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpEntityAnsibleModule,
     PulpArtifact,
+    SqueezerException,
 )
 
 
@@ -91,6 +92,8 @@ def main():
 
         sha256 = module.params["sha256"]
         if module.params["file"]:
+            if not os.path.exists(module.params["file"]):
+                raise SqueezerException("File not found.")
             file_sha256 = module.sha256(module.params["file"])
             if sha256:
                 if sha256 != file_sha256:
