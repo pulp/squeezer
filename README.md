@@ -57,8 +57,24 @@ Also it should not depend on any of the variables defined in `tests/playbooks/va
 To run the tests, you can either call `make test`, or `make test_<playbook_name>` to only run a specific one.
 To perform codestyle linting and ansible sanity checks, run `make lint sanity`.
 
-To (re-)record tests, you first need to setup a pulp instance ([pulplift](https://github.com/pulp/pulplift) is recommended here).
-With it's connection details configured in `tests/playbooks/vars/server.yaml`, you can run `make record_<playbook_name>`.
+To (re-)record tests or run live tests, you first need to setup a pulp instance, with it's connection details configured in `tests/playbooks/vars/server.yaml`.
+
+### Running tests against a Pulp in one container
+
+The `tests/run_container.sh` script is provided and allows you to run a command with a [Pulp in one](https://pulpproject.org/pulp-in-one-container/) container active.
+It requires Docker or Podman to be installed.
+The default credentials in `tests/playbooks/vars/server.yaml` are sufficient.
+For example, to run all tests against the live Pulp instance:
+
+```
+./tests/run_container.sh make livetest
+```
+
+Or to record test fixtures for the `rpm_repository` test:
+
+```
+./tests/run_container.sh make record_rpm_repository
+```
 
 ## Licence
 
