@@ -72,7 +72,7 @@ jobs:
           http --timeout 30 --check-status --pretty format --print hb http://pulp/pulp/api/v3/status/ || true
           docker images || true
           docker ps -a || true
-          docker logs pulp || true
+          cat tests/pulp.log || true
 
   sanity:
     runs-on: ubuntu-latest

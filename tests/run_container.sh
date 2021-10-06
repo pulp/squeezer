@@ -41,8 +41,13 @@ fi
 # show pulpcore/plugin versions we're using
 curl -s http://localhost:8080/pulp/api/v3/status/ | jq ".versions"
 
+exit_handler() {
+    "${CONTAINER_RUNTIME}" logs pulp > ${BASEPATH}/pulp.log 2>&1
+    "${CONTAINER_RUNTIME}" rm -f pulp
+}
+
 # shellcheck disable=SC2064
-trap "${CONTAINER_RUNTIME} stop pulp" EXIT
+trap exit_handler EXIT
 
 # Set admin password
 "${CONTAINER_RUNTIME}" exec pulp pulpcore-manager reset-admin-password --password password
