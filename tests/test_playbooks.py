@@ -73,7 +73,7 @@ def run_playbook(test_name, extra_vars=None, limit=None, check_mode=False):
 
 
 @pytest.mark.parametrize("test_name", TEST_NAMES)
-def test_playbook(tmpdir, test_name, vcrmode):
+def test_playbook(tmpdir, test_name, vcrmode, pulp_container_log):
     if vcrmode == "live":
         run = run_playbook(test_name)
     else:
@@ -93,7 +93,8 @@ def test_playbook(tmpdir, test_name, vcrmode):
 
 
 @pytest.mark.parametrize("test_name", TEST_NAMES)
-def test_check_mode(tmpdir, test_name):
+def test_check_mode(tmpdir, test_name, vcrmode):
+    assert vcrmode == "replay", "Check-mode tests only work in replay."
     # if test_name == 'not_working_one':
     #     pytest.skip("TODO: Fix check_mode test for not_working_one.")
     run = run_playbook_vcr(tmpdir, test_name, check_mode=True)

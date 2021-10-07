@@ -52,13 +52,6 @@ jobs:
       - name: Run live tests
         run: IMAGE_TAG=nightly tests/run_container.sh make livetest
         if: (matrix.ansible == 'devel') && (matrix.python == '3.8')
-      - name: After failure
-        if: failure() && (matrix.ansible == 'devel') && (matrix.python == '3.8')
-        run: |
-          http --timeout 30 --check-status --pretty format --print hb http://pulp/pulp/api/v3/status/ || true
-          docker images || true
-          docker ps -a || true
-          docker logs pulp || true
 
   sanity:
     runs-on: ubuntu-latest

@@ -3,4 +3,5 @@ __pycache__/
 *.pyo
 *.tar.gz
 /tests/playbooks/vars/server.yaml
+/tests/settings/certs/
 /build/
