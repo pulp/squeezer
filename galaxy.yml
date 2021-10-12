@@ -8,7 +8,9 @@ authors:
   - "Evgeni Golov <evgeni@golov.de>"
   - "Hamed Abdelli <abdelli.hamed@yahoo.fr>"
   - "Piotr Parczewski <piotr@stackhpc.com>"
-version: "0.0.10-dev"
+  - "keilr <remy.keil@gmail.com>"
+  - "Mark Goddard <mark@stackhpc.com>"
+version: "0.0.10"
 license_file: LICENSE
 readme: README.md
 repository: "https://github.com/pulp/squeezer"
