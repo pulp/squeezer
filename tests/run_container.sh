@@ -4,7 +4,7 @@ set -eu
 
 BASEPATH="$(dirname "$(readlink -f "$0")")"
 
-if [ -z "${CONTAINER_RUNTIME+x}" ]
+if [ -z "${CONTAINER_RUNTIME:+x}" ]
 then
   if ls /usr/bin/podman
   then
@@ -14,12 +14,19 @@ then
   fi
 fi
 
-if [ -z "${IMAGE_TAG+x}" ]
+if [ -z "${KEEP_CONTAINER:+x}" ]
 then
-  IMAGE_TAG="latest"
+  RM="yes"
+else
+  RM=""
 fi
 
-"${CONTAINER_RUNTIME}" run --detach --name "pulp" --volume "${BASEPATH}/settings:/etc/pulp" --publish "8080:80" "pulp/pulp:$IMAGE_TAG"
+"${CONTAINER_RUNTIME}" run ${RM:+--rm} --detach --name "pulp-ephemeral" --volume "${BASEPATH}/settings:/etc/pulp" --publish "8080:80" "pulp/pulp:${IMAGE_TAG:-latest}"
+
+# shellcheck disable=SC2064
+trap "${CONTAINER_RUNTIME} stop pulp-ephemeral" EXIT
+# shellcheck disable=SC2064
+trap "${CONTAINER_RUNTIME} stop pulp-ephemeral" INT
 
 echo "Wait for pulp to start."
 for counter in $(seq 20)
@@ -35,16 +42,16 @@ done
 if [ "$counter" = "0" ]
 then
   echo "FAIL."
+  "${CONTAINER_RUNTIME}" images
+  "${CONTAINER_RUNTIME}" ps -a
+  "${CONTAINER_RUNTIME}" logs "pulp-ephemeral"
   exit 1
 fi
 
 # show pulpcore/plugin versions we're using
-curl -s http://localhost:8080/pulp/api/v3/status/ | jq ".versions"
-
-# shellcheck disable=SC2064
-trap "${CONTAINER_RUNTIME} stop pulp" EXIT
+curl -s http://localhost:8080/pulp/api/v3/status/ | jq '.versions|map({key: .component, value: .version})|from_entries'
 
 # Set admin password
-"${CONTAINER_RUNTIME}" exec pulp pulpcore-manager reset-admin-password --password password
+"${CONTAINER_RUNTIME}" exec "pulp-ephemeral" pulpcore-manager reset-admin-password --password password
 
 PULP_LOGGING="${CONTAINER_RUNTIME}" "$@"
