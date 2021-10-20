@@ -1,5 +1,6 @@
 ansible_runner<2.0; python_version < '3.6'
 ansible_runner; python_version >= '3.6'
+black; python_version >= '3.6'
 flake8
 pylint
 pycodestyle
