@@ -97,6 +97,10 @@ Or to record test fixtures for the `rpm_repository` test:
 ./tests/run_container.sh make record_rpm_repository
 ```
 
+By default, the container will be stopped and removed when the script exits.
+Set `KEEP_CONTAINER=1` to avoid removing the container to allow for debugging.
+Set `IMAGE_TAG=<tag>` to override the default `latest` tag for the `pulp` image.
+
 ## Licence
 
 This program is free software: you can redistribute it and/or modify
