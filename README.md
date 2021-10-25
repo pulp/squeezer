@@ -57,7 +57,28 @@ Also it should not depend on any of the variables defined in `tests/playbooks/va
 To run the tests, you can either call `make test`, or `make test_<playbook_name>` to only run a specific one.
 To perform codestyle linting and ansible sanity checks, run `make lint sanity`.
 
-To (re-)record tests or run live tests, you first need to setup a pulp instance, with it's connection details configured in `tests/playbooks/vars/server.yaml`.
+To (re-)record tests or run live tests, you need a running pulp instance.
+Two common ways to provide that development server are explained below.
+
+!!! Warning
+    Do not use a production instance, as the tests might perform destructive actions.
+
+### Recording tests against a Pulplift Vagrant environment
+
+A full vm installation of pulp can easily be achieved by using [pulplift](https://github.com/pulp/pulp_installer/blob/master/docs/pulplift.md).
+It is recommended to use one of the sandbox installations.
+When the vm is up, you need to configure its connection details in `tests/playbooks/vars/server.yaml`.
+Squeezer tests can now be run with:
+
++```
+make livetest
++```
+
+The fixtures for the `file_remote` test can be recorded with:
+
++```
+make record_file_remote
++```
 
 ### Running tests against a Pulp in one container
 
