@@ -68,7 +68,7 @@ Two common ways to provide that development server are explained below.
 A full vm installation of pulp can easily be achieved by using [pulplift](https://github.com/pulp/pulp_installer/blob/master/docs/pulplift.md).
 It is recommended to use one of the sandbox installations.
 When the vm is up, you need to configure its connection details in `tests/playbooks/vars/server.yaml`.
-Squeezer tests can now be run with:
+For example, to run all tests live against this vm:
 
 +```
 make livetest
