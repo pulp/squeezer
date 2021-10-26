@@ -57,8 +57,49 @@ Also it should not depend on any of the variables defined in `tests/playbooks/va
 To run the tests, you can either call `make test`, or `make test_<playbook_name>` to only run a specific one.
 To perform codestyle linting and ansible sanity checks, run `make lint sanity`.
 
-To (re-)record tests, you first need to setup a pulp instance ([pulplift](https://github.com/pulp/pulplift) is recommended here).
-With it's connection details configured in `tests/playbooks/vars/server.yaml`, you can run `make record_<playbook_name>`.
+To (re-)record tests or run live tests, you need a running pulp instance.
+Two common ways to provide that development server are explained below.
+
+!!! Warning
+    Do not use a production instance, as the tests might perform destructive actions.
+
+### Recording tests against a Pulplift Vagrant environment
+
+A full vm installation of pulp can easily be achieved by using [pulplift](https://github.com/pulp/pulp_installer/blob/master/docs/pulplift.md).
+It is recommended to use one of the sandbox installations.
+When the vm is up, you need to configure its connection details in `tests/playbooks/vars/server.yaml`.
+For example, to run all tests live against this vm:
+
++```
+make livetest
++```
+
+The fixtures for the `file_remote` test can be recorded with:
+
++```
+make record_file_remote
++```
+
+### Running tests against a Pulp in one container
+
+The `tests/run_container.sh` script is provided and allows you to run a command with a [Pulp in one](https://pulpproject.org/pulp-in-one-container/) container active.
+It requires Docker or Podman to be installed.
+The default credentials in `tests/playbooks/vars/server.yaml` are sufficient.
+For example, to run all tests against the live Pulp instance:
+
+```
+./tests/run_container.sh make livetest
+```
+
+Or to record test fixtures for the `rpm_repository` test:
+
+```
+./tests/run_container.sh make record_rpm_repository
+```
+
+By default, the container will be stopped and removed when the script exits.
+Set `KEEP_CONTAINER=1` to avoid removing the container to allow for debugging.
+Set `IMAGE_TAG=<tag>` to override the default `latest` tag for the `pulp` image.
 
 ## Licence
 
