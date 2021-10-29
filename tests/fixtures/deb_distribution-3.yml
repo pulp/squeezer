@@ -9,14 +9,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian-testing
+      - localhost:8080
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.6
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/distributions/deb/apt/?limit=1&name=test_deb_distribution
+    uri: http://pulp.example.org/pulp/api/v3/distributions/deb/apt/?limit=1&name=test_deb_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/deb/apt/45ff96c1-a113-4630-9508-d5c884c55f3d/","pulp_created":"2021-07-22T17:18:20.527462Z","base_path":"test_deb_base_path","base_url":"https://pulp3-sandbox-debian-testing.shu.example.com/pulp/content/test_deb_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/940aaa30-ff1f-4c03-8bf1-f12f4792eb78/","pulp_labels":{},"name":"test_deb_distribution","repository":null,"publication":"/pulp/api/v3/publications/deb/apt/08b057ff-1dca-43ca-95bd-32b2c7c1360c/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/deb/apt/6efc5289-1fda-4197-8b52-033367afbdd9/","pulp_created":"2021-11-01T17:16:12.408825Z","base_path":"test_deb_base_path","base_url":"http://localhost:8080/pulp/content/test_deb_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/34186bb5-534d-451f-bb2b-07b30143751a/","pulp_labels":{},"name":"test_deb_distribution","repository":null,"publication":"/pulp/api/v3/publications/deb/apt/ba2c7802-902b-4d8f-ad51-0f35f06c75e9/"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,21 +25,23 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '569'
+      - '538'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 448799cb3b004e278b6315374f873df9
+      - 940625d945c74a0b9ad45f9a76ce5751
       Date:
-      - Thu, 22 Jul 2021 17:18:23 GMT
+      - Mon, 01 Nov 2021 17:16:15 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
       - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK

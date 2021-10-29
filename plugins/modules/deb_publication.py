@@ -26,6 +26,12 @@ options:
       - Version number to be published
     type: int
     required: false
+  mode:
+    description:
+      - Mode to use when publishing.
+    type: str
+    default: simple
+    choices: ["structured", "simple",  "simple_and_structured", "verbatim"]
 extends_documentation_fragment:
   - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
@@ -75,6 +81,7 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpEntityAnsibleModule,
     PulpDebPublication,
     PulpDebRepository,
+    PulpDebVerbatimPublication,
 )
 
 
@@ -83,6 +90,10 @@ def main():
         argument_spec=dict(
             repository=dict(),
             version=dict(type="int"),
+            mode=dict(
+                default="simple",
+                choices=["structured", "simple", "simple_and_structured", "verbatim"],
+            ),
         ),
         required_if=(
             ["state", "present", ["repository"]],
@@ -92,7 +103,15 @@ def main():
 
         repository_name = module.params["repository"]
         version = module.params["version"]
-        desired_attributes = {"simple": True}
+        mode = module.params["mode"]
+
+        if mode == "verbatim":
+            desired_attributes = {}
+        else:
+            desired_attributes = {
+                "simple": "simple" in mode,
+                "structured": "structured" in mode,
+            }
 
         if repository_name:
             repository = PulpDebRepository(module, {"name": repository_name})
@@ -107,8 +126,12 @@ def main():
             natural_key = {"repository_version": repository_version_href}
         else:
             natural_key = {"repository_version": None}
-
-        PulpDebPublication(module, natural_key, desired_attributes).process()
+        if mode == "verbatim":
+            PulpDebVerbatimPublication(
+                module, natural_key, desired_attributes
+            ).process()
+        else:
+            PulpDebPublication(module, natural_key, desired_attributes).process()
 
 
 if __name__ == "__main__":

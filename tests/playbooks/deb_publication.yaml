@@ -56,6 +56,8 @@
         that:
           - result.changed == true
           - result.publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
+          - result.publication.simple
+          - not result.publication.structured
 
     - name: Publish latest version of repository (2nd try)
       pulp.squeezer.deb_publication:
@@ -117,6 +119,81 @@
       assert:
         that:
           - result.changed == false
+
+    - name: Publish latest version of repository in structured mode
+      pulp.squeezer.deb_publication:
+        repository: test_deb_repository
+        mode: structured
+        state: present
+      register: result
+    - name: Verify publish latest version of repository in structured mode
+      assert:
+        that:
+          - result.changed == true
+          - result.publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
+          - not result.publication.simple
+          - result.publication.structured
+
+    - name: Delete publication of latest version of repository
+      pulp.squeezer.deb_publication:
+        repository: test_deb_repository
+        state: absent
+      register: result
+    - name: Verify delete publication of latest version of repository
+      assert:
+        that:
+          - result.changed == true
+          - not result.publication
+
+    - name: Publish latest version of repository in simple and structured mode
+      pulp.squeezer.deb_publication:
+        repository: test_deb_repository
+        mode: simple_and_structured
+        state: present
+      register: result
+    - name: Verify publish latest version of repository in structured mode
+      assert:
+        that:
+          - result.changed == true
+          - result.publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
+          - result.publication.simple
+          - result.publication.structured
+
+    - name: Delete publication of latest version of repository
+      pulp.squeezer.deb_publication:
+        repository: test_deb_repository
+        state: absent
+      register: result
+    - name: Verify delete publication of latest version of repository
+      assert:
+        that:
+          - result.changed == true
+          - not result.publication
+
+    - name: Publish latest version of repository in verbatim mode
+      pulp.squeezer.deb_publication:
+        repository: test_deb_repository
+        mode: verbatim
+        state: present
+      register: result
+    - name: Verify publish latest version of repository in verbatim mode
+      assert:
+        that:
+          - result.changed == true
+          - result.publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
+          - ansible_check_mode or result.publication.pulp_href is match("/pulp/api/v3/publications/deb/verbatim/.*/")
+
+    - name: Delete publication of latest version of repository
+      pulp.squeezer.deb_publication:
+        repository: test_deb_repository
+        mode: verbatim
+        state: absent
+      register: result
+    - name: Verify delete publication of latest version of repository
+      assert:
+        that:
+          - result.changed == true
+          - not result.publication
 
 - hosts: localhost
   gather_facts: false
