@@ -30,8 +30,10 @@ jobs:
             ansible: "stable-2.11"
           - python: "3.7"
             ansible: "stable-2.11"
+            image_tag: "latest"
           - python: "3.9"
             ansible: "devel"
+            image_tag: "nightly"
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -50,8 +52,8 @@ jobs:
       - name: Run basic tests
         run: make test
       - name: Run live tests
-        run: IMAGE_TAG=nightly tests/run_container.sh make livetest
-        if: (matrix.ansible == 'devel') && (matrix.python == '3.8')
+        run: IMAGE_TAG=${{ matrix.image_tag }} tests/run_container.sh make livetest
+        if: ${{ matrix.image_tag }}
 
   sanity:
     runs-on: ubuntu-latest
