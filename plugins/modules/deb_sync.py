@@ -27,6 +27,12 @@ options:
       - Name of the repository
     type: str
     required: true
+  mirror:
+    description:
+      - Whether to synchronise in mirror mode.
+    type: bool
+    required: false
+    default: false
 extends_documentation_fragment:
   - pulp.squeezer.pulp
 author:
@@ -67,6 +73,7 @@ def main():
         argument_spec=dict(
             remote=dict(required=True),
             repository=dict(required=True),
+            mirror=dict(type="bool", default=False),
         ),
     ) as module:
 
@@ -76,7 +83,8 @@ def main():
         repository = PulpDebRepository(module, {"name": module.params["repository"]})
         repository.find(failsafe=False)
 
-        repository.process_sync(remote)
+        parameters = {"mirror": module.params["mirror"]}
+        repository.process_sync(remote, parameters)
 
 
 if __name__ == "__main__":

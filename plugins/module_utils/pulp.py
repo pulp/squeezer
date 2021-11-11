@@ -261,11 +261,14 @@ class PulpEntity(object):
         self.entity = None
         self.module.set_changed()
 
-    def sync(self, remote_href):
+    def sync(self, remote_href, parameters=None):
         if not hasattr(self, "_sync_id"):
             raise SqueezerException("This entity is not syncable.")
+        body = {"remote": remote_href}
+        if parameters:
+            body.update(parameters)
         response = self.module.pulp_api.call(
-            self._sync_id, parameters=self.primary_key, body={"remote": remote_href}
+            self._sync_id, parameters=self.primary_key, body=body
         )
         return PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
 
@@ -302,11 +305,11 @@ class PulpEntity(object):
 
 
 class PulpRepository(PulpEntity):
-    def process_sync(self, remote):
+    def process_sync(self, remote, parameters=None):
         repository_version = self.entity["latest_version_href"]
         # In check_mode, assume nothing changed
         if not self.module.check_mode:
-            sync_task = self.sync(remote.href)
+            sync_task = self.sync(remote.href, parameters)
 
             if sync_task["created_resources"]:
                 self.module.set_changed()
