@@ -163,6 +163,16 @@ class PulpEntity(object):
         search_result = self.module.pulp_api.call(self._list_id, parameters=parameters)
         if search_result["count"] == 1:
             self.entity = search_result["results"][0]
+        elif search_result["count"] > 1:
+            # While we limit to one result, the count may be more than one.
+            # This may happen for models with an insufficient or non-existent "natural key"
+            # e.g. for a publication.
+            raise SqueezerException(
+                "Found multiple matches for {entity_type} ({entity_key}).".format(
+                    entity_type=self._name_singular,
+                    entity_key=self.natural_key,
+                )
+            )
         elif failsafe:
             self.entity = None
         else:
