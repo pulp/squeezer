@@ -9,14 +9,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian-testing
+      - localhost:8080
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.6
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/publications/deb/apt/?limit=20&offset=0
+    uri: http://pulp.example.org/pulp/api/v3/publications/deb/apt/?limit=20&offset=0
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/deb/apt/9b6fca3a-9e4d-4c82-82fd-bd7118018d57/","pulp_created":"2021-07-22T17:18:34.691873Z","repository_version":"/pulp/api/v3/repositories/deb/apt/05a4d75c-2fde-4de8-a171-f8fd07d3134e/versions/1/","repository":"/pulp/api/v3/repositories/deb/apt/05a4d75c-2fde-4de8-a171-f8fd07d3134e/","simple":true,"structured":false,"signing_service":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/deb/apt/c9f439b2-16a5-415c-9db5-ab16df1cf721/","pulp_created":"2021-11-11T17:01:47.908286Z","repository_version":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/1/","repository":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/","simple":true,"structured":false,"signing_service":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -29,17 +29,19 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 4dfc353ab4b844e2bfcb4d4c2b2c7afb
+      - 89cb54ef3b714ad7ae9d0b89838a272f
       Date:
-      - Thu, 22 Jul 2021 17:18:39 GMT
+      - Thu, 11 Nov 2021 17:01:52 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
       - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK

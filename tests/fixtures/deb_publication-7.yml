@@ -13,12 +13,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.6
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/contentguards/certguard/x509/?limit=1&name=test_content_guard
+    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?limit=1&name=test_deb_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/contentguards/certguard/x509/34186bb5-534d-451f-bb2b-07b30143751a/","pulp_created":"2021-11-01T17:16:08.841758Z","name":"test_content_guard","description":null,"ca_certificate":"-----BEGIN
-        CERTIFICATE-----\nMIICrTCCAZUCFAp0n3Mrg78x+8rAn8x1EGxVhKYrMA0GCSqGSIb3DQEBBQUAMBMx\nETAPBgNVBAMMCHNuYWtlb2lsMB4XDTIwMDcyMjE5MDUwNFoXDTIwMDgyMTE5MDUw\nNFowEzERMA8GA1UEAwwIc25ha2VvaWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\nggEKAoIBAQDKIwKvUax3A/5dODykWzJm0RWjnQAcxfuLbaZcPVDEo/Q8lBkaLEDl\nURAm8e9/uLJjcMyjl2LLlsJYOlcqbjNSwf/5D693IcTRO53C1xWvZ+IGGokweY0m\n8G3SFf5BKmji1OmT8l7iA35Wg0ist/QemQIaSV+n0B/yArdbkfcedPoiudzLOmx6\nEwSCdu9Xl4g29zLzBOWCHuZ0ghNbSWu0cQbkm1syM993BIH31bKdjImUTVg1HlqV\nxi1Y9EVQ3fFE/00DYsgANvSHa3YZsLCgl6gzab5repKP96vjX34JsZi1ayJXXYBz\ncjQPG0e9gpoqHROmKNJj+Up7lySrmSuLAgMBAAEwDQYJKoZIhvcNAQEFBQADggEB\nAI7zqZRPIWdbPWUKFZJNF6GsaBpLR0RkgukPo7vOF5WhOwez2fL+gsh5cffmcTyX\nEOkE53mHkI8z0yg+GtfOqv4GsUJe3VquoFvNYXAVZNGP/p6FFnihIymGbRFHGZSP\ns7g0yVwuI65VkaROtE7YI1pp7y8dPpvkQqAiZvUCC8cYIwYxavZLArVoRiilXz/f\nfuJoP99TyE3mRbLYamvrGDqLGMO8I4JAfgUbaiEEj5nJsUxWkhliSvWPjXuvytsy\nRlL+GSgPFNqTQ1eLKb4boTgM84ngSMeT47BZn2nipFg78ChwU8GOJ7G3sPYjKhIp\nRyEremCPzDNgO6asTRhn9ro=\n-----END
-        CERTIFICATE-----"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/","pulp_created":"2021-11-11T17:01:38.514044Z","versions_href":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/1/","name":"test_deb_repository","description":null,"retain_repo_versions":null,"remote":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -27,13 +25,13 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '1263'
+      - '497'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 75cbf03094c64cec9661476336bbeaf2
+      - 7caeafab3c7943c2a835a988982ce688
       Date:
-      - Mon, 01 Nov 2021 17:16:11 GMT
+      - Thu, 11 Nov 2021 17:01:55 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -61,7 +59,7 @@ interactions:
       User-Agent:
       - Python-urllib/3.6
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/deb/apt/?limit=1&name=test_deb_distribution
+    uri: http://pulp.example.org/pulp/api/v3/publications/deb/apt/?limit=1&repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Fdeb%2Fapt%2Fc4e6b292-0592-4c14-abec-4246bee500c8%2Fversions%2F1%2F
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -77,9 +75,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 8996d78d1b174e4a8aaea81c7db1f74d
+      - fc2d1d7ccda447db8582ce1d1bedd59e
       Date:
-      - Mon, 01 Nov 2021 17:16:11 GMT
+      - Thu, 11 Nov 2021 17:01:55 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -94,16 +92,15 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"name": "test_deb_distribution", "base_path": "test_deb_base_path", "publication":
-      "/pulp/api/v3/publications/deb/apt/ba2c7802-902b-4d8f-ad51-0f35f06c75e9/", "content_guard":
-      "/pulp/api/v3/contentguards/certguard/x509/34186bb5-534d-451f-bb2b-07b30143751a/"}'
+    body: '{"repository_version": "/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/1/",
+      "simple": false, "structured": true}'
     headers:
       Accept:
       - application/json
       Connection:
       - close
       Content-Length:
-      - 258
+      - 145
       Content-Type:
       - application/json
       Host:
@@ -111,10 +108,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.6
     method: POST
-    uri: http://pulp.example.org/pulp/api/v3/distributions/deb/apt/
+    uri: http://pulp.example.org/pulp/api/v3/publications/deb/apt/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/b9a0dfd2-0690-427d-b0a1-ed4d24a86c98/"}'
+      string: '{"task":"/pulp/api/v3/tasks/b654d917-f3d6-4676-8c50-546dc5b6db93/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -127,9 +124,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 7991f1bbaa774c669386f966bed15fd8
+      - 7b10f05cba5a4e778ecaaa7218701d5d
       Date:
-      - Mon, 01 Nov 2021 17:16:12 GMT
+      - Thu, 11 Nov 2021 17:01:55 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -157,10 +154,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.6
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/b9a0dfd2-0690-427d-b0a1-ed4d24a86c98/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/b654d917-f3d6-4676-8c50-546dc5b6db93/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/b9a0dfd2-0690-427d-b0a1-ed4d24a86c98/","pulp_created":"2021-11-01T17:16:12.145761Z","state":"running","name":"pulpcore.app.tasks.base.general_create","logging_cid":"7991f1bbaa774c669386f966bed15fd8","started_at":"2021-11-01T17:16:12.191599Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/9d0d58fb-1331-4511-95d2-6e7d04af740e/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/b654d917-f3d6-4676-8c50-546dc5b6db93/","pulp_created":"2021-11-11T17:01:55.817377Z","state":"running","name":"pulp_deb.app.tasks.publishing.publish","logging_cid":"7b10f05cba5a4e778ecaaa7218701d5d","started_at":"2021-11-11T17:01:55.862215Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/26062a0e-7f1d-4b10-ba5d-7000c3328999/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[null],"reserved_resources_record":["shared:/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -169,13 +166,13 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '531'
+      - '590'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 56750ec32c2e416e80692afc6760a0de
+      - 509de45c9afd4f7d94bc508577147861
       Date:
-      - Mon, 01 Nov 2021 17:16:12 GMT
+      - Thu, 11 Nov 2021 17:01:56 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -203,10 +200,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.6
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/b9a0dfd2-0690-427d-b0a1-ed4d24a86c98/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/b654d917-f3d6-4676-8c50-546dc5b6db93/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/b9a0dfd2-0690-427d-b0a1-ed4d24a86c98/","pulp_created":"2021-11-01T17:16:12.145761Z","state":"completed","name":"pulpcore.app.tasks.base.general_create","logging_cid":"7991f1bbaa774c669386f966bed15fd8","started_at":"2021-11-01T17:16:12.191599Z","finished_at":"2021-11-01T17:16:12.431749Z","error":null,"worker":"/pulp/api/v3/workers/9d0d58fb-1331-4511-95d2-6e7d04af740e/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/distributions/deb/apt/6efc5289-1fda-4197-8b52-033367afbdd9/"],"reserved_resources_record":["/api/v3/distributions/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/b654d917-f3d6-4676-8c50-546dc5b6db93/","pulp_created":"2021-11-11T17:01:55.817377Z","state":"completed","name":"pulp_deb.app.tasks.publishing.publish","logging_cid":"7b10f05cba5a4e778ecaaa7218701d5d","started_at":"2021-11-11T17:01:55.862215Z","finished_at":"2021-11-11T17:01:56.624225Z","error":null,"worker":"/pulp/api/v3/workers/26062a0e-7f1d-4b10-ba5d-7000c3328999/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/publications/deb/apt/4250d1b1-0fc5-44ac-88fd-840c5616d95d/"],"reserved_resources_record":["shared:/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -215,13 +212,13 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '632'
+      - '686'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 578b6fcc52be4f3abeb6ef682464cbe0
+      - 2781376265b14278a46c19a08533733f
       Date:
-      - Mon, 01 Nov 2021 17:16:14 GMT
+      - Thu, 11 Nov 2021 17:01:58 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -249,25 +246,25 @@ interactions:
       User-Agent:
       - Python-urllib/3.6
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/deb/apt/6efc5289-1fda-4197-8b52-033367afbdd9/
+    uri: http://pulp.example.org/pulp/api/v3/publications/deb/apt/4250d1b1-0fc5-44ac-88fd-840c5616d95d/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/distributions/deb/apt/6efc5289-1fda-4197-8b52-033367afbdd9/","pulp_created":"2021-11-01T17:16:12.408825Z","base_path":"test_deb_base_path","base_url":"http://localhost:8080/pulp/content/test_deb_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/34186bb5-534d-451f-bb2b-07b30143751a/","pulp_labels":{},"name":"test_deb_distribution","repository":null,"publication":"/pulp/api/v3/publications/deb/apt/ba2c7802-902b-4d8f-ad51-0f35f06c75e9/"}'
+      string: '{"pulp_href":"/pulp/api/v3/publications/deb/apt/4250d1b1-0fc5-44ac-88fd-840c5616d95d/","pulp_created":"2021-11-11T17:01:55.884089Z","repository_version":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/1/","repository":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/","simple":false,"structured":true,"signing_service":null}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
-      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      - GET, DELETE, HEAD, OPTIONS
       Connection:
       - close
       Content-Length:
-      - '486'
+      - '381'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 009bb6759a714253852c5ee78c3f09ab
+      - 6b109dfdf19041a9a57385c166aabecc
       Date:
-      - Mon, 01 Nov 2021 17:16:14 GMT
+      - Thu, 11 Nov 2021 17:01:58 GMT
       Referrer-Policy:
       - same-origin
       Server:

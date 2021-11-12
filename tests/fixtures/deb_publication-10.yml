@@ -29,9 +29,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 97f37db202be43409f7b95ea72d410de
+      - 9e51c133e981410bb87590a5b48ffcec
       Date:
-      - Thu, 11 Nov 2021 17:01:51 GMT
+      - Thu, 11 Nov 2021 17:02:03 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -62,7 +62,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/publications/deb/apt/?limit=1&repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Fdeb%2Fapt%2Fc4e6b292-0592-4c14-abec-4246bee500c8%2Fversions%2F1%2F
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/deb/apt/c9f439b2-16a5-415c-9db5-ab16df1cf721/","pulp_created":"2021-11-11T17:01:47.908286Z","repository_version":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/1/","repository":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/","simple":true,"structured":false,"signing_service":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/deb/apt/41b8559c-a083-49ac-af3e-4ecb367db8b6/","pulp_created":"2021-11-11T17:02:00.348280Z","repository_version":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/1/","repository":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/","simple":true,"structured":true,"signing_service":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -71,13 +71,13 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '433'
+      - '432'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 138708ed4afa4f409e74c8d5ea059fc9
+      - 521f2e47d22d46b2b3d4aed35604dd36
       Date:
-      - Thu, 11 Nov 2021 17:01:51 GMT
+      - Thu, 11 Nov 2021 17:02:03 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -91,4 +91,48 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:8080
+      User-Agent:
+      - Python-urllib/3.6
+    method: DELETE
+    uri: http://pulp.example.org/pulp/api/v3/publications/deb/apt/41b8559c-a083-49ac-af3e-4ecb367db8b6/
+  response:
+    body:
+      string: ''
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '0'
+      Correlation-ID:
+      - 40336f37523b4dccb718d7c0d3ee524e
+      Date:
+      - Thu, 11 Nov 2021 17:02:03 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 204
+      message: No Content
 version: 1

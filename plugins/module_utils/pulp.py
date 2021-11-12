@@ -730,6 +730,17 @@ class PulpDebPublication(PulpEntity):
         )
 
 
+class PulpDebVerbatimPublication(PulpEntity):
+    _href = "deb_verbatim_publication_href"
+    _list_id = "publications_deb_verbatim_list"
+    _read_id = "publications_deb_verbatim_read"
+    _create_id = "publications_deb_verbatim_create"
+    _delete_id = "publications_deb_verbatim_delete"
+
+    _name_singular = "publication"
+    _name_plural = "publications"
+
+
 class PulpDebRemote(PulpRemote):
     _list_id = "remotes_deb_apt_list"
     _read_id = "remotes_deb_apt_read"
