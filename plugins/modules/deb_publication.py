@@ -31,7 +31,7 @@ options:
       - Mode to use when publishing.
     type: str
     default: simple
-    choices: ["structured", "simple",  "simple_and_structured", "verbatim"]
+    choices: ["structured", "simple", "simple_and_structured", "verbatim"]
 extends_documentation_fragment:
   - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
