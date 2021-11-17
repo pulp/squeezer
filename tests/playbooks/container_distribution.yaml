@@ -73,6 +73,7 @@
           - ansible_check_mode or result.distribution.registry_path is regex(".*/test_container_base_path")
           - result.distribution.repository == repository_result.repository.pulp_href
           - ansible_check_mode or result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
+          - ansible_check_mode or not result.distribution.private
 
     - name: Distribute repository (2nd try)
       pulp.squeezer.container_distribution:
@@ -99,6 +100,26 @@
           - ansible_check_mode or result.distribution.registry_path is regex(".*/test_container_base_path")
           - result.distribution.repository == repository_result.repository.pulp_href
           - ansible_check_mode or result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
+          - ansible_check_mode or not result.distribution.private
+
+    - name: Update distribution to private
+      pulp.squeezer.container_distribution:
+        name: test_container_distribution
+        base_path: test_container_base_path
+        repository: test_container_repository
+        private: true
+        state: present
+      register: result
+    - name: Verify distribution of repository
+      assert:
+        that:
+          - result.changed == true
+          - result.distribution.name == "test_container_distribution"
+          - result.distribution.base_path == "test_container_base_path"
+          - ansible_check_mode or result.distribution.registry_path is regex(".*/test_container_base_path")
+          - result.distribution.repository == repository_result.repository.pulp_href
+          - ansible_check_mode or result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
+          - result.distribution.private
 
     - name: Delete distribution
       pulp.squeezer.container_distribution:
