@@ -16,7 +16,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/distributions/container/container/?limit=1&name=test_container_distribution
   response:
     body:
-      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_created":"2021-11-17T13:37:14.379204Z","name":"test_container_distribution","repository":"/pulp/api/v3/repositories/container/container/86c98678-4941-4e3e-a55a-a0c399569f2f/","base_path":"test_container_base_path","content_guard":"/pulp/api/v3/contentguards/container/content_redirect/03a977ad-4929-401b-bc06-984731719177/","pulp_href":"/pulp/api/v3/distributions/container/container/3631d08a-515f-4f04-93f3-a5138ae13f52/","pulp_labels":{},"repository_version":null,"registry_path":"localhost:8080/test_container_base_path","namespace":"/pulp/api/v3/pulp_container/namespaces/9dd164c5-72ab-46d4-bb4c-48ff4c83f968/","private":true,"description":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,13 +25,105 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '52'
+      - '708'
       Content-Type:
       - application/json
       Correlation-ID:
-      - b2d04e46adc941da94505f14867950d7
+      - 5236a7193223465c9872ddb5ddafc34b
       Date:
-      - Wed, 06 Oct 2021 08:40:12 GMT
+      - Wed, 17 Nov 2021 13:37:20 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:8080
+      User-Agent:
+      - Python-urllib/3.6
+    method: DELETE
+    uri: http://pulp.example.org/pulp/api/v3/distributions/container/container/3631d08a-515f-4f04-93f3-a5138ae13f52/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/5d4a16c1-4fd0-40a1-ba08-03da68eb5b6f/"}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 3af8d3e767164471b40afadb3d36707a
+      Date:
+      - Wed, 17 Nov 2021 13:37:21 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:8080
+      User-Agent:
+      - Python-urllib/3.6
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/5d4a16c1-4fd0-40a1-ba08-03da68eb5b6f/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/5d4a16c1-4fd0-40a1-ba08-03da68eb5b6f/","pulp_created":"2021-11-17T13:37:21.080834Z","state":"completed","name":"pulp_container.app.tasks.base.general_multi_delete","logging_cid":"3af8d3e767164471b40afadb3d36707a","started_at":"2021-11-17T13:37:21.121611Z","finished_at":"2021-11-17T13:37:21.154955Z","error":null,"worker":"/pulp/api/v3/workers/fe13ce79-d3a2-4593-8d70-a3bd7f1e36b8/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/distributions/container/container/3631d08a-515f-4f04-93f3-a5138ae13f52/"]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '632'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 5ee178c874ef41ea8e601af18b0dd3af
+      Date:
+      - Wed, 17 Nov 2021 13:37:21 GMT
       Referrer-Policy:
       - same-origin
       Server:

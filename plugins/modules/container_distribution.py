@@ -43,6 +43,11 @@ options:
       - "Warning: This feature is not yet supported."
     type: str
     required: false
+  private:
+    description:
+      - Whether to make the distribution private.
+    type: bool
+    required: false
 extends_documentation_fragment:
   - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
@@ -109,6 +114,7 @@ def main():
             repository=dict(),
             version=dict(type="int"),
             content_guard=dict(),
+            private=dict(type="bool"),
         ),
         required_if=[
             ("state", "present", ["name", "base_path"]),
@@ -119,11 +125,12 @@ def main():
         repository_name = module.params["repository"]
         version = module.params["version"]
         content_guard_name = module.params["content_guard"]
+        private = module.params["private"]
 
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
             key: module.params[key]
-            for key in ["base_path"]
+            for key in ["base_path", "private"]
             if module.params[key] is not None
         }
 
