@@ -64,6 +64,10 @@
         tls_validation: false
         ca_cert: "abcd"
         client_cert: "efgh"
+        exclude_tags:
+          - "foo"
+        include_tags:
+          - "bar"
         state: present
       register: result
     - name: Verify modify remote
@@ -74,6 +78,8 @@
           - result.remote.tls_validation == false
           - result.remote.ca_cert == "abcd"
           - result.remote.client_cert == "efgh"
+          - result.remote.exclude_tags == ["foo"]
+          - result.remote.include_tags == ["bar"]
 
     - name: Modify remote (2nd try)
       pulp.squeezer.container_remote:
@@ -83,6 +89,10 @@
         tls_validation: false
         ca_cert: "abcd"
         client_cert: "efgh"
+        exclude_tags:
+          - "foo"
+        include_tags:
+          - "bar"
         state: present
       register: result
     - name: Verify modify remote (2nd try)

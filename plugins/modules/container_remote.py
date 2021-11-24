@@ -28,6 +28,16 @@ options:
     description:
       - Name of the upstream repository
     type: str
+  exclude_tags:
+    description:
+      - A list of tags to exclude during sync
+    type: list
+    elements: str
+  include_tags:
+    description:
+      - A list of tags to include during sync
+    type: list
+    elements: str
 extends_documentation_fragment:
   - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
@@ -85,6 +95,8 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 def main():
     with PulpRemoteAnsibleModule(
         argument_spec=dict(
+            exclude_tags=dict(type="list", elements="str"),
+            include_tags=dict(type="list", elements="str"),
             policy=dict(choices=["immediate", "on_demand", "streamed"]),
             upstream_name=dict(),
         ),
@@ -99,6 +111,8 @@ def main():
             key: module.params[key]
             for key in [
                 "url",
+                "exclude_tags",
+                "include_tags",
                 "download_concurrency",
                 "policy",
                 "tls_validation",

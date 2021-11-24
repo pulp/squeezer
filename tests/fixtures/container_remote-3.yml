@@ -16,7 +16,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/remotes/container/container/?limit=1&name=test_container_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/container/container/dda84941-07c2-454a-a1a1-5fa4f2fc9638/","pulp_created":"2021-10-06T08:37:26.226198Z","name":"test_container_remote","url":"https://registry-1.docker.io","ca_cert":"abcd","client_cert":"efgh","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-10-06T08:37:27.629461Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"upstream_name":"test_container_remote","include_tags":null,"exclude_tags":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/container/container/c57f796d-3310-474b-b919-8afd0886c9d3/","pulp_created":"2021-11-23T14:29:27.347137Z","name":"test_container_remote","url":"https://registry-1.docker.io","ca_cert":"abcd","client_cert":"efgh","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-11-23T14:29:28.817608Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"upstream_name":"test_container_remote","include_tags":["bar"],"exclude_tags":["foo"]}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,13 +25,13 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '701'
+      - '707'
       Content-Type:
       - application/json
       Correlation-ID:
-      - cee91a7998084562acb0738dbc8b83b3
+      - 080118e38224440dbae9826a6abef1bf
       Date:
-      - Wed, 06 Oct 2021 08:37:28 GMT
+      - Tue, 23 Nov 2021 14:29:29 GMT
       Referrer-Policy:
       - same-origin
       Server:
