@@ -5,3 +5,4 @@ __pycache__/
 /tests/playbooks/vars/server.yaml
 /tests/settings/certs/
 /build/
+importer_result.json
