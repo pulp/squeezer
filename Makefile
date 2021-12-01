@@ -41,6 +41,7 @@ lint: $(MANIFEST) | tests/playbooks/vars/server.yaml
 	yamllint -f parsable tests/playbooks
 	ansible-playbook --syntax-check tests/playbooks/*.yaml | grep -v '^$$'
 	black . --diff --check
+	GALAXY_IMPORTER_CONFIG=tests/galaxy-importer.cfg python -m galaxy_importer.main $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
 	@echo "🙊 Code 🙉 LGTM 🙈"
 
 sanity: $(MANIFEST) | tests/playbooks/vars/server.yaml
