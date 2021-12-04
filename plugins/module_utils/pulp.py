@@ -29,6 +29,21 @@ class SqueezerException(Exception):
     pass
 
 
+def pulp_parse_version(version_str):
+    """Return a version string as a list of ints or strings."""
+    # Examples:
+    # "1.2.3" -> [1, 2, 3]
+    # "1.2.3-dev" -> [1, 2, 3, "dev"]
+
+    def try_convert_int(i):
+        try:
+            return int(i)
+        except ValueError:
+            return i
+
+    return [try_convert_int(i) for i in re.split(r"[\.\-]", version_str)]
+
+
 class PulpAnsibleModule(AnsibleModule):
     def __init__(self, **kwargs):
         argument_spec = dict(

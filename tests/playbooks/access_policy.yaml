@@ -92,6 +92,6 @@
       pulp.squeezer.access_policy:
         viewset_name: tasks
         statements: "{{ saved_access_policy.access_policy.statements }}"
-        permissions_assignment: "{{ saved_access_policy.access_policy.permissions_assignment }}"
+        creation_hooks: "{{ saved_access_policy.access_policy.creation_hooks | default(saved_access_policy.access_policy.permissions_assignment | default(omit)) }}"
         state: present
 ...

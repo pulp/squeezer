@@ -47,9 +47,11 @@ options:
           - allow
           - deny
         type: str
-  permissions_assignment:
+  creation_hooks:
     description:
-      - Rules describing the permissions for new resources
+      - Hooks to be called on object creation
+    aliases:
+      - permissions_assignment
     type: list
     elements: dict
     suboptions:
@@ -63,7 +65,7 @@ options:
         type: raw
       permissions:
         description: List of permissions to assign to a principal
-        required: true
+        required: false
         type: list
         elements: str
 extends_documentation_fragment:
@@ -121,6 +123,7 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+    pulp_parse_version,
     PulpEntityAnsibleModule,
     PulpAccessPolicy,
 )
@@ -140,14 +143,15 @@ def main():
                     effect=dict(required=True, choices=["allow", "deny"]),
                 ),
             ),
-            permissions_assignment=dict(
+            creation_hooks=dict(
                 type="list",
                 elements="dict",
                 options=dict(
                     function=dict(required=True),
                     parameters=dict(required=True, type="raw"),
-                    permissions=dict(required=True, type="list", elements="str"),
+                    permissions=dict(type="list", elements="str"),
                 ),
+                aliases=["permissions_assignment"],
             ),
             state=dict(choices=["present"]),
         ),
@@ -157,13 +161,25 @@ def main():
         natural_key = {"viewset_name": module.params["viewset_name"]}
         desired_attributes = {
             key: module.params[key]
-            for key in ["statements", "permissions_assignment"]
+            for key in ["statements", "creation_hooks"]
             if module.params[key] is not None
         }
         if "statements" in desired_attributes:
             for statement in desired_attributes["statements"]:
                 if statement["condition"] is None:
                     del statement["condition"]
+
+        # Workaround for rename "permissions_assignment" -> "creation_hooks"
+        core_version = (
+            module.pulp_api.api_spec.get("info", {})
+            .get("x-pulp-app-versions", {})
+            .get("core", ())
+        )
+        if pulp_parse_version(core_version) < pulp_parse_version("3.17.0"):
+            if "creation_hooks" in desired_attributes:
+                desired_attributes["permissions_assignment"] = desired_attributes.pop(
+                    "creation_hooks"
+                )
 
         PulpAccessPolicy(module, natural_key, desired_attributes).process()
 
