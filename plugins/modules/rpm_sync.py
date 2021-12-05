@@ -64,29 +64,13 @@ RETURN = r"""
 """
 
 
-import re
-
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+    pulp_parse_version,
     PulpAnsibleModule,
     PulpRpmRemote,
     PulpRpmRepository,
     SqueezerException,
 )
-
-
-def _parse_version(version_str):
-    """Return a version string as a list of ints or strings."""
-    # Examples:
-    # "1.2.3" -> [1, 2, 3]
-    # "1.2.3-dev" -> [1, 2, 3, "dev"]
-
-    def try_convert_int(i):
-        try:
-            return int(i)
-        except ValueError:
-            return i
-
-    return [try_convert_int(i) for i in re.split(r"[\.\-]", version_str)]
 
 
 def main():
@@ -115,7 +99,7 @@ def main():
             .get("x-pulp-app-versions", {})
             .get("rpm", ())
         )
-        if _parse_version(rpm_version) >= _parse_version("3.16.0"):
+        if pulp_parse_version(rpm_version) >= pulp_parse_version("3.16.0"):
             parameters = {"sync_policy": module.params["sync_policy"]}
         elif module.params["sync_policy"] == "mirror_content_only":
             raise SqueezerException(
