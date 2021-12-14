@@ -42,7 +42,6 @@ if "PULP_LOGGING" in os.environ:
         else:
             yield
 
-
 else:
 
     @pytest.fixture
