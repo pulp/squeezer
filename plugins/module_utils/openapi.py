@@ -27,7 +27,6 @@ if six.PY2:
             if not (exist_ok and exc.errno == errno.EEXIST and os.path.isdir(path)):
                 raise
 
-
 else:
     makedirs = os.makedirs
 
