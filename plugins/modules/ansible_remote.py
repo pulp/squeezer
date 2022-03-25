@@ -45,7 +45,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of ansible remotes from pulp api server
-  ansible_remote:
+  pulp.squeezer.ansible_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -53,8 +53,9 @@ EXAMPLES = r"""
 - name: Report pulp ansible remotes
   debug:
     var: remote_status
+
 - name: Create a ansible role remote
-  ansible_remote:
+  pulp.squeezer.ansible_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -62,8 +63,9 @@ EXAMPLES = r"""
     name: new_ansible_remote
     url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
     state: present
+
 - name: Create a ansible collection remote
-  ansible_remote:
+  pulp.squeezer.ansible_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -73,8 +75,9 @@ EXAMPLES = r"""
     collections:
       - testing.ansible_testing_content
     state: present
+
 - name: Delete a ansible remote
-  ansible_remote:
+  pulp.squeezer.ansible_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

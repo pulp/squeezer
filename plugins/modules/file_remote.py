@@ -34,7 +34,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of file remotes from pulp api server
-  file_remote:
+  pulp.squeezer.file_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -42,16 +42,18 @@ EXAMPLES = r"""
 - name: Report pulp file remotes
   debug:
     var: remote_status
+
 - name: Create a file remote
-  file_remote:
+  pulp.squeezer.file_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_file_remote
     url: http://localhost/pub/file/pulp_manifest
     state: present
+
 - name: Delete a file remote
-  file_remote:
+  pulp.squeezer.file_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

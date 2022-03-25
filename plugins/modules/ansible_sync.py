@@ -43,7 +43,7 @@ author:
 
 EXAMPLES = r"""
 - name: Sync ansible remote into repository
-  ansible_sync:
+  pulp.squeezer.ansible_sync:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

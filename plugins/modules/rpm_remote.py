@@ -34,7 +34,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of rpm remotes from pulp api server
-  rpm_remote:
+  pulp.squeezer.rpm_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -42,16 +42,18 @@ EXAMPLES = r"""
 - name: Report pulp rpm remotes
   debug:
     var: remote_status
+
 - name: Create a rpm remote
-  rpm_remote:
+  pulp.squeezer.rpm_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_rpm_remote
     url: https://example.org/centos/8/BaseOS/x86_64/os/
     state: present
+
 - name: Delete a rpm remote
-  rpm_remote:
+  pulp.squeezer.rpm_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

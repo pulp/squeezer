@@ -40,7 +40,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of file publications from pulp api server
-  file_publication:
+  pulp.squeezer.file_publication:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -48,15 +48,17 @@ EXAMPLES = r"""
 - name: Report pulp file publications
   debug:
     var: publication_status
+
 - name: Create a file publication
-  file_publication:
+  pulp.squeezer.file_publication:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
     repository: my_file_repo
     state: present
+
 - name: Delete a file publication
-  file_publication:
+  pulp.squeezer.file_publication:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

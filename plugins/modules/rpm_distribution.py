@@ -46,7 +46,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of rpm distributions
-  rpm_distribution:
+  pulp.squeezer.rpm_distribution:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -56,7 +56,7 @@ EXAMPLES = r"""
     var: distribution_status
 
 - name: Create a rpm distribution
-  rpm_distribution:
+  pulp.squeezer.rpm_distribution:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -66,7 +66,7 @@ EXAMPLES = r"""
     state: present
 
 - name: Delete a rpm distribution
-  rpm_distribution:
+  pulp.squeezer.rpm_distribution:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

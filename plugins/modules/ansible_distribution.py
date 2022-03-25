@@ -52,7 +52,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of ansible distributions from pulp api server
-  ansible_distribution:
+  pulp.squeezer.ansible_distribution:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -62,7 +62,7 @@ EXAMPLES = r"""
     var: distribution_status
 
 - name: Create an ansible distribution
-  ansible_distribution:
+  pulp.squeezer.ansible_distribution:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -72,7 +72,7 @@ EXAMPLES = r"""
     state: present
 
 - name: Delete an ansible distribution
-  ansible_distribution:
+  pulp.squeezer.ansible_distribution:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

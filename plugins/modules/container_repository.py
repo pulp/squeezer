@@ -33,7 +33,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of container repositories from pulp api server
-  container_repository:
+  pulp.squeezer.container_repository:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -41,16 +41,18 @@ EXAMPLES = r"""
 - name: Report pulp container repositories
   debug:
     var: repo_status
+
 - name: Create a container repository
-  container_repository:
+  pulp.squeezer.container_repository:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_repo
     description: A brand new repository with a description
     state: present
+
 - name: Delete a container repository
-  container_repository:
+  pulp.squeezer.container_repository:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

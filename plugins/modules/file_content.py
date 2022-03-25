@@ -35,7 +35,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of file content units from pulp api server
-  file_content:
+  pulp.squeezer.file_content:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -43,8 +43,9 @@ EXAMPLES = r"""
 - name: Report pulp file content units
   debug:
     var: content_status
+
 - name: Create a file content unit
-  file_content:
+  pulp.squeezer.file_content:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

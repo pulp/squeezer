@@ -48,7 +48,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of container remotes from pulp api server
-  container_remote:
+  pulp.squeezer.container_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -56,8 +56,9 @@ EXAMPLES = r"""
 - name: Report pulp container remotes
   debug:
     var: remote_status
+
 - name: Create a container remote
-  container_remote:
+  pulp.squeezer.container_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -65,8 +66,9 @@ EXAMPLES = r"""
     upstream_name: new_container_remote
     url: https://example.org/centos/8/BaseOS/x86_64/os/
     state: present
+
 - name: Delete a container remote
-  container_remote:
+  pulp.squeezer.container_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

@@ -41,7 +41,7 @@ author:
 
 EXAMPLES = r"""
 - name: Sync deb remote into repository
-  deb_sync:
+  pulp.squeezer.deb_sync:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

@@ -35,7 +35,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of rpm publications
-  rpm_publication:
+  pulp.squeezer.rpm_publication:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -43,15 +43,17 @@ EXAMPLES = r"""
 - name: Report pulp rpm publications
   debug:
     var: publication_status
+
 - name: Create a rpm publication
-  rpm_publication:
+  pulp.squeezer.rpm_publication:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
     repository: my_rpm_repo
     state: present
+
 - name: Delete a rpm publication
-  rpm_publication:
+  pulp.squeezer.rpm_publication:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
