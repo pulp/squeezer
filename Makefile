@@ -10,7 +10,6 @@ $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(eval _$(PLUGIN_TYPE) := $(filter-out %__
 DEPENDENCIES := $(METADATA) $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(_$(PLUGIN_TYPE))) $(foreach ROLE,$(ROLES),$(wildcard $(ROLE)/*/*)) $(foreach ROLE,$(ROLES),$(ROLE)/README.md)
 
 PYTHON_VERSION = $(shell python -c 'import sys; print("{}.{}".format(sys.version_info.major, sys.version_info.minor))')
-COLLECTION_COMMAND ?= ansible-galaxy
 SANITY_OPTS =
 TEST =
 PYTEST = pytest -n 4 --boxed -v
@@ -76,25 +75,13 @@ tests/playbooks/vars/server.yaml:
 	@echo "For recording, please adjust $@ to match your reference server."
 
 $(MANIFEST): $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
-ifeq ($(COLLECTION_COMMAND),mazer)
-	# No idea, why this fails. But mazer is old and deprecated so unlikely to beeing fixed...
-	# mazer install --collections-path build/collections $<
-	-mkdir build/collections build/collections/ansible_collections build/collections/ansible_collections/$(NAMESPACE) build/collections/ansible_collections/$(NAMESPACE)/$(NAME)
-	tar xf $< -C build/collections/ansible_collections/$(NAMESPACE)/$(NAME)
-else
 	ansible-galaxy collection install -p build/collections $< --force
-endif
 
 build/src/%: %
 	install -m 644 -DT $< $@
 
 $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz: $(addprefix build/src/,$(DEPENDENCIES))
-ifeq ($(COLLECTION_COMMAND),mazer)
-	mazer build --collection-path=build/src
-	cp build/src/releases/$@ .
-else
 	ansible-galaxy collection build build/src --force
-endif
 
 dist: $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
 
