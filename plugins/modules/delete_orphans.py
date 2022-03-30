@@ -24,7 +24,7 @@ author:
 
 EXAMPLES = r"""
 - name: Delete orphans
-  delete_orphans:
+  pulp.squeezer.delete_orphans:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

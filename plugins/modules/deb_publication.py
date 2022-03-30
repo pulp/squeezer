@@ -41,7 +41,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of deb publications
-  deb_publication:
+  pulp.squeezer.deb_publication:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -49,15 +49,17 @@ EXAMPLES = r"""
 - name: Report pulp deb publications
   debug:
     var: publication_status
+
 - name: Create a deb publication
-  deb_publication:
+  pulp.squeezer.deb_publication:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
     repository: my_deb_repo
     state: present
+
 - name: Delete a deb publication
-  deb_publication:
+  pulp.squeezer.deb_publication:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

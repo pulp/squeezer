@@ -44,7 +44,7 @@ author:
 
 EXAMPLES = r"""
 - name: Sync rpm remote into repository
-  rpm_sync:
+  pulp.squeezer.rpm_sync:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

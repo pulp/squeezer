@@ -46,7 +46,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of file distributions from pulp api server
-  file_distribution:
+  pulp.squeezer.file_distribution:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -56,7 +56,7 @@ EXAMPLES = r"""
     var: distribution_status
 
 - name: Create a file distribution
-  file_distribution:
+  pulp.squeezer.file_distribution:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -64,8 +64,9 @@ EXAMPLES = r"""
     base_path: new/file/dist
     publication: /pub/api/v3/publications/file/file/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/
     state: present
+
 - name: Delete a file distribution
-  file_distribution:
+  pulp.squeezer.file_distribution:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

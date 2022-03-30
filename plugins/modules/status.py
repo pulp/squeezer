@@ -24,7 +24,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read status from pulp api server
-  status:
+  pulp.squeezer.status:
     pulp_url: localhost:24817
     username: admin
     password: password

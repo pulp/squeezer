@@ -46,7 +46,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of deb remotes from pulp api server
-  deb_remote:
+  pulp.squeezer.deb_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -54,8 +54,9 @@ EXAMPLES = r"""
 - name: Report pulp deb remotes
   debug:
     var: remote_status
+
 - name: Create a deb remote
-  deb_remote:
+  pulp.squeezer.deb_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -65,8 +66,9 @@ EXAMPLES = r"""
     components: 'main contrib non-free'
     distributions: buster
     state: present
+
 - name: Delete a deb remote
-  deb_remote:
+  pulp.squeezer.deb_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

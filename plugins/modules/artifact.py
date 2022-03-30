@@ -34,7 +34,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of artifacts from pulp server
-  artifact:
+  pulp.squeezer.artifact:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -42,22 +42,25 @@ EXAMPLES = r"""
 - name: Report pulp artifacts
   debug:
     var: artifact_status
+
 - name: Upload a file
-  artifact:
+  pulp.squeezer.artifact:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
     file: local_artifact.txt
     state: present
+
 - name: Delete an artifact by specifying a file
-  artifact:
+  pulp.squeezer.artifact:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
     file: local_artifact.txt
     state: absent
+
 - name: Delete an artifact by specifying the digest
-  artifact:
+  pulp.squeezer.artifact:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

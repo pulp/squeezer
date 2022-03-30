@@ -35,7 +35,7 @@ author:
 
 EXAMPLES = r"""
 - name: Sync container remote into repository
-  container_sync:
+  pulp.squeezer.container_sync:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

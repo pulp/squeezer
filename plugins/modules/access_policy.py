@@ -77,7 +77,7 @@ author:
 
 EXAMPLES = r"""
 - name: Dump all access policies
-  access_policy:
+  pulp.squeezer.access_policy:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -87,7 +87,7 @@ EXAMPLES = r"""
     var: access_policies_status
 
 - name: View the access policy for tasks
-  access_policy:
+  pulp.squeezer.access_policy:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -98,7 +98,7 @@ EXAMPLES = r"""
     var: access_policy_status
 
 - name: Modify the access policy for tasks
-  file_remote:
+  pulp.squeezer.access_policy:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

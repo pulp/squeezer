@@ -69,7 +69,7 @@ author:
 
 EXAMPLES = r"""
 - name: Add or remove content
-  file_repository_content:
+  pulp.squeezer.file_repository_content:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

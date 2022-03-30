@@ -36,7 +36,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of tasks from pulp server
-  tasks:
+  pulp.squeezer.tasks:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -44,22 +44,6 @@ EXAMPLES = r"""
 - name: Report pulp tasks
   debug:
     var: task_summary
-# TODO
-- name: Create a file remote
-  file_remote:
-    pulp_url: https://pulp.example.org
-    username: admin
-    password: password
-    name: new_file_remote
-    url: http://localhost/pub/file/pulp_manifest
-    state: present
-- name: Delete a file remote
-  file_remote:
-    pulp_url: https://pulp.example.org
-    username: admin
-    password: password
-    name: new_file_remote
-    state: absent
 """
 
 RETURN = r"""

@@ -37,7 +37,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of x509 cert guards from pulp api server
-  x509_cert_guard:
+  pulp.squeezer.x509_cert_guard:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -45,8 +45,9 @@ EXAMPLES = r"""
 - name: Report pulp x509 cert guards
   debug:
     var: guard_status
+
 - name: Create a x509 cert guard
-  x509_cert_guard:
+  pulp.squeezer.x509_cert_guard:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -54,8 +55,9 @@ EXAMPLES = r"""
     description: A brand new cert guard with a description
     ca_certificate: "{{ lookup('file', path_to_ca_cert) }}"
     state: present
+
 - name: Delete a x509 cert guard
-  x509_cert_guard:
+  pulp.squeezer.x509_cert_guard:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

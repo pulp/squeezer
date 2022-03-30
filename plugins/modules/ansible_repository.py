@@ -33,7 +33,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of ansible repositories from pulp api server
-  ansible_repository:
+  pulp.squeezer.ansible_repository:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -41,16 +41,18 @@ EXAMPLES = r"""
 - name: Report pulp ansible repositories
   debug:
     var: repo_status
+
 - name: Create a ansible repository
-  ansible_repository:
+  pulp.squeezer.ansible_repository:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_repo
     description: A brand new repository with a description
     state: present
+
 - name: Delete a ansible repository
-  ansible_repository:
+  pulp.squeezer.ansible_repository:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

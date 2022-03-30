@@ -48,7 +48,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of python remotes from pulp api server
-  python_remote:
+  pulp.squeezer.python_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -56,16 +56,18 @@ EXAMPLES = r"""
 - name: Report pulp python remotes
   debug:
     var: remote_status
+
 - name: Create a python remote
-  python_remote:
+  pulp.squeezer.python_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
     name: new_python_remote
     url: https://pypi.org/
     state: present
+
 - name: Delete a python remote
-  python_remote:
+  pulp.squeezer.python_remote:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

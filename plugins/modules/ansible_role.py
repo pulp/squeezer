@@ -43,7 +43,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of file content units from pulp api server
-  ansible_role:
+  pulp.squeezer.ansible_role:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -51,8 +51,9 @@ EXAMPLES = r"""
 - name: Report pulp ansible roles
   debug:
     var: content_status
+
 - name: Create an ansible role
-  ansible_role:
+  pulp.squeezer.ansible_role:
     pulp_url: https://pulp.example.org
     username: admin
     password: password

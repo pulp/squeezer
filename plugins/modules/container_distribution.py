@@ -57,7 +57,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of container distributions
-  container_distribution:
+  pulp.squeezer.container_distribution:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -67,7 +67,7 @@ EXAMPLES = r"""
     var: distribution_status
 
 - name: Create a container distribution
-  container_distribution:
+  pulp.squeezer.container_distribution:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -77,7 +77,7 @@ EXAMPLES = r"""
     state: present
 
 - name: Delete a container distribution
-  container_distribution:
+  pulp.squeezer.container_distribution:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
