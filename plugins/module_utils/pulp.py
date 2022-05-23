@@ -1203,3 +1203,89 @@ class PulpContainerRepository(PulpRepository):
             if self.module.pulp_api.openapi_version == 2
             else "container_container_repository_href"
         )
+
+
+# Ostree entities
+
+
+class PulpOstreeRepository(PulpRepository):
+    _list_id = "repositories_ostree_ostree_list"
+    _read_id = "repositories_ostree_ostree_read"
+    _create_id = "repositories_ostree_ostree_create"
+    _update_id = "repositories_ostree_ostree_update"
+    _partial_update_id = "repositories_ostree_ostree_partial_update"
+    _delete_id = "repositories_ostree_ostree_delete"
+    _sync_id = "repositories_ostree_ostree_sync"
+    _import_commits_id = "repositories_ostree_ostree_import_commits"
+
+    _name_singular = "repository"
+    _name_plural = "repositories"
+
+    @property
+    def _href(self):
+        return (
+            "ostree_repository_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "ostree_ostree_repository_href"
+        )
+
+    def import_commits(self, parameters=None):
+
+        repository_version = self.entity["latest_version_href"]
+
+        # In check_mode, assume nothing changed
+        if not self.module.check_mode:
+
+            response = self.module.pulp_api.call(
+                self._import_commits_id, parameters=self.primary_key, body=parameters
+            )
+
+            PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
+
+            self.find()
+
+            if repository_version != self.entity["latest_version_href"]:
+                repository_version = self.entity["latest_version_href"]
+                self.module.set_changed()
+
+        self.module.set_result("repository_version", repository_version)
+
+
+class PulpOstreeDistribution(PulpEntity):
+    _list_id = "distributions_ostree_ostree_list"
+    _read_id = "distributions_ostree_ostree_read"
+    _create_id = "distributions_ostree_ostree_create"
+    _update_id = "distributions_ostree_ostree_update"
+    _partial_update_id = "distributions_ostree_ostree_partial_update"
+    _delete_id = "distributions_ostree_ostree_delete"
+
+    _name_singular = "distribution"
+    _name_plural = "distributions"
+
+    @property
+    def _href(self):
+        return (
+            "ostree_distribution_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "ostree_ostree_distribution_href"
+        )
+
+
+class PulpOstreeRemote(PulpRemote):
+    _list_id = "remotes_ostree_ostree_list"
+    _read_id = "remotes_ostree_ostree_read"
+    _create_id = "remotes_ostree_ostree_create"
+    _update_id = "remotes_ostree_ostree_update"
+    _partial_update_id = "remotes_ostree_ostree_partial_update"
+    _delete_id = "remotes_ostree_ostree_delete"
+
+    _name_singular = "remote"
+    _name_plural = "remotes"
+
+    @property
+    def _href(self):
+        return (
+            "ostree_remote_href"
+            if self.module.pulp_api.openapi_version == 2
+            else "ostree_ostree_remote_href"
+        )
