@@ -10,6 +10,7 @@ authors:
   - "Piotr Parczewski <piotr@stackhpc.com>"
   - "keilr <remy.keil@gmail.com>"
   - "Mark Goddard <mark@stackhpc.com>"
+  - "Daniel Ziegenberg <daniel@ziegenberg.at>"
 version: "0.0.12-dev"
 license_file: LICENSE
 readme: README.md

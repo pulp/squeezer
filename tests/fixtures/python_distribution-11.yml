@@ -1,0 +1,140 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/?limit=1&name=test_python_distribution_pull_through
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/python/pypi/1ed581c4-86d5-4b04-af54-75329b147d5d/","pulp_created":"2022-07-01T10:33:53.319551Z","base_path":"pull_through_mirror","base_url":"https://455d06d36a43/pypi/pull_through_mirror/","content_guard":null,"pulp_labels":{},"name":"test_python_distribution_pull_through","repository":null,"publication":null,"allow_uploads":true,"remote":null}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '440'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - a0db7dd2189b42309cb154be313592b0
+      Date:
+      - Fri, 01 Jul 2022 10:33:56 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.9
+    method: DELETE
+    uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/1ed581c4-86d5-4b04-af54-75329b147d5d/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/9e3a772d-c991-4b56-bd48-f86af4d92256/"}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - eac2bed0146847448fc9d268d287ec39
+      Date:
+      - Fri, 01 Jul 2022 10:33:56 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/9e3a772d-c991-4b56-bd48-f86af4d92256/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/9e3a772d-c991-4b56-bd48-f86af4d92256/","pulp_created":"2022-07-01T10:33:56.813643Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"eac2bed0146847448fc9d268d287ec39","started_at":"2022-07-01T10:33:56.826780Z","finished_at":"2022-07-01T10:33:56.841294Z","error":null,"worker":"/pulp/api/v3/workers/8f90c51d-8043-4be1-9317-346ef8c40777/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '558'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 8b90bded3114419bbb2a0739da1afe00
+      Date:
+      - Fri, 01 Jul 2022 10:33:56 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+version: 1

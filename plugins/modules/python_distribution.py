@@ -34,7 +34,14 @@ options:
   content_guard:
     description:
       - Name of the content guard for the served content
+      - Or the empty string to remove the content guard
       - "Warning: This feature is not yet supported."
+    type: str
+    required: false
+  remote:
+    description:
+      - Name of the remote source to add to this distribution
+      - Or the empty string to remove the remote
     type: str
     required: false
 extends_documentation_fragment:
@@ -42,6 +49,7 @@ extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
 author:
   - Matthias Dellweg (@mdellweg)
+  - Daniel Ziegenberg (@ziegenberg)
 """
 
 EXAMPLES = r"""
@@ -63,6 +71,16 @@ EXAMPLES = r"""
     name: new_python_distribution
     base_path: new/python/dist
     publication: /pub/api/v3/publications/python/python/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/
+    state: present
+
+- name: Create a python destribution with remote for pull-through caching
+  pulp.squeezer.python_distribution:
+    pulp_url: https://pulp.example.org
+    username: admin
+    password: password
+    name: new_python_distribution
+    base_path: new/python/dist
+    remote: new_remote
     state: present
 
 - name: Delete a python distribution
@@ -90,6 +108,7 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpEntityAnsibleModule,
     PulpPythonDistribution,
     PulpContentGuard,
+    PulpPythonRemote,
 )
 
 
@@ -100,6 +119,7 @@ def main():
             base_path=dict(),
             publication=dict(),
             content_guard=dict(),
+            remote=dict(),
         ),
         required_if=[
             ("state", "present", ["name", "base_path"]),
@@ -108,6 +128,7 @@ def main():
     ) as module:
 
         content_guard_name = module.params["content_guard"]
+        remote_name = module.params["remote"]
 
         natural_key = {
             "name": module.params["name"],
@@ -125,6 +146,14 @@ def main():
                 desired_attributes["content_guard"] = content_guard.href
             else:
                 desired_attributes["content_guard"] = None
+
+        if remote_name is not None:
+            if remote_name:
+                remote = PulpPythonRemote(module, {"name": remote_name})
+                remote.find(failsafe=False)
+                desired_attributes["remote"] = remote.href
+            else:
+                desired_attributes["remote"] = None
 
         PulpPythonDistribution(module, natural_key, desired_attributes).process()
 

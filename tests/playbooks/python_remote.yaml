@@ -103,7 +103,7 @@
         that:
           - result.changed == false
           - result.remotes | length >= 1
-          - result.remotes | selectattr('name', 'match', 'test_python_remote') | list | length == 1
+          - result.remotes | selectattr('name', 'match', '^test_python_remote$') | list | length == 1
 
     - name: Read remote
       pulp.squeezer.python_remote:

@@ -1,0 +1,48 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pulp3-sandbox-debian-testing
+      User-Agent:
+      - Python-urllib/3.9
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/?limit=1&name=test_python_distribution_pull_through
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/python/pypi/aae723e5-d232-4c28-832a-bf7455fba972/","pulp_created":"2022-06-29T13:41:58.862379Z","base_path":"pull_through_mirror","base_url":"https://544d9aec6acd/pypi/pull_through_mirror/","content_guard":null,"pulp_labels":{},"name":"test_python_distribution_pull_through","repository":null,"publication":null,"allow_uploads":true,"remote":"/pulp/api/v3/remotes/python/python/02411ca4-2530-4293-9b90-297f261d5c5b/"}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '510'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - c968c79e9dfb4a8b93fce85d66d03912
+      Date:
+      - Wed, 29 Jun 2022 13:42:01 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+version: 1
