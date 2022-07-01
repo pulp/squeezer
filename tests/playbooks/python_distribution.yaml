@@ -124,6 +124,24 @@
           - result.distribution.publication == publication_result.publication.pulp_href
           - result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
 
+    - name: Remove content guard from distribution
+      pulp.squeezer.python_distribution:
+        name: test_python_distribution
+        base_path: test_python_base_path
+        publication: "{{ publication_result.publication.pulp_href }}"
+        content_guard: ""
+        state: present
+      register: result
+    - name: Verify remove content guart from distribution
+      ansible.builtin.assert:
+        that:
+          - result.changed == true
+          - result.distribution.name == "test_python_distribution"
+          - result.distribution.base_path == "test_python_base_path"
+          - ansible_check_mode or result.distribution.base_url is regex(".*/pypi/test_python_base_path")
+          - result.distribution.publication == publication_result.publication.pulp_href
+          - result.distribution.content_guard == None
+
     - name: Delete distribution
       pulp.squeezer.python_distribution:
         name: test_python_distribution
