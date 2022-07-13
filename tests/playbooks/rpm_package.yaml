@@ -1,0 +1,80 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  vars:
+    rpm1_sha256: "{{ lookup('file', 'data/fox-1.1-2.noarch.rpm', lstrip=false, rstrip=false) | hash('sha256') }}"
+    rpm1_path: "data/fox-1.1-2.noarch.rpm"
+  module_defaults: &pulp_module_defaults
+    pulp.squeezer.artifact: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+      validate_certs: "{{ pulp_validate_certs | default(true) }}"
+    pulp.squeezer.rpm_package:
+      <<: *pulp_connection_details
+  tasks:
+    - name: Create artifact
+      pulp.squeezer.artifact:
+        file: "{{ rpm1_path }}"
+        state: present
+    - name: Clean openapi cache
+      ansible.builtin.file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
+
+- hosts: tests
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  vars:
+    rpm1_sha256: "{{ lookup('file', 'data/fox-1.1-2.noarch.rpm', lstrip=false, rstrip=false) | hash('sha256') }}"
+    rpm1_path: "data/fox-1.1-2.noarch.rpm"
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Create rpm package content unit
+      pulp.squeezer.rpm_package:
+        digest: "{{ rpm1_sha256 }}"
+        relative_path: "{{ rpm1_path }}"
+        state: present
+      register: result
+    - name: Verify create content unit
+      ansible.builtin.assert:
+        that:
+          - result.changed == true
+          - result.package.relative_path == rpm1_path
+          - result.package.sha256 == rpm1_sha256 or ansible_check_mode
+
+    - name: Create rpm package content unit (2nd try)
+      pulp.squeezer.rpm_package:
+        digest: "{{ rpm1_sha256 }}"
+        relative_path: "{{ rpm1_path }}"
+        state: present
+      register: result
+    - name: Verify create content unit (2nd try)
+      ansible.builtin.assert:
+        that:
+          - result.changed == false
+
+    - name: List rpm package content units
+      pulp.squeezer.rpm_package: {}
+      register: result
+    - name: Verify list rpm package content units
+      ansible.builtin.assert:
+        that:
+          - result.changed == false
+          - result.contents | length >= 1
+
+    - name: Read rpm package content unit
+      pulp.squeezer.rpm_package:
+        digest: "{{ rpm1_sha256 }}"
+        relative_path: "{{ rpm1_path }}"
+      register: result
+    - name: Verify read rpm package content unit
+      ansible.builtin.assert:
+        that:
+          - result.changed == false
+          - result.content.sha256 == rpm1_sha256
+...
