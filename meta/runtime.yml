@@ -34,6 +34,7 @@ action_groups:
   - python_sync
   - repair
   - rpm_distribution
+  - rpm_package
   - rpm_publication
   - rpm_remote
   - rpm_repository

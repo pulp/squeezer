@@ -1,0 +1,335 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?name=test_rpm_repository2&offset=0&limit=1
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/01981d7b-260d-73cc-9aed-7407f3db952c/","prn":"prn:rpm.rpmrepository:01981d7b-260d-73cc-9aed-7407f3db952c","pulp_created":"2025-07-18T12:21:06.702367Z","pulp_last_updated":"2025-07-18T12:21:06.705877Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/01981d7b-260d-73cc-9aed-7407f3db952c/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/01981d7b-260d-73cc-9aed-7407f3db952c/versions/0/","name":"test_rpm_repository2","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"metadata_signing_service":null,"package_signing_service":null,"package_signing_fingerprint":"","retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"sqlite_metadata":false,"repo_config":{},"compression_type":null,"layout":null}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '918'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - f7c39bb6b112473d906b44c84105f9f0
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Fri, 18 Jul 2025 12:21:13 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Correlation-Id:
+      - f7c39bb6b112473d906b44c84105f9f0
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/content/rpm/packages/?sha256=467c73425dcc43ef64dccf50d70fdcdb7e3bba5706c37b534a0f4f043aa7b688&repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Frpm%2Frpm%2F01981d7b-260d-73cc-9aed-7407f3db952c%2Fversions%2F0%2F&offset=0&limit=1
+  response:
+    body:
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '52'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - f7c39bb6b112473d906b44c84105f9f0
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Fri, 18 Jul 2025 12:21:14 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: !!binary |
+      LS00NTUxMjMxMTg5OTRmMmVjMTQ0OGIwYmE0OTM5MjJmOA0KQ29udGVudC1EaXNwb3NpdGlvbjog
+      Zm9ybS1kYXRhOyBuYW1lPSJzaGEyNTYiDQoNCjQ2N2M3MzQyNWRjYzQzZWY2NGRjY2Y1MGQ3MGZk
+      Y2RiN2UzYmJhNTcwNmMzN2I1MzRhMGY0ZjA0M2FhN2I2ODgNCi0tNDU1MTIzMTE4OTk0ZjJlYzE0
+      NDhiMGJhNDkzOTIyZjgNCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0icmVw
+      b3NpdG9yeSINCg0KL3B1bHAvYXBpL3YzL3JlcG9zaXRvcmllcy9ycG0vcnBtLzAxOTgxZDdiLTI2
+      MGQtNzNjYy05YWVkLTc0MDdmM2RiOTUyYy8NCi0tNDU1MTIzMTE4OTk0ZjJlYzE0NDhiMGJhNDkz
+      OTIyZjgNCkNvbnRlbnQtRGlzcG9zaXRpb246IGZvcm0tZGF0YTsgbmFtZT0iZmlsZSI7IGZpbGVu
+      YW1lPSJkYXRhL2ZveC0xLjEtMi5ub2FyY2gucnBtIg0KQ29udGVudC1UeXBlOiBhcHBsaWNhdGlv
+      bi9vY3RldC1zdHJlYW0NCg0K7avu2wMAAAAAAWZveC0xLjEtMgAAAAAAAAAAAAAAAAAAAAAAAAAA
+      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAUAAAAAAAAAAAAAAAAAAAAA
+      jq3oAQAAAAAAAAAFAAAAVAAAAD4AAAAHAAAARAAAABAAAAENAAAABgAAAAAAAAABAAAD6AAAAAQA
+      AAAsAAAAAQAAA+wAAAAHAAAAMAAAABAAAAPvAAAABAAAAEAAAAABZjYxNjI2YmNjOThkMDY3NDM2
+      YzFmM2IwNmM3MTE0MWRjMjRhYjU2OAAAAAAAAAYJik9aoHIFfSK6XAdpSEUnyQAAASQAAAA+AAAA
+      B////7AAAAAQAAAAAI6t6AEAAAAAAAAANQAAAhkAAAA/AAAABwAAAgkAAAAQAAAAZAAAAAgAAAAA
+      AAAAAQAAA+gAAAAGAAAAAgAAAAEAAAPpAAAABgAAAAYAAAABAAAD6gAAAAYAAAAKAAAAAQAAA+wA
+      AAAJAAAADAAAAAEAAAPtAAAACQAAACMAAAABAAAD7gAAAAQAAAA8AAAAAQAAA+8AAAAGAAAAQAAA
+      AAEAAAPxAAAABAAAAEwAAAABAAAD9gAAAAYAAABQAAAAAQAAA/gAAAAJAAAAVgAAAAEAAAP8AAAA
+      BgAAAGwAAAABAAAD/QAAAAYAAACPAAAAAQAAA/4AAAAGAAAAlQAAAAEAAAQEAAAABAAAAJwAAAAB
+      AAAEBgAAAAMAAACgAAAAAQAABAkAAAADAAAAogAAAAEAAAQKAAAABAAAAKQAAAABAAAECwAAAAgA
+      AACoAAAAAQAABAwAAAAIAAAAyQAAAAEAAAQNAAAABAAAAMwAAAABAAAEDwAAAAgAAADQAAAAAQAA
+      BBAAAAAIAAAA1QAAAAEAAAQUAAAABgAAANoAAAABAAAEFQAAAAQAAADsAAAAAQAABBcAAAAIAAAA
+      8AAAAAEAAAQYAAAABAAAAPQAAAACAAAEGQAAAAgAAAD8AAAAAgAABBoAAAAIAAABNwAAAAIAAAQo
+      AAAABgAAAUUAAAABAAAERgAAAAYAAAFNAAAAAQAABEcAAAAEAAABZAAAAAEAAARIAAAABAAAAWgA
+      AAABAAAESQAAAAgAAAFsAAAAAQAABFgAAAAEAAABcAAAAAEAAARZAAAACAAAAXQAAAABAAAEXAAA
+      AAQAAAF8AAAAAQAABF0AAAAIAAABgAAAAAEAAAReAAAACAAAAYgAAAABAAAEYgAAAAYAAAGOAAAA
+      AQAABGQAAAAGAAABqQAAAAEAAARlAAAABgAAAa4AAAABAAAEZgAAAAYAAAGzAAAAAQAABGsAAAAG
+      AAABtQAAAAEAAARsAAAABgAAAbwAAAABAAAEdAAAAAQAAAHQAAAAAQAABHUAAAAEAAAB1AAAAAEA
+      AAR2AAAACAAAAdgAAAADAAAEdwAAAAQAAAHwAAAAAQAABHgAAAAEAAAB9AAAAAEAAAR6AAAABwAA
+      AfgAAAAQAAAEewAAAAgAAAIIAAAAAUMAZm94ADEuMQAyAEEgZHVtbXkgcGFja2FnZSBvZiBmb3gA
+      QSBkdW1teSBwYWNrYWdlIG9mIGZveAAAAE9iIkBzbXFlLXdzMTUAAAAAAAAqR1BMdjIASW50ZXJu
+      ZXQvQXBwbGljYXRpb25zAGh0dHA6Ly90c3RyYWNob3RhLmZlZG9yYXBlb3BsZS5vcmcAbGludXgA
+      bm9hcmNoAAAAACqBpAAAT2IiQDc4MDUzZjk4ZDQwY2EyYWFkYjY0MTQzMjI3M2Y0OWFlAAAAAAAA
+      AAByb290AHJvb3QAZm94LTEuMS0yLnNyYy5ycG0A/////2ZveAABAABKAQAASnJwbWxpYihDb21w
+      cmVzc2VkRmlsZU5hbWVzKQBycG1saWIoUGF5bG9hZEZpbGVzSGF2ZVByZWZpeCkAMy4wLjQtMQA0
+      LjAtMQA0LjQuMi4zAHNtcWUtd3MxNSAxMzMxODMxMzYwAAAAAAD8AAADgAcAAAAAAAAACDEuMS0y
+      AAAAAAAAAGZveC50eHQAL3RtcC8ALU8yIC1nIC1tNjQgLW10dW5lPWdlbmVyaWMAY3BpbwBnemlw
+      ADkAbm9hcmNoAG5vYXJjaC1yZWRoYXQtbGludXgAAAAAAAAAAAEAQVNDSUkgdGV4dABkaXJlY3Rv
+      cnkAAAAAAAAAAAAAAPAYc5TcnSOo1YfsOAgKzN8AAAAAPwAAAAf///ywAAAAEB+LCAAAAAAAAAMz
+      MDcwNzA0MDAwtjAAsoDAwjDRxAA7MDRJMzMyMoJJGyVC6LRkA/wgFcbQ0y/JLdBPy6/QK6koYQhI
+      TM5OTE9VyMwrLknMyVEoycxNtVIwtLAysLQyMlAwMNY1NNU1MjA04mJgMIC5kxhArDp0kARjhAQ5
+      evq4BikqKjIAAQAx7TnEJAEAAA0KLS00NTUxMjMxMTg5OTRmMmVjMTQ0OGIwYmE0OTM5MjJmOC0t
+      DQo=
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2339'
+      Content-Type:
+      - multipart/form-data; boundary=455123118994f2ec1448b0ba493922f8
+      Correlation-Id:
+      - f7c39bb6b112473d906b44c84105f9f0
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: POST
+    uri: http://pulp.example.org/pulp/api/v3/content/rpm/packages/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/01981d7b-4309-700e-8bf6-ab3528efafbb/"}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - f7c39bb6b112473d906b44c84105f9f0
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Fri, 18 Jul 2025 12:21:14 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Correlation-Id:
+      - f7c39bb6b112473d906b44c84105f9f0
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/01981d7b-4309-700e-8bf6-ab3528efafbb/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/01981d7b-4309-700e-8bf6-ab3528efafbb/","prn":"prn:core.task:01981d7b-4309-700e-8bf6-ab3528efafbb","pulp_created":"2025-07-18T12:21:14.121689Z","pulp_last_updated":"2025-07-18T12:21:14.121697Z","state":"running","name":"pulpcore.app.tasks.base.general_create","logging_cid":"f7c39bb6b112473d906b44c84105f9f0","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2025-07-18T12:21:14.129611Z","started_at":"2025-07-18T12:21:14.155523Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/01981c80-60e4-7fe7-ad2a-2e3df9fadf8f/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["prn:rpm.rpmrepository:01981d7b-260d-73cc-9aed-7407f3db952c","shared:prn:core.domain:7d8c4e1b-94d4-4d3f-89b7-4a67e6ba61ca"]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '820'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - f7c39bb6b112473d906b44c84105f9f0
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Fri, 18 Jul 2025 12:21:14 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Correlation-Id:
+      - f7c39bb6b112473d906b44c84105f9f0
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/01981d7b-4309-700e-8bf6-ab3528efafbb/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/01981d7b-4309-700e-8bf6-ab3528efafbb/","prn":"prn:core.task:01981d7b-4309-700e-8bf6-ab3528efafbb","pulp_created":"2025-07-18T12:21:14.121689Z","pulp_last_updated":"2025-07-18T12:21:14.121697Z","state":"completed","name":"pulpcore.app.tasks.base.general_create","logging_cid":"f7c39bb6b112473d906b44c84105f9f0","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2025-07-18T12:21:14.129611Z","started_at":"2025-07-18T12:21:14.155523Z","finished_at":"2025-07-18T12:21:14.396640Z","error":null,"worker":"/pulp/api/v3/workers/01981c80-60e4-7fe7-ad2a-2e3df9fadf8f/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/repositories/rpm/rpm/01981d7b-260d-73cc-9aed-7407f3db952c/versions/1/","/pulp/api/v3/content/rpm/packages/01981d7b-3ac8-7374-824c-74447b05cc0d/"],"reserved_resources_record":["prn:rpm.rpmrepository:01981d7b-260d-73cc-9aed-7407f3db952c","shared:prn:core.domain:7d8c4e1b-94d4-4d3f-89b7-4a67e6ba61ca"]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1005'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - f7c39bb6b112473d906b44c84105f9f0
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Fri, 18 Jul 2025 12:21:15 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Correlation-Id:
+      - f7c39bb6b112473d906b44c84105f9f0
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/content/rpm/packages/01981d7b-3ac8-7374-824c-74447b05cc0d/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/content/rpm/packages/01981d7b-3ac8-7374-824c-74447b05cc0d/","prn":"prn:rpm.package:01981d7b-3ac8-7374-824c-74447b05cc0d","pulp_created":"2025-07-18T12:21:12.008741Z","pulp_last_updated":"2025-07-18T12:21:12.008751Z","md5":null,"sha1":null,"sha224":"ff4b058f649932d28c49e3067eee16b0fa6163c2aaf5bed98a7ed8c1","sha256":"467c73425dcc43ef64dccf50d70fdcdb7e3bba5706c37b534a0f4f043aa7b688","sha384":"66eaaee3d1f3b4d7bb07763dbde015ee7322ebe76df11659dab399a1a19f5aefd758df33f76813e4e42ed1e823fd403e","sha512":"759e1cc01cfabbbbee6908a2cdd870118e6e85257302fb655eac78ada5100936f7455913792b5a601cfcf6ba31955c135e9ba485c2a7486d8bf5a83eece1a1dc","pulp_labels":{},"artifact":"/pulp/api/v3/artifacts/01981d7b-39e5-7ed9-ba69-c6d82da1d6c2/","name":"fox","epoch":"0","version":"1.1","release":"2","arch":"noarch","pkgId":"467c73425dcc43ef64dccf50d70fdcdb7e3bba5706c37b534a0f4f043aa7b688","checksum_type":"sha256","summary":"A
+        dummy package of fox","description":"A dummy package of fox","url":"http://tstrachota.fedorapeople.org","changelogs":[],"files":[["","/tmp/","fox.txt","78053f98d40ca2aadb641432273f49ae"]],"requires":[],"provides":[["fox","EQ","0","1.1","2",false]],"conflicts":[],"obsoletes":[],"suggests":[],"enhances":[],"recommends":[],"supplements":[],"location_base":"","location_href":"fox-1.1-2.noarch.rpm","rpm_buildhost":"smqe-ws15","rpm_group":"Internet/Applications","rpm_license":"GPLv2","rpm_packager":"","rpm_sourcerpm":"fox-1.1-2.src.rpm","rpm_vendor":"","rpm_header_start":280,"rpm_header_end":1681,"is_modular":false,"size_archive":292,"size_installed":42,"size_package":1825,"time_build":1331831360,"time_file":1752841272}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1656'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - f7c39bb6b112473d906b44c84105f9f0
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Fri, 18 Jul 2025 12:21:15 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,97 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?name=test_rpm_repository&offset=0&limit=1
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/01981d7b-247b-75f5-bacd-f78f94cb7088/","prn":"prn:rpm.rpmrepository:01981d7b-247b-75f5-bacd-f78f94cb7088","pulp_created":"2025-07-18T12:21:06.299948Z","pulp_last_updated":"2025-07-18T12:21:12.068307Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/01981d7b-247b-75f5-bacd-f78f94cb7088/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/01981d7b-247b-75f5-bacd-f78f94cb7088/versions/1/","name":"test_rpm_repository","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"metadata_signing_service":null,"package_signing_service":null,"package_signing_fingerprint":"","retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"sqlite_metadata":false,"repo_config":{},"compression_type":null,"layout":null}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '917'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - b0222ee321324bfd87085b5fa705e01e
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Fri, 18 Jul 2025 12:21:17 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Correlation-Id:
+      - b0222ee321324bfd87085b5fa705e01e
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/content/rpm/packages/?repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Frpm%2Frpm%2F01981d7b-247b-75f5-bacd-f78f94cb7088%2Fversions%2F1%2F&offset=0&limit=1000
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/rpm/packages/01981d7b-3ac8-7374-824c-74447b05cc0d/","prn":"prn:rpm.package:01981d7b-3ac8-7374-824c-74447b05cc0d","pulp_created":"2025-07-18T12:21:12.008741Z","pulp_last_updated":"2025-07-18T12:21:12.008751Z","md5":null,"sha1":null,"sha224":"ff4b058f649932d28c49e3067eee16b0fa6163c2aaf5bed98a7ed8c1","sha256":"467c73425dcc43ef64dccf50d70fdcdb7e3bba5706c37b534a0f4f043aa7b688","sha384":"66eaaee3d1f3b4d7bb07763dbde015ee7322ebe76df11659dab399a1a19f5aefd758df33f76813e4e42ed1e823fd403e","sha512":"759e1cc01cfabbbbee6908a2cdd870118e6e85257302fb655eac78ada5100936f7455913792b5a601cfcf6ba31955c135e9ba485c2a7486d8bf5a83eece1a1dc","pulp_labels":{},"artifact":"/pulp/api/v3/artifacts/01981d7b-39e5-7ed9-ba69-c6d82da1d6c2/","name":"fox","epoch":"0","version":"1.1","release":"2","arch":"noarch","pkgId":"467c73425dcc43ef64dccf50d70fdcdb7e3bba5706c37b534a0f4f043aa7b688","checksum_type":"sha256","summary":"A
+        dummy package of fox","description":"A dummy package of fox","url":"http://tstrachota.fedorapeople.org","changelogs":[],"files":[["","/tmp/","fox.txt","78053f98d40ca2aadb641432273f49ae"]],"requires":[],"provides":[["fox","EQ","0","1.1","2",false]],"conflicts":[],"obsoletes":[],"suggests":[],"enhances":[],"recommends":[],"supplements":[],"location_base":"","location_href":"fox-1.1-2.noarch.rpm","rpm_buildhost":"smqe-ws15","rpm_group":"Internet/Applications","rpm_license":"GPLv2","rpm_packager":"","rpm_sourcerpm":"fox-1.1-2.src.rpm","rpm_vendor":"","rpm_header_start":280,"rpm_header_end":1681,"is_modular":false,"size_archive":292,"size_installed":42,"size_package":1825,"time_build":1331831360,"time_file":1752841272}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1708'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - b0222ee321324bfd87085b5fa705e01e
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Fri, 18 Jul 2025 12:21:17 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+version: 1
