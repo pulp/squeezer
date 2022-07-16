@@ -16,7 +16,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/?limit=1&name=test_python_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/python/pypi/2de8e15a-f8c6-4e86-9c87-d6e3732129eb/","pulp_created":"2022-07-13T15:34:56.686839Z","base_path":"test_python_base_path","base_url":"https://91ef7b9822f3/pypi/test_python_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/bd99f02c-16aa-414a-b645-9d7124d00c45/","pulp_labels":{},"name":"test_python_distribution","repository":null,"publication":"/pulp/api/v3/publications/python/pypi/cd58b4d5-0136-4041-9650-bdf0cc95b302/","allow_uploads":true,"remote":null}]}'
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,13 +25,13 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '581'
+      - '52'
       Content-Type:
       - application/json
       Correlation-ID:
-      - bc70b581d36f4226b4f134faf14ed6dc
+      - 6bb5e51235ba44e1baced46e75b17e19
       Date:
-      - Wed, 13 Jul 2022 15:34:59 GMT
+      - Wed, 13 Jul 2022 15:35:00 GMT
       Referrer-Policy:
       - same-origin
       Server:

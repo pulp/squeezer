@@ -28,6 +28,10 @@
       pulp.squeezer.python_distribution:
         name: test_python_distribution
         state: absent
+    - name: Make distribution for pull-through absent
+      pulp.squeezer.python_distribution:
+        name: test_python_distribution_pull_through
+        state: absent
     - name: Make repository present
       pulp.squeezer.python_repository:
         name: test_python_repository
@@ -39,6 +43,12 @@
         proxy_url: ""
         includes:
           - shelf-reader
+        state: present
+    - name: Make remote for pull-though present
+      pulp.squeezer.python_remote:
+        name: test_python_remote_pull_through
+        url: https://pypi.org
+        policy: on_demand
         state: present
     - name: Sync remote into repository
       pulp.squeezer.python_sync:
@@ -54,7 +64,7 @@
         ca_certificate: "{{ lookup('file', 'data/ca.pem') }}"
         state: present
     - name: Clean openapi cache
-      file:
+      ansible.builtin.file:
         path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
         state: absent
 
@@ -79,7 +89,7 @@
         state: present
       register: result
     - name: Verify distribute publication of repository
-      assert:
+      ansible.builtin.assert:
         that:
           - result.changed == true
           - result.distribution.name == "test_python_distribution"
@@ -96,7 +106,7 @@
         state: present
       register: result
     - name: Verify distribute publication of repository (2nd try)
-      assert:
+      ansible.builtin.assert:
         that:
           - result.changed == false
 
@@ -105,7 +115,7 @@
         name: test_python_distribution
       register: result
     - name: Verify read distribution
-      assert:
+      ansible.builtin.assert:
         that:
           - result.changed == false
           - result.distribution.name == "test_python_distribution"
@@ -114,13 +124,31 @@
           - result.distribution.publication == publication_result.publication.pulp_href
           - result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
 
+    - name: Remove content guard from distribution
+      pulp.squeezer.python_distribution:
+        name: test_python_distribution
+        base_path: test_python_base_path
+        publication: "{{ publication_result.publication.pulp_href }}"
+        content_guard: ""
+        state: present
+      register: result
+    - name: Verify remove content guart from distribution
+      ansible.builtin.assert:
+        that:
+          - result.changed == true
+          - result.distribution.name == "test_python_distribution"
+          - result.distribution.base_path == "test_python_base_path"
+          - ansible_check_mode or result.distribution.base_url is regex(".*/pypi/test_python_base_path")
+          - result.distribution.publication == publication_result.publication.pulp_href
+          - result.distribution.content_guard == None
+
     - name: Delete distribution
       pulp.squeezer.python_distribution:
         name: test_python_distribution
         state: absent
       register: result
     - name: Verify delete distribution
-      assert:
+      ansible.builtin.assert:
         that:
           - result.changed == true
           - not result.distribution
@@ -131,9 +159,70 @@
         state: absent
       register: result
     - name: Verify delete distribution (2nd try)
-      assert:
+      ansible.builtin.assert:
         that:
           - result.changed == false
+
+    - name: Retrieve remote of pull-through mirror
+      pulp.squeezer.python_remote:
+        name: test_python_remote_pull_through
+      register: remote_result
+
+    - name: Create distribution for pull-through mirror
+      pulp.squeezer.python_distribution:
+        name: test_python_distribution_pull_through
+        base_path: pull_through_mirror
+        remote: test_python_remote_pull_through
+        state: present
+      register: result
+    - name: Verify distribution of pull-through mirror
+      ansible.builtin.assert:
+        that:
+          - result.changed == true
+          - result.distribution.name == "test_python_distribution_pull_through"
+          - result.distribution.base_path == "pull_through_mirror"
+          - ansible_check_mode or result.distribution.base_url is regex(".*/pypi/pull_through_mirror")
+          - result.distribution.remote == remote_result.remote.pulp_href
+
+    - name: Create distribution for pull-through mirror (2nd try)
+      pulp.squeezer.python_distribution:
+        name: test_python_distribution_pull_through
+        base_path: pull_through_mirror
+        state: present
+      register: result
+    - name: Verify distribution of pull-through mirror (2nd try)
+      ansible.builtin.assert:
+        that:
+          - result.changed == false
+
+    - name: Read distribution
+      pulp.squeezer.python_distribution:
+        name: test_python_distribution_pull_through
+      register: result
+    - name: Verify read distribution
+      ansible.builtin.assert:
+        that:
+          - result.changed == false
+          - result.distribution.name == "test_python_distribution_pull_through"
+          - result.distribution.base_path == "pull_through_mirror"
+          - result.distribution.base_url is regex(".*/pypi/pull_through_mirror")
+          - result.distribution.remote == remote_result.remote.pulp_href
+
+    - name: Remove remote from pull-through mirror distribution
+      pulp.squeezer.python_distribution:
+        name: test_python_distribution_pull_through
+        base_path: pull_through_mirror
+        remote: ""
+        state: present
+      register: result
+    - name: Verify remove remote from pull-through mirror distribution
+      ansible.builtin.assert:
+        that:
+          - result.changed == true
+          - result.distribution.name == "test_python_distribution_pull_through"
+          - result.distribution.base_path == "pull_through_mirror"
+          - ansible_check_mode or result.distribution.base_url is regex(".*/pypi/pull_through_mirror")
+          - result.distribution.remote == None
 
 - hosts: localhost
   gather_facts: false
@@ -153,6 +242,10 @@
     - name: Make distribution absent
       pulp.squeezer.python_distribution:
         name: test_python_distribution
+        state: absent
+    - name: Make distribution for pull-through absent
+      pulp.squeezer.python_distribution:
+        name: test_python_distribution_pull_through
         state: absent
     - name: Make content guard absent
       pulp.squeezer.x509_cert_guard:
