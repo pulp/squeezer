@@ -122,15 +122,25 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpAccessPolicy,
-    PulpEntityAnsibleModule,
-    pulp_parse_version,
-)
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpEntityAnsibleModule
+
+try:
+    from pulp_glue.core.context import PulpAccessPolicyContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpAccessPolicyContext = None
 
 
 def main():
     with PulpEntityAnsibleModule(
+        context_class=PulpAccessPolicyContext,
+        entity_singular="access_policy",
+        entity_plural="access_policies",
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
             viewset_name=dict(),
             statements=dict(
@@ -168,17 +178,7 @@ def main():
                 if statement["condition"] is None:
                     del statement["condition"]
 
-        # Workaround for rename "permissions_assignment" -> "creation_hooks"
-        core_version = (
-            module.pulp_api.api_spec.get("info", {}).get("x-pulp-app-versions", {}).get("core", ())
-        )
-        if pulp_parse_version(core_version) < pulp_parse_version("3.17.0"):
-            if "creation_hooks" in desired_attributes:
-                desired_attributes["permissions_assignment"] = desired_attributes.pop(
-                    "creation_hooks"
-                )
-
-        PulpAccessPolicy(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

@@ -1,8 +1,8 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 # copyright (c) 2019, Matthias Dellweg
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
 
 from __future__ import absolute_import, division, print_function
 
@@ -80,16 +80,42 @@ RETURN = r"""
 """
 
 import os
+import traceback
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpArtifact,
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import (
     PulpEntityAnsibleModule,
     SqueezerException,
+    represent,
 )
+
+try:
+    from pulp_glue.core.context import PulpArtifactContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpArtifactContext = None
+
+
+class PulpArtifactAnsibleModule(PulpEntityAnsibleModule):
+    def process_present(self, entity, natural_key, desired_attributes):
+        if entity is None:
+            if self.check_mode:
+                entity = {**desired_attributes, **natural_key}
+            else:
+                with open(self.params["file"], "rb") as infile:
+                    self.context.upload(infile, sha256=natural_key["sha256"])
+                entity = represent(self.context, self.context.entity)
+            self.set_changed()
+        return entity
 
 
 def main():
-    with PulpEntityAnsibleModule(
+    with PulpArtifactAnsibleModule(
+        context_class=PulpArtifactContext,
+        entity_singular="artifact",
+        entity_plural="artifacts",
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(file=dict(type="path"), sha256=dict()),
         required_if=[("state", "present", ["file"])],
     ) as module:
@@ -100,21 +126,20 @@ def main():
             file_sha256 = module.sha256(module.params["file"])
             if sha256:
                 if sha256 != file_sha256:
-                    raise Exception("File checksum mismatch.")
+                    raise SqueezerException("File checksum mismatch.")
             else:
                 sha256 = file_sha256
 
-        if sha256 is None and module.params["state"] == "absent":
-            raise Exception("One of 'file' and 'sha256' is required if 'state' is 'absent'.")
+        if sha256 is None and module.state == "absent":
+            raise SqueezerException(
+                "One of 'file' and 'sha256' is required if 'state' is 'absent'."
+            )
 
         natural_key = {
             "sha256": sha256,
         }
-        uploads = {
-            "file": module.params["file"],
-        }
 
-        PulpArtifact(module, natural_key, uploads=uploads).process()
+        module.process(natural_key, {})
 
 
 if __name__ == "__main__":

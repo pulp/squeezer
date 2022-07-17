@@ -19,12 +19,12 @@ description:
 options:
   remote:
     description:
-      - Name of the remote to synchronize
+      - Name of the remote to synchronize with
     type: str
-    required: true
+    required: false
   repository:
     description:
-      - Name of the repository
+      - Name of the repository to synchronize into
     type: str
     required: true
 extends_documentation_fragment:
@@ -55,27 +55,55 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import (
     PulpAnsibleModule,
-    PulpFileRemote,
-    PulpFileRepository,
+    SqueezerException,
 )
+
+try:
+    from pulp_glue.file.context import PulpFileRemoteContext, PulpFileRepositoryContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
 
 
 def main():
     with PulpAnsibleModule(
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
-            remote=dict(required=True),
+            remote=dict(required=False),
             repository=dict(required=True),
         ),
     ) as module:
-        remote = PulpFileRemote(module, {"name": module.params["remote"]})
-        remote.find(failsafe=False)
+        repository_ctx = PulpFileRepositoryContext(
+            module.pulp_ctx, entity={"name": module.params["repository"]}
+        )
+        repository = repository_ctx.entity
 
-        repository = PulpFileRepository(module, {"name": module.params["repository"]})
-        repository.find(failsafe=False)
+        payload = {}
+        if module.params["remote"] is None:
+            if repository["remote"] is None:
+                raise SqueezerException(
+                    "No remote was specified and none preconfigured on the repository."
+                )
+        else:
+            remote_ctx = PulpFileRemoteContext(
+                module.pulp_ctx, entity={"name": module.params["remote"]}
+            )
+            payload["remote"] = remote_ctx
+        repository_version = repository["latest_version_href"]
+        # In check_mode, assume nothing changed
+        if not module.check_mode:
+            sync_task = repository_ctx.sync(repository["pulp_href"], payload)
 
-        repository.process_sync(remote)
+            if sync_task["created_resources"]:
+                module.set_changed()
+                repository_version = sync_task["created_resources"][0]
+
+        module.set_result("repository_version", repository_version)
 
 
 if __name__ == "__main__":

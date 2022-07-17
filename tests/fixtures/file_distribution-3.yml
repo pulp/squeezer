@@ -4,34 +4,32 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:80
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/?limit=1&name=test_file_distribution
+    uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/?name=test_file_distribution&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/file/file/9d57b694-b345-42b9-83a9-b093e87292cb/","pulp_created":"2022-11-22T09:05:36.141695Z","base_path":"test_file_base_path","base_url":"http://alex-rocky-pulp.novalocal:8080/pulp/content/test_file_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/54a540df-9db2-47ea-83a8-2893d7d16f1b/","pulp_labels":{},"name":"test_file_distribution","repository":null,"publication":"/pulp/api/v3/publications/file/file/fc6729f8-2fe2-4c49-86c8-323eace93e69/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/file/file/33f1cbf6-08f2-4a16-ae54-88b0b7e0b69b/","pulp_created":"2022-12-08T13:28:17.992614Z","base_path":"test_file_base_path","base_url":"http://localhost:5001/pulp/content/test_file_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/edd3f99d-08fd-44e1-a62b-a9de84c7a89c/","pulp_labels":{},"name":"test_file_distribution","repository":null,"publication":"/pulp/api/v3/publications/file/file/db70a59f-ffe6-4202-9b4c-6573bd84fda7/"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '561'
+      - '545'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 4ff96a850ce84f6fa81dbee2857e75ff
+      - eabbc6c99eb841138f25abf6e97271e7
       Date:
-      - Tue, 22 Nov 2022 09:05:41 GMT
+      - Thu, 08 Dec 2022 13:28:20 GMT
       Referrer-Policy:
       - same-origin
       Server:

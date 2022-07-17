@@ -4,34 +4,32 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:80
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/?limit=1&name=test_file_distribution
+    uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/?name=test_file_distribution&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/file/file/9d57b694-b345-42b9-83a9-b093e87292cb/","pulp_created":"2022-11-22T09:05:36.141695Z","base_path":"test_file_base_path","base_url":"http://alex-rocky-pulp.novalocal:8080/pulp/content/test_file_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/54a540df-9db2-47ea-83a8-2893d7d16f1b/","pulp_labels":{},"name":"test_file_distribution","repository":null,"publication":"/pulp/api/v3/publications/file/file/fc6729f8-2fe2-4c49-86c8-323eace93e69/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/file/file/33f1cbf6-08f2-4a16-ae54-88b0b7e0b69b/","pulp_created":"2022-12-08T13:28:17.992614Z","base_path":"test_file_base_path","base_url":"http://localhost:5001/pulp/content/test_file_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/edd3f99d-08fd-44e1-a62b-a9de84c7a89c/","pulp_labels":{},"name":"test_file_distribution","repository":null,"publication":"/pulp/api/v3/publications/file/file/db70a59f-ffe6-4202-9b4c-6573bd84fda7/"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '561'
+      - '545'
       Content-Type:
       - application/json
       Correlation-ID:
-      - aad5b9ed56d84b45b4e6bff681efde3f
+      - 7e1cc66781f44e6f9747936204f6886c
       Date:
-      - Tue, 22 Nov 2022 09:05:42 GMT
+      - Thu, 08 Dec 2022 13:28:20 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -50,34 +48,36 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:80
+      - keep-alive
+      Content-Length:
+      - '0'
+      Correlation-ID:
+      - 7e1cc66781f44e6f9747936204f6886c
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: DELETE
-    uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/9d57b694-b345-42b9-83a9-b093e87292cb/
+    uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/33f1cbf6-08f2-4a16-ae54-88b0b7e0b69b/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/586efe0d-23f2-4b6d-8d97-5f58533eb6be/"}'
+      string: '{"task":"/pulp/api/v3/tasks/237cc1af-c14b-4c03-9dfa-7a64df6a0ba3/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '67'
       Content-Type:
       - application/json
       Correlation-ID:
-      - f9eec189e2964c3d8671693c2c620a8c
+      - 7e1cc66781f44e6f9747936204f6886c
       Date:
-      - Tue, 22 Nov 2022 09:05:43 GMT
+      - Thu, 08 Dec 2022 13:28:20 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -96,34 +96,34 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:80
+      - keep-alive
+      Correlation-ID:
+      - 7e1cc66781f44e6f9747936204f6886c
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/586efe0d-23f2-4b6d-8d97-5f58533eb6be/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/237cc1af-c14b-4c03-9dfa-7a64df6a0ba3/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/586efe0d-23f2-4b6d-8d97-5f58533eb6be/","pulp_created":"2022-11-22T09:05:43.058242Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"f9eec189e2964c3d8671693c2c620a8c","started_at":"2022-11-22T09:05:43.107845Z","finished_at":"2022-11-22T09:05:43.187000Z","error":null,"worker":"/pulp/api/v3/workers/cf065072-a318-4959-a75a-fa305dba9cd6/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/237cc1af-c14b-4c03-9dfa-7a64df6a0ba3/","pulp_created":"2022-12-08T13:28:20.890103Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"7e1cc66781f44e6f9747936204f6886c","started_at":"2022-12-08T13:28:20.916381Z","finished_at":"2022-12-08T13:28:20.941807Z","error":null,"worker":"/pulp/api/v3/workers/1a7d67c5-c415-4995-b59d-d964c447b5e0/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '558'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 3035db28041048978b4955ebe1225443
+      - 7e1cc66781f44e6f9747936204f6886c
       Date:
-      - Tue, 22 Nov 2022 09:05:43 GMT
+      - Thu, 08 Dec 2022 13:28:21 GMT
       Referrer-Policy:
       - same-origin
       Server:

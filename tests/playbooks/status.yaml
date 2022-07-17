@@ -18,5 +18,5 @@
         that:
           - pulp_status.changed == false
           - pulp_status.status.database_connection.connected == true
-          - pulp_status.status.redis_connection.connected == true
+          # - pulp_status.status.redis_connection.connected == true
 ...

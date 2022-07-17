@@ -17,7 +17,8 @@
       <<: *pulp_connection_details
   tasks:
     - name: Delete orphaned objects
-      pulp.squeezer.delete_orphans: {}
+      pulp.squeezer.delete_orphans:
+        protection_time: 0
     - name: Create artifact
       pulp.squeezer.artifact:
         file: data/file1.txt

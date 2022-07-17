@@ -9,14 +9,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian-testing
+      - localhost:5001
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.11
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/artifacts/?limit=1&sha256=9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee
+    uri: http://pulp.example.org/pulp/api/v3/artifacts/?limit=1&sha256=9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/ec0c2d0e-c964-4c8d-a96c-00b2d4c6148f/","pulp_created":"2021-07-22T17:17:30.312415Z","file":"artifact/9a/09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","size":5,"md5":null,"sha1":null,"sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/afd21628-4266-4cbd-9a4e-f490c514e55c/","pulp_created":"2023-02-18T17:21:50.611556Z","file":"artifact/9a/09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","size":5,"md5":null,"sha1":null,"sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -29,17 +29,19 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 3dfe38c8ea1e4e2e834193b5aed52f08
+      - fa0e3e06cac44e93a7be612318de9465
       Date:
-      - Thu, 22 Jul 2021 17:17:34 GMT
+      - Sat, 18 Feb 2023 17:22:00 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
       - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK
@@ -53,14 +55,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian-testing
+      - localhost:5001
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.11
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/content/ansible/roles/?limit=1&name=test_ansible_role&namespace=test_namespace&version=0.0.0
+    uri: http://pulp.example.org/pulp/api/v3/content/ansible/roles/?limit=1&name=test_ansible_role&namespace=test_namespace&version=0.0.0
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"artifact":"/pulp/api/v3/artifacts/ec0c2d0e-c964-4c8d-a96c-00b2d4c6148f/","pulp_created":"2021-07-22T17:17:33.941511Z","pulp_href":"/pulp/api/v3/content/ansible/roles/50125848-2634-4fa1-8267-69f9336203d8/","version":"0.0.0","name":"test_ansible_role","namespace":"test_namespace"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/ansible/roles/a17a2b18-85b6-4d7c-8b70-c651278495f3/","artifact":"/pulp/api/v3/artifacts/afd21628-4266-4cbd-9a4e-f490c514e55c/","pulp_created":"2023-02-18T17:21:57.461402Z","version":"0.0.0","name":"test_ansible_role","namespace":"test_namespace"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -73,17 +75,19 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 620319657cfd4d2eb0473812e7fb8561
+      - e9bdb038393b4023ac1e0e036d0b30e8
       Date:
-      - Thu, 22 Jul 2021 17:17:34 GMT
+      - Sat, 18 Feb 2023 17:22:00 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
       - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK

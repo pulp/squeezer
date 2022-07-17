@@ -1,6 +1,10 @@
 name: CI
 
-on: [push, pull_request]
+on: [pull_request]
+
+concurrency:
+  group: ${{ github.ref_name }}-${{ github.workflow }}
+  cancel-in-progress: true
 
 env:
   COLORTERM: 'yes'
@@ -9,8 +13,22 @@ env:
   CONTAINER_RUNTIME: 'docker'
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+      - name: Install dependencies
+        run: pip install -r requirements-lint.txt
+      - name: Run linter
+        run: make lint
+
   build:
     runs-on: ubuntu-20.04
+    needs: lint
     strategy:
       fail-fast: false
       matrix:
@@ -24,8 +42,6 @@ jobs:
           - stable-2.13
           - devel
         include:
-          - python: "2.7"
-            ansible: "stable-2.11"
           - python: "3.6"
             ansible: "stable-2.11"
           - python: "3.7"
@@ -64,16 +80,3 @@ jobs:
         run: make test-setup
       - name: Run sanity check
         run: make SANITY_OPTS="--local" sanity
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.9"
-      - name: Install dependencies
-        run: pip install -r requirements-lint.txt
-      - name: Run linter
-        run: make lint

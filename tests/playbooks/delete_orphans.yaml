@@ -15,7 +15,8 @@
       <<: *pulp_connection_details
   tasks:
     - name: Delete orphans
-      pulp.squeezer.delete_orphans: {}
+      pulp.squeezer.delete_orphans:
+        protection_time: 0
     - name: Create artifact
       pulp.squeezer.artifact:
         file: data/file1.txt
@@ -40,8 +41,19 @@
   module_defaults:
     <<: *pulp_module_defaults
   tasks:
-    - name: Delete orphans
+    - name: Delete orphans with protection time
       pulp.squeezer.delete_orphans: {}
+      register: orphans
+    - name: Verify result
+      assert:
+        that:
+          - orphans.changed == true
+          - orphans.summary.artifacts == 0
+          - orphans.summary.content == 0
+
+    - name: Delete orphans immediately
+      pulp.squeezer.delete_orphans:
+        protection_time: 0
       register: orphans
     - name: Verify result
       assert:
@@ -50,8 +62,19 @@
           - orphans.summary.artifacts == 1 or ansible_check_mode
           - orphans.summary.content == 1 or ansible_check_mode
 
-    - name: Delete orphans
+    - name: Delete orphans with protection time (2nd try)
       pulp.squeezer.delete_orphans: {}
+      register: orphans
+    - name: Verify result
+      assert:
+        that:
+          - orphans.changed == true
+          - orphans.summary.artifacts == 0
+          - orphans.summary.content == 0
+
+    - name: Delete orphans immediately (2nd try)
+      pulp.squeezer.delete_orphans:
+        protection_time: 0
       register: orphans
     - name: Verify result
       assert:

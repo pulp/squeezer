@@ -1,8 +1,8 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 # copyright (c) 2019, Matthias Dellweg
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
 
 from __future__ import absolute_import, division, print_function
 
@@ -73,14 +73,23 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpFileRemote,
-    PulpRemoteAnsibleModule,
-)
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpRemoteAnsibleModule
+
+try:
+    from pulp_glue.file.context import PulpFileRemoteContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpFileRemoteContext = None
 
 
 def main():
     with PulpRemoteAnsibleModule(
+        context_class=PulpFileRemoteContext,
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
             policy=dict(choices=["immediate", "on_demand", "streamed"]),
         ),
@@ -89,31 +98,27 @@ def main():
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
             key: module.params[key]
-            for key in ["url", "download_concurrency", "policy", "tls_validation"]
+            for key in [
+                "url",
+                "download_concurrency",
+                "policy",
+                "tls_validation",
+                "proxy_url",
+                "proxy_username",
+                "proxy_password",
+                "ca_cert",
+                "client_cert",
+                "client_key",
+            ]
             if module.params[key] is not None
         }
 
-        # Nullifiable values
         if module.params["remote_username"] is not None:
-            desired_attributes["username"] = module.params["remote_username"] or None
+            desired_attributes["username"] = module.params["remote_username"]
         if module.params["remote_password"] is not None:
-            desired_attributes["password"] = module.params["remote_password"] or None
-        desired_attributes.update(
-            {
-                key: module.params[key] or None
-                for key in [
-                    "proxy_url",
-                    "proxy_username",
-                    "proxy_password",
-                    "ca_cert",
-                    "client_cert",
-                    "client_key",
-                ]
-                if module.params[key] is not None
-            }
-        )
+            desired_attributes["password"] = module.params["remote_password"]
 
-        PulpFileRemote(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":
