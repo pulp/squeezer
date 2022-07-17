@@ -1,13 +1,11 @@
-import pytest
+import json
 import os
 import sys
-import json
+
 import ansible_runner
+import pytest
 
-
-TEST_NAMES = [
-    name[:-5] for name in os.listdir("tests/playbooks") if name.endswith(".yaml")
-]
+TEST_NAMES = [name[:-5] for name in os.listdir("tests/playbooks") if name.endswith(".yaml")]
 
 IGNORED_WARNINGS = []
 
@@ -16,16 +14,12 @@ IGNORED_WARNINGS = []
 if sys.version_info[0] == 2:
     for envvar in os.environ.keys():
         try:
-            os.environ[envvar] = (
-                os.environ[envvar].decode("utf-8").encode("ascii", "ignore")
-            )
+            os.environ[envvar] = os.environ[envvar].decode("utf-8").encode("ascii", "ignore")
         except UnicodeError:
             os.environ.pop(envvar)
 
 
-def run_playbook_vcr(
-    tmpdir, test_name, extra_vars=None, record=False, check_mode=False
-):
+def run_playbook_vcr(tmpdir, test_name, extra_vars=None, record=False, check_mode=False):
     if extra_vars is None:
         extra_vars = {}
     limit = None
@@ -50,9 +44,7 @@ def run_playbook_vcr(
     params_file.write(json.dumps(test_params))
     os.environ["PAM_TEST_VCR_PARAMS_FILE"] = params_file.strpath
     os.environ["XDG_CACHE_HOME"] = tmpdir.join("cache").strpath
-    return run_playbook(
-        test_name, extra_vars=extra_vars, limit=limit, check_mode=check_mode
-    )
+    return run_playbook(test_name, extra_vars=extra_vars, limit=limit, check_mode=check_mode)
 
 
 def run_playbook(test_name, extra_vars=None, limit=None, check_mode=False):
@@ -84,9 +76,7 @@ def test_playbook(tmpdir, test_name, vcrmode, pulp_container_log):
     for event in run.events:
         event_warnings = [
             warning
-            for warning in event.get("event_data", {})
-            .get("res", {})
-            .get("warnings", [])
+            for warning in event.get("event_data", {}).get("res", {}).get("warnings", [])
             if warning not in IGNORED_WARNINGS
         ]
         assert [] == event_warnings, str(event_warnings)

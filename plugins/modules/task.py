@@ -78,7 +78,6 @@ def main():
             ("state", "completed", ["pulp_href"]),
         ],
     ) as module:
-
         natural_key = {"pulp_href": module.params["pulp_href"]}
         desired_attributes = {}
 

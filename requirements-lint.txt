@@ -1,4 +1,5 @@
 ansible
 black
 galaxy-importer
+isort
 yamllint

@@ -98,9 +98,9 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpRemoteAnsibleModule,
     PulpAnsibleCollectionRemote,
     PulpAnsibleRoleRemote,
+    PulpRemoteAnsibleModule,
     SqueezerException,
 )
 
@@ -114,15 +114,12 @@ def main():
         ),
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
-
         if module.params["content_type"] == "collection":
             RemoteClass = PulpAnsibleCollectionRemote
         else:
             RemoteClass = PulpAnsibleRoleRemote
             if module.params["collections"] is not None:
-                raise SqueezerException(
-                    "'collections' can only be used for collection remotes."
-                )
+                raise SqueezerException("'collections' can only be used for collection remotes.")
 
         natural_key = {"name": module.params["name"]}
         desired_attributes = {

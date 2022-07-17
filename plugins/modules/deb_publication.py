@@ -80,10 +80,10 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpEntityAnsibleModule,
     PulpDebPublication,
     PulpDebRepository,
     PulpDebVerbatimPublication,
+    PulpEntityAnsibleModule,
 )
 
 
@@ -102,7 +102,6 @@ def main():
             ["state", "absent", ["repository"]],
         ),
     ) as module:
-
         repository_name = module.params["repository"]
         version = module.params["version"]
         mode = module.params["mode"]
@@ -120,18 +119,16 @@ def main():
             repository.find(failsafe=False)
             # TODO check if version exists
             if version:
-                repository_version_href = repository.entity[
-                    "versions_href"
-                ] + "{version}/".format(version=version)
+                repository_version_href = repository.entity["versions_href"] + "{version}/".format(
+                    version=version
+                )
             else:
                 repository_version_href = repository.entity["latest_version_href"]
             natural_key = {"repository_version": repository_version_href}
         else:
             natural_key = {"repository_version": None}
         if mode == "verbatim":
-            PulpDebVerbatimPublication(
-                module, natural_key, desired_attributes
-            ).process()
+            PulpDebVerbatimPublication(module, natural_key, desired_attributes).process()
         else:
             PulpDebPublication(module, natural_key, desired_attributes).process()
 

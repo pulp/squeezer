@@ -9,8 +9,8 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-import re
 import os
+import re
 import traceback
 from time import sleep
 
@@ -19,7 +19,6 @@ from ansible.module_utils.basic import AnsibleModule, env_fallback
 # from ansible.module_utils.common import yaml
 from ansible.module_utils.six.moves.urllib.error import HTTPError
 from ansible_collections.pulp.squeezer.plugins.module_utils.openapi import OpenAPI
-
 
 PAGE_LIMIT = 20
 CONTENT_CHUNK_SIZE = 512 * 1024  # 1/2 MB
@@ -47,12 +46,8 @@ def pulp_parse_version(version_str):
 class PulpAnsibleModule(AnsibleModule):
     def __init__(self, **kwargs):
         argument_spec = dict(
-            pulp_url=dict(
-                required=True, fallback=(env_fallback, ["SQUEEZER_PULP_URL"])
-            ),
-            username=dict(
-                required=True, fallback=(env_fallback, ["SQUEEZER_USERNAME"])
-            ),
+            pulp_url=dict(required=True, fallback=(env_fallback, ["SQUEEZER_PULP_URL"])),
+            username=dict(required=True, fallback=(env_fallback, ["SQUEEZER_USERNAME"])),
             password=dict(
                 required=True,
                 no_log=True,
@@ -68,9 +63,7 @@ class PulpAnsibleModule(AnsibleModule):
         argument_spec.update(kwargs.pop("argument_spec", {}))
         supports_check_mode = kwargs.pop("supports_check_mode", True)
         super(PulpAnsibleModule, self).__init__(
-            argument_spec=argument_spec,
-            supports_check_mode=supports_check_mode,
-            **kwargs
+            argument_spec=argument_spec, supports_check_mode=supports_check_mode, **kwargs
         )
 
     def __enter__(self):
@@ -104,9 +97,7 @@ class PulpAnsibleModule(AnsibleModule):
                 self.fail_json(
                     msg=str(exc_value),
                     changed=self._changed,
-                    exception="\n".join(
-                        traceback.format_exception(exc_class, exc_value, tb)
-                    ),
+                    exception="\n".join(traceback.format_exception(exc_class, exc_value, tb)),
                 )
                 return True
 
@@ -125,9 +116,7 @@ class PulpEntityAnsibleModule(PulpAnsibleModule):
             ),
         )
         argument_spec.update(kwargs.pop("argument_spec", {}))
-        super(PulpEntityAnsibleModule, self).__init__(
-            argument_spec=argument_spec, **kwargs
-        )
+        super(PulpEntityAnsibleModule, self).__init__(argument_spec=argument_spec, **kwargs)
 
 
 class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
@@ -147,9 +136,7 @@ class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
             proxy_password=dict(no_log=True),
         )
         argument_spec.update(kwargs.pop("argument_spec", {}))
-        super(PulpRemoteAnsibleModule, self).__init__(
-            argument_spec=argument_spec, **kwargs
-        )
+        super(PulpRemoteAnsibleModule, self).__init__(argument_spec=argument_spec, **kwargs)
 
 
 class PulpEntity(object):
@@ -215,9 +202,7 @@ class PulpEntity(object):
     def read(self):
         if not hasattr(self, "_read_id"):
             raise SqueezerException("This entity is not readable.")
-        self.entity = self.module.pulp_api.call(
-            self._read_id, parameters=self.primary_key
-        )
+        self.entity = self.module.pulp_api.call(self._read_id, parameters=self.primary_key)
 
     def create(self):
         if not hasattr(self, "_create_id"):
@@ -252,9 +237,7 @@ class PulpEntity(object):
                         body=changes,
                     )
                     if response and "task" in response:
-                        PulpTask(
-                            self.module, {"pulp_href": response["task"]}
-                        ).wait_for()
+                        PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
                         self.read()
                     else:
                         self.entity = response
@@ -264,9 +247,7 @@ class PulpEntity(object):
                         self._update_id, parameters=self.primary_key, body=self.entity
                     )
                     if response and "task" in response:
-                        PulpTask(
-                            self.module, {"pulp_href": response["task"]}
-                        ).wait_for()
+                        PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
                         self.read()
                     else:
                         self.entity = response
@@ -278,9 +259,7 @@ class PulpEntity(object):
         if not hasattr(self, "_delete_id"):
             raise SqueezerException("This entity is not deletable.")
         if not self.module.check_mode:
-            response = self.module.pulp_api.call(
-                self._delete_id, parameters=self.primary_key
-            )
+            response = self.module.pulp_api.call(self._delete_id, parameters=self.primary_key)
             if response and "task" in response:
                 PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
         self.entity = None
@@ -292,9 +271,7 @@ class PulpEntity(object):
         body = {"remote": remote_href}
         if parameters:
             body.update(parameters)
-        response = self.module.pulp_api.call(
-            self._sync_id, parameters=self.primary_key, body=body
-        )
+        response = self.module.pulp_api.call(self._sync_id, parameters=self.primary_key, body=body)
         return PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
 
     def process_special(self):
@@ -409,10 +386,7 @@ class PulpOrphans(PulpEntity):
             response = self.module.pulp_api.call(self._delete_id)
             task = PulpTask(self.module, {"pulp_href": response["task"]}).wait_for()
             response = task["progress_reports"]
-            response = {
-                item["message"].split(" ")[-1].lower(): item["total"]
-                for item in response
-            }
+            response = {item["message"].split(" ")[-1].lower(): item["total"] for item in response}
         else:
             response = {
                 "artifacts": 0,
@@ -515,9 +489,7 @@ class PulpUpload(PulpEntity):
                     parameters = upload.primary_key
                     parameters["Content-Range"] = content_range
                     uploads = {"file": chunk}
-                    module.pulp_api.call(
-                        cls._update_id, parameters=parameters, uploads=uploads
-                    )
+                    module.pulp_api.call(cls._update_id, parameters=parameters, uploads=uploads)
                     offset += actual_chunk_size
 
                 response = module.pulp_api.call(
@@ -831,9 +803,7 @@ class PulpAnsibleCollectionRemote(PulpRemote):
                 collection_list = "\n".join(
                     ("  - " + collection for collection in sorted(collections))
                 )
-                self.desired_attributes["requirements_file"] = (
-                    "collections:\n" + collection_list
-                )
+                self.desired_attributes["requirements_file"] = "collections:\n" + collection_list
 
     def presentation(self, entity):
         if entity:

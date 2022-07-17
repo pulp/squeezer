@@ -66,13 +66,10 @@ def main():
     with PulpAnsibleModule(
         argument_spec=dict(remote=dict(required=True), repository=dict(required=True))
     ) as module:
-
         remote = PulpContainerRemote(module, {"name": module.params["remote"]})
         remote.find(failsafe=False)
 
-        repository = PulpContainerRepository(
-            module, {"name": module.params["repository"]}
-        )
+        repository = PulpContainerRepository(module, {"name": module.params["repository"]})
         repository.find(failsafe=False)
 
         repository.process_sync(remote)

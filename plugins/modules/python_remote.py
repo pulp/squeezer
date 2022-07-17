@@ -88,10 +88,9 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpRemoteAnsibleModule,
     PulpPythonRemote,
+    PulpRemoteAnsibleModule,
 )
-
 
 DESIRED_KEYS = {
     "url",
@@ -114,12 +113,9 @@ def main():
         ),
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
-
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
-            key: module.params[key]
-            for key in DESIRED_KEYS
-            if module.params[key] is not None
+            key: module.params[key] for key in DESIRED_KEYS if module.params[key] is not None
         }
 
         # Nullifiable values

@@ -64,10 +64,10 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpAnsibleModule,
     PulpAnsibleCollectionRemote,
-    PulpAnsibleRoleRemote,
+    PulpAnsibleModule,
     PulpAnsibleRepository,
+    PulpAnsibleRoleRemote,
 )
 
 
@@ -79,7 +79,6 @@ def main():
             repository=dict(required=True),
         ),
     ) as module:
-
         if module.params["content_type"] == "collection":
             RemoteClass = PulpAnsibleCollectionRemote
         else:
@@ -88,9 +87,7 @@ def main():
         remote = RemoteClass(module, {"name": module.params["remote"]})
         remote.find(failsafe=False)
 
-        repository = PulpAnsibleRepository(
-            module, {"name": module.params["repository"]}
-        )
+        repository = PulpAnsibleRepository(module, {"name": module.params["repository"]})
         repository.find(failsafe=False)
 
         repository.process_sync(remote)

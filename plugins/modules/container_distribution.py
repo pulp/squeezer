@@ -98,11 +98,10 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpEntityAnsibleModule,
     PulpContainerDistribution,
     PulpContainerRepository,
     PulpContentGuard,
-    SqueezerException,
+    PulpEntityAnsibleModule,
 )
 
 
@@ -121,7 +120,6 @@ def main():
             ("state", "absent", ["name"]),
         ],
     ) as module:
-
         repository_name = module.params["repository"]
         version = module.params["version"]
         content_guard_name = module.params["content_guard"]

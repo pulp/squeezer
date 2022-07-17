@@ -123,9 +123,9 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    pulp_parse_version,
-    PulpEntityAnsibleModule,
     PulpAccessPolicy,
+    PulpEntityAnsibleModule,
+    pulp_parse_version,
 )
 
 
@@ -157,7 +157,6 @@ def main():
         ),
         required_if=[("state", "present", ["viewset_name"])],
     ) as module:
-
         natural_key = {"viewset_name": module.params["viewset_name"]}
         desired_attributes = {
             key: module.params[key]
@@ -171,9 +170,7 @@ def main():
 
         # Workaround for rename "permissions_assignment" -> "creation_hooks"
         core_version = (
-            module.pulp_api.api_spec.get("info", {})
-            .get("x-pulp-app-versions", {})
-            .get("core", ())
+            module.pulp_api.api_spec.get("info", {}).get("x-pulp-app-versions", {}).get("core", ())
         )
         if pulp_parse_version(core_version) < pulp_parse_version("3.17.0"):
             if "creation_hooks" in desired_attributes:

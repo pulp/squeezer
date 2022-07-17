@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 
-import os
-import sys
-import vcr
 import json
+import os
 import re
+import sys
+
+import vcr
 
 try:
-    from urlparse import urlparse, urlunparse, parse_qs
+    from urlparse import parse_qs, urlparse, urlunparse
 except ImportError:
-    from urllib.parse import urlparse, urlunparse, parse_qs
+    from urllib.parse import parse_qs, urlparse, urlunparse
 
 
 def safe_method_matcher(r1, r2):
@@ -44,9 +45,7 @@ def amp_body_matcher(r1, r2):
                     sorted(re.findall(r'([^=,]*="(?:[^"]|\\")*")', body2["search"]))
                 )
         elif c1.startswith("application/x-www-form-urlencoded"):
-            assert c2.startswith(
-                "application/x-www-form-urlencoded"
-            ), "content-type mismatch"
+            assert c2.startswith("application/x-www-form-urlencoded"), "content-type mismatch"
             body1 = parse_qs(body1)
             body2 = parse_qs(body2)
         elif c1.startswith("multipart/form-data"):
@@ -79,9 +78,7 @@ else:
     # Load recording parameters from file
     with open(VCR_PARAMS_FILE, "r") as params_file:
         test_params = json.load(params_file)
-    cassette_file = "../fixtures/{}-{}.yml".format(
-        test_params["test_name"], test_params["serial"]
-    )
+    cassette_file = "../fixtures/{}-{}.yml".format(test_params["test_name"], test_params["serial"])
     # Increase serial and dump back to file
     test_params["serial"] += 1
     with open(VCR_PARAMS_FILE, "w") as params_file:
@@ -90,10 +87,11 @@ else:
     # Call the original python script with vcr-cassette in place
     amp_vcr = vcr.VCR()
 
-    method_matcher = "method"
     if test_params["check_mode"]:
         amp_vcr.register_matcher("safe_method_matcher", safe_method_matcher)
         method_matcher = "safe_method_matcher"
+    else:
+        method_matcher = "method"
 
     amp_vcr.register_matcher("amp_body", amp_body_matcher)
 
