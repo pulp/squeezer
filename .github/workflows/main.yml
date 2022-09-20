@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         python:
-          - "3.8"
+          - "3.9"
         ansible:
           - stable-2.9
           - stable-2.10
@@ -31,7 +31,7 @@ jobs:
           - python: "3.7"
             ansible: "stable-2.11"
             image_tag: "latest"
-          - python: "3.9"
+          - python: "3.10"
             ansible: "devel"
             image_tag: "nightly"
     steps:
@@ -57,7 +57,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.8"
+          python-version: "3.9"
       - name: Install Ansible
         run: pip install git+https://github.com/ansible/ansible.git@devel
       - name: Install dependencies
@@ -72,7 +72,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.8"
+          python-version: "3.9"
       - name: Install dependencies
         run: pip install -r requirements-lint.txt
       - name: Run linter
