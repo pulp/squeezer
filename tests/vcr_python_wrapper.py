@@ -26,40 +26,36 @@ def safe_method_matcher(r1, r2):
 # dictionaries in the same order.
 # Also multipart bounderies must be ignored.
 def amp_body_matcher(r1, r2):
-    c1 = r1.headers.get("content-type")
-    c2 = r2.headers.get("content-type")
-    if c1 == "application/json" and c2 == "application/json":
-        if r1.body is None or r2.body is None:
-            return r1.body == r2.body
-        body1 = json.loads(r1.body.decode("utf8"))
-        body2 = json.loads(r2.body.decode("utf8"))
-        if "search" in body1:
-            body1["search"] = ",".join(
-                sorted(re.findall(r'([^=,]*="(?:[^"]|\\")*")', body1["search"]))
-            )
-        if "search" in body2:
-            body2["search"] = ",".join(
-                sorted(re.findall(r'([^=,]*="(?:[^"]|\\")*")', body2["search"]))
-            )
-        return body1 == body2
-    elif c1.startswith("application/x-www-form-urlencoded") and c2.startswith(
-        "application/x-www-form-urlencoded"
-    ):
-        return parse_qs(r1.body) == parse_qs(r1.body)
-    elif c1.startswith("multipart/form-data") and c2.startswith("multipart/form-data"):
-        if r1.body is None or r2.body is None:
-            return r1.body == r2.body
-        boundary1 = re.findall(r"boundary=(\S.*)", r1.headers["content-type"])[
-            0
-        ].encode()
-        boundary2 = re.findall(r"boundary=(\S.*)", r2.headers["content-type"])[
-            0
-        ].encode()
-        return r1.body.replace(boundary1, b"TILT") == r2.body.replace(
-            boundary2, b"TILT"
-        )
-    else:
-        return r1.body == r2.body
+    c1 = r1.headers.get("content-type", "")
+    c2 = r2.headers.get("content-type", "")
+    body1 = r1.body
+    body2 = r2.body
+    if body1 is not None and body2 is not None:
+        if c1 == "application/json":
+            assert c2 == "application/json", "content-type mismatch"
+            body1 = json.loads(body1.decode("utf8"))
+            body2 = json.loads(body2.decode("utf8"))
+            if "search" in body1:
+                body1["search"] = ",".join(
+                    sorted(re.findall(r'([^=,]*="(?:[^"]|\\")*")', body1["search"]))
+                )
+            if "search" in body2:
+                body2["search"] = ",".join(
+                    sorted(re.findall(r'([^=,]*="(?:[^"]|\\")*")', body2["search"]))
+                )
+        elif c1.startswith("application/x-www-form-urlencoded"):
+            assert c2.startswith(
+                "application/x-www-form-urlencoded"
+            ), "content-type mismatch"
+            body1 = parse_qs(body1)
+            body2 = parse_qs(body2)
+        elif c1.startswith("multipart/form-data"):
+            assert c2.startswith("multipart/form-data"), "content-type mismatch"
+            boundary1 = re.findall(r"boundary=(\S.*)", c1)[0].encode()
+            boundary2 = re.findall(r"boundary=(\S.*)", c2)[0].encode()
+            body1 = body1.replace(boundary1, b"TILT")
+            body2 = body2.replace(boundary2, b"TILT")
+    assert body1 == body2, "{body1} == {body2}".format(body1=body1, body2=body2)
 
 
 def filter_request_uri(request):

@@ -12,7 +12,7 @@ DEPENDENCIES := $(METADATA) $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES),$(_$(PLUGIN_TY
 PYTHON_VERSION = $(shell python -c 'import sys; print("{}.{}".format(sys.version_info.major, sys.version_info.minor))')
 SANITY_OPTS =
 TEST =
-PYTEST = pytest -n 4 --boxed -v
+PYTEST = pytest -n 4 -v
 
 default: help
 help:
