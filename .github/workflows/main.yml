@@ -10,7 +10,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
@@ -63,7 +63,7 @@ jobs:
       - name: Install dependencies
         run: make test-setup
       - name: Run sanity check
-        run: make SANITY_OPTS="--local" PYTHON_VERSION="3.8" sanity
+        run: make SANITY_OPTS="--local" sanity
 
   lint:
     runs-on: ubuntu-latest
