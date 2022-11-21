@@ -9,14 +9,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - localhost:8080
+      - localhost:80
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/?limit=1&name=test_python_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/python/pypi/2de8e15a-f8c6-4e86-9c87-d6e3732129eb/","pulp_created":"2022-07-13T15:34:56.686839Z","base_path":"test_python_base_path","base_url":"https://91ef7b9822f3/pypi/test_python_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/bd99f02c-16aa-414a-b645-9d7124d00c45/","pulp_labels":{},"name":"test_python_distribution","repository":null,"publication":"/pulp/api/v3/publications/python/pypi/cd58b4d5-0136-4041-9650-bdf0cc95b302/","allow_uploads":true,"remote":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/python/pypi/899f6bd5-d852-4f98-acfa-093b86bd8d75/","pulp_created":"2022-11-22T09:09:39.709330Z","base_path":"test_python_base_path","base_url":"https://alex-rocky-pulp.novalocal/pypi/test_python_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/9b319fa8-d7ca-43b9-b794-a917d89f0b24/","pulp_labels":{},"name":"test_python_distribution","repository":null,"publication":"/pulp/api/v3/publications/python/pypi/b8b2bdda-ba2b-40b1-9749-0a42c984cd81/","allow_uploads":true,"remote":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,13 +25,13 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '581'
+      - '594'
       Content-Type:
       - application/json
       Correlation-ID:
-      - bc70b581d36f4226b4f134faf14ed6dc
+      - 6f62168b11a449488c19e52b9841315e
       Date:
-      - Wed, 13 Jul 2022 15:34:59 GMT
+      - Tue, 22 Nov 2022 09:09:43 GMT
       Referrer-Policy:
       - same-origin
       Server:

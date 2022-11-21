@@ -9,14 +9,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - localhost:8080
+      - localhost:80
       User-Agent:
-      - Python-urllib/3.6
+      - Python-urllib/3.9
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/distributions/deb/apt/?limit=1&name=test_deb_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/deb/apt/6efc5289-1fda-4197-8b52-033367afbdd9/","pulp_created":"2021-11-01T17:16:12.408825Z","base_path":"test_deb_base_path","base_url":"http://localhost:8080/pulp/content/test_deb_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/34186bb5-534d-451f-bb2b-07b30143751a/","pulp_labels":{},"name":"test_deb_distribution","repository":null,"publication":"/pulp/api/v3/publications/deb/apt/ba2c7802-902b-4d8f-ad51-0f35f06c75e9/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/deb/apt/4a1c3fb1-5492-463e-9944-73241423b79b/","pulp_created":"2022-11-22T09:45:52.748559Z","base_path":"test_deb_base_path","base_url":"http://alex-rocky-pulp.novalocal:8080/pulp/content/test_deb_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/e5e14dfe-a2d5-466d-987f-c241fee3f4d5/","pulp_labels":{},"name":"test_deb_distribution","repository":null,"publication":"/pulp/api/v3/publications/deb/apt/b756dc6c-1980-482f-a871-c485dd50305f/"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,13 +25,13 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '538'
+      - '554'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 8bd8d50ed7a848458d968fd1a0e8dd65
+      - 7bee3c4278ee4e1282f0c09a9b2c93b6
       Date:
-      - Mon, 01 Nov 2021 17:16:15 GMT
+      - Tue, 22 Nov 2022 09:45:56 GMT
       Referrer-Policy:
       - same-origin
       Server:

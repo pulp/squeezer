@@ -544,22 +544,6 @@ class PulpContentGuard(PulpEntity):
     _name_plural = "content_guards"
 
 
-class PulpRBACCertGuard(PulpEntity):
-    _list_id = "contentguards_core_rbac_list"
-    _read_id = "contentguards_core_rbac_read"
-    _create_id = "contentguards_core_rbac_create"
-    _update_id = "contentguards_core_rbac_update"
-    _partial_update_id = "contentguards_core_rbac_partial_update"
-    _delete_id = "contentguards_core_rbac_delete"
-
-    _name_singular = "content_guard"
-    _name_plural = "content_guards"
-
-    @property
-    def _href(self):
-        return "r_b_a_c_content_guard_href"
-
-
 class PulpX509CertGuard(PulpEntity):
     _list_id = "contentguards_certguard_x509_list"
     _read_id = "contentguards_certguard_x509_read"
