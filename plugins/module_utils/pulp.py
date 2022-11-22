@@ -538,20 +538,10 @@ class PulpUpload(PulpEntity):
 
 
 class PulpContentGuard(PulpEntity):
-    # TODO find an endpoint to enumerate all ContentGuards
-    _list_id = "contentguards_certguard_x509_list"
-    _read_id = "contentguards_certguard_x509_read"
+    _list_id = "contentguards_list"
 
     _name_singular = "content_guard"
     _name_plural = "content_guards"
-
-    @property
-    def _href(self):
-        return (
-            "x509_cert_guard_href"
-            if self.module.pulp_api.openapi_version == 2
-            else "certguard_x509_cert_guard_href"
-        )
 
 
 class PulpX509CertGuard(PulpEntity):

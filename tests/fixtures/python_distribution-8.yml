@@ -9,14 +9,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - localhost:8080
+      - localhost:80
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/remotes/python/python/?limit=1&name=test_python_remote_pull_through
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/python/python/275f3f5a-6d85-4453-adfa-43c1e9123caa/","pulp_created":"2022-07-13T15:34:51.488020Z","name":"test_python_remote_pull_through","url":"https://pypi.org","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":null,"pulp_labels":{},"pulp_last_updated":"2022-07-13T15:34:51.488032Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"includes":[],"excludes":[],"prereleases":false,"package_types":[],"keep_latest_packages":0,"exclude_platforms":[]}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/python/python/335e3e95-213a-4519-addb-e2272b516a22/","pulp_created":"2022-11-21T09:40:02.939875Z","name":"test_python_remote_pull_through","url":"https://pypi.org","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":null,"pulp_labels":{},"pulp_last_updated":"2022-11-21T09:40:02.939902Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"includes":[],"excludes":[],"prereleases":false,"package_types":[],"keep_latest_packages":0,"exclude_platforms":[]}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -29,9 +29,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - cb9ff451694c4724b9ecfaa7dc8a6598
+      - bace6004a836443f824522b0df1480d2
       Date:
-      - Wed, 13 Jul 2022 15:35:01 GMT
+      - Tue, 22 Nov 2022 09:09:53 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -55,9 +55,9 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - localhost:8080
+      - localhost:80
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/?limit=1&name=test_python_distribution_pull_through
   response:
@@ -75,9 +75,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - add30ada5b02413fafb72057e23c0ee8
+      - ee944c21b4ed48888f91cbeea69b0ec1
       Date:
-      - Wed, 13 Jul 2022 15:35:01 GMT
+      - Tue, 22 Nov 2022 09:09:53 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -93,7 +93,7 @@ interactions:
       message: OK
 - request:
     body: '{"name": "test_python_distribution_pull_through", "base_path": "pull_through_mirror",
-      "remote": "/pulp/api/v3/remotes/python/python/275f3f5a-6d85-4453-adfa-43c1e9123caa/"}'
+      "remote": "/pulp/api/v3/remotes/python/python/335e3e95-213a-4519-addb-e2272b516a22/"}'
     headers:
       Accept:
       - application/json
@@ -104,14 +104,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - localhost:8080
+      - localhost:80
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: POST
     uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/cdaf7523-c1a1-43ad-b7f3-5d379c8460ca/"}'
+      string: '{"task":"/pulp/api/v3/tasks/153a606a-b6e0-4f8c-8036-5099f7e0ba59/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -124,9 +124,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 81dff4cabd034770b95d472205d081f6
+      - c4dab875803047c69e09ddd4afb90522
       Date:
-      - Wed, 13 Jul 2022 15:35:01 GMT
+      - Tue, 22 Nov 2022 09:09:54 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -150,14 +150,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - localhost:8080
+      - localhost:80
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/cdaf7523-c1a1-43ad-b7f3-5d379c8460ca/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/153a606a-b6e0-4f8c-8036-5099f7e0ba59/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/cdaf7523-c1a1-43ad-b7f3-5d379c8460ca/","pulp_created":"2022-07-13T15:35:01.133048Z","state":"running","name":"pulpcore.app.tasks.base.general_create","logging_cid":"81dff4cabd034770b95d472205d081f6","started_at":"2022-07-13T15:35:01.145343Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/10d2484b-ccf3-40ee-98c8-1c3b9d608da6/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/153a606a-b6e0-4f8c-8036-5099f7e0ba59/","pulp_created":"2022-11-22T09:09:54.010215Z","state":"running","name":"pulpcore.app.tasks.base.general_create","logging_cid":"c4dab875803047c69e09ddd4afb90522","started_at":"2022-11-22T09:09:54.053403Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/cf065072-a318-4959-a75a-fa305dba9cd6/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/api/v3/distributions/"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -170,9 +170,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 2d3279f115954159973674e9ad70bb75
+      - 2d47390527b84e24b50410744a13948b
       Date:
-      - Wed, 13 Jul 2022 15:35:01 GMT
+      - Tue, 22 Nov 2022 09:09:54 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -196,14 +196,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - localhost:8080
+      - localhost:80
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/cdaf7523-c1a1-43ad-b7f3-5d379c8460ca/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/153a606a-b6e0-4f8c-8036-5099f7e0ba59/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/cdaf7523-c1a1-43ad-b7f3-5d379c8460ca/","pulp_created":"2022-07-13T15:35:01.133048Z","state":"completed","name":"pulpcore.app.tasks.base.general_create","logging_cid":"81dff4cabd034770b95d472205d081f6","started_at":"2022-07-13T15:35:01.145343Z","finished_at":"2022-07-13T15:35:01.230533Z","error":null,"worker":"/pulp/api/v3/workers/10d2484b-ccf3-40ee-98c8-1c3b9d608da6/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/distributions/python/pypi/9bd49119-be59-490b-80bb-01d6195d8597/"],"reserved_resources_record":["/api/v3/distributions/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/153a606a-b6e0-4f8c-8036-5099f7e0ba59/","pulp_created":"2022-11-22T09:09:54.010215Z","state":"completed","name":"pulpcore.app.tasks.base.general_create","logging_cid":"c4dab875803047c69e09ddd4afb90522","started_at":"2022-11-22T09:09:54.053403Z","finished_at":"2022-11-22T09:09:54.648309Z","error":null,"worker":"/pulp/api/v3/workers/cf065072-a318-4959-a75a-fa305dba9cd6/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/distributions/python/pypi/35907c67-dad2-4fa5-94da-eb1d538b0896/"],"reserved_resources_record":["/api/v3/distributions/"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -216,9 +216,9 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - b4b86f7f8c90433aaa270af196892665
+      - 3952fb5f6e424c33a2786c5468d0bb6a
       Date:
-      - Wed, 13 Jul 2022 15:35:03 GMT
+      - Tue, 22 Nov 2022 09:09:56 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -242,14 +242,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - localhost:8080
+      - localhost:80
       User-Agent:
-      - Python-urllib/3.8
+      - Python-urllib/3.9
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/9bd49119-be59-490b-80bb-01d6195d8597/
+    uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/35907c67-dad2-4fa5-94da-eb1d538b0896/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/distributions/python/pypi/9bd49119-be59-490b-80bb-01d6195d8597/","pulp_created":"2022-07-13T15:35:01.225881Z","base_path":"pull_through_mirror","base_url":"https://91ef7b9822f3/pypi/pull_through_mirror/","content_guard":null,"pulp_labels":{},"name":"test_python_distribution_pull_through","repository":null,"publication":null,"allow_uploads":true,"remote":"/pulp/api/v3/remotes/python/python/275f3f5a-6d85-4453-adfa-43c1e9123caa/"}'
+      string: '{"pulp_href":"/pulp/api/v3/distributions/python/pypi/35907c67-dad2-4fa5-94da-eb1d538b0896/","pulp_created":"2022-11-22T09:09:54.635210Z","base_path":"pull_through_mirror","base_url":"https://alex-rocky-pulp.novalocal/pypi/pull_through_mirror/","content_guard":null,"pulp_labels":{},"name":"test_python_distribution_pull_through","repository":null,"publication":null,"allow_uploads":true,"remote":"/pulp/api/v3/remotes/python/python/335e3e95-213a-4519-addb-e2272b516a22/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -258,13 +258,13 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '458'
+      - '471'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 0f59fec6ed314122809194551a946001
+      - ad2611cd0ed94dd5bfacc6ea328b9f8c
       Date:
-      - Wed, 13 Jul 2022 15:35:03 GMT
+      - Tue, 22 Nov 2022 09:09:57 GMT
       Referrer-Policy:
       - same-origin
       Server:

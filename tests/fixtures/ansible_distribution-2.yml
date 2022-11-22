@@ -9,14 +9,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian-testing
+      - localhost:80
       User-Agent:
       - Python-urllib/3.9
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?limit=1&name=test_ansible_repository
+    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?limit=1&name=test_ansible_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/60a5abfb-b3f6-4c9e-bb36-4d5b912128fd/","pulp_created":"2021-07-22T17:16:42.605382Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/60a5abfb-b3f6-4c9e-bb36-4d5b912128fd/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/60a5abfb-b3f6-4c9e-bb36-4d5b912128fd/versions/1/","name":"test_ansible_repository","description":null,"retained_versions":null,"remote":null,"last_synced_metadata_time":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/0e52b090-2ebd-4e1a-b8ca-f81d9b569132/","pulp_created":"2022-11-22T09:08:16.292219Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/0e52b090-2ebd-4e1a-b8ca-f81d9b569132/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/0e52b090-2ebd-4e1a-b8ca-f81d9b569132/versions/1/","name":"test_ansible_repository","description":null,"retain_repo_versions":null,"remote":null,"last_synced_metadata_time":null,"gpgkey":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,21 +25,23 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '555'
+      - '572'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 445fc756298c43bfad0b86acf6864605
+      - 9550ef49b7714f8f831787dfe3126da6
       Date:
-      - Thu, 22 Jul 2021 17:16:54 GMT
+      - Tue, 22 Nov 2022 09:08:35 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
       - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK
@@ -53,14 +55,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian-testing
+      - localhost:80
       User-Agent:
       - Python-urllib/3.9
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?limit=1&name=test_ansible_distribution
+    uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?limit=1&name=test_ansible_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/ansible/ansible/489634ea-929c-4b0f-bedb-a1b28f06ab09/","pulp_created":"2021-07-22T17:16:52.303772Z","base_path":"test_ansible_base_path","content_guard":"/pulp/api/v3/contentguards/certguard/x509/a0b1b556-881d-40ea-810e-567887df8a6e/","name":"test_ansible_distribution","repository":"/pulp/api/v3/repositories/ansible/ansible/60a5abfb-b3f6-4c9e-bb36-4d5b912128fd/","repository_version":null,"client_url":"http://pulp3-sandbox-debian-testing.shu.example.com/pulp_ansible/galaxy/test_ansible_base_path/","pulp_labels":{}}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/ansible/ansible/544f2dde-e2a7-489f-be88-020a5d9ba600/","pulp_created":"2022-11-22T09:08:31.760520Z","base_path":"test_ansible_base_path","content_guard":"/pulp/api/v3/contentguards/certguard/x509/8be26cbb-7a4e-4ebd-8595-9fa39b256161/","name":"test_ansible_distribution","repository":"/pulp/api/v3/repositories/ansible/ansible/0e52b090-2ebd-4e1a-b8ca-f81d9b569132/","repository_version":null,"client_url":"http://alex-rocky-pulp.novalocal:8080/pulp_ansible/galaxy/test_ansible_base_path/","pulp_labels":{}}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -69,21 +71,23 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '612'
+      - '598'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 4e7a85c582ae4eb2bf43d9b33e21fa16
+      - b390960dc8b64e72be57b0dd64394c52
       Date:
-      - Thu, 22 Jul 2021 17:16:54 GMT
+      - Tue, 22 Nov 2022 09:08:35 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
       - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK

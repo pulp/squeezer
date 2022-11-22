@@ -9,14 +9,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian-testing
+      - localhost:80
       User-Agent:
       - Python-urllib/3.9
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/distributions/file/file/?limit=1&name=test_file_distribution
+    uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/?limit=1&name=test_file_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/file/file/63aaf3c4-9c0d-4241-a2e0-2baa65992de2/","pulp_created":"2021-07-22T17:19:56.666140Z","base_path":"test_file_base_path","base_url":"https://pulp3-sandbox-debian-testing.shu.example.com/pulp/content/test_file_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/c86721cb-7b3a-48ff-ab08-d6db68244ffe/","pulp_labels":{},"name":"test_file_distribution","repository":null,"publication":"/pulp/api/v3/publications/file/file/459f00b9-d1aa-45f1-b019-650d1c9ad74a/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/file/file/9d57b694-b345-42b9-83a9-b093e87292cb/","pulp_created":"2022-11-22T09:05:36.141695Z","base_path":"test_file_base_path","base_url":"http://alex-rocky-pulp.novalocal:8080/pulp/content/test_file_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/54a540df-9db2-47ea-83a8-2893d7d16f1b/","pulp_labels":{},"name":"test_file_distribution","repository":null,"publication":"/pulp/api/v3/publications/file/file/fc6729f8-2fe2-4c49-86c8-323eace93e69/"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,21 +25,23 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '576'
+      - '561'
       Content-Type:
       - application/json
       Correlation-ID:
-      - fee1ea9d601145519f043996b504a319
+      - 4ff96a850ce84f6fa81dbee2857e75ff
       Date:
-      - Thu, 22 Jul 2021 17:19:59 GMT
+      - Tue, 22 Nov 2022 09:05:41 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
       - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK
