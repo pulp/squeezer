@@ -11,7 +11,8 @@ authors:
   - "keilr <remy.keil@gmail.com>"
   - "Mark Goddard <mark@stackhpc.com>"
   - "Daniel Ziegenberg <daniel@ziegenberg.at>"
-version: "0.0.13-dev"
+  - "Alex Welsh <alex@stackhpc.com>"
+version: "0.0.14-dev"
 license_file: LICENSE
 readme: README.md
 repository: "https://github.com/pulp/squeezer"
