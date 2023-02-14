@@ -69,7 +69,6 @@ def main():
             repository=dict(required=True),
         ),
     ) as module:
-
         remote = PulpFileRemote(module, {"name": module.params["remote"]})
         remote.find(failsafe=False)
 

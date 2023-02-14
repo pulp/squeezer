@@ -77,9 +77,9 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpEntityAnsibleModule,
     PulpArtifact,
     PulpEntity,
+    PulpEntityAnsibleModule,
 )
 
 
@@ -107,7 +107,6 @@ def main():
             ("state", "absent", ["name", "namespace", "version"]),
         ],
     ) as module:
-
         natural_key = {
             "name": module.params["name"],
             "namespace": module.params["namespace"],

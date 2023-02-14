@@ -65,11 +65,11 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    pulp_parse_version,
     PulpAnsibleModule,
     PulpRpmRemote,
     PulpRpmRepository,
     SqueezerException,
+    pulp_parse_version,
 )
 
 
@@ -85,7 +85,6 @@ def main():
             ),
         ),
     ) as module:
-
         remote = PulpRpmRemote(module, {"name": module.params["remote"]})
         remote.find(failsafe=False)
 
@@ -95,9 +94,7 @@ def main():
         # pulp_rpm supports sync_policy from 3.16.
         # Earlier versions support only mirror.
         rpm_version = (
-            module.pulp_api.api_spec.get("info", {})
-            .get("x-pulp-app-versions", {})
-            .get("rpm", ())
+            module.pulp_api.api_spec.get("info", {}).get("x-pulp-app-versions", {}).get("rpm", ())
         )
         if pulp_parse_version(rpm_version) >= pulp_parse_version("3.16.0"):
             parameters = {"sync_policy": module.params["sync_policy"]}

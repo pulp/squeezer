@@ -86,7 +86,6 @@ def main():
         ),
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
-
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
             key: module.params[key]

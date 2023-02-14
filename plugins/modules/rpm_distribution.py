@@ -87,24 +87,20 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+    PulpContentGuard,
     PulpEntityAnsibleModule,
     PulpRpmDistribution,
-    PulpContentGuard,
-    SqueezerException,
 )
 
 
 def main():
     with PulpEntityAnsibleModule(
-        argument_spec=dict(
-            name=dict(), base_path=dict(), publication=dict(), content_guard=dict()
-        ),
+        argument_spec=dict(name=dict(), base_path=dict(), publication=dict(), content_guard=dict()),
         required_if=[
             ("state", "present", ["name", "base_path"]),
             ("state", "absent", ["name"]),
         ],
     ) as module:
-
         content_guard_name = module.params["content_guard"]
 
         natural_key = {"name": module.params["name"]}

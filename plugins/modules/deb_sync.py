@@ -76,7 +76,6 @@ def main():
             mirror=dict(type="bool", default=False),
         ),
     ) as module:
-
         remote = PulpDebRemote(module, {"name": module.params["remote"]})
         remote.find(failsafe=False)
 

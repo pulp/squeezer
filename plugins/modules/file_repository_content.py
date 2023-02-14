@@ -128,7 +128,6 @@ def main():
             ),
         ),
     ) as module:
-
         repository_name = module.params["repository"]
         version = module.params["base_version"]
 
@@ -136,9 +135,9 @@ def main():
         repository.find(failsafe=False)
         # TODO check if version exists
         if version:
-            repository_version_href = repository.entity[
-                "versions_href"
-            ] + "{version}/".format(version=version)
+            repository_version_href = repository.entity["versions_href"] + "{version}/".format(
+                version=version
+            )
         else:
             repository_version_href = repository.entity["latest_version_href"]
 
@@ -151,15 +150,9 @@ def main():
             for item in desired_present_content:
                 file_content = PulpFileContent(
                     module,
-                    natural_key={
-                        k: v
-                        for k, v in item.items()
-                        if k in ["sha256", "relative_path"]
-                    },
+                    natural_key={k: v for k, v in item.items() if k in ["sha256", "relative_path"]},
                 )
-                file_content.find(
-                    parameters={"repository_version": repository_version_href}
-                )
+                file_content.find(parameters={"repository_version": repository_version_href})
                 if file_content.entity is None:
                     file_content.find(failsafe=False)
                     content_to_add.append(file_content.entity["pulp_href"])
@@ -168,15 +161,9 @@ def main():
             for item in desired_absent_content:
                 file_content = PulpFileContent(
                     module,
-                    natural_key={
-                        k: v
-                        for k, v in item.items()
-                        if k in ["sha256", "relative_path"]
-                    },
+                    natural_key={k: v for k, v in item.items() if k in ["sha256", "relative_path"]},
                 )
-                file_content.find(
-                    parameters={"repository_version": repository_version_href}
-                )
+                file_content.find(parameters={"repository_version": repository_version_href})
                 if file_content.entity is not None:
                     content_to_remove.append(file_content.entity["pulp_href"])
 

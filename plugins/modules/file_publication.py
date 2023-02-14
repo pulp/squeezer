@@ -97,13 +97,10 @@ def main():
             ["state", "absent", ["repository"]],
         ),
     ) as module:
-
         repository_name = module.params["repository"]
         version = module.params["version"]
         desired_attributes = {
-            key: module.params[key]
-            for key in ["manifest"]
-            if module.params[key] is not None
+            key: module.params[key] for key in ["manifest"] if module.params[key] is not None
         }
 
         if repository_name:
@@ -111,9 +108,9 @@ def main():
             repository.find(failsafe=False)
             # TODO check if version exists
             if version:
-                repository_version_href = repository.entity[
-                    "versions_href"
-                ] + "{version}/".format(version=version)
+                repository_version_href = repository.entity["versions_href"] + "{version}/".format(
+                    version=version
+                )
             else:
                 repository_version_href = repository.entity["latest_version_href"]
             natural_key = {"repository_version": repository_version_href}

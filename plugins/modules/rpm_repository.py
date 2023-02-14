@@ -91,17 +91,12 @@ DESIRED_KEYS = {"autopublish"}
 
 def main():
     with PulpEntityAnsibleModule(
-        argument_spec=dict(
-            name=dict(), description=dict(), autopublish=dict(type="bool")
-        ),
+        argument_spec=dict(name=dict(), description=dict(), autopublish=dict(type="bool")),
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
-
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
-            key: module.params[key]
-            for key in DESIRED_KEYS
-            if module.params[key] is not None
+            key: module.params[key] for key in DESIRED_KEYS if module.params[key] is not None
         }
 
         if module.params["description"] is not None:

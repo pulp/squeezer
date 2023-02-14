@@ -83,7 +83,6 @@ def main():
             ("state", "absent", ["sha256", "relative_path"]),
         ],
     ) as module:
-
         natural_key = {
             "sha256": module.params["sha256"],
             "relative_path": module.params["relative_path"],

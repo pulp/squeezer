@@ -36,10 +36,15 @@ info:
 	@echo "  roles:\n $(foreach ROLE,$(notdir $(ROLES)),   - $(ROLE)\n)"
 	@echo " $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES), $(PLUGIN_TYPE):\n $(foreach PLUGIN,$(basename $(notdir $(_$(PLUGIN_TYPE)))),   - $(PLUGIN)\n)\n)"
 
+black:
+	isort .
+	black .
+
 lint: $(MANIFEST) | tests/playbooks/vars/server.yaml
 	yamllint -f parsable tests/playbooks
 	ansible-playbook --syntax-check tests/playbooks/*.yaml | grep -v '^$$'
-	black . --diff --check
+	black --check --diff .
+	isort -c --diff .
 	GALAXY_IMPORTER_CONFIG=tests/galaxy-importer.cfg python -m galaxy_importer.main $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
 	@echo "🙊 Code 🙉 LGTM 🙈"
 
@@ -95,4 +100,4 @@ clean:
 
 FORCE:
 
-.PHONY: help dist install lint sanity test livetest test-setup publish FORCE
+.PHONY: help dist install black lint sanity test livetest test-setup publish FORCE

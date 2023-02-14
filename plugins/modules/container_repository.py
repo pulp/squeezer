@@ -73,8 +73,8 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpEntityAnsibleModule,
     PulpContainerRepository,
+    PulpEntityAnsibleModule,
 )
 
 
@@ -83,7 +83,6 @@ def main():
         argument_spec=dict(name=dict(), description=dict()),
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
-
         natural_key = {"name": module.params["name"]}
         desired_attributes = {}
         if module.params["description"] is not None:

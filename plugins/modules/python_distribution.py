@@ -105,9 +105,9 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+    PulpContentGuard,
     PulpEntityAnsibleModule,
     PulpPythonDistribution,
-    PulpContentGuard,
     PulpPythonRemote,
 )
 
@@ -126,7 +126,6 @@ def main():
             ("state", "absent", ["name"]),
         ],
     ) as module:
-
         content_guard_name = module.params["content_guard"]
         remote_name = module.params["remote"]
 

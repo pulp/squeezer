@@ -93,10 +93,10 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpEntityAnsibleModule,
     PulpAnsibleDistribution,
     PulpAnsibleRepository,
     PulpContentGuard,
+    PulpEntityAnsibleModule,
 )
 
 
@@ -114,7 +114,6 @@ def main():
             ("state", "absent", ["name"]),
         ],
     ) as module:
-
         repository_name = module.params["repository"]
         version = module.params["version"]
         content_guard_name = module.params["content_guard"]
@@ -123,9 +122,7 @@ def main():
             "name": module.params["name"],
         }
         desired_attributes = {
-            key: module.params[key]
-            for key in ["base_path"]
-            if module.params[key] is not None
+            key: module.params[key] for key in ["base_path"] if module.params[key] is not None
         }
 
         if repository_name:

@@ -80,9 +80,10 @@ RETURN = r"""
 """
 
 import os
+
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpEntityAnsibleModule,
     PulpArtifact,
+    PulpEntityAnsibleModule,
     SqueezerException,
 )
 
@@ -92,7 +93,6 @@ def main():
         argument_spec=dict(file=dict(type="path"), sha256=dict()),
         required_if=[("state", "present", ["file"])],
     ) as module:
-
         sha256 = module.params["sha256"]
         if module.params["file"]:
             if not os.path.exists(module.params["file"]):
@@ -105,9 +105,7 @@ def main():
                 sha256 = file_sha256
 
         if sha256 is None and module.params["state"] == "absent":
-            raise Exception(
-                "One of 'file' and 'sha256' is required if 'state' is 'absent'."
-            )
+            raise Exception("One of 'file' and 'sha256' is required if 'state' is 'absent'.")
 
         natural_key = {
             "sha256": sha256,

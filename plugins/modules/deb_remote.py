@@ -89,8 +89,8 @@ RETURN = r"""
 
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpRemoteAnsibleModule,
     PulpDebRemote,
+    PulpRemoteAnsibleModule,
 )
 
 
@@ -104,7 +104,6 @@ def main():
         ),
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
-
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
             key: module.params[key]
