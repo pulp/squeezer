@@ -1,0 +1,98 @@
+interactions:
+- request:
+    body: '{"orphan_protection_time": 0}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '29'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Squeezer/0.0.14-dev
+    method: POST
+    uri: http://pulp.example.org/pulp/api/v3/orphans/cleanup/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/36cba212-4860-40dd-b946-05019c0cb484/"}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - POST, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 237d221a6c684538823986cfa6a0d6fb
+      Date:
+      - Mon, 03 Apr 2023 08:46:31 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Correlation-ID:
+      - 237d221a6c684538823986cfa6a0d6fb
+      User-Agent:
+      - Squeezer/0.0.14-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/36cba212-4860-40dd-b946-05019c0cb484/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/36cba212-4860-40dd-b946-05019c0cb484/","pulp_created":"2023-04-03T08:46:31.324968Z","state":"completed","name":"pulpcore.app.tasks.orphan.orphan_cleanup","logging_cid":"237d221a6c684538823986cfa6a0d6fb","started_at":"2023-04-03T08:46:31.348989Z","finished_at":"2023-04-03T08:46:31.370445Z","error":null,"worker":"/pulp/api/v3/workers/9956c078-6957-485f-a242-c943a1b61b85/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Clean
+        up orphan Content","code":"clean-up.content","state":"completed","total":0,"done":0,"suffix":null},{"message":"Clean
+        up orphan Artifacts","code":"clean-up.content","state":"completed","total":0,"done":0,"suffix":null}],"created_resources":[],"reserved_resources_record":["/api/v3/orphans/cleanup/"]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '797'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 237d221a6c684538823986cfa6a0d6fb
+      Date:
+      - Mon, 03 Apr 2023 08:46:31 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+version: 1

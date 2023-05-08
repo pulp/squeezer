@@ -66,14 +66,25 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpEntityAnsibleModule,
-    PulpFileContent,
-)
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpEntityAnsibleModule
+
+try:
+    from pulp_glue.file.context import PulpFileContentContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpFileContentContext = None
 
 
 def main():
     with PulpEntityAnsibleModule(
+        context_class=PulpFileContentContext,
+        entity_singular="content",
+        entity_plural="contents",
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
             sha256=dict(aliases=["digest"]),
             relative_path=dict(),
@@ -89,7 +100,7 @@ def main():
         }
         desired_attributes = {}
 
-        PulpFileContent(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

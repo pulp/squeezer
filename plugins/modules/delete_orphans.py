@@ -15,7 +15,12 @@ module: delete_orphans
 short_description: Deletes all orphaned entities of a pulp server
 description:
   - "This module deletes all orphaned artifacts and content units of a pulp server."
-options: {}
+options:
+  protection_time:
+    description: |
+      How long in minutes Pulp should hold orphan Content and Artifacts before becoming candidates
+      for cleanup task
+    type: int
 extends_documentation_fragment:
   - pulp.squeezer.pulp
 author:
@@ -38,15 +43,43 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpAnsibleModule,
-    PulpOrphans,
-)
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpAnsibleModule
+
+try:
+    from pulp_glue.core.context import PulpOrphanContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpTaskContext = None
 
 
 def main():
-    with PulpAnsibleModule() as module:
-        summary = PulpOrphans(module).delete()
+    with PulpAnsibleModule(
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        argument_spec=dict(
+            protection_time=dict(type="int"),
+        ),
+    ) as module:
+        if not module.check_mode:
+            body = {}
+            protection_time = module.params.get("protection_time")
+            if protection_time is not None:
+                body["orphan_protection_time"] = protection_time
+            task = PulpOrphanContext(module.pulp_ctx).cleanup(body=body)
+            summary = {
+                item["message"].split(" ")[-1].lower(): item["total"]
+                for item in task["progress_reports"]
+            }
+        else:
+            # Fake it
+            summary = {
+                "artifacts": 0,
+                "content": 0,
+            }
+        module.set_changed()
         module.set_result("summary", summary)
 
 

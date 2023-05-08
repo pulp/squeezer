@@ -78,15 +78,25 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpEntityAnsibleModule,
-    PulpFilePublication,
-    PulpFileRepository,
-)
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpEntityAnsibleModule
+
+try:
+    from pulp_glue.file.context import PulpFilePublicationContext, PulpFileRepositoryContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpFilePublicationContext = None
 
 
 def main():
     with PulpEntityAnsibleModule(
+        context_class=PulpFilePublicationContext,
+        entity_singular="publication",
+        entity_plural="publications",
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
             repository=dict(),
             version=dict(type="int"),
@@ -104,20 +114,20 @@ def main():
         }
 
         if repository_name:
-            repository = PulpFileRepository(module, {"name": repository_name})
-            repository.find(failsafe=False)
+            repository_ctx = PulpFileRepositoryContext(
+                module.pulp_ctx, entity={"name": repository_name}
+            )
+            repository = repository_ctx.entity
             # TODO check if version exists
             if version:
-                repository_version_href = repository.entity["versions_href"] + "{version}/".format(
-                    version=version
-                )
+                repository_version_href = repository["versions_href"] + f"{version}/"
             else:
-                repository_version_href = repository.entity["latest_version_href"]
+                repository_version_href = repository["latest_version_href"]
             natural_key = {"repository_version": repository_version_href}
         else:
             natural_key = {"repository_version": None}
 
-        PulpFilePublication(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

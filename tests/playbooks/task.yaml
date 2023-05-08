@@ -23,7 +23,8 @@
         name: test_file_repository
         state: absent
     - name: Delete remaining artifacts and content
-      pulp.squeezer.delete_orphans: {}
+      pulp.squeezer.delete_orphans:
+        protection_time: 0
     - name: Make repository present
       pulp.squeezer.file_repository:
         name: test_file_repository

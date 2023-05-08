@@ -86,15 +86,26 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpContentGuard,
-    PulpEntityAnsibleModule,
-    PulpFileDistribution,
-)
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpEntityAnsibleModule
+
+try:
+    from pulp_glue.core.context import PulpContentGuardContext
+    from pulp_glue.file.context import PulpFileDistributionContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpFileDistributionContext = None
 
 
 def main():
     with PulpEntityAnsibleModule(
+        context_class=PulpFileDistributionContext,
+        entity_singular="distribution",
+        entity_plural="distribuions",
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
             name=dict(),
             base_path=dict(),
@@ -119,13 +130,14 @@ def main():
 
         if content_guard_name is not None:
             if content_guard_name:
-                content_guard = PulpContentGuard(module, {"name": content_guard_name})
-                content_guard.find(failsafe=False)
-                desired_attributes["content_guard"] = content_guard.href
+                content_guard_ctx = PulpContentGuardContext(
+                    module.pulp_ctx, entity={"name": content_guard_name}
+                )
+                desired_attributes["content_guard"] = content_guard_ctx.pulp_href
             else:
                 desired_attributes["content_guard"] = None
 
-        PulpFileDistribution(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

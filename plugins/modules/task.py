@@ -58,14 +58,47 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import (
     PulpEntityAnsibleModule,
-    PulpTask,
+    SqueezerException,
 )
+
+try:
+    from pulp_glue.core.context import PulpTaskContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpTaskContext = None
+
+
+class PulpTaskAnsibleModule(PulpEntityAnsibleModule):
+    def process_special(self, entity, natural_key, desired_attributes):
+        if self.state in ["canceled", "completed"]:
+            if entity is None:
+                raise SqueezerException("Entity not found.")
+            if entity["state"] in ["waiting", "running", "canceling"]:
+                if not self.check_mode:
+                    if self.state == "canceled":
+                        entity = self.context.cancel()
+                    else:
+                        entity = self.pulp_ctx.wait_for_task(entity)
+                else:
+                    # Fake it
+                    entity["state"] = self.state
+                self.set_changed()
+            return entity
+        return super().process_special(entity, natural_key, desired_attributes)
 
 
 def main():
-    with PulpEntityAnsibleModule(
+    with PulpTaskAnsibleModule(
+        context_class=PulpTaskContext,
+        entity_singular="task",
+        entity_plural="tasks",
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
             pulp_href=dict(),
             state=dict(
@@ -81,7 +114,7 @@ def main():
         natural_key = {"pulp_href": module.params["pulp_href"]}
         desired_attributes = {}
 
-        PulpTask(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

@@ -4,42 +4,42 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.13-dev
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/content/file/files/?limit=1&sha256=9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee&relative_path=data%2Ffile1.txt
+    uri: http://pulp.example.org/pulp/api/v3/content/file/files/?sha256=9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee&relative_path=data%2Ffile1.txt&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/file/files/2c81731a-15fa-4b3c-a892-8cf2e6db4372/","pulp_created":"2021-07-22T17:19:40.001735Z","artifact":"/pulp/api/v3/artifacts/7b26ca45-c9c6-4ee0-9cf8-a08e2f247ce3/","relative_path":"data/file1.txt","md5":null,"sha1":null,"sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/file/files/b4489195-74c6-48a3-8d06-02ae13fac29d/","pulp_created":"2022-11-24T18:53:05.541080Z","artifact":"/pulp/api/v3/artifacts/f43f2783-d370-4b77-9cd4-b8606ab36ecb/","relative_path":"data/file1.txt","md5":null,"sha1":null,"sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '704'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 4d64b892a8f843cc91f39e218f4983a0
+      - 5d9d42410c3f4f8abde3b29c660a946d
       Date:
-      - Thu, 22 Jul 2021 17:19:42 GMT
+      - Thu, 24 Nov 2022 18:53:08 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
       - Accept, Cookie
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK

@@ -77,14 +77,30 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpEntityAnsibleModule,
-    PulpX509CertGuard,
-)
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpEntityAnsibleModule
+
+try:
+    from pulp_glue.core.context import PulpContentGuardContext
+
+    class PulpX509CertGuardContext(PulpContentGuardContext):
+        ID_PREFIX = "contentguards_certguard_x509"
+        HREF = "certguard_x509_cert_guard_href"
+        NULLABLES = {"description"}
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpX509CertGuardContext = None
 
 
 def main():
     with PulpEntityAnsibleModule(
+        context_class=PulpX509CertGuardContext,
+        entity_singular="content_guard",
+        entity_plural="content_guards",
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
             name=dict(),
             description=dict(),
@@ -96,11 +112,11 @@ def main():
         desired_attributes = {}
         if module.params["description"] is not None:
             # In case of an empty string we nullify the description
-            desired_attributes["description"] = module.params["description"] or None
+            desired_attributes["description"] = module.params["description"]
         if module.params["ca_certificate"] is not None:
             desired_attributes["ca_certificate"] = module.params["ca_certificate"]
 
-        PulpX509CertGuard(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":
