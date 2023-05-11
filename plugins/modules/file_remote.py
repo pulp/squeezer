@@ -25,9 +25,10 @@ options:
       - on_demand
       - streamed
 extends_documentation_fragment:
-  - pulp.squeezer.pulp
-  - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp.remote
+  - pulp.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp.glue
+  - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
 """

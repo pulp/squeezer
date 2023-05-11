@@ -26,8 +26,9 @@ options:
       - When specified together with file, it will be used to verify any transaction.
     type: str
 extends_documentation_fragment:
-  - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp.glue
+  - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
 """

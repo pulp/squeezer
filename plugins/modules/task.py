@@ -29,6 +29,7 @@ options:
       - canceled
       - completed
 extends_documentation_fragment:
+  - pulp.squeezer.pulp.glue
   - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)

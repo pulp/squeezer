@@ -53,12 +53,14 @@ class PulpAnsibleModule(AnsibleModule):
     def __init__(self, **kwargs):
         argument_spec = dict(
             pulp_url=dict(required=True, fallback=(env_fallback, ["SQUEEZER_PULP_URL"])),
-            username=dict(required=True, fallback=(env_fallback, ["SQUEEZER_USERNAME"])),
+            username=dict(required=False, fallback=(env_fallback, ["SQUEEZER_USERNAME"])),
             password=dict(
-                required=True,
+                required=False,
                 no_log=True,
                 fallback=(env_fallback, ["SQUEEZER_PASSWORD"]),
             ),
+            user_cert=dict(required=False, no_log=True),
+            user_key=dict(required=False, no_log=True),
             validate_certs=dict(
                 type="bool",
                 default=True,
@@ -67,14 +69,22 @@ class PulpAnsibleModule(AnsibleModule):
             refresh_api_cache=dict(type="bool", default=False),
         )
         argument_spec.update(kwargs.pop("argument_spec", {}))
-        supports_check_mode = kwargs.pop("supports_check_mode", True)
+        if not kwargs.pop("no_auth", False):
+            required_one_of = [
+                ("username", "user_cert"),
+                ("username", "user_key"),
+                ("password", "user_cert"),
+                ("password", "user_key"),
+            ]
+            required_one_of.extend(kwargs.pop("required_one_of", []))
+            kwargs["required_one_of"] = required_one_of
+        kwargs.setdefault("supports_check_mode", True)
 
         import_errors = [("pulp-glue", PULP_CLI_IMPORT_ERR)]
         import_errors.extend(kwargs.pop("import_errors", []))
 
         super().__init__(
             argument_spec=argument_spec,
-            supports_check_mode=supports_check_mode,
             **kwargs,
         )
 
@@ -88,6 +98,8 @@ class PulpAnsibleModule(AnsibleModule):
                 base_url=self.params["pulp_url"],
                 username=self.params["username"],
                 password=self.params["password"],
+                cert=self.params["user_cert"],
+                key=self.params["user_key"],
                 validate_certs=self.params["validate_certs"],
                 refresh_cache=self.params["refresh_api_cache"],
                 safe_calls_only=self.check_mode,
@@ -198,7 +210,6 @@ class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
         argument_spec = dict(
             name=dict(),
             url=dict(),
-            download_concurrency=dict(type="int"),
             remote_username=dict(no_log=True),
             remote_password=dict(no_log=True),
             ca_cert=dict(),
@@ -208,6 +219,13 @@ class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
             proxy_url=dict(),
             proxy_username=dict(no_log=True),
             proxy_password=dict(no_log=True),
+            download_concurrency=dict(type="int"),
+            rate_limit=dict(type="int"),
+            total_timeout=dict(type="float"),
+            connect_timeout=dict(type="float"),
+            sock_connect_timeout=dict(type="float"),
+            sock_read_timeout=dict(type="float"),
+            max_retires=dict(type="int"),
         )
         argument_spec.update(kwargs.pop("argument_spec", {}))
 
