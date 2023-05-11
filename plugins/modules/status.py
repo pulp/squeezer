@@ -17,6 +17,7 @@ description:
   - "This module queries a pulp api server instance for installed plugins and service connectivity."
 options: {}
 extends_documentation_fragment:
+  - pulp.squeezer.pulp.glue
   - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
@@ -46,7 +47,7 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import Pul
 
 
 def main():
-    with PulpAnsibleModule() as module:
+    with PulpAnsibleModule(no_auth=True) as module:
         result = module.pulp_ctx.call("status_read")
         # verify cached api doc against server versions
         component_versions = {

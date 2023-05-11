@@ -44,6 +44,24 @@ options:
     default: false
 """
 
+    GLUE = r"""
+options:
+  username:
+    required: false
+  password:
+    required: false
+  user_cert:
+    description:
+      - Client certificate of api user.
+    type: str
+    required: false
+  user_key:
+    description:
+      - Client certificate key of api user.
+    type: str
+    required: false
+"""
+
     ENTITY_STATE = r"""
 options:
   state:
