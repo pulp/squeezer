@@ -93,10 +93,6 @@ options:
     description:
       - URL to the upstream repository
     type: str
-  download_concurrency:
-    description:
-      - How many downloads should be attempted in parallel
-    type: int
   remote_username:
     description:
       - The username to authenticate with the remote repository.
@@ -138,4 +134,32 @@ options:
       - The password to authenticate with the proxy.
       - Using this parameter will always report C(changed=true).
     type: str
+  download_concurrency:
+    description:
+      - Total number of simultaneous connections. If not set then the default value will be used.
+    type: int
+  rate_limit:
+    description:
+      - Limits requests per second for each concurrent downloader.
+    type: int
+  total_timeout:
+    description:
+      - C(aiohttp.ClientTimeout.total) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
+    type: float
+  connect_timeout:
+    description:
+      - C(aiohttp.ClientTimeout.connect) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
+    type: float
+  sock_connect_timeout:
+    description:
+      - C(aiohttp.ClientTimeout.sock_connect) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
+    type: float
+  sock_read_timeout:
+    description:
+      - C(aiohttp.ClientTimeout.sock_read) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
+    type: float
+  max_retires:
+    description:
+      - Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
+    type: int
 """

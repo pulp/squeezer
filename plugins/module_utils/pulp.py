@@ -124,7 +124,6 @@ class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
         argument_spec = dict(
             name=dict(),
             url=dict(),
-            download_concurrency=dict(type="int"),
             remote_username=dict(no_log=True),
             remote_password=dict(no_log=True),
             ca_cert=dict(),
@@ -134,6 +133,13 @@ class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
             proxy_url=dict(),
             proxy_username=dict(no_log=True),
             proxy_password=dict(no_log=True),
+            download_concurrency=dict(type="int"),
+            rate_limit=dict(type="int"),
+            total_timeout=dict(type="float"),
+            connect_timeout=dict(type="float"),
+            sock_connect_timeout=dict(type="float"),
+            sock_read_timeout=dict(type="float"),
+            max_retires=dict(type="int"),
         )
         argument_spec.update(kwargs.pop("argument_spec", {}))
         super(PulpRemoteAnsibleModule, self).__init__(argument_spec=argument_spec, **kwargs)
