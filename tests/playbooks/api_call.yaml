@@ -1,0 +1,71 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults: &pulp_module_defaults
+    pulp.squeezer.api_call: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+      validate_certs: "{{ pulp_validate_certs | default(true) }}"
+    pulp.squeezer.file_repository:
+      <<: *pulp_connection_details
+  tasks:
+    - pulp.squeezer.file_repository:
+        name: test_api_call
+        state: absent
+    - name: Clean openapi cache
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: absent
+
+- hosts: tests
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Call status_read api
+      pulp.squeezer.api_call:
+        operation_id: status_read
+      register: result
+    - name: Assert on status response
+      assert:
+        that:
+          - result.response.database_connection.connected == True
+    - name: Create a repository
+      pulp.squeezer.api_call:
+        operation_id: repositories_file_file_create
+        body:
+          name: test_api_call
+      register: result
+    - name: Extract repository href
+      set_fact:
+        repository_href: "{{ result.response.pulp_href }}"
+      when: not ansible_check_mode
+    - name: Search for the repository
+      pulp.squeezer.api_call:
+        operation_id: repositories_file_file_list
+        parameters:
+          name: test_api_call
+      register: result
+    - name: Compare results
+      assert:
+        that:
+          - (not ansible_check_mode) or (result.response.results[0].pulp_href == repository_href)
+          - result.response.results[0].name == "test_api_call"
+      when: not ansible_check_mode
+
+- hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - pulp.squeezer.file_repository:
+        name: test_api_call
+        state: absent
+...

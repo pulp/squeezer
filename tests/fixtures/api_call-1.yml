@@ -1,0 +1,54 @@
+interactions:
+- request:
+    body: '{"name": "test_api_call"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '25'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Squeezer/0.0.14-dev
+    method: POST
+    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/repositories/file/file/01880a13-e3ad-7499-b985-47f647de54e3/","pulp_created":"2023-05-11T09:10:55.661956Z","versions_href":"/pulp/api/v3/repositories/file/file/01880a13-e3ad-7499-b985-47f647de54e3/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/file/file/01880a13-e3ad-7499-b985-47f647de54e3/versions/0/","name":"test_api_call","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"manifest":"PULP_MANIFEST"}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '492'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 97de04214ed04fcb97c7632c109e8bec
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Thu, 11 May 2023 09:10:55 GMT
+      Location:
+      - /pulp/api/v3/repositories/file/file/01880a13-e3ad-7499-b985-47f647de54e3/
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 201
+      message: Created
+version: 1
