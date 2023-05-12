@@ -53,6 +53,8 @@ def run_playbook(tmp_path, test_name, extra_vars=None, limit=None, check_mode=Fa
     playbook = test_name + ".yaml"
     os.environ["XDG_CACHE_HOME"] = str(tmp_path / "cache")
     os.environ["ANSIBLE_CONFIG"] = os.path.join(os.getcwd(), "ansible.cfg")
+    os.environ["ANSIBLE_LOCAL_TEMP"] = str(tmp_path / "local_tmp")
+    os.environ["ANSIBLE_REMOTE_TEMP"] = str(tmp_path / "remote_tmp")
     kwargs = {}
     kwargs["playbook"] = os.path.join(os.getcwd(), "tests", "playbooks", playbook)
     kwargs["inventory"] = os.path.join(os.getcwd(), "tests", "inventory", "hosts")

@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 # copyright (c) 2019, Matthias Dellweg
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -35,8 +34,9 @@ options:
     aliases:
       - digest
 extends_documentation_fragment:
-  - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp.glue
+  - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
 """
@@ -76,26 +76,26 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpArtifact,
-    PulpEntity,
-    PulpEntityAnsibleModule,
-)
+import traceback
 
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpEntityAnsibleModule
 
-class PulpAnsibleRole(PulpEntity):
-    _name_singular = "content"
-    _name_plural = "contents"
+try:
+    from pulp_glue.ansible.context import PulpAnsibleRoleContext
+    from pulp_glue.core.context import PulpArtifactContext
 
-    _pulp_href = "role_href"
-    _list_id = "content_ansible_roles_list"
-    _read_id = "content_ansible_roles_read"
-    _create_id = "content_ansible_roles_create"
-    _delete_id = "content_ansible_roles_delete"
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpAnsibleRoleContext = None
 
 
 def main():
     with PulpEntityAnsibleModule(
+        context_class=PulpAnsibleRoleContext,
+        entity_singular="content",
+        entity_plural="contents",
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
             name=dict(),
             namespace=dict(),
@@ -114,11 +114,12 @@ def main():
         }
         desired_attributes = {}
         if module.params["sha256"]:
-            artifact = PulpArtifact(module, {"sha256": module.params["sha256"]})
-            artifact.find()
-            desired_attributes["artifact"] = artifact.href
+            artifact_ctx = PulpArtifactContext(
+                module.pulp_ctx, entity={"sha256": module.params["sha256"]}
+            )
+            desired_attributes["artifact"] = artifact_ctx.pulp_href
 
-        PulpAnsibleRole(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

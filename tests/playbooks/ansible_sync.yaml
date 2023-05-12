@@ -25,6 +25,7 @@
     - name: Make role remote present
       pulp.squeezer.ansible_remote:
         name: test_ansible_role_remote
+        content_type: role
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
         state: present
     - name: Make collection remote present
@@ -49,6 +50,7 @@
   tasks:
     - name: Sync role remote into repository
       pulp.squeezer.ansible_sync:
+        content_type: role
         remote: test_ansible_role_remote
         repository: test_ansible_repository
       register: result
@@ -61,6 +63,7 @@
 
     - name: Sync role remote into repository (2nd try)
       pulp.squeezer.ansible_sync:
+        content_type: role
         remote: test_ansible_role_remote
         repository: test_ansible_repository
       register: result

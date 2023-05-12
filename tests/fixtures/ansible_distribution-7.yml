@@ -4,40 +4,42 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:80
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?limit=1&name=test_ansible_repository
+    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?name=test_ansible_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/0e52b090-2ebd-4e1a-b8ca-f81d9b569132/","pulp_created":"2022-11-22T09:08:16.292219Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/0e52b090-2ebd-4e1a-b8ca-f81d9b569132/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/0e52b090-2ebd-4e1a-b8ca-f81d9b569132/versions/1/","name":"test_ansible_repository","description":null,"retain_repo_versions":null,"remote":null,"last_synced_metadata_time":null,"gpgkey":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/3a53fd22-a019-4001-bea1-b0454a8f07de/","pulp_created":"2023-05-15T17:20:02.332551Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/3a53fd22-a019-4001-bea1-b0454a8f07de/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/3a53fd22-a019-4001-bea1-b0454a8f07de/versions/1/","name":"test_ansible_repository","description":null,"retain_repo_versions":null,"remote":null,"last_synced_metadata_time":null,"gpgkey":null,"last_sync_task":{"pulp_href":"/pulp/api/v3/tasks/470160eb-7a73-4118-abfb-ebc9eeb28908/","pulp_created":"2023-05-15T17:20:03.549574Z","state":"completed","name":"pulp_ansible.app.tasks.roles.synchronize","logging_cid":"e1ef828eb715472bacc176fd4f6b9731","started_at":"2023-05-15T17:20:03.576547Z","finished_at":"2023-05-15T17:20:06.119559Z","error":null,"worker":"/pulp/api/v3/workers/2bc45f76-ff26-4796-876f-b182d4ffef87/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Downloading
+        Artifacts","code":"sync.downloading.artifacts","state":"completed","total":null,"done":5,"suffix":null},{"message":"Parsing
+        Pages from Galaxy Roles API","code":"sync.parsing.roles","state":"completed","total":1,"done":1,"suffix":null},{"message":"Parsing
+        Role Metadata","code":"sync.parsing.metadata","state":"completed","total":null,"done":5,"suffix":null},{"message":"Associating
+        Content","code":"associating.content","state":"completed","total":null,"done":5,"suffix":null}],"created_resources":["/pulp/api/v3/repositories/ansible/ansible/3a53fd22-a019-4001-bea1-b0454a8f07de/versions/1/"],"reserved_resources_record":["/pulp/api/v3/repositories/ansible/ansible/3a53fd22-a019-4001-bea1-b0454a8f07de/","shared:/pulp/api/v3/remotes/ansible/role/fd53582d-c6c1-40f4-a2db-4601c9c3229d/"]},"private":false}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '572'
+      - '1896'
       Content-Type:
       - application/json
       Correlation-ID:
-      - c496c4f024714929b1025daa4dc36296
+      - 04eb1d387efc43deb5f367ed30f4ad97
       Date:
-      - Tue, 22 Nov 2022 09:08:47 GMT
+      - Mon, 15 May 2023 17:20:18 GMT
       Referrer-Policy:
       - same-origin
       Server:
       - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -50,40 +52,40 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:80
+      - keep-alive
+      Correlation-ID:
+      - 04eb1d387efc43deb5f367ed30f4ad97
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?limit=1&name=test_ansible_distribution
+    uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?name=test_ansible_distribution&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/ansible/ansible/d95d1061-164c-4ac0-b5bd-46bc0e95b477/","pulp_created":"2022-11-22T09:08:43.328807Z","base_path":"test_ansible_base_path","content_guard":null,"name":"test_ansible_distribution","repository":null,"repository_version":"/pulp/api/v3/repositories/ansible/ansible/0e52b090-2ebd-4e1a-b8ca-f81d9b569132/versions/1/","client_url":"http://alex-rocky-pulp.novalocal:8080/pulp_ansible/galaxy/test_ansible_base_path/","pulp_labels":{}}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/ansible/ansible/cb97860b-eba6-481b-8c84-6084e176f89c/","pulp_created":"2023-05-15T17:20:16.294277Z","base_path":"test_ansible_base_path","content_guard":null,"name":"test_ansible_distribution","repository":null,"repository_version":"/pulp/api/v3/repositories/ansible/ansible/3a53fd22-a019-4001-bea1-b0454a8f07de/versions/1/","client_url":"https://5a298c727327/pulp_ansible/galaxy/test_ansible_base_path/","pulp_labels":{}}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '532'
+      - '515'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 36da8008a9484711b817d15c7c123077
+      - 04eb1d387efc43deb5f367ed30f4ad97
       Date:
-      - Tue, 22 Nov 2022 09:08:47 GMT
+      - Mon, 15 May 2023 17:20:18 GMT
       Referrer-Policy:
       - same-origin
       Server:
       - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:

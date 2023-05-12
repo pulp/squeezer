@@ -41,14 +41,6 @@ class SqueezerException(Exception):
 __VERSION__ = "0.0.14-dev"
 
 
-def represent(context, entity):
-    # TODO This may probably live on the entity context.
-    return {
-        key: "" if (key in context.NULLABLES and value is None) else value
-        for key, value in entity.items()
-    }
-
-
 class PulpAnsibleModule(AnsibleModule):
     def __init__(self, **kwargs):
         argument_spec = dict(
@@ -151,6 +143,12 @@ class PulpEntityAnsibleModule(PulpAnsibleModule):
         self.entity_singular = entity_singular
         self.entity_plural = entity_plural
 
+    def represent(self, entity):
+        return {
+            key: "" if (key in self.context.NULLABLES and value is None) else value
+            for key, value in entity.items()
+        }
+
     def process(self, natural_key, desired_attributes):
         if None not in natural_key.values():
             if "pulp_href" in natural_key:
@@ -158,7 +156,7 @@ class PulpEntityAnsibleModule(PulpAnsibleModule):
             else:
                 self.context.entity = natural_key
             try:
-                entity = represent(self.context, self.context.entity)
+                entity = self.represent(self.context.entity)
             except PulpException:
                 entity = None
             if self.state is None:
@@ -178,7 +176,7 @@ class PulpEntityAnsibleModule(PulpAnsibleModule):
             if self.state is not None:
                 raise SqueezerException(f"Invalid state '{self.state}' for entity listing.")
             entities = [
-                represent(self.context, entity)
+                self.represent(entity)
                 for entity in self.context.list(limit=-1, offset=0, parameters={})
             ]
             self.set_result(self.entity_plural, entities)
@@ -188,16 +186,18 @@ class PulpEntityAnsibleModule(PulpAnsibleModule):
             entity = {**desired_attributes, **natural_key}
             if not self.check_mode:
                 self.context.create(body=entity)
-                entity = represent(self.context, self.context.entity)
+                entity = self.context.entity
+            entity = self.represent(entity)
             self.set_changed()
         else:
             updated_attributes = {k: v for k, v in desired_attributes.items() if entity[k] != v}
             if updated_attributes:
                 if not self.check_mode:
                     self.context.update(body=updated_attributes)
-                    entity = represent(self.context, self.context.entity)
+                    entity = self.context.entity
                 else:
                     entity.update(updated_attributes)
+                entity = self.represent(entity)
                 self.set_changed()
         return entity
 
@@ -233,3 +233,35 @@ class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
         kwargs.setdefault("entity_plural", "remotes")
 
         super().__init__(argument_spec=argument_spec, **kwargs)
+
+    def process(self, natural_key, desired_attributes):
+        desired_attributes.update(
+            {
+                key: self.params[key]
+                for key in [
+                    "url",
+                    "policy",
+                    "tls_validation",
+                    "proxy_url",
+                    "proxy_username",
+                    "proxy_password",
+                    "ca_cert",
+                    "client_cert",
+                    "client_key",
+                    "download_concurrency",
+                    "rate_limit",
+                    "total_timeout",
+                    "connect_timeout",
+                    "sock_connect_timeout",
+                    "sock_read_timeout",
+                    "max_retires",
+                ]
+                if self.params[key] is not None
+            }
+        )
+        if self.params["remote_username"] is not None:
+            desired_attributes["username"] = self.params["remote_username"]
+        if self.params["remote_password"] is not None:
+            desired_attributes["password"] = self.params["remote_password"]
+
+        super().process(natural_key, desired_attributes)

@@ -97,29 +97,8 @@ def main():
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
         natural_key = {"name": module.params["name"]}
-        desired_attributes = {
-            key: module.params[key]
-            for key in [
-                "url",
-                "download_concurrency",
-                "policy",
-                "tls_validation",
-                "proxy_url",
-                "proxy_username",
-                "proxy_password",
-                "ca_cert",
-                "client_cert",
-                "client_key",
-            ]
-            if module.params[key] is not None
-        }
 
-        if module.params["remote_username"] is not None:
-            desired_attributes["username"] = module.params["remote_username"]
-        if module.params["remote_password"] is not None:
-            desired_attributes["password"] = module.params["remote_password"]
-
-        module.process(natural_key, desired_attributes)
+        module.process(natural_key, {})
 
 
 if __name__ == "__main__":

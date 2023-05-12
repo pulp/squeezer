@@ -86,7 +86,6 @@ import traceback
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import (
     PulpEntityAnsibleModule,
     SqueezerException,
-    represent,
 )
 
 try:
@@ -106,9 +105,9 @@ class PulpArtifactAnsibleModule(PulpEntityAnsibleModule):
             else:
                 with open(self.params["file"], "rb") as infile:
                     self.context.upload(infile, sha256=natural_key["sha256"])
-                entity = represent(self.context, self.context.entity)
+                entity = self.context.entity
             self.set_changed()
-        return entity
+        return self.represent(entity)
 
 
 def main():
