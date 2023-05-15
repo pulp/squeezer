@@ -4,16 +4,14 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:80
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?limit=1&name=test_ansible_distribution
+    uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?name=test_ansible_distribution&offset=0&limit=1
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -23,21 +21,21 @@ interactions:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '52'
       Content-Type:
       - application/json
       Correlation-ID:
-      - a21f9754511d4983b65c93d350e016a1
+      - 717df5810d25446eba09635a978be584
       Date:
-      - Tue, 22 Nov 2022 09:08:40 GMT
+      - Mon, 15 May 2023 17:20:15 GMT
       Referrer-Policy:
       - same-origin
       Server:
       - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:

@@ -4,16 +4,14 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/remotes/ansible/collection/?limit=1&name=test_ansible_collection_remote
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/collection/?name=test_ansible_collection_remote&offset=0&limit=1
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -23,74 +21,81 @@ interactions:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '52'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 38fc485a81534e9199cb067b690ce7c7
+      - 346f6654bf5846a18be288405ca079fa
       Date:
-      - Fri, 23 Jul 2021 10:41:58 GMT
+      - Fri, 12 May 2023 09:19:45 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK
 - request:
-    body: '{"name": "test_ansible_collection_remote", "url": "https://galaxy-dev.ansible.com/",
-      "proxy_url": "http://proxy.int:3128", "requirements_file": "collections:\n  -
-      testing.ansible_testing_content"}'
+    body: '{"auth_url": "https://example.org", "token": "1234-5678", "sync_dependencies":
+      true, "signed_only": true, "requirements_file": "collections:\n  - testing.ansible_testing_content",
+      "url": "https://galaxy-dev.ansible.com/", "proxy_url": "http://proxy.int:3128",
+      "name": "test_ansible_collection_remote"}'
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - 196
+      - '301'
       Content-Type:
       - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      Correlation-ID:
+      - 346f6654bf5846a18be288405ca079fa
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: POST
-    uri: https://pulp.example.org/pulp/api/v3/remotes/ansible/collection/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/collection/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/remotes/ansible/collection/cf9bd00b-a807-4a0c-ac35-38e64cf7b7bf/","pulp_created":"2021-07-23T10:41:58.358207Z","name":"test_ansible_collection_remote","url":"https://galaxy-dev.ansible.com/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-07-23T10:41:58.358217Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"requirements_file":"collections:\n  -
-        testing.ansible_testing_content","auth_url":null,"token":null,"sync_dependencies":true}'
+      string: '{"pulp_href":"/pulp/api/v3/remotes/ansible/collection/787867e5-211f-4549-b091-f8a83454c8a8/","pulp_created":"2023-05-12T09:19:46.108079Z","name":"test_ansible_collection_remote","url":"https://galaxy-dev.ansible.com/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2023-05-12T09:19:46.108093Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false},{"name":"token","is_set":true}],"requirements_file":"collections:\n  -
+        testing.ansible_testing_content","auth_url":"https://example.org","sync_dependencies":true,"signed_only":true,"last_sync_task":null}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '701'
+      - '984'
       Content-Type:
       - application/json
       Correlation-ID:
-      - bb5d0fe80a7941a1abfe41c486cff967
+      - 346f6654bf5846a18be288405ca079fa
       Date:
-      - Fri, 23 Jul 2021 10:41:58 GMT
+      - Fri, 12 May 2023 09:19:46 GMT
       Location:
-      - /pulp/api/v3/remotes/ansible/collection/cf9bd00b-a807-4a0c-ac35-38e64cf7b7bf/
+      - /pulp/api/v3/remotes/ansible/collection/787867e5-211f-4549-b091-f8a83454c8a8/
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 201
       message: Created

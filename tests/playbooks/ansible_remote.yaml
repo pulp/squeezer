@@ -37,6 +37,7 @@
 
     - name: Create role remote
       pulp.squeezer.ansible_remote:
+        content_type: role
         name: test_ansible_role_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
         proxy_url: "http://proxy.int:3128"
@@ -65,6 +66,7 @@
 
     - name: Modify role remote
       pulp.squeezer.ansible_remote:
+        content_type: role
         name: test_ansible_role_remote
         url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=pulp"
         tls_validation: false
@@ -91,7 +93,8 @@
           - result.changed == false
 
     - name: List role remotes
-      pulp.squeezer.ansible_remote: {}
+      pulp.squeezer.ansible_remote:
+        content_type: role
       register: result
     - name: Verify list role remotes
       assert:
@@ -116,6 +119,7 @@
 
     - name: Delete role remote
       pulp.squeezer.ansible_remote:
+        content_type: role
         name: test_ansible_role_remote
         state: absent
       register: result
@@ -148,6 +152,10 @@
         collections:
           - testing.ansible_testing_content
         proxy_url: "http://proxy.int:3128"
+        auth_url: "https://example.org"
+        token: "1234-5678"
+        sync_dependencies: true
+        signed_only: true
         state: present
       register: result
     - name: Verify create collection remote
@@ -158,15 +166,20 @@
           - result.remote.url == "https://galaxy-dev.ansible.com/"
           - result.remote.collections == ["testing.ansible_testing_content"]
           - result.remote.proxy_url == "http://proxy.int:3128"
+          - result.remote.auth_url == "https://example.org"
+          - result.remote.sync_dependencies == true
+          - result.remote.signed_only == true
 
     - name: Create collection remote (2nd try)
       pulp.squeezer.ansible_remote:
-        content_type: collection
         name: test_ansible_collection_remote
         url: "https://galaxy-dev.ansible.com/"
         collections:
           - testing.ansible_testing_content
         proxy_url: "http://proxy.int:3128"
+        auth_url: "https://example.org"
+        sync_dependencies: true
+        signed_only: true
         state: present
       register: result
     - name: Verify create collection remote (2nd try)
@@ -194,7 +207,6 @@
 
     - name: Modify collection remote (2nd try)
       pulp.squeezer.ansible_remote:
-        content_type: collection
         name: test_ansible_collection_remote
         url: "https://galaxy-dev.ansible.com/"
         collections:
@@ -247,7 +259,6 @@
 
     - name: Delete collection remote (2nd try)
       pulp.squeezer.ansible_remote:
-        content_type: collection
         name: test_ansible_collection_remote
         state: absent
       register: result

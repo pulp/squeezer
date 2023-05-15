@@ -4,40 +4,38 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:5001
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.11
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/artifacts/?limit=1&sha256=9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee
+    uri: http://pulp.example.org/pulp/api/v3/artifacts/?sha256=9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/afd21628-4266-4cbd-9a4e-f490c514e55c/","pulp_created":"2023-02-18T17:21:50.611556Z","file":"artifact/9a/09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","size":5,"md5":null,"sha1":null,"sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/7b8cb3c7-e1cf-42c7-9f3b-7f7c8f4cd4b9/","pulp_created":"2023-05-15T17:04:14.231738Z","file":"artifact/9a/09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","size":5,"md5":null,"sha1":null,"sha224":"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9","sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086","sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '681'
       Content-Type:
       - application/json
       Correlation-ID:
-      - fa0e3e06cac44e93a7be612318de9465
+      - ae411f1e80a345a88ad218ed924c6987
       Date:
-      - Sat, 18 Feb 2023 17:22:00 GMT
+      - Mon, 15 May 2023 17:04:18 GMT
       Referrer-Policy:
       - same-origin
       Server:
       - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -50,40 +48,40 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:5001
+      - keep-alive
+      Correlation-ID:
+      - ae411f1e80a345a88ad218ed924c6987
       User-Agent:
-      - Python-urllib/3.11
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/content/ansible/roles/?limit=1&name=test_ansible_role&namespace=test_namespace&version=0.0.0
+    uri: http://pulp.example.org/pulp/api/v3/content/ansible/roles/?name=test_ansible_role&namespace=test_namespace&version=0.0.0&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/ansible/roles/a17a2b18-85b6-4d7c-8b70-c651278495f3/","artifact":"/pulp/api/v3/artifacts/afd21628-4266-4cbd-9a4e-f490c514e55c/","pulp_created":"2023-02-18T17:21:57.461402Z","version":"0.0.0","name":"test_ansible_role","namespace":"test_namespace"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"artifact":"/pulp/api/v3/artifacts/7b8cb3c7-e1cf-42c7-9f3b-7f7c8f4cd4b9/","pulp_href":"/pulp/api/v3/content/ansible/roles/9c79877c-7ff2-445d-a369-2aff6a6cbd91/","pulp_created":"2023-05-15T17:04:17.538903Z","version":"0.0.0","name":"test_ansible_role","namespace":"test_namespace"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '333'
       Content-Type:
       - application/json
       Correlation-ID:
-      - e9bdb038393b4023ac1e0e036d0b30e8
+      - ae411f1e80a345a88ad218ed924c6987
       Date:
-      - Sat, 18 Feb 2023 17:22:00 GMT
+      - Mon, 15 May 2023 17:04:18 GMT
       Referrer-Policy:
       - same-origin
       Server:
       - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:

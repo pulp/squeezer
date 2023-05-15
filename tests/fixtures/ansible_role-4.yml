@@ -4,40 +4,38 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:5001
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.11
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/content/ansible/roles/?limit=1&name=test_ansible_role&namespace=test_namespace&version=0.0.0
+    uri: http://pulp.example.org/pulp/api/v3/content/ansible/roles/?name=test_ansible_role&namespace=test_namespace&version=0.0.0&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/ansible/roles/a17a2b18-85b6-4d7c-8b70-c651278495f3/","artifact":"/pulp/api/v3/artifacts/afd21628-4266-4cbd-9a4e-f490c514e55c/","pulp_created":"2023-02-18T17:21:57.461402Z","version":"0.0.0","name":"test_ansible_role","namespace":"test_namespace"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"artifact":"/pulp/api/v3/artifacts/7b8cb3c7-e1cf-42c7-9f3b-7f7c8f4cd4b9/","pulp_href":"/pulp/api/v3/content/ansible/roles/9c79877c-7ff2-445d-a369-2aff6a6cbd91/","pulp_created":"2023-05-15T17:04:17.538903Z","version":"0.0.0","name":"test_ansible_role","namespace":"test_namespace"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '333'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 5e432a74645949be8ddce180d1f1a3f1
+      - e3fd2f2c39c74270a87417f293bed6fc
       Date:
-      - Sat, 18 Feb 2023 17:22:01 GMT
+      - Mon, 15 May 2023 17:04:19 GMT
       Referrer-Policy:
       - same-origin
       Server:
       - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:

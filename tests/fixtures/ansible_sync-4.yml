@@ -4,43 +4,46 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/remotes/ansible/collection/?limit=1&name=test_ansible_collection_remote
+    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?name=test_ansible_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/collection/6ae1050a-2965-4a22-849d-07758df04eed/","pulp_created":"2021-07-23T10:04:30.683468Z","name":"test_ansible_collection_remote","url":"https://galaxy.ansible.com/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":null,"pulp_labels":{},"pulp_last_updated":"2021-07-23T10:05:34.042561Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"requirements_file":"collections:\n-
-        pulp.squeezer","auth_url":null,"token":null,"sync_dependencies":true}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/d9faec8a-903b-4af6-8866-50c7aad85a8d/","pulp_created":"2023-05-15T16:48:32.660573Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/d9faec8a-903b-4af6-8866-50c7aad85a8d/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/d9faec8a-903b-4af6-8866-50c7aad85a8d/versions/2/","name":"test_ansible_repository","description":null,"retain_repo_versions":null,"remote":null,"last_synced_metadata_time":null,"gpgkey":null,"last_sync_task":{"pulp_href":"/pulp/api/v3/tasks/3c5f6bbe-2ab7-45fc-8e2a-baf6d500bf24/","pulp_created":"2023-05-15T16:48:44.554195Z","state":"completed","name":"pulp_ansible.app.tasks.collections.sync","logging_cid":"3012aee7b11746a38ab44f36fa944f6d","started_at":"2023-05-15T16:48:44.581325Z","finished_at":"2023-05-15T16:48:48.678786Z","error":null,"worker":"/pulp/api/v3/workers/2bc45f76-ff26-4796-876f-b182d4ffef87/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Parsing
+        CollectionVersion Metadata","code":"sync.parsing.metadata","state":"completed","total":13,"done":13,"suffix":null},{"message":"Downloading
+        Artifacts","code":"sync.downloading.artifacts","state":"completed","total":null,"done":13,"suffix":null},{"message":"Downloading
+        Artifacts","code":"sync.downloading.artifacts","state":"completed","total":null,"done":0,"suffix":null},{"message":"Associating
+        Content","code":"associating.content","state":"completed","total":null,"done":13,"suffix":null}],"created_resources":["/pulp/api/v3/repositories/ansible/ansible/d9faec8a-903b-4af6-8866-50c7aad85a8d/versions/2/"],"reserved_resources_record":["/pulp/api/v3/repositories/ansible/ansible/d9faec8a-903b-4af6-8866-50c7aad85a8d/","shared:/pulp/api/v3/remotes/ansible/collection/27eb28f7-2f19-4cb6-a12a-1dcf6a8de65d/"]},"private":false}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '710'
+      - '1912'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 7ce3f59036aa46f4b5e636f1cdd0f162
+      - 8e825a5fee414ea6a18ac7e18868150f
       Date:
-      - Fri, 23 Jul 2021 10:05:52 GMT
+      - Mon, 15 May 2023 16:48:49 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK
@@ -49,86 +52,99 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      - keep-alive
+      Correlation-ID:
+      - 8e825a5fee414ea6a18ac7e18868150f
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/?limit=1&name=test_ansible_repository
+    uri: http://pulp.example.org/pulp/api/v3/remotes/ansible/collection/?name=test_ansible_collection_remote&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/","pulp_created":"2021-07-23T10:05:33.172686Z","versions_href":"/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/versions/2/","name":"test_ansible_repository","description":null,"retained_versions":null,"remote":null,"last_synced_metadata_time":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/ansible/collection/27eb28f7-2f19-4cb6-a12a-1dcf6a8de65d/","pulp_created":"2023-05-15T16:08:23.675277Z","name":"test_ansible_collection_remote","url":"https://galaxy.ansible.com/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":null,"pulp_labels":{},"pulp_last_updated":"2023-05-15T16:08:23.675305Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false},{"name":"token","is_set":false}],"requirements_file":"collections:\n  -
+        pulp.squeezer","auth_url":null,"sync_dependencies":true,"signed_only":false,"last_sync_task":{"pulp_href":"/pulp/api/v3/tasks/3c5f6bbe-2ab7-45fc-8e2a-baf6d500bf24/","pulp_created":"2023-05-15T16:48:44.554195Z","state":"completed","name":"pulp_ansible.app.tasks.collections.sync","logging_cid":"3012aee7b11746a38ab44f36fa944f6d","started_at":"2023-05-15T16:48:44.581325Z","finished_at":"2023-05-15T16:48:48.678786Z","error":null,"worker":"/pulp/api/v3/workers/2bc45f76-ff26-4796-876f-b182d4ffef87/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Parsing
+        CollectionVersion Metadata","code":"sync.parsing.metadata","state":"completed","total":13,"done":13,"suffix":null},{"message":"Downloading
+        Artifacts","code":"sync.downloading.artifacts","state":"completed","total":null,"done":13,"suffix":null},{"message":"Downloading
+        Artifacts","code":"sync.downloading.artifacts","state":"completed","total":null,"done":0,"suffix":null},{"message":"Associating
+        Content","code":"associating.content","state":"completed","total":null,"done":13,"suffix":null}],"created_resources":["/pulp/api/v3/repositories/ansible/ansible/d9faec8a-903b-4af6-8866-50c7aad85a8d/versions/2/"],"reserved_resources_record":["/pulp/api/v3/repositories/ansible/ansible/d9faec8a-903b-4af6-8866-50c7aad85a8d/","shared:/pulp/api/v3/remotes/ansible/collection/27eb28f7-2f19-4cb6-a12a-1dcf6a8de65d/"]}}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '555'
+      - '2282'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 85089a2903a6497883cb0db8bc59001f
+      - 8e825a5fee414ea6a18ac7e18868150f
       Date:
-      - Fri, 23 Jul 2021 10:05:52 GMT
+      - Mon, 15 May 2023 16:48:50 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK
 - request:
-    body: '{"remote": "/pulp/api/v3/remotes/ansible/collection/6ae1050a-2965-4a22-849d-07758df04eed/"}'
+    body: '{"remote": "/pulp/api/v3/remotes/ansible/collection/27eb28f7-2f19-4cb6-a12a-1dcf6a8de65d/"}'
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - 91
+      - '91'
       Content-Type:
       - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      Correlation-ID:
+      - 8e825a5fee414ea6a18ac7e18868150f
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: POST
-    uri: https://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/sync/
+    uri: http://pulp.example.org/pulp/api/v3/repositories/ansible/ansible/d9faec8a-903b-4af6-8866-50c7aad85a8d/sync/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/c5a4c7f8-f4d4-4971-a1b8-1ca65efcd5fc/"}'
+      string: '{"task":"/pulp/api/v3/tasks/d348f271-7c74-4b32-9fb3-d66fbb82b49c/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - POST, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '67'
       Content-Type:
       - application/json
       Correlation-ID:
-      - ee186c1ebb0c42a989014d6b923a7652
+      - 8e825a5fee414ea6a18ac7e18868150f
       Date:
-      - Fri, 23 Jul 2021 10:05:52 GMT
+      - Mon, 15 May 2023 16:48:50 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
+      - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 202
       message: Accepted
@@ -137,46 +153,48 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      - keep-alive
+      Correlation-ID:
+      - 8e825a5fee414ea6a18ac7e18868150f
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/c5a4c7f8-f4d4-4971-a1b8-1ca65efcd5fc/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/d348f271-7c74-4b32-9fb3-d66fbb82b49c/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/c5a4c7f8-f4d4-4971-a1b8-1ca65efcd5fc/","pulp_created":"2021-07-23T10:05:52.654596Z","state":"running","name":"pulp_ansible.app.tasks.collections.sync","logging_cid":"ee186c1ebb0c42a989014d6b923a7652","started_at":"2021-07-23T10:05:52.697912Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"no_change:
-        Checking if remote changed since last sync.","code":"sync.no_change","state":"completed","total":null,"done":0,"suffix":null},{"message":"Downloading
+      string: '{"pulp_href":"/pulp/api/v3/tasks/d348f271-7c74-4b32-9fb3-d66fbb82b49c/","pulp_created":"2023-05-15T16:48:50.230013Z","state":"running","name":"pulp_ansible.app.tasks.collections.sync","logging_cid":"8e825a5fee414ea6a18ac7e18868150f","started_at":"2023-05-15T16:48:50.257044Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/a6fd1937-bdab-461b-aa22-5f0f3079da6d/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Parsing
+        CollectionVersion Metadata","code":"sync.parsing.metadata","state":"running","total":0,"done":0,"suffix":null},{"message":"Downloading
         Artifacts","code":"sync.downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Downloading
         Artifacts","code":"sync.downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Associating
-        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/collection/6ae1050a-2965-4a22-849d-07758df04eed/","/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/"]}'
+        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/repositories/ansible/ansible/d9faec8a-903b-4af6-8866-50c7aad85a8d/","shared:/pulp/api/v3/remotes/ansible/collection/27eb28f7-2f19-4cb6-a12a-1dcf6a8de65d/"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '1190'
+      - '1179'
       Content-Type:
       - application/json
       Correlation-ID:
-      - ac23b3547a4249c98e67a87c562077f7
+      - 8e825a5fee414ea6a18ac7e18868150f
       Date:
-      - Fri, 23 Jul 2021 10:05:52 GMT
+      - Mon, 15 May 2023 16:48:50 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK
@@ -185,47 +203,48 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      - keep-alive
+      Correlation-ID:
+      - 8e825a5fee414ea6a18ac7e18868150f
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/c5a4c7f8-f4d4-4971-a1b8-1ca65efcd5fc/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/d348f271-7c74-4b32-9fb3-d66fbb82b49c/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/c5a4c7f8-f4d4-4971-a1b8-1ca65efcd5fc/","pulp_created":"2021-07-23T10:05:52.654596Z","state":"running","name":"pulp_ansible.app.tasks.collections.sync","logging_cid":"ee186c1ebb0c42a989014d6b923a7652","started_at":"2021-07-23T10:05:52.697912Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"no_change:
-        Checking if remote changed since last sync.","code":"sync.no_change","state":"completed","total":null,"done":0,"suffix":null},{"message":"Downloading
+      string: '{"pulp_href":"/pulp/api/v3/tasks/d348f271-7c74-4b32-9fb3-d66fbb82b49c/","pulp_created":"2023-05-15T16:48:50.230013Z","state":"running","name":"pulp_ansible.app.tasks.collections.sync","logging_cid":"8e825a5fee414ea6a18ac7e18868150f","started_at":"2023-05-15T16:48:50.257044Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/a6fd1937-bdab-461b-aa22-5f0f3079da6d/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Parsing
+        CollectionVersion Metadata","code":"sync.parsing.metadata","state":"running","total":0,"done":0,"suffix":null},{"message":"Downloading
         Artifacts","code":"sync.downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Downloading
         Artifacts","code":"sync.downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Associating
-        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null},{"message":"Parsing
-        CollectionVersion Metadata","code":"sync.parsing.metadata","state":"waiting","total":null,"done":1,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/collection/6ae1050a-2965-4a22-849d-07758df04eed/","/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/"]}'
+        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/repositories/ansible/ansible/d9faec8a-903b-4af6-8866-50c7aad85a8d/","shared:/pulp/api/v3/remotes/ansible/collection/27eb28f7-2f19-4cb6-a12a-1dcf6a8de65d/"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '1324'
+      - '1179'
       Content-Type:
       - application/json
       Correlation-ID:
-      - a13d8fced158454da939e19f925fb66c
+      - 8e825a5fee414ea6a18ac7e18868150f
       Date:
-      - Fri, 23 Jul 2021 10:05:54 GMT
+      - Mon, 15 May 2023 16:48:51 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK
@@ -234,194 +253,48 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
-      User-Agent:
-      - Python-urllib/3.9
-    method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/c5a4c7f8-f4d4-4971-a1b8-1ca65efcd5fc/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/c5a4c7f8-f4d4-4971-a1b8-1ca65efcd5fc/","pulp_created":"2021-07-23T10:05:52.654596Z","state":"running","name":"pulp_ansible.app.tasks.collections.sync","logging_cid":"ee186c1ebb0c42a989014d6b923a7652","started_at":"2021-07-23T10:05:52.697912Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"no_change:
-        Checking if remote changed since last sync.","code":"sync.no_change","state":"completed","total":null,"done":0,"suffix":null},{"message":"Downloading
-        Artifacts","code":"sync.downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Downloading
-        Artifacts","code":"sync.downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Associating
-        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null},{"message":"Parsing
-        CollectionVersion Metadata","code":"sync.parsing.metadata","state":"waiting","total":null,"done":7,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/collection/6ae1050a-2965-4a22-849d-07758df04eed/","/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/"]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - close
-      Content-Length:
-      - '1324'
-      Content-Type:
-      - application/json
+      - keep-alive
       Correlation-ID:
-      - e065577b67cc476a89b6041a46ceda79
-      Date:
-      - Fri, 23 Jul 2021 10:05:57 GMT
-      Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
-      Vary:
-      - Accept, Cookie
-      X-Frame-Options:
-      - SAMEORIGIN
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      - 8e825a5fee414ea6a18ac7e18868150f
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/c5a4c7f8-f4d4-4971-a1b8-1ca65efcd5fc/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/d348f271-7c74-4b32-9fb3-d66fbb82b49c/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/c5a4c7f8-f4d4-4971-a1b8-1ca65efcd5fc/","pulp_created":"2021-07-23T10:05:52.654596Z","state":"running","name":"pulp_ansible.app.tasks.collections.sync","logging_cid":"ee186c1ebb0c42a989014d6b923a7652","started_at":"2021-07-23T10:05:52.697912Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"no_change:
-        Checking if remote changed since last sync.","code":"sync.no_change","state":"completed","total":null,"done":0,"suffix":null},{"message":"Downloading
-        Artifacts","code":"sync.downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Downloading
-        Artifacts","code":"sync.downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Associating
-        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null},{"message":"Parsing
-        CollectionVersion Metadata","code":"sync.parsing.metadata","state":"waiting","total":null,"done":7,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/collection/6ae1050a-2965-4a22-849d-07758df04eed/","/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/"]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - close
-      Content-Length:
-      - '1324'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - bb0b66a6a5ca4140a42d51271eac7309
-      Date:
-      - Fri, 23 Jul 2021 10:05:59 GMT
-      Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
-      Vary:
-      - Accept, Cookie
-      X-Frame-Options:
-      - SAMEORIGIN
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
-      User-Agent:
-      - Python-urllib/3.9
-    method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/c5a4c7f8-f4d4-4971-a1b8-1ca65efcd5fc/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/c5a4c7f8-f4d4-4971-a1b8-1ca65efcd5fc/","pulp_created":"2021-07-23T10:05:52.654596Z","state":"running","name":"pulp_ansible.app.tasks.collections.sync","logging_cid":"ee186c1ebb0c42a989014d6b923a7652","started_at":"2021-07-23T10:05:52.697912Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"no_change:
-        Checking if remote changed since last sync.","code":"sync.no_change","state":"completed","total":null,"done":0,"suffix":null},{"message":"Downloading
-        Artifacts","code":"sync.downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Downloading
-        Artifacts","code":"sync.downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Associating
-        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null},{"message":"Parsing
-        CollectionVersion Metadata","code":"sync.parsing.metadata","state":"waiting","total":null,"done":7,"suffix":null}],"created_resources":[null],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/collection/6ae1050a-2965-4a22-849d-07758df04eed/","/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/"]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - close
-      Content-Length:
-      - '1324'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - deafec8e43fe4d0883ed937fe7549f64
-      Date:
-      - Fri, 23 Jul 2021 10:06:01 GMT
-      Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
-      Vary:
-      - Accept, Cookie
-      X-Frame-Options:
-      - SAMEORIGIN
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
-      User-Agent:
-      - Python-urllib/3.9
-    method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/c5a4c7f8-f4d4-4971-a1b8-1ca65efcd5fc/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/c5a4c7f8-f4d4-4971-a1b8-1ca65efcd5fc/","pulp_created":"2021-07-23T10:05:52.654596Z","state":"completed","name":"pulp_ansible.app.tasks.collections.sync","logging_cid":"ee186c1ebb0c42a989014d6b923a7652","started_at":"2021-07-23T10:05:52.697912Z","finished_at":"2021-07-23T10:06:01.538966Z","error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"no_change:
-        Checking if remote changed since last sync.","code":"sync.no_change","state":"completed","total":null,"done":0,"suffix":null},{"message":"Downloading
+      string: '{"pulp_href":"/pulp/api/v3/tasks/d348f271-7c74-4b32-9fb3-d66fbb82b49c/","pulp_created":"2023-05-15T16:48:50.230013Z","state":"completed","name":"pulp_ansible.app.tasks.collections.sync","logging_cid":"8e825a5fee414ea6a18ac7e18868150f","started_at":"2023-05-15T16:48:50.257044Z","finished_at":"2023-05-15T16:48:51.827386Z","error":null,"worker":"/pulp/api/v3/workers/a6fd1937-bdab-461b-aa22-5f0f3079da6d/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Parsing
+        CollectionVersion Metadata","code":"sync.parsing.metadata","state":"completed","total":13,"done":13,"suffix":null},{"message":"Downloading
+        Artifacts","code":"sync.downloading.artifacts","state":"completed","total":null,"done":0,"suffix":null},{"message":"Downloading
         Artifacts","code":"sync.downloading.artifacts","state":"completed","total":null,"done":0,"suffix":null},{"message":"Associating
-        Content","code":"associating.content","state":"completed","total":null,"done":0,"suffix":null},{"message":"Parsing
-        CollectionVersion Metadata","code":"sync.parsing.metadata","state":"completed","total":null,"done":8,"suffix":null},{"message":"Downloading
-        Artifacts","code":"sync.downloading.artifacts","state":"completed","total":null,"done":0,"suffix":null}],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/remotes/ansible/collection/6ae1050a-2965-4a22-849d-07758df04eed/","/pulp/api/v3/repositories/ansible/ansible/4d7e78be-5282-4a9d-a69e-65bec6380949/"]}'
+        Content","code":"associating.content","state":"completed","total":null,"done":0,"suffix":null}],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/ansible/ansible/d9faec8a-903b-4af6-8866-50c7aad85a8d/","shared:/pulp/api/v3/remotes/ansible/collection/27eb28f7-2f19-4cb6-a12a-1dcf6a8de65d/"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '1355'
+      - '1212'
       Content-Type:
       - application/json
       Correlation-ID:
-      - a40503eef08c4ae0bd52fafdf2d2e138
+      - 8e825a5fee414ea6a18ac7e18868150f
       Date:
-      - Fri, 23 Jul 2021 10:06:03 GMT
+      - Mon, 15 May 2023 16:48:52 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK
