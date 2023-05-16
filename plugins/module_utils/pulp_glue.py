@@ -13,7 +13,7 @@ from ansible.module_utils.basic import AnsibleModule, env_fallback, missing_requ
 try:
     from packaging.requirements import SpecifierSet
     from pulp_glue.common import __version__ as pulp_glue_version
-    from pulp_glue.common.context import PulpContext, PulpException
+    from pulp_glue.common.context import PulpContext, PulpException, PulpNoWait
 
     GLUE_VERSION_SPEC = ">=0.20.0,<0.22.0"
     if not SpecifierSet(GLUE_VERSION_SPEC).contains(pulp_glue_version):
@@ -112,7 +112,7 @@ class PulpAnsibleModule(AnsibleModule):
         if exc_class is None:
             self.exit_json(changed=self._changed, **self._results)
         else:
-            if issubclass(exc_class, (PulpException, SqueezerException)):
+            if issubclass(exc_class, (PulpException, PulpNoWait, SqueezerException)):
                 self.fail_json(msg=str(exc_value), changed=self._changed)
                 return True
             elif issubclass(exc_class, Exception):
@@ -191,7 +191,7 @@ class PulpEntityAnsibleModule(PulpAnsibleModule):
             entity = self.represent(entity)
             self.set_changed()
         else:
-            updated_attributes = {k: v for k, v in desired_attributes.items() if entity[k] != v}
+            updated_attributes = {k: v for k, v in desired_attributes.items() if entity.get(k) != v}
             if updated_attributes:
                 if not self.check_mode:
                     self.context.update(body=updated_attributes)
@@ -234,6 +234,15 @@ class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
         kwargs.setdefault("entity_plural", "remotes")
 
         super().__init__(argument_spec=argument_spec, **kwargs)
+
+    def represent(self, entity):
+        result = super().represent(entity)
+        result.pop("username", None)
+        result.pop("password", None)
+        result.pop("client_key", None)
+        result.pop("proxy_username", None)
+        result.pop("proxy_password", None)
+        return result
 
     def process(self, natural_key, desired_attributes):
         desired_attributes.update(

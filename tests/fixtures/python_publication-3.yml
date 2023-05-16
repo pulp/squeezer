@@ -4,42 +4,42 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/publications/python/pypi/?limit=20&offset=0
+    uri: http://pulp.example.org/pulp/api/v3/publications/python/pypi/?offset=0&limit=-1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/python/pypi/d636369f-6af7-4693-b3e8-e72507034dfe/","pulp_created":"2021-07-22T17:21:50.685465Z","repository_version":"/pulp/api/v3/repositories/python/python/dd60c181-05fa-4cd2-bf92-0feace38c142/versions/1/","repository":"/pulp/api/v3/repositories/python/python/dd60c181-05fa-4cd2-bf92-0feace38c142/","distributions":[]}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/python/pypi/fdc9197b-2319-444e-990f-d263fe611e53/","pulp_created":"2023-05-21T20:02:19.085082Z","repository_version":"/pulp/api/v3/repositories/python/python/ac831467-c3d3-4e8e-b3a0-a2370790a2b5/versions/1/","repository":"/pulp/api/v3/repositories/python/python/ac831467-c3d3-4e8e-b3a0-a2370790a2b5/","distributions":[]}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '412'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 238ea2f579894f6fb2cdfb8a88e87f75
+      - 49772dbe578145928223a3ef519a64de
       Date:
-      - Thu, 22 Jul 2021 17:21:54 GMT
+      - Sun, 21 May 2023 20:02:21 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK

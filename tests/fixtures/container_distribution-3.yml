@@ -4,40 +4,38 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/container/container/?limit=1&name=test_container_distribution
+    uri: http://pulp.example.org/pulp/api/v3/distributions/container/container/?name=test_container_distribution&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_created":"2021-11-17T13:37:14.379204Z","name":"test_container_distribution","repository":"/pulp/api/v3/repositories/container/container/86c98678-4941-4e3e-a55a-a0c399569f2f/","base_path":"test_container_base_path","content_guard":"/pulp/api/v3/contentguards/container/content_redirect/03a977ad-4929-401b-bc06-984731719177/","pulp_href":"/pulp/api/v3/distributions/container/container/3631d08a-515f-4f04-93f3-a5138ae13f52/","pulp_labels":{},"repository_version":null,"registry_path":"localhost:8080/test_container_base_path","namespace":"/pulp/api/v3/pulp_container/namespaces/9dd164c5-72ab-46d4-bb4c-48ff4c83f968/","private":false,"description":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"name":"test_container_distribution","pulp_created":"2023-05-21T16:23:20.294276Z","content_guard":"/pulp/api/v3/contentguards/core/content_redirect/3bb4eca5-5e6b-4285-b483-d9c39a14ce8f/","pulp_href":"/pulp/api/v3/distributions/container/container/b5274c83-ab39-4681-b9cd-dd83622e42bc/","base_path":"test_container_base_path","pulp_labels":{},"repository":"/pulp/api/v3/repositories/container/container/7df5eca0-003b-4879-9beb-4b18e5ae7922/","repository_version":null,"registry_path":"localhost:8080/test_container_base_path","namespace":"/pulp/api/v3/pulp_container/namespaces/02fab105-32b4-4fd2-809b-fa78405b0a34/","private":false,"description":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '709'
+      - '704'
       Content-Type:
       - application/json
       Correlation-ID:
-      - ea7f495739b54656a60130c65cb711a6
+      - e33ec8c55ad542eab3a45e5f9172036e
       Date:
-      - Wed, 17 Nov 2021 13:37:18 GMT
+      - Sun, 21 May 2023 16:23:22 GMT
       Referrer-Policy:
       - same-origin
       Server:
       - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:

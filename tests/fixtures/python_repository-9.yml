@@ -4,42 +4,42 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/repositories/python/python/?limit=1&name=test_python_repository
+    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/?name=test_python_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/python/python/0c9cddf9-61a1-4c56-a150-ba18288d198c/","pulp_created":"2021-07-22T17:22:23.673824Z","versions_href":"/pulp/api/v3/repositories/python/python/0c9cddf9-61a1-4c56-a150-ba18288d198c/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/python/python/0c9cddf9-61a1-4c56-a150-ba18288d198c/versions/0/","name":"test_python_repository","description":null,"retained_versions":null,"remote":null,"autopublish":false}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/python/python/fb36e4a1-3d24-4360-bac7-f223403324af/","pulp_created":"2023-05-21T20:02:41.500719Z","versions_href":"/pulp/api/v3/repositories/python/python/fb36e4a1-3d24-4360-bac7-f223403324af/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/python/python/fb36e4a1-3d24-4360-bac7-f223403324af/versions/0/","name":"test_python_repository","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '535'
+      - '538'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 5c734f797e6941888378c874994a5a8d
+      - 5ca979c34f8e44b5b7b734d677eb68c1
       Date:
-      - Thu, 22 Jul 2021 17:22:37 GMT
+      - Sun, 21 May 2023 20:02:47 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK
@@ -48,40 +48,46 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      - keep-alive
+      Content-Length:
+      - '0'
+      Correlation-ID:
+      - 5ca979c34f8e44b5b7b734d677eb68c1
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: DELETE
-    uri: https://pulp.example.org/pulp/api/v3/repositories/python/python/0c9cddf9-61a1-4c56-a150-ba18288d198c/
+    uri: http://pulp.example.org/pulp/api/v3/repositories/python/python/fb36e4a1-3d24-4360-bac7-f223403324af/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/74a4ab2b-1d3e-47b0-acbc-7d67fa869dcc/"}'
+      string: '{"task":"/pulp/api/v3/tasks/7c8f3569-5dd5-4be8-b062-f13f1c5293bf/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '67'
       Content-Type:
       - application/json
       Correlation-ID:
-      - af39c11e159d464b9308a8029e91a484
+      - 5ca979c34f8e44b5b7b734d677eb68c1
       Date:
-      - Thu, 22 Jul 2021 17:22:37 GMT
+      - Sun, 21 May 2023 20:02:47 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
+      - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 202
       message: Accepted
@@ -90,42 +96,44 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      - keep-alive
+      Correlation-ID:
+      - 5ca979c34f8e44b5b7b734d677eb68c1
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/74a4ab2b-1d3e-47b0-acbc-7d67fa869dcc/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/7c8f3569-5dd5-4be8-b062-f13f1c5293bf/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/74a4ab2b-1d3e-47b0-acbc-7d67fa869dcc/","pulp_created":"2021-07-22T17:22:37.671622Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"af39c11e159d464b9308a8029e91a484","started_at":"2021-07-22T17:22:37.758204Z","finished_at":"2021-07-22T17:22:37.857481Z","error":null,"worker":"/pulp/api/v3/workers/e8b6a08b-5182-4da7-acfb-751f966e1bb9/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/python/python/0c9cddf9-61a1-4c56-a150-ba18288d198c/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/7c8f3569-5dd5-4be8-b062-f13f1c5293bf/","pulp_created":"2023-05-21T20:02:47.755382Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"5ca979c34f8e44b5b7b734d677eb68c1","started_at":"2023-05-21T20:02:47.760898Z","finished_at":"2023-05-21T20:02:47.787649Z","error":null,"worker":null,"parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/python/python/fb36e4a1-3d24-4360-bac7-f223403324af/"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '613'
+      - '557'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 97b169e1a619424a86193312e94dc961
+      - 5ca979c34f8e44b5b7b734d677eb68c1
       Date:
-      - Thu, 22 Jul 2021 17:22:37 GMT
+      - Sun, 21 May 2023 20:02:47 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK

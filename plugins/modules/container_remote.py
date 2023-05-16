@@ -1,8 +1,8 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 # copyright (c) 2021, Mark Goddard
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
 
 from __future__ import absolute_import, division, print_function
 
@@ -39,9 +39,10 @@ options:
     type: list
     elements: str
 extends_documentation_fragment:
-  - pulp.squeezer.pulp
-  - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp.remote
+  - pulp.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp.glue
+  - pulp.squeezer.pulp
 author:
   - Mark Goddard (@markgoddard)
 """
@@ -88,14 +89,23 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpContainerRemote,
-    PulpRemoteAnsibleModule,
-)
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpRemoteAnsibleModule
+
+try:
+    from pulp_glue.container.context import PulpContainerRemoteContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpContainerRemoteContext = None
 
 
 def main():
     with PulpRemoteAnsibleModule(
+        context_class=PulpContainerRemoteContext,
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
             exclude_tags=dict(type="list", elements="str"),
             include_tags=dict(type="list", elements="str"),
@@ -111,38 +121,14 @@ def main():
         desired_attributes = {
             key: module.params[key]
             for key in [
-                "url",
                 "exclude_tags",
                 "include_tags",
-                "download_concurrency",
-                "policy",
-                "tls_validation",
                 "upstream_name",
             ]
             if module.params[key] is not None
         }
 
-        # Nullifiable values
-        if module.params["remote_username"] is not None:
-            desired_attributes["username"] = module.params["remote_username"] or None
-        if module.params["remote_password"] is not None:
-            desired_attributes["password"] = module.params["remote_password"] or None
-        desired_attributes.update(
-            {
-                key: module.params[key] or None
-                for key in [
-                    "proxy_url",
-                    "proxy_username",
-                    "proxy_password",
-                    "ca_cert",
-                    "client_cert",
-                    "client_key",
-                ]
-                if module.params[key] is not None
-            }
-        )
-
-        PulpContainerRemote(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":
