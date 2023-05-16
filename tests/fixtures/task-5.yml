@@ -1,0 +1,99 @@
+interactions:
+- request:
+    body: '{"states": ["canceled", "failed"]}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '34'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Squeezer/0.0.14-dev
+    method: POST
+    uri: http://pulp.example.org/pulp/api/v3/tasks/purge/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/d57ebd9b-404c-4f65-a157-72397e33235d/"}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - POST, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 904a9f95df1d475ebc78a1c50bdf9c69
+      Date:
+      - Tue, 16 May 2023 07:38:14 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Correlation-ID:
+      - 904a9f95df1d475ebc78a1c50bdf9c69
+      User-Agent:
+      - Squeezer/0.0.14-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/d57ebd9b-404c-4f65-a157-72397e33235d/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/d57ebd9b-404c-4f65-a157-72397e33235d/","pulp_created":"2023-05-16T07:38:14.092785Z","state":"completed","name":"pulpcore.app.tasks.purge.purge","logging_cid":"904a9f95df1d475ebc78a1c50bdf9c69","started_at":"2023-05-16T07:38:14.120350Z","finished_at":"2023-05-16T07:38:14.136515Z","error":null,"worker":"/pulp/api/v3/workers/a6fd1937-bdab-461b-aa22-5f0f3079da6d/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Purged
+        task-objects of type core.Task","code":"purge.tasks.key.core.Task","state":"completed","total":0,"done":0,"suffix":null},{"message":"Purged
+        task-related-objects total","code":"purge.tasks.total","state":"completed","total":0,"done":0,"suffix":null},{"message":"Tasks
+        failed to purge","code":"purge.tasks.error","state":"completed","total":0,"done":0,"suffix":null}],"created_resources":[],"reserved_resources_record":[]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '909'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 904a9f95df1d475ebc78a1c50bdf9c69
+      Date:
+      - Tue, 16 May 2023 07:38:14 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.14.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+version: 1

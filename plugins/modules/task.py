@@ -37,7 +37,7 @@ author:
 
 EXAMPLES = r"""
 - name: Read list of tasks from pulp server
-  pulp.squeezer.tasks:
+  pulp.squeezer.task:
     pulp_url: https://pulp.example.org
     username: admin
     password: password
@@ -52,7 +52,7 @@ RETURN = r"""
     description: List of tasks
     type: list
     returned: when no id is given
-  remote:
+  task:
     description: Task details
     type: dict
     returned: when id is given

@@ -15,6 +15,8 @@
       <<: *pulp_connection_details
     pulp.squeezer.task:
       <<: *pulp_connection_details
+    pulp.squeezer.purge_tasks:
+      <<: *pulp_connection_details
     pulp.squeezer.delete_orphans:
       <<: *pulp_connection_details
   tasks:
@@ -35,6 +37,8 @@
         url: "{{ pulp_fixtures_url }}/file-large/PULP_MANIFEST"
         download_concurrency: 1
         state: present
+    - name: Purge all tasks
+      pulp.squeezer.purge_tasks: {}
     - name: List all tasks
       pulp.squeezer.task: {}
       register: result
@@ -123,6 +127,18 @@
           - result.changed == false
           - result.task.pulp_href == "{{ task_href }}"
           - result.task.state == "canceled"
+
+    - name: Purge tasks
+      pulp.squeezer.purge_tasks:
+        states:
+          - canceled
+          - failed
+      register: result
+    - name: Verify purge tasks
+      assert:
+        that:
+          - result.summary.total == 0
+          - result.summary.errors == 0
 
 - hosts: localhost
   gather_facts: false
