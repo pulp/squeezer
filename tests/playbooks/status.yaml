@@ -5,6 +5,8 @@
     - vars/server.yaml
   module_defaults: &pulp_module_defaults
     pulp.squeezer.status: &pulp_connection_details
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
       pulp_url: "{{ pulp_url }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
   tasks:
