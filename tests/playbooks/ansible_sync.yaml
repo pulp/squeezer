@@ -26,7 +26,7 @@
       pulp.squeezer.ansible_remote:
         name: test_ansible_role_remote
         content_type: role
-        url: "https://galaxy.ansible.com/api/v1/roles/?namespace__name=ansible"
+        url: "https://galaxy.ansible.com/api/v1/roles/?owner__username=ansible"
         state: present
     - name: Make collection remote present
       pulp.squeezer.ansible_remote:

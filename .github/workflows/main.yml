@@ -20,63 +20,42 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.10"
       - name: Install dependencies
         run: pip install -r requirements-lint.txt
       - name: Run linter
         run: make lint
 
-  build:
-    runs-on: ubuntu-20.04
-    needs: lint
-    strategy:
-      fail-fast: false
-      matrix:
-        python:
-          - "3.9"
-        ansible:
-          - stable-2.9
-          - stable-2.10
-          - stable-2.11
-          - stable-2.12
-          - stable-2.13
-          - devel
-        include:
-          - python: "3.6"
-            ansible: "stable-2.11"
-          - python: "3.7"
-            ansible: "stable-2.11"
-            image_tag: "latest"
-          - python: "3.10"
-            ansible: "devel"
-            image_tag: "nightly"
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python }}
-      - name: Install Ansible
-        run: pip install git+https://github.com/ansible/ansible.git@${{ matrix.ansible }}
-      - name: Install dependencies
-        run: make test-setup
-      - name: Run basic tests
-        run: make test
-      - name: Run live tests
-        run: IMAGE_TAG=${{ matrix.image_tag }} tests/run_container.sh make livetest
-        if: ${{ matrix.image_tag }}
+  test:
+    needs:
+      - lint
+    uses: "./.github/workflows/test.yml"
 
   sanity:
     runs-on: ubuntu-latest
+    needs:
+      - lint
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.10"
       - name: Install Ansible
         run: pip install git+https://github.com/ansible/ansible.git@devel
       - name: Install dependencies
         run: make test-setup
       - name: Run sanity check
         run: make SANITY_OPTS="--local" sanity
+
+  ready-to-ship:
+    # This is a dummy dependent task to have a single entry for the branch protection rules.
+    runs-on: ubuntu-latest
+    needs:
+      - lint
+      - test
+      - sanity
+    steps:
+      - name: All set
+        run: |
+          echo "CI says: Looks good!"

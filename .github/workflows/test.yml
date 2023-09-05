@@ -1,0 +1,50 @@
+name: Test
+
+on:
+  workflow_call:
+
+env:
+  COLORTERM: 'yes'
+  TERM: 'xterm-256color'
+  PYTEST_ADDOPTS: '--color=yes'
+  CONTAINER_RUNTIME: 'docker'
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        python:
+          - "3.10"
+        ansible:
+          - stable-2.11
+          - stable-2.12
+          - stable-2.13
+          - stable-2.14
+          - stable-2.15
+          - devel
+        include:
+          - python: "3.6"
+            ansible: "stable-2.11"
+          - python: "3.7"
+            ansible: "stable-2.11"
+            image_tag: "latest"
+          - python: "3.11"
+            ansible: "devel"
+            image_tag: "nightly"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install Ansible
+        run: pip install git+https://github.com/ansible/ansible.git@${{ matrix.ansible }}
+      - name: Install dependencies
+        run: make test-setup
+      - name: Run basic tests
+        run: make test
+      - name: Run live tests
+        run: IMAGE_TAG=${{ matrix.image_tag }} tests/run_container.sh make livetest
+        if: ${{ matrix.image_tag }}

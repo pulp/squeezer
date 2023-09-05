@@ -27,13 +27,15 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 717df5810d25446eba09635a978be584
+      - a824549297b3410ca466b3ba0f786b42
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Mon, 15 May 2023 17:20:15 GMT
+      - Fri, 27 Oct 2023 16:44:27 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
       - Accept
       X-Content-Type-Options:
