@@ -14,7 +14,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/distributions/ansible/ansible/?name=test_ansible_distribution&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/ansible/ansible/a522711f-266b-4da4-9c61-b363a07e15f9/","pulp_created":"2023-05-15T17:20:11.769568Z","base_path":"test_ansible_base_path","content_guard":"/pulp/api/v3/contentguards/certguard/x509/3bbf1633-a466-4269-b60a-71a2f9667a87/","name":"test_ansible_distribution","repository":"/pulp/api/v3/repositories/ansible/ansible/3a53fd22-a019-4001-bea1-b0454a8f07de/","repository_version":null,"client_url":"https://5a298c727327/pulp_ansible/galaxy/test_ansible_base_path/","pulp_labels":{}}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/ansible/ansible/018b7205-c835-7440-8042-29649b11a881/","pulp_created":"2023-10-27T16:44:23.478102Z","base_path":"test_ansible_base_path","content_guard":"/pulp/api/v3/contentguards/certguard/x509/018b7205-b458-7c70-9782-f47a6b17f87c/","name":"test_ansible_distribution","repository":"/pulp/api/v3/repositories/ansible/ansible/018b7205-9e11-7dcf-9693-931c475a2bf1/","repository_version":null,"client_url":"https://c8b4dcdca1bc/pulp_ansible/galaxy/test_ansible_base_path/","pulp_labels":{}}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -27,13 +27,15 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 709e07a8bdcb41d3ba9245f69aa99493
+      - cd7c051e43d244f19860f4210f597387
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Mon, 15 May 2023 17:20:14 GMT
+      - Fri, 27 Oct 2023 16:44:25 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
       - Accept
       X-Content-Type-Options:

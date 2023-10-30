@@ -56,6 +56,7 @@ RETURN = r"""
 
 
 import traceback
+from datetime import datetime
 
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpAnsibleModule
 
@@ -81,9 +82,12 @@ def main():
     ) as module:
         task_ctx = PulpTaskContext(module.pulp_ctx)
         summary = {"objects": {}, "total": 0, "errors": 0}
+        finished_before = module.params["finished_before"]
+        if finished_before is not None:
+            finished_before = datetime.fromisoformat(finished_before)
         if not module.check_mode:
             purge_task = task_ctx.purge(
-                finished_before=module.params["finished_before"], states=module.params["states"]
+                finished_before=finished_before, states=module.params["states"]
             )
             for report in purge_task["progress_reports"]:
                 if report["code"] == "purge.tasks.total":
