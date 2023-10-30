@@ -75,6 +75,10 @@ test-setup: requirements.txt | tests/playbooks/vars/server.yaml
 	pip install --upgrade pip
 	pip install -r requirements.txt
 
+test-setup-lower-bounds: requirements.txt lower_bounds_constraints.lock | tests/playbooks/vars/server.yaml
+	pip install --upgrade pip
+	pip install -r requirements.txt -c lower_bounds_constraints.lock
+
 tests/playbooks/vars/server.yaml:
 	cp $@.example $@
 	@echo "For recording, please adjust $@ to match your reference server."
