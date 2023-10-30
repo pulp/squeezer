@@ -33,8 +33,15 @@ jobs:
           - python: "3.11"
             ansible: "devel"
             image_tag: "nightly"
+            lower_bounds: true
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/*requirements.txt', '**/*constraints.lock', '**/setup.py', '**/pyproject.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -42,7 +49,13 @@ jobs:
       - name: Install Ansible
         run: pip install git+https://github.com/ansible/ansible.git@${{ matrix.ansible }}
       - name: Install dependencies
-        run: make test-setup
+        run: |
+          if [ "${{matrix.lower_bounds}}" ]
+          then
+            make test-setup-lower-bounds
+          else
+            make test-setup
+          fi
       - name: Run basic tests
         run: make test
       - name: Run live tests

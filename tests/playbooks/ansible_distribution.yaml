@@ -105,7 +105,7 @@
           - result.distribution.base_path == "test_ansible_base_path"
           - result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_ansible_base_path")
           - result.distribution.repository == repository_result.repository.pulp_href
-          - result.distribution.repository_version == None
+          - result.distribution.repository_version == ""
           - result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
 
     - name: Delete distribution
@@ -144,7 +144,7 @@
           - result.distribution.name == "test_ansible_distribution"
           - result.distribution.base_path == "test_ansible_base_path"
           - ansible_check_mode or result.distribution.client_url is regex(".*/pulp_ansible/galaxy/test_ansible_base_path")
-          - result.distribution.repository | default(None) == None
+          - result.distribution.repository | default("") == ""
           - result.distribution.repository_version == repository_result.repository.versions_href + '1/'
 
     - name: Distribute specific version of repository (2nd try)
