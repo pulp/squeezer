@@ -37,6 +37,11 @@ options:
       - "Warning: This feature is not yet supported."
     type: str
     required: false
+  generate_repo_config:
+    description:
+      - Specify whether Pulp should generate *.repo files
+    type: bool
+    required: false
 extends_documentation_fragment:
   - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
@@ -63,6 +68,7 @@ EXAMPLES = r"""
     name: new_rpm_distribution
     base_path: new/rpm/dist
     publication: /pub/api/v3/publications/rpm/rpm/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/
+    generate_repo_config: true
     state: present
 
 - name: Delete a rpm distribution
@@ -95,7 +101,13 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
 
 def main():
     with PulpEntityAnsibleModule(
-        argument_spec=dict(name=dict(), base_path=dict(), publication=dict(), content_guard=dict()),
+        argument_spec=dict(
+            name=dict(),
+            base_path=dict(),
+            publication=dict(),
+            content_guard=dict(),
+            generate_repo_config=dict(type="bool"),
+        ),
         required_if=[
             ("state", "present", ["name", "base_path"]),
             ("state", "absent", ["name"]),
@@ -106,7 +118,7 @@ def main():
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
             key: module.params[key]
-            for key in ["base_path", "publication"]
+            for key in ["base_path", "generate_repo_config", "publication"]
             if module.params[key] is not None
         }
 
