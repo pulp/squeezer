@@ -146,6 +146,7 @@
       pulp.squeezer.artifact:
         file: data/large_artifact.dat
         state: present
+        chunk_size: 1000000
       register: result
     - name: Verify create artifact with chunked upload
       assert:
@@ -156,6 +157,7 @@
       pulp.squeezer.artifact:
         file: data/large_artifact.dat
         state: present
+        chunk_size: 1000000
       register: result
     - name: Verify create artifact with chunked upload (2nd try)
       assert:

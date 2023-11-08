@@ -25,6 +25,11 @@ options:
       - sha256 digest of the artifact to query or delete.
       - When specified together with file, it will be used to verify any transaction.
     type: str
+  chunk_size:
+    description:
+      - Size of the chunks to upload a file.
+    type: int
+    default: 33554432
 extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp.glue
@@ -104,7 +109,9 @@ class PulpArtifactAnsibleModule(PulpEntityAnsibleModule):
                 entity = {**desired_attributes, **natural_key}
             else:
                 with open(self.params["file"], "rb") as infile:
-                    self.context.upload(infile, sha256=natural_key["sha256"])
+                    self.context.upload(
+                        infile, sha256=natural_key["sha256"], chunk_size=self.params["chunk_size"]
+                    )
                 entity = self.context.entity
             self.set_changed()
         return self.represent(entity)
@@ -116,7 +123,11 @@ def main():
         entity_singular="artifact",
         entity_plural="artifacts",
         import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
-        argument_spec=dict(file=dict(type="path"), sha256=dict()),
+        argument_spec=dict(
+            file=dict(type="path"),
+            sha256=dict(),
+            chunk_size=dict(type="int", default=33554432),
+        ),
         required_if=[("state", "present", ["file"])],
     ) as module:
         sha256 = module.params["sha256"]
