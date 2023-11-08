@@ -59,6 +59,7 @@ class PulpAnsibleModule(AnsibleModule):
                 fallback=(env_fallback, ["SQUEEZER_VALIDATE_CERTS"]),
             ),
             refresh_api_cache=dict(type="bool", default=False),
+            timeout=dict(type="int", default=10),
         )
         argument_spec.update(kwargs.pop("argument_spec", {}))
         if not kwargs.pop("no_auth", False):
@@ -98,7 +99,7 @@ class PulpAnsibleModule(AnsibleModule):
                 user_agent=f"Squeezer/{__VERSION__}",
             ),
             background_tasks=False,
-            timeout=10,
+            timeout=self.params["timeout"],
         )
 
     def __enter__(self):

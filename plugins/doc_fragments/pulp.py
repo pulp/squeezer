@@ -60,6 +60,11 @@ options:
       - Client certificate key of api user.
     type: str
     required: false
+  timeout:
+    description:
+      - Time in seconds to wait for tasks.
+    type: int
+    default: 10
 """
 
     ENTITY_STATE = r"""
