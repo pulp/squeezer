@@ -14,6 +14,9 @@ SANITY_OPTS =
 TEST =
 PYTEST = pytest -n 4 -v
 
+ACTION_GROUPS := $(shell python -c 'import yaml; print("".join(yaml.safe_load(open("meta/runtime.yml"))["action_groups"]["squeezer"]))')
+MODULES := $(shell python -c 'import os; print("".join([os.path.splitext(f)[0] for f in sorted(os.listdir("plugins/modules/"))]))')
+
 default: help
 help:
 	@echo "Please use \`make <target>' where <target> is one of:"
@@ -45,6 +48,9 @@ lint: $(MANIFEST) | tests/playbooks/vars/server.yaml
 	ansible-playbook --syntax-check tests/playbooks/*.yaml | grep -v '^$$'
 	black --check --diff .
 	isort -c --diff .
+ifneq ($(ACTION_GROUPS), $(MODULES))
+	@echo 'plugins/modules/ and meta/runtime.yml action_groups are not in sync' && exit 1
+endif
 	GALAXY_IMPORTER_CONFIG=tests/galaxy-importer.cfg python -m galaxy_importer.main $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
 	@echo "🙊 Code 🙉 LGTM 🙈"
 

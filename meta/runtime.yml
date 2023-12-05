@@ -1,3 +1,44 @@
 ---
 requires_ansible: ">=2.8"
+action_groups:
+  squeezer:
+    - access_policy
+    - ansible_distribution
+    - ansible_remote
+    - ansible_repository
+    - ansible_role
+    - ansible_sync
+    - api_call
+    - artifact
+    - container_distribution
+    - container_remote
+    - container_repository
+    - container_sync
+    - deb_distribution
+    - deb_publication
+    - deb_remote
+    - deb_repository
+    - deb_sync
+    - delete_orphans
+    - file_content
+    - file_distribution
+    - file_publication
+    - file_remote
+    - file_repository
+    - file_repository_content
+    - file_sync
+    - purge_tasks
+    - python_distribution
+    - python_publication
+    - python_remote
+    - python_repository
+    - python_sync
+    - rpm_distribution
+    - rpm_publication
+    - rpm_remote
+    - rpm_repository
+    - rpm_sync
+    - status
+    - task
+    - x509_cert_guard
 ...
