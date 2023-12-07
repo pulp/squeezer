@@ -92,7 +92,7 @@
       assert:
         that:
           - result.changed == false
-          - result.task.pulp_href == "{{ task_href }}"
+          - result.task.pulp_href == task_href
           - result.task.name == "pulp_file.app.tasks.synchronizing.synchronize"
           # - result.task.state == "running"
 
@@ -105,7 +105,7 @@
       assert:
         that:
           # - result.changed == true
-          - result.task.pulp_href == "{{ task_href }}"
+          - result.task.pulp_href == task_href
           # - result.task.state == "canceled"
 
     - name: Cancel task(2nd try)
@@ -117,7 +117,7 @@
       assert:
         that:
           - result.changed == false
-          - result.task.pulp_href == "{{ task_href }}"
+          - result.task.pulp_href == task_href
           # - result.task.state == "canceled"
 
     - name: Wait for canceled task
@@ -129,7 +129,7 @@
       assert:
         that:
           - result.changed == false
-          - result.task.pulp_href == "{{ task_href }}"
+          - result.task.pulp_href == task_href
           # - result.task.state == "canceled"
 
     - name: Purge tasks
