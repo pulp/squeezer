@@ -1,8 +1,8 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 # copyright (c) 2020, Matthias Dellweg
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
 
 from __future__ import absolute_import, division, print_function
 
@@ -21,13 +21,14 @@ options:
     description:
       - Name of the remote to synchronize
     type: str
-    required: true
+    required: false
   repository:
     description:
       - Name of the repository
     type: str
     required: true
 extends_documentation_fragment:
+  - pulp.squeezer.pulp.glue
   - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
@@ -55,27 +56,55 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import (
     PulpAnsibleModule,
-    PulpPythonRemote,
-    PulpPythonRepository,
+    SqueezerException,
 )
+
+try:
+    from pulp_glue.python.context import PulpPythonRemoteContext, PulpPythonRepositoryContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
 
 
 def main():
     with PulpAnsibleModule(
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
-            remote=dict(required=True),
+            remote=dict(required=False),
             repository=dict(required=True),
         ),
     ) as module:
-        remote = PulpPythonRemote(module, {"name": module.params["remote"]})
-        remote.find(failsafe=False)
+        repository_ctx = PulpPythonRepositoryContext(
+            module.pulp_ctx, entity={"name": module.params["repository"]}
+        )
+        repository = repository_ctx.entity
 
-        repository = PulpPythonRepository(module, {"name": module.params["repository"]})
-        repository.find(failsafe=False)
+        payload = {}
+        if module.params["remote"] is None:
+            if repository["remote"] is None:
+                raise SqueezerException(
+                    "No remote was specified and none preconfigured on the repository."
+                )
+        else:
+            remote_ctx = PulpPythonRemoteContext(
+                module.pulp_ctx, entity={"name": module.params["remote"]}
+            )
+            payload["remote"] = remote_ctx
+        repository_version = repository["latest_version_href"]
+        # In check_mode, assume nothing changed
+        if not module.check_mode:
+            sync_task = repository_ctx.sync(repository["pulp_href"], payload)
 
-        repository.process_sync(remote)
+            if sync_task["created_resources"]:
+                module.set_changed()
+                repository_version = sync_task["created_resources"][0]
+
+        module.set_result("repository_version", repository_version)
 
 
 if __name__ == "__main__":

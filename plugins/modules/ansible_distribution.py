@@ -1,8 +1,8 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 # copyright (c) 2019, Matthias Dellweg
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
 
 from __future__ import absolute_import, division, print_function
 
@@ -23,7 +23,7 @@ options:
     required: false
   base_path:
     description:
-      - Base path to distribute a publication
+      - Base path to distribute a repository
     type: str
     required: false
   repository:
@@ -40,7 +40,7 @@ options:
   content_guard:
     description:
       - Name of the content guard for the served content
-      - "Warning: This feature is not yet supported."
+      - Or the empty string to remove the content guard
     type: str
     required: false
 extends_documentation_fragment:
@@ -132,9 +132,7 @@ def main():
         version = module.params["version"]
         content_guard_name = module.params["content_guard"]
 
-        natural_key = {
-            "name": module.params["name"],
-        }
+        natural_key = {"name": module.params["name"]}
         desired_attributes = {
             key: module.params[key] for key in ["base_path"] if module.params[key] is not None
         }
@@ -157,7 +155,7 @@ def main():
                 )
                 desired_attributes["content_guard"] = content_guard_ctx.pulp_href
             else:
-                desired_attributes["content_guard"] = None
+                desired_attributes["content_guard"] = ""
 
         module.process(natural_key, desired_attributes)
 

@@ -1,8 +1,8 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 # copyright (c) 2021, Mark Goddard
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
 
 from __future__ import absolute_import, division, print_function
 
@@ -25,8 +25,9 @@ options:
       - Description of the repository
     type: str
 extends_documentation_fragment:
-  - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp.glue
+  - pulp.squeezer.pulp
 author:
   - Mark Goddard (@markgoddard)
 """
@@ -72,24 +73,37 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpContainerRepository,
-    PulpEntityAnsibleModule,
-)
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpEntityAnsibleModule
+
+try:
+    from pulp_glue.container.context import PulpContainerRepositoryContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpContainerRepositoryContext = None
 
 
 def main():
     with PulpEntityAnsibleModule(
-        argument_spec=dict(name=dict(), description=dict()),
+        context_class=PulpContainerRepositoryContext,
+        entity_singular="repository",
+        entity_plural="repositories",
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        argument_spec=dict(
+            name=dict(),
+            description=dict(),
+        ),
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
         natural_key = {"name": module.params["name"]}
         desired_attributes = {}
         if module.params["description"] is not None:
-            # In case of an empty string we nullify the description
-            desired_attributes["description"] = module.params["description"] or None
+            desired_attributes["description"] = module.params["description"]
 
-        PulpContainerRepository(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

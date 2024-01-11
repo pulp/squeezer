@@ -1,8 +1,8 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 # copyright (c) 2020, Matthias Dellweg
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
 
 from __future__ import absolute_import, division, print_function
 
@@ -39,9 +39,10 @@ options:
       - Whether to include prereleases in the sync.
     type: bool
 extends_documentation_fragment:
-  - pulp.squeezer.pulp
-  - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp.remote
+  - pulp.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp.glue
+  - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
 """
@@ -87,16 +88,19 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpPythonRemote,
-    PulpRemoteAnsibleModule,
-)
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpRemoteAnsibleModule
+
+try:
+    from pulp_glue.python.context import PulpPythonRemoteContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpPythonRemoteContext = None
 
 DESIRED_KEYS = {
-    "url",
-    "download_concurrency",
-    "policy",
-    "tls_validation",
     "prereleases",
     "includes",
     "excludes",
@@ -105,6 +109,8 @@ DESIRED_KEYS = {
 
 def main():
     with PulpRemoteAnsibleModule(
+        context_class=PulpPythonRemoteContext,
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
             policy=dict(choices=["immediate", "on_demand", "streamed"]),
             includes=dict(type="list", elements="str"),
@@ -118,27 +124,7 @@ def main():
             key: module.params[key] for key in DESIRED_KEYS if module.params[key] is not None
         }
 
-        # Nullifiable values
-        if module.params["remote_username"] is not None:
-            desired_attributes["username"] = module.params["remote_username"] or None
-        if module.params["remote_password"] is not None:
-            desired_attributes["password"] = module.params["remote_password"] or None
-        desired_attributes.update(
-            {
-                key: module.params[key] or None
-                for key in [
-                    "proxy_url",
-                    "proxy_username",
-                    "proxy_password",
-                    "ca_cert",
-                    "client_cert",
-                    "client_key",
-                ]
-                if module.params[key] is not None
-            }
-        )
-
-        PulpPythonRemote(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

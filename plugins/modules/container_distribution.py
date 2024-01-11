@@ -1,8 +1,8 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 # copyright (c) 2021, Mark Goddard
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
 
 from __future__ import absolute_import, division, print_function
 
@@ -49,8 +49,9 @@ options:
     type: bool
     required: false
 extends_documentation_fragment:
-  - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp.glue
+  - pulp.squeezer.pulp
 author:
   - Mark Goddard (@markgoddard)
 """
@@ -97,16 +98,29 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpContainerDistribution,
-    PulpContainerRepository,
-    PulpContentGuard,
-    PulpEntityAnsibleModule,
-)
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpEntityAnsibleModule
+
+try:
+    from pulp_glue.container.context import (
+        PulpContainerDistributionContext,
+        PulpContainerRepositoryContext,
+    )
+    from pulp_glue.core.context import PulpContentGuardContext
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpContainerDistributionContext = None
 
 
 def main():
     with PulpEntityAnsibleModule(
+        context_class=PulpContainerDistributionContext,
+        entity_singular="distribution",
+        entity_plural="distribuions",
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
             name=dict(),
             base_path=dict(),
@@ -133,25 +147,26 @@ def main():
         }
 
         if repository_name:
-            repository = PulpContainerRepository(module, {"name": repository_name})
-            repository.find(failsafe=False)
-            # TODO check if version exists
+            repository_ctx = PulpContainerRepositoryContext(
+                module.pulp_ctx, entity={"name": repository_name}
+            )
             if version:
-                desired_attributes["repository_version"] = repository.entity[
-                    "versions_href"
-                ] + "{version}/".format(version=version)
+                desired_attributes["repository_version"] = (
+                    repository_ctx.entity["versions_href"] + f"{version}/"
+                )
             else:
-                desired_attributes["repository"] = repository.href
+                desired_attributes["repository"] = repository_ctx.pulp_href
 
         if content_guard_name is not None:
             if content_guard_name:
-                content_guard = PulpContentGuard(module, {"name": content_guard_name})
-                content_guard.find(failsafe=False)
-                desired_attributes["content_guard"] = content_guard.href
+                content_guard_ctx = PulpContentGuardContext(
+                    module.pulp_ctx, entity={"name": content_guard_name}
+                )
+                desired_attributes["content_guard"] = content_guard_ctx.pulp_href
             else:
-                desired_attributes["content_guard"] = None
+                desired_attributes["content_guard"] = ""
 
-        PulpContainerDistribution(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

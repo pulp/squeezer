@@ -1,8 +1,8 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 # copyright (c) 2019, Matthias Dellweg
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
 
 from __future__ import absolute_import, division, print_function
 
@@ -35,7 +35,6 @@ options:
     description:
       - Name of the content guard for the served content
       - Or the empty string to remove the content guard
-      - "Warning: This feature is not yet supported."
     type: str
     required: false
   remote:
@@ -45,8 +44,9 @@ options:
     type: str
     required: false
 extends_documentation_fragment:
-  - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp.glue
+  - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
   - Daniel Ziegenberg (@ziegenberg)
@@ -104,16 +104,32 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpContentGuard,
-    PulpEntityAnsibleModule,
-    PulpPythonDistribution,
-    PulpPythonRemote,
-)
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpEntityAnsibleModule
+
+try:
+    from pulp_glue.core.context import PulpContentGuardContext
+    from pulp_glue.python.context import PulpPythonDistributionContext, PulpPythonRemoteContext
+
+    # Fix this in pulp-glue
+    if "content_guard" not in PulpPythonDistributionContext.NULLABLES:
+        PulpPythonDistributionContext.NULLABLES.add("content_guard")
+    if "remote" not in PulpPythonDistributionContext.NULLABLES:
+        PulpPythonDistributionContext.NULLABLES.add("remote")
+
+    PULP_CLI_IMPORT_ERR = None
+except ImportError:
+    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PulpPythonDistributionContext = None
 
 
 def main():
     with PulpEntityAnsibleModule(
+        context_class=PulpPythonDistributionContext,
+        entity_singular="distribution",
+        entity_plural="distribuions",
+        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
         argument_spec=dict(
             name=dict(),
             base_path=dict(),
@@ -140,21 +156,21 @@ def main():
 
         if content_guard_name is not None:
             if content_guard_name:
-                content_guard = PulpContentGuard(module, {"name": content_guard_name})
-                content_guard.find(failsafe=False)
-                desired_attributes["content_guard"] = content_guard.href
+                content_guard_ctx = PulpContentGuardContext(
+                    module.pulp_ctx, entity={"name": content_guard_name}
+                )
+                desired_attributes["content_guard"] = content_guard_ctx.pulp_href
             else:
-                desired_attributes["content_guard"] = None
+                desired_attributes["content_guard"] = ""
 
         if remote_name is not None:
             if remote_name:
-                remote = PulpPythonRemote(module, {"name": remote_name})
-                remote.find(failsafe=False)
-                desired_attributes["remote"] = remote.href
+                remote_ctx = PulpPythonRemoteContext(module.pulp_ctx, entity={"name": remote_name})
+                desired_attributes["remote"] = remote_ctx.pulp_href
             else:
-                desired_attributes["remote"] = None
+                desired_attributes["remote"] = ""
 
-        PulpPythonDistribution(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

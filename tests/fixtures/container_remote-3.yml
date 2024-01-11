@@ -4,40 +4,38 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.0.14-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/container/container/?limit=1&name=test_container_remote
+    uri: http://pulp.example.org/pulp/api/v3/remotes/container/container/?name=test_container_remote&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/container/container/c57f796d-3310-474b-b919-8afd0886c9d3/","pulp_created":"2021-11-23T14:29:27.347137Z","name":"test_container_remote","url":"https://registry-1.docker.io","ca_cert":"abcd","client_cert":"efgh","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2021-11-23T14:29:28.817608Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"upstream_name":"test_container_remote","include_tags":["bar"],"exclude_tags":["foo"]}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/container/container/198a9932-7825-4e24-a56b-46e4fb037d0d/","pulp_created":"2023-05-21T17:26:46.053651Z","name":"test_container_remote","url":"https://registry-1.docker.io","ca_cert":"abcd","client_cert":"efgh","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"pulp_last_updated":"2023-05-21T17:26:47.498375Z","download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"upstream_name":"test_container_remote","include_tags":["bar"],"exclude_tags":["foo"],"sigstore":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '707'
+      - '930'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 080118e38224440dbae9826a6abef1bf
+      - d2aa724d5b324d1eb7827e4810b5f22f
       Date:
-      - Tue, 23 Nov 2021 14:29:29 GMT
+      - Sun, 21 May 2023 17:26:48 GMT
       Referrer-Policy:
       - same-origin
       Server:
       - nginx/1.14.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
