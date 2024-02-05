@@ -15,7 +15,7 @@ try:
     from pulp_glue.common import __version__ as pulp_glue_version
     from pulp_glue.common.context import PulpContext, PulpException, PulpNoWait
 
-    GLUE_VERSION_SPEC = ">=0.20.0,<0.22.0"
+    GLUE_VERSION_SPEC = ">=0.20.0,<=0.23.2"
     if not SpecifierSet(GLUE_VERSION_SPEC).contains(pulp_glue_version):
         raise ImportError(
             f"Installed 'pulp-glue' version '{pulp_glue_version}' is not in '{GLUE_VERSION_SPEC}'."
