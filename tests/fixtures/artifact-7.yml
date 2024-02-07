@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - Squeezer/0.0.13-dev
+      - Squeezer/0.0.15-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/artifacts/?sha256=fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700&offset=0&limit=1
   response:
@@ -27,15 +27,17 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - cdac49b71e2a45469e134da90d9c75ad
+      - 6a93f86bdef547debe3b5446f51f1f2a
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 24 Nov 2022 14:01:20 GMT
+      - Wed, 07 Feb 2024 00:00:26 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -53,9 +55,9 @@ interactions:
       Connection:
       - keep-alive
       Correlation-ID:
-      - cdac49b71e2a45469e134da90d9c75ad
+      - 6a93f86bdef547debe3b5446f51f1f2a
       User-Agent:
-      - Squeezer/0.0.13-dev
+      - Squeezer/0.0.15-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/artifacts/?sha256=fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700&offset=0&limit=1
   response:
@@ -73,15 +75,17 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - cdac49b71e2a45469e134da90d9c75ad
+      - 6a93f86bdef547debe3b5446f51f1f2a
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 24 Nov 2022 14:01:20 GMT
+      - Wed, 07 Feb 2024 00:00:26 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -90,11 +94,9 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: "--2754cc8ff94cceb6bc19a90598fadf9d\r\nContent-Disposition: form-data; name=\"\
-      sha256\"\r\n\r\nfd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700\r\
-      \n--2754cc8ff94cceb6bc19a90598fadf9d\r\nContent-Disposition: form-data; name=\"\
-      file\"; filename=\"file\"\r\nContent-Type: application/octet-stream\r\n\r\n\
-      pulp artifact\n\r\n--2754cc8ff94cceb6bc19a90598fadf9d--\r\n"
+    body: "--4288c173784496ebcc97ea4682d1fad8\r\nContent-Disposition: form-data; name=\"sha256\"\r\n\r\nfd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700\r\n--4288c173784496ebcc97ea4682d1fad8\r\nContent-Disposition:
+      form-data; name=\"file\"; filename=\"file\"\r\nContent-Type: application/octet-stream\r\n\r\npulp
+      artifact\n\r\n--4288c173784496ebcc97ea4682d1fad8--\r\n"
     headers:
       Accept:
       - application/json
@@ -105,16 +107,16 @@ interactions:
       Content-Length:
       - '345'
       Content-Type:
-      - multipart/form-data; boundary=2754cc8ff94cceb6bc19a90598fadf9d
+      - multipart/form-data; boundary=4288c173784496ebcc97ea4682d1fad8
       Correlation-ID:
-      - cdac49b71e2a45469e134da90d9c75ad
+      - 6a93f86bdef547debe3b5446f51f1f2a
       User-Agent:
-      - Squeezer/0.0.13-dev
+      - Squeezer/0.0.15-dev
     method: POST
     uri: http://pulp.example.org/pulp/api/v3/artifacts/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/artifacts/6dfd5349-b6ca-4af1-98b1-e66c1baab633/","pulp_created":"2022-11-24T14:01:20.281044Z","file":"artifact/fd/769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","size":14,"md5":null,"sha1":null,"sha224":"886567b3800902ffb4c668006cfada2c4acc41c2a437e3646ee8341c","sha256":"fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","sha384":"99c257daa3ab6599bf830d137119798f8741a4b776fc1c50f68c96f85aa98da82029bf6f919b2a78e4740be4d88a58b1","sha512":"39c0377d34bb4296ef4e739a1face204e5ff5fbb4e67ac046244887a7aede265c2a95a03543b68094f08353986d8cb7f3f8a59f5ffcb94eb1d73666ebbb9eeb5"}'
+      string: '{"pulp_href":"/pulp/api/v3/artifacts/018d80dd-a764-73e8-8461-9e2977b9da5f/","pulp_created":"2024-02-07T00:00:26.468977Z","file":"artifact/fd/769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","size":14,"md5":null,"sha1":null,"sha224":"886567b3800902ffb4c668006cfada2c4acc41c2a437e3646ee8341c","sha256":"fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","sha384":"99c257daa3ab6599bf830d137119798f8741a4b776fc1c50f68c96f85aa98da82029bf6f919b2a78e4740be4d88a58b1","sha512":"39c0377d34bb4296ef4e739a1face204e5ff5fbb4e67ac046244887a7aede265c2a95a03543b68094f08353986d8cb7f3f8a59f5ffcb94eb1d73666ebbb9eeb5"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -127,17 +129,19 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - cdac49b71e2a45469e134da90d9c75ad
+      - 6a93f86bdef547debe3b5446f51f1f2a
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 24 Nov 2022 14:01:20 GMT
+      - Wed, 07 Feb 2024 00:00:26 GMT
       Location:
-      - /pulp/api/v3/artifacts/6dfd5349-b6ca-4af1-98b1-e66c1baab633/
+      - /pulp/api/v3/artifacts/018d80dd-a764-73e8-8461-9e2977b9da5f/
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -155,14 +159,14 @@ interactions:
       Connection:
       - keep-alive
       Correlation-ID:
-      - cdac49b71e2a45469e134da90d9c75ad
+      - 6a93f86bdef547debe3b5446f51f1f2a
       User-Agent:
-      - Squeezer/0.0.13-dev
+      - Squeezer/0.0.15-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/artifacts/6dfd5349-b6ca-4af1-98b1-e66c1baab633/
+    uri: http://pulp.example.org/pulp/api/v3/artifacts/018d80dd-a764-73e8-8461-9e2977b9da5f/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/artifacts/6dfd5349-b6ca-4af1-98b1-e66c1baab633/","pulp_created":"2022-11-24T14:01:20.281044Z","file":"artifact/fd/769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","size":14,"md5":null,"sha1":null,"sha224":"886567b3800902ffb4c668006cfada2c4acc41c2a437e3646ee8341c","sha256":"fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","sha384":"99c257daa3ab6599bf830d137119798f8741a4b776fc1c50f68c96f85aa98da82029bf6f919b2a78e4740be4d88a58b1","sha512":"39c0377d34bb4296ef4e739a1face204e5ff5fbb4e67ac046244887a7aede265c2a95a03543b68094f08353986d8cb7f3f8a59f5ffcb94eb1d73666ebbb9eeb5"}'
+      string: '{"pulp_href":"/pulp/api/v3/artifacts/018d80dd-a764-73e8-8461-9e2977b9da5f/","pulp_created":"2024-02-07T00:00:26.468977Z","file":"artifact/fd/769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","size":14,"md5":null,"sha1":null,"sha224":"886567b3800902ffb4c668006cfada2c4acc41c2a437e3646ee8341c","sha256":"fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700","sha384":"99c257daa3ab6599bf830d137119798f8741a4b776fc1c50f68c96f85aa98da82029bf6f919b2a78e4740be4d88a58b1","sha512":"39c0377d34bb4296ef4e739a1face204e5ff5fbb4e67ac046244887a7aede265c2a95a03543b68094f08353986d8cb7f3f8a59f5ffcb94eb1d73666ebbb9eeb5"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -175,15 +179,17 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - cdac49b71e2a45469e134da90d9c75ad
+      - 6a93f86bdef547debe3b5446f51f1f2a
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 24 Nov 2022 14:01:20 GMT
+      - Wed, 07 Feb 2024 00:00:26 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
