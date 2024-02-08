@@ -9,14 +9,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - localhost:80
+      - localhost:8080
       User-Agent:
-      - Python-urllib/3.9
+      - Python-urllib/3.10
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/distributions/rpm/rpm/?limit=1&name=test_rpm_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/rpm/rpm/8e287d91-be22-4638-819e-446eb8b12bb4/","pulp_created":"2022-11-21T13:13:06.282273Z","base_path":"test_rpm_base_path","base_url":"http://alex-rocky-pulp.novalocal:8080/pulp/content/test_rpm_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/0ac1d333-9391-4eb0-b55a-489ace40b9db/","pulp_labels":{},"name":"test_rpm_distribution","repository":null,"publication":"/pulp/api/v3/publications/rpm/rpm/ec325bbb-3384-478e-a796-7f37468431d5/"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/rpm/rpm/018d88ee-b5ce-73e5-b033-a5ff267fb3a5/","pulp_created":"2024-02-08T13:36:01.999188Z","base_path":"test_rpm_base_path","base_url":"http://localhost:8080/pulp/content/test_rpm_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/018d88ee-a222-7790-b625-4a9b8a7ec8d4/","hidden":false,"pulp_labels":{},"name":"test_rpm_distribution","repository":null,"publication":"/pulp/api/v3/publications/rpm/rpm/018d88ee-9499-7bc2-b326-ed28df2bbef8/","generate_repo_config":false}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,19 +25,21 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '554'
+      - '582'
       Content-Type:
       - application/json
       Correlation-ID:
-      - fda26bcba3fd46368e5b6bd924d06dab
+      - 64de80174132423fa8149a434589135b
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Mon, 21 Nov 2022 13:13:11 GMT
+      - Thu, 08 Feb 2024 13:36:04 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
