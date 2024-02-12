@@ -62,6 +62,11 @@
   module_defaults:
     <<: *pulp_module_defaults
   tasks:
+    - name: Retrieve repository
+      pulp.squeezer.rpm_repository:
+        name: test_rpm_repository
+      register: repository_result
+
     - name: Retrieve publication of repository
       pulp.squeezer.rpm_publication:
         repository: test_rpm_repository
@@ -110,6 +115,31 @@
           - result.distribution.base_url is regex(".*/pulp/content/test_rpm_base_path")
           - result.distribution.publication == publication_result.publication.pulp_href
           - result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
+
+    - name: Distribute repository
+      pulp.squeezer.rpm_distribution:
+        name: test_rpm_distribution
+        base_path: test_rpm_base_path
+        repository: test_rpm_repository
+        state: present
+      register: result
+    - name: Verify distribute repository
+      assert:
+        that:
+          - result.changed == true
+          - result.distribution.repository == repository_result.repository.pulp_href
+
+    - name: Distribute repository (2nd try)
+      pulp.squeezer.rpm_distribution:
+        name: test_rpm_distribution
+        base_path: test_rpm_base_path
+        repository: test_rpm_repository
+        state: present
+      register: result
+    - name: Verify distribute repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
 
     - name: Delete distribution
       pulp.squeezer.rpm_distribution:

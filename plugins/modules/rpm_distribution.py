@@ -32,6 +32,12 @@ options:
       - Href of the publication to be served
     type: str
     required: false
+  repository:
+    description:
+      - Name of the repository to be served
+    type: str
+    required: false
+    version_added: "0.0.15"
   content_guard:
     description:
       - Name of the content guard for the served content
@@ -91,25 +97,43 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpContentGuard,
     PulpEntityAnsibleModule,
     PulpRpmDistribution,
+    PulpRpmRepository,
 )
 
 
 def main():
     with PulpEntityAnsibleModule(
-        argument_spec=dict(name=dict(), base_path=dict(), publication=dict(), content_guard=dict()),
+        argument_spec=dict(
+            name=dict(),
+            base_path=dict(),
+            publication=dict(),
+            repository=dict(),
+            content_guard=dict(),
+        ),
         required_if=[
             ("state", "present", ["name", "base_path"]),
             ("state", "absent", ["name"]),
         ],
+        mutually_exclusive=[("publication", "repository")],
     ) as module:
         content_guard_name = module.params["content_guard"]
+        repository_name = module.params["repository"]
 
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
             key: module.params[key]
-            for key in ["base_path", "publication"]
+            for key in ["base_path", "publication", "repository"]
             if module.params[key] is not None
         }
+
+        # support switching between using publication and repository
+        if module.params["publication"] is not None:
+            desired_attributes["repository"] = None
+        elif repository_name is not None:
+            desired_attributes["publication"] = None
+            repository = PulpRpmRepository(module, {"name": repository_name})
+            repository.find(failsafe=False)
+            desired_attributes["repository"] = repository.href
 
         if content_guard_name is not None:
             if content_guard_name:
