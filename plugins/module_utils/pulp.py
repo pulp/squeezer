@@ -139,7 +139,7 @@ class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
             connect_timeout=dict(type="float"),
             sock_connect_timeout=dict(type="float"),
             sock_read_timeout=dict(type="float"),
-            max_retires=dict(type="int"),
+            max_retries=dict(type="int"),
         )
         argument_spec.update(kwargs.pop("argument_spec", {}))
         super(PulpRemoteAnsibleModule, self).__init__(argument_spec=argument_spec, **kwargs)
