@@ -163,7 +163,7 @@ options:
     description:
       - C(aiohttp.ClientTimeout.sock_read) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
     type: float
-  max_retires:
+  max_retries:
     description:
       - Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
     type: int

@@ -226,7 +226,7 @@ class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
             connect_timeout=dict(type="float"),
             sock_connect_timeout=dict(type="float"),
             sock_read_timeout=dict(type="float"),
-            max_retires=dict(type="int"),
+            max_retries=dict(type="int"),
         )
         argument_spec.update(kwargs.pop("argument_spec", {}))
 
@@ -264,7 +264,7 @@ class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
                     "connect_timeout",
                     "sock_connect_timeout",
                     "sock_read_timeout",
-                    "max_retires",
+                    "max_retries",
                 ]
                 if self.params[key] is not None
             }
