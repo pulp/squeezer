@@ -9,12 +9,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - Squeezer/0.0.13-dev
+      - Squeezer/0.0.15-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/artifacts/?sha256=c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/e814947a-6785-435d-bd43-fae10daf6b8e/","pulp_created":"2022-11-24T14:01:23.417721Z","file":"artifact/c4/aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","size":1049600,"md5":null,"sha1":null,"sha224":"bfba29a479f1bd11d35b7122e16bf88f672a7eb9d41c88c229fbc3e5","sha256":"c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","sha384":"c0ef7ed5e3abbf74c83c9f65d69835d513e2a3ab2dafaba149eb0054327535cf0d3cfd1c6925d4142624a543e3000144","sha512":"884b6ec520cf21e1d8625235ddfa0670e15c3ddb30fd3c89117c1d2213507448a87a713fb355a51aad84e31a6adae696d0f6166dfa222589fc67b395aa657899"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/018defd3-5d95-7960-a889-98796398b58d/","pulp_created":"2024-02-28T13:07:03.190060Z","file":"artifact/c4/aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","size":1049600,"md5":null,"sha1":null,"sha224":"bfba29a479f1bd11d35b7122e16bf88f672a7eb9d41c88c229fbc3e5","sha256":"c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","sha384":"c0ef7ed5e3abbf74c83c9f65d69835d513e2a3ab2dafaba149eb0054327535cf0d3cfd1c6925d4142624a543e3000144","sha512":"884b6ec520cf21e1d8625235ddfa0670e15c3ddb30fd3c89117c1d2213507448a87a713fb355a51aad84e31a6adae696d0f6166dfa222589fc67b395aa657899"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -27,15 +27,17 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - cd7d549cb98a4028b8c24a827accc47d
+      - bc81b0c156e84a458e4480f3654a7542
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 24 Nov 2022 14:01:25 GMT
+      - Wed, 28 Feb 2024 13:07:04 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:

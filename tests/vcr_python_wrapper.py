@@ -54,6 +54,9 @@ def amp_body_matcher(r1, r2):
             boundary2 = re.findall(r"boundary=(\S.*)", c2)[0].encode()
             body1 = body1.replace(boundary1, b"TILT")
             body2 = body2.replace(boundary2, b"TILT")
+            # Older versions of pulp-glue < 0.23 always send "file" as the filename.
+            if b'filename="file"' in body1:
+                body2 = re.sub(rb'filename="[^"].*"', b'filename="file"', body2)
     assert body1 == body2, "{body1} == {body2}".format(body1=body1, body2=body2)
 
 

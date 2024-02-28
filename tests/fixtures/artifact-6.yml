@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - Squeezer/0.0.13-dev
+      - Squeezer/0.0.15-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/artifacts/?sha256=fd769b8ec82bc92cc7217dea31e86e68147c160969edb5fccc738a00c968e700&offset=0&limit=1
   response:
@@ -27,15 +27,17 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - df52258f62c548f6ab45ccbd3f274b55
+      - e5cfc086cf8c4c9ba4832bb4d7b001c6
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 24 Nov 2022 14:01:19 GMT
+      - Wed, 28 Feb 2024 13:06:57 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
