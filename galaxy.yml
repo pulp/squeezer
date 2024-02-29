@@ -13,7 +13,10 @@ authors:
   - "Daniel Ziegenberg <daniel@ziegenberg.at>"
   - "Alex Welsh <alex@stackhpc.com>"
   - "ajsween <ajsween@gmail.com>"
-version: "0.0.15-dev"
+  - "Christian Loos <cloos@netsandbox.de>"
+  - "Kevin P. Fleming <kevin@km6g.us>"
+  - "Alessandro Taufer <alexander141220@gmail.com>"
+version: "0.0.15"
 license_file: LICENSE
 readme: README.md
 repository: "https://github.com/pulp/squeezer"
