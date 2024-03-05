@@ -9,14 +9,16 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian11
+      - localhost:8080
       User-Agent:
       - Python-urllib/3.10
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/","pulp_created":"2022-04-07T11:53:27.398244Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/versions/0/","name":"test_rpm_repository","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"metadata_signing_service":null,"retain_package_versions":0,"metadata_checksum_type":null,"package_checksum_type":null,"gpgcheck":0,"repo_gpgcheck":0,"sqlite_metadata":false}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/","pulp_created":"2024-03-05T17:15:36.998019Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/versions/0/","name":"test_rpm_repository","description":"repository
+        created via ansible","retain_repo_versions":null,"remote":"/pulp/api/v3/remotes/rpm/rpm/018e0f9d-04b5-7b0d-ac02-5287da03f5dd/","autopublish":true,"metadata_signing_service":null,"retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"gpgcheck":null,"repo_gpgcheck":null,"sqlite_metadata":false,"repo_config":"{\"gpgcheck\":
+        0}","compression_type":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,111 +27,21 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '691'
+      - '867'
       Content-Type:
       - application/json
       Correlation-ID:
-      - e79dd61eb9d041daa6623dd6d862cf78
+      - e5702ca805e746a9bd3d9b212c52e577
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 07 Apr 2022 11:53:36 GMT
+      - Tue, 05 Mar 2024 17:15:44 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.18.0
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian11
-      User-Agent:
-      - Python-urllib/3.10
-    method: DELETE
-    uri: https://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/
-  response:
-    body:
-      string: '{"task":"/pulp/api/v3/tasks/0bcf9aa7-df8e-4373-9059-b3b08c9fe9da/"}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - close
-      Content-Length:
-      - '67'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 96708147cdb440079643021c35a093f5
-      Date:
-      - Thu, 07 Apr 2022 11:53:37 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.18.0
-      Vary:
-      - Accept, Cookie
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 202
-      message: Accepted
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian11
-      User-Agent:
-      - Python-urllib/3.10
-    method: GET
-    uri: https://pulp.example.org/pulp/api/v3/tasks/0bcf9aa7-df8e-4373-9059-b3b08c9fe9da/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/0bcf9aa7-df8e-4373-9059-b3b08c9fe9da/","pulp_created":"2022-04-07T11:53:37.126819Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"96708147cdb440079643021c35a093f5","started_at":"2022-04-07T11:53:37.176665Z","finished_at":"2022-04-07T11:53:37.235016Z","error":null,"worker":"/pulp/api/v3/workers/9e522ab7-36c6-4bd6-a2e7-6a9a8720fdda/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/"]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - close
-      Content-Length:
-      - '607'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 40c179b6e89e46348485fe731dd43986
-      Date:
-      - Thu, 07 Apr 2022 11:53:37 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.18.0
-      Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
