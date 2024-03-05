@@ -16,7 +16,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/distributions/rpm/rpm/?limit=1&name=test_rpm_distribution
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/rpm/rpm/018d88ee-b5ce-73e5-b033-a5ff267fb3a5/","pulp_created":"2024-02-08T13:36:01.999188Z","base_path":"test_rpm_base_path","base_url":"http://localhost:8080/pulp/content/test_rpm_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/018d88ee-a222-7790-b625-4a9b8a7ec8d4/","hidden":false,"pulp_labels":{},"name":"test_rpm_distribution","repository":null,"publication":"/pulp/api/v3/publications/rpm/rpm/018d88ee-9499-7bc2-b326-ed28df2bbef8/","generate_repo_config":false}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/distributions/rpm/rpm/018e0edb-f610-745a-9170-2ad9057cf2f2/","pulp_created":"2024-03-05T13:44:40.209532Z","base_path":"test_rpm_base_path","base_url":"http://localhost:8080/pulp/content/test_rpm_base_path/","content_guard":"/pulp/api/v3/contentguards/certguard/x509/018e0edb-e27f-7ef0-8d09-8e85242e61a5/","hidden":false,"pulp_labels":{},"name":"test_rpm_distribution","repository":null,"publication":"/pulp/api/v3/publications/rpm/rpm/018e0edb-d32a-777b-bdd0-01e7ef502a91/","generate_repo_config":true}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,15 +25,15 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '582'
+      - '581'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 1260d5ebd630475e86da0b1dcaade881
+      - aefd2d5024e143a9bcf160914e3f3e9d
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Thu, 08 Feb 2024 13:36:05 GMT
+      - Tue, 05 Mar 2024 13:44:43 GMT
       Referrer-Policy:
       - same-origin
       Server:
