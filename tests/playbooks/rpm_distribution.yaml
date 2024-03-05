@@ -78,6 +78,7 @@
         base_path: test_rpm_base_path
         publication: "{{ publication_result.publication.pulp_href }}"
         content_guard: test_content_guard
+        generate_repo_config: true
         state: present
       register: result
     - name: Verify distribute publication of repository
@@ -89,6 +90,7 @@
           - ansible_check_mode or result.distribution.base_url is regex(".*/pulp/content/test_rpm_base_path")
           - result.distribution.publication == publication_result.publication.pulp_href
           - result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
+          - result.distribution.generate_repo_config == true
 
     - name: Distribute publication of repository (2nd try)
       pulp.squeezer.rpm_distribution:
@@ -115,6 +117,7 @@
           - result.distribution.base_url is regex(".*/pulp/content/test_rpm_base_path")
           - result.distribution.publication == publication_result.publication.pulp_href
           - result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
+          - result.distribution.generate_repo_config == true
 
     - name: Distribute repository
       pulp.squeezer.rpm_distribution:

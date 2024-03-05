@@ -16,7 +16,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/018d88ee-7aa1-77c3-b702-2dfdca32de34/","pulp_created":"2024-02-08T13:35:46.850237Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/018d88ee-7aa1-77c3-b702-2dfdca32de34/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/018d88ee-7aa1-77c3-b702-2dfdca32de34/versions/1/","name":"test_rpm_repository","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"metadata_signing_service":null,"retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"gpgcheck":null,"repo_gpgcheck":null,"sqlite_metadata":false,"repo_config":{},"compression_type":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/018e0edb-b866-7df0-89c7-1505d8ee77eb/","pulp_created":"2024-03-05T13:44:24.423328Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/018e0edb-b866-7df0-89c7-1505d8ee77eb/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/018e0edb-b866-7df0-89c7-1505d8ee77eb/versions/1/","name":"test_rpm_repository","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"metadata_signing_service":null,"retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"gpgcheck":null,"repo_gpgcheck":null,"sqlite_metadata":false,"repo_config":{},"compression_type":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -29,11 +29,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 3507f98328004ef39841e7fc5a310899
+      - 333de33bbad440e1ac5ff916fc49829c
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Thu, 08 Feb 2024 13:36:00 GMT
+      - Tue, 05 Mar 2024 13:44:39 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -61,10 +61,10 @@ interactions:
       User-Agent:
       - Python-urllib/3.10
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/publications/rpm/rpm/?limit=1&repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Frpm%2Frpm%2F018d88ee-7aa1-77c3-b702-2dfdca32de34%2Fversions%2F1%2F
+    uri: http://pulp.example.org/pulp/api/v3/publications/rpm/rpm/?limit=1&repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Frpm%2Frpm%2F018e0edb-b866-7df0-89c7-1505d8ee77eb%2Fversions%2F1%2F
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/rpm/rpm/018d88ee-9499-7bc2-b326-ed28df2bbef8/","pulp_created":"2024-02-08T13:35:53.498423Z","repository_version":"/pulp/api/v3/repositories/rpm/rpm/018d88ee-7aa1-77c3-b702-2dfdca32de34/versions/1/","repository":"/pulp/api/v3/repositories/rpm/rpm/018d88ee-7aa1-77c3-b702-2dfdca32de34/","checksum_type":"sha256","metadata_checksum_type":"sha256","package_checksum_type":"sha256","gpgcheck":null,"repo_gpgcheck":null,"sqlite_metadata":false,"repo_config":{},"compression_type":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/rpm/rpm/018e0edb-d32a-777b-bdd0-01e7ef502a91/","pulp_created":"2024-03-05T13:44:31.275243Z","repository_version":"/pulp/api/v3/repositories/rpm/rpm/018e0edb-b866-7df0-89c7-1505d8ee77eb/versions/1/","repository":"/pulp/api/v3/repositories/rpm/rpm/018e0edb-b866-7df0-89c7-1505d8ee77eb/","checksum_type":"sha256","metadata_checksum_type":"sha256","package_checksum_type":"sha256","gpgcheck":null,"repo_gpgcheck":null,"sqlite_metadata":false,"repo_config":{},"compression_type":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -77,11 +77,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - b3a9f20014e040bc923e9e879ab38db5
+      - 05381ed91af84d9cb32fa745368830f5
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Thu, 08 Feb 2024 13:36:01 GMT
+      - Tue, 05 Mar 2024 13:44:39 GMT
       Referrer-Policy:
       - same-origin
       Server:
