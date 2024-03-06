@@ -31,6 +31,16 @@ options:
       - Whether to automatically create publications for new repository versions
     type: bool
     version_added: "0.0.13"
+  remote:
+    description:
+      - An optional remote to use by default when syncing
+    type: str
+    version_added: "0.0.16"
+  repo_config:
+    description:
+      - A JSON document or data structure describing a config.repo file
+    type: raw
+    version_added: "0.0.16"
 extends_documentation_fragment:
   - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
@@ -58,6 +68,9 @@ EXAMPLES = r"""
     name: new_repo
     description: A brand new repository with a description
     autopublish: true
+    remote: existing_remote
+    repo_config:
+      gpgcheck: 1
     state: present
 
 - name: Delete a rpm repository
@@ -80,18 +93,27 @@ RETURN = r"""
     returned: when name is given
 """
 
+import json
 
+from ansible.module_utils.six import string_types
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
     PulpEntityAnsibleModule,
+    PulpRpmRemote,
     PulpRpmRepository,
 )
 
-DESIRED_KEYS = {"autopublish"}
+DESIRED_KEYS = {"autopublish", "remote", "repo_config"}
 
 
 def main():
     with PulpEntityAnsibleModule(
-        argument_spec=dict(name=dict(), description=dict(), autopublish=dict(type="bool")),
+        argument_spec=dict(
+            name=dict(),
+            description=dict(),
+            autopublish=dict(type="bool"),
+            remote=dict(),
+            repo_config=dict(type="raw"),
+        ),
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
         natural_key = {"name": module.params["name"]}
@@ -102,6 +124,16 @@ def main():
         if module.params["description"] is not None:
             # In case of an empty string we nullify the description
             desired_attributes["description"] = module.params["description"] or None
+
+        if module.params["remote"] is not None:
+            remote = PulpRpmRemote(module, {"name": module.params["remote"]})
+            remote.find(failsafe=False)
+            desired_attributes["remote"] = remote.href
+
+        repo_config = module.params["repo_config"]
+        # Encode the repo_config unless its a string, then assume it is pre-formatted JSON
+        if repo_config is not None and not isinstance(repo_config, string_types):
+            desired_attributes["repo_config"] = json.dumps(repo_config)
 
         PulpRpmRepository(module, natural_key, desired_attributes).process()
 

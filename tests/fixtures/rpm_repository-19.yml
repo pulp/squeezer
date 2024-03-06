@@ -1,0 +1,50 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:8080
+      User-Agent:
+      - Python-urllib/3.10
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
+  response:
+    body:
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '52'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 523db19b73ac4ab68d6f8af0207946b8
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Tue, 05 Mar 2024 17:15:48 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+version: 1

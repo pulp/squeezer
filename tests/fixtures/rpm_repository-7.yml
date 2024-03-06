@@ -9,15 +9,15 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian11
+      - localhost:8080
       User-Agent:
       - Python-urllib/3.10
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=20&offset=0
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
   response:
     body:
-      string: '{"count":2,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/","pulp_created":"2022-04-07T11:53:27.398244Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/versions/0/","name":"test_rpm_repository","description":"repository
-        created via ansible","retain_repo_versions":null,"remote":null,"autopublish":true,"metadata_signing_service":null,"retain_package_versions":0,"metadata_checksum_type":null,"package_checksum_type":null,"gpgcheck":0,"repo_gpgcheck":0,"sqlite_metadata":false},{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/9fed99ec-cca0-4756-bd35-4d3907888424/","pulp_created":"2021-09-30T13:54:09.345229Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/9fed99ec-cca0-4756-bd35-4d3907888424/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/9fed99ec-cca0-4756-bd35-4d3907888424/versions/0/","name":"cli_test_rpm_repository","description":null,"retain_repo_versions":null,"remote":"/pulp/api/v3/remotes/rpm/rpm/bccf25be-769d-4acc-b437-7fb07a9e314d/","autopublish":true,"metadata_signing_service":null,"retain_package_versions":0,"metadata_checksum_type":null,"package_checksum_type":null,"gpgcheck":0,"repo_gpgcheck":0,"sqlite_metadata":false}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/","pulp_created":"2024-03-05T17:15:36.998019Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/versions/0/","name":"test_rpm_repository","description":"repository
+        created via ansible","retain_repo_versions":null,"remote":"/pulp/api/v3/remotes/rpm/rpm/018e0f9d-04b5-7b0d-ac02-5287da03f5dd/","autopublish":true,"metadata_signing_service":null,"retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"gpgcheck":null,"repo_gpgcheck":null,"sqlite_metadata":false,"repo_config":{},"compression_type":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -26,19 +26,169 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '1425'
+      - '850'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 0c0eb0eebd6747f68957ab20e496339e
+      - 74cedd060e964f639fa073e076a211e8
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 07 Apr 2022 11:53:33 GMT
+      - Tue, 05 Mar 2024 17:15:40 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.18.0
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"repo_config": "{\"gpgcheck\": 1}"}'
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Length:
+      - 36
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:8080
+      User-Agent:
+      - Python-urllib/3.10
+    method: PATCH
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/018e0f9d-25e9-7068-9c4e-77e0ee08333e/"}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 20da8171211a46268cd749bec8375b16
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Tue, 05 Mar 2024 17:15:40 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:8080
+      User-Agent:
+      - Python-urllib/3.10
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/018e0f9d-25e9-7068-9c4e-77e0ee08333e/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/018e0f9d-25e9-7068-9c4e-77e0ee08333e/","pulp_created":"2024-03-05T17:15:40.905793Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","logging_cid":"20da8171211a46268cd749bec8375b16","created_by":"/pulp/api/v3/users/1/","started_at":"2024-03-05T17:15:40.919938Z","finished_at":"2024-03-05T17:15:40.939741Z","error":null,"worker":null,"parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/","shared:/pulp/api/v3/domains/018e0f9c-3b13-7ad6-b01d-d773ce6de325/"]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '656'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 74df40f8ef1d48e697622b6a07d10038
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Tue, 05 Mar 2024 17:15:41 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:8080
+      User-Agent:
+      - Python-urllib/3.10
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/","pulp_created":"2024-03-05T17:15:36.998019Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/versions/0/","name":"test_rpm_repository","description":"repository
+        created via ansible","retain_repo_versions":null,"remote":"/pulp/api/v3/remotes/rpm/rpm/018e0f9d-04b5-7b0d-ac02-5287da03f5dd/","autopublish":true,"metadata_signing_service":null,"retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"gpgcheck":null,"repo_gpgcheck":null,"sqlite_metadata":false,"repo_config":"{\"gpgcheck\":
+        1}","compression_type":null}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '815'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 10ff70181b3d40bbbe3392ab1a214a1d
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Tue, 05 Mar 2024 17:15:41 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:

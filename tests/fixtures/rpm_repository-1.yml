@@ -9,14 +9,14 @@ interactions:
       Content-Type:
       - application/json
       Host:
-      - pulp3-sandbox-debian11
+      - localhost:8080
       User-Agent:
       - Python-urllib/3.10
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
+    uri: http://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/?limit=1&name=test_rpm_remote
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/","pulp_created":"2022-04-07T11:53:27.398244Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/fa8a6228-a41d-41af-babf-7299379f66ba/versions/0/","name":"test_rpm_repository","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"metadata_signing_service":null,"retain_package_versions":0,"metadata_checksum_type":null,"package_checksum_type":null,"gpgcheck":0,"repo_gpgcheck":0,"sqlite_metadata":false}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/018e0f9d-04b5-7b0d-ac02-5287da03f5dd/","pulp_created":"2024-03-05T17:15:32.406058Z","name":"test_rpm_remote","url":"https://fixtures.pulpproject.org/rpm-signed/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":null,"pulp_labels":{},"pulp_last_updated":"2024-03-05T17:15:32.406069Z","download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"sles_auth_token":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -25,19 +25,21 @@ interactions:
       Connection:
       - close
       Content-Length:
-      - '691'
+      - '825'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 47a846d2221547af8652d29a109d49a5
+      - ece08571f0dc4a739f8097272f639a93
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 07 Apr 2022 11:53:29 GMT
+      - Tue, 05 Mar 2024 17:15:36 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.18.0
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -45,4 +47,105 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:8080
+      User-Agent:
+      - Python-urllib/3.10
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?limit=1&name=test_rpm_repository
+  response:
+    body:
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '52'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 7e690ff098a047e3b82d778f23d7aab6
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Tue, 05 Mar 2024 17:15:36 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"name": "test_rpm_repository", "remote": "/pulp/api/v3/remotes/rpm/rpm/018e0f9d-04b5-7b0d-ac02-5287da03f5dd/",
+      "description": null}'
+    headers:
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Length:
+      - 132
+      Content-Type:
+      - application/json
+      Host:
+      - localhost:8080
+      User-Agent:
+      - Python-urllib/3.10
+    method: POST
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/","pulp_created":"2024-03-05T17:15:36.998019Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/versions/0/","name":"test_rpm_repository","description":null,"retain_repo_versions":null,"remote":"/pulp/api/v3/remotes/rpm/rpm/018e0f9d-04b5-7b0d-ac02-5287da03f5dd/","autopublish":false,"metadata_signing_service":null,"retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"gpgcheck":null,"repo_gpgcheck":null,"sqlite_metadata":false,"repo_config":{},"compression_type":null}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - close
+      Content-Length:
+      - '771'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 98202fb1d35d473cb55fb6eea7ab9052
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Tue, 05 Mar 2024 17:15:37 GMT
+      Location:
+      - /pulp/api/v3/repositories/rpm/rpm/018e0f9d-16a5-73e6-a30d-cdac09ff569f/
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 201
+      message: Created
 version: 1

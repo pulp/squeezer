@@ -9,11 +9,22 @@
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
+    pulp.squeezer.rpm_remote:
+      <<: *pulp_connection_details
   tasks:
     - name: Make repository absent
       pulp.squeezer.rpm_repository:
         name: test_rpm_repository
         state: absent
+    - name: Make remote absent
+      pulp.squeezer.rpm_remote:
+        name: test_rpm_remote
+        state: absent
+    - name: Make remote present
+      pulp.squeezer.rpm_remote:
+        name: test_rpm_remote
+        url: "{{ pulp_fixtures_url }}/rpm-signed/"
+        state: present
     - name: Clean openapi cache
       file:
         path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
@@ -26,10 +37,16 @@
   module_defaults:
     <<: *pulp_module_defaults
   tasks:
+    - name: Retrieve remote
+      pulp.squeezer.rpm_remote:
+        name: test_rpm_remote
+      register: remote_result
+
     - name: Create repository
       pulp.squeezer.rpm_repository:
         name: test_rpm_repository
         description: ""
+        remote: test_rpm_remote
         state: present
       register: result
     - name: Verify create repository
@@ -37,6 +54,7 @@
         that:
           - result.changed == true
           - result.repository.name == 'test_rpm_repository'
+          - result.repository.remote == remote_result.remote.pulp_href
 
     - name: Create repository (2nd try)
       pulp.squeezer.rpm_repository:
@@ -94,6 +112,54 @@
         that:
           - result.changed == false
 
+    - name: Add repo_config (dict) to repository
+      pulp.squeezer.rpm_repository:
+        name: test_rpm_repository
+        repo_config:
+          gpgcheck: 1
+        state: present
+      register: result
+    - name: Verify add repo_config (dict) to repository
+      assert:
+        that:
+          - result.changed == true
+          - result.repository.repo_config == '{"gpgcheck": 1}'
+
+    - name: Add repo_config (dict) to repository (2nd try)
+      pulp.squeezer.rpm_repository:
+        name: test_rpm_repository
+        repo_config:
+          gpgcheck: 1
+        state: present
+      register: result
+    - name: Verify add repo_config (dict) to repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Change repo_config (string) on repository
+      pulp.squeezer.rpm_repository:
+        name: test_rpm_repository
+        repo_config: '{"gpgcheck": 0}'
+        state: present
+      register: result
+    - name: Verify change repo_config (string) on repository
+      assert:
+        that:
+          - result.changed == true
+          - result.repository.repo_config == '{"gpgcheck": 0}'
+
+    - name: Change repo_config (string) on repository (2nd try)
+      pulp.squeezer.rpm_repository:
+        name: test_rpm_repository
+        repo_config: '{"gpgcheck": 0}'
+        state: present
+      register: result
+    - name: Verify change repo_config (string) on repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
     - name: Fake modify repository
       pulp.squeezer.rpm_repository:
         name: test_rpm_repository
@@ -126,6 +192,7 @@
           - result.repository.name == 'test_rpm_repository'
           - result.repository.description == "repository created via ansible"
           - result.repository.autopublish == true
+          - result.repository.remote == remote_result.remote.pulp_href
 
     - name: Remove description from repository
       pulp.squeezer.rpm_repository:
@@ -193,4 +260,20 @@
       assert:
         that:
           - result.changed == false
+
+- hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Make repository absent
+      pulp.squeezer.rpm_repository:
+        name: test_rpm_repository
+        state: absent
+    - name: Make remote absent
+      pulp.squeezer.rpm_remote:
+        name: test_rpm_remote
+        state: absent
 ...
