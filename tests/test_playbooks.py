@@ -89,7 +89,7 @@ def test_playbook(tmp_path, test_name, vcrmode, pulp_container_log):
 @pytest.mark.parametrize("test_name", TEST_NAMES)
 def test_check_mode(tmp_path, test_name, vcrmode):
     assert vcrmode == "replay", "Check-mode tests only work in replay."
-    # if test_name == 'not_working_one':
-    #     pytest.skip("TODO: Fix check_mode test for not_working_one.")
+    if test_name == "repair":
+        pytest.skip("Repair does not allow check_mode operationt.")
     run = run_playbook_vcr(tmp_path, test_name, check_mode=True)
     assert run.rc == 0
