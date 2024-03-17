@@ -15,7 +15,7 @@ try:
     from pulp_glue.common import __version__ as pulp_glue_version
     from pulp_glue.common.context import PulpContext, PulpException, PulpNoWait
 
-    GLUE_VERSION_SPEC = ">=0.20.0,<=0.23.2"
+    GLUE_VERSION_SPEC = ">=0.20.0,<0.25"
     if not SpecifierSet(GLUE_VERSION_SPEC).contains(pulp_glue_version):
         raise ImportError(
             f"Installed 'pulp-glue' version '{pulp_glue_version}' is not in '{GLUE_VERSION_SPEC}'."
@@ -85,18 +85,30 @@ class PulpAnsibleModule(AnsibleModule):
             if import_error[1] is not None:
                 self.fail_json(msg=missing_required_lib(import_error[0]), exception=import_error[1])
 
+        auth_args = {}
+        if SpecifierSet(">=0.24.0").contains(pulp_glue_version):
+            if self.params["username"]:
+                from pulp_glue.common.openapi import BasicAuthProvider
+
+                auth_args["auth_provider"] = BasicAuthProvider(
+                    username=self.params["username"],
+                    password=self.params["password"],
+                )
+        else:
+            auth_args["username"] = self.params["username"]
+            auth_args["password"] = self.params["password"]
+
         self.pulp_ctx = PulpSqueezerContext(
             api_root="/pulp/",
             api_kwargs=dict(
                 base_url=self.params["pulp_url"],
-                username=self.params["username"],
-                password=self.params["password"],
                 cert=self.params["user_cert"],
                 key=self.params["user_key"],
                 validate_certs=self.params["validate_certs"],
                 refresh_cache=self.params["refresh_api_cache"],
                 safe_calls_only=self.check_mode,
                 user_agent=f"Squeezer/{__VERSION__}",
+                **auth_args,
             ),
             background_tasks=False,
             timeout=self.params["timeout"],
