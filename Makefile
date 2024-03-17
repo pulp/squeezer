@@ -39,17 +39,22 @@ info:
 	@echo "  roles:\n $(foreach ROLE,$(notdir $(ROLES)),   - $(ROLE)\n)"
 	@echo " $(foreach PLUGIN_TYPE,$(PLUGIN_TYPES), $(PLUGIN_TYPE):\n $(foreach PLUGIN,$(basename $(notdir $(_$(PLUGIN_TYPE)))),   - $(PLUGIN)\n)\n)"
 
-black:
+format:
+	python .ci/scripts/update_action_groups.py
+	python .ci/scripts/update_requirements.py
 	isort .
 	black .
 
 lint: $(MANIFEST) | tests/playbooks/vars/server.yaml
+	python .ci/scripts/update_requirements.py --check
 	yamllint -f parsable tests/playbooks
 	ansible-playbook --syntax-check tests/playbooks/*.yaml | grep -v '^$$'
 	black --check --diff .
 	isort -c --diff .
 ifneq ($(ACTION_GROUPS), $(MODULES))
-	@echo 'plugins/modules/ and meta/runtime.yml action_groups are not in sync' && exit 1
+	@echo "plugins/modules/ and meta/runtime.yml action_groups are not in sync 🌓" && exit 1
+else
+	@echo "Action groups are fine! 🎬"
 endif
 	GALAXY_IMPORTER_CONFIG=tests/galaxy-importer.cfg python -m galaxy_importer.main $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
 	@echo "🙊 Code 🙉 LGTM 🙈"
@@ -110,4 +115,4 @@ clean:
 
 FORCE:
 
-.PHONY: help dist install black lint sanity test livetest test-setup publish FORCE
+.PHONY: help dist install format lint sanity test livetest test-setup publish FORCE

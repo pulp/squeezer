@@ -1,4 +1,4 @@
-pulp-glue>=0.20.0,<=0.23.2  # Keep this in sync with plugins/module_utils/pulp_glue.py
+pulp-glue<=0.23.2,>=0.20.0
 
 ansible_runner<2.3; python_version < '3.7'
 ansible_runner; python_version >= '3.7'
