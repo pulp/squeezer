@@ -53,7 +53,10 @@ def main():
         component_versions = {
             item["component"]: item["version"] for item in result.get("versions", [])
         }
-        if component_versions != module.pulp_ctx.component_versions:
+        if (
+            not module.params["refresh_api_cache"]
+            and component_versions != module.pulp_ctx.component_versions
+        ):
             module.warn("Notice: Cached api is outdated. Refreshing...")
             module.pulp_ctx.api.load_api(refresh_cache=True)
             result = module.pulp_ctx.call("status_read")
