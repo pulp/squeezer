@@ -1089,6 +1089,23 @@ class PulpRpmRepository(PulpRepository):
         )
 
 
+class PulpRpmPackageContent(PulpFileContent):  # reuse the create() method
+    _list_id = "content_rpm_packages_list"
+    _read_id = "content_rpm_packages_read"
+    _create_id = "content_rpm_packages_create"
+
+    _name_singular = "package"
+    _name_plural = "packages"
+
+    @property
+    def _href(self):
+        return (
+            "package_href"  # TODO: is this right for openapi 2?
+            if self.module.pulp_api.openapi_version == 2
+            else "rpm_package_href"
+        )
+
+
 # Container entities
 
 
