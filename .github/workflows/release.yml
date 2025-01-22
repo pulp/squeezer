@@ -1,28 +1,30 @@
 ---
-name: "Release"
+name: "Tag Release"
 
 on:
-  push:
-    tags:
-      - "v[0-9]+.[0-9]+.[0-9]+"
+  workflow_dispatch:
 
 jobs:
   release:
-    runs-on: "ubuntu-20.04"
-    if: "github.repository == 'pulp/squeezer'"
+    name: "Release"
+    runs-on: "ubuntu-latest"
     steps:
       - uses: "actions/checkout@v4"
+        with:
+          token: "${{ secrets.RELEASE_TOKEN }}"
       - name: "Set up Python"
         uses: "actions/setup-python@v5"
         with:
-          python-version: "3.10"
-      - name: "Install Ansible"
+          python-version: "3.13"
+      - name: "Install dependencies"
         run: |
-          pip install --upgrade ansible
-      - name: "Build Ansible Collection"
+          python -m pip install --upgrade pip
+          pip install bump-my-version~=0.29.0
+      - name: "Setup git"
         run: |
-          make dist
-      - name: "Deploy Ansible Collection"
+          git config user.name pulpbot
+          git config user.email pulp-infra@redhat.com
+      - name: "Release"
         run: |
-          make publish GALAXY_API_KEY=${{ secrets.GALAXY_API_KEY }}
+          .ci/scripts/release.sh
 ...
