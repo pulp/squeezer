@@ -1,5 +1,5 @@
 ---
-name: "Release"
+name: "Publish Release"
 
 on:
   push:
@@ -7,22 +7,22 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
-  release:
-    runs-on: "ubuntu-20.04"
+  publish:
+    runs-on: "ubuntu-latest"
     if: "github.repository == 'pulp/squeezer'"
     steps:
       - uses: "actions/checkout@v4"
       - name: "Set up Python"
         uses: "actions/setup-python@v5"
         with:
-          python-version: "3.10"
+          python-version: "3.13"
       - name: "Install Ansible"
         run: |
           pip install --upgrade ansible
       - name: "Build Ansible Collection"
         run: |
           make dist
-      - name: "Deploy Ansible Collection"
+      - name: "Publish Ansible Collection"
         run: |
           make publish GALAXY_API_KEY=${{ secrets.GALAXY_API_KEY }}
 ...
