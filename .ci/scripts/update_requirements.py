@@ -1,9 +1,10 @@
+import getopt
 import re
 import sys
 from pathlib import Path
 
 from packaging.requirements import Requirement
-from packaging.specifiers import Specifier, SpecifierSet
+from packaging.specifiers import SpecifierSet
 from packaging.version import Version
 
 
@@ -12,7 +13,7 @@ def fix_requirements_file(path: Path, check: bool, name: str, specifier: Specifi
     for num, line in enumerate(lines):
         try:
             requirement = Requirement(line)
-        except:
+        except Exception:
             pass
         else:
             if requirement.name == name:
@@ -53,12 +54,16 @@ def main(check: bool) -> None:
     except ValueError:
         print("No lower bound requirement specified for pulp-glue.")
         sys.exit(1)
-    lower_bounds_spec = Specifier(f"=={min_version}")
+    lower_bounds_spec = SpecifierSet(f"=={min_version}")
 
     fix_requirements_file(requirements_path, check, "pulp-glue", GLUE_VERSION_SPEC)
     fix_requirements_file(lower_bounds_path, check, "pulp-glue", lower_bounds_spec)
 
 
 if __name__ == "__main__":
-    check = len(sys.argv) == 2 and sys.argv[1] == "--check"
+    optlist, args = getopt.getopt(sys.argv[1:], "", ["check"])
+    if args:
+        print("Too many arguments!")
+        sys.exit(2)
+    check = ("--check", "") in optlist
     main(check)

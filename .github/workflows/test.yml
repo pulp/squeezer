@@ -48,12 +48,7 @@ jobs:
           pip install git+https://github.com/ansible/ansible.git@${{ matrix.ansible }}
       - name: "Install dependencies"
         run: |
-          if [ "${{matrix.lower_bounds}}" ]
-          then
-            make test-setup-lower-bounds
-          else
-            make test-setup
-          fi
+          make test-setup LOWER_BOUNDS="${{matrix.lower_bounds}}"
       - name: "Run basic tests"
         run: |
           make test
