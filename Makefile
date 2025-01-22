@@ -13,9 +13,7 @@ PYTHON_VERSION = $(shell python -c 'import sys; print("{}.{}".format(sys.version
 SANITY_OPTS =
 TEST =
 PYTEST = pytest -n 4 -v
-
-ACTION_GROUPS := $(shell python -c 'import yaml; print("".join(yaml.safe_load(open("meta/runtime.yml"))["action_groups"]["squeezer"]))')
-MODULES := $(shell python -c 'import os; print("".join([os.path.splitext(f)[0] for f in sorted(os.listdir("plugins/modules/"))]))')
+LOWER_BOUNDS =
 
 default: help
 help:
@@ -46,16 +44,12 @@ format:
 	black .
 
 lint: $(MANIFEST) | tests/playbooks/vars/server.yaml
+	python .ci/scripts/update_action_groups.py --check
 	python .ci/scripts/update_requirements.py --check
 	yamllint -f parsable tests/playbooks
 	ansible-playbook --syntax-check tests/playbooks/*.yaml | grep -v '^$$'
 	black --check --diff .
 	isort -c --diff .
-ifneq ($(ACTION_GROUPS), $(MODULES))
-	@echo "plugins/modules/ and meta/runtime.yml action_groups are not in sync 🌓" && exit 1
-else
-	@echo "Action groups are fine! 🎬"
-endif
 	GALAXY_IMPORTER_CONFIG=tests/galaxy-importer.cfg python -m galaxy_importer.main $(NAMESPACE)-$(NAME)-$(VERSION).tar.gz
 	@echo "🙊 Code 🙉 LGTM 🙈"
 
@@ -82,13 +76,13 @@ record_%: FORCE $(MANIFEST)
 clean_%: FORCE $(MANIFEST) | tests/playbooks/vars/server.yaml
 	ansible-playbook --tags teardown,cleanup -i tests/inventory/hosts 'tests/playbooks/$*.yaml'
 
-test-setup: requirements.txt | tests/playbooks/vars/server.yaml
+test-setup: requirements.txt lower_bounds_constraints.lock | tests/playbooks/vars/server.yaml
 	pip install --upgrade pip
-	pip install -r requirements.txt
-
-test-setup-lower-bounds: requirements.txt lower_bounds_constraints.lock | tests/playbooks/vars/server.yaml
-	pip install --upgrade pip
+ifeq ($(LOWER_BOUNDS), "true")
 	pip install -r requirements.txt -c lower_bounds_constraints.lock
+else
+	pip install -r requirements.txt
+endif
 
 tests/playbooks/vars/server.yaml:
 	cp $@.example $@
