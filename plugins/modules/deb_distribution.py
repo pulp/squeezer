@@ -33,8 +33,9 @@ options:
     type: str
     required: false
 extends_documentation_fragment:
-  - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp.glue
+  - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
 """
@@ -81,15 +82,41 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpContentGuard,
-    PulpDebDistribution,
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import (
+    GLUE_DEB_VERSION_SPEC,
     PulpEntityAnsibleModule,
+    assert_version,
 )
+
+try:
+    from pulp_glue.core.context import PulpContentGuardContext
+
+    PULP_GLUE_IMPORT_ERR = None
+except ImportError:
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
+
+try:
+    from pulp_glue.deb import __version__ as pulp_glue_deb_version
+    from pulp_glue.deb.context import PulpAptDistributionContext
+
+    assert_version(GLUE_DEB_VERSION_SPEC, pulp_glue_deb_version, "pulp-glue-deb")
+    PULP_GLUE_DEB_IMPORT_ERR = None
+except ImportError:
+    PULP_GLUE_DEB_IMPORT_ERR = traceback.format_exc()
+    PulpAptDistributionContext = None
 
 
 def main():
     with PulpEntityAnsibleModule(
+        context_class=PulpAptDistributionContext,
+        entity_singular="distribution",
+        entity_plural="distributions",
+        import_errors=[
+            ("pulp-glue", PULP_GLUE_IMPORT_ERR),
+            ("pulp-glue-deb", PULP_GLUE_DEB_IMPORT_ERR),
+        ],
         argument_spec={
             "name": {},
             "base_path": {},
@@ -103,9 +130,7 @@ def main():
     ) as module:
         content_guard_name = module.params["content_guard"]
 
-        natural_key = {
-            "name": module.params["name"],
-        }
+        natural_key = {"name": module.params["name"]}
         desired_attributes = {
             key: module.params[key]
             for key in ["base_path", "publication"]
@@ -114,13 +139,14 @@ def main():
 
         if content_guard_name is not None:
             if content_guard_name:
-                content_guard = PulpContentGuard(module, {"name": content_guard_name})
-                content_guard.find(failsafe=False)
-                desired_attributes["content_guard"] = content_guard.href
+                content_guard_ctx = PulpContentGuardContext(
+                    module.pulp_ctx, entity={"name": content_guard_name}
+                )
+                desired_attributes["content_guard"] = content_guard_ctx.pulp_href
             else:
-                desired_attributes["content_guard"] = None
+                desired_attributes["content_guard"] = ""
 
-        PulpDebDistribution(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

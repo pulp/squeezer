@@ -80,9 +80,9 @@ try:
     from pulp_glue.ansible.context import PulpAnsibleRoleContext
     from pulp_glue.core.context import PulpArtifactContext
 
-    PULP_CLI_IMPORT_ERR = None
+    PULP_GLUE_IMPORT_ERR = None
 except ImportError:
-    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
     PulpAnsibleRoleContext = None
 
 
@@ -91,7 +91,7 @@ def main():
         context_class=PulpAnsibleRoleContext,
         entity_singular="content",
         entity_plural="contents",
-        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         argument_spec={
             "name": {},
             "namespace": {},

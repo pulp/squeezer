@@ -4,40 +4,40 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/publications/deb/apt/?limit=20&offset=0
+    uri: http://pulp.example.org/pulp/api/v3/publications/deb/apt/?offset=0&limit=1000
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/deb/apt/c9f439b2-16a5-415c-9db5-ab16df1cf721/","pulp_created":"2021-11-11T17:01:47.908286Z","repository_version":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/1/","repository":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/","simple":true,"structured":false,"signing_service":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/publications/deb/apt/0194a2a4-3004-7786-b5fd-d17a7be74d7c/","prn":"prn:deb.aptpublication:0194a2a4-3004-7786-b5fd-d17a7be74d7c","pulp_created":"2025-01-26T12:44:16.773903Z","pulp_last_updated":"2025-01-26T12:44:17.153738Z","repository_version":"/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/versions/1/","repository":"/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/","simple":false,"structured":true,"signing_service":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '433'
+      - '551'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 89cb54ef3b714ad7ae9d0b89838a272f
+      - 2cb243f7bf4c46c5801cc370f3a223f5
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 11 Nov 2021 17:01:52 GMT
+      - Sun, 26 Jan 2025 12:44:19 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:

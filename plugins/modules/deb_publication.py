@@ -25,11 +25,11 @@ options:
     description:
       - Mode to use when publishing.
     type: str
-    default: simple
     choices: ["structured", "simple", "simple_and_structured", "verbatim"]
 extends_documentation_fragment:
-  - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp.glue
+  - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
 """
@@ -74,21 +74,39 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpDebPublication,
-    PulpDebRepository,
-    PulpDebVerbatimPublication,
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import (
+    GLUE_DEB_VERSION_SPEC,
     PulpEntityAnsibleModule,
+    assert_version,
 )
+
+try:
+    from pulp_glue.deb import __version__ as pulp_glue_deb_version
+    from pulp_glue.deb.context import (
+        PulpAptPublicationContext,
+        PulpAptRepositoryContext,
+        PulpVerbatimPublicationContext,
+    )
+
+    assert_version(GLUE_DEB_VERSION_SPEC, pulp_glue_deb_version, "pulp-glue-deb")
+    PULP_GLUE_DEB_IMPORT_ERR = None
+except ImportError:
+    PULP_GLUE_DEB_IMPORT_ERR = traceback.format_exc()
+    PulpAptPublicationContext = None
 
 
 def main():
     with PulpEntityAnsibleModule(
+        context_class=PulpAptPublicationContext,
+        entity_singular="publication",
+        entity_plural="publications",
+        import_errors=[("pulp-glue-deb", PULP_GLUE_DEB_IMPORT_ERR)],
         argument_spec={
             "repository": {},
             "version": {"type": "int"},
             "mode": {
-                "default": "simple",
                 "choices": ["structured", "simple", "simple_and_structured", "verbatim"],
             },
         },
@@ -101,31 +119,31 @@ def main():
         version = module.params["version"]
         mode = module.params["mode"]
 
-        if mode == "verbatim":
-            desired_attributes = {}
-        else:
-            desired_attributes = {
-                "simple": "simple" in mode,
-                "structured": "structured" in mode,
-            }
+        desired_attributes = {}
+        if mode is not None:
+            if mode == "verbatim":
+                # A bit of a hack. We need to change the publication context class.
+                module.context = PulpVerbatimPublicationContext(module.pulp_ctx)
+            else:
+                desired_attributes = {
+                    "simple": "simple" in mode,
+                    "structured": "structured" in mode,
+                }
 
         if repository_name:
-            repository = PulpDebRepository(module, {"name": repository_name})
-            repository.find(failsafe=False)
+            repository_ctx = PulpAptRepositoryContext(
+                module.pulp_ctx, entity={"name": repository_name}
+            )
             # TODO check if version exists
             if version:
-                repository_version_href = repository.entity["versions_href"] + "{version}/".format(
-                    version=version
-                )
+                repository_version_href = repository_ctx.entity["versions_href"] + f"{version}/"
             else:
-                repository_version_href = repository.entity["latest_version_href"]
+                repository_version_href = repository_ctx.entity["latest_version_href"]
             natural_key = {"repository_version": repository_version_href}
         else:
             natural_key = {"repository_version": None}
-        if mode == "verbatim":
-            PulpDebVerbatimPublication(module, natural_key, desired_attributes).process()
-        else:
-            PulpDebPublication(module, natural_key, desired_attributes).process()
+
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

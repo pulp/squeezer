@@ -4,40 +4,40 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?limit=1&name=test_deb_repository
+    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/","pulp_created":"2021-11-11T17:01:38.514044Z","versions_href":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/1/","name":"test_deb_repository","description":null,"retain_repo_versions":null,"remote":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/","prn":"prn:deb.aptrepository:0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5","pulp_created":"2025-01-26T12:44:05.974311Z","pulp_last_updated":"2025-01-26T12:44:13.187064Z","versions_href":"/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/versions/1/","name":"test_deb_repository","description":null,"retain_repo_versions":null,"remote":null,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '497'
+      - '715'
       Content-Type:
       - application/json
       Correlation-ID:
-      - ae9946cc1e20446fb5d0fc293f1ba775
+      - 5d5a4cf561cc4fd8b28bd3a7da190212
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 11 Nov 2021 17:01:59 GMT
+      - Sun, 26 Jan 2025 12:44:24 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -50,16 +50,16 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
+      Correlation-Id:
+      - 5d5a4cf561cc4fd8b28bd3a7da190212
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/publications/deb/apt/?limit=1&repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Fdeb%2Fapt%2Fc4e6b292-0592-4c14-abec-4246bee500c8%2Fversions%2F1%2F
+    uri: http://pulp.example.org/pulp/api/v3/publications/deb/apt/?repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Fdeb%2Fapt%2F0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5%2Fversions%2F1%2F&offset=0&limit=1
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -69,21 +69,23 @@ interactions:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '52'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 95b53f3039984db8bcadc6858e8f191e
+      - 5d5a4cf561cc4fd8b28bd3a7da190212
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 11 Nov 2021 17:02:00 GMT
+      - Sun, 26 Jan 2025 12:44:24 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -92,47 +94,50 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"repository_version": "/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/1/",
-      "simple": true, "structured": true}'
+    body: '{"simple": true, "structured": true, "repository_version": "/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/versions/1/"}'
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - 144
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - '144'
+      Correlation-Id:
+      - 5d5a4cf561cc4fd8b28bd3a7da190212
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.1.0-dev
+      content-type:
+      - application/json
     method: POST
     uri: http://pulp.example.org/pulp/api/v3/publications/deb/apt/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/cdd788d1-cdd4-44e5-8caf-2fd82323d302/"}'
+      string: '{"task":"/pulp/api/v3/tasks/0194a2a4-4ece-7983-8a0a-b6f4703cb355/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '67'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 02f666774d064aeea2b977f097e25bca
+      - 5d5a4cf561cc4fd8b28bd3a7da190212
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 11 Nov 2021 17:02:00 GMT
+      - Sun, 26 Jan 2025 12:44:24 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -145,40 +150,42 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
+      Correlation-Id:
+      - 5d5a4cf561cc4fd8b28bd3a7da190212
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/cdd788d1-cdd4-44e5-8caf-2fd82323d302/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/0194a2a4-4ece-7983-8a0a-b6f4703cb355/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/cdd788d1-cdd4-44e5-8caf-2fd82323d302/","pulp_created":"2021-11-11T17:02:00.277250Z","state":"running","name":"pulp_deb.app.tasks.publishing.publish","logging_cid":"02f666774d064aeea2b977f097e25bca","started_at":"2021-11-11T17:02:00.326414Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/b8f16510-a668-4497-b72e-9c71bcb9d274/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[null],"reserved_resources_record":["shared:/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/0194a2a4-4ece-7983-8a0a-b6f4703cb355/","prn":"prn:core.task:0194a2a4-4ece-7983-8a0a-b6f4703cb355","pulp_created":"2025-01-26T12:44:24.654888Z","pulp_last_updated":"2025-01-26T12:44:24.654899Z","state":"running","name":"pulp_deb.app.tasks.publishing.publish","logging_cid":"5d5a4cf561cc4fd8b28bd3a7da190212","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2025-01-26T12:44:24.666786Z","started_at":"2025-01-26T12:44:24.696321Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/0194a25c-59ec-7ea2-a515-7fdc6634e62d/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/publications/deb/apt/0194a2a4-4efd-7845-bf73-64bff3bdad2f/"],"reserved_resources_record":["shared:prn:deb.aptrepository:0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5","shared:prn:core.domain:0194a25b-8114-7dfe-8f64-04c6d8e26465"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '590'
+      - '899'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 35c1847613074999af7a49e4ec701c1f
+      - 5d5a4cf561cc4fd8b28bd3a7da190212
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 11 Nov 2021 17:02:00 GMT
+      - Sun, 26 Jan 2025 12:44:24 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -191,40 +198,42 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
+      Correlation-Id:
+      - 5d5a4cf561cc4fd8b28bd3a7da190212
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/cdd788d1-cdd4-44e5-8caf-2fd82323d302/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/0194a2a4-4ece-7983-8a0a-b6f4703cb355/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/cdd788d1-cdd4-44e5-8caf-2fd82323d302/","pulp_created":"2021-11-11T17:02:00.277250Z","state":"completed","name":"pulp_deb.app.tasks.publishing.publish","logging_cid":"02f666774d064aeea2b977f097e25bca","started_at":"2021-11-11T17:02:00.326414Z","finished_at":"2021-11-11T17:02:01.323122Z","error":null,"worker":"/pulp/api/v3/workers/b8f16510-a668-4497-b72e-9c71bcb9d274/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/publications/deb/apt/41b8559c-a083-49ac-af3e-4ecb367db8b6/"],"reserved_resources_record":["shared:/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/0194a2a4-4ece-7983-8a0a-b6f4703cb355/","prn":"prn:core.task:0194a2a4-4ece-7983-8a0a-b6f4703cb355","pulp_created":"2025-01-26T12:44:24.654888Z","pulp_last_updated":"2025-01-26T12:44:24.654899Z","state":"completed","name":"pulp_deb.app.tasks.publishing.publish","logging_cid":"5d5a4cf561cc4fd8b28bd3a7da190212","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2025-01-26T12:44:24.666786Z","started_at":"2025-01-26T12:44:24.696321Z","finished_at":"2025-01-26T12:44:25.149190Z","error":null,"worker":"/pulp/api/v3/workers/0194a25c-59ec-7ea2-a515-7fdc6634e62d/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/publications/deb/apt/0194a2a4-4efd-7845-bf73-64bff3bdad2f/"],"reserved_resources_record":["shared:prn:deb.aptrepository:0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5","shared:prn:core.domain:0194a25b-8114-7dfe-8f64-04c6d8e26465"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '686'
+      - '926'
       Content-Type:
       - application/json
       Correlation-ID:
-      - c2be6b4966264853911b2c16ba2c3105
+      - 5d5a4cf561cc4fd8b28bd3a7da190212
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 11 Nov 2021 17:02:02 GMT
+      - Sun, 26 Jan 2025 12:44:25 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -237,40 +246,42 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
+      Correlation-Id:
+      - 5d5a4cf561cc4fd8b28bd3a7da190212
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/publications/deb/apt/41b8559c-a083-49ac-af3e-4ecb367db8b6/
+    uri: http://pulp.example.org/pulp/api/v3/publications/deb/apt/0194a2a4-4efd-7845-bf73-64bff3bdad2f/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/publications/deb/apt/41b8559c-a083-49ac-af3e-4ecb367db8b6/","pulp_created":"2021-11-11T17:02:00.348280Z","repository_version":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/1/","repository":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/","simple":true,"structured":true,"signing_service":null}'
+      string: '{"pulp_href":"/pulp/api/v3/publications/deb/apt/0194a2a4-4efd-7845-bf73-64bff3bdad2f/","prn":"prn:deb.aptpublication:0194a2a4-4efd-7845-bf73-64bff3bdad2f","pulp_created":"2025-01-26T12:44:24.702631Z","pulp_last_updated":"2025-01-26T12:44:25.145787Z","repository_version":"/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/versions/1/","repository":"/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/","simple":true,"structured":true,"signing_service":null}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '380'
+      - '498'
       Content-Type:
       - application/json
       Correlation-ID:
-      - bd8f25e42869448389748ca9c84308f5
+      - 5d5a4cf561cc4fd8b28bd3a7da190212
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 11 Nov 2021 17:02:02 GMT
+      - Sun, 26 Jan 2025 12:44:26 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:

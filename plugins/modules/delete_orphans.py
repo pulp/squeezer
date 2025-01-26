@@ -46,15 +46,15 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import Pul
 try:
     from pulp_glue.core.context import PulpOrphanContext
 
-    PULP_CLI_IMPORT_ERR = None
+    PULP_GLUE_IMPORT_ERR = None
 except ImportError:
-    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
     PulpTaskContext = None
 
 
 def main():
     with PulpAnsibleModule(
-        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         argument_spec={
             "protection_time": {"type": "int"},
         },

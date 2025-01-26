@@ -104,9 +104,9 @@ try:
     )
     from pulp_glue.core.context import PulpContentGuardContext
 
-    PULP_CLI_IMPORT_ERR = None
+    PULP_GLUE_IMPORT_ERR = None
 except ImportError:
-    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
     PulpContainerDistributionContext = None
 
 
@@ -115,7 +115,7 @@ def main():
         context_class=PulpContainerDistributionContext,
         entity_singular="distribution",
         entity_plural="distributions",
-        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         argument_spec={
             "name": {},
             "base_path": {},
@@ -132,7 +132,6 @@ def main():
         repository_name = module.params["repository"]
         version = module.params["version"]
         content_guard_name = module.params["content_guard"]
-        private = module.params["private"]
 
         natural_key = {"name": module.params["name"]}
         desired_attributes = {

@@ -76,16 +76,16 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import Pul
 try:
     from pulp_glue.file.context import PulpFileRemoteContext
 
-    PULP_CLI_IMPORT_ERR = None
+    PULP_GLUE_IMPORT_ERR = None
 except ImportError:
-    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
     PulpFileRemoteContext = None
 
 
 def main():
     with PulpRemoteAnsibleModule(
         context_class=PulpFileRemoteContext,
-        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         argument_spec={
             "policy": {"choices": ["immediate", "on_demand", "streamed"]},
         },

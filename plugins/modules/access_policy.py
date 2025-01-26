@@ -125,9 +125,9 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import Pul
 try:
     from pulp_glue.core.context import PulpAccessPolicyContext
 
-    PULP_CLI_IMPORT_ERR = None
+    PULP_GLUE_IMPORT_ERR = None
 except ImportError:
-    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
     PulpAccessPolicyContext = None
 
 
@@ -136,7 +136,7 @@ def main():
         context_class=PulpAccessPolicyContext,
         entity_singular="access_policy",
         entity_plural="access_policies",
-        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         argument_spec={
             "viewset_name": {},
             "statements": {

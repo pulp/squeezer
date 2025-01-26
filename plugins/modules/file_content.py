@@ -86,10 +86,10 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import (
 try:
     from pulp_glue.file.context import PulpFileContentContext, PulpFileRepositoryContext
 
-    PULP_CLI_IMPORT_ERR = None
+    PULP_GLUE_IMPORT_ERR = None
 
 except ImportError:
-    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
     PulpFileContentContext = None
 
 
@@ -98,7 +98,7 @@ def main():
         context_class=PulpFileContentContext,
         entity_singular="content",
         entity_plural="contents",
-        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         argument_spec={
             "sha256": {"aliases": ["digest"]},
             "relative_path": {},
