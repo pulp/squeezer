@@ -33,7 +33,6 @@ options:
   timeout:
     default: 3600
 extends_documentation_fragment:
-  - pulp.squeezer.pulp.glue
   - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)

@@ -23,13 +23,23 @@ options:
       - Username of api user.
       - If no value is specified, the value of the environment variable C(SQUEEZER_USERNAME) will be used as a fallback.
     type: str
-    required: true
+    required: false
   password:
     description:
       - Password of api user.
       - If no value is specified, the value of the environment variable C(SQUEEZER_PASSWORD) will be used as a fallback.
     type: str
-    required: true
+    required: false
+  user_cert:
+    description:
+      - Client certificate of api user.
+    type: str
+    required: false
+  user_key:
+    description:
+      - Client certificate key of api user.
+    type: str
+    required: false
   validate_certs:
     description:
       - Whether SSL certificates should be verified.
@@ -47,24 +57,6 @@ options:
       - Time in seconds to wait for tasks.
     type: int
     default: 10
-"""
-
-    GLUE = r"""
-options:
-  username:
-    required: false
-  password:
-    required: false
-  user_cert:
-    description:
-      - Client certificate of api user.
-    type: str
-    required: false
-  user_key:
-    description:
-      - Client certificate key of api user.
-    type: str
-    required: false
 """
 
     ENTITY_STATE = r"""

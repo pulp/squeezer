@@ -46,7 +46,6 @@ options:
     default: true
 
 extends_documentation_fragment:
-  - pulp.squeezer.pulp.glue
   - pulp.squeezer.pulp
 author:
   - Jacob Floyd (@cognifloyd)

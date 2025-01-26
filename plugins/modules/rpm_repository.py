@@ -48,7 +48,6 @@ options:
     version_added: "0.0.16"
 extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
-  - pulp.squeezer.pulp.glue
   - pulp.squeezer.pulp
 author:
   - Jacob Floyd (@cognifloyd)

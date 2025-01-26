@@ -28,7 +28,6 @@ options:
     choices: ["structured", "simple", "simple_and_structured", "verbatim"]
 extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
-  - pulp.squeezer.pulp.glue
   - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
