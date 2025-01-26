@@ -12,7 +12,6 @@ description:
   - "This module queries a pulp api server instance for installed plugins and service connectivity."
 options: {}
 extends_documentation_fragment:
-  - pulp.squeezer.pulp.glue
   - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)

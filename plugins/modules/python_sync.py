@@ -23,7 +23,6 @@ options:
     type: str
     required: true
 extends_documentation_fragment:
-  - pulp.squeezer.pulp.glue
   - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)

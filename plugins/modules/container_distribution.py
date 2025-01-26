@@ -45,7 +45,6 @@ options:
     required: false
 extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
-  - pulp.squeezer.pulp.glue
   - pulp.squeezer.pulp
 author:
   - Mark Goddard (@markgoddard)

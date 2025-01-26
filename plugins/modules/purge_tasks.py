@@ -25,7 +25,6 @@ options:
       - completed
       - failed
 extends_documentation_fragment:
-  - pulp.squeezer.pulp.glue
   - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
