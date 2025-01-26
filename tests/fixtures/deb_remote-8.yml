@@ -4,36 +4,34 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.10
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/?limit=1&name=test_deb_remote
+    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/?name=test_deb_remote&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/deb/apt/0190f4aa-0df9-7447-9383-5ebb945a3274/","pulp_created":"2024-07-27T14:48:23.802653Z","pulp_last_updated":"2024-07-27T14:48:26.573025Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"distributions":"ragnarok","components":"jotunheimr","architectures":"ppc64","sync_sources":true,"sync_udebs":true,"sync_installer":true,"gpgkey":null,"ignore_missing_package_indices":false}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/deb/apt/0194a270-bd55-72ff-83a5-7183858e4221/","prn":"prn:deb.aptremote:0194a270-bd55-72ff-83a5-7183858e4221","pulp_created":"2025-01-26T11:48:05.078088Z","pulp_last_updated":"2025-01-26T11:48:07.104908Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"distributions":"ragnarok","components":"jotunheimr","architectures":"ppc64","sync_sources":true,"sync_udebs":true,"sync_installer":true,"gpgkey":null,"ignore_missing_package_indices":false}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '992'
+      - '1055'
       Content-Type:
       - application/json
       Correlation-ID:
-      - e3d025642ddd4233a92584968207cf71
+      - d13c4ad57dfb4b41bb510b29208a8812
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sat, 27 Jul 2024 14:48:28 GMT
+      - Sun, 26 Jan 2025 11:48:08 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -52,36 +50,38 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
+      Content-Length:
+      - '0'
+      Correlation-Id:
+      - d13c4ad57dfb4b41bb510b29208a8812
       User-Agent:
-      - Python-urllib/3.10
+      - Squeezer/0.1.0-dev
     method: DELETE
-    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/0190f4aa-0df9-7447-9383-5ebb945a3274/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/0194a270-bd55-72ff-83a5-7183858e4221/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/0190f4aa-21f9-7030-892f-85b451416106/"}'
+      string: '{"task":"/pulp/api/v3/tasks/0194a270-cc74-79a6-91cc-9e4b83f56bbd/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '67'
       Content-Type:
       - application/json
       Correlation-ID:
-      - dc1f19983e6d45a8a98a210f59609964
+      - d13c4ad57dfb4b41bb510b29208a8812
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sat, 27 Jul 2024 14:48:28 GMT
+      - Sun, 26 Jan 2025 11:48:08 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -100,36 +100,36 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
+      Correlation-Id:
+      - d13c4ad57dfb4b41bb510b29208a8812
       User-Agent:
-      - Python-urllib/3.10
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/0190f4aa-21f9-7030-892f-85b451416106/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/0194a270-cc74-79a6-91cc-9e4b83f56bbd/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/0190f4aa-21f9-7030-892f-85b451416106/","pulp_created":"2024-07-27T14:48:28.921911Z","pulp_last_updated":"2024-07-27T14:48:28.921927Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"dc1f19983e6d45a8a98a210f59609964","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2024-07-27T14:48:28.948386Z","started_at":"2024-07-27T14:48:28.987230Z","finished_at":"2024-07-27T14:48:29.010686Z","error":null,"worker":"/pulp/api/v3/workers/0190f4a9-d457-7f31-a07e-5dc9f77acd52/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["prn:deb.aptremote:0190f4aa-0df9-7447-9383-5ebb945a3274","shared:prn:core.domain:0190f4a9-102c-7c1a-8e25-2092dde10433"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/0194a270-cc74-79a6-91cc-9e4b83f56bbd/","prn":"prn:core.task:0194a270-cc74-79a6-91cc-9e4b83f56bbd","pulp_created":"2025-01-26T11:48:08.948893Z","pulp_last_updated":"2025-01-26T11:48:08.948903Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"d13c4ad57dfb4b41bb510b29208a8812","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2025-01-26T11:48:08.960826Z","started_at":"2025-01-26T11:48:08.989622Z","finished_at":"2025-01-26T11:48:09.002649Z","error":null,"worker":"/pulp/api/v3/workers/0194a25c-5862-7d11-9b2e-d389e96e7069/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["prn:deb.aptremote:0194a270-bd55-72ff-83a5-7183858e4221","shared:prn:core.domain:0194a25b-8114-7dfe-8f64-04c6d8e26465"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '784'
+      - '843'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 01d5fd1b6d4249fe92ec0c9b4269a218
+      - d13c4ad57dfb4b41bb510b29208a8812
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sat, 27 Jul 2024 14:48:29 GMT
+      - Sun, 26 Jan 2025 11:48:09 GMT
       Referrer-Policy:
       - same-origin
       Server:

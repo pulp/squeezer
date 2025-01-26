@@ -65,9 +65,9 @@ try:
     from pulp_glue.common.context import PulpEntityNotFound
     from pulp_glue.core.context import PulpTaskContext
 
-    PULP_CLI_IMPORT_ERR = None
+    PULP_GLUE_IMPORT_ERR = None
 except ImportError:
-    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
     PulpTaskContext = None
 
 
@@ -97,7 +97,7 @@ def main():
         context_class=PulpTaskContext,
         entity_singular="task",
         entity_plural="tasks",
-        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         argument_spec={
             "pulp_href": {},
             "state": {

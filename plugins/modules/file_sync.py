@@ -12,16 +12,16 @@ description:
   - "This module synchronizes a file remote into a repository."
   - "In check_mode this module assumes, nothing changed upstream."
 options:
-  remote:
-    description:
-      - Name of the remote to synchronize with
-    type: str
-    required: false
   repository:
     description:
       - Name of the repository to synchronize into
     type: str
     required: true
+  remote:
+    description:
+      - Name of the remote to synchronize with
+    type: str
+    required: false
 extends_documentation_fragment:
   - pulp.squeezer.pulp.glue
   - pulp.squeezer.pulp
@@ -61,17 +61,17 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import (
 try:
     from pulp_glue.file.context import PulpFileRemoteContext, PulpFileRepositoryContext
 
-    PULP_CLI_IMPORT_ERR = None
+    PULP_GLUE_IMPORT_ERR = None
 except ImportError:
-    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
 
 
 def main():
     with PulpAnsibleModule(
-        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         argument_spec={
-            "remote": {"required": False},
             "repository": {"required": True},
+            "remote": {"required": False},
         },
     ) as module:
         repository_ctx = PulpFileRepositoryContext(
@@ -90,6 +90,7 @@ def main():
                 module.pulp_ctx, entity={"name": module.params["remote"]}
             )
             payload["remote"] = remote_ctx
+
         repository_version = repository["latest_version_href"]
         # In check_mode, assume nothing changed
         if not module.check_mode:

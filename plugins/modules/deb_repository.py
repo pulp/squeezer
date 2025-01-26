@@ -20,8 +20,9 @@ options:
       - Description of the repository
     type: str
 extends_documentation_fragment:
-  - pulp.squeezer.pulp
   - pulp.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp.glue
+  - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
 """
@@ -67,14 +68,31 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpDebRepository,
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import (
+    GLUE_DEB_VERSION_SPEC,
     PulpEntityAnsibleModule,
+    assert_version,
 )
+
+try:
+    from pulp_glue.deb import __version__ as pulp_glue_deb_version
+    from pulp_glue.deb.context import PulpAptRepositoryContext
+
+    assert_version(GLUE_DEB_VERSION_SPEC, pulp_glue_deb_version, "pulp-glue-deb")
+    PULP_GLUE_DEB_IMPORT_ERR = None
+except ImportError:
+    PULP_GLUE_DEB_IMPORT_ERR = traceback.format_exc()
+    PulpAptRepositoryContext = None
 
 
 def main():
     with PulpEntityAnsibleModule(
+        context_class=PulpAptRepositoryContext,
+        entity_singular="repository",
+        entity_plural="repositories",
+        import_errors=[("pulp-glue-deb", PULP_GLUE_DEB_IMPORT_ERR)],
         argument_spec={
             "name": {},
             "description": {},
@@ -84,10 +102,9 @@ def main():
         natural_key = {"name": module.params["name"]}
         desired_attributes = {}
         if module.params["description"] is not None:
-            # In case of an empty string we nullify the description
-            desired_attributes["description"] = module.params["description"] or None
+            desired_attributes["description"] = module.params["description"]
 
-        PulpDebRepository(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

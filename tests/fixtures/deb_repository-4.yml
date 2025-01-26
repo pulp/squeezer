@@ -4,43 +4,45 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - pulp3-sandbox-debian-testing
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: https://pulp.example.org/pulp/api/v3/repositories/deb/apt/?limit=1&name=test_deb_repository
+    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/be632b3f-140b-4405-803f-3d4cf1d142df/","pulp_created":"2021-07-22T17:18:55.842020Z","versions_href":"/pulp/api/v3/repositories/deb/apt/be632b3f-140b-4405-803f-3d4cf1d142df/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/be632b3f-140b-4405-803f-3d4cf1d142df/versions/0/","name":"test_deb_repository","description":"repository
-        created via ansible","retained_versions":null,"remote":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/0194a2a7-599f-71a6-ab5b-32eacd760782/","prn":"prn:deb.aptrepository:0194a2a7-599f-71a6-ab5b-32eacd760782","pulp_created":"2025-01-26T12:47:44.032982Z","pulp_last_updated":"2025-01-26T12:47:45.527172Z","versions_href":"/pulp/api/v3/repositories/deb/apt/0194a2a7-599f-71a6-ab5b-32eacd760782/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/0194a2a7-599f-71a6-ab5b-32eacd760782/versions/0/","name":"test_deb_repository","description":"repository
+        created via ansible","retain_repo_versions":null,"remote":null,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '522'
+      - '743'
       Content-Type:
       - application/json
       Correlation-ID:
-      - dd62f3ab6ebb44d9887a15b15796a009
+      - 4cdd5c2716854bb3a79d6689cd95133b
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 22 Jul 2021 17:18:59 GMT
+      - Sun, 26 Jan 2025 12:47:47 GMT
+      Referrer-Policy:
+      - same-origin
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
-      - max-age=15768000
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
       X-Frame-Options:
-      - SAMEORIGIN
+      - DENY
     status:
       code: 200
       message: OK

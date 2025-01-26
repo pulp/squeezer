@@ -125,9 +125,9 @@ try:
     )
     from pulp_glue.common.context import PulpRemoteContext
 
-    PULP_CLI_IMPORT_ERR = None
+    PULP_GLUE_IMPORT_ERR = None
 except ImportError:
-    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
     PulpRemoteContext = None
 
 
@@ -157,7 +157,7 @@ class PulpAnsibleRemoteAnsibleModule(PulpRemoteAnsibleModule):
 def main():
     with PulpAnsibleRemoteAnsibleModule(
         context_class=PulpRemoteContext,
-        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         argument_spec={
             "content_type": {"choices": ["collection", "role"], "default": "collection"},
             "policy": {"choices": ["immediate"]},

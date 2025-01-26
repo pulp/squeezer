@@ -69,9 +69,9 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import Pul
 try:
     from pulp_glue.common.context import PulpRepositoryContext
 
-    PULP_CLI_IMPORT_ERR = None
+    PULP_GLUE_IMPORT_ERR = None
 except ImportError:
-    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
 else:
     # TODO We need some mechanism for glue to pickup plugins automatically.
     for plugin in [
@@ -91,7 +91,7 @@ else:
 
 def main():
     with PulpAnsibleModule(
-        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         supports_check_mode=False,
         argument_spec={
             "repository": {"required": True},

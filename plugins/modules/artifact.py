@@ -92,7 +92,7 @@ try:
     from pulp_glue.common.context import PulpEntityNotFound
     from pulp_glue.core.context import PulpArtifactContext as _PulpArtifactContext
 
-    PULP_CLI_IMPORT_ERR = None
+    PULP_GLUE_IMPORT_ERR = None
 
     # Patch the Context to make converge call upload
     # It's a case study at this point. Eventually glue should handle this.
@@ -133,7 +133,7 @@ try:
             return False, entity, entity
 
 except ImportError:
-    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
     PulpArtifactContext = None
 
 
@@ -142,7 +142,7 @@ def main():
         context_class=PulpArtifactContext,
         entity_singular="artifact",
         entity_plural="artifacts",
-        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         argument_spec={
             "file": {"type": "path"},
             "sha256": {},

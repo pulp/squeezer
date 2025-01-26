@@ -13,16 +13,19 @@ description:
 options:
   architectures:
     description:
-      - Whitespace separated list of architectures to sync.
-    type: str
+      - List of architectures to sync.
+    type: list
+    elements: str
   components:
     description:
-      - Whitespace separated list of components to sync.
-    type: str
+      - List of components to sync.
+    type: list
+    elements: str
   distributions:
     description:
-      - Whitespace separated list of distributions to sync.
-    type: str
+      - List of distributions to sync.
+    type: list
+    elements: str
   policy:
     description:
       - Whether downloads should be performed immediately, or lazy.
@@ -48,9 +51,10 @@ options:
     version_added: "0.0.16"
 
 extends_documentation_fragment:
-  - pulp.squeezer.pulp
-  - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp.remote
+  - pulp.squeezer.pulp.entity_state
+  - pulp.squeezer.pulp.glue
+  - pulp.squeezer.pulp
 author:
   - Matthias Dellweg (@mdellweg)
 """
@@ -99,18 +103,33 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
-    PulpDebRemote,
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import (
+    GLUE_DEB_VERSION_SPEC,
     PulpRemoteAnsibleModule,
+    assert_version,
 )
+
+try:
+    from pulp_glue.deb import __version__ as pulp_glue_deb_version
+    from pulp_glue.deb.context import PulpAptRemoteContext
+
+    assert_version(GLUE_DEB_VERSION_SPEC, pulp_glue_deb_version, "pulp-glue-deb")
+    PULP_GLUE_DEB_IMPORT_ERR = None
+except ImportError:
+    PULP_GLUE_DEB_IMPORT_ERR = traceback.format_exc()
+    PulpAptRemoteContext = None
 
 
 def main():
     with PulpRemoteAnsibleModule(
+        context_class=PulpAptRemoteContext,
+        import_errors=[("pulp-glue-deb", PULP_GLUE_DEB_IMPORT_ERR)],
         argument_spec={
-            "architectures": {},
-            "components": {},
-            "distributions": {},
+            "architectures": {"type": "list", "elements": "str"},
+            "components": {"type": "list", "elements": "str"},
+            "distributions": {"type": "list", "elements": "str"},
             "policy": {"choices": ["immediate", "on_demand", "streamed"]},
             "sync_installer": {"type": "bool"},
             "sync_sources": {"type": "bool"},
@@ -119,28 +138,20 @@ def main():
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
         natural_key = {"name": module.params["name"]}
+
         desired_attributes = {
             key: module.params[key]
             for key in [
-                "url",
                 "architectures",
                 "components",
                 "distributions",
-                "download_concurrency",
-                "policy",
                 "sync_installer",
                 "sync_sources",
                 "sync_udebs",
-                "tls_validation",
             ]
             if module.params[key] is not None
         }
 
-        # Nullifiable values
-        if module.params["remote_username"] is not None:
-            desired_attributes["username"] = module.params["remote_username"] or None
-        if module.params["remote_password"] is not None:
-            desired_attributes["password"] = module.params["remote_password"] or None
         desired_attributes.update(
             {
                 key: module.params[key] or None
@@ -156,7 +167,7 @@ def main():
             }
         )
 
-        PulpDebRemote(module, natural_key, desired_attributes).process()
+        module.process(natural_key, desired_attributes)
 
 
 if __name__ == "__main__":

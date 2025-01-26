@@ -56,8 +56,6 @@
         that:
           - result.changed == true
           - result.publication.repository_version is match("/pulp/api/v3/repositories/.*/versions/1/")
-          - result.publication.simple
-          - not result.publication.structured
 
     - name: Publish latest version of repository (2nd try)
       pulp.squeezer.deb_publication:

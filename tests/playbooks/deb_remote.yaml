@@ -30,9 +30,12 @@
       pulp.squeezer.deb_remote:
         name: test_deb_remote
         url: "https://example.org/deb/"
+        # Seems like strings are converted to lists of one by ansible:
         architectures: ppc64
-        components: jotunheimr
-        distributions: ragnarok
+        components:
+          - jotunheimr
+        distributions:
+          - ragnarok
         proxy_url: "http://proxy.int:3128"
         state: present
       register: result
@@ -51,7 +54,8 @@
       pulp.squeezer.deb_remote:
         name: test_deb_remote
         url: "https://example.org/deb/"
-        architectures: ppc64
+        architectures:
+          - ppc64
         components: jotunheimr
         distributions: ragnarok
         proxy_url: "http://proxy.int:3128"

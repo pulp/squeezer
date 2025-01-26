@@ -76,9 +76,9 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import Pul
 try:
     from pulp_glue.python.context import PulpPythonPublicationContext, PulpPythonRepositoryContext
 
-    PULP_CLI_IMPORT_ERR = None
+    PULP_GLUE_IMPORT_ERR = None
 except ImportError:
-    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
     PulpPythonPublicationContext = None
 
 
@@ -87,7 +87,7 @@ def main():
         context_class=PulpPythonPublicationContext,
         entity_singular="publication",
         entity_plural="publications",
-        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         argument_spec={
             "repository": {},
             "version": {"type": "int"},

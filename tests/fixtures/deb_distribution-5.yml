@@ -4,16 +4,14 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:80
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.9
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/deb/apt/?limit=1&name=test_deb_distribution
+    uri: http://pulp.example.org/pulp/api/v3/distributions/deb/apt/?name=test_deb_distribution&offset=0&limit=1
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -23,21 +21,23 @@ interactions:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '52'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 65ee510ad2cc49e7ba2564b6ec6406bd
+      - 8a205c3142fe4c11a8245e8ab0c3cb3c
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Tue, 22 Nov 2022 09:46:00 GMT
+      - Sun, 26 Jan 2025 12:45:16 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:

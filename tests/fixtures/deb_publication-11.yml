@@ -4,40 +4,40 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?limit=1&name=test_deb_repository
+    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/","pulp_created":"2021-11-11T17:01:38.514044Z","versions_href":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/1/","name":"test_deb_repository","description":null,"retain_repo_versions":null,"remote":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/","prn":"prn:deb.aptrepository:0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5","pulp_created":"2025-01-26T12:44:05.974311Z","pulp_last_updated":"2025-01-26T12:44:13.187064Z","versions_href":"/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/versions/1/","name":"test_deb_repository","description":null,"retain_repo_versions":null,"remote":null,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '497'
+      - '715'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 28484b98f73a4f3a99f965c6af1426df
+      - 97cbd8ce32d44ff8848b8128318fa4c2
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 11 Nov 2021 17:02:04 GMT
+      - Sun, 26 Jan 2025 12:44:27 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -50,16 +50,16 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
+      Correlation-Id:
+      - 97cbd8ce32d44ff8848b8128318fa4c2
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/publications/deb/verbatim/?limit=1&repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Fdeb%2Fapt%2Fc4e6b292-0592-4c14-abec-4246bee500c8%2Fversions%2F1%2F
+    uri: http://pulp.example.org/pulp/api/v3/publications/deb/verbatim/?repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Fdeb%2Fapt%2F0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5%2Fversions%2F1%2F&offset=0&limit=1
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -69,21 +69,23 @@ interactions:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '52'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 449e823995ec41e88fdc29f970f29689
+      - 97cbd8ce32d44ff8848b8128318fa4c2
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 11 Nov 2021 17:02:04 GMT
+      - Sun, 26 Jan 2025 12:44:27 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -92,46 +94,50 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"repository_version": "/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/1/"}'
+    body: '{"repository_version": "/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/versions/1/"}'
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - 108
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - '108'
+      Correlation-Id:
+      - 97cbd8ce32d44ff8848b8128318fa4c2
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.1.0-dev
+      content-type:
+      - application/json
     method: POST
     uri: http://pulp.example.org/pulp/api/v3/publications/deb/verbatim/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/46d52f15-7358-43eb-9820-0b0ad240484f/"}'
+      string: '{"task":"/pulp/api/v3/tasks/0194a2a4-59b1-7d1d-92a9-6de8ee62f25c/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
       - '67'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 92222565e8a1478ba630854e79938ac3
+      - 97cbd8ce32d44ff8848b8128318fa4c2
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 11 Nov 2021 17:02:04 GMT
+      - Sun, 26 Jan 2025 12:44:27 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -144,40 +150,42 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
+      Correlation-Id:
+      - 97cbd8ce32d44ff8848b8128318fa4c2
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/46d52f15-7358-43eb-9820-0b0ad240484f/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/0194a2a4-59b1-7d1d-92a9-6de8ee62f25c/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/46d52f15-7358-43eb-9820-0b0ad240484f/","pulp_created":"2021-11-11T17:02:04.773232Z","state":"completed","name":"pulp_deb.app.tasks.publishing.publish_verbatim","logging_cid":"92222565e8a1478ba630854e79938ac3","started_at":"2021-11-11T17:02:04.826101Z","finished_at":"2021-11-11T17:02:04.870024Z","error":null,"worker":"/pulp/api/v3/workers/26062a0e-7f1d-4b10-ba5d-7000c3328999/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/publications/deb/verbatim/39a475e3-d6de-4064-85fd-7d9c0b5a6f5f/"],"reserved_resources_record":["shared:/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/0194a2a4-59b1-7d1d-92a9-6de8ee62f25c/","prn":"prn:core.task:0194a2a4-59b1-7d1d-92a9-6de8ee62f25c","pulp_created":"2025-01-26T12:44:27.442259Z","pulp_last_updated":"2025-01-26T12:44:27.442271Z","state":"completed","name":"pulp_deb.app.tasks.publishing.publish_verbatim","logging_cid":"97cbd8ce32d44ff8848b8128318fa4c2","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2025-01-26T12:44:27.450621Z","started_at":"2025-01-26T12:44:27.480765Z","finished_at":"2025-01-26T12:44:27.496271Z","error":null,"worker":"/pulp/api/v3/workers/0194a25c-59ec-7ea2-a515-7fdc6634e62d/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/publications/deb/verbatim/0194a2a4-59de-7983-8247-4df13b993516/"],"reserved_resources_record":["shared:prn:deb.aptrepository:0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5","shared:prn:core.domain:0194a25b-8114-7dfe-8f64-04c6d8e26465"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, PATCH, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '700'
+      - '940'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 50632c1759904509bf6d504a028a6097
+      - 97cbd8ce32d44ff8848b8128318fa4c2
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 11 Nov 2021 17:02:05 GMT
+      - Sun, 26 Jan 2025 12:44:27 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -190,40 +198,42 @@ interactions:
     headers:
       Accept:
       - application/json
+      Accept-Encoding:
+      - gzip, deflate
       Connection:
-      - close
-      Content-Type:
-      - application/json
-      Host:
-      - localhost:8080
+      - keep-alive
+      Correlation-Id:
+      - 97cbd8ce32d44ff8848b8128318fa4c2
       User-Agent:
-      - Python-urllib/3.6
+      - Squeezer/0.1.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/publications/deb/verbatim/39a475e3-d6de-4064-85fd-7d9c0b5a6f5f/
+    uri: http://pulp.example.org/pulp/api/v3/publications/deb/verbatim/0194a2a4-59de-7983-8247-4df13b993516/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/publications/deb/verbatim/39a475e3-d6de-4064-85fd-7d9c0b5a6f5f/","pulp_created":"2021-11-11T17:02:04.850192Z","repository_version":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/versions/1/","repository":"/pulp/api/v3/repositories/deb/apt/c4e6b292-0592-4c14-abec-4246bee500c8/"}'
+      string: '{"pulp_href":"/pulp/api/v3/publications/deb/verbatim/0194a2a4-59de-7983-8247-4df13b993516/","prn":"prn:deb.verbatimpublication:0194a2a4-59de-7983-8247-4df13b993516","pulp_created":"2025-01-26T12:44:27.486831Z","pulp_last_updated":"2025-01-26T12:44:27.491642Z","repository_version":"/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/versions/1/","repository":"/pulp/api/v3/repositories/deb/apt/0194a2a4-05d5-7fa1-a0cf-18cc9fce19d5/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
       Allow:
       - GET, DELETE, HEAD, OPTIONS
       Connection:
-      - close
+      - keep-alive
       Content-Length:
-      - '330'
+      - '453'
       Content-Type:
       - application/json
       Correlation-ID:
-      - e68613d466734ae28da39a51e76fbbdf
+      - 97cbd8ce32d44ff8848b8128318fa4c2
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Thu, 11 Nov 2021 17:02:05 GMT
+      - Sun, 26 Jan 2025 12:44:27 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:

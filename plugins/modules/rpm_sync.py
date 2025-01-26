@@ -12,16 +12,16 @@ description:
   - "This module synchronizes a rpm remote into a repository."
   - "In check_mode this module assumes, nothing changed upstream."
 options:
-  remote:
-    description:
-      - Name of the remote to synchronize
-    type: str
-    required: true
   repository:
     description:
       - Name of the repository
     type: str
     required: true
+  remote:
+    description:
+      - Name of the remote to synchronize
+    type: str
+    required: false
   sync_policy:
     description:
       - Policy to use when syncing.
@@ -46,6 +46,7 @@ options:
     default: true
 
 extends_documentation_fragment:
+  - pulp.squeezer.pulp.glue
   - pulp.squeezer.pulp
 author:
   - Jacob Floyd (@cognifloyd)
@@ -73,20 +74,28 @@ RETURN = r"""
 """
 
 
-from ansible_collections.pulp.squeezer.plugins.module_utils.pulp import (
+import traceback
+
+from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import (
     PulpAnsibleModule,
-    PulpRpmRemote,
-    PulpRpmRepository,
     SqueezerException,
-    pulp_parse_version,
 )
+
+try:
+    from pulp_glue.common.context import PluginRequirement
+    from pulp_glue.rpm.context import PulpRpmRemoteContext, PulpRpmRepositoryContext
+
+    PULP_GLUE_IMPORT_ERR = None
+except ImportError:
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
 
 
 def main():
     with PulpAnsibleModule(
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         argument_spec={
-            "remote": {"required": True},
             "repository": {"required": True},
+            "remote": {"required": False},
             "sync_policy": {
                 "type": "str",
                 "default": "additive",
@@ -100,28 +109,37 @@ def main():
             "optimize": {"type": "bool", "default": True},
         },
     ) as module:
-        remote = PulpRpmRemote(module, {"name": module.params["remote"]})
-        remote.find(failsafe=False)
-
-        repository = PulpRpmRepository(module, {"name": module.params["repository"]})
-        repository.find(failsafe=False)
-
-        # pulp_rpm supports sync_policy from 3.16.
-        # Earlier versions support only mirror.
-        rpm_version = (
-            module.pulp_api.api_spec.get("info", {}).get("x-pulp-app-versions", {}).get("rpm", ())
+        repository_ctx = PulpRpmRepositoryContext(
+            module.pulp_ctx, entity={"name": module.params["repository"]}
         )
-        if pulp_parse_version(rpm_version) >= pulp_parse_version("3.16.0"):
-            parameters = {"sync_policy": module.params["sync_policy"]}
-        elif module.params["sync_policy"] == "mirror_content_only":
-            raise SqueezerException(
-                "Cannot use sync policy 'mirror_content_only' with pulp_rpm<3.16"
-            )
-        else:
-            mirror = module.params["sync_policy"] == "mirror_complete"
-            parameters = {"mirror": mirror}
+        repository = repository_ctx.entity
 
-        parameters.update(
+        payload = {}
+        if module.params["remote"] is None:
+            if repository["remote"] is None:
+                raise SqueezerException(
+                    "No remote was specified and none preconfigured on the repository."
+                )
+        else:
+            remote_ctx = PulpRpmRemoteContext(
+                module.pulp_ctx, entity={"name": module.params["remote"]}
+            )
+            payload["remote"] = remote_ctx
+
+        sync_policy = module.params["sync_policy"]
+        if sync_policy is not None:
+            # pulp_rpm supports sync_policy from 3.16.
+            # Earlier versions support only mirror.
+            if module.pulp_ctx.has_plugin(PluginRequirement("rpm", ">=3.16.0")):
+                payload["sync_policy"] = sync_policy
+            elif sync_policy == "mirror_content_only":
+                raise SqueezerException(
+                    "Cannot use sync policy 'mirror_content_only' with pulp_rpm<3.16"
+                )
+            else:
+                payload["mirror"] = sync_policy == "mirror_complete"
+
+        payload.update(
             {
                 key: module.params[key]
                 for key in [
@@ -132,7 +150,16 @@ def main():
             }
         )
 
-        repository.process_sync(remote, parameters)
+        repository_version = repository["latest_version_href"]
+        # In check_mode, assume nothing changed
+        if not module.check_mode:
+            sync_task = repository_ctx.sync(body=payload)
+
+            if sync_task["created_resources"]:
+                module.set_changed()
+                repository_version = sync_task["created_resources"][0]
+
+        module.set_result("repository_version", repository_version)
 
 
 if __name__ == "__main__":

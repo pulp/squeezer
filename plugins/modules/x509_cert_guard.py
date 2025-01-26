@@ -85,9 +85,9 @@ try:
         HREF = "certguard_x509_cert_guard_href"
         NULLABLES = {"description"}
 
-    PULP_CLI_IMPORT_ERR = None
+    PULP_GLUE_IMPORT_ERR = None
 except ImportError:
-    PULP_CLI_IMPORT_ERR = traceback.format_exc()
+    PULP_GLUE_IMPORT_ERR = traceback.format_exc()
     PulpX509CertGuardContext = None
 
 
@@ -96,7 +96,7 @@ def main():
         context_class=PulpX509CertGuardContext,
         entity_singular="content_guard",
         entity_plural="content_guards",
-        import_errors=[("pulp-glue", PULP_CLI_IMPORT_ERR)],
+        import_errors=[("pulp-glue", PULP_GLUE_IMPORT_ERR)],
         argument_spec={
             "name": {},
             "description": {},
