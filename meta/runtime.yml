@@ -24,7 +24,6 @@ action_groups:
     - file_publication
     - file_remote
     - file_repository
-    - file_repository_content
     - file_sync
     - purge_tasks
     - python_distribution
@@ -41,11 +40,5 @@ action_groups:
     - status
     - task
     - x509_cert_guard
-plugin_routing:
-  modules:
-    file_repository_content:
-      deprecation:
-        removal_version: "0.1.0"
-        warning_text: "Use pulp.squeezer.file_content instead."
 requires_ansible: ">=2.15.0,<2.19"
 ...
