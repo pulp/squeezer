@@ -19,6 +19,12 @@ options:
     description:
       - Description of the repository
     type: str
+  autopublish:
+    description:
+      - Publish new versions automatically.
+    required: false
+    type: bool
+    default: false
 extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp
@@ -89,13 +95,16 @@ def main():
         argument_spec={
             "name": {},
             "description": {},
+            "autopublish": {"type": "bool", "default": False},
         },
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
         natural_key = {"name": module.params["name"]}
-        desired_attributes = {}
-        if module.params["description"] is not None:
-            desired_attributes["description"] = module.params["description"]
+        desired_attributes = {
+            k: module.params[k]
+            for k in ("description", "autopublish")
+            if module.params.get(k) is not None
+        }
 
         module.process(natural_key, desired_attributes)
 
