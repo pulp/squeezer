@@ -95,7 +95,7 @@ def main():
         argument_spec={
             "name": {},
             "description": {},
-            "autopublish": {"type": "bool", "default": False},
+            "autopublish": {"type": "bool"},
         },
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
