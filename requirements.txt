@@ -1,4 +1,4 @@
-pulp-glue<0.32,>=0.29.2
+pulp-glue<=0.32.1,>=0.29.2
 pulp-glue-deb<0.4.0,>=0.3.0
 
 ansible_runner<2.3; python_version < '3.7'
