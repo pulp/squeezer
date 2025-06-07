@@ -2,19 +2,21 @@ interactions:
 - request:
     body: null
     headers:
-      Accept:
-      - application/json
+      ? !!python/object/apply:multidict._multidict.istr
+      - Accept
+      : - application/json
       Accept-Encoding:
       - gzip, deflate
       Connection:
       - keep-alive
-      User-Agent:
-      - Squeezer
+      ? !!python/object/apply:multidict._multidict.istr
+      - User-Agent
+      : - Squeezer/0.2.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/4fe70884-5d0e-43db-9ff2-22f8d5012e19/","pulp_created":"2022-11-07T08:51:08.835329Z","versions_href":"/pulp/api/v3/repositories/file/file/4fe70884-5d0e-43db-9ff2-22f8d5012e19/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/file/file/4fe70884-5d0e-43db-9ff2-22f8d5012e19/versions/1/","name":"test_file_repository","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"manifest":"PULP_MANIFEST"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/01974834-a6b4-759d-83cc-5388f72865e2/","prn":"prn:file.filerepository:01974834-a6b4-759d-83cc-5388f72865e2","pulp_created":"2025-06-07T02:24:59.575189Z","pulp_last_updated":"2025-06-07T02:25:06.428680Z","versions_href":"/pulp/api/v3/repositories/file/file/01974834-a6b4-759d-83cc-5388f72865e2/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/file/file/01974834-a6b4-759d-83cc-5388f72865e2/versions/1/","name":"test_file_repository","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"manifest":"PULP_MANIFEST"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -23,19 +25,234 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '551'
+      - '670'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 7c8be593348346f19cc8bccb1d5962c4
+      - 645de0f93ba64690ad2f363afdf10e54
+      Cross-Origin-Opener-Policy:
+      - same-origin
       Date:
-      - Mon, 07 Nov 2022 08:51:24 GMT
+      - Sat, 07 Jun 2025 02:25:10 GMT
       Referrer-Policy:
       - same-origin
       Server:
-      - nginx/1.14.1
+      - nginx/1.22.1
       Vary:
-      - Accept, Cookie
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      ? !!python/object/apply:multidict._multidict.istr
+      - Accept
+      : - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Correlation-Id:
+      - 645de0f93ba64690ad2f363afdf10e54
+      ? !!python/object/apply:multidict._multidict.istr
+      - User-Agent
+      : - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/?name=test_file_remote&offset=0&limit=1
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/file/file/01974834-aa7b-78fa-a525-a97a9896416e/","prn":"prn:file.fileremote:01974834-aa7b-78fa-a525-a97a9896416e","pulp_created":"2025-06-07T02:25:00.540772Z","pulp_last_updated":"2025-06-07T02:25:00.540788Z","name":"test_file_remote","url":"https://fixtures.pulpproject.org/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":null,"pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}]}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '877'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 645de0f93ba64690ad2f363afdf10e54
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Sat, 07 Jun 2025 02:25:11 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"remote": "/pulp/api/v3/remotes/file/file/01974834-aa7b-78fa-a525-a97a9896416e/",
+      "mirror": true}'
+    headers:
+      ? !!python/object/apply:multidict._multidict.istr
+      - Accept
+      : - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '98'
+      Correlation-Id:
+      - 645de0f93ba64690ad2f363afdf10e54
+      ? !!python/object/apply:multidict._multidict.istr
+      - User-Agent
+      : - Squeezer/0.2.0-dev
+      content-type:
+      - application/json
+    method: POST
+    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/01974834-a6b4-759d-83cc-5388f72865e2/sync/
+  response:
+    body:
+      string: '{"task":"/pulp/api/v3/tasks/01974834-d585-72cd-9e3f-14d70ad43e44/"}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - POST, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '67'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 645de0f93ba64690ad2f363afdf10e54
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Sat, 07 Jun 2025 02:25:11 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 202
+      message: Accepted
+- request:
+    body: null
+    headers:
+      ? !!python/object/apply:multidict._multidict.istr
+      - Accept
+      : - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Correlation-Id:
+      - 645de0f93ba64690ad2f363afdf10e54
+      ? !!python/object/apply:multidict._multidict.istr
+      - User-Agent
+      : - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/01974834-d585-72cd-9e3f-14d70ad43e44/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/01974834-d585-72cd-9e3f-14d70ad43e44/","prn":"prn:core.task:01974834-d585-72cd-9e3f-14d70ad43e44","pulp_created":"2025-06-07T02:25:11.558216Z","pulp_last_updated":"2025-06-07T02:25:11.558237Z","state":"running","name":"pulp_file.app.tasks.synchronizing.synchronize","logging_cid":"645de0f93ba64690ad2f363afdf10e54","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2025-06-07T02:25:11.571204Z","started_at":"2025-06-07T02:25:11.612864Z","finished_at":null,"error":null,"worker":"/pulp/api/v3/workers/01974834-769d-767c-8328-80bd799b7250/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Downloading
+        Metadata","code":"sync.downloading.metadata","state":"running","total":null,"done":0,"suffix":null},{"message":"Downloading
+        Artifacts","code":"sync.downloading.artifacts","state":"running","total":null,"done":0,"suffix":null},{"message":"Associating
+        Content","code":"associating.content","state":"running","total":null,"done":0,"suffix":null}],"created_resources":["<unavailable>"],"reserved_resources_record":["prn:file.filerepository:01974834-a6b4-759d-83cc-5388f72865e2","shared:prn:file.fileremote:01974834-aa7b-78fa-a525-a97a9896416e","shared:prn:core.domain:4b032caf-92df-432d-8737-41c03dca8ee5"]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1276'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 645de0f93ba64690ad2f363afdf10e54
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Sat, 07 Jun 2025 02:25:11 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      ? !!python/object/apply:multidict._multidict.istr
+      - Accept
+      : - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Correlation-Id:
+      - 645de0f93ba64690ad2f363afdf10e54
+      ? !!python/object/apply:multidict._multidict.istr
+      - User-Agent
+      : - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/tasks/01974834-d585-72cd-9e3f-14d70ad43e44/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/tasks/01974834-d585-72cd-9e3f-14d70ad43e44/","prn":"prn:core.task:01974834-d585-72cd-9e3f-14d70ad43e44","pulp_created":"2025-06-07T02:25:11.558216Z","pulp_last_updated":"2025-06-07T02:25:11.558237Z","state":"completed","name":"pulp_file.app.tasks.synchronizing.synchronize","logging_cid":"645de0f93ba64690ad2f363afdf10e54","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2025-06-07T02:25:11.571204Z","started_at":"2025-06-07T02:25:11.612864Z","finished_at":"2025-06-07T02:25:11.924484Z","error":null,"worker":"/pulp/api/v3/workers/01974834-769d-767c-8328-80bd799b7250/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[{"message":"Downloading
+        Metadata","code":"sync.downloading.metadata","state":"completed","total":null,"done":1,"suffix":null},{"message":"Downloading
+        Artifacts","code":"sync.downloading.artifacts","state":"completed","total":null,"done":0,"suffix":null},{"message":"Associating
+        Content","code":"associating.content","state":"completed","total":null,"done":0,"suffix":null},{"message":"Parsing
+        Metadata Lines","code":"sync.parsing.metadata","state":"completed","total":3,"done":3,"suffix":null},{"message":"Un-Associating
+        Content","code":"unassociating.content","state":"completed","total":null,"done":0,"suffix":null}],"created_resources":[],"reserved_resources_record":["prn:file.filerepository:01974834-a6b4-759d-83cc-5388f72865e2","shared:prn:file.fileremote:01974834-aa7b-78fa-a525-a97a9896416e","shared:prn:core.domain:4b032caf-92df-432d-8737-41c03dca8ee5"]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1539'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 645de0f93ba64690ad2f363afdf10e54
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Sat, 07 Jun 2025 02:25:13 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
