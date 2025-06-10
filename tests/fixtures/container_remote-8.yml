@@ -9,12 +9,15 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - Squeezer/0.0.17-dev
+      - Squeezer/0.2.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/remotes/container/container/?name=test_container_remote&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/container/container/01919916-016e-7715-adb0-55244f7314c4/","pulp_created":"2024-08-28T13:04:01.902699Z","pulp_last_updated":"2024-08-28T13:04:04.845436Z","name":"test_container_remote","url":"https://registry-1.docker.io","ca_cert":"abcd","client_cert":"efgh","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":true},{"name":"proxy_username","is_set":true},{"name":"proxy_password","is_set":true},{"name":"username","is_set":true},{"name":"password","is_set":true}],"upstream_name":"test_container_remote","include_tags":["bar"],"exclude_tags":["foo"],"sigstore":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/container/container/01975a3a-4df2-7aed-8a5c-3065a5b5625c/","prn":"prn:container.containerremote:01975a3a-4df2-7aed-8a5c-3065a5b5625c","pulp_created":"2025-06-10T14:24:19.954410Z","pulp_last_updated":"2025-06-10T14:24:22.377058Z","name":"test_container_remote","url":"https://registry-1.docker.io","ca_cert":"-----BEGIN
+        CERTIFICATE-----\nMIICrTCCAZUCFAp0n3Mrg78x+8rAn8x1EGxVhKYrMA0GCSqGSIb3DQEBBQUAMBMx\nETAPBgNVBAMMCHNuYWtlb2lsMB4XDTIwMDcyMjE5MDUwNFoXDTIwMDgyMTE5MDUw\nNFowEzERMA8GA1UEAwwIc25ha2VvaWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\nggEKAoIBAQDKIwKvUax3A/5dODykWzJm0RWjnQAcxfuLbaZcPVDEo/Q8lBkaLEDl\nURAm8e9/uLJjcMyjl2LLlsJYOlcqbjNSwf/5D693IcTRO53C1xWvZ+IGGokweY0m\n8G3SFf5BKmji1OmT8l7iA35Wg0ist/QemQIaSV+n0B/yArdbkfcedPoiudzLOmx6\nEwSCdu9Xl4g29zLzBOWCHuZ0ghNbSWu0cQbkm1syM993BIH31bKdjImUTVg1HlqV\nxi1Y9EVQ3fFE/00DYsgANvSHa3YZsLCgl6gzab5repKP96vjX34JsZi1ayJXXYBz\ncjQPG0e9gpoqHROmKNJj+Up7lySrmSuLAgMBAAEwDQYJKoZIhvcNAQEFBQADggEB\nAI7zqZRPIWdbPWUKFZJNF6GsaBpLR0RkgukPo7vOF5WhOwez2fL+gsh5cffmcTyX\nEOkE53mHkI8z0yg+GtfOqv4GsUJe3VquoFvNYXAVZNGP/p6FFnihIymGbRFHGZSP\ns7g0yVwuI65VkaROtE7YI1pp7y8dPpvkQqAiZvUCC8cYIwYxavZLArVoRiilXz/f\nfuJoP99TyE3mRbLYamvrGDqLGMO8I4JAfgUbaiEEj5nJsUxWkhliSvWPjXuvytsy\nRlL+GSgPFNqTQ1eLKb4boTgM84ngSMeT47BZn2nipFg78ChwU8GOJ7G3sPYjKhIp\nRyEremCPzDNgO6asTRhn9ro=\n-----END
+        CERTIFICATE-----\n","client_cert":"-----BEGIN CERTIFICATE-----\nMIICrTCCAZUCFAp0n3Mrg78x+8rAn8x1EGxVhKYrMA0GCSqGSIb3DQEBBQUAMBMx\nETAPBgNVBAMMCHNuYWtlb2lsMB4XDTIwMDcyMjE5MDUwNFoXDTIwMDgyMTE5MDUw\nNFowEzERMA8GA1UEAwwIc25ha2VvaWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\nggEKAoIBAQDKIwKvUax3A/5dODykWzJm0RWjnQAcxfuLbaZcPVDEo/Q8lBkaLEDl\nURAm8e9/uLJjcMyjl2LLlsJYOlcqbjNSwf/5D693IcTRO53C1xWvZ+IGGokweY0m\n8G3SFf5BKmji1OmT8l7iA35Wg0ist/QemQIaSV+n0B/yArdbkfcedPoiudzLOmx6\nEwSCdu9Xl4g29zLzBOWCHuZ0ghNbSWu0cQbkm1syM993BIH31bKdjImUTVg1HlqV\nxi1Y9EVQ3fFE/00DYsgANvSHa3YZsLCgl6gzab5repKP96vjX34JsZi1ayJXXYBz\ncjQPG0e9gpoqHROmKNJj+Up7lySrmSuLAgMBAAEwDQYJKoZIhvcNAQEFBQADggEB\nAI7zqZRPIWdbPWUKFZJNF6GsaBpLR0RkgukPo7vOF5WhOwez2fL+gsh5cffmcTyX\nEOkE53mHkI8z0yg+GtfOqv4GsUJe3VquoFvNYXAVZNGP/p6FFnihIymGbRFHGZSP\ns7g0yVwuI65VkaROtE7YI1pp7y8dPpvkQqAiZvUCC8cYIwYxavZLArVoRiilXz/f\nfuJoP99TyE3mRbLYamvrGDqLGMO8I4JAfgUbaiEEj5nJsUxWkhliSvWPjXuvytsy\nRlL+GSgPFNqTQ1eLKb4boTgM84ngSMeT47BZn2nipFg78ChwU8GOJ7G3sPYjKhIp\nRyEremCPzDNgO6asTRhn9ro=\n-----END
+        CERTIFICATE-----\n","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":true},{"name":"proxy_username","is_set":true},{"name":"proxy_password","is_set":true},{"name":"username","is_set":true},{"name":"password","is_set":true}],"upstream_name":"test_container_remote","include_tags":["bar"],"exclude_tags":["foo"],"sigstore":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -23,15 +26,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '925'
+      - '3004'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 9f7e0c1815cd4423a83a919474661f0c
+      - 348863f318d1404da4a55408ae373a07
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Wed, 28 Aug 2024 13:04:06 GMT
+      - Tue, 10 Jun 2025 14:24:23 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -56,15 +59,15 @@ interactions:
       - keep-alive
       Content-Length:
       - '0'
-      Correlation-ID:
-      - 9f7e0c1815cd4423a83a919474661f0c
+      Correlation-Id:
+      - 348863f318d1404da4a55408ae373a07
       User-Agent:
-      - Squeezer/0.0.17-dev
+      - Squeezer/0.2.0-dev
     method: DELETE
-    uri: http://pulp.example.org/pulp/api/v3/remotes/container/container/01919916-016e-7715-adb0-55244f7314c4/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/container/container/01975a3a-4df2-7aed-8a5c-3065a5b5625c/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/01919916-1303-72d6-b60c-9a946dd95b10/"}'
+      string: '{"task":"/pulp/api/v3/tasks/01975a3a-5c71-7317-aa51-75c84b27e7f5/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -77,11 +80,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 9f7e0c1815cd4423a83a919474661f0c
+      - 348863f318d1404da4a55408ae373a07
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Wed, 28 Aug 2024 13:04:06 GMT
+      - Tue, 10 Jun 2025 14:24:23 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -104,15 +107,15 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Correlation-ID:
-      - 9f7e0c1815cd4423a83a919474661f0c
+      Correlation-Id:
+      - 348863f318d1404da4a55408ae373a07
       User-Agent:
-      - Squeezer/0.0.17-dev
+      - Squeezer/0.2.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/01919916-1303-72d6-b60c-9a946dd95b10/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/01975a3a-5c71-7317-aa51-75c84b27e7f5/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/01919916-1303-72d6-b60c-9a946dd95b10/","pulp_created":"2024-08-28T13:04:06.404320Z","pulp_last_updated":"2024-08-28T13:04:06.404332Z","state":"completed","name":"pulpcore.app.tasks.base.general_delete","logging_cid":"9f7e0c1815cd4423a83a919474661f0c","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2024-08-28T13:04:06.413822Z","started_at":"2024-08-28T13:04:06.443790Z","finished_at":"2024-08-28T13:04:06.464419Z","error":null,"worker":"/pulp/api/v3/workers/019192cd-a16d-7f3e-ace1-6eeb75045f79/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["prn:container.containerremote:01919916-016e-7715-adb0-55244f7314c4","shared:prn:core.domain:019192cc-cf85-7342-bd0e-2c2a7d3a272e"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/01975a3a-5c71-7317-aa51-75c84b27e7f5/","prn":"prn:core.task:01975a3a-5c71-7317-aa51-75c84b27e7f5","pulp_created":"2025-06-10T14:24:23.665787Z","pulp_last_updated":"2025-06-10T14:24:23.665797Z","state":"completed","name":"pulpcore.app.tasks.base.ageneral_delete","logging_cid":"348863f318d1404da4a55408ae373a07","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2025-06-10T14:24:23.674395Z","started_at":"2025-06-10T14:24:23.706425Z","finished_at":"2025-06-10T14:24:23.737401Z","error":null,"worker":"/pulp/api/v3/workers/01975a29-1d51-738c-9aff-efba8294b85a/","parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["prn:container.containerremote:01975a3a-4df2-7aed-8a5c-3065a5b5625c","shared:prn:core.domain:a2e03b5d-6d18-453e-a72b-4e8eb6754b7a"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -121,15 +124,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '796'
+      - '856'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 9f7e0c1815cd4423a83a919474661f0c
+      - 348863f318d1404da4a55408ae373a07
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Wed, 28 Aug 2024 13:04:06 GMT
+      - Tue, 10 Jun 2025 14:24:23 GMT
       Referrer-Policy:
       - same-origin
       Server:
