@@ -9,12 +9,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - Squeezer/0.0.18-dev
+      - Squeezer/0.2.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/?name=test_rpm_remote&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/019261e1-3190-7f99-8d86-f2e80295494b/","pulp_created":"2024-10-06T12:50:01.232684Z","pulp_last_updated":"2024-10-06T12:50:01.232700Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"sles_auth_token":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/01975a39-3c30-7a1a-b903-e108acd0097f/","prn":"prn:rpm.rpmremote:01975a39-3c30-7a1a-b903-e108acd0097f","pulp_created":"2025-06-10T14:23:09.873162Z","pulp_last_updated":"2025-06-10T14:23:09.873172Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"sles_auth_token":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -23,15 +23,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '856'
+      - '919'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 83047e69e0aa4896aa5ab395f5c83742
+      - 38fb45a04fce401a964009cf89e3a369
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sun, 06 Oct 2024 12:50:01 GMT
+      - Tue, 10 Jun 2025 14:23:10 GMT
       Referrer-Policy:
       - same-origin
       Server:

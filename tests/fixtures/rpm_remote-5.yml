@@ -9,12 +9,15 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - Squeezer/0.0.18-dev
+      - Squeezer/0.2.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/?name=test_rpm_remote&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/019261e1-3190-7f99-8d86-f2e80295494b/","pulp_created":"2024-10-06T12:50:01.232684Z","pulp_last_updated":"2024-10-06T12:50:03.431126Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":"abcd","client_cert":"efgh","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":true},{"name":"proxy_username","is_set":true},{"name":"proxy_password","is_set":true},{"name":"username","is_set":true},{"name":"password","is_set":true}],"sles_auth_token":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/01975a39-3c30-7a1a-b903-e108acd0097f/","prn":"prn:rpm.rpmremote:01975a39-3c30-7a1a-b903-e108acd0097f","pulp_created":"2025-06-10T14:23:09.873162Z","pulp_last_updated":"2025-06-10T14:23:11.721307Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":"-----BEGIN
+        CERTIFICATE-----\nMIICrTCCAZUCFAp0n3Mrg78x+8rAn8x1EGxVhKYrMA0GCSqGSIb3DQEBBQUAMBMx\nETAPBgNVBAMMCHNuYWtlb2lsMB4XDTIwMDcyMjE5MDUwNFoXDTIwMDgyMTE5MDUw\nNFowEzERMA8GA1UEAwwIc25ha2VvaWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\nggEKAoIBAQDKIwKvUax3A/5dODykWzJm0RWjnQAcxfuLbaZcPVDEo/Q8lBkaLEDl\nURAm8e9/uLJjcMyjl2LLlsJYOlcqbjNSwf/5D693IcTRO53C1xWvZ+IGGokweY0m\n8G3SFf5BKmji1OmT8l7iA35Wg0ist/QemQIaSV+n0B/yArdbkfcedPoiudzLOmx6\nEwSCdu9Xl4g29zLzBOWCHuZ0ghNbSWu0cQbkm1syM993BIH31bKdjImUTVg1HlqV\nxi1Y9EVQ3fFE/00DYsgANvSHa3YZsLCgl6gzab5repKP96vjX34JsZi1ayJXXYBz\ncjQPG0e9gpoqHROmKNJj+Up7lySrmSuLAgMBAAEwDQYJKoZIhvcNAQEFBQADggEB\nAI7zqZRPIWdbPWUKFZJNF6GsaBpLR0RkgukPo7vOF5WhOwez2fL+gsh5cffmcTyX\nEOkE53mHkI8z0yg+GtfOqv4GsUJe3VquoFvNYXAVZNGP/p6FFnihIymGbRFHGZSP\ns7g0yVwuI65VkaROtE7YI1pp7y8dPpvkQqAiZvUCC8cYIwYxavZLArVoRiilXz/f\nfuJoP99TyE3mRbLYamvrGDqLGMO8I4JAfgUbaiEEj5nJsUxWkhliSvWPjXuvytsy\nRlL+GSgPFNqTQ1eLKb4boTgM84ngSMeT47BZn2nipFg78ChwU8GOJ7G3sPYjKhIp\nRyEremCPzDNgO6asTRhn9ro=\n-----END
+        CERTIFICATE-----\n","client_cert":"-----BEGIN CERTIFICATE-----\nMIICrTCCAZUCFAp0n3Mrg78x+8rAn8x1EGxVhKYrMA0GCSqGSIb3DQEBBQUAMBMx\nETAPBgNVBAMMCHNuYWtlb2lsMB4XDTIwMDcyMjE5MDUwNFoXDTIwMDgyMTE5MDUw\nNFowEzERMA8GA1UEAwwIc25ha2VvaWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\nggEKAoIBAQDKIwKvUax3A/5dODykWzJm0RWjnQAcxfuLbaZcPVDEo/Q8lBkaLEDl\nURAm8e9/uLJjcMyjl2LLlsJYOlcqbjNSwf/5D693IcTRO53C1xWvZ+IGGokweY0m\n8G3SFf5BKmji1OmT8l7iA35Wg0ist/QemQIaSV+n0B/yArdbkfcedPoiudzLOmx6\nEwSCdu9Xl4g29zLzBOWCHuZ0ghNbSWu0cQbkm1syM993BIH31bKdjImUTVg1HlqV\nxi1Y9EVQ3fFE/00DYsgANvSHa3YZsLCgl6gzab5repKP96vjX34JsZi1ayJXXYBz\ncjQPG0e9gpoqHROmKNJj+Up7lySrmSuLAgMBAAEwDQYJKoZIhvcNAQEFBQADggEB\nAI7zqZRPIWdbPWUKFZJNF6GsaBpLR0RkgukPo7vOF5WhOwez2fL+gsh5cffmcTyX\nEOkE53mHkI8z0yg+GtfOqv4GsUJe3VquoFvNYXAVZNGP/p6FFnihIymGbRFHGZSP\ns7g0yVwuI65VkaROtE7YI1pp7y8dPpvkQqAiZvUCC8cYIwYxavZLArVoRiilXz/f\nfuJoP99TyE3mRbLYamvrGDqLGMO8I4JAfgUbaiEEj5nJsUxWkhliSvWPjXuvytsy\nRlL+GSgPFNqTQ1eLKb4boTgM84ngSMeT47BZn2nipFg78ChwU8GOJ7G3sPYjKhIp\nRyEremCPzDNgO6asTRhn9ro=\n-----END
+        CERTIFICATE-----\n","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":true},{"name":"proxy_username","is_set":true},{"name":"proxy_password","is_set":true},{"name":"username","is_set":true},{"name":"password","is_set":true}],"sles_auth_token":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -23,15 +26,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '856'
+      - '2923'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 25134b8a81a643398740aa746c21a028
+      - 5c230d5f7a604aa5bac0258d13c4dd01
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sun, 06 Oct 2024 12:50:04 GMT
+      - Tue, 10 Jun 2025 14:23:12 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -57,17 +60,17 @@ interactions:
       - keep-alive
       Content-Length:
       - '118'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 25134b8a81a643398740aa746c21a028
+      Correlation-Id:
+      - 5c230d5f7a604aa5bac0258d13c4dd01
       User-Agent:
-      - Squeezer/0.0.18-dev
+      - Squeezer/0.2.0-dev
+      content-type:
+      - application/json
     method: PATCH
-    uri: http://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/019261e1-3190-7f99-8d86-f2e80295494b/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/01975a39-3c30-7a1a-b903-e108acd0097f/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/019261e1-3d73-780b-9214-641859e39669/"}'
+      string: '{"task":"/pulp/api/v3/tasks/01975a39-45da-7fcb-b927-e152f7c91252/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -80,11 +83,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 25134b8a81a643398740aa746c21a028
+      - 5c230d5f7a604aa5bac0258d13c4dd01
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sun, 06 Oct 2024 12:50:04 GMT
+      - Tue, 10 Jun 2025 14:23:12 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -107,15 +110,15 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Correlation-ID:
-      - 25134b8a81a643398740aa746c21a028
+      Correlation-Id:
+      - 5c230d5f7a604aa5bac0258d13c4dd01
       User-Agent:
-      - Squeezer/0.0.18-dev
+      - Squeezer/0.2.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/019261e1-3d73-780b-9214-641859e39669/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/01975a39-45da-7fcb-b927-e152f7c91252/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/019261e1-3d73-780b-9214-641859e39669/","pulp_created":"2024-10-06T12:50:04.275689Z","pulp_last_updated":"2024-10-06T12:50:04.275701Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","logging_cid":"25134b8a81a643398740aa746c21a028","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2024-10-06T12:50:04.285753Z","started_at":"2024-10-06T12:50:04.286527Z","finished_at":"2024-10-06T12:50:04.292803Z","error":null,"worker":null,"parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["prn:rpm.rpmremote:019261e1-3190-7f99-8d86-f2e80295494b","shared:prn:core.domain:01925bfd-cfdb-736f-a0b5-10c538713ad6"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/01975a39-45da-7fcb-b927-e152f7c91252/","prn":"prn:core.task:01975a39-45da-7fcb-b927-e152f7c91252","pulp_created":"2025-06-10T14:23:12.346495Z","pulp_last_updated":"2025-06-10T14:23:12.346507Z","state":"completed","name":"pulpcore.app.tasks.base.ageneral_update","logging_cid":"5c230d5f7a604aa5bac0258d13c4dd01","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2025-06-10T14:23:12.353227Z","started_at":"2025-06-10T14:23:12.354167Z","finished_at":"2025-06-10T14:23:12.359009Z","error":null,"worker":null,"parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["prn:rpm.rpmremote:01975a39-3c30-7a1a-b903-e108acd0097f","shared:prn:core.domain:a2e03b5d-6d18-453e-a72b-4e8eb6754b7a"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -124,15 +127,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '728'
+      - '788'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 25134b8a81a643398740aa746c21a028
+      - 5c230d5f7a604aa5bac0258d13c4dd01
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sun, 06 Oct 2024 12:50:04 GMT
+      - Tue, 10 Jun 2025 14:23:12 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -155,15 +158,18 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
-      Correlation-ID:
-      - 25134b8a81a643398740aa746c21a028
+      Correlation-Id:
+      - 5c230d5f7a604aa5bac0258d13c4dd01
       User-Agent:
-      - Squeezer/0.0.18-dev
+      - Squeezer/0.2.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/019261e1-3190-7f99-8d86-f2e80295494b/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/01975a39-3c30-7a1a-b903-e108acd0097f/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/019261e1-3190-7f99-8d86-f2e80295494b/","pulp_created":"2024-10-06T12:50:01.232684Z","pulp_last_updated":"2024-10-06T12:50:04.290478Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":"abcd","client_cert":"efgh","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":true},{"name":"proxy_username","is_set":true},{"name":"proxy_password","is_set":true},{"name":"username","is_set":true},{"name":"password","is_set":true}],"sles_auth_token":null}'
+      string: '{"pulp_href":"/pulp/api/v3/remotes/rpm/rpm/01975a39-3c30-7a1a-b903-e108acd0097f/","prn":"prn:rpm.rpmremote:01975a39-3c30-7a1a-b903-e108acd0097f","pulp_created":"2025-06-10T14:23:09.873162Z","pulp_last_updated":"2025-06-10T14:23:12.357578Z","name":"test_rpm_remote","url":"http://mirror.example.org/pub/centos/8/BaseOS/x86_64/os/","ca_cert":"-----BEGIN
+        CERTIFICATE-----\nMIICrTCCAZUCFAp0n3Mrg78x+8rAn8x1EGxVhKYrMA0GCSqGSIb3DQEBBQUAMBMx\nETAPBgNVBAMMCHNuYWtlb2lsMB4XDTIwMDcyMjE5MDUwNFoXDTIwMDgyMTE5MDUw\nNFowEzERMA8GA1UEAwwIc25ha2VvaWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\nggEKAoIBAQDKIwKvUax3A/5dODykWzJm0RWjnQAcxfuLbaZcPVDEo/Q8lBkaLEDl\nURAm8e9/uLJjcMyjl2LLlsJYOlcqbjNSwf/5D693IcTRO53C1xWvZ+IGGokweY0m\n8G3SFf5BKmji1OmT8l7iA35Wg0ist/QemQIaSV+n0B/yArdbkfcedPoiudzLOmx6\nEwSCdu9Xl4g29zLzBOWCHuZ0ghNbSWu0cQbkm1syM993BIH31bKdjImUTVg1HlqV\nxi1Y9EVQ3fFE/00DYsgANvSHa3YZsLCgl6gzab5repKP96vjX34JsZi1ayJXXYBz\ncjQPG0e9gpoqHROmKNJj+Up7lySrmSuLAgMBAAEwDQYJKoZIhvcNAQEFBQADggEB\nAI7zqZRPIWdbPWUKFZJNF6GsaBpLR0RkgukPo7vOF5WhOwez2fL+gsh5cffmcTyX\nEOkE53mHkI8z0yg+GtfOqv4GsUJe3VquoFvNYXAVZNGP/p6FFnihIymGbRFHGZSP\ns7g0yVwuI65VkaROtE7YI1pp7y8dPpvkQqAiZvUCC8cYIwYxavZLArVoRiilXz/f\nfuJoP99TyE3mRbLYamvrGDqLGMO8I4JAfgUbaiEEj5nJsUxWkhliSvWPjXuvytsy\nRlL+GSgPFNqTQ1eLKb4boTgM84ngSMeT47BZn2nipFg78ChwU8GOJ7G3sPYjKhIp\nRyEremCPzDNgO6asTRhn9ro=\n-----END
+        CERTIFICATE-----\n","client_cert":"-----BEGIN CERTIFICATE-----\nMIICrTCCAZUCFAp0n3Mrg78x+8rAn8x1EGxVhKYrMA0GCSqGSIb3DQEBBQUAMBMx\nETAPBgNVBAMMCHNuYWtlb2lsMB4XDTIwMDcyMjE5MDUwNFoXDTIwMDgyMTE5MDUw\nNFowEzERMA8GA1UEAwwIc25ha2VvaWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw\nggEKAoIBAQDKIwKvUax3A/5dODykWzJm0RWjnQAcxfuLbaZcPVDEo/Q8lBkaLEDl\nURAm8e9/uLJjcMyjl2LLlsJYOlcqbjNSwf/5D693IcTRO53C1xWvZ+IGGokweY0m\n8G3SFf5BKmji1OmT8l7iA35Wg0ist/QemQIaSV+n0B/yArdbkfcedPoiudzLOmx6\nEwSCdu9Xl4g29zLzBOWCHuZ0ghNbSWu0cQbkm1syM993BIH31bKdjImUTVg1HlqV\nxi1Y9EVQ3fFE/00DYsgANvSHa3YZsLCgl6gzab5repKP96vjX34JsZi1ayJXXYBz\ncjQPG0e9gpoqHROmKNJj+Up7lySrmSuLAgMBAAEwDQYJKoZIhvcNAQEFBQADggEB\nAI7zqZRPIWdbPWUKFZJNF6GsaBpLR0RkgukPo7vOF5WhOwez2fL+gsh5cffmcTyX\nEOkE53mHkI8z0yg+GtfOqv4GsUJe3VquoFvNYXAVZNGP/p6FFnihIymGbRFHGZSP\ns7g0yVwuI65VkaROtE7YI1pp7y8dPpvkQqAiZvUCC8cYIwYxavZLArVoRiilXz/f\nfuJoP99TyE3mRbLYamvrGDqLGMO8I4JAfgUbaiEEj5nJsUxWkhliSvWPjXuvytsy\nRlL+GSgPFNqTQ1eLKb4boTgM84ngSMeT47BZn2nipFg78ChwU8GOJ7G3sPYjKhIp\nRyEremCPzDNgO6asTRhn9ro=\n-----END
+        CERTIFICATE-----\n","tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":true},{"name":"proxy_username","is_set":true},{"name":"proxy_password","is_set":true},{"name":"username","is_set":true},{"name":"password","is_set":true}],"sles_auth_token":null}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -172,15 +178,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '804'
+      - '2871'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 25134b8a81a643398740aa746c21a028
+      - 5c230d5f7a604aa5bac0258d13c4dd01
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sun, 06 Oct 2024 12:50:04 GMT
+      - Tue, 10 Jun 2025 14:23:12 GMT
       Referrer-Policy:
       - same-origin
       Server:

@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - Squeezer/0.0.18-dev
+      - Squeezer/0.2.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/remotes/rpm/rpm/?name=test_rpm_remote&offset=0&limit=1
   response:
@@ -27,11 +27,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 102b796bc5cb4a269c021ef6037c1721
+      - 761ee89792b24775810ada2d91d31ac9
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sun, 06 Oct 2024 12:50:06 GMT
+      - Tue, 10 Jun 2025 14:23:14 GMT
       Referrer-Policy:
       - same-origin
       Server:

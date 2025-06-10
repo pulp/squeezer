@@ -52,9 +52,9 @@
     - name: Verify create repository
       assert:
         that:
-          - result.changed == true
-          - result.repository.name == 'test_rpm_repository'
-          - result.repository.remote == remote_result.remote.pulp_href
+          - 'result.changed == true'
+          - 'result.repository.name == "test_rpm_repository"'
+          - 'result.repository.remote == remote_result.remote.pulp_href'
 
     - name: Create repository (2nd try)
       pulp.squeezer.rpm_repository:
@@ -64,7 +64,7 @@
     - name: Verify create repository (2nd try)
       assert:
         that:
-          - result.changed == false
+          - 'result.changed == false'
 
     - name: Add description to repository
       pulp.squeezer.rpm_repository:
@@ -75,8 +75,8 @@
     - name: Verify add description to repository
       assert:
         that:
-          - result.changed == true
-          - result.repository.description == "repository created via ansible"
+          - 'result.changed == true'
+          - 'result.repository.description == "repository created via ansible"'
 
     - name: Add description to repository (2nd try)
       pulp.squeezer.rpm_repository:
@@ -87,7 +87,7 @@
     - name: Verify add description to repository (2nd try)
       assert:
         that:
-          - result.changed == false
+          - 'result.changed == false'
 
     - name: Add autopublish is true to repository
       pulp.squeezer.rpm_repository:
@@ -98,8 +98,8 @@
     - name: Verify add autopublish is true to repository
       assert:
         that:
-          - result.changed == true
-          - result.repository.autopublish == true
+          - 'result.changed == true'
+          - 'result.repository.autopublish == true'
 
     - name: Add autopublish is true to repository (2nd try)
       pulp.squeezer.rpm_repository:
@@ -110,7 +110,7 @@
     - name: Verify add autopublish is true to repository (2nd try)
       assert:
         that:
-          - result.changed == false
+          - 'result.changed == false'
 
     - name: Add repo_config (dict) to repository
       pulp.squeezer.rpm_repository:
@@ -122,8 +122,8 @@
     - name: Verify add repo_config (dict) to repository
       assert:
         that:
-          - result.changed == true
-          - result.repository.repo_config == '{"gpgcheck": 1}'
+          - 'result.changed == true'
+          - 'result.repository.repo_config == {"gpgcheck": 1}'
 
     - name: Add repo_config (string) to repository (Validate no change)
       pulp.squeezer.rpm_repository:
@@ -134,7 +134,7 @@
     - name: Verify add repo_config (string) to repository (Validate no change)
       assert:
         that:
-          - result.changed == false
+          - 'result.changed == false'
 
     - name: Add retain_package_versions to 3 in repository
       pulp.squeezer.rpm_repository:
@@ -145,8 +145,8 @@
     - name: Verify add retain_package_versions is 3 in repository
       assert:
         that:
-          - result.changed == true
-          - result.repository.retain_package_versions == 3
+          - 'result.changed == true'
+          - 'result.repository.retain_package_versions == 3'
 
     - name: Add retain_package_versions to 3 in repository (2nd try)
       pulp.squeezer.rpm_repository:
@@ -157,7 +157,7 @@
     - name: Verify add retain_package_versions is 3 in repository (2nd try)
       assert:
         that:
-          - result.changed == false
+          - 'result.changed == false'
 
     - name: Remove retain_package_versions to 3 from repository
       pulp.squeezer.rpm_repository:
@@ -168,8 +168,8 @@
     - name: Verify remove retain_package_versions to 3 from repository
       assert:
         that:
-          - result.changed == true
-          - result.repository.retain_package_versions == 0
+          - 'result.changed == true'
+          - 'result.repository.retain_package_versions == 0'
 
     - name: Remove retain_package_versions to 3 from repository (2nd try)
       pulp.squeezer.rpm_repository:
@@ -180,7 +180,7 @@
     - name: Verify remove retain_package_versions to 3 from repository (2nd try)
       assert:
         that:
-          - result.changed == false
+          - 'result.changed == false'
 
     - name: Modify retain_repo_versions to 5 in repository
       pulp.squeezer.rpm_repository:
@@ -191,8 +191,8 @@
     - name: Verify modify retain_repo_versions is 5 in repository
       assert:
         that:
-          - result.changed == true
-          - result.repository.retain_repo_versions == 5
+          - 'result.changed == true'
+          - 'result.repository.retain_repo_versions == 5'
 
     - name: Modify retain_repo_versions to 5 in repository (2nd try)
       pulp.squeezer.rpm_repository:
@@ -203,7 +203,7 @@
     - name: Verify modify retain_repo_versions to 5 in repository (2nd try)
       assert:
         that:
-          - result.changed == false
+          - 'result.changed == false'
 
     - name: Fake modify repository
       pulp.squeezer.rpm_repository:
@@ -213,9 +213,9 @@
     - name: Verify fake modify repository
       assert:
         that:
-          - result.changed == false
-          - result.repository.description == "repository created via ansible"
-          - result.repository.autopublish == true
+          - 'result.changed == false'
+          - 'result.repository.description == "repository created via ansible"'
+          - 'result.repository.autopublish == true'
 
     - name: List repositories
       pulp.squeezer.rpm_repository: {}
@@ -223,8 +223,8 @@
     - name: Verify list repositories
       assert:
         that:
-          - result.changed == false
-          - result.repositories | length >= 1
+          - 'result.changed == false'
+          - 'result.repositories | length >= 1'
 
     - name: Read repository
       pulp.squeezer.rpm_repository:
@@ -233,11 +233,11 @@
     - name: Verify read repository
       assert:
         that:
-          - result.changed == false
-          - result.repository.name == 'test_rpm_repository'
-          - result.repository.description == "repository created via ansible"
-          - result.repository.autopublish == true
-          - result.repository.remote == remote_result.remote.pulp_href
+          - 'result.changed == false'
+          - 'result.repository.name == "test_rpm_repository"'
+          - 'result.repository.description == "repository created via ansible"'
+          - 'result.repository.autopublish == true'
+          - 'result.repository.remote == remote_result.remote.pulp_href'
 
     - name: Remove description from repository
       pulp.squeezer.rpm_repository:
@@ -248,8 +248,8 @@
     - name: Verify remove description from repository
       assert:
         that:
-          - result.changed == true
-          - not result.repository.description
+          - 'result.changed == true'
+          - 'not result.repository.description'
 
     - name: Remove description from repository (2nd try)
       pulp.squeezer.rpm_repository:
@@ -260,7 +260,7 @@
     - name: Verify remove description from repository (2nd try)
       assert:
         that:
-          - result.changed == false
+          - 'result.changed == false'
 
     - name: Remove autopublish is true from repository
       pulp.squeezer.rpm_repository:
@@ -271,8 +271,8 @@
     - name: Verify remove autopublish is true from repository
       assert:
         that:
-          - result.changed == true
-          - result.repository.autopublish == false
+          - 'result.changed == true'
+          - 'result.repository.autopublish == false'
 
     - name: Remove autopublish is true from repository (2nd try)
       pulp.squeezer.rpm_repository:
@@ -283,7 +283,7 @@
     - name: Verify remove autopublish is true from repository (2nd try)
       assert:
         that:
-          - result.changed == false
+          - 'result.changed == false'
 
     - name: Delete repository
       pulp.squeezer.rpm_repository:
@@ -293,8 +293,8 @@
     - name: Verify delete repository
       assert:
         that:
-          - result.changed == true
-          - not result.repository
+          - 'result.changed == true'
+          - 'not result.repository'
 
     - name: Delete repository (2nd try)
       pulp.squeezer.rpm_repository:
@@ -304,7 +304,7 @@
     - name: Verify delete repository (2nd try)
       assert:
         that:
-          - result.changed == false
+          - 'result.changed == false'
 
 - hosts: localhost
   gather_facts: false
