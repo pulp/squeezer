@@ -62,6 +62,18 @@
           - result.changed == false
           - result.repository_version is match("/pulp/api/v3/repositories/file/file/.*/versions/1/")
 
+    - name: Sync file_remote into repository with mirror=true
+      pulp.squeezer.file_sync:
+        remote: test_file_remote
+        repository: test_file_repository
+        mirror: true
+      register: result
+    - name: Verify sync file_remote into repository mirror=true
+      assert:
+        that:
+          - result.changed == false
+          - result.repository_version is match("/pulp/api/v3/repositories/file/file/.*/versions/1/")
+
     - name: Dump repository
       pulp.squeezer.file_repository:
         name: test_file_repository

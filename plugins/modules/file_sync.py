@@ -22,6 +22,13 @@ options:
       - Name of the remote to synchronize with
     type: str
     required: false
+  mirror:
+    description:
+      - Whether to synchronize in mirror mode.
+    type: bool
+    required: false
+    default: false
+    version_added: "0.2.0"
 extends_documentation_fragment:
   - pulp.squeezer.pulp
 author:
@@ -71,6 +78,7 @@ def main():
         argument_spec={
             "repository": {"required": True},
             "remote": {"required": False},
+            "mirror": {"type": "bool", "default": False},
         },
     ) as module:
         repository_ctx = PulpFileRepositoryContext(
@@ -90,6 +98,7 @@ def main():
             )
             payload["remote"] = remote_ctx
 
+        payload["mirror"] = module.params["mirror"]
         repository_version = repository["latest_version_href"]
         # In check_mode, assume nothing changed
         if not module.check_mode:
