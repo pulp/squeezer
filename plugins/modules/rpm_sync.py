@@ -44,6 +44,8 @@ options:
     type: bool
     required: false
     default: true
+  timeout:
+    default: 3600
 
 extends_documentation_fragment:
   - pulp.squeezer.pulp
@@ -106,6 +108,7 @@ def main():
                 "choices": ["srpm", "treeinfo"],
             },
             "optimize": {"type": "bool", "default": True},
+            "timeout": {"type": "int", "default": 3600},
         },
     ) as module:
         repository_ctx = PulpRpmRepositoryContext(
