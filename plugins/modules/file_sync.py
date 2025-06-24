@@ -29,6 +29,8 @@ options:
     required: false
     default: false
     version_added: "0.2.0"
+  timeout:
+    default: 3600
 extends_documentation_fragment:
   - pulp.squeezer.pulp
 author:
@@ -79,6 +81,7 @@ def main():
             "repository": {"required": True},
             "remote": {"required": False},
             "mirror": {"type": "bool", "default": False},
+            "timeout": {"type": "int", "default": 3600},
         },
     ) as module:
         repository_ctx = PulpFileRepositoryContext(
