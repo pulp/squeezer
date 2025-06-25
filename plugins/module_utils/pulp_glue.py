@@ -56,7 +56,7 @@ class PulpAnsibleModule(AnsibleModule):
                 "fallback": (env_fallback, ["SQUEEZER_VALIDATE_CERTS"]),
             },
             "refresh_api_cache": {"type": "bool", "default": False},
-            "timeout": {"type": "int", "default": 10},
+            "timeout": {"type": "int", "default": 3600},
         }
         argument_spec.update(kwargs.pop("argument_spec", {}))
         if not kwargs.pop("no_auth", False):

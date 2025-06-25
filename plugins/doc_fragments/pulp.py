@@ -56,7 +56,7 @@ options:
     description:
       - Time in seconds to wait for tasks.
     type: int
-    default: 10
+    default: 3600
 """
 
     ENTITY_STATE = r"""
