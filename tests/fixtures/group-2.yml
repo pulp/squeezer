@@ -1,0 +1,48 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/groups/?offset=0&limit=1000
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"name":"test_group","pulp_href":"/pulp/api/v3/groups/5/","prn":"prn:core.group:5","id":5}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '142'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 2f5c61c50d0845c3b15be15526d7a9a6
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Mon, 14 Jul 2025 13:07:57 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+version: 1

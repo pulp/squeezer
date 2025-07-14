@@ -25,6 +25,7 @@ action_groups:
   - file_remote
   - file_repository
   - file_sync
+  - group
   - purge_tasks
   - python_distribution
   - python_publication

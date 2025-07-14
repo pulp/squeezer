@@ -67,7 +67,7 @@ EXAMPLES = r"""
 
 RETURN = r"""
   users:
-    description: List of x509 cert guards
+    description: List of users
     type: list
     returned: when no user is given
   user:

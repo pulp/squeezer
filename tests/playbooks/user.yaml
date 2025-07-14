@@ -92,12 +92,12 @@
         that:
           - "result.changed == false"
 
-    - name: "Show users"
+    - name: "Show user"
       pulp.squeezer.user:
         user:
           username: "test_user"
       register: "result"
-    - name: "Verify show users"
+    - name: "Verify show user"
       assert:
         that:
           - "result.changed == false"
