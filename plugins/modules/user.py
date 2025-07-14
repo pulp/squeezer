@@ -46,6 +46,11 @@ options:
           - Whether the user belongs to the staff
           - This django attribute has no effect on pulp operations
         type: bool
+      groups:
+        description:
+          - List of groups the user should be in
+        type: list
+        elements: str
 extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp
@@ -82,16 +87,50 @@ import traceback
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpEntityAnsibleModule
 
 try:
-    from pulp_glue.core.context import PulpUserContext
+    from pulp_glue.core.context import PulpGroupContext, PulpGroupUserContext, PulpUserContext
 
     PULP_GLUE_IMPORT_ERR = None
 except ImportError:
     PULP_GLUE_IMPORT_ERR = traceback.format_exc()
     PulpUserContext = None
+    PulpGroupContext = None
+    PulpGroupUserContext = None
+
+
+class PulpUserAnsibleModule(PulpEntityAnsibleModule):
+    def process_converge(self, desired_entity, defaults=None):
+        # Ideally glue would do this for us...
+        groups = desired_entity and desired_entity.pop("groups", None)
+        changed, before, after = super().process_converge(desired_entity, defaults=defaults)
+        if self.check_mode and after is not None:
+            # Fake the groups.
+            after.setdefault("groups", [])
+        if groups is not None:
+            desired_groups = set(groups)
+            actual_groups = {g["name"] for g in after["groups"]}
+            missing_groups = desired_groups - actual_groups
+            superfluous_groups = actual_groups - desired_groups
+            for group in missing_groups:
+                group_ctx = PulpGroupContext(self.pulp_ctx, entity={"name": group})
+                # Apparently pulp_glue did never implement this.
+                # group_ctx.add_user(after["username"])
+                # ---8<--- Workaround ----8<----
+                group_user_ctx = PulpGroupUserContext(self.pulp_ctx, group_ctx)
+                group_user_ctx.create(body={"username": self.context.entity["username"]})
+                # ---8<-------8<----
+                after["groups"].append(group_ctx.entity)
+                changed = True
+            for group in superfluous_groups:
+                group_ctx = PulpGroupContext(self.pulp_ctx, entity={"name": group})
+                group_ctx.remove_user(self.context)
+                after["groups"] = [g for g in after["groups"] if g["name"] != group]
+                changed = True
+
+        return changed, before, after
 
 
 def main():
-    with PulpEntityAnsibleModule(
+    with PulpUserAnsibleModule(
         context_class=PulpUserContext,
         entity_singular="user",
         entity_plural="users",
@@ -107,6 +146,7 @@ def main():
                     "email": {},
                     "is_active": {"type": "bool"},
                     "is_staff": {"type": "bool"},
+                    "groups": {"type": "list", "elements": "str"},
                 },
             }
         },
@@ -117,7 +157,7 @@ def main():
         desired_attributes = {}
         if user is not None:
             for key, value in user.items():
-                if key != "username" and value is not None:
+                if key not in ["username"] and value is not None:
                     desired_attributes[key] = value
 
         module.process(natural_key, desired_attributes)

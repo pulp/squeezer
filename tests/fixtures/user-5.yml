@@ -14,7 +14,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/users/?username=test_user&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/users/16/","prn":"prn:auth.user:16","id":16,"username":"test_user","first_name":"Test","last_name":"Unit","email":"test@example.org","is_staff":false,"is_active":true,"date_joined":"2025-07-14T10:20:56.510929Z","groups":[],"hidden_fields":[{"name":"password","is_set":true}]}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/users/42/","prn":"prn:auth.user:42","id":42,"username":"test_user","first_name":"Test","last_name":"Unit","email":"test@example.org","is_staff":false,"is_active":true,"date_joined":"2025-07-14T15:26:05.124983Z","groups":[{"name":"test_group2","pulp_href":"/pulp/api/v3/groups/16/","prn":"prn:auth.group:16"}],"hidden_fields":[{"name":"password","is_set":true}]}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -23,15 +23,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '354'
+      - '440'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 757fe76fc2324ddeac369d6379e3828d
+      - 5e79be424299454ea1ee26ff481fb266
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Mon, 14 Jul 2025 10:20:58 GMT
+      - Mon, 14 Jul 2025 15:26:07 GMT
       Referrer-Policy:
       - same-origin
       Server:

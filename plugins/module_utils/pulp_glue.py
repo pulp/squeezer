@@ -184,7 +184,7 @@ class PulpEntityAnsibleModule(PulpAnsibleModule):
                 self.process_special(desired_attributes, defaults=defaults),
             )
             return
-        changed, before, after = self.context.converge(desired_entity, defaults=defaults)
+        changed, before, after = self.process_converge(desired_entity, defaults=defaults)
         if before is not None:
             before = self.represent(before)
         if after is not None:
@@ -194,6 +194,9 @@ class PulpEntityAnsibleModule(PulpAnsibleModule):
             self.record_diff_state(before)
             self.record_diff_state(after)
         self.set_result(self.entity_singular, after)
+
+    def process_converge(self, desired_entity, defaults=None):
+        return self.context.converge(desired_entity, defaults=defaults)
 
     def process_info(self, natural_key, desired_attributes):
         if any((value is not None for value in desired_attributes.values())):

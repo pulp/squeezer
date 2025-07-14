@@ -63896,11 +63896,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - a50b5c78e9764653801fd3f9cd767f60
+      - 888ea93a62c8453ba76516367a2a73de
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Mon, 14 Jul 2025 10:20:56 GMT
+      - Mon, 14 Jul 2025 15:26:04 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -63924,7 +63924,7 @@ interactions:
       Connection:
       - keep-alive
       Correlation-Id:
-      - a50b5c78e9764653801fd3f9cd767f60
+      - 888ea93a62c8453ba76516367a2a73de
       User-Agent:
       - Squeezer/0.2.0-dev
     method: GET
@@ -63944,11 +63944,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - a50b5c78e9764653801fd3f9cd767f60
+      - 888ea93a62c8453ba76516367a2a73de
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Mon, 14 Jul 2025 10:20:56 GMT
+      - Mon, 14 Jul 2025 15:26:05 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -63975,7 +63975,7 @@ interactions:
       Content-Length:
       - '97'
       Correlation-Id:
-      - a50b5c78e9764653801fd3f9cd767f60
+      - 888ea93a62c8453ba76516367a2a73de
       User-Agent:
       - Squeezer/0.2.0-dev
       content-type:
@@ -63984,7 +63984,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/users/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/users/16/","prn":"prn:auth.user:16","id":16,"username":"test_user","first_name":"Test","last_name":"User","email":"test@example.org","is_staff":false,"is_active":true,"date_joined":"2025-07-14T10:20:56.510929Z","groups":[],"hidden_fields":[{"name":"password","is_set":true}]}'
+      string: '{"pulp_href":"/pulp/api/v3/users/42/","prn":"prn:auth.user:42","id":42,"username":"test_user","first_name":"Test","last_name":"User","email":"test@example.org","is_staff":false,"is_active":true,"date_joined":"2025-07-14T15:26:05.124983Z","groups":[],"hidden_fields":[{"name":"password","is_set":true}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -63997,13 +63997,113 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - a50b5c78e9764653801fd3f9cd767f60
+      - 888ea93a62c8453ba76516367a2a73de
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Mon, 14 Jul 2025 10:20:56 GMT
+      - Mon, 14 Jul 2025 15:26:05 GMT
       Location:
-      - /pulp/api/v3/users/16/
+      - /pulp/api/v3/users/42/
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Correlation-Id:
+      - 888ea93a62c8453ba76516367a2a73de
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/groups/?name=test_group1&offset=0&limit=1
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"name":"test_group1","pulp_href":"/pulp/api/v3/groups/15/","prn":"prn:core.group:15","id":15}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '146'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 888ea93a62c8453ba76516367a2a73de
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Mon, 14 Jul 2025 15:26:05 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"username": "test_user"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '25'
+      Correlation-Id:
+      - 888ea93a62c8453ba76516367a2a73de
+      User-Agent:
+      - Squeezer/0.2.0-dev
+      content-type:
+      - application/json
+    method: POST
+    uri: http://pulp.example.org/pulp/api/v3/groups/15/users/
+  response:
+    body:
+      string: '{"username":"test_user","pulp_href":"/pulp/api/v3/users/42/","prn":"prn:auth.user:42"}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '86'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 888ea93a62c8453ba76516367a2a73de
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Mon, 14 Jul 2025 15:26:05 GMT
       Referrer-Policy:
       - same-origin
       Server:
