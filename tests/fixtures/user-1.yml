@@ -1,0 +1,48 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/users/?username=test_user&offset=0&limit=1
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/users/16/","prn":"prn:auth.user:16","id":16,"username":"test_user","first_name":"Test","last_name":"User","email":"test@example.org","is_staff":false,"is_active":true,"date_joined":"2025-07-14T10:20:56.510929Z","groups":[],"hidden_fields":[{"name":"password","is_set":true}]}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '354'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - aeadd4b1a9014acab51e601ac8cc6880
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Mon, 14 Jul 2025 10:20:56 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+version: 1
