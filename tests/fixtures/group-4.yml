@@ -1,0 +1,96 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/groups/?name=test_group&offset=0&limit=1
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"name":"test_group","pulp_href":"/pulp/api/v3/groups/5/","prn":"prn:core.group:5","id":5}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '142'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 2d2fb78f08984e8a87799859c0cb4db9
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Mon, 14 Jul 2025 13:07:58 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Correlation-Id:
+      - 2d2fb78f08984e8a87799859c0cb4db9
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: DELETE
+    uri: http://pulp.example.org/pulp/api/v3/groups/5/
+  response:
+    body:
+      string: ''
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Correlation-ID:
+      - 2d2fb78f08984e8a87799859c0cb4db9
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Mon, 14 Jul 2025 13:07:58 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 204
+      message: No Content
+version: 1

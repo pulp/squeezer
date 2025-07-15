@@ -1,0 +1,165 @@
+---
+- hosts: "localhost"
+  gather_facts: false
+  vars_files:
+    - "vars/server.yaml"
+  module_defaults: &pulp_module_defaults
+    pulp.squeezer.user: &pulp_connection_details
+      pulp_url: "{{ pulp_url }}"
+      username: "{{ pulp_username }}"
+      password: "{{ pulp_password }}"
+      validate_certs: "{{ pulp_validate_certs | default(true) }}"
+    pulp.squeezer.group:
+      <<: *pulp_connection_details
+  tasks:
+    - name: "Make user absent"
+      pulp.squeezer.user:
+        user:
+          username: "test_user"
+        state: "absent"
+    - name: "Create a test group"
+      pulp.squeezer.group:
+        group:
+          name: "{{ item }}"
+        state: "present"
+      loop:
+        - "test_group1"
+        - "test_group2"
+    - name: "Clean openapi cache"
+      file:
+        path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
+        state: "absent"
+
+- hosts: "tests"
+  gather_facts: false
+  vars_files:
+    - "vars/server.yaml"
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: "Create user"
+      pulp.squeezer.user:
+        user:
+          username: "test_user"
+          first_name: "Test"
+          last_name: "User"
+          email: "test@example.org"
+          groups:
+            - "test_group1"
+        state: "present"
+      register: "result"
+    - name: "Verify create user"
+      assert:
+        that:
+          - "result.changed == true"
+          - "result.user.username == 'test_user'"
+          - "result.user.first_name == 'Test'"
+          - "result.user.last_name == 'User'"
+          - "result.user.email == 'test@example.org'"
+          - "result.user.groups|length == 1"
+          - "result.user.groups[0].name == 'test_group1'"
+
+    - name: "Create user (2nd)"
+      pulp.squeezer.user:
+        user:
+          username: "test_user"
+          first_name: "Test"
+          last_name: "User"
+          groups:
+            - "test_group1"
+        state: "present"
+      register: "result"
+    - name: "Verify create user (2nd)"
+      assert:
+        that:
+          - "result.changed == false"
+
+    - name: "Update user"
+      pulp.squeezer.user:
+        user:
+          username: "test_user"
+          last_name: "Unit"
+          groups:
+            - "test_group2"
+        state: "present"
+      register: "result"
+    - name: "Verify update user"
+      assert:
+        that:
+          - "result.changed == true"
+          - "result.user.first_name == 'Test'"
+          - "result.user.last_name == 'Unit'"
+          - "result.user.groups|length == 1"
+          - "result.user.groups[0].name == 'test_group2'"
+
+    - name: "Update user (2nd)"
+      pulp.squeezer.user:
+        user:
+          username: "test_user"
+          last_name: "Unit"
+        state: "present"
+      register: "result"
+    - name: "Verify update user (2nd)"
+      assert:
+        that:
+          - "result.changed == false"
+
+    - name: "List users"
+      pulp.squeezer.user: {}
+      register: "result"
+    - name: "Verify list users"
+      assert:
+        that:
+          - "result.changed == false"
+
+    - name: "Show user"
+      pulp.squeezer.user:
+        user:
+          username: "test_user"
+      register: "result"
+    - name: "Verify show user"
+      assert:
+        that:
+          - "result.changed == false"
+          - "result.user.username == 'test_user'"
+          - "result.user.groups|length == 1"
+          - "result.user.groups[0].name == 'test_group2'"
+
+    - name: "Delete user"
+      pulp.squeezer.user:
+        user:
+          username: "test_user"
+        state: "absent"
+      register: "result"
+    - name: "Verify delete user"
+      assert:
+        that:
+          - "result.changed == true"
+
+    - name: "Delete user (2nd)"
+      pulp.squeezer.user:
+        user:
+          username: "test_user"
+        state: "absent"
+      register: "result"
+    - name: "Verify delete user (2nd)"
+      assert:
+        that:
+          - "result.changed == false"
+
+- hosts: "localhost"
+  gather_facts: false
+  vars_files:
+    - "vars/server.yaml"
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: "Remove test group"
+      pulp.squeezer.group:
+        group:
+          name: "{{ item }}"
+        state: "absent"
+      loop:
+        - "test_group1"
+        - "test_group2"
+...
