@@ -16,14 +16,14 @@
     pulp.squeezer.delete_orphans:
       <<: *pulp_connection_details
   tasks:
-    - name: "Make repository absent"
+    - name: "Make repositories absent"
       pulp.squeezer.file_repository:
         name: "{{ item }}"
         state: "absent"
       loop:
         - "test_file_repository"
         - "test_file_repository2"
-    - name: "Create repository"
+    - name: "Create repositories"
       pulp.squeezer.file_repository:
         name: "{{ item }}"
         state: "present"
@@ -58,9 +58,9 @@
     - name: "Verify create content unit"
       assert:
         that:
-          - result.changed == true
-          - result.content.relative_path == "data/file1.txt"
-          - ansible_check_mode or result.content.sha256 == file1_sha256
+          - "result.changed == true"
+          - "result.content.relative_path == 'data/file1.txt'"
+          - "ansible_check_mode or result.content.sha256 == file1_sha256"
 
     - name: "Create file content unit (2nd try)"
       pulp.squeezer.file_content:
@@ -73,7 +73,7 @@
     - name: "Verify create content unit (2nd try)"
       assert:
         that:
-          - result.changed == false
+          - "result.changed == false"
 
     - name: "Upload file into different repository"
       pulp.squeezer.file_content:
@@ -85,7 +85,7 @@
     - name: "Verify Upload file into different repository"
       assert:
         that:
-          - result.changed == true
+          - "result.changed == true"
 
     - name: "Remove file from other repository"
       pulp.squeezer.file_content:
@@ -98,7 +98,7 @@
     - name: "Verify remove file from other repository"
       assert:
         that:
-          - result.changed == true
+          - "result.changed == true"
 
     - name: "List file content units in repository"
       pulp.squeezer.file_content:
@@ -107,19 +107,19 @@
     - name: "Verify list file content units"
       assert:
         that:
-          - result.changed == false
-          - result.contents | length == 1
-          - result.contents[0].relative_path == "data/file1.txt"
+          - "result.changed == false"
+          - "result.contents | length == 1"
+          - "result.contents[0].relative_path == 'data/file1.txt'"
 
-    - name: "List file content units in repository"
+    - name: "List file content units in other repository"
       pulp.squeezer.file_content:
         repository: "test_file_repository2"
       register: "result"
-    - name: "Verify list file content units"
+    - name: "Verify list file content units in other repository"
       assert:
         that:
-          - result.changed == false
-          - result.contents | length == 0
+          - "result.changed == false"
+          - "result.contents | length == 0"
 
     - name: "List file content units"
       pulp.squeezer.file_content: {}
@@ -127,8 +127,8 @@
     - name: "Verify list file content units"
       assert:
         that:
-          - result.changed == false
-          - result.contents | length >= 1
+          - "result.changed == false"
+          - "result.contents | length >= 1"
 
     - name: "Read file content unit"
       pulp.squeezer.file_content:
@@ -138,6 +138,6 @@
     - name: "Verify read file content unit"
       assert:
         that:
-          - result.changed == false
-          - result.content.sha256 == file1_sha256
+          - "result.changed == false"
+          - "result.content.sha256 == file1_sha256"
 ...

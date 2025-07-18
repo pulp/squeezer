@@ -1,0 +1,96 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?name=test_rpm_repository2&offset=0&limit=1
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/01981d7b-260d-73cc-9aed-7407f3db952c/","prn":"prn:rpm.rpmrepository:01981d7b-260d-73cc-9aed-7407f3db952c","pulp_created":"2025-07-18T12:21:06.702367Z","pulp_last_updated":"2025-07-18T12:21:16.075263Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/01981d7b-260d-73cc-9aed-7407f3db952c/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/01981d7b-260d-73cc-9aed-7407f3db952c/versions/2/","name":"test_rpm_repository2","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"metadata_signing_service":null,"package_signing_service":null,"package_signing_fingerprint":"","retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"sqlite_metadata":false,"repo_config":{},"compression_type":null,"layout":null}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '918'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 8b2930d5a7d64c5d8a85157ee84d0f46
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Fri, 18 Jul 2025 12:21:17 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Correlation-Id:
+      - 8b2930d5a7d64c5d8a85157ee84d0f46
+      User-Agent:
+      - Squeezer/0.2.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/content/rpm/packages/?repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Frpm%2Frpm%2F01981d7b-260d-73cc-9aed-7407f3db952c%2Fversions%2F2%2F&offset=0&limit=1000
+  response:
+    body:
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '52'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 8b2930d5a7d64c5d8a85157ee84d0f46
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Fri, 18 Jul 2025 12:21:18 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+version: 1
