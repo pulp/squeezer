@@ -9,12 +9,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - Squeezer/0.0.17-dev
+      - Squeezer/0.2.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/remotes/file/file/?name=test_file_remote&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/file/file/0191990a-f812-76e8-9afd-8fab40f568a6/","pulp_created":"2024-08-28T12:51:58.611214Z","pulp_last_updated":"2024-08-28T12:51:59.596679Z","name":"test_file_remote","url":"https://example.org/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}]}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/file/file/01981df5-bf28-7eb2-980a-4802a364c8cc/","prn":"prn:file.fileremote:01981df5-bf28-7eb2-980a-4802a364c8cc","pulp_created":"2025-07-18T14:35:01.288714Z","pulp_last_updated":"2025-07-18T14:35:02.099700Z","name":"test_file_remote","url":"https://example.org/file/PULP_MANIFEST","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":[{"x-header-a":"AAA"},{"x-header-b":"BBB"}],"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}]}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -23,15 +23,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '819'
+      - '923'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 5549b97ec5b540329a446c80f403465f
+      - 31c5d7bfaee94b368f50701e6fb97f6c
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Wed, 28 Aug 2024 12:52:01 GMT
+      - Fri, 18 Jul 2025 14:35:03 GMT
       Referrer-Policy:
       - same-origin
       Server:

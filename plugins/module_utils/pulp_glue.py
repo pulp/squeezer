@@ -224,6 +224,10 @@ class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
         argument_spec = {
             "name": {},
             "url": {},
+            "headers": {
+                "type": "list",
+                "elements": "dict",
+            },
             "remote_username": {"no_log": True},
             "remote_password": {"no_log": True},
             "ca_cert": {},
@@ -263,6 +267,7 @@ class PulpRemoteAnsibleModule(PulpEntityAnsibleModule):
                 key: self.params[key]
                 for key in [
                     "url",
+                    "headers",
                     "policy",
                     "tls_validation",
                     "proxy_url",

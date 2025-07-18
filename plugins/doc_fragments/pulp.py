@@ -90,6 +90,12 @@ options:
     description:
       - URL to the upstream repository
     type: str
+  headers:
+    description:
+      - Headers to pass to the remote server.
+        Specified as a list of dictionaries with single entries so keys can be repeated.
+    type: list
+    elements: dict
   remote_username:
     description:
       - The username to authenticate with the remote repository.
