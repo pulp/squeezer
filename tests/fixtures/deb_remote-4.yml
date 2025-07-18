@@ -9,12 +9,13 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - Squeezer/0.1.0-dev
+      - Squeezer/0.2.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/?name=test_deb_remote&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/deb/apt/0194a270-bd55-72ff-83a5-7183858e4221/","prn":"prn:deb.aptremote:0194a270-bd55-72ff-83a5-7183858e4221","pulp_created":"2025-01-26T11:48:05.078088Z","pulp_last_updated":"2025-01-26T11:48:05.979996Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"distributions":"ragnarok","components":"jotunheimr","architectures":"ppc64","sync_sources":false,"sync_udebs":false,"sync_installer":false,"gpgkey":null,"ignore_missing_package_indices":false}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/deb/apt/01981c86-7cd6-76b8-97bc-9d58a4c90063/","prn":"prn:deb.aptremote:01981c86-7cd6-76b8-97bc-9d58a4c90063","pulp_created":"2025-07-18T07:53:52.598516Z","pulp_last_updated":"2025-07-18T07:53:53.430594Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"distributions":"ragnarok","components":"asgard
+        jotunheimr","architectures":"arm ppc64","sync_sources":false,"sync_udebs":false,"sync_installer":false,"gpgkey":null,"ignore_missing_package_indices":false}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -23,15 +24,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '1058'
+      - '1069'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 85a556d8e2bc4b08a7e951e5a807edaa
+      - 3b7cfea8931747adb8ad5aacc7be2aaa
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sun, 26 Jan 2025 11:48:06 GMT
+      - Fri, 18 Jul 2025 07:53:54 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -57,16 +58,16 @@ interactions:
       Content-Length:
       - '66'
       Correlation-Id:
-      - 85a556d8e2bc4b08a7e951e5a807edaa
+      - 3b7cfea8931747adb8ad5aacc7be2aaa
       User-Agent:
-      - Squeezer/0.1.0-dev
+      - Squeezer/0.2.0-dev
       content-type:
       - application/json
     method: PATCH
-    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/0194a270-bd55-72ff-83a5-7183858e4221/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/01981c86-7cd6-76b8-97bc-9d58a4c90063/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/0194a270-c533-7542-b04c-9c4edac0cbaa/"}'
+      string: '{"task":"/pulp/api/v3/tasks/01981c86-83c1-7f3a-869d-f77eb1ca1723/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -79,11 +80,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 85a556d8e2bc4b08a7e951e5a807edaa
+      - 3b7cfea8931747adb8ad5aacc7be2aaa
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sun, 26 Jan 2025 11:48:07 GMT
+      - Fri, 18 Jul 2025 07:53:54 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -107,14 +108,14 @@ interactions:
       Connection:
       - keep-alive
       Correlation-Id:
-      - 85a556d8e2bc4b08a7e951e5a807edaa
+      - 3b7cfea8931747adb8ad5aacc7be2aaa
       User-Agent:
-      - Squeezer/0.1.0-dev
+      - Squeezer/0.2.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/0194a270-c533-7542-b04c-9c4edac0cbaa/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/01981c86-83c1-7f3a-869d-f77eb1ca1723/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/0194a270-c533-7542-b04c-9c4edac0cbaa/","prn":"prn:core.task:0194a270-c533-7542-b04c-9c4edac0cbaa","pulp_created":"2025-01-26T11:48:07.091393Z","pulp_last_updated":"2025-01-26T11:48:07.091403Z","state":"completed","name":"pulpcore.app.tasks.base.general_update","logging_cid":"85a556d8e2bc4b08a7e951e5a807edaa","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2025-01-26T11:48:07.100978Z","started_at":"2025-01-26T11:48:07.101712Z","finished_at":"2025-01-26T11:48:07.106459Z","error":null,"worker":null,"parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["prn:deb.aptremote:0194a270-bd55-72ff-83a5-7183858e4221","shared:prn:core.domain:0194a25b-8114-7dfe-8f64-04c6d8e26465"]}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/01981c86-83c1-7f3a-869d-f77eb1ca1723/","prn":"prn:core.task:01981c86-83c1-7f3a-869d-f77eb1ca1723","pulp_created":"2025-07-18T07:53:54.369846Z","pulp_last_updated":"2025-07-18T07:53:54.369856Z","state":"completed","name":"pulpcore.app.tasks.base.ageneral_update","logging_cid":"3b7cfea8931747adb8ad5aacc7be2aaa","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2025-07-18T07:53:54.376421Z","started_at":"2025-07-18T07:53:54.377166Z","finished_at":"2025-07-18T07:53:54.382117Z","error":null,"worker":null,"parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["prn:deb.aptremote:01981c86-7cd6-76b8-97bc-9d58a4c90063","shared:prn:core.domain:7d8c4e1b-94d4-4d3f-89b7-4a67e6ba61ca"]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -123,15 +124,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '787'
+      - '788'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 85a556d8e2bc4b08a7e951e5a807edaa
+      - 3b7cfea8931747adb8ad5aacc7be2aaa
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sun, 26 Jan 2025 11:48:07 GMT
+      - Fri, 18 Jul 2025 07:53:54 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -155,14 +156,15 @@ interactions:
       Connection:
       - keep-alive
       Correlation-Id:
-      - 85a556d8e2bc4b08a7e951e5a807edaa
+      - 3b7cfea8931747adb8ad5aacc7be2aaa
       User-Agent:
-      - Squeezer/0.1.0-dev
+      - Squeezer/0.2.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/0194a270-bd55-72ff-83a5-7183858e4221/
+    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/01981c86-7cd6-76b8-97bc-9d58a4c90063/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/remotes/deb/apt/0194a270-bd55-72ff-83a5-7183858e4221/","prn":"prn:deb.aptremote:0194a270-bd55-72ff-83a5-7183858e4221","pulp_created":"2025-01-26T11:48:05.078088Z","pulp_last_updated":"2025-01-26T11:48:07.104908Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"distributions":"ragnarok","components":"jotunheimr","architectures":"ppc64","sync_sources":true,"sync_udebs":true,"sync_installer":true,"gpgkey":null,"ignore_missing_package_indices":false}'
+      string: '{"pulp_href":"/pulp/api/v3/remotes/deb/apt/01981c86-7cd6-76b8-97bc-9d58a4c90063/","prn":"prn:deb.aptremote:01981c86-7cd6-76b8-97bc-9d58a4c90063","pulp_created":"2025-07-18T07:53:52.598516Z","pulp_last_updated":"2025-07-18T07:53:54.380730Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"distributions":"ragnarok","components":"asgard
+        jotunheimr","architectures":"arm ppc64","sync_sources":true,"sync_udebs":true,"sync_installer":true,"gpgkey":null,"ignore_missing_package_indices":false}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -171,15 +173,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '1003'
+      - '1014'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 85a556d8e2bc4b08a7e951e5a807edaa
+      - 3b7cfea8931747adb8ad5aacc7be2aaa
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sun, 26 Jan 2025 11:48:07 GMT
+      - Fri, 18 Jul 2025 07:53:54 GMT
       Referrer-Policy:
       - same-origin
       Server:

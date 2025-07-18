@@ -1,8 +1,8 @@
 ---
-- hosts: localhost
+- hosts: "localhost"
   gather_facts: false
   vars_files:
-    - vars/server.yaml
+    - "vars/server.yaml"
   module_defaults: &pulp_module_defaults
     pulp.squeezer.deb_remote: &pulp_connection_details
       pulp_url: "{{ pulp_url }}"
@@ -10,159 +10,161 @@
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
   tasks:
-    - name: Make remote absent
+    - name: "Make remote absent"
       pulp.squeezer.deb_remote:
-        name: test_deb_remote
-        state: absent
-    - name: Clean openapi cache
+        name: "test_deb_remote"
+        state: "absent"
+    - name: "Clean openapi cache"
       file:
         path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
-        state: absent
+        state: "absent"
 
-- hosts: tests
+- hosts: "tests"
   gather_facts: false
   vars_files:
-    - vars/server.yaml
+    - "vars/server.yaml"
   module_defaults:
     <<: *pulp_module_defaults
   tasks:
-    - name: Create remote
+    - name: "Create remote"
       pulp.squeezer.deb_remote:
-        name: test_deb_remote
+        name: "test_deb_remote"
         url: "https://example.org/deb/"
         # Seems like strings are converted to lists of one by ansible:
-        architectures: ppc64
+        architectures: "arm ppc64"
         components:
-          - jotunheimr
+          - "asgard"
+          - "jotunheimr"
         distributions:
-          - ragnarok
+          - "ragnarok"
         proxy_url: "http://proxy.int:3128"
-        state: present
-      register: result
-    - name: Verify create remote
+        state: "present"
+      register: "result"
+    - name: "Verify create remote"
       assert:
         that:
-          - result.changed == true
-          - result.remote.name == "test_deb_remote"
-          - result.remote.url == "https://example.org/deb/"
-          - result.remote.architectures == "ppc64"
-          - result.remote.components == "jotunheimr"
-          - result.remote.distributions == "ragnarok"
-          - result.remote.proxy_url == "http://proxy.int:3128"
+          - "result.changed == true"
+          - "result.remote.name == 'test_deb_remote'"
+          - "result.remote.url == 'https://example.org/deb/'"
+          - "result.remote.architectures == 'arm ppc64'"
+          - "result.remote.components == 'asgard jotunheimr'"
+          - "result.remote.distributions == 'ragnarok'"
+          - "result.remote.proxy_url == 'http://proxy.int:3128'"
 
-    - name: Create remote (2nd try)
+    - name: "Create remote (2nd try)"
       pulp.squeezer.deb_remote:
-        name: test_deb_remote
+        name: "test_deb_remote"
         url: "https://example.org/deb/"
         architectures:
-          - ppc64
-        components: jotunheimr
-        distributions: ragnarok
+          - "arm"
+          - "ppc64"
+        components: "asgard jotunheimr"
+        distributions: "ragnarok"
         proxy_url: "http://proxy.int:3128"
-        state: present
-      register: result
-    - name: Verify create remote (2nd try)
+        state: "present"
+      register: "result"
+    - name: "Verify create remote (2nd try)"
       assert:
         that:
-          - result.changed == false
+          - "result.changed == false"
 
-    - name: Modify remote
+    - name: "Modify remote"
       pulp.squeezer.deb_remote:
-        name: test_deb_remote
-        policy: on_demand
+        name: "test_deb_remote"
+        policy: "on_demand"
         tls_validation: false
-        state: present
-      register: result
-    - name: Verify modify remote
+        state: "present"
+      register: "result"
+    - name: "Verify modify remote"
       assert:
         that:
-          - result.changed == true
-          - result.remote.policy == "on_demand"
-          - result.remote.tls_validation == false
+          - "result.changed == true"
+          - "result.remote.policy == 'on_demand'"
+          - "result.remote.tls_validation == false"
 
-    - name: Modify remote (2nd try)
+    - name: "Modify remote (2nd try)"
       pulp.squeezer.deb_remote:
-        name: test_deb_remote
-        policy: on_demand
+        name: "test_deb_remote"
+        policy: "on_demand"
         tls_validation: false
-        state: present
-      register: result
-    - name: Verify modify remote (2nd try)
+        state: "present"
+      register: "result"
+    - name: "Verify modify remote (2nd try)"
       assert:
         that:
-          - result.changed == false
+          - "result.changed == false"
 
-    - name: Modify sync_installer, sync_sources, and sync_udebs on remote
+    - name: "Modify sync_installer, sync_sources, and sync_udebs on remote"
       pulp.squeezer.deb_remote:
-        name: test_deb_remote
+        name: "test_deb_remote"
         sync_installer: true
         sync_sources: true
         sync_udebs: true
-        state: present
-      register: result
-    - name: Verify modify sync_installer
+        state: "present"
+      register: "result"
+    - name: "Verify modify sync_installer"
       assert:
         that:
-          - result.changed == true
-          - result.remote.sync_installer == true
+          - "result.changed == true"
+          - "result.remote.sync_installer == true"
 
-    - name: Modify sync_installer, sync_sources, and sync_udebs on remote (2nd try)
+    - name: "Modify sync_installer, sync_sources, and sync_udebs on remote (2nd try)"
       pulp.squeezer.deb_remote:
-        name: test_deb_remote
+        name: "test_deb_remote"
         sync_installer: true
         sync_sources: true
         sync_udebs: true
-        state: present
-      register: result
-    - name: Verify modify sync_installer, sync_sources, and sync_udebs on remote (2nd try)
+        state: "present"
+      register: "result"
+    - name: "Verify modify sync_installer, sync_sources, and sync_udebs on remote (2nd try)"
       assert:
         that:
-          - result.changed == false
+          - "result.changed == false"
 
-    - name: List remotes
+    - name: "List remotes"
       pulp.squeezer.deb_remote: {}
-      register: result
-    - name: Verify list remotes
+      register: "result"
+    - name: "Verify list remotes"
       assert:
         that:
-          - result.changed == false
-          - result.remotes | length >= 1
-          - result.remotes | selectattr('name', 'match', 'test_deb_remote') | list | length == 1
+          - "result.changed == false"
+          - "result.remotes | length >= 1"
+          - "result.remotes | selectattr('name', 'match', 'test_deb_remote') | list | length == 1"
 
-    - name: Read remote
+    - name: "Read remote"
       pulp.squeezer.deb_remote:
-        name: test_deb_remote
-      register: result
-    - name: Verify read remote
+        name: "test_deb_remote"
+      register: "result"
+    - name: "Verify read remote"
       assert:
         that:
-          - result.changed == false
-          - result.remote.name == "test_deb_remote"
-          - result.remote.url == "https://example.org/deb/"
-          - result.remote.architectures == "ppc64"
-          - result.remote.components == "jotunheimr"
-          - result.remote.distributions == "ragnarok"
-          - result.remote.proxy_url == "http://proxy.int:3128"
-          - result.remote.tls_validation == false
+          - "result.changed == false"
+          - "result.remote.name == 'test_deb_remote'"
+          - "result.remote.url == 'https://example.org/deb/'"
+          - "result.remote.architectures == 'arm ppc64'"
+          - "result.remote.components == 'asgard jotunheimr'"
+          - "result.remote.distributions == 'ragnarok'"
+          - "result.remote.proxy_url == 'http://proxy.int:3128'"
+          - "result.remote.tls_validation == false"
 
-    - name: Delete remote
+    - name: "Delete remote"
       pulp.squeezer.deb_remote:
-        name: test_deb_remote
-        state: absent
-      register: result
-    - name: Verify delete remote
+        name: "test_deb_remote"
+        state: "absent"
+      register: "result"
+    - name: "Verify delete remote"
       assert:
         that:
-          - result.changed == true
-          - not result.remote
+          - "result.changed == true"
+          - "not result.remote"
 
-    - name: Delete remote (2nd try)
+    - name: "Delete remote (2nd try)"
       pulp.squeezer.deb_remote:
-        name: test_deb_remote
-        state: absent
-      register: result
-    - name: Verify delete remote (2nd try)
+        name: "test_deb_remote"
+        state: "absent"
+      register: "result"
+    - name: "Verify delete remote (2nd try)"
       assert:
         that:
-          - result.changed == false
+          - "result.changed == false"
 ...
