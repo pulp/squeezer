@@ -9,11 +9,27 @@
       username: "{{ pulp_username }}"
       password: "{{ pulp_password }}"
       validate_certs: "{{ pulp_validate_certs | default(true) }}"
+    pulp.squeezer.deb_remote:
+      <<: *pulp_connection_details
   tasks:
     - name: Make repository absent
       pulp.squeezer.deb_repository:
         name: test_deb_repository
         state: absent
+    - name: Make remote absent
+      pulp.squeezer.deb_remote:
+        name: test_deb_remote
+        state: absent
+    - name: Make remote present
+      pulp.squeezer.deb_remote:
+        name: test_deb_remote
+        url: "{{ pulp_fixtures_url }}/debian/"
+        architectures: ppc64
+        components:
+          - jotunheimr
+        distributions:
+          - ragnarok
+        state: present
     - name: Clean openapi cache
       file:
         path: "{{ lookup('env', 'XDG_CACHE_HOME') | default('~/.cache') }}/squeezer"
@@ -26,6 +42,11 @@
   module_defaults:
     <<: *pulp_module_defaults
   tasks:
+    - name: Retrieve remote
+      pulp.squeezer.deb_remote:
+        name: test_deb_remote
+      register: remote_result
+
     - name: Create repository
       pulp.squeezer.deb_repository:
         name: test_deb_repository
@@ -67,6 +88,30 @@
         state: present
       register: result
     - name: Verify add description to repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Add remote to repository
+      pulp.squeezer.deb_repository:
+        name: test_deb_repository
+        remote: test_deb_remote
+        state: present
+      register: result
+    - name: Verify modify the repository with a remote
+      assert:
+        that:
+          - result.changed == true
+          - result.repository.description == "repository created via ansible"
+          - result.repository.remote.startswith('/pulp/api/v3/remotes/deb/apt/')
+
+    - name: Add remote to repository (2nd try)
+      pulp.squeezer.deb_repository:
+        name: test_deb_repository
+        remote: test_deb_remote
+        state: present
+      register: result
+    - name: Verify modify the repository with a remote (2nd try)
       assert:
         that:
           - result.changed == false
@@ -125,6 +170,29 @@
         that:
           - result.changed == false
 
+    - name: Remove remote from repository
+      pulp.squeezer.deb_repository:
+        name: test_deb_repository
+        remote: ""
+        state: present
+      register: result
+    - name: Verify remove remote from repository
+      assert:
+        that:
+          - result.changed == true
+          - not result.repository.remote
+
+    - name: Remove remote from repository (2nd try)
+      pulp.squeezer.deb_repository:
+        name: test_deb_repository
+        remote: ""
+        state: present
+      register: result
+    - name: Verify remove remote from repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
     - name: Delete repository
       pulp.squeezer.deb_repository:
         name: test_deb_repository
@@ -145,4 +213,17 @@
       assert:
         that:
           - result.changed == false
+
+- hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars/server.yaml
+  module_defaults:
+    <<: *pulp_module_defaults
+  tasks:
+    - name: Make remote absent
+      pulp.squeezer.deb_remote:
+        name: test_deb_remote
+        state: absent
+      register: result
 ...
