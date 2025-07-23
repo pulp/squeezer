@@ -2,19 +2,21 @@ interactions:
 - request:
     body: null
     headers:
-      Accept:
-      - application/json
+      ? !!python/object/apply:multidict._multidict.istr
+      - Accept
+      : - application/json
       Accept-Encoding:
       - gzip, deflate
       Connection:
       - keep-alive
-      User-Agent:
-      - Squeezer/0.1.0-dev
+      ? !!python/object/apply:multidict._multidict.istr
+      - User-Agent
+      : - Squeezer/0.2.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/0194a2a7-599f-71a6-ab5b-32eacd760782/","prn":"prn:deb.aptrepository:0194a2a7-599f-71a6-ab5b-32eacd760782","pulp_created":"2025-01-26T12:47:44.032982Z","pulp_last_updated":"2025-01-26T12:47:44.035818Z","versions_href":"/pulp/api/v3/repositories/deb/apt/0194a2a7-599f-71a6-ab5b-32eacd760782/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/0194a2a7-599f-71a6-ab5b-32eacd760782/versions/0/","name":"test_deb_repository","description":null,"retain_repo_versions":null,"remote":null,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}]}'
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -23,15 +25,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '715'
+      - '52'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 4a1f0260c5404050b720c244b437e9d0
+      - 44bbfa20b78444cb843d0a8becc762f7
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sun, 26 Jan 2025 12:47:44 GMT
+      - Tue, 22 Jul 2025 20:27:01 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -45,4 +47,60 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: '{"description": null, "name": "test_deb_repository"}'
+    headers:
+      ? !!python/object/apply:multidict._multidict.istr
+      - Accept
+      : - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '52'
+      Correlation-Id:
+      - 44bbfa20b78444cb843d0a8becc762f7
+      ? !!python/object/apply:multidict._multidict.istr
+      - User-Agent
+      : - Squeezer/0.2.0-dev
+      content-type:
+      - application/json
+    method: POST
+    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/
+  response:
+    body:
+      string: '{"pulp_href":"/pulp/api/v3/repositories/deb/apt/019833d1-7312-7d75-a4d6-471cf990c527/","prn":"prn:deb.aptrepository:019833d1-7312-7d75-a4d6-471cf990c527","pulp_created":"2025-07-22T20:27:01.272750Z","pulp_last_updated":"2025-07-22T20:27:01.298768Z","versions_href":"/pulp/api/v3/repositories/deb/apt/019833d1-7312-7d75-a4d6-471cf990c527/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/019833d1-7312-7d75-a4d6-471cf990c527/versions/0/","name":"test_deb_repository","description":null,"retain_repo_versions":null,"remote":null,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '663'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 44bbfa20b78444cb843d0a8becc762f7
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Tue, 22 Jul 2025 20:27:01 GMT
+      Location:
+      - /pulp/api/v3/repositories/deb/apt/019833d1-7312-7d75-a4d6-471cf990c527/
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 201
+      message: Created
 version: 1

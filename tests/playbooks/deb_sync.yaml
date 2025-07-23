@@ -18,15 +18,24 @@
       pulp.squeezer.deb_repository:
         name: test_deb_repository
         state: absent
-    - name: Make repository present
+    - name: Make repository with remote absent
       pulp.squeezer.deb_repository:
-        name: test_deb_repository
-        state: present
+        name: test_deb_repository_with_remote
+        state: absent
     - name: Make remote present
       pulp.squeezer.deb_remote:
         name: test_deb_remote
         url: "{{ pulp_fixtures_url }}/debian/"
         distributions: "ragnarok"
+        state: present
+    - name: Make repository with remote present
+      pulp.squeezer.deb_repository:
+        name: test_deb_repository_with_remote
+        remote: test_deb_remote
+        state: present
+    - name: Make repository present
+      pulp.squeezer.deb_repository:
+        name: test_deb_repository
         state: present
     - name: Clean openapi cache
       file:
@@ -40,6 +49,27 @@
   module_defaults:
     <<: *pulp_module_defaults
   tasks:
+    - name: Sync a repository with a remote
+      pulp.squeezer.deb_sync:
+        repository: test_deb_repository_with_remote
+      register: result
+    - name: Verify sync a repository
+      assert:
+        that:
+          - result.changed == (not ansible_check_mode)
+          - ansible_check_mode or (result.repository_version is match("/pulp/api/v3/repositories/deb/apt/.*/versions/1/"))
+          - (not ansible_check_mode) or (result.repository_version is match("/pulp/api/v3/repositories/deb/apt/.*/versions/0/"))
+
+    - name: Sync a repository with a remote (2nd try)
+      pulp.squeezer.deb_sync:
+        repository: test_deb_repository_with_remote
+      register: result
+    - name: Verify sync a repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+          - result.repository_version is match("/pulp/api/v3/repositories/deb/apt/.*/versions/1/")
+
     - name: Sync remote into repository
       pulp.squeezer.deb_sync:
         remote: test_deb_remote
@@ -91,10 +121,13 @@
   module_defaults:
     <<: *pulp_module_defaults
   tasks:
-    - name: Make repository absent
+    - name: Make repositories absent
       pulp.squeezer.deb_repository:
-        name: test_deb_repository
+        name: "{{ item }}"
         state: absent
+      loop:
+        - test_deb_repository
+        - test_deb_repository_with_remote
     - name: Make remote absent
       pulp.squeezer.deb_remote:
         name: test_deb_remote

@@ -16,7 +16,7 @@ options:
     description:
       - Name of the remote to synchronize
     type: str
-    required: true
+    required: false
   repository:
     description:
       - Name of the repository
@@ -35,7 +35,18 @@ author:
 """
 
 EXAMPLES = r"""
-- name: Sync deb remote into repository
+- name: Sync deb repository with a remote set
+  pulp.squeezer.deb_sync:
+    pulp_url: https://pulp.example.org
+    username: admin
+    password: password
+    repository: repo_1
+  register: sync_result
+- name: Report synched repository version
+  debug:
+    var: sync_result.repository_version
+
+- name: Sync deb specific remote into repository
   pulp.squeezer.deb_sync:
     pulp_url: https://pulp.example.org
     username: admin
@@ -79,7 +90,7 @@ def main():
     with PulpAnsibleModule(
         import_errors=[("pulp-glue-deb", PULP_GLUE_DEB_IMPORT_ERR)],
         argument_spec={
-            "remote": {"required": True},
+            "remote": {"required": False},
             "repository": {"required": True},
             "mirror": {"type": "bool", "default": False},
         },
