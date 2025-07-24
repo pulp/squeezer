@@ -76,12 +76,12 @@ record_%: FORCE $(MANIFEST)
 clean_%: FORCE $(MANIFEST) | tests/playbooks/vars/server.yaml
 	ansible-playbook --tags teardown,cleanup -i tests/inventory/hosts 'tests/playbooks/$*.yaml'
 
-test-setup: requirements.txt lower_bounds_constraints.lock | tests/playbooks/vars/server.yaml
+test-setup: requirements-test.txt lower_bounds_constraints.lock | tests/playbooks/vars/server.yaml
 	pip install --upgrade pip
 ifeq ($(LOWER_BOUNDS), "true")
-	pip install -r requirements.txt -c lower_bounds_constraints.lock
+	pip install -r requirements-test.txt -c lower_bounds_constraints.lock
 else
-	pip install -r requirements.txt
+	pip install -r requirements-test.txt
 endif
 
 tests/playbooks/vars/server.yaml:
