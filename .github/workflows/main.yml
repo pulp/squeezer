@@ -41,7 +41,7 @@ jobs:
           python-version: "3.11"
       - name: "Install Ansible"
         run: |
-          pip install ansible-core~=2.18
+          pip install ansible-core~=2.19.0
       - name: "Install dependencies"
         run: |
           make test-setup
@@ -51,7 +51,7 @@ jobs:
 
   ready-to-ship:
     # This is a dummy dependent task to have a single entry for the branch protection rules.
-    runs-on:  "ubuntu-latest"
+    runs-on: "ubuntu-latest"
     needs:
       - "lint"
       - "test"

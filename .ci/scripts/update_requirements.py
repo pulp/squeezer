@@ -43,7 +43,7 @@ def fix_requirements_file(path: Path, check: bool, specs: t.Dict[str, SpecifierS
 
 def main(check: bool) -> None:
     pulp_glue_path = Path("plugins/module_utils/pulp_glue.py")
-    requirements_path = Path("requirements.txt")
+    requirements_path = Path("requirements-test.txt")
     lower_bounds_path = Path("lower_bounds_constraints.lock")
 
     version_spec_regex = {

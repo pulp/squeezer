@@ -43,5 +43,5 @@ action_groups:
   - task
   - user
   - x509_cert_guard
-requires_ansible: '>=2.15.0,<2.19'
+requires_ansible: '>=2.15.0,<2.20'
 ...
