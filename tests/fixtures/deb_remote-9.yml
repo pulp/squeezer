@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - Squeezer/0.1.0-dev
+      - Squeezer/0.2.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/?name=test_deb_remote&offset=0&limit=1
   response:
@@ -27,11 +27,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 9f02afcc9ada414584fc339f4e081e46
+      - ec1d5dfba78d416fa806f79b9285359c
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sun, 26 Jan 2025 11:48:09 GMT
+      - Fri, 18 Jul 2025 07:53:56 GMT
       Referrer-Policy:
       - same-origin
       Server:
