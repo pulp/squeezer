@@ -41,7 +41,7 @@ jobs:
           python-version: "3.11"
       - name: "Install Ansible"
         run: |
-          pip install ansible-core~=2.18
+          pip install ansible-core~=2.18.0
       - name: "Install dependencies"
         run: |
           make test-setup
