@@ -10,7 +10,7 @@ import traceback
 
 from ansible.module_utils.basic import AnsibleModule, env_fallback, missing_required_lib
 
-GLUE_VERSION_SPEC = ">=0.29.2,<0.35"
+GLUE_VERSION_SPEC = ">=0.29.2,<0.37"
 GLUE_DEB_VERSION_SPEC = ">=0.3.0,<0.4"
 
 
