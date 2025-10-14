@@ -2,16 +2,14 @@ interactions:
 - request:
     body: null
     headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
-      : - application/json
+      Accept:
+      - application/json
       Accept-Encoding:
       - gzip, deflate
       Connection:
       - keep-alive
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
-      : - Squeezer/0.2.0-dev
+      User-Agent:
+      - Squeezer/0.3.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository&offset=0&limit=1
   response:
@@ -29,11 +27,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 44bbfa20b78444cb843d0a8becc762f7
+      - a2e44d4612a1493c8b719f92aa6fe9ad
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Tue, 22 Jul 2025 20:27:01 GMT
+      - Mon, 27 Oct 2025 11:43:30 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -50,9 +48,8 @@ interactions:
 - request:
     body: '{"description": null, "name": "test_deb_repository"}'
     headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
-      : - application/json
+      Accept:
+      - application/json
       Accept-Encoding:
       - gzip, deflate
       Connection:
@@ -60,17 +57,16 @@ interactions:
       Content-Length:
       - '52'
       Correlation-Id:
-      - 44bbfa20b78444cb843d0a8becc762f7
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
-      : - Squeezer/0.2.0-dev
+      - a2e44d4612a1493c8b719f92aa6fe9ad
+      User-Agent:
+      - Squeezer/0.3.0-dev
       content-type:
       - application/json
     method: POST
     uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/repositories/deb/apt/019833d1-7312-7d75-a4d6-471cf990c527/","prn":"prn:deb.aptrepository:019833d1-7312-7d75-a4d6-471cf990c527","pulp_created":"2025-07-22T20:27:01.272750Z","pulp_last_updated":"2025-07-22T20:27:01.298768Z","versions_href":"/pulp/api/v3/repositories/deb/apt/019833d1-7312-7d75-a4d6-471cf990c527/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/019833d1-7312-7d75-a4d6-471cf990c527/versions/0/","name":"test_deb_repository","description":null,"retain_repo_versions":null,"remote":null,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}'
+      string: '{"pulp_href":"/pulp/api/v3/repositories/deb/apt/019a257b-06c2-7a0e-aa73-d444977f24ee/","prn":"prn:deb.aptrepository:019a257b-06c2-7a0e-aa73-d444977f24ee","pulp_created":"2025-10-27T11:43:31.011084Z","pulp_last_updated":"2025-10-27T11:43:31.014854Z","versions_href":"/pulp/api/v3/repositories/deb/apt/019a257b-06c2-7a0e-aa73-d444977f24ee/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/019a257b-06c2-7a0e-aa73-d444977f24ee/versions/0/","name":"test_deb_repository","description":null,"retain_repo_versions":null,"remote":null,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -83,13 +79,13 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 44bbfa20b78444cb843d0a8becc762f7
+      - a2e44d4612a1493c8b719f92aa6fe9ad
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Tue, 22 Jul 2025 20:27:01 GMT
+      - Mon, 27 Oct 2025 11:43:31 GMT
       Location:
-      - /pulp/api/v3/repositories/deb/apt/019833d1-7312-7d75-a4d6-471cf990c527/
+      - /pulp/api/v3/repositories/deb/apt/019a257b-06c2-7a0e-aa73-d444977f24ee/
       Referrer-Policy:
       - same-origin
       Server:
