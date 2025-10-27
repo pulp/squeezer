@@ -2,21 +2,19 @@ interactions:
 - request:
     body: null
     headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
-      : - application/json
+      Accept:
+      - application/json
       Accept-Encoding:
       - gzip, deflate
       Connection:
       - keep-alive
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
-      : - Squeezer/0.2.0-dev
+      User-Agent:
+      - Squeezer/0.3.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/01982eb5-5d98-77b6-8147-cde5b9a15dab/","prn":"prn:deb.aptrepository:01982eb5-5d98-77b6-8147-cde5b9a15dab","pulp_created":"2025-07-21T20:38:14.682255Z","pulp_last_updated":"2025-07-21T20:38:30.547703Z","versions_href":"/pulp/api/v3/repositories/deb/apt/01982eb5-5d98-77b6-8147-cde5b9a15dab/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/01982eb5-5d98-77b6-8147-cde5b9a15dab/versions/1/","name":"test_deb_repository","description":null,"retain_repo_versions":null,"remote":null,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/019a257b-a749-7ff9-8477-a3f6e5018d68/","prn":"prn:deb.aptrepository:019a257b-a749-7ff9-8477-a3f6e5018d68","pulp_created":"2025-10-27T11:44:12.105585Z","pulp_last_updated":"2025-10-27T11:44:26.804404Z","versions_href":"/pulp/api/v3/repositories/deb/apt/019a257b-a749-7ff9-8477-a3f6e5018d68/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/019a257b-a749-7ff9-8477-a3f6e5018d68/versions/1/","name":"test_deb_repository","description":null,"retain_repo_versions":null,"remote":null,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -29,11 +27,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - cb60a7a1529c488ebc4d08f8a8494625
+      - 713be76c8fce47868e2c16376323a225
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Mon, 21 Jul 2025 20:38:40 GMT
+      - Mon, 27 Oct 2025 11:44:34 GMT
       Referrer-Policy:
       - same-origin
       Server:
