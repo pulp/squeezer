@@ -2,21 +2,19 @@ interactions:
 - request:
     body: null
     headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
-      : - application/json
+      Accept:
+      - application/json
       Accept-Encoding:
       - gzip, deflate
       Connection:
       - keep-alive
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
-      : - Squeezer/0.2.0-dev
+      User-Agent:
+      - Squeezer/0.3.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/01974834-a6b4-759d-83cc-5388f72865e2/","prn":"prn:file.filerepository:01974834-a6b4-759d-83cc-5388f72865e2","pulp_created":"2025-06-07T02:24:59.575189Z","pulp_last_updated":"2025-06-07T02:25:06.428680Z","versions_href":"/pulp/api/v3/repositories/file/file/01974834-a6b4-759d-83cc-5388f72865e2/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/file/file/01974834-a6b4-759d-83cc-5388f72865e2/versions/1/","name":"test_file_repository","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"manifest":"PULP_MANIFEST"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/019a2579-cf1d-7286-aa06-c51280ff1edd/","prn":"prn:file.filerepository:019a2579-cf1d-7286-aa06-c51280ff1edd","pulp_created":"2025-10-27T11:42:11.230779Z","pulp_last_updated":"2025-10-27T11:42:18.252957Z","versions_href":"/pulp/api/v3/repositories/file/file/019a2579-cf1d-7286-aa06-c51280ff1edd/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/file/file/019a2579-cf1d-7286-aa06-c51280ff1edd/versions/1/","name":"test_file_repository","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"manifest":"PULP_MANIFEST"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -29,11 +27,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 26e2ce4ddfdf41e7b3054b8568ddcf0f
+      - c41cb624d2a7437b83d421b40c55eef2
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Sat, 07 Jun 2025 02:25:13 GMT
+      - Mon, 27 Oct 2025 11:42:25 GMT
       Referrer-Policy:
       - same-origin
       Server:

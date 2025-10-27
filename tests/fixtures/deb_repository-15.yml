@@ -2,16 +2,14 @@ interactions:
 - request:
     body: null
     headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
-      : - application/json
+      Accept:
+      - application/json
       Accept-Encoding:
       - gzip, deflate
       Connection:
       - keep-alive
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
-      : - Squeezer/0.2.0-dev
+      User-Agent:
+      - Squeezer/0.3.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository&offset=0&limit=1
   response:
@@ -29,11 +27,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 06a83d56f35540f79e7f00a8aeafd07d
+      - 3a073eacfdf246b488db30da82aba77b
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Tue, 22 Jul 2025 20:27:19 GMT
+      - Mon, 27 Oct 2025 11:43:37 GMT
       Referrer-Policy:
       - same-origin
       Server:
