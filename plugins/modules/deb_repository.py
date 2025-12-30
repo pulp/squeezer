@@ -23,11 +23,16 @@ options:
     description:
       - Whether to automatically create publications for new repository versions
     type: bool
-    version_added: "0.0.13"
+    version_added: "0.2.4"
   remote:
     description:
       - An optional remote to use by default when syncing
     type: str
+  retain_repo_versions:
+    description:
+      - Max number of repository versions to keep
+    type: int
+    version_added: "0.2.4"
 extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp
