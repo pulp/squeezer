@@ -19,10 +19,10 @@ interactions:
           __istr_identity__: User-Agent
       : - Squeezer/0.3.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository&offset=0&limit=1
+    uri: http://pulp.example.org/pulp/api/v3/distributions/file/file/?name=test_file_distribution&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/019dcf79-72b5-7dc7-b6cf-1e6e554e19af/","prn":"prn:file.filerepository:019dcf79-72b5-7dc7-b6cf-1e6e554e19af","pulp_created":"2026-04-27T15:05:36.186130Z","pulp_last_updated":"2026-04-27T15:05:36.208164Z","versions_href":"/pulp/api/v3/repositories/file/file/019dcf79-72b5-7dc7-b6cf-1e6e554e19af/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/file/file/019dcf79-72b5-7dc7-b6cf-1e6e554e19af/versions/0/","name":"test_file_repository","description":null,"retain_repo_versions":null,"retain_checkpoints":null,"remote":null,"autopublish":false,"manifest":"PULP_MANIFEST"}]}'
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -31,15 +31,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '696'
+      - '52'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 466428ba54bc4966aaec5dd1ab68d02d
+      - efc50f19eebe4c8a8dd8116d12e3928c
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Mon, 27 Apr 2026 15:05:39 GMT
+      - Mon, 27 Apr 2026 15:17:45 GMT
       Referrer-Policy:
       - same-origin
       Server:

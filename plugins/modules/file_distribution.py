@@ -26,6 +26,11 @@ options:
       - Href of the publication to be served
     type: str
     required: false
+  repository:
+    description:
+      - Name of the repository to be served
+    type: str
+    required: false
   content_guard:
     description:
       - Name of the content guard for the served content
@@ -87,7 +92,7 @@ from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import Pul
 
 try:
     from pulp_glue.core.context import PulpContentGuardContext
-    from pulp_glue.file.context import PulpFileDistributionContext
+    from pulp_glue.file.context import PulpFileDistributionContext, PulpFileRepositoryContext
 
     PULP_GLUE_IMPORT_ERR = None
 except ImportError:
@@ -105,6 +110,7 @@ def main():
             "name": {},
             "base_path": {},
             "publication": {},
+            "repository": {},
             "content_guard": {},
         },
         required_if=[
@@ -113,6 +119,7 @@ def main():
         ],
     ) as module:
         content_guard_name = module.params["content_guard"]
+        repository_name = module.params["repository"]
 
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
@@ -120,6 +127,15 @@ def main():
             for key in ["base_path", "publication"]
             if module.params[key] is not None
         }
+
+        if repository_name is not None:
+            if repository_name:
+                repository_ctx = PulpFileRepositoryContext(
+                    module.pulp_ctx, entity={"name": repository_name}
+                )
+                desired_attributes["repository"] = repository_ctx.pulp_href
+            else:
+                desired_attributes["repository"] = ""
 
         if content_guard_name is not None:
             if content_guard_name:

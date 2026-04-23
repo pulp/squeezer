@@ -19,6 +19,10 @@ options:
     description:
       - Description of the repository
     type: str
+  autopublish:
+    description:
+      - Whether to automatically create publications for new repository versions
+    type: bool
 extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp
@@ -79,6 +83,11 @@ except ImportError:
     PULP_GLUE_IMPORT_ERR = traceback.format_exc()
     PulpFileRepositoryContext = None
 
+DESIRED_KEYS = {
+    "autopublish",
+    "description",
+}
+
 
 def main():
     with PulpEntityAnsibleModule(
@@ -89,13 +98,14 @@ def main():
         argument_spec={
             "name": {},
             "description": {},
+            "autopublish": {"type": "bool"},
         },
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
         natural_key = {"name": module.params["name"]}
-        desired_attributes = {}
-        if module.params["description"] is not None:
-            desired_attributes["description"] = module.params["description"]
+        desired_attributes = {
+            key: module.params[key] for key in DESIRED_KEYS if module.params[key] is not None
+        }
 
         module.process(natural_key, desired_attributes)
 
