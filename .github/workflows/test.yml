@@ -17,18 +17,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - python: "3.10"
-            ansible: "stable-2.16"
-            image_tag: "latest"
           - python: "3.11"
-            ansible: "stable-2.17"
-            lower_bounds: true
-          - python: "3.12"
             ansible: "stable-2.18"
+            lower_bounds: true
+            image_tag: "latest"
           - python: "3.13"
             ansible: "stable-2.19"
           - python: "3.14"
-            ansible: "devel"
+            ansible: "stable-2.20"
             image_tag: "nightly"
             lower_bounds: true
     steps:
