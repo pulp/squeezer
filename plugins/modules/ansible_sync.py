@@ -113,11 +113,17 @@ def main():
         repository_version = repository["latest_version_href"]
         # In check_mode, assume nothing changed
         if not module.check_mode:
-            sync_task = repository_ctx.sync(body=payload)
+            old_repository_version = repository_version
+            sync_result = repository_ctx.sync(body=payload)
 
-            if sync_task["created_resources"]:
+            if "content_summary" in sync_result:
+                # Looks like a repository version.
+                repository_version = sync_result["pulp_href"]
+            elif sync_result["created_resources"]:
+                # Assume it's a task.
+                repository_version = sync_result["created_resources"][0]
+            if old_repository_version != repository_version:
                 module.set_changed()
-                repository_version = sync_task["created_resources"][0]
 
         module.set_result("repository_version", repository_version)
 

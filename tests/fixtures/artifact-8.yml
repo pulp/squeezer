@@ -1,48 +1,76 @@
-interactions:
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - Squeezer/0.0.17-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/artifacts/?sha256=c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7&offset=0&limit=1
-  response:
-    body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/0191acb9-6b4b-7764-9026-23a13e9b5be1/","pulp_created":"2024-09-01T08:35:18.476149Z","pulp_last_updated":"2024-09-01T08:35:18.476166Z","file":"artifact/c4/aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","size":1049600,"md5":null,"sha1":null,"sha224":"bfba29a479f1bd11d35b7122e16bf88f672a7eb9d41c88c229fbc3e5","sha256":"c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7","sha384":"c0ef7ed5e3abbf74c83c9f65d69835d513e2a3ab2dafaba149eb0054327535cf0d3cfd1c6925d4142624a543e3000144","sha512":"884b6ec520cf21e1d8625235ddfa0670e15c3ddb30fd3c89117c1d2213507448a87a713fb355a51aad84e31a6adae696d0f6166dfa222589fc67b395aa657899"}]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '737'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 6193b454ef424f1e94b280fc1f396446
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Sun, 01 Sep 2024 08:35:19 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-version: 1
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/artifacts/?sha256=c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7&offset=0&limit=1",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.4.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Content-Length": [
+                        "800"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Correlation-ID": [
+                        "42778d467e6343a79d6debac51b57001"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Date": [
+                        "Mon, 01 Jun 2026 12:55:24 GMT"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/artifacts/019e8340-d271-78e1-bc44-ece7bcdd16d1/\",\"prn\":\"prn:core.artifact:019e8340-d271-78e1-bc44-ece7bcdd16d1\",\"pulp_created\":\"2026-06-01T12:55:24.018033Z\",\"pulp_last_updated\":\"2026-06-01T12:55:24.018044Z\",\"file\":\"artifact/c4/aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7\",\"size\":1049600,\"md5\":null,\"sha1\":null,\"sha224\":\"bfba29a479f1bd11d35b7122e16bf88f672a7eb9d41c88c229fbc3e5\",\"sha256\":\"c4aca32864436a55dd96b60917b04b84ad22dd2765937129234b22782b9d4fd7\",\"sha384\":\"c0ef7ed5e3abbf74c83c9f65d69835d513e2a3ab2dafaba149eb0054327535cf0d3cfd1c6925d4142624a543e3000144\",\"sha512\":\"884b6ec520cf21e1d8625235ddfa0670e15c3ddb30fd3c89117c1d2213507448a87a713fb355a51aad84e31a6adae696d0f6166dfa222589fc67b395aa657899\"}]}"
+                }
+            }
+        }
+    ]
+}

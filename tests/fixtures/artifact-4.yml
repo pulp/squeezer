@@ -1,48 +1,76 @@
-interactions:
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - Squeezer/0.0.17-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/artifacts/?sha256=693d23225ebe839ae6d47e54de0b0d46d08d3fe0cefeb4ace48bacca9933e814&offset=0&limit=1
-  response:
-    body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/0191acb9-5a4c-71a7-8ea9-d3a780040fed/","pulp_created":"2024-09-01T08:35:14.124735Z","pulp_last_updated":"2024-09-01T08:35:14.124756Z","file":"artifact/69/3d23225ebe839ae6d47e54de0b0d46d08d3fe0cefeb4ace48bacca9933e814","size":65,"md5":null,"sha1":null,"sha224":"8eeb154c125f9ff30bb97e19e2922ea973f86c461439bbc04e2ff9b5","sha256":"693d23225ebe839ae6d47e54de0b0d46d08d3fe0cefeb4ace48bacca9933e814","sha384":"f4a558bcb3b2583b1779de7cf267d81fc29ecd534804e5474d70023006db99dbb80d099f03b538140dc0d31e2cdf29fa","sha512":"44500176347fa10372ac5f6f263bbab2bfeb4967f21729e18a594307bdcfa9ca226ac28ab67b1e4ba878d876630cef09da195887630b42ad97602d1b48a2d7c3"}]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '732'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 5c5c66bfa80347d3885f88c95b7faa2a
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Sun, 01 Sep 2024 08:35:15 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-version: 1
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/artifacts/?sha256=693d23225ebe839ae6d47e54de0b0d46d08d3fe0cefeb4ace48bacca9933e814&offset=0&limit=1",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.4.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Date": [
+                        "Mon, 01 Jun 2026 12:55:20 GMT"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Correlation-ID": [
+                        "02a2666a97784e2e9fa287458837d3ae"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Content-Length": [
+                        "795"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/artifacts/019e8340-bbf2-7520-9b2e-972a40293f1a/\",\"prn\":\"prn:core.artifact:019e8340-bbf2-7520-9b2e-972a40293f1a\",\"pulp_created\":\"2026-06-01T12:55:18.258496Z\",\"pulp_last_updated\":\"2026-06-01T12:55:18.258505Z\",\"file\":\"artifact/69/3d23225ebe839ae6d47e54de0b0d46d08d3fe0cefeb4ace48bacca9933e814\",\"size\":65,\"md5\":null,\"sha1\":null,\"sha224\":\"8eeb154c125f9ff30bb97e19e2922ea973f86c461439bbc04e2ff9b5\",\"sha256\":\"693d23225ebe839ae6d47e54de0b0d46d08d3fe0cefeb4ace48bacca9933e814\",\"sha384\":\"f4a558bcb3b2583b1779de7cf267d81fc29ecd534804e5474d70023006db99dbb80d099f03b538140dc0d31e2cdf29fa\",\"sha512\":\"44500176347fa10372ac5f6f263bbab2bfeb4967f21729e18a594307bdcfa9ca226ac28ab67b1e4ba878d876630cef09da195887630b42ad97602d1b48a2d7c3\"}]}"
+                }
+            }
+        }
+    ]
+}

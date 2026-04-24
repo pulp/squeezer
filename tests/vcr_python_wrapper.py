@@ -98,12 +98,14 @@ else:
 
     amp_vcr.register_matcher("amp_body", amp_body_matcher)
 
+    # Use yaml serializer for playback until all records are rerecorded in json.
     with amp_vcr.use_cassette(
         cassette_file,
         record_mode=test_params["record_mode"],
         match_on=[method_matcher, "path", "query", "amp_body"],
         filter_headers=["Authorization"],
         before_record_request=filter_request_uri,
+        serializer="json" if (test_params["record_mode"] == "record") else "yaml",
     ):
         with open(sys.argv[0]) as f:
             code = compile(f.read(), sys.argv[0], "exec")

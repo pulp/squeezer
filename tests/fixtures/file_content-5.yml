@@ -1,96 +1,150 @@
-interactions:
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - Squeezer/0.0.17-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository2&offset=0&limit=1
-  response:
-    body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/019156e3-7b84-7404-a2f1-b58d1dab8e48/","pulp_created":"2024-08-15T16:33:54.565448Z","pulp_last_updated":"2024-08-15T16:34:03.733528Z","versions_href":"/pulp/api/v3/repositories/file/file/019156e3-7b84-7404-a2f1-b58d1dab8e48/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/file/file/019156e3-7b84-7404-a2f1-b58d1dab8e48/versions/2/","name":"test_file_repository2","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"manifest":"PULP_MANIFEST"}]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '602'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 2f576e01d9164531ae94ce4726c975e8
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Thu, 15 Aug 2024 16:34:04 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Correlation-ID:
-      - 2f576e01d9164531ae94ce4726c975e8
-      User-Agent:
-      - Squeezer/0.0.17-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/content/file/files/?repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Ffile%2Ffile%2F019156e3-7b84-7404-a2f1-b58d1dab8e48%2Fversions%2F2%2F&offset=0&limit=1000
-  response:
-    body:
-      string: '{"count":0,"next":null,"previous":null,"results":[]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '52'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 2f576e01d9164531ae94ce4726c975e8
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Thu, 15 Aug 2024 16:34:04 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-version: 1
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository2&offset=0&limit=1",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.4.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Content-Length": [
+                        "671"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Date": [
+                        "Mon, 01 Jun 2026 14:06:07 GMT"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Correlation-ID": [
+                        "2ab6157c430740829269afcb7c90a544"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/repositories/file/file/019e8381-63db-7178-8397-29d9ce521025/\",\"prn\":\"prn:file.filerepository:019e8381-63db-7178-8397-29d9ce521025\",\"pulp_created\":\"2026-06-01T14:05:55.548116Z\",\"pulp_last_updated\":\"2026-06-01T14:06:06.345975Z\",\"versions_href\":\"/pulp/api/v3/repositories/file/file/019e8381-63db-7178-8397-29d9ce521025/versions/\",\"pulp_labels\":{},\"latest_version_href\":\"/pulp/api/v3/repositories/file/file/019e8381-63db-7178-8397-29d9ce521025/versions/2/\",\"name\":\"test_file_repository2\",\"description\":null,\"retain_repo_versions\":null,\"remote\":null,\"autopublish\":false,\"manifest\":\"PULP_MANIFEST\"}]}"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/content/file/files/?repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Ffile%2Ffile%2F019e8381-63db-7178-8397-29d9ce521025%2Fversions%2F2%2F&offset=0&limit=1000",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.4.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Correlation-Id": [
+                        "2ab6157c430740829269afcb7c90a544"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Content-Length": [
+                        "52"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Date": [
+                        "Mon, 01 Jun 2026 14:06:08 GMT"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Correlation-ID": [
+                        "2ab6157c430740829269afcb7c90a544"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":0,\"next\":null,\"previous\":null,\"results\":[]}"
+                }
+            }
+        }
+    ]
+}

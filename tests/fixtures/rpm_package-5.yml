@@ -2,19 +2,21 @@ interactions:
 - request:
     body: null
     headers:
-      Accept:
-      - application/json
+      ? !!python/object/apply:multidict._multidict.istr
+      - Accept
+      : - application/json
       Accept-Encoding:
       - gzip, deflate
       Connection:
       - keep-alive
-      User-Agent:
-      - Squeezer/0.2.0-dev
+      ? !!python/object/apply:multidict._multidict.istr
+      - User-Agent
+      : - Squeezer/0.4.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?name=test_rpm_repository2&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/01981d7b-260d-73cc-9aed-7407f3db952c/","prn":"prn:rpm.rpmrepository:01981d7b-260d-73cc-9aed-7407f3db952c","pulp_created":"2025-07-18T12:21:06.702367Z","pulp_last_updated":"2025-07-18T12:21:16.075263Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/01981d7b-260d-73cc-9aed-7407f3db952c/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/01981d7b-260d-73cc-9aed-7407f3db952c/versions/2/","name":"test_rpm_repository2","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"metadata_signing_service":null,"package_signing_service":null,"package_signing_fingerprint":"","retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"sqlite_metadata":false,"repo_config":{},"compression_type":null,"layout":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/019e83ae-802f-719f-a421-ddf350ce742e/","prn":"prn:rpm.rpmrepository:019e83ae-802f-719f-a421-ddf350ce742e","pulp_created":"2026-06-01T14:55:11.919803Z","pulp_last_updated":"2026-06-01T14:55:22.243615Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/019e83ae-802f-719f-a421-ddf350ce742e/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/019e83ae-802f-719f-a421-ddf350ce742e/versions/2/","name":"test_rpm_repository2","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"metadata_signing_service":null,"package_signing_service":null,"package_signing_fingerprint":"","retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"sqlite_metadata":false,"repo_config":{},"compression_type":null,"layout":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -27,11 +29,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 8b2930d5a7d64c5d8a85157ee84d0f46
+      - de31249afdd244ec9bd342ebd2778602
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Fri, 18 Jul 2025 12:21:17 GMT
+      - Mon, 01 Jun 2026 14:55:23 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -48,18 +50,21 @@ interactions:
 - request:
     body: null
     headers:
-      Accept:
-      - application/json
+      ? !!python/object/apply:multidict._multidict.istr
+      - Accept
+      : - application/json
       Accept-Encoding:
       - gzip, deflate
       Connection:
       - keep-alive
-      Correlation-Id:
-      - 8b2930d5a7d64c5d8a85157ee84d0f46
-      User-Agent:
-      - Squeezer/0.2.0-dev
+      ? !!python/object/apply:multidict._multidict.istr
+      - Correlation-Id
+      : - de31249afdd244ec9bd342ebd2778602
+      ? !!python/object/apply:multidict._multidict.istr
+      - User-Agent
+      : - Squeezer/0.4.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/content/rpm/packages/?repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Frpm%2Frpm%2F01981d7b-260d-73cc-9aed-7407f3db952c%2Fversions%2F2%2F&offset=0&limit=1000
+    uri: http://pulp.example.org/pulp/api/v3/content/rpm/packages/?repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Frpm%2Frpm%2F019e83ae-802f-719f-a421-ddf350ce742e%2Fversions%2F2%2F&offset=0&limit=1000
   response:
     body:
       string: '{"count":0,"next":null,"previous":null,"results":[]}'
@@ -75,11 +80,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 8b2930d5a7d64c5d8a85157ee84d0f46
+      - de31249afdd244ec9bd342ebd2778602
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Fri, 18 Jul 2025 12:21:18 GMT
+      - Mon, 01 Jun 2026 14:55:23 GMT
       Referrer-Policy:
       - same-origin
       Server:
