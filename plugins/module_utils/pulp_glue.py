@@ -11,7 +11,7 @@ import traceback
 from ansible.module_utils.basic import AnsibleModule, env_fallback, missing_required_lib
 
 GLUE_VERSION_SPEC = ">=0.29.2,<0.37"
-GLUE_DEB_VERSION_SPEC = ">=0.3.0,<0.4"
+GLUE_DEB_VERSION_SPEC = ">=0.3.1-dev,<0.4"
 
 
 def assert_version(spec, version, name):
@@ -35,7 +35,7 @@ class SqueezerException(Exception):
     pass
 
 
-__VERSION__ = "0.3.0"
+__VERSION__ = "0.3.1-dev"
 
 
 class PulpAnsibleModule(AnsibleModule):
