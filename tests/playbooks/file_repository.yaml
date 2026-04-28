@@ -71,6 +71,29 @@
         that:
           - result.changed == false
 
+    - name: Add autopublish is true to repository
+      pulp.squeezer.file_repository:
+        name: test_file_repository
+        autopublish: true
+        state: present
+      register: result
+    - name: Verify add autopublish is true to repository
+      assert:
+        that:
+          - result.changed == true
+          - result.repository.autopublish == true
+
+    - name: Add autopublish is true to repository (2nd try)
+      pulp.squeezer.file_repository:
+        name: test_file_repository
+        autopublish: true
+        state: present
+      register: result
+    - name: Verify add autopublish is true to repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
     - name: Fake modify repository
       pulp.squeezer.file_repository:
         name: test_file_repository
@@ -101,6 +124,7 @@
           - result.changed == false
           - result.repository.name == 'test_file_repository'
           - result.repository.description == "repository created via ansible"
+          - result.repository.autopublish == true
 
     - name: Remove description from repository
       pulp.squeezer.file_repository:
@@ -121,6 +145,29 @@
         state: present
       register: result
     - name: Verify remove description from repository (2nd try)
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Remove autopublish is true to repository
+      pulp.squeezer.file_repository:
+        name: test_file_repository
+        autopublish: false
+        state: present
+      register: result
+    - name: Verify remove autopublish is true to repository
+      assert:
+        that:
+          - result.changed == true
+          - result.repository.autopublish == false
+
+    - name: Remove autopublish is true to repository (2nd try)
+      pulp.squeezer.file_repository:
+        name: test_file_repository
+        autopublish: false
+        state: present
+      register: result
+    - name: Verify remove autopublish is true to repository (2nd try)
       assert:
         that:
           - result.changed == false

@@ -2,20 +2,28 @@ interactions:
 - request:
     body: null
     headers:
-      Accept:
-      - application/json
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - Accept
+        state:
+          __istr_identity__: Accept
+      : - application/json
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
-      User-Agent:
-      - Squeezer/0.0.17-dev
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - User-Agent
+        state:
+          __istr_identity__: User-Agent
+      : - Squeezer/0.3.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/0191990d-0e5a-7f2b-b6a1-e445207c3c5a/","pulp_created":"2024-08-28T12:54:15.387284Z","pulp_last_updated":"2024-08-28T12:54:16.970629Z","versions_href":"/pulp/api/v3/repositories/file/file/0191990d-0e5a-7f2b-b6a1-e445207c3c5a/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/file/file/0191990d-0e5a-7f2b-b6a1-e445207c3c5a/versions/0/","name":"test_file_repository","description":"repository
-        created via ansible","retain_repo_versions":null,"remote":null,"autopublish":false,"manifest":"PULP_MANIFEST"}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/019dcf79-72b5-7dc7-b6cf-1e6e554e19af/","prn":"prn:file.filerepository:019dcf79-72b5-7dc7-b6cf-1e6e554e19af","pulp_created":"2026-04-27T15:05:36.186130Z","pulp_last_updated":"2026-04-27T15:05:42.290628Z","versions_href":"/pulp/api/v3/repositories/file/file/019dcf79-72b5-7dc7-b6cf-1e6e554e19af/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/file/file/019dcf79-72b5-7dc7-b6cf-1e6e554e19af/versions/0/","name":"test_file_repository","description":"repository
+        created via ansible","retain_repo_versions":null,"retain_checkpoints":null,"remote":null,"autopublish":false,"manifest":"PULP_MANIFEST"}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -24,15 +32,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '629'
+      - '724'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 1c5967676f6f424bb619e37e95ae0a1a
+      - d64fb8536daa46b391727420068b57a8
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Wed, 28 Aug 2024 12:54:17 GMT
+      - Mon, 27 Apr 2026 15:05:45 GMT
       Referrer-Policy:
       - same-origin
       Server:
