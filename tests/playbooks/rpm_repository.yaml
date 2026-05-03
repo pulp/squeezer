@@ -205,6 +205,30 @@
         that:
           - 'result.changed == false'
 
+    - name: Add pulp_labels (dict) to repository
+      pulp.squeezer.rpm_repository:
+        name: test_rpm_repository
+        pulp_labels:
+          test_label: "1"
+        state: present
+      register: result
+    - name: Verify add pulp_labels (dict) to repository
+      assert:
+        that:
+          - 'result.changed == true'
+          - 'result.repository.pulp_labels == {"test_label": "1"}'
+
+    - name: Add pulp_labels (string) to repository (Validate no change)
+      pulp.squeezer.rpm_repository:
+        name: test_rpm_repository
+        pulp_labels: '{"test_label": "1"}'
+        state: present
+      register: result
+    - name: Verify add pulp_labels (string) to repository (Validate no change)
+      assert:
+        that:
+          - 'result.changed == false'
+
     - name: Fake modify repository
       pulp.squeezer.rpm_repository:
         name: test_rpm_repository
