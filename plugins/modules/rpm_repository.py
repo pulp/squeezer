@@ -46,6 +46,11 @@ options:
       - Max number of repository versions to keep
     type: int
     version_added: "0.0.16"
+  pulp_labels:
+    description:
+      - A dictionary assigning pulp labels using string keys and values
+    type: dict
+    version_added: "0.4.0"
 extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp
@@ -120,6 +125,7 @@ DESIRED_KEYS = {
     "repo_config",
     "retain_package_versions",
     "retain_repo_versions",
+    "pulp_labels",
 }
 
 
@@ -136,6 +142,7 @@ def main():
             "repo_config": {"type": "raw"},
             "retain_package_versions": {"type": "int"},
             "retain_repo_versions": {"type": "int"},
+            "pulp_labels": {"type": "dict"},
         },
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
@@ -157,6 +164,12 @@ def main():
             desired_attributes["repo_config"], string_types
         ):
             desired_attributes["repo_config"] = json.loads(desired_attributes["repo_config"])
+
+        # Ensure `pulp_labels` contains only strings for keys and values
+        if "pulp_labels" in desired_attributes:
+            labels = desired_attributes["pulp_labels"]
+            if not all(isinstance(k, str) and isinstance(v, str) for k, v in labels.items()):
+                module.fail_json(msg="pulp_labels must be a dictionary with strings as keys and values")
 
         module.process(natural_key, desired_attributes)
 
