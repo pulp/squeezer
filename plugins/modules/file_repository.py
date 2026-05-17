@@ -23,6 +23,11 @@ options:
     description:
       - Whether to automatically create publications for new repository versions
     type: bool
+  pulp_labels:
+    description:
+      - A dictionary assigning pulp labels using string keys and values
+    type: dict
+    version_added: "0.4.0"
 extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp
@@ -86,6 +91,7 @@ except ImportError:
 DESIRED_KEYS = {
     "autopublish",
     "description",
+    "pulp_labels",
 }
 
 
@@ -99,6 +105,7 @@ def main():
             "name": {},
             "description": {},
             "autopublish": {"type": "bool"},
+            "pulp_labels": {"type": "dict"},
         },
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
@@ -106,6 +113,14 @@ def main():
         desired_attributes = {
             key: module.params[key] for key in DESIRED_KEYS if module.params[key] is not None
         }
+
+        # Ensure `pulp_labels` contains only strings for keys and values
+        if "pulp_labels" in desired_attributes:
+            labels = desired_attributes["pulp_labels"]
+            if not all(isinstance(k, str) and isinstance(v, str) for k, v in labels.items()):
+                module.fail_json(
+                    msg="pulp_labels must be a dictionary with strings as keys and values"
+                )
 
         module.process(natural_key, desired_attributes)
 

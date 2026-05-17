@@ -2,15 +2,21 @@ interactions:
 - request:
     body: null
     headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - Accept
+        state:
+          __istr_identity__: Accept
       : - application/json
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - User-Agent
+        state:
+          __istr_identity__: User-Agent
       : - Squeezer/0.4.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?name=test_rpm_repository&offset=0&limit=1
@@ -29,11 +35,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 8807a42021954347b52d331845146c7c
+      - 69de5fe4fb804d8b8d3949f864008cad
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Fri, 08 May 2026 20:57:52 GMT
+      - Mon, 18 May 2026 18:54:07 GMT
       Referrer-Policy:
       - same-origin
       Server:

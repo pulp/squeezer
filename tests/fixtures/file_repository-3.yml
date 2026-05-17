@@ -17,12 +17,12 @@ interactions:
         - User-Agent
         state:
           __istr_identity__: User-Agent
-      : - Squeezer/0.3.0-dev
+      : - Squeezer/0.4.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/repositories/file/file/?name=test_file_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/019dcf79-72b5-7dc7-b6cf-1e6e554e19af/","prn":"prn:file.filerepository:019dcf79-72b5-7dc7-b6cf-1e6e554e19af","pulp_created":"2026-04-27T15:05:36.186130Z","pulp_last_updated":"2026-04-27T15:05:42.290628Z","versions_href":"/pulp/api/v3/repositories/file/file/019dcf79-72b5-7dc7-b6cf-1e6e554e19af/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/file/file/019dcf79-72b5-7dc7-b6cf-1e6e554e19af/versions/0/","name":"test_file_repository","description":"repository
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/file/file/019e6092-b01c-7ced-b14a-63a48112652b/","prn":"prn:file.filerepository:019e6092-b01c-7ced-b14a-63a48112652b","pulp_created":"2026-05-25T19:18:06.621748Z","pulp_last_updated":"2026-05-25T19:18:08.237384Z","versions_href":"/pulp/api/v3/repositories/file/file/019e6092-b01c-7ced-b14a-63a48112652b/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/file/file/019e6092-b01c-7ced-b14a-63a48112652b/versions/0/","name":"test_file_repository","description":"repository
         created via ansible","retain_repo_versions":null,"retain_checkpoints":null,"remote":null,"autopublish":false,"manifest":"PULP_MANIFEST"}]}'
     headers:
       Access-Control-Expose-Headers:
@@ -36,11 +36,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - d64fb8536daa46b391727420068b57a8
+      - df46b0d2ddd24ecb8e90ffea72024d72
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Mon, 27 Apr 2026 15:05:45 GMT
+      - Mon, 25 May 2026 19:18:08 GMT
       Referrer-Policy:
       - same-origin
       Server:
