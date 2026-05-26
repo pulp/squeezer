@@ -169,7 +169,9 @@ def main():
         if "pulp_labels" in desired_attributes:
             labels = desired_attributes["pulp_labels"]
             if not all(isinstance(k, str) and isinstance(v, str) for k, v in labels.items()):
-                module.fail_json(msg="pulp_labels must be a dictionary with strings as keys and values")
+                module.fail_json(
+                    msg="pulp_labels must be a dictionary with strings as keys and values"
+                )
 
         module.process(natural_key, desired_attributes)
 

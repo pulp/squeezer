@@ -2,21 +2,27 @@ interactions:
 - request:
     body: null
     headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - Accept
+        state:
+          __istr_identity__: Accept
       : - application/json
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - User-Agent
+        state:
+          __istr_identity__: User-Agent
       : - Squeezer/0.4.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/?name=test_rpm_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/019e0961-ae01-736a-947a-c953e56fc202/","prn":"prn:rpm.rpmrepository:019e0961-ae01-736a-947a-c953e56fc202","pulp_created":"2026-05-08T20:57:37.026223Z","pulp_last_updated":"2026-05-08T20:57:48.814794Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/019e0961-ae01-736a-947a-c953e56fc202/versions/","pulp_labels":{"test_label":"1"},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/019e0961-ae01-736a-947a-c953e56fc202/versions/0/","name":"test_rpm_repository","description":null,"retain_repo_versions":5,"retain_checkpoints":null,"remote":"/pulp/api/v3/remotes/rpm/rpm/019e0961-a71e-77a3-a7f9-76461d5b1a16/","autopublish":true,"metadata_signing_service":null,"package_signing_service":null,"package_signing_fingerprint":null,"retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"sqlite_metadata":false,"repo_config":{"gpgcheck":1},"compression_type":null,"layout":null}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/019e3c6f-fb85-7d27-888e-ca1ca6e7ba38/","prn":"prn:rpm.rpmrepository:019e3c6f-fb85-7d27-888e-ca1ca6e7ba38","pulp_created":"2026-05-18T18:53:52.390438Z","pulp_last_updated":"2026-05-18T18:54:04.435993Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/019e3c6f-fb85-7d27-888e-ca1ca6e7ba38/versions/","pulp_labels":{"test_label":"1"},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/019e3c6f-fb85-7d27-888e-ca1ca6e7ba38/versions/0/","name":"test_rpm_repository","description":null,"retain_repo_versions":5,"retain_checkpoints":null,"remote":"/pulp/api/v3/remotes/rpm/rpm/019e3c6f-f509-7ded-9cdf-7fccb2ab36f8/","autopublish":true,"metadata_signing_service":null,"package_signing_service":null,"package_signing_fingerprint":null,"retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"sqlite_metadata":false,"repo_config":{"gpgcheck":1},"compression_type":null,"layout":null}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -29,11 +35,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 212a8fe08b784aebafb4369afbcbf791
+      - 2d6aa3e2f3fd496590feba7e13275e8b
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Fri, 08 May 2026 20:57:50 GMT
+      - Mon, 18 May 2026 18:54:05 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -50,27 +56,33 @@ interactions:
 - request:
     body: '{"autopublish": false}'
     headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - Accept
+        state:
+          __istr_identity__: Accept
       : - application/json
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Content-Length:
       - '22'
       Correlation-Id:
-      - 212a8fe08b784aebafb4369afbcbf791
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
+      - 2d6aa3e2f3fd496590feba7e13275e8b
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - User-Agent
+        state:
+          __istr_identity__: User-Agent
       : - Squeezer/0.4.0-dev
       content-type:
       - application/json
     method: PATCH
-    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/019e0961-ae01-736a-947a-c953e56fc202/
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/019e3c6f-fb85-7d27-888e-ca1ca6e7ba38/
   response:
     body:
-      string: '{"task":"/pulp/api/v3/tasks/019e0961-e146-7209-8ba2-d5f2fff936fa/"}'
+      string: '{"task":"/pulp/api/v3/tasks/019e3c70-2fb6-766a-a1eb-cb9236aad3e1/"}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -83,11 +95,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 212a8fe08b784aebafb4369afbcbf791
+      - 2d6aa3e2f3fd496590feba7e13275e8b
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Fri, 08 May 2026 20:57:50 GMT
+      - Mon, 18 May 2026 18:54:05 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -104,23 +116,29 @@ interactions:
 - request:
     body: null
     headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - Accept
+        state:
+          __istr_identity__: Accept
       : - application/json
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Correlation-Id:
-      - 212a8fe08b784aebafb4369afbcbf791
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
+      - 2d6aa3e2f3fd496590feba7e13275e8b
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - User-Agent
+        state:
+          __istr_identity__: User-Agent
       : - Squeezer/0.4.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/019e0961-e146-7209-8ba2-d5f2fff936fa/
+    uri: http://pulp.example.org/pulp/api/v3/tasks/019e3c70-2fb6-766a-a1eb-cb9236aad3e1/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/019e0961-e146-7209-8ba2-d5f2fff936fa/","prn":"prn:core.task:019e0961-e146-7209-8ba2-d5f2fff936fa","pulp_created":"2026-05-08T20:57:50.153177Z","pulp_last_updated":"2026-05-08T20:57:50.151313Z","state":"completed","name":"pulpcore.app.tasks.base.ageneral_update","logging_cid":"212a8fe08b784aebafb4369afbcbf791","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2026-05-08T20:57:50.161491Z","started_at":"2026-05-08T20:57:50.165531Z","finished_at":"2026-05-08T20:57:50.173720Z","error":null,"worker":null,"parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"created_resource_prns":[],"reserved_resources_record":["prn:rpm.rpmrepository:019e0961-ae01-736a-947a-c953e56fc202","shared:prn:core.domain:98d02688-8952-4c28-a37c-b8f1a8ffa1cd"],"result":{"prn":"prn:rpm.rpmrepository:019e0961-ae01-736a-947a-c953e56fc202","name":"test_rpm_repository","layout":null,"remote":"/pulp/api/v3/remotes/rpm/rpm/019e0961-a71e-77a3-a7f9-76461d5b1a16/","pulp_href":"/pulp/api/v3/repositories/rpm/rpm/019e0961-ae01-736a-947a-c953e56fc202/","autopublish":false,"description":null,"pulp_labels":{"test_label":"1"},"repo_config":{"gpgcheck":1},"pulp_created":"2026-05-08T20:57:37.026223Z","checksum_type":null,"versions_href":"/pulp/api/v3/repositories/rpm/rpm/019e0961-ae01-736a-947a-c953e56fc202/versions/","compression_type":null,"pulp_last_updated":"2026-05-08T20:57:50.169804Z","retain_checkpoints":null,"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/019e0961-ae01-736a-947a-c953e56fc202/versions/0/","retain_repo_versions":5,"package_checksum_type":null,"metadata_checksum_type":null,"package_signing_service":null,"retain_package_versions":0,"metadata_signing_service":null,"package_signing_fingerprint":null}}'
+      string: '{"pulp_href":"/pulp/api/v3/tasks/019e3c70-2fb6-766a-a1eb-cb9236aad3e1/","prn":"prn:core.task:019e3c70-2fb6-766a-a1eb-cb9236aad3e1","pulp_created":"2026-05-18T18:54:05.753052Z","pulp_last_updated":"2026-05-18T18:54:05.751005Z","state":"completed","name":"pulpcore.app.tasks.base.ageneral_update","logging_cid":"2d6aa3e2f3fd496590feba7e13275e8b","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2026-05-18T18:54:05.760284Z","started_at":"2026-05-18T18:54:05.764061Z","finished_at":"2026-05-18T18:54:05.774790Z","error":null,"worker":null,"parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"created_resource_prns":[],"reserved_resources_record":["prn:rpm.rpmrepository:019e3c6f-fb85-7d27-888e-ca1ca6e7ba38","shared:prn:core.domain:65e61fa4-37f6-4776-ac05-08e09a533a76"],"result":{"prn":"prn:rpm.rpmrepository:019e3c6f-fb85-7d27-888e-ca1ca6e7ba38","name":"test_rpm_repository","layout":null,"remote":"/pulp/api/v3/remotes/rpm/rpm/019e3c6f-f509-7ded-9cdf-7fccb2ab36f8/","pulp_href":"/pulp/api/v3/repositories/rpm/rpm/019e3c6f-fb85-7d27-888e-ca1ca6e7ba38/","autopublish":false,"description":null,"pulp_labels":{"test_label":"1"},"repo_config":{"gpgcheck":1},"pulp_created":"2026-05-18T18:53:52.390438Z","checksum_type":null,"versions_href":"/pulp/api/v3/repositories/rpm/rpm/019e3c6f-fb85-7d27-888e-ca1ca6e7ba38/versions/","compression_type":null,"pulp_last_updated":"2026-05-18T18:54:05.769492Z","retain_checkpoints":null,"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/019e3c6f-fb85-7d27-888e-ca1ca6e7ba38/versions/0/","retain_repo_versions":5,"package_checksum_type":null,"metadata_checksum_type":null,"package_signing_service":null,"retain_package_versions":0,"metadata_signing_service":null,"package_signing_fingerprint":null}}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -133,11 +151,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 212a8fe08b784aebafb4369afbcbf791
+      - 2d6aa3e2f3fd496590feba7e13275e8b
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Fri, 08 May 2026 20:57:50 GMT
+      - Mon, 18 May 2026 18:54:05 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -154,23 +172,29 @@ interactions:
 - request:
     body: null
     headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - Accept
+        state:
+          __istr_identity__: Accept
       : - application/json
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       Correlation-Id:
-      - 212a8fe08b784aebafb4369afbcbf791
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
+      - 2d6aa3e2f3fd496590feba7e13275e8b
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - User-Agent
+        state:
+          __istr_identity__: User-Agent
       : - Squeezer/0.4.0-dev
     method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/019e0961-ae01-736a-947a-c953e56fc202/
+    uri: http://pulp.example.org/pulp/api/v3/repositories/rpm/rpm/019e3c6f-fb85-7d27-888e-ca1ca6e7ba38/
   response:
     body:
-      string: '{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/019e0961-ae01-736a-947a-c953e56fc202/","prn":"prn:rpm.rpmrepository:019e0961-ae01-736a-947a-c953e56fc202","pulp_created":"2026-05-08T20:57:37.026223Z","pulp_last_updated":"2026-05-08T20:57:50.169804Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/019e0961-ae01-736a-947a-c953e56fc202/versions/","pulp_labels":{"test_label":"1"},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/019e0961-ae01-736a-947a-c953e56fc202/versions/0/","name":"test_rpm_repository","description":null,"retain_repo_versions":5,"retain_checkpoints":null,"remote":"/pulp/api/v3/remotes/rpm/rpm/019e0961-a71e-77a3-a7f9-76461d5b1a16/","autopublish":false,"metadata_signing_service":null,"package_signing_service":null,"package_signing_fingerprint":null,"retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"sqlite_metadata":false,"repo_config":{"gpgcheck":1},"compression_type":null,"layout":null}'
+      string: '{"pulp_href":"/pulp/api/v3/repositories/rpm/rpm/019e3c6f-fb85-7d27-888e-ca1ca6e7ba38/","prn":"prn:rpm.rpmrepository:019e3c6f-fb85-7d27-888e-ca1ca6e7ba38","pulp_created":"2026-05-18T18:53:52.390438Z","pulp_last_updated":"2026-05-18T18:54:05.769492Z","versions_href":"/pulp/api/v3/repositories/rpm/rpm/019e3c6f-fb85-7d27-888e-ca1ca6e7ba38/versions/","pulp_labels":{"test_label":"1"},"latest_version_href":"/pulp/api/v3/repositories/rpm/rpm/019e3c6f-fb85-7d27-888e-ca1ca6e7ba38/versions/0/","name":"test_rpm_repository","description":null,"retain_repo_versions":5,"retain_checkpoints":null,"remote":"/pulp/api/v3/remotes/rpm/rpm/019e3c6f-f509-7ded-9cdf-7fccb2ab36f8/","autopublish":false,"metadata_signing_service":null,"package_signing_service":null,"package_signing_fingerprint":null,"retain_package_versions":0,"checksum_type":null,"metadata_checksum_type":null,"package_checksum_type":null,"sqlite_metadata":false,"repo_config":{"gpgcheck":1},"compression_type":null,"layout":null}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -183,11 +207,11 @@ interactions:
       Content-Type:
       - application/json
       Correlation-ID:
-      - 212a8fe08b784aebafb4369afbcbf791
+      - 2d6aa3e2f3fd496590feba7e13275e8b
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Fri, 08 May 2026 20:57:50 GMT
+      - Mon, 18 May 2026 18:54:06 GMT
       Referrer-Policy:
       - same-origin
       Server:
