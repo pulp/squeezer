@@ -1,6 +1,7 @@
 pulp-glue<0.37,>=0.29.2
 pulp-glue-deb<0.4.0,>=0.3.0
 
+ansible-core
 ansible_runner
 flake8
 pylint
