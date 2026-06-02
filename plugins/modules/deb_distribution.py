@@ -26,6 +26,12 @@ options:
       - Href of the publication to be served
     type: str
     required: false
+  repository:
+    description:
+      - Name of the repository to be served
+    type: str
+    required: false
+    version_added: "0.2.4"
   content_guard:
     description:
       - Name of the content guard for the served content
@@ -98,7 +104,7 @@ except ImportError:
 
 try:
     from pulp_glue.deb import __version__ as pulp_glue_deb_version
-    from pulp_glue.deb.context import PulpAptDistributionContext
+    from pulp_glue.deb.context import PulpAptDistributionContext, PulpAptRepositoryContext
 
     assert_version(GLUE_DEB_VERSION_SPEC, pulp_glue_deb_version, "pulp-glue-deb")
     PULP_GLUE_DEB_IMPORT_ERR = None
@@ -120,6 +126,7 @@ def main():
             "name": {},
             "base_path": {},
             "publication": {},
+            "repository": {},
             "content_guard": {},
         },
         required_if=[
@@ -128,6 +135,7 @@ def main():
         ],
     ) as module:
         content_guard_name = module.params["content_guard"]
+        repository_name = module.params["repository"]
 
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
@@ -135,6 +143,15 @@ def main():
             for key in ["base_path", "publication"]
             if module.params[key] is not None
         }
+
+        if repository_name is not None:
+            if repository_name:
+                repository_ctx = PulpAptRepositoryContext(
+                    module.pulp_ctx, entity={"name": repository_name}
+                )
+                desired_attributes["repository"] = repository_ctx.pulp_href
+            else:
+                desired_attributes["repository"] = ""
 
         if content_guard_name is not None:
             if content_guard_name:

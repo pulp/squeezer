@@ -19,10 +19,20 @@ options:
     description:
       - Description of the repository
     type: str
+  autopublish:
+    description:
+      - Whether to automatically create publications for new repository versions
+    type: bool
+    version_added: "0.2.4"
   remote:
     description:
       - An optional remote to use by default when syncing
     type: str
+  retain_repo_versions:
+    description:
+      - Max number of repository versions to keep
+    type: int
+    version_added: "0.2.4"
 extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp
@@ -102,6 +112,13 @@ except ImportError:
     PULP_GLUE_DEB_IMPORT_ERR = traceback.format_exc()
     PulpAptRepositoryContext = None
 
+DESIRED_KEYS = {
+    "autopublish",
+    "description",
+    "remote",
+    "retain_repo_versions",
+}
+
 
 def main():
     with PulpEntityAnsibleModule(
@@ -112,13 +129,17 @@ def main():
         argument_spec={
             "name": {},
             "description": {},
+            "autopublish": {"type": "bool"},
+            "retain_repo_versions": {"type": "int"},
             "remote": {},
         },
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
         remote_name = module.params["remote"]
         natural_key = {"name": module.params["name"]}
-        desired_attributes = {}
+        desired_attributes = {
+            key: module.params[key] for key in DESIRED_KEYS if module.params[key] is not None
+        }
 
         if remote_name is not None:
             if remote_name:
@@ -126,9 +147,6 @@ def main():
                 desired_attributes["remote"] = remote_ctx.pulp_href
             else:
                 desired_attributes["remote"] = ""
-
-        if module.params["description"] is not None:
-            desired_attributes["description"] = module.params["description"]
 
         module.process(natural_key, desired_attributes)
 
