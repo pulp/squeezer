@@ -18,13 +18,13 @@ jobs:
       matrix:
         include:
           - python: "3.11"
-            ansible: "stable-2.18"
+            ansible: "stable-2.19"
             lower_bounds: true
             image_tag: "latest"
           - python: "3.13"
-            ansible: "stable-2.19"
-          - python: "3.14"
             ansible: "stable-2.20"
+          - python: "3.14"
+            ansible: "stable-2.21"
             image_tag: "nightly"
             lower_bounds: true
     steps:

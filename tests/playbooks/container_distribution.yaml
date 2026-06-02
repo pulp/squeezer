@@ -70,7 +70,7 @@
           - result.changed == true
           - result.distribution.name == "test_container_distribution"
           - result.distribution.base_path == "test_container_base_path"
-          - ansible_check_mode or result.distribution.registry_path is regex(".*/test_container_base_path")
+          - ansible_check_mode or result.distribution.registry_path is regex(".*test_container_base_path")
           - result.distribution.repository == repository_result.repository.pulp_href
           - ansible_check_mode or result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
           - ansible_check_mode or not result.distribution.private
@@ -97,7 +97,7 @@
           - result.changed == false
           - result.distribution.name == "test_container_distribution"
           - result.distribution.base_path == "test_container_base_path"
-          - ansible_check_mode or result.distribution.registry_path is regex(".*/test_container_base_path")
+          - ansible_check_mode or result.distribution.registry_path is regex(".*test_container_base_path")
           - result.distribution.repository == repository_result.repository.pulp_href
           - ansible_check_mode or result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
           - ansible_check_mode or not result.distribution.private
@@ -116,7 +116,7 @@
           - result.changed == true
           - result.distribution.name == "test_container_distribution"
           - result.distribution.base_path == "test_container_base_path"
-          - ansible_check_mode or result.distribution.registry_path is regex(".*/test_container_base_path")
+          - ansible_check_mode or result.distribution.registry_path is regex(".*test_container_base_path")
           - result.distribution.repository == repository_result.repository.pulp_href
           - ansible_check_mode or result.distribution.content_guard is regex("/pulp/api/v3/contentguards/*")
           - result.distribution.private

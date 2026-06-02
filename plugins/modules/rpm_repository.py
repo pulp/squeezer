@@ -107,7 +107,6 @@ RETURN = r"""
 import json
 import traceback
 
-from ansible.module_utils.six import string_types
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpEntityAnsibleModule
 
 try:
@@ -161,7 +160,7 @@ def main():
 
         # Encode the repo_config unless its a string, then assume it is pre-formatted JSON
         if "repo_config" in desired_attributes and isinstance(
-            desired_attributes["repo_config"], string_types
+            desired_attributes["repo_config"], str
         ):
             desired_attributes["repo_config"] = json.loads(desired_attributes["repo_config"])
 

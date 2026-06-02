@@ -10,8 +10,8 @@ import traceback
 
 from ansible.module_utils.basic import AnsibleModule, env_fallback, missing_required_lib
 
-GLUE_VERSION_SPEC = ">=0.29.2,<0.37"
-GLUE_DEB_VERSION_SPEC = ">=0.3.0,<0.4"
+GLUE_VERSION_SPEC = ">=0.29.2,<0.40"
+GLUE_DEB_VERSION_SPEC = ">=0.3.0,<0.5"
 
 
 def assert_version(spec, version, name):
@@ -23,7 +23,11 @@ try:
     from packaging.requirements import SpecifierSet
     from pulp_glue.common import __version__ as pulp_glue_version
     from pulp_glue.common.context import PulpContext, PulpException, PulpNoWait
-    from pulp_glue.common.openapi import BasicAuthProvider
+
+    if SpecifierSet(">=0.38").contains(pulp_glue_version):
+        from pulp_glue.common.authentication import BasicAuthProvider
+    else:
+        from pulp_glue.common.openapi import BasicAuthProvider
 
     assert_version(GLUE_VERSION_SPEC, pulp_glue_version, "pulp-glue")
     PULP_CLI_IMPORT_ERR = None

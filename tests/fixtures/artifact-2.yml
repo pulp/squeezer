@@ -1,48 +1,76 @@
-interactions:
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - Squeezer/0.0.17-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/artifacts/?offset=0&limit=1000
-  response:
-    body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/artifacts/0191acb9-5a4c-71a7-8ea9-d3a780040fed/","pulp_created":"2024-09-01T08:35:14.124735Z","pulp_last_updated":"2024-09-01T08:35:14.124756Z","file":"artifact/69/3d23225ebe839ae6d47e54de0b0d46d08d3fe0cefeb4ace48bacca9933e814","size":65,"md5":null,"sha1":null,"sha224":"8eeb154c125f9ff30bb97e19e2922ea973f86c461439bbc04e2ff9b5","sha256":"693d23225ebe839ae6d47e54de0b0d46d08d3fe0cefeb4ace48bacca9933e814","sha384":"f4a558bcb3b2583b1779de7cf267d81fc29ecd534804e5474d70023006db99dbb80d099f03b538140dc0d31e2cdf29fa","sha512":"44500176347fa10372ac5f6f263bbab2bfeb4967f21729e18a594307bdcfa9ca226ac28ab67b1e4ba878d876630cef09da195887630b42ad97602d1b48a2d7c3"}]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '732'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - ffcbb0ab74704a8fbba0b272af3eba54
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Sun, 01 Sep 2024 08:35:15 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-version: 1
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/artifacts/?offset=0&limit=1000",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.4.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Correlation-ID": [
+                        "2a727396fbab48c785911b227fffd1a8"
+                    ],
+                    "Date": [
+                        "Mon, 01 Jun 2026 12:55:19 GMT"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Content-Length": [
+                        "2284"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":3,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/artifacts/019e8340-bbf2-7520-9b2e-972a40293f1a/\",\"prn\":\"prn:core.artifact:019e8340-bbf2-7520-9b2e-972a40293f1a\",\"pulp_created\":\"2026-06-01T12:55:18.258496Z\",\"pulp_last_updated\":\"2026-06-01T12:55:18.258505Z\",\"file\":\"artifact/69/3d23225ebe839ae6d47e54de0b0d46d08d3fe0cefeb4ace48bacca9933e814\",\"size\":65,\"md5\":null,\"sha1\":null,\"sha224\":\"8eeb154c125f9ff30bb97e19e2922ea973f86c461439bbc04e2ff9b5\",\"sha256\":\"693d23225ebe839ae6d47e54de0b0d46d08d3fe0cefeb4ace48bacca9933e814\",\"sha384\":\"f4a558bcb3b2583b1779de7cf267d81fc29ecd534804e5474d70023006db99dbb80d099f03b538140dc0d31e2cdf29fa\",\"sha512\":\"44500176347fa10372ac5f6f263bbab2bfeb4967f21729e18a594307bdcfa9ca226ac28ab67b1e4ba878d876630cef09da195887630b42ad97602d1b48a2d7c3\"},{\"pulp_href\":\"/pulp/api/v3/artifacts/019e82f3-6287-7d1b-8f8a-057260017e04/\",\"prn\":\"prn:core.artifact:019e82f3-6287-7d1b-8f8a-057260017e04\",\"pulp_created\":\"2026-06-01T11:30:49.097298Z\",\"pulp_last_updated\":\"2026-06-01T11:30:49.097308Z\",\"file\":\"artifact/46/7c73425dcc43ef64dccf50d70fdcdb7e3bba5706c37b534a0f4f043aa7b688\",\"size\":1825,\"md5\":null,\"sha1\":null,\"sha224\":\"ff4b058f649932d28c49e3067eee16b0fa6163c2aaf5bed98a7ed8c1\",\"sha256\":\"467c73425dcc43ef64dccf50d70fdcdb7e3bba5706c37b534a0f4f043aa7b688\",\"sha384\":\"66eaaee3d1f3b4d7bb07763dbde015ee7322ebe76df11659dab399a1a19f5aefd758df33f76813e4e42ed1e823fd403e\",\"sha512\":\"759e1cc01cfabbbbee6908a2cdd870118e6e85257302fb655eac78ada5100936f7455913792b5a601cfcf6ba31955c135e9ba485c2a7486d8bf5a83eece1a1dc\"},{\"pulp_href\":\"/pulp/api/v3/artifacts/019e82f2-9386-7333-b392-952c7fb3967e/\",\"prn\":\"prn:core.artifact:019e82f2-9386-7333-b392-952c7fb3967e\",\"pulp_created\":\"2026-06-01T11:29:56.103336Z\",\"pulp_last_updated\":\"2026-06-01T11:29:56.103347Z\",\"file\":\"artifact/9a/09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee\",\"size\":5,\"md5\":null,\"sha1\":null,\"sha224\":\"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9\",\"sha256\":\"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee\",\"sha384\":\"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086\",\"sha512\":\"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116\"}]}"
+                }
+            }
+        }
+    ]
+}

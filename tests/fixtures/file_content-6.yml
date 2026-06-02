@@ -1,48 +1,76 @@
-interactions:
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - Squeezer/0.0.17-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/content/file/files/?offset=0&limit=1000
-  response:
-    body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/file/files/019156e3-8d77-7816-9670-67735b10dfe1/","pulp_created":"2024-08-15T16:33:59.160278Z","pulp_last_updated":"2024-08-15T16:33:59.160291Z","artifact":"/pulp/api/v3/artifacts/019156e3-8cbe-7a8b-b782-f5a3b0a0be2e/","relative_path":"data/file1.txt","md5":null,"sha1":"733033d4ba6761c30fbd1086a70784f4fb317687","sha224":null,"sha256":"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee","sha384":null,"sha512":"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116"}]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '644'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - cad7a4f3d5f040f781703bb64608543a
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Thu, 15 Aug 2024 16:34:05 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-version: 1
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/content/file/files/?offset=0&limit=1000",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.4.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Content-Length": [
+                        "856"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Correlation-ID": [
+                        "62ef9d4c7a7540d1be5c31c828ea62dc"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Date": [
+                        "Mon, 01 Jun 2026 14:06:08 GMT"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/content/file/files/019e8381-79d1-76d0-b8ff-60d4bb8a802f/\",\"prn\":\"prn:file.filecontent:019e8381-79d1-76d0-b8ff-60d4bb8a802f\",\"pulp_created\":\"2026-06-01T14:06:01.170696Z\",\"pulp_last_updated\":\"2026-06-01T14:06:01.170707Z\",\"pulp_labels\":{},\"vuln_report\":null,\"artifact\":\"/pulp/api/v3/artifacts/019e8381-7940-7a9b-afda-f3d45d029eda/\",\"relative_path\":\"data/file1.txt\",\"md5\":null,\"sha1\":null,\"sha224\":\"a53f9c243fefab0a8f03533169142418d6745cc3008965062075e3e9\",\"sha256\":\"9a09346843b8532b895e61f9d9df434ff2f8592b31bfbea72ed09cc97cbe33ee\",\"sha384\":\"39b413081f02328f5d2bca372f5419748125fff339e524a0f87c6859f9a3abff58e8820c188c54c50410adba8e586086\",\"sha512\":\"ff4f742b9c759a14632560cbbf71582842743b5a800090de939d570bbfb67c0e7bb99aa810f089db03cf606e2faf4d83b3892f819b3c4515cca7132ef157e116\"}]}"
+                }
+            }
+        }
+    ]
+}

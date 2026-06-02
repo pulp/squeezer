@@ -88,7 +88,36 @@ import traceback
 from ansible_collections.pulp.squeezer.plugins.module_utils.pulp_glue import PulpRemoteAnsibleModule
 
 try:
+    from pulp_glue.common.context import PluginRequirement
     from pulp_glue.container.context import PulpContainerRemoteContext
+
+    class PulpContainerRemoteContext(PulpContainerRemoteContext):
+        def converge(self, desired_attributes, defaults=None):
+            if self.pulp_ctx.has_plugin(PluginRequirement("container", specifier=">=2.28.0")):
+                # Translate the old name to the new one and back afterwards.
+                # Here specifically we can assume there are no defaults.
+                # Eventually we expect glue to only expose the new name to us.
+                if desired_attributes is not None:
+                    if "include_tags" in desired_attributes:
+                        desired_attributes["includes"] = desired_attributes.pop("include_tags")
+                    if "exclude_tags" in desired_attributes:
+                        desired_attributes["excludes"] = desired_attributes.pop("exclude_tags")
+
+                changed, before, after = super().converge(desired_attributes, defaults=defaults)
+
+                if before is not None:
+                    if "includes" in before:
+                        before["include_tags"] = before.pop("includes")
+                    if "excludes" in before:
+                        before["exclude_tags"] = before.pop("excludes")
+                if after is not None:
+                    if "includes" in after:
+                        after["include_tags"] = after.pop("includes")
+                    if "excludes" in after:
+                        after["exclude_tags"] = after.pop("excludes")
+
+                return changed, before, after
+            return super().converge(desired_attributes, defaults=defaults)
 
     PULP_GLUE_IMPORT_ERR = None
 except ImportError:
