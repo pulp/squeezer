@@ -23,6 +23,11 @@ options:
     description:
       - An optional remote to use by default when syncing
     type: str
+  pulp_labels:
+    description:
+      - A dictionary assigning pulp labels using strings for keys and values
+    type: dict
+    version_added: "0.4.0"
 extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp
@@ -113,6 +118,7 @@ def main():
             "name": {},
             "description": {},
             "remote": {},
+            "pulp_labels": {"type": "dict"},
         },
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
@@ -129,6 +135,16 @@ def main():
 
         if module.params["description"] is not None:
             desired_attributes["description"] = module.params["description"]
+
+        if module.params["pulp_labels"] is not None:
+            labels = module.params["pulp_labels"]
+
+            # Ensure `pulp_labels` contains only strings for keys and values
+            if not all(isinstance(k, str) and isinstance(v, str) for k, v in labels.items()):
+                module.fail_json(
+                    msg="pulp_labels must be a dictionary with strings as keys and values"
+                )
+            desired_attributes["pulp_labels"] = labels
 
         module.process(natural_key, desired_attributes)
 

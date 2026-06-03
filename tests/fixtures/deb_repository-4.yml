@@ -2,20 +2,28 @@ interactions:
 - request:
     body: null
     headers:
-      Accept:
-      - application/json
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - Accept
+        state:
+          __istr_identity__: Accept
+      : - application/json
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
-      User-Agent:
-      - Squeezer/0.3.0-dev
+      ? !!python/object/new:multidict._multidict_py.istr
+        args:
+        - User-Agent
+        state:
+          __istr_identity__: User-Agent
+      : - Squeezer/0.4.0-dev
     method: GET
     uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/019a257b-06c2-7a0e-aa73-d444977f24ee/","prn":"prn:deb.aptrepository:019a257b-06c2-7a0e-aa73-d444977f24ee","pulp_created":"2025-10-27T11:43:31.011084Z","pulp_last_updated":"2025-10-27T11:43:31.786391Z","versions_href":"/pulp/api/v3/repositories/deb/apt/019a257b-06c2-7a0e-aa73-d444977f24ee/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/019a257b-06c2-7a0e-aa73-d444977f24ee/versions/0/","name":"test_deb_repository","description":"repository
-        created via ansible","retain_repo_versions":null,"remote":null,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}]}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/","prn":"prn:deb.aptrepository:019e63ee-9688-783a-b803-3075d01e6c85","pulp_created":"2026-05-26T10:57:21.033732Z","pulp_last_updated":"2026-05-26T10:57:22.352898Z","versions_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/versions/0/","name":"test_deb_repository","description":"repository
+        created via ansible","retain_repo_versions":null,"retain_checkpoints":null,"remote":null,"autopublish":false,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -24,15 +32,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '743'
+      - '789'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 17ed436e379746f48297eb7c18cd1c69
+      - 30f842107ce04d21a1567cecc2ab1f46
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Mon, 27 Oct 2025 11:43:32 GMT
+      - Tue, 26 May 2026 10:57:23 GMT
       Referrer-Policy:
       - same-origin
       Server:

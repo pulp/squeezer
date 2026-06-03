@@ -22,8 +22,7 @@ interactions:
     uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository&offset=0&limit=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/","prn":"prn:deb.aptrepository:019e63ee-9688-783a-b803-3075d01e6c85","pulp_created":"2026-05-26T10:57:21.033732Z","pulp_last_updated":"2026-05-26T10:57:26.342006Z","versions_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/versions/","pulp_labels":{"test_label":"1"},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/versions/0/","name":"test_deb_repository","description":"repository
-        created via ansible","retain_repo_versions":null,"retain_checkpoints":null,"remote":"/pulp/api/v3/remotes/deb/apt/019e63ee-8f11-7942-9aac-75e8f23f355c/","autopublish":false,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}]}'
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
     headers:
       Access-Control-Expose-Headers:
       - Correlation-ID
@@ -32,15 +31,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '869'
+      - '52'
       Content-Type:
       - application/json
       Correlation-ID:
-      - 9160885c88e940ee9a29c02f4e84080b
+      - 7f8a4e27390649f9b8aa4092d2bdf670
       Cross-Origin-Opener-Policy:
       - same-origin
       Date:
-      - Tue, 26 May 2026 10:57:27 GMT
+      - Tue, 26 May 2026 10:57:33 GMT
       Referrer-Policy:
       - same-origin
       Server:
