@@ -1,3 +1,18 @@
+[dependency-groups]
+dev = [
+  "ansible-core",
+  "ansible-runner>=2.4.3",
+  "flake8>=7.3.0",
+  "pulp-glue>=0.29.2,<0.40",
+  "pulp-glue-deb>=0.3.0,<0.5",
+  "pycodestyle>=2.14.0",
+  "pylint>=4.0.6",
+  "pytest>=4.4.0",
+  "pytest-xdist>=3.8.0",
+  "vcrpy",
+  "voluptuous>=0.16.0",
+]
+
 [tool.black]
 line-length = 100
 
@@ -18,8 +33,8 @@ serialize = [
 [tool.bumpversion.parts.release]
 optional_value = "prod"
 values = [
- "dev",
- "prod",
+  "dev",
+  "prod",
 ]
 
 [[tool.bumpversion.files]]

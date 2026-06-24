@@ -1,229 +1,230 @@
-interactions:
-- request:
-    body: null
-    headers:
-      ? !!python/object/new:multidict._multidict_py.istr
-        args:
-        - Accept
-        state:
-          __istr_identity__: Accept
-      : - application/json
-      Accept-Encoding:
-      - gzip, deflate, zstd
-      Connection:
-      - keep-alive
-      ? !!python/object/new:multidict._multidict_py.istr
-        args:
-        - User-Agent
-        state:
-          __istr_identity__: User-Agent
-      : - Squeezer/0.4.0-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository&offset=0&limit=1
-  response:
-    body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/","prn":"prn:deb.aptrepository:019e63ee-9688-783a-b803-3075d01e6c85","pulp_created":"2026-05-26T10:57:21.033732Z","pulp_last_updated":"2026-05-26T10:57:26.342006Z","versions_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/versions/","pulp_labels":{"test_label":"1"},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/versions/0/","name":"test_deb_repository","description":"repository
-        created via ansible","retain_repo_versions":null,"retain_checkpoints":null,"remote":"/pulp/api/v3/remotes/deb/apt/019e63ee-8f11-7942-9aac-75e8f23f355c/","autopublish":false,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '869'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 9594a02ca4e44330b86aff028e5d79e4
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Tue, 26 May 2026 10:57:29 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"description": null}'
-    headers:
-      ? !!python/object/new:multidict._multidict_py.istr
-        args:
-        - Accept
-        state:
-          __istr_identity__: Accept
-      : - application/json
-      Accept-Encoding:
-      - gzip, deflate, zstd
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '21'
-      Correlation-Id:
-      - 9594a02ca4e44330b86aff028e5d79e4
-      ? !!python/object/new:multidict._multidict_py.istr
-        args:
-        - User-Agent
-        state:
-          __istr_identity__: User-Agent
-      : - Squeezer/0.4.0-dev
-      content-type:
-      - application/json
-    method: PATCH
-    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/
-  response:
-    body:
-      string: '{"task":"/pulp/api/v3/tasks/019e63ee-b842-750e-8433-a5ab56333094/"}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '67'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 9594a02ca4e44330b86aff028e5d79e4
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Tue, 26 May 2026 10:57:29 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 202
-      message: Accepted
-- request:
-    body: null
-    headers:
-      ? !!python/object/new:multidict._multidict_py.istr
-        args:
-        - Accept
-        state:
-          __istr_identity__: Accept
-      : - application/json
-      Accept-Encoding:
-      - gzip, deflate, zstd
-      Connection:
-      - keep-alive
-      Correlation-Id:
-      - 9594a02ca4e44330b86aff028e5d79e4
-      ? !!python/object/new:multidict._multidict_py.istr
-        args:
-        - User-Agent
-        state:
-          __istr_identity__: User-Agent
-      : - Squeezer/0.4.0-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/019e63ee-b842-750e-8433-a5ab56333094/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/019e63ee-b842-750e-8433-a5ab56333094/","prn":"prn:core.task:019e63ee-b842-750e-8433-a5ab56333094","pulp_created":"2026-05-26T10:57:29.671980Z","pulp_last_updated":"2026-05-26T10:57:29.667040Z","state":"completed","name":"pulpcore.app.tasks.base.ageneral_update","logging_cid":"9594a02ca4e44330b86aff028e5d79e4","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2026-05-26T10:57:29.682084Z","started_at":"2026-05-26T10:57:29.687568Z","finished_at":"2026-05-26T10:57:29.699068Z","error":null,"worker":null,"parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"created_resource_prns":[],"reserved_resources_record":["prn:deb.aptrepository:019e63ee-9688-783a-b803-3075d01e6c85","shared:prn:core.domain:1e3f8e53-783a-40e3-8b55-538afa565e8a"],"result":{"prn":"prn:deb.aptrepository:019e63ee-9688-783a-b803-3075d01e6c85","name":"test_deb_repository","remote":"/pulp/api/v3/remotes/deb/apt/019e63ee-8f11-7942-9aac-75e8f23f355c/","pulp_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/","autopublish":false,"description":null,"pulp_labels":{"test_label":"1"},"pulp_created":"2026-05-26T10:57:21.033732Z","versions_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/versions/","signing_service":null,"pulp_last_updated":"2026-05-26T10:57:29.692721Z","retain_checkpoints":null,"latest_version_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/versions/0/","retain_repo_versions":null,"publish_upstream_release_fields":true,"signing_service_release_overrides":{}}}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '1618'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 9594a02ca4e44330b86aff028e5d79e4
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Tue, 26 May 2026 10:57:29 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      ? !!python/object/new:multidict._multidict_py.istr
-        args:
-        - Accept
-        state:
-          __istr_identity__: Accept
-      : - application/json
-      Accept-Encoding:
-      - gzip, deflate, zstd
-      Connection:
-      - keep-alive
-      Correlation-Id:
-      - 9594a02ca4e44330b86aff028e5d79e4
-      ? !!python/object/new:multidict._multidict_py.istr
-        args:
-        - User-Agent
-        state:
-          __istr_identity__: User-Agent
-      : - Squeezer/0.4.0-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/","prn":"prn:deb.aptrepository:019e63ee-9688-783a-b803-3075d01e6c85","pulp_created":"2026-05-26T10:57:21.033732Z","pulp_last_updated":"2026-05-26T10:57:29.692721Z","versions_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/versions/","pulp_labels":{"test_label":"1"},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/versions/0/","name":"test_deb_repository","description":null,"retain_repo_versions":null,"retain_checkpoints":null,"remote":"/pulp/api/v3/remotes/deb/apt/019e63ee-8f11-7942-9aac-75e8f23f355c/","autopublish":false,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '789'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 9594a02ca4e44330b86aff028e5d79e4
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Tue, 26 May 2026 10:57:30 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-version: 1
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository&offset=0&limit=1",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Date": [
+                        "Wed, 24 Jun 2026 15:09:25 GMT"
+                    ],
+                    "Correlation-ID": [
+                        "195541482e8d47ef815dbe57d35f7650"
+                    ],
+                    "Content-Length": [
+                        "869"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/repositories/deb/apt/019efa2d-a818-7502-91d2-8963e11be14b/\",\"prn\":\"prn:deb.aptrepository:019efa2d-a818-7502-91d2-8963e11be14b\",\"pulp_created\":\"2026-06-24T15:09:16.697304Z\",\"pulp_last_updated\":\"2026-06-24T15:09:21.813269Z\",\"versions_href\":\"/pulp/api/v3/repositories/deb/apt/019efa2d-a818-7502-91d2-8963e11be14b/versions/\",\"pulp_labels\":{\"test_label\":\"1\"},\"latest_version_href\":\"/pulp/api/v3/repositories/deb/apt/019efa2d-a818-7502-91d2-8963e11be14b/versions/0/\",\"name\":\"test_deb_repository\",\"description\":\"repository created via ansible\",\"retain_repo_versions\":null,\"retain_checkpoints\":null,\"remote\":\"/pulp/api/v3/remotes/deb/apt/019efa2d-a140-7180-ad5e-2d705d459820/\",\"autopublish\":false,\"publish_upstream_release_fields\":true,\"signing_service\":null,\"signing_service_release_overrides\":{}}]}"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "PATCH",
+                "uri": "http://pulp.example.org/pulp/api/v3/repositories/deb/apt/019efa2d-a818-7502-91d2-8963e11be14b/",
+                "body": "{\"description\": null}",
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Correlation-Id": [
+                        "195541482e8d47ef815dbe57d35f7650"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Content-Length": [
+                        "21"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 202,
+                    "message": "Accepted"
+                },
+                "headers": {
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Date": [
+                        "Wed, 24 Jun 2026 15:09:25 GMT"
+                    ],
+                    "Correlation-ID": [
+                        "195541482e8d47ef815dbe57d35f7650"
+                    ],
+                    "Content-Length": [
+                        "67"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Allow": [
+                        "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ]
+                },
+                "body": {
+                    "string": "{\"task\":\"/pulp/api/v3/tasks/019efa2d-cb49-7bc5-b169-ec6fe1629c76/\"}"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/tasks/019efa2d-cb49-7bc5-b169-ec6fe1629c76/",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Correlation-Id": [
+                        "195541482e8d47ef815dbe57d35f7650"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Date": [
+                        "Wed, 24 Jun 2026 15:09:25 GMT"
+                    ],
+                    "Correlation-ID": [
+                        "195541482e8d47ef815dbe57d35f7650"
+                    ],
+                    "Content-Length": [
+                        "1618"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Allow": [
+                        "GET, PATCH, DELETE, HEAD, OPTIONS"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ]
+                },
+                "body": {
+                    "string": "{\"pulp_href\":\"/pulp/api/v3/tasks/019efa2d-cb49-7bc5-b169-ec6fe1629c76/\",\"prn\":\"prn:core.task:019efa2d-cb49-7bc5-b169-ec6fe1629c76\",\"pulp_created\":\"2026-06-24T15:09:25.707451Z\",\"pulp_last_updated\":\"2026-06-24T15:09:25.705728Z\",\"state\":\"completed\",\"name\":\"pulpcore.app.tasks.base.ageneral_update\",\"logging_cid\":\"195541482e8d47ef815dbe57d35f7650\",\"created_by\":\"/pulp/api/v3/users/1/\",\"unblocked_at\":\"2026-06-24T15:09:25.717422Z\",\"started_at\":\"2026-06-24T15:09:25.722173Z\",\"finished_at\":\"2026-06-24T15:09:25.735317Z\",\"error\":null,\"worker\":null,\"parent_task\":null,\"child_tasks\":[],\"task_group\":null,\"progress_reports\":[],\"created_resources\":[],\"created_resource_prns\":[],\"reserved_resources_record\":[\"prn:deb.aptrepository:019efa2d-a818-7502-91d2-8963e11be14b\",\"shared:prn:core.domain:220e75e0-f741-4e16-9c95-798bfdffb2eb\"],\"result\":{\"prn\":\"prn:deb.aptrepository:019efa2d-a818-7502-91d2-8963e11be14b\",\"name\":\"test_deb_repository\",\"remote\":\"/pulp/api/v3/remotes/deb/apt/019efa2d-a140-7180-ad5e-2d705d459820/\",\"pulp_href\":\"/pulp/api/v3/repositories/deb/apt/019efa2d-a818-7502-91d2-8963e11be14b/\",\"autopublish\":false,\"description\":null,\"pulp_labels\":{\"test_label\":\"1\"},\"pulp_created\":\"2026-06-24T15:09:16.697304Z\",\"versions_href\":\"/pulp/api/v3/repositories/deb/apt/019efa2d-a818-7502-91d2-8963e11be14b/versions/\",\"signing_service\":null,\"pulp_last_updated\":\"2026-06-24T15:09:25.727072Z\",\"retain_checkpoints\":null,\"latest_version_href\":\"/pulp/api/v3/repositories/deb/apt/019efa2d-a818-7502-91d2-8963e11be14b/versions/0/\",\"retain_repo_versions\":null,\"publish_upstream_release_fields\":true,\"signing_service_release_overrides\":{}}}"
+                }
+            }
+        }
+    ]
+}

@@ -1,12 +1,5 @@
 #!/bin/sh
 
-# This file is shared between some projects please keep all copies in sync
-# Known places:
-#   - https://github.com/pulp/pulp-cli/blob/main/.ci/run_container.sh
-#   - https://github.com/pulp/pulp-cli-deb/blob/main/.ci/run_container.sh
-#   - https://github.com/pulp/pulp-cli-ostree/blob/main/.ci/run_container.sh
-#   - https://github.com/pulp/squeezer/blob/develop/tests/run_container.sh
-
 set -eu
 
 BASEPATH="$(dirname "$(readlink -f "$0")")"
@@ -45,10 +38,14 @@ else
     SELINUX=""
 fi;
 
+PULP_SECRET_KEY="$(python3 -c "import secrets; print(secrets.token_urlsafe(50))")"
+export PULP_SECRET_KEY
+
 "${CONTAINER_RUNTIME}" \
   run ${RM:+--rm} \
   --env S6_KEEP_ENV=1 \
   ${PULP_API_ROOT:+--env PULP_API_ROOT} \
+  --env PULP_SECRET_KEY \
   --detach \
   --name "pulp-ephemeral" \
   --volume "${BASEPATH}/settings:/etc/pulp${SELINUX:+:Z}" \

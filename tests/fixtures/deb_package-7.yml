@@ -1,52 +1,76 @@
-interactions:
-- request:
-    body: null
-    headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
-      : - application/json
-      Accept-Encoding:
-      - gzip, deflate, zstd
-      Connection:
-      - keep-alive
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
-      : - Squeezer/0.5.0-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/content/deb/packages/?sha256=eb061a19af924d0add800ea5c86546d125f96454b45e60a541c205bdba5f6f6b&offset=0&limit=1
-  response:
-    body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/deb/packages/019eb35f-3e94-7214-8036-d77c4dfeba21/","prn":"prn:deb.package:019eb35f-3e94-7214-8036-d77c4dfeba21","pulp_created":"2026-06-10T21:10:24.153728Z","pulp_last_updated":"2026-06-10T21:10:24.153749Z","pulp_labels":{},"vuln_report":null,"artifact":"/pulp/api/v3/artifacts/019eb35f-3dbf-7b1f-ae8f-d456872442cd/","relative_path":"pool/g/geirrodr/geirrodr_1.0_armeb.deb","md5":null,"sha1":null,"sha224":"4e7f5641b0c912087fdc42a99aa3226c984f38dc169f8387e4d36622","sha256":"eb061a19af924d0add800ea5c86546d125f96454b45e60a541c205bdba5f6f6b","sha384":"e44ba9043b39e09f7c086178e0fd51ef6bc61bcd40f6fb80d308b2e6cf025d34167f73906289dc771059813acae432af","sha512":"6adf58df1e40469bac2a7ee2cb170c0aba7eab4ec3596250258b2bb15ab184165d85450d486d0f7ada1552c2bef5b06377049b8894417e8bd92c08f7f8785afc","package":"geirrodr","source":null,"version":"1.0","architecture":"armeb","section":"misc","priority":"optional","origin":null,"tag":null,"bugs":null,"essential":null,"build_essential":null,"installed_size":"9","maintainer":"Equivs
-        Dummy Package Generator <root@bd208d733cce>","original_maintainer":null,"description":"Geirrodr\n
-        Geirrodr was a jotunn and the father of the giantesses Gjalp and Greip.","description_md5":null,"homepage":null,"built_using":null,"auto_built_package":null,"multi_arch":"foreign","breaks":null,"conflicts":null,"depends":null,"recommends":null,"suggests":null,"enhances":null,"pre_depends":null,"provides":null,"replaces":null}]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '1534'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - c34409355b21441086c20abb174905c9
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Wed, 10 Jun 2026 21:10:40 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-version: 1
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/content/deb/packages/?sha256=eb061a19af924d0add800ea5c86546d125f96454b45e60a541c205bdba5f6f6b&offset=0&limit=1",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate, zstd"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "Content-Length": [
+                        "1534"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Correlation-ID": [
+                        "00e753d13f9748baa8697e9b1f5b6e95"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Date": [
+                        "Mon, 24 Aug 2026 09:43:52 GMT"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/content/deb/packages/01a03327-87ef-78a5-a0ca-c2178d452f3c/\",\"prn\":\"prn:deb.package:01a03327-87ef-78a5-a0ca-c2178d452f3c\",\"pulp_created\":\"2026-08-24T09:43:43.855716Z\",\"pulp_last_updated\":\"2026-08-24T09:43:43.855730Z\",\"pulp_labels\":{},\"vuln_report\":null,\"artifact\":\"/pulp/api/v3/artifacts/01a03327-8754-772b-9c59-8f0c9f7afc71/\",\"relative_path\":\"pool/g/geirrodr/geirrodr_1.0_armeb.deb\",\"md5\":null,\"sha1\":null,\"sha224\":\"4e7f5641b0c912087fdc42a99aa3226c984f38dc169f8387e4d36622\",\"sha256\":\"eb061a19af924d0add800ea5c86546d125f96454b45e60a541c205bdba5f6f6b\",\"sha384\":\"e44ba9043b39e09f7c086178e0fd51ef6bc61bcd40f6fb80d308b2e6cf025d34167f73906289dc771059813acae432af\",\"sha512\":\"6adf58df1e40469bac2a7ee2cb170c0aba7eab4ec3596250258b2bb15ab184165d85450d486d0f7ada1552c2bef5b06377049b8894417e8bd92c08f7f8785afc\",\"package\":\"geirrodr\",\"source\":null,\"version\":\"1.0\",\"architecture\":\"armeb\",\"section\":\"misc\",\"priority\":\"optional\",\"origin\":null,\"tag\":null,\"bugs\":null,\"essential\":null,\"build_essential\":null,\"installed_size\":\"9\",\"maintainer\":\"Equivs Dummy Package Generator <root@bd208d733cce>\",\"original_maintainer\":null,\"description\":\"Geirrodr\\n Geirrodr was a jotunn and the father of the giantesses Gjalp and Greip.\",\"description_md5\":null,\"homepage\":null,\"built_using\":null,\"auto_built_package\":null,\"multi_arch\":\"foreign\",\"breaks\":null,\"conflicts\":null,\"depends\":null,\"recommends\":null,\"suggests\":null,\"enhances\":null,\"pre_depends\":null,\"provides\":null,\"replaces\":null}]}"
+                }
+            }
+        }
+    ]
+}

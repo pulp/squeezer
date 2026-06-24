@@ -1,210 +1,304 @@
-interactions:
-- request:
-    body: null
-    headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
-      : - application/json
-      Accept-Encoding:
-      - gzip, deflate, zstd
-      Connection:
-      - keep-alive
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
-      : - Squeezer/0.5.0-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository2&offset=0&limit=1
-  response:
-    body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/019eb35f-1f02-7565-b65f-d701e45fa647/","prn":"prn:deb.aptrepository:019eb35f-1f02-7565-b65f-d701e45fa647","pulp_created":"2026-06-10T21:10:16.067986Z","pulp_last_updated":"2026-06-10T21:10:30.168604Z","versions_href":"/pulp/api/v3/repositories/deb/apt/019eb35f-1f02-7565-b65f-d701e45fa647/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/019eb35f-1f02-7565-b65f-d701e45fa647/versions/1/","name":"test_deb_repository2","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '736'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - dbd50481a03e444b94ae8c5b46f4045c
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Wed, 10 Jun 2026 21:10:33 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
-      : - application/json
-      Accept-Encoding:
-      - gzip, deflate, zstd
-      Connection:
-      - keep-alive
-      ? !!python/object/apply:multidict._multidict.istr
-      - Correlation-Id
-      : - dbd50481a03e444b94ae8c5b46f4045c
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
-      : - Squeezer/0.5.0-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/content/deb/packages/?sha256=eb061a19af924d0add800ea5c86546d125f96454b45e60a541c205bdba5f6f6b&repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Fdeb%2Fapt%2F019eb35f-1f02-7565-b65f-d701e45fa647%2Fversions%2F1%2F&offset=0&limit=1
-  response:
-    body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/content/deb/packages/019eb35f-3e94-7214-8036-d77c4dfeba21/","prn":"prn:deb.package:019eb35f-3e94-7214-8036-d77c4dfeba21","pulp_created":"2026-06-10T21:10:24.153728Z","pulp_last_updated":"2026-06-10T21:10:24.153749Z","pulp_labels":{},"vuln_report":null,"artifact":"/pulp/api/v3/artifacts/019eb35f-3dbf-7b1f-ae8f-d456872442cd/","relative_path":"pool/g/geirrodr/geirrodr_1.0_armeb.deb","md5":null,"sha1":null,"sha224":"4e7f5641b0c912087fdc42a99aa3226c984f38dc169f8387e4d36622","sha256":"eb061a19af924d0add800ea5c86546d125f96454b45e60a541c205bdba5f6f6b","sha384":"e44ba9043b39e09f7c086178e0fd51ef6bc61bcd40f6fb80d308b2e6cf025d34167f73906289dc771059813acae432af","sha512":"6adf58df1e40469bac2a7ee2cb170c0aba7eab4ec3596250258b2bb15ab184165d85450d486d0f7ada1552c2bef5b06377049b8894417e8bd92c08f7f8785afc","package":"geirrodr","source":null,"version":"1.0","architecture":"armeb","section":"misc","priority":"optional","origin":null,"tag":null,"bugs":null,"essential":null,"build_essential":null,"installed_size":"9","maintainer":"Equivs
-        Dummy Package Generator <root@bd208d733cce>","original_maintainer":null,"description":"Geirrodr\n
-        Geirrodr was a jotunn and the father of the giantesses Gjalp and Greip.","description_md5":null,"homepage":null,"built_using":null,"auto_built_package":null,"multi_arch":"foreign","breaks":null,"conflicts":null,"depends":null,"recommends":null,"suggests":null,"enhances":null,"pre_depends":null,"provides":null,"replaces":null}]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '1534'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - dbd50481a03e444b94ae8c5b46f4045c
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Wed, 10 Jun 2026 21:10:33 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"remove_content_units": ["/pulp/api/v3/content/deb/packages/019eb35f-3e94-7214-8036-d77c4dfeba21/"]}'
-    headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
-      : - application/json
-      Accept-Encoding:
-      - gzip, deflate, zstd
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '101'
-      ? !!python/object/apply:multidict._multidict.istr
-      - Content-Type
-      : - application/json
-      ? !!python/object/apply:multidict._multidict.istr
-      - Correlation-Id
-      : - dbd50481a03e444b94ae8c5b46f4045c
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
-      : - Squeezer/0.5.0-dev
-    method: POST
-    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/019eb35f-1f02-7565-b65f-d701e45fa647/modify/
-  response:
-    body:
-      string: '{"task":"/pulp/api/v3/tasks/019eb35f-6516-7a6f-bde0-b8624300b55d/"}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - POST, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '67'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - dbd50481a03e444b94ae8c5b46f4045c
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Wed, 10 Jun 2026 21:10:34 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 202
-      message: Accepted
-- request:
-    body: null
-    headers:
-      ? !!python/object/apply:multidict._multidict.istr
-      - Accept
-      : - application/json
-      Accept-Encoding:
-      - gzip, deflate, zstd
-      Connection:
-      - keep-alive
-      ? !!python/object/apply:multidict._multidict.istr
-      - Correlation-Id
-      : - dbd50481a03e444b94ae8c5b46f4045c
-      ? !!python/object/apply:multidict._multidict.istr
-      - User-Agent
-      : - Squeezer/0.5.0-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/019eb35f-6516-7a6f-bde0-b8624300b55d/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/019eb35f-6516-7a6f-bde0-b8624300b55d/","prn":"prn:core.task:019eb35f-6516-7a6f-bde0-b8624300b55d","pulp_created":"2026-06-10T21:10:34.009243Z","pulp_last_updated":"2026-06-10T21:10:34.007427Z","state":"completed","name":"pulpcore.app.tasks.repository.add_and_remove","logging_cid":"dbd50481a03e444b94ae8c5b46f4045c","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2026-06-10T21:10:34.035465Z","started_at":"2026-06-10T21:10:34.089123Z","finished_at":"2026-06-10T21:10:34.148128Z","error":null,"worker":null,"parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":["/pulp/api/v3/repositories/deb/apt/019eb35f-1f02-7565-b65f-d701e45fa647/versions/2/"],"reserved_resources_record":["prn:deb.aptrepository:019eb35f-1f02-7565-b65f-d701e45fa647","shared:prn:core.domain:46fe10d6-d1cb-4ff3-9777-d14566b579cc"],"result":null}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '895'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - dbd50481a03e444b94ae8c5b46f4045c
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Wed, 10 Jun 2026 21:10:34 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-version: 1
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository2&offset=0&limit=1",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate, zstd"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Correlation-ID": [
+                        "e26122f8e78748b490cbccfe04c1dc6f"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Content-Length": [
+                        "762"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Date": [
+                        "Mon, 24 Aug 2026 09:43:48 GMT"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/repositories/deb/apt/01a03327-7aca-7a61-93e3-9622c4b9d7bd/\",\"prn\":\"prn:deb.aptrepository:01a03327-7aca-7a61-93e3-9622c4b9d7bd\",\"pulp_created\":\"2026-08-24T09:43:40.491364Z\",\"pulp_last_updated\":\"2026-08-24T09:43:46.963008Z\",\"versions_href\":\"/pulp/api/v3/repositories/deb/apt/01a03327-7aca-7a61-93e3-9622c4b9d7bd/versions/\",\"pulp_labels\":{},\"latest_version_href\":\"/pulp/api/v3/repositories/deb/apt/01a03327-7aca-7a61-93e3-9622c4b9d7bd/versions/1/\",\"name\":\"test_deb_repository2\",\"description\":null,\"retain_repo_versions\":null,\"retain_checkpoints\":null,\"remote\":null,\"autopublish\":false,\"publish_upstream_release_fields\":true,\"signing_service\":null,\"signing_service_release_overrides\":{}}]}"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/content/deb/packages/?sha256=eb061a19af924d0add800ea5c86546d125f96454b45e60a541c205bdba5f6f6b&repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Fdeb%2Fapt%2F01a03327-7aca-7a61-93e3-9622c4b9d7bd%2Fversions%2F1%2F&offset=0&limit=1",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate, zstd"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Correlation-Id": [
+                        "e26122f8e78748b490cbccfe04c1dc6f"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Correlation-ID": [
+                        "e26122f8e78748b490cbccfe04c1dc6f"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Content-Length": [
+                        "1534"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Date": [
+                        "Mon, 24 Aug 2026 09:43:48 GMT"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/content/deb/packages/01a03327-87ef-78a5-a0ca-c2178d452f3c/\",\"prn\":\"prn:deb.package:01a03327-87ef-78a5-a0ca-c2178d452f3c\",\"pulp_created\":\"2026-08-24T09:43:43.855716Z\",\"pulp_last_updated\":\"2026-08-24T09:43:43.855730Z\",\"pulp_labels\":{},\"vuln_report\":null,\"artifact\":\"/pulp/api/v3/artifacts/01a03327-8754-772b-9c59-8f0c9f7afc71/\",\"relative_path\":\"pool/g/geirrodr/geirrodr_1.0_armeb.deb\",\"md5\":null,\"sha1\":null,\"sha224\":\"4e7f5641b0c912087fdc42a99aa3226c984f38dc169f8387e4d36622\",\"sha256\":\"eb061a19af924d0add800ea5c86546d125f96454b45e60a541c205bdba5f6f6b\",\"sha384\":\"e44ba9043b39e09f7c086178e0fd51ef6bc61bcd40f6fb80d308b2e6cf025d34167f73906289dc771059813acae432af\",\"sha512\":\"6adf58df1e40469bac2a7ee2cb170c0aba7eab4ec3596250258b2bb15ab184165d85450d486d0f7ada1552c2bef5b06377049b8894417e8bd92c08f7f8785afc\",\"package\":\"geirrodr\",\"source\":null,\"version\":\"1.0\",\"architecture\":\"armeb\",\"section\":\"misc\",\"priority\":\"optional\",\"origin\":null,\"tag\":null,\"bugs\":null,\"essential\":null,\"build_essential\":null,\"installed_size\":\"9\",\"maintainer\":\"Equivs Dummy Package Generator <root@bd208d733cce>\",\"original_maintainer\":null,\"description\":\"Geirrodr\\n Geirrodr was a jotunn and the father of the giantesses Gjalp and Greip.\",\"description_md5\":null,\"homepage\":null,\"built_using\":null,\"auto_built_package\":null,\"multi_arch\":\"foreign\",\"breaks\":null,\"conflicts\":null,\"depends\":null,\"recommends\":null,\"suggests\":null,\"enhances\":null,\"pre_depends\":null,\"provides\":null,\"replaces\":null}]}"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "POST",
+                "uri": "http://pulp.example.org/pulp/api/v3/repositories/deb/apt/01a03327-7aca-7a61-93e3-9622c4b9d7bd/modify/",
+                "body": "{\"remove_content_units\": [\"/pulp/api/v3/content/deb/packages/01a03327-87ef-78a5-a0ca-c2178d452f3c/\"]}",
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate, zstd"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Correlation-Id": [
+                        "e26122f8e78748b490cbccfe04c1dc6f"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Content-Length": [
+                        "101"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 202,
+                    "message": "Accepted"
+                },
+                "headers": {
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Allow": [
+                        "POST, OPTIONS"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Correlation-ID": [
+                        "e26122f8e78748b490cbccfe04c1dc6f"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Content-Length": [
+                        "67"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Date": [
+                        "Mon, 24 Aug 2026 09:43:49 GMT"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ]
+                },
+                "body": {
+                    "string": "{\"task\":\"/pulp/api/v3/tasks/01a03327-9c2c-79bf-9ef9-bf37d44e69d6/\"}"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/tasks/01a03327-9c2c-79bf-9ef9-bf37d44e69d6/",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate, zstd"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Correlation-Id": [
+                        "e26122f8e78748b490cbccfe04c1dc6f"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Allow": [
+                        "GET, PATCH, DELETE, HEAD, OPTIONS"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Correlation-ID": [
+                        "e26122f8e78748b490cbccfe04c1dc6f"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Content-Length": [
+                        "987"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Date": [
+                        "Mon, 24 Aug 2026 09:43:49 GMT"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ]
+                },
+                "body": {
+                    "string": "{\"pulp_href\":\"/pulp/api/v3/tasks/01a03327-9c2c-79bf-9ef9-bf37d44e69d6/\",\"prn\":\"prn:core.task:01a03327-9c2c-79bf-9ef9-bf37d44e69d6\",\"pulp_created\":\"2026-08-24T09:43:49.037739Z\",\"pulp_last_updated\":\"2026-08-24T09:43:49.036387Z\",\"state\":\"completed\",\"name\":\"pulpcore.app.tasks.repository.add_and_remove\",\"logging_cid\":\"e26122f8e78748b490cbccfe04c1dc6f\",\"created_by\":\"/pulp/api/v3/users/1/\",\"unblocked_at\":\"2026-08-24T09:43:49.048874Z\",\"started_at\":\"2026-08-24T09:43:49.093469Z\",\"finished_at\":\"2026-08-24T09:43:49.140067Z\",\"error\":null,\"worker\":null,\"parent_task\":null,\"child_tasks\":[],\"task_group\":null,\"progress_reports\":[],\"created_resources\":[\"/pulp/api/v3/repositories/deb/apt/01a03327-7aca-7a61-93e3-9622c4b9d7bd/versions/2/\"],\"created_resource_prns\":[\"prn:core.repositoryversion:01a03327-9c6d-7aa8-9031-78906d6e94d0\"],\"reserved_resources_record\":[\"prn:deb.aptrepository:01a03327-7aca-7a61-93e3-9622c4b9d7bd\",\"shared:prn:core.domain:cfc40f58-78c1-4526-8b4b-16321aea519b\"],\"result\":null}"
+                }
+            }
+        }
+    ]
+}

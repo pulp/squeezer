@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
+import base64
 import json
 import os
 import re
+import runpy
 import sys
 
 import vcr
@@ -65,6 +67,35 @@ def filter_request_uri(request):
     return request
 
 
+def json_dump_binary(obj):
+    if isinstance(obj, bytes):
+        return {"__binary__": base64.b64encode(obj).decode()}
+    raise TypeError(f"Cannot serialize object of {type(obj)}")
+
+
+def json_load_binary(dct):
+    if "__binary__" in dct:
+        return base64.b64decode(dct["__binary__"].encode())
+    return dct
+
+
+class AmpSerializer:
+    @staticmethod
+    def serialize(cassette_dict):
+        try:
+            return json.dumps(cassette_dict, indent=4, default=json_dump_binary) + "\n"
+        except Exception as e:
+            return f"Error occurred during serialization: {e}."
+
+    @staticmethod
+    def deserialize(cassette_string):
+        try:
+            return json.loads(cassette_string, object_hook=json_load_binary)
+        except Exception:
+            # Tried the adapted json decoder, but this might be an old file.
+            return vcr.serializers.yamlserializer.deserialize(cassette_string)
+
+
 VCR_PARAMS_FILE = os.environ.get("PAM_TEST_VCR_PARAMS_FILE")
 
 # Remove the name of the wrapper from argv
@@ -73,9 +104,7 @@ sys.argv.pop(0)
 
 if VCR_PARAMS_FILE is None:
     # Run the program as if nothing had happened
-    with open(sys.argv[0]) as f:
-        code = compile(f.read(), sys.argv[0], "exec")
-        exec(code)
+    runpy.run_path(sys.argv[0], run_name="__main__")
 else:
     # Run the program wrapped within vcr cassette recorder
     # Load recording parameters from file
@@ -88,7 +117,9 @@ else:
         json.dump(test_params, params_file)
 
     # Call the original python script with vcr-cassette in place
-    amp_vcr = vcr.VCR()
+    amp_vcr = vcr.VCR(
+        record_on_exception=True,
+    )
 
     if test_params["check_mode"]:
         amp_vcr.register_matcher("safe_method_matcher", safe_method_matcher)
@@ -98,6 +129,8 @@ else:
 
     amp_vcr.register_matcher("amp_body", amp_body_matcher)
 
+    amp_vcr.register_serializer("amp", AmpSerializer())
+
     # Use yaml serializer for playback until all records are rerecorded in json.
     with amp_vcr.use_cassette(
         cassette_file,
@@ -105,8 +138,6 @@ else:
         match_on=[method_matcher, "path", "query", "amp_body"],
         filter_headers=["Authorization"],
         before_record_request=filter_request_uri,
-        serializer="json" if (test_params["record_mode"] == "record") else "yaml",
+        serializer="amp",
     ):
-        with open(sys.argv[0]) as f:
-            code = compile(f.read(), sys.argv[0], "exec")
-            exec(code)
+        runpy.run_path(sys.argv[0], run_name="__main__")
