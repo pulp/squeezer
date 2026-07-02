@@ -1,0 +1,101 @@
+interactions:
+- request:
+    body: null
+    headers:
+      ? !!python/object/apply:multidict._multidict.istr
+      - Accept
+      : - application/json
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      ? !!python/object/apply:multidict._multidict.istr
+      - User-Agent
+      : - Squeezer/0.5.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository2&offset=0&limit=1
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/019eb35f-1f02-7565-b65f-d701e45fa647/","prn":"prn:deb.aptrepository:019eb35f-1f02-7565-b65f-d701e45fa647","pulp_created":"2026-06-10T21:10:16.067986Z","pulp_last_updated":"2026-06-10T21:10:34.138504Z","versions_href":"/pulp/api/v3/repositories/deb/apt/019eb35f-1f02-7565-b65f-d701e45fa647/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/019eb35f-1f02-7565-b65f-d701e45fa647/versions/2/","name":"test_deb_repository2","description":null,"retain_repo_versions":null,"remote":null,"autopublish":false,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '736'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 44141b2629ac41a89647ca3f529fcbcc
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Wed, 10 Jun 2026 21:10:37 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      ? !!python/object/apply:multidict._multidict.istr
+      - Accept
+      : - application/json
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      ? !!python/object/apply:multidict._multidict.istr
+      - Correlation-Id
+      : - 44141b2629ac41a89647ca3f529fcbcc
+      ? !!python/object/apply:multidict._multidict.istr
+      - User-Agent
+      : - Squeezer/0.5.0-dev
+    method: GET
+    uri: http://pulp.example.org/pulp/api/v3/content/deb/packages/?repository_version=%2Fpulp%2Fapi%2Fv3%2Frepositories%2Fdeb%2Fapt%2F019eb35f-1f02-7565-b65f-d701e45fa647%2Fversions%2F2%2F&offset=0&limit=1000
+  response:
+    body:
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - Correlation-ID
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '52'
+      Content-Type:
+      - application/json
+      Correlation-ID:
+      - 44141b2629ac41a89647ca3f529fcbcc
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Date:
+      - Wed, 10 Jun 2026 21:10:38 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - nginx/1.22.1
+      Vary:
+      - Accept
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 200
+      message: OK
+version: 1
