@@ -73,6 +73,14 @@
         name: "test_deb_remote"
         policy: "on_demand"
         tls_validation: false
+        architectures:
+          - "arm64"
+          - "mips"
+        components:
+          - "vanaheimr"
+          - "muspelheim"
+        distributions:
+          - "ginnungagap"
         state: "present"
       register: "result"
     - name: "Verify modify remote"
@@ -81,12 +89,22 @@
           - "result.changed == true"
           - "result.remote.policy == 'on_demand'"
           - "result.remote.tls_validation == false"
-
+          - "result.remote.architectures == 'arm64 mips'"
+          - "result.remote.components == 'vanaheimr muspelheim'"
+          - "result.remote.distributions == 'ginnungagap'"
     - name: "Modify remote (2nd try)"
       pulp.squeezer.deb_remote:
         name: "test_deb_remote"
         policy: "on_demand"
         tls_validation: false
+        architectures:
+          - "arm64"
+          - "mips"
+        components:
+          - "vanaheimr"
+          - "muspelheim"
+        distributions:
+          - "ginnungagap"
         state: "present"
       register: "result"
     - name: "Verify modify remote (2nd try)"
@@ -141,9 +159,9 @@
           - "result.changed == false"
           - "result.remote.name == 'test_deb_remote'"
           - "result.remote.url == 'https://example.org/deb/'"
-          - "result.remote.architectures == 'arm ppc64'"
-          - "result.remote.components == 'asgard jotunheimr'"
-          - "result.remote.distributions == 'ragnarok'"
+          - "result.remote.architectures == 'arm64 mips'"
+          - "result.remote.components == 'vanaheimr muspelheim'"
+          - "result.remote.distributions == 'ginnungagap'"
           - "result.remote.proxy_url == 'http://proxy.int:3128'"
           - "result.remote.tls_validation == false"
 

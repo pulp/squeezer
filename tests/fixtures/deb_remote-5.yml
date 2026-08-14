@@ -1,49 +1,76 @@
-interactions:
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - Squeezer/0.2.0-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/?name=test_deb_remote&offset=0&limit=1
-  response:
-    body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/deb/apt/01981c86-7cd6-76b8-97bc-9d58a4c90063/","prn":"prn:deb.aptremote:01981c86-7cd6-76b8-97bc-9d58a4c90063","pulp_created":"2025-07-18T07:53:52.598516Z","pulp_last_updated":"2025-07-18T07:53:54.380730Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"distributions":"ragnarok","components":"asgard
-        jotunheimr","architectures":"arm ppc64","sync_sources":true,"sync_udebs":true,"sync_installer":true,"gpgkey":null,"ignore_missing_package_indices":false}]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '1066'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 6360af1fd5bd4aa0911600ff7555f8c7
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Fri, 18 Jul 2025 07:53:54 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-version: 1
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/remotes/deb/apt/?name=test_deb_remote&offset=0&limit=1",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate, zstd"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Correlation-ID": [
+                        "1ce020e8d06c48f09081c15b10174788"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Content-Length": [
+                        "1073"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Date": [
+                        "Thu, 27 Aug 2026 09:03:11 GMT"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/remotes/deb/apt/01a04275-7176-7bd6-bf54-9a9680b20804/\",\"prn\":\"prn:deb.aptremote:01a04275-7176-7bd6-bf54-9a9680b20804\",\"pulp_created\":\"2026-08-27T09:03:08.150546Z\",\"pulp_last_updated\":\"2026-08-27T09:03:11.141436Z\",\"name\":\"test_deb_remote\",\"url\":\"https://example.org/deb/\",\"pulp_labels\":{},\"policy\":\"on_demand\",\"hidden_fields\":[{\"name\":\"client_key\",\"is_set\":false},{\"name\":\"proxy_username\",\"is_set\":false},{\"name\":\"proxy_password\",\"is_set\":false},{\"name\":\"username\",\"is_set\":false},{\"name\":\"password\",\"is_set\":false}],\"ca_cert\":null,\"client_cert\":null,\"tls_validation\":false,\"proxy_url\":\"http://proxy.int:3128\",\"max_retries\":null,\"total_timeout\":null,\"connect_timeout\":null,\"sock_connect_timeout\":null,\"sock_read_timeout\":null,\"headers\":null,\"download_concurrency\":null,\"rate_limit\":null,\"distributions\":\"ginnungagap\",\"components\":\"vanaheimr muspelheim\",\"architectures\":\"arm64 mips\",\"sync_sources\":true,\"sync_udebs\":true,\"sync_installer\":true,\"gpgkey\":null,\"ignore_missing_package_indices\":false}]}"
+                }
+            }
+        }
+    ]
+}
