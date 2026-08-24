@@ -6,3 +6,4 @@ __pycache__/
 /tests/settings/certs/
 /build/
 importer_result.json
+uv.lock

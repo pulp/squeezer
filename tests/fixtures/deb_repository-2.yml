@@ -1,56 +1,76 @@
-interactions:
-- request:
-    body: null
-    headers:
-      ? !!python/object/new:multidict._multidict_py.istr
-        args:
-        - Accept
-        state:
-          __istr_identity__: Accept
-      : - application/json
-      Accept-Encoding:
-      - gzip, deflate, zstd
-      Connection:
-      - keep-alive
-      ? !!python/object/new:multidict._multidict_py.istr
-        args:
-        - User-Agent
-        state:
-          __istr_identity__: User-Agent
-      : - Squeezer/0.4.0-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository&offset=0&limit=1
-  response:
-    body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/","prn":"prn:deb.aptrepository:019e63ee-9688-783a-b803-3075d01e6c85","pulp_created":"2026-05-26T10:57:21.033732Z","pulp_last_updated":"2026-05-26T10:57:21.040401Z","versions_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/versions/","pulp_labels":{},"latest_version_href":"/pulp/api/v3/repositories/deb/apt/019e63ee-9688-783a-b803-3075d01e6c85/versions/0/","name":"test_deb_repository","description":null,"retain_repo_versions":null,"retain_checkpoints":null,"remote":null,"autopublish":false,"publish_upstream_release_fields":true,"signing_service":null,"signing_service_release_overrides":{}}]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '761'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - bcd435736f5645d2927ba490c0cb99c8
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Tue, 26 May 2026 10:57:21 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-version: 1
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/repositories/deb/apt/?name=test_deb_repository&offset=0&limit=1",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Date": [
+                        "Wed, 24 Jun 2026 15:09:17 GMT"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Correlation-ID": [
+                        "b83e626d0b964a95a2a8055c57d98ed8"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Content-Length": [
+                        "761"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/repositories/deb/apt/019efa2d-a818-7502-91d2-8963e11be14b/\",\"prn\":\"prn:deb.aptrepository:019efa2d-a818-7502-91d2-8963e11be14b\",\"pulp_created\":\"2026-06-24T15:09:16.697304Z\",\"pulp_last_updated\":\"2026-06-24T15:09:16.704198Z\",\"versions_href\":\"/pulp/api/v3/repositories/deb/apt/019efa2d-a818-7502-91d2-8963e11be14b/versions/\",\"pulp_labels\":{},\"latest_version_href\":\"/pulp/api/v3/repositories/deb/apt/019efa2d-a818-7502-91d2-8963e11be14b/versions/0/\",\"name\":\"test_deb_repository\",\"description\":null,\"retain_repo_versions\":null,\"retain_checkpoints\":null,\"remote\":null,\"autopublish\":false,\"publish_upstream_release_fields\":true,\"signing_service\":null,\"signing_service_release_overrides\":{}}]}"
+                }
+            }
+        }
+    ]
+}
