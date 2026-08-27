@@ -1,5 +1,5 @@
-pulp-glue<0.40,>=0.29.2
-pulp-glue-deb<0.5,>=0.3.0
+pulp-glue<0.41,>=0.39.5
+pulp-glue-deb<0.6,>=0.4.0
 
 ansible-core
 ansible_runner

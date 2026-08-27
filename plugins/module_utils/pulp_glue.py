@@ -10,8 +10,8 @@ import traceback
 
 from ansible.module_utils.basic import AnsibleModule, env_fallback, missing_required_lib
 
-GLUE_VERSION_SPEC = ">=0.29.2,<0.40"
-GLUE_DEB_VERSION_SPEC = ">=0.3.0,<0.5"
+GLUE_VERSION_SPEC = ">=0.39.5,<0.41"
+GLUE_DEB_VERSION_SPEC = ">=0.4.0,<0.6"
 
 
 def assert_version(spec, version, name):

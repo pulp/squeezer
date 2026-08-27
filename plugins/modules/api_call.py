@@ -86,7 +86,7 @@ def main():
         if json_body is None:
             body = module.params["body"]
         else:
-            body = PreprocessedEntityDefinition(json.loads(json_body))
+            body = PreprocessedEntityDefinition(json.loads(json_body), _partial=False)
         if module.pulp_ctx.api.operations[operation_id][0].upper() not in ["GET", "HEAD"]:
             module.set_changed()
         try:

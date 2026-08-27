@@ -1,198 +1,230 @@
-interactions:
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - Squeezer/0.2.0-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/?name=test_deb_remote&offset=0&limit=1
-  response:
-    body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/deb/apt/01981c86-7cd6-76b8-97bc-9d58a4c90063/","prn":"prn:deb.aptremote:01981c86-7cd6-76b8-97bc-9d58a4c90063","pulp_created":"2025-07-18T07:53:52.598516Z","pulp_last_updated":"2025-07-18T07:53:52.598526Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"immediate","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"distributions":"ragnarok","components":"asgard
-        jotunheimr","architectures":"arm ppc64","sync_sources":false,"sync_udebs":false,"sync_installer":false,"gpgkey":null,"ignore_missing_package_indices":false}]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '1068'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 98fdedb479d64e1398b1d33bd54d9ad3
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Fri, 18 Jul 2025 07:53:53 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-- request:
-    body: '{"policy": "on_demand", "tls_validation": false}'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '48'
-      Correlation-Id:
-      - 98fdedb479d64e1398b1d33bd54d9ad3
-      User-Agent:
-      - Squeezer/0.2.0-dev
-      content-type:
-      - application/json
-    method: PATCH
-    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/01981c86-7cd6-76b8-97bc-9d58a4c90063/
-  response:
-    body:
-      string: '{"task":"/pulp/api/v3/tasks/01981c86-800c-7e3b-9487-c2c8f8290c55/"}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '67'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 98fdedb479d64e1398b1d33bd54d9ad3
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Fri, 18 Jul 2025 07:53:53 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 202
-      message: Accepted
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Correlation-Id:
-      - 98fdedb479d64e1398b1d33bd54d9ad3
-      User-Agent:
-      - Squeezer/0.2.0-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/tasks/01981c86-800c-7e3b-9487-c2c8f8290c55/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/tasks/01981c86-800c-7e3b-9487-c2c8f8290c55/","prn":"prn:core.task:01981c86-800c-7e3b-9487-c2c8f8290c55","pulp_created":"2025-07-18T07:53:53.420768Z","pulp_last_updated":"2025-07-18T07:53:53.420778Z","state":"completed","name":"pulpcore.app.tasks.base.ageneral_update","logging_cid":"98fdedb479d64e1398b1d33bd54d9ad3","created_by":"/pulp/api/v3/users/1/","unblocked_at":"2025-07-18T07:53:53.426398Z","started_at":"2025-07-18T07:53:53.427153Z","finished_at":"2025-07-18T07:53:53.431996Z","error":null,"worker":null,"parent_task":null,"child_tasks":[],"task_group":null,"progress_reports":[],"created_resources":[],"reserved_resources_record":["prn:deb.aptremote:01981c86-7cd6-76b8-97bc-9d58a4c90063","shared:prn:core.domain:7d8c4e1b-94d4-4d3f-89b7-4a67e6ba61ca"]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '788'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 98fdedb479d64e1398b1d33bd54d9ad3
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Fri, 18 Jul 2025 07:53:53 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      Correlation-Id:
-      - 98fdedb479d64e1398b1d33bd54d9ad3
-      User-Agent:
-      - Squeezer/0.2.0-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/deb/apt/01981c86-7cd6-76b8-97bc-9d58a4c90063/
-  response:
-    body:
-      string: '{"pulp_href":"/pulp/api/v3/remotes/deb/apt/01981c86-7cd6-76b8-97bc-9d58a4c90063/","prn":"prn:deb.aptremote:01981c86-7cd6-76b8-97bc-9d58a4c90063","pulp_created":"2025-07-18T07:53:52.598516Z","pulp_last_updated":"2025-07-18T07:53:53.430594Z","name":"test_deb_remote","url":"https://example.org/deb/","ca_cert":null,"client_cert":null,"tls_validation":false,"proxy_url":"http://proxy.int:3128","pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"distributions":"ragnarok","components":"asgard
-        jotunheimr","architectures":"arm ppc64","sync_sources":false,"sync_udebs":false,"sync_installer":false,"gpgkey":null,"ignore_missing_package_indices":false}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '1017'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - 98fdedb479d64e1398b1d33bd54d9ad3
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Fri, 18 Jul 2025 07:53:53 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-version: 1
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/remotes/deb/apt/?name=test_deb_remote&offset=0&limit=1",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate, zstd"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Correlation-ID": [
+                        "74d7afe1a1094be6897eb6fb34464446"
+                    ],
+                    "Date": [
+                        "Thu, 27 Aug 2026 09:03:09 GMT"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Content-Length": [
+                        "1068"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/remotes/deb/apt/01a04275-7176-7bd6-bf54-9a9680b20804/\",\"prn\":\"prn:deb.aptremote:01a04275-7176-7bd6-bf54-9a9680b20804\",\"pulp_created\":\"2026-08-27T09:03:08.150546Z\",\"pulp_last_updated\":\"2026-08-27T09:03:08.150555Z\",\"name\":\"test_deb_remote\",\"url\":\"https://example.org/deb/\",\"pulp_labels\":{},\"policy\":\"immediate\",\"hidden_fields\":[{\"name\":\"client_key\",\"is_set\":false},{\"name\":\"proxy_username\",\"is_set\":false},{\"name\":\"proxy_password\",\"is_set\":false},{\"name\":\"username\",\"is_set\":false},{\"name\":\"password\",\"is_set\":false}],\"ca_cert\":null,\"client_cert\":null,\"tls_validation\":true,\"proxy_url\":\"http://proxy.int:3128\",\"max_retries\":null,\"total_timeout\":null,\"connect_timeout\":null,\"sock_connect_timeout\":null,\"sock_read_timeout\":null,\"headers\":null,\"download_concurrency\":null,\"rate_limit\":null,\"distributions\":\"ragnarok\",\"components\":\"asgard jotunheimr\",\"architectures\":\"arm ppc64\",\"sync_sources\":false,\"sync_udebs\":false,\"sync_installer\":false,\"gpgkey\":null,\"ignore_missing_package_indices\":false}]}"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "PATCH",
+                "uri": "http://pulp.example.org/pulp/api/v3/remotes/deb/apt/01a04275-7176-7bd6-bf54-9a9680b20804/",
+                "body": "{\"policy\": \"on_demand\", \"tls_validation\": false, \"distributions\": \"ginnungagap\", \"components\": \"vanaheimr muspelheim\", \"architectures\": \"arm64 mips\"}",
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate, zstd"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Correlation-Id": [
+                        "74d7afe1a1094be6897eb6fb34464446"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Content-Length": [
+                        "149"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 202,
+                    "message": "Accepted"
+                },
+                "headers": {
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Correlation-ID": [
+                        "74d7afe1a1094be6897eb6fb34464446"
+                    ],
+                    "Date": [
+                        "Thu, 27 Aug 2026 09:03:09 GMT"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Allow": [
+                        "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Content-Length": [
+                        "67"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ]
+                },
+                "body": {
+                    "string": "{\"task\":\"/pulp/api/v3/tasks/01a04275-7706-74f5-96c9-087f50ccf7cb/\"}"
+                }
+            }
+        },
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/tasks/01a04275-7706-74f5-96c9-087f50ccf7cb/",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate, zstd"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Correlation-Id": [
+                        "74d7afe1a1094be6897eb6fb34464446"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Correlation-ID": [
+                        "74d7afe1a1094be6897eb6fb34464446"
+                    ],
+                    "Date": [
+                        "Thu, 27 Aug 2026 09:03:09 GMT"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Allow": [
+                        "GET, PATCH, DELETE, HEAD, OPTIONS"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Content-Length": [
+                        "1849"
+                    ],
+                    "Server": [
+                        "nginx/1.22.1"
+                    ]
+                },
+                "body": {
+                    "string": "{\"pulp_href\":\"/pulp/api/v3/tasks/01a04275-7706-74f5-96c9-087f50ccf7cb/\",\"prn\":\"prn:core.task:01a04275-7706-74f5-96c9-087f50ccf7cb\",\"pulp_created\":\"2026-08-27T09:03:09.576715Z\",\"pulp_last_updated\":\"2026-08-27T09:03:09.575119Z\",\"state\":\"completed\",\"name\":\"pulpcore.app.tasks.base.ageneral_update\",\"logging_cid\":\"74d7afe1a1094be6897eb6fb34464446\",\"created_by\":\"/pulp/api/v3/users/1/\",\"unblocked_at\":\"2026-08-27T09:03:09.584926Z\",\"started_at\":\"2026-08-27T09:03:09.589448Z\",\"finished_at\":\"2026-08-27T09:03:09.595791Z\",\"error\":null,\"worker\":null,\"parent_task\":null,\"child_tasks\":[],\"task_group\":null,\"progress_reports\":[],\"created_resources\":[],\"created_resource_prns\":[],\"reserved_resources_record\":[\"prn:deb.aptremote:01a04275-7176-7bd6-bf54-9a9680b20804\",\"shared:prn:core.domain:e14d8132-9e1b-41d0-bf29-4c4333d75c7a\"],\"result\":{\"prn\":\"prn:deb.aptremote:01a04275-7176-7bd6-bf54-9a9680b20804\",\"url\":\"https://example.org/deb/\",\"name\":\"test_deb_remote\",\"gpgkey\":null,\"policy\":\"on_demand\",\"ca_cert\":null,\"headers\":null,\"proxy_url\":\"http://proxy.int:3128\",\"pulp_href\":\"/pulp/api/v3/remotes/deb/apt/01a04275-7176-7bd6-bf54-9a9680b20804/\",\"components\":\"vanaheimr muspelheim\",\"rate_limit\":null,\"sync_udebs\":false,\"client_cert\":null,\"max_retries\":null,\"pulp_labels\":{},\"pulp_created\":\"2026-08-27T09:03:08.150546Z\",\"sync_sources\":false,\"architectures\":\"arm64 mips\",\"distributions\":\"ginnungagap\",\"hidden_fields\":[{\"name\":\"client_key\",\"is_set\":false},{\"name\":\"proxy_username\",\"is_set\":false},{\"name\":\"proxy_password\",\"is_set\":false},{\"name\":\"username\",\"is_set\":false},{\"name\":\"password\",\"is_set\":false}],\"total_timeout\":null,\"sync_installer\":false,\"tls_validation\":false,\"connect_timeout\":null,\"pulp_last_updated\":\"2026-08-27T09:03:09.593769Z\",\"sock_read_timeout\":null,\"download_concurrency\":null,\"sock_connect_timeout\":null,\"ignore_missing_package_indices\":false}}"
+                }
+            }
+        }
+    ]
+}
