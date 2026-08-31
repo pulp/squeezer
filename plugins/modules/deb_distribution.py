@@ -26,6 +26,12 @@ options:
       - Href of the publication to be served
     type: str
     required: false
+  repository:
+    description:
+      - Name of the repository whose latest version should be served
+    type: str
+    required: false
+    version_added: "0.5.0"
   content_guard:
     description:
       - Name of the content guard for the served content
@@ -58,6 +64,16 @@ EXAMPLES = r"""
     name: new_deb_distribution
     base_path: new/deb/dist
     publication: /pub/api/v3/publications/deb/deb/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/
+    state: present
+
+- name: Create a deb distribution that tracks the latest repository version
+  pulp.squeezer.deb_distribution:
+    pulp_url: https://pulp.example.org
+    username: admin
+    password: password
+    name: latest_deb_distribution
+    base_path: latest/deb/dist
+    repository: my_deb_repository
     state: present
 
 - name: Delete a deb distribution
@@ -98,13 +114,14 @@ except ImportError:
 
 try:
     from pulp_glue.deb import __version__ as pulp_glue_deb_version
-    from pulp_glue.deb.context import PulpAptDistributionContext
+    from pulp_glue.deb.context import PulpAptDistributionContext, PulpAptRepositoryContext
 
     assert_version(GLUE_DEB_VERSION_SPEC, pulp_glue_deb_version, "pulp-glue-deb")
     PULP_GLUE_DEB_IMPORT_ERR = None
 except ImportError:
     PULP_GLUE_DEB_IMPORT_ERR = traceback.format_exc()
     PulpAptDistributionContext = None
+    PulpAptRepositoryContext = None
 
 
 def main():
@@ -120,14 +137,17 @@ def main():
             "name": {},
             "base_path": {},
             "publication": {},
+            "repository": {},
             "content_guard": {},
         },
         required_if=[
             ("state", "present", ["name", "base_path"]),
             ("state", "absent", ["name"]),
         ],
+        mutually_exclusive=[("publication", "repository")],
     ) as module:
         content_guard_name = module.params["content_guard"]
+        repository_name = module.params["repository"]
 
         natural_key = {"name": module.params["name"]}
         desired_attributes = {
@@ -135,6 +155,15 @@ def main():
             for key in ["base_path", "publication"]
             if module.params[key] is not None
         }
+
+        if repository_name is not None:
+            if repository_name:
+                repository_ctx = PulpAptRepositoryContext(
+                    module.pulp_ctx, entity={"name": repository_name}
+                )
+                desired_attributes["repository"] = repository_ctx.pulp_href
+            else:
+                desired_attributes["repository"] = ""
 
         if content_guard_name is not None:
             if content_guard_name:
