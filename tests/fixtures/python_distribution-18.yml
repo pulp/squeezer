@@ -30,41 +30,41 @@
                     "Allow": [
                         "GET, POST, HEAD, OPTIONS"
                     ],
+                    "Server": [
+                        "nginx/1.26.3"
+                    ],
                     "Connection": [
                         "keep-alive"
                     ],
-                    "Referrer-Policy": [
-                        "same-origin"
-                    ],
-                    "Vary": [
-                        "Accept"
-                    ],
-                    "Content-Type": [
-                        "application/json"
-                    ],
-                    "X-Frame-Options": [
-                        "DENY"
-                    ],
-                    "X-Content-Type-Options": [
-                        "nosniff"
-                    ],
-                    "Correlation-ID": [
-                        "256d34797def4b7ab893043bbc73d253"
+                    "Content-Length": [
+                        "867"
                     ],
                     "Cross-Origin-Opener-Policy": [
                         "same-origin"
                     ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Date": [
+                        "Sat, 05 Sep 2026 08:26:30 GMT"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
                     "Access-Control-Expose-Headers": [
                         "Correlation-ID"
                     ],
-                    "Server": [
-                        "nginx/1.26.3"
+                    "Correlation-ID": [
+                        "a3e1b5e8457845f499ce55b991750ab0"
                     ],
-                    "Date": [
-                        "Sat, 05 Sep 2026 08:26:24 GMT"
+                    "Referrer-Policy": [
+                        "same-origin"
                     ],
-                    "Content-Length": [
-                        "867"
+                    "Content-Type": [
+                        "application/json"
                     ]
                 },
                 "body": {
@@ -91,7 +91,7 @@
                         "keep-alive"
                     ],
                     "Correlation-Id": [
-                        "256d34797def4b7ab893043bbc73d253"
+                        "a3e1b5e8457845f499ce55b991750ab0"
                     ]
                 }
             },
@@ -104,45 +104,45 @@
                     "Allow": [
                         "GET, POST, HEAD, OPTIONS"
                     ],
+                    "Server": [
+                        "nginx/1.26.3"
+                    ],
                     "Connection": [
                         "keep-alive"
                     ],
-                    "Referrer-Policy": [
-                        "same-origin"
-                    ],
-                    "Vary": [
-                        "Accept"
-                    ],
-                    "Content-Type": [
-                        "application/json"
-                    ],
-                    "X-Frame-Options": [
-                        "DENY"
-                    ],
-                    "X-Content-Type-Options": [
-                        "nosniff"
-                    ],
-                    "Correlation-ID": [
-                        "256d34797def4b7ab893043bbc73d253"
+                    "Content-Length": [
+                        "764"
                     ],
                     "Cross-Origin-Opener-Policy": [
                         "same-origin"
                     ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Date": [
+                        "Sat, 05 Sep 2026 08:26:30 GMT"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
                     "Access-Control-Expose-Headers": [
                         "Correlation-ID"
                     ],
-                    "Server": [
-                        "nginx/1.26.3"
+                    "Correlation-ID": [
+                        "a3e1b5e8457845f499ce55b991750ab0"
                     ],
-                    "Date": [
-                        "Sat, 05 Sep 2026 08:26:24 GMT"
+                    "Referrer-Policy": [
+                        "same-origin"
                     ],
-                    "Content-Length": [
-                        "728"
+                    "Content-Type": [
+                        "application/json"
                     ]
                 },
                 "body": {
-                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/distributions/python/pypi/01a070ad-063d-7a8c-8753-29fbcd0c2175/\",\"prn\":\"prn:python.pythondistribution:01a070ad-063d-7a8c-8753-29fbcd0c2175\",\"pulp_created\":\"2026-09-05T08:26:22.653703Z\",\"pulp_last_updated\":\"2026-09-05T08:26:22.653711Z\",\"base_path\":\"test_python_base_path\",\"base_url\":\"https://b118d6859fe9/pypi/test_python_base_path/\",\"content_guard\":null,\"content_guard_prn\":null,\"no_content_change_since\":null,\"hidden\":false,\"pulp_labels\":{},\"name\":\"test_python_distribution\",\"repository\":\"/pulp/api/v3/repositories/python/python/01a070ac-a3e8-70a3-a596-76550b09f671/\",\"repository_version\":null,\"publication\":null,\"allow_uploads\":true,\"remote\":null}]}"
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/distributions/python/pypi/01a070ad-1b64-719d-be19-fa92e6f10876/\",\"prn\":\"prn:python.pythondistribution:01a070ad-1b64-719d-be19-fa92e6f10876\",\"pulp_created\":\"2026-09-05T08:26:28.069243Z\",\"pulp_last_updated\":\"2026-09-05T08:26:28.069252Z\",\"base_path\":\"test_python_base_path\",\"base_url\":\"https://b118d6859fe9/pypi/test_python_base_path/\",\"content_guard\":null,\"content_guard_prn\":null,\"no_content_change_since\":\"2026-09-05T08:26:28.069252Z\",\"hidden\":false,\"pulp_labels\":{},\"name\":\"test_python_distribution\",\"repository\":null,\"repository_version\":\"/pulp/api/v3/repositories/python/python/01a070ac-a3e8-70a3-a596-76550b09f671/versions/1/\",\"publication\":null,\"allow_uploads\":true,\"remote\":null}]}"
                 }
             }
         }

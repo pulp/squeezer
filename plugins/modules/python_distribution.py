@@ -215,17 +215,14 @@ def main():
                 repository_ctx = PulpPythonRepositoryContext(
                     module.pulp_ctx, entity={"name": repository_name}
                 )
+                desired_attributes["repository"] = repository_ctx.pulp_href
                 if version is not None:
-                    desired_attributes["repository_version"] = (
-                        repository_ctx.entity["versions_href"] + f"{version}/"
-                    )
-                else:
-                    desired_attributes["repository"] = repository_ctx.pulp_href
+                    # Pulp-glue resolves (repository, version) into a
+                    # repository_version and clears the repository attribute.
+                    desired_attributes["version"] = version
             else:
                 if version is not None:
-                    module.fail_json(
-                        msg="'version' option requires 'repository' option."
-                    )
+                    module.fail_json(msg="'version' option requires 'repository' option.")
                 desired_attributes["repository"] = ""
 
         module.process(natural_key, desired_attributes)
