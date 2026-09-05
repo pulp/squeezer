@@ -270,6 +270,64 @@
           - result.distribution.base_url is regex(".*/pypi/test_python_base_path")
           - result.distribution.repository == repository_result.repository.pulp_href
 
+    - name: Delete distribution
+      pulp.squeezer.python_distribution:
+        name: test_python_distribution
+        state: absent
+      register: result
+    - name: Verify delete distribution
+      ansible.builtin.assert:
+        that:
+          - result.changed == true
+
+    - name: Distribute specific version of repository
+      pulp.squeezer.python_distribution:
+        name: test_python_distribution
+        base_path: test_python_base_path
+        repository: test_python_repository
+        version: 1
+        state: present
+      register: result
+    - name: Verify distribute specific version of repository
+      ansible.builtin.assert:
+        that:
+          - result.changed == true
+          - result.distribution.name == "test_python_distribution"
+          - result.distribution.base_path == "test_python_base_path"
+          - ansible_check_mode or result.distribution.base_url is regex(".*/pypi/test_python_base_path")
+          - result.distribution.repository | default("") == ""
+          - result.distribution.repository_version == repository_result.repository.versions_href + '1/'
+
+    - name: Distribute specific version of repository (2nd try)
+      pulp.squeezer.python_distribution:
+        name: test_python_distribution
+        base_path: test_python_base_path
+        repository: test_python_repository
+        version: 1
+        state: present
+      register: result
+    - name: Verify distribute specific version of repository (2nd try)
+      ansible.builtin.assert:
+        that:
+          - result.changed == false
+
+    - name: Distribute latest version of repository again
+      pulp.squeezer.python_distribution:
+        name: test_python_distribution
+        base_path: test_python_base_path
+        repository: test_python_repository
+        state: present
+      register: result
+    - name: Verify distribute latest version of repository again
+      ansible.builtin.assert:
+        that:
+          - result.changed == true
+          - result.distribution.name == "test_python_distribution"
+          - result.distribution.base_path == "test_python_base_path"
+          - result.distribution.base_url is regex(".*/pypi/test_python_base_path")
+          - result.distribution.repository == repository_result.repository.pulp_href
+          - result.distribution.repository_version | default("") == ""
+
 - hosts: localhost
   gather_facts: false
   vars_files:

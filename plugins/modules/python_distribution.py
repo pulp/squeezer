@@ -41,8 +41,17 @@ options:
   repository:
     description:
       - Name of the repository of which the latest RepositoryVersion will be served
+      - Can be combined with the O(version) option to serve a specific version
     type: str
     required: false
+  version:
+    description:
+      - Version number of the repository to be served
+      - Requires the O(repository) option to be set
+      - If omitted, the latest RepositoryVersion of the repository is served
+    type: int
+    required: false
+    version_added: "0.5.0"
 extends_documentation_fragment:
   - pulp.squeezer.pulp.entity_state
   - pulp.squeezer.pulp
@@ -80,6 +89,17 @@ EXAMPLES = r"""
     name: new_python_distribution
     base_path: new/python/dist
     repository: my_python_repository
+    state: present
+
+- name: Create a python distribution that serves a specific repository version
+  pulp.squeezer.python_distribution:
+    pulp_url: https://pulp.example.org
+    username: admin
+    password: password
+    name: new_python_distribution
+    base_path: new/python/dist
+    repository: my_python_repository
+    version: 3
     state: present
 
 - name: Create a python destribution with remote for pull-through caching
@@ -150,15 +170,20 @@ def main():
             "content_guard": {},
             "remote": {},
             "repository": {},
+            "version": {"type": "int"},
         },
         required_if=[
             ("state", "present", ["name", "base_path"]),
             ("state", "absent", ["name"]),
         ],
+        required_by={
+            "version": ["repository"],
+        },
     ) as module:
         content_guard_name = module.params["content_guard"]
         remote_name = module.params["remote"]
         repository_name = module.params["repository"]
+        version = module.params["version"]
 
         natural_key = {
             "name": module.params["name"],
@@ -191,7 +216,13 @@ def main():
                     module.pulp_ctx, entity={"name": repository_name}
                 )
                 desired_attributes["repository"] = repository_ctx.pulp_href
+                if version is not None:
+                    # Pulp-glue resolves (repository, version) into a
+                    # repository_version and clears the repository attribute.
+                    desired_attributes["version"] = version
             else:
+                if version is not None:
+                    module.fail_json(msg="'version' option requires 'repository' option.")
                 desired_attributes["repository"] = ""
 
         module.process(natural_key, desired_attributes)
