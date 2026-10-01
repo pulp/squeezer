@@ -1,48 +1,76 @@
-interactions:
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - Squeezer/0.0.16-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/distributions/python/pypi/?name=test_python_distribution&offset=0&limit=1
-  response:
-    body:
-      string: '{"count":0,"next":null,"previous":null,"results":[]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '52'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - d3f0095856434fc7834453aafee1d226
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Thu, 04 Jul 2024 07:29:30 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-version: 1
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/distributions/python/pypi/?name=test_python_distribution&offset=0&limit=1",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate, zstd"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Server": [
+                        "nginx/1.26.3"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "Content-Length": [
+                        "52"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Date": [
+                        "Sat, 05 Sep 2026 08:26:14 GMT"
+                    ],
+                    "Correlation-ID": [
+                        "401250b049b342b3a8c8b263d362545c"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":0,\"next\":null,\"previous\":null,\"results\":[]}"
+                }
+            }
+        }
+    ]
+}

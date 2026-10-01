@@ -27,55 +27,55 @@
                     "message": "OK"
                 },
                 "headers": {
-                    "Referrer-Policy": [
-                        "same-origin"
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
                     ],
                     "Content-Length": [
-                        "751"
+                        "728"
+                    ],
+                    "Connection": [
+                        "keep-alive"
                     ],
                     "Server": [
                         "nginx/1.26.3"
+                    ],
+                    "Correlation-ID": [
+                        "81a3e4d52e584a09ab920301f07926a2"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Date": [
+                        "Sat, 05 Sep 2026 08:26:26 GMT"
                     ],
                     "X-Content-Type-Options": [
                         "nosniff"
                     ],
                     "Cross-Origin-Opener-Policy": [
                         "same-origin"
-                    ],
-                    "Correlation-ID": [
-                        "0a0e475e091542cdbf376b64d90f9d94"
-                    ],
-                    "Vary": [
-                        "Accept"
-                    ],
-                    "Access-Control-Expose-Headers": [
-                        "Correlation-ID"
-                    ],
-                    "Date": [
-                        "Sat, 05 Sep 2026 08:26:13 GMT"
-                    ],
-                    "Allow": [
-                        "GET, POST, HEAD, OPTIONS"
-                    ],
-                    "Connection": [
-                        "keep-alive"
-                    ],
-                    "Content-Type": [
-                        "application/json"
-                    ],
-                    "X-Frame-Options": [
-                        "DENY"
                     ]
                 },
                 "body": {
-                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/distributions/python/pypi/01a070ac-d04c-7484-b234-618e2e6fda25/\",\"prn\":\"prn:python.pythondistribution:01a070ac-d04c-7484-b234-618e2e6fda25\",\"pulp_created\":\"2026-09-05T08:26:08.845444Z\",\"pulp_last_updated\":\"2026-09-05T08:26:12.431594Z\",\"base_path\":\"test_python_base_path\",\"base_url\":\"https://b118d6859fe9/pypi/test_python_base_path/\",\"content_guard\":null,\"content_guard_prn\":null,\"no_content_change_since\":\"2026-09-05T08:26:12.431594Z\",\"hidden\":false,\"pulp_labels\":{},\"name\":\"test_python_distribution\",\"repository\":null,\"repository_version\":null,\"publication\":\"/pulp/api/v3/publications/python/pypi/01a070ac-bdb3-7ac4-99f6-bf10eb29b7ad/\",\"allow_uploads\":true,\"remote\":null}]}"
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/distributions/python/pypi/01a070ad-063d-7a8c-8753-29fbcd0c2175/\",\"prn\":\"prn:python.pythondistribution:01a070ad-063d-7a8c-8753-29fbcd0c2175\",\"pulp_created\":\"2026-09-05T08:26:22.653703Z\",\"pulp_last_updated\":\"2026-09-05T08:26:22.653711Z\",\"base_path\":\"test_python_base_path\",\"base_url\":\"https://b118d6859fe9/pypi/test_python_base_path/\",\"content_guard\":null,\"content_guard_prn\":null,\"no_content_change_since\":null,\"hidden\":false,\"pulp_labels\":{},\"name\":\"test_python_distribution\",\"repository\":\"/pulp/api/v3/repositories/python/python/01a070ac-a3e8-70a3-a596-76550b09f671/\",\"repository_version\":null,\"publication\":null,\"allow_uploads\":true,\"remote\":null}]}"
                 }
             }
         },
         {
             "request": {
                 "method": "DELETE",
-                "uri": "http://pulp.example.org/pulp/api/v3/distributions/python/pypi/01a070ac-d04c-7484-b234-618e2e6fda25/",
+                "uri": "http://pulp.example.org/pulp/api/v3/distributions/python/pypi/01a070ad-063d-7a8c-8753-29fbcd0c2175/",
                 "body": null,
                 "headers": {
                     "User-Agent": [
@@ -91,7 +91,7 @@
                         "keep-alive"
                     ],
                     "Correlation-Id": [
-                        "0a0e475e091542cdbf376b64d90f9d94"
+                        "81a3e4d52e584a09ab920301f07926a2"
                     ],
                     "Content-Length": [
                         "0"
@@ -104,55 +104,55 @@
                     "message": "Accepted"
                 },
                 "headers": {
-                    "Referrer-Policy": [
-                        "same-origin"
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
                     ],
                     "Content-Length": [
                         "67"
                     ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
                     "Server": [
                         "nginx/1.26.3"
+                    ],
+                    "Correlation-ID": [
+                        "81a3e4d52e584a09ab920301f07926a2"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Allow": [
+                        "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+                    ],
+                    "Date": [
+                        "Sat, 05 Sep 2026 08:26:26 GMT"
                     ],
                     "X-Content-Type-Options": [
                         "nosniff"
                     ],
                     "Cross-Origin-Opener-Policy": [
                         "same-origin"
-                    ],
-                    "Correlation-ID": [
-                        "0a0e475e091542cdbf376b64d90f9d94"
-                    ],
-                    "Vary": [
-                        "Accept"
-                    ],
-                    "Access-Control-Expose-Headers": [
-                        "Correlation-ID"
-                    ],
-                    "Date": [
-                        "Sat, 05 Sep 2026 08:26:13 GMT"
-                    ],
-                    "Allow": [
-                        "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
-                    ],
-                    "Connection": [
-                        "keep-alive"
-                    ],
-                    "Content-Type": [
-                        "application/json"
-                    ],
-                    "X-Frame-Options": [
-                        "DENY"
                     ]
                 },
                 "body": {
-                    "string": "{\"task\":\"/pulp/api/v3/tasks/01a070ac-e2af-7974-9ba1-5586f65ea1be/\"}"
+                    "string": "{\"task\":\"/pulp/api/v3/tasks/01a070ad-1576-7921-8cec-9981a5f068eb/\"}"
                 }
             }
         },
         {
             "request": {
                 "method": "GET",
-                "uri": "http://pulp.example.org/pulp/api/v3/tasks/01a070ac-e2af-7974-9ba1-5586f65ea1be/",
+                "uri": "http://pulp.example.org/pulp/api/v3/tasks/01a070ad-1576-7921-8cec-9981a5f068eb/",
                 "body": null,
                 "headers": {
                     "User-Agent": [
@@ -168,7 +168,7 @@
                         "keep-alive"
                     ],
                     "Correlation-Id": [
-                        "0a0e475e091542cdbf376b64d90f9d94"
+                        "81a3e4d52e584a09ab920301f07926a2"
                     ]
                 }
             },
@@ -178,48 +178,48 @@
                     "message": "OK"
                 },
                 "headers": {
-                    "Referrer-Policy": [
-                        "same-origin"
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
                     ],
                     "Content-Length": [
                         "930"
                     ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
                     "Server": [
                         "nginx/1.26.3"
+                    ],
+                    "Correlation-ID": [
+                        "81a3e4d52e584a09ab920301f07926a2"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ],
+                    "Allow": [
+                        "GET, PATCH, DELETE, HEAD, OPTIONS"
+                    ],
+                    "Date": [
+                        "Sat, 05 Sep 2026 08:26:26 GMT"
                     ],
                     "X-Content-Type-Options": [
                         "nosniff"
                     ],
                     "Cross-Origin-Opener-Policy": [
                         "same-origin"
-                    ],
-                    "Correlation-ID": [
-                        "0a0e475e091542cdbf376b64d90f9d94"
-                    ],
-                    "Vary": [
-                        "Accept"
-                    ],
-                    "Access-Control-Expose-Headers": [
-                        "Correlation-ID"
-                    ],
-                    "Date": [
-                        "Sat, 05 Sep 2026 08:26:13 GMT"
-                    ],
-                    "Allow": [
-                        "GET, PATCH, DELETE, HEAD, OPTIONS"
-                    ],
-                    "Connection": [
-                        "keep-alive"
-                    ],
-                    "Content-Type": [
-                        "application/json"
-                    ],
-                    "X-Frame-Options": [
-                        "DENY"
                     ]
                 },
                 "body": {
-                    "string": "{\"pulp_href\":\"/pulp/api/v3/tasks/01a070ac-e2af-7974-9ba1-5586f65ea1be/\",\"prn\":\"prn:core.task:01a070ac-e2af-7974-9ba1-5586f65ea1be\",\"pulp_created\":\"2026-09-05T08:26:13.553795Z\",\"pulp_last_updated\":\"2026-09-05T08:26:13.552656Z\",\"state\":\"completed\",\"name\":\"pulpcore.app.tasks.base.ageneral_delete\",\"logging_cid\":\"0a0e475e091542cdbf376b64d90f9d94\",\"created_by\":\"/pulp/api/v3/users/1/\",\"unblocked_at\":\"2026-09-05T08:26:13.559779Z\",\"started_at\":\"2026-09-05T08:26:13.562554Z\",\"finished_at\":\"2026-09-05T08:26:13.569859Z\",\"error\":null,\"worker\":null,\"parent_task\":null,\"child_tasks\":[],\"task_group\":null,\"progress_reports\":[],\"created_resources\":[],\"created_resource_prns\":[],\"reserved_resources_record\":[\"prn:python.pythondistribution:01a070ac-d04c-7484-b234-618e2e6fda25\",\"shared:pdrn:34516afa-579e-4dc0-b96a-0179e95d29c8:distributions\",\"shared:prn:core.domain:34516afa-579e-4dc0-b96a-0179e95d29c8\"],\"result\":null,\"pulp_api_version\":\"v3\"}"
+                    "string": "{\"pulp_href\":\"/pulp/api/v3/tasks/01a070ad-1576-7921-8cec-9981a5f068eb/\",\"prn\":\"prn:core.task:01a070ad-1576-7921-8cec-9981a5f068eb\",\"pulp_created\":\"2026-09-05T08:26:26.552184Z\",\"pulp_last_updated\":\"2026-09-05T08:26:26.551016Z\",\"state\":\"completed\",\"name\":\"pulpcore.app.tasks.base.ageneral_delete\",\"logging_cid\":\"81a3e4d52e584a09ab920301f07926a2\",\"created_by\":\"/pulp/api/v3/users/1/\",\"unblocked_at\":\"2026-09-05T08:26:26.558762Z\",\"started_at\":\"2026-09-05T08:26:26.561650Z\",\"finished_at\":\"2026-09-05T08:26:26.569305Z\",\"error\":null,\"worker\":null,\"parent_task\":null,\"child_tasks\":[],\"task_group\":null,\"progress_reports\":[],\"created_resources\":[],\"created_resource_prns\":[],\"reserved_resources_record\":[\"prn:python.pythondistribution:01a070ad-063d-7a8c-8753-29fbcd0c2175\",\"shared:pdrn:34516afa-579e-4dc0-b96a-0179e95d29c8:distributions\",\"shared:prn:core.domain:34516afa-579e-4dc0-b96a-0179e95d29c8\"],\"result\":null,\"pulp_api_version\":\"v3\"}"
                 }
             }
         }
