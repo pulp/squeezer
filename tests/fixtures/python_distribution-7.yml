@@ -1,48 +1,76 @@
-interactions:
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - Squeezer/0.0.16-dev
-    method: GET
-    uri: http://pulp.example.org/pulp/api/v3/remotes/python/python/?name=test_python_remote_pull_through&offset=0&limit=1
-  response:
-    body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"pulp_href":"/pulp/api/v3/remotes/python/python/01907ca5-c9ea-7f70-8df3-713804becf15/","pulp_created":"2024-07-04T07:29:18.314813Z","pulp_last_updated":"2024-07-04T07:29:18.314827Z","name":"test_python_remote_pull_through","url":"https://pypi.org","ca_cert":null,"client_cert":null,"tls_validation":true,"proxy_url":null,"pulp_labels":{},"download_concurrency":null,"max_retries":null,"policy":"on_demand","total_timeout":null,"connect_timeout":null,"sock_connect_timeout":null,"sock_read_timeout":null,"headers":null,"rate_limit":null,"hidden_fields":[{"name":"client_key","is_set":false},{"name":"proxy_username","is_set":false},{"name":"proxy_password","is_set":false},{"name":"username","is_set":false},{"name":"password","is_set":false}],"includes":[],"excludes":[],"prereleases":false,"package_types":[],"keep_latest_packages":0,"exclude_platforms":[]}]}'
-    headers:
-      Access-Control-Expose-Headers:
-      - Correlation-ID
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '911'
-      Content-Type:
-      - application/json
-      Correlation-ID:
-      - d22f3a5d10134a09b72788fd806dd88b
-      Cross-Origin-Opener-Policy:
-      - same-origin
-      Date:
-      - Thu, 04 Jul 2024 07:29:31 GMT
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - nginx/1.22.1
-      Vary:
-      - Accept
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-    status:
-      code: 200
-      message: OK
-version: 1
+{
+    "version": 1,
+    "interactions": [
+        {
+            "request": {
+                "method": "GET",
+                "uri": "http://pulp.example.org/pulp/api/v3/remotes/python/python/?name=test_python_remote_pull_through&offset=0&limit=1",
+                "body": null,
+                "headers": {
+                    "User-Agent": [
+                        "Squeezer/0.5.0-dev"
+                    ],
+                    "Accept-Encoding": [
+                        "gzip, deflate, zstd"
+                    ],
+                    "Accept": [
+                        "application/json"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ]
+                }
+            },
+            "response": {
+                "status": {
+                    "code": 200,
+                    "message": "OK"
+                },
+                "headers": {
+                    "Correlation-ID": [
+                        "36c588ace914446394688d95e27456ae"
+                    ],
+                    "Allow": [
+                        "GET, POST, HEAD, OPTIONS"
+                    ],
+                    "Date": [
+                        "Sat, 05 Sep 2026 08:26:15 GMT"
+                    ],
+                    "Server": [
+                        "nginx/1.26.3"
+                    ],
+                    "Vary": [
+                        "Accept"
+                    ],
+                    "Cross-Origin-Opener-Policy": [
+                        "same-origin"
+                    ],
+                    "X-Content-Type-Options": [
+                        "nosniff"
+                    ],
+                    "Connection": [
+                        "keep-alive"
+                    ],
+                    "Referrer-Policy": [
+                        "same-origin"
+                    ],
+                    "Content-Length": [
+                        "999"
+                    ],
+                    "Access-Control-Expose-Headers": [
+                        "Correlation-ID"
+                    ],
+                    "Content-Type": [
+                        "application/json"
+                    ],
+                    "X-Frame-Options": [
+                        "DENY"
+                    ]
+                },
+                "body": {
+                    "string": "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"pulp_href\":\"/pulp/api/v3/remotes/python/python/01a070a2-1c00-7c5a-8c56-390f2618f79d/\",\"prn\":\"prn:python.pythonremote:01a070a2-1c00-7c5a-8c56-390f2618f79d\",\"pulp_created\":\"2026-09-05T08:14:27.328719Z\",\"pulp_last_updated\":\"2026-09-05T08:14:27.328728Z\",\"name\":\"test_python_remote_pull_through\",\"url\":\"https://pypi.org\",\"pulp_labels\":{},\"policy\":\"on_demand\",\"hidden_fields\":[{\"name\":\"client_key\",\"is_set\":false},{\"name\":\"proxy_username\",\"is_set\":false},{\"name\":\"proxy_password\",\"is_set\":false},{\"name\":\"username\",\"is_set\":false},{\"name\":\"password\",\"is_set\":false}],\"ca_cert\":null,\"client_cert\":null,\"tls_validation\":true,\"proxy_url\":null,\"max_retries\":null,\"total_timeout\":null,\"connect_timeout\":null,\"sock_connect_timeout\":null,\"sock_read_timeout\":null,\"headers\":null,\"download_concurrency\":null,\"rate_limit\":null,\"includes\":[],\"excludes\":[],\"prereleases\":false,\"package_types\":[],\"keep_latest_packages\":0,\"exclude_platforms\":[],\"provenance\":false}]}"
+                }
+            }
+        }
+    ]
+}
