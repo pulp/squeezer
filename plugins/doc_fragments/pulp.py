@@ -46,6 +46,13 @@ options:
       - If no value is specified, the value of the environment variable C(SQUEEZER_VALIDATE_CERTS) will be used as a fallback.
     type: bool
     default: true
+  api_root:
+    description:
+      - The path to the API root of the Pulp server.
+      - The value must begin and end with C(/).
+      - If no value is specified, the value of the environment variable C(SQUEEZER_API_ROOT) will be used as a fallback.
+    type: str
+    default: "/pulp/"
   refresh_api_cache:
     description:
       - Whether the cached API specification should be invalidated.
