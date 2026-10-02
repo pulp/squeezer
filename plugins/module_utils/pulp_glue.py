@@ -59,6 +59,11 @@ class PulpAnsibleModule(AnsibleModule):
                 "default": True,
                 "fallback": (env_fallback, ["SQUEEZER_VALIDATE_CERTS"]),
             },
+            "api_root": {
+                "type": "str",
+                "default": "/pulp/",
+                "fallback": (env_fallback, ["SQUEEZER_API_ROOT"]),
+            },
             "refresh_api_cache": {"type": "bool", "default": False},
             "timeout": {"type": "int", "default": 3600},
         }
@@ -86,6 +91,9 @@ class PulpAnsibleModule(AnsibleModule):
             if import_error[1] is not None:
                 self.fail_json(msg=missing_required_lib(import_error[0]), exception=import_error[1])
 
+        if not self.params["api_root"].startswith("/") or not self.params["api_root"].endswith("/"):
+            self.fail_json(msg="'api_root' must begin and end with '/'")
+
         auth_args = {}
         if self.params["username"]:
             auth_args["auth_provider"] = BasicAuthProvider(
@@ -94,7 +102,7 @@ class PulpAnsibleModule(AnsibleModule):
             )
 
         self.pulp_ctx = PulpContext(
-            api_root="/pulp/",
+            api_root=self.params["api_root"],
             api_kwargs=dict(
                 base_url=self.params["pulp_url"],
                 cert=self.params["user_cert"],
