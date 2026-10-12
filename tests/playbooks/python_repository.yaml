@@ -31,12 +31,15 @@
         name: test_python_repository
         description: ""
         state: present
+        autopublish: false
       register: result
     - name: Verify create repository
       assert:
         that:
           - result.changed == true
           - result.repository.name == 'test_python_repository'
+          - result.repository.description == ''
+          - result.repository.autopublish == false
 
     - name: Create repository (2nd try)
       pulp.squeezer.python_repository:
@@ -70,6 +73,41 @@
       assert:
         that:
           - result.changed == false
+
+    - name: Enable autopublish
+      pulp.squeezer.python_repository:
+        name: test_python_repository
+        state: present
+        autopublish: true
+      register: result
+    - name: Verify enabled autopublish flag
+      assert:
+        that:
+          - result.changed == true
+          - result.repository.autopublish == true
+
+    - name: Enable autopublish (2nd try)
+      pulp.squeezer.python_repository:
+        name: test_python_repository
+        state: present
+        autopublish: true
+      register: result
+    - name: Verify enabled autopublish flag
+      assert:
+        that:
+          - result.changed == false
+
+    - name: Disable autopublish
+      pulp.squeezer.python_repository:
+        name: test_python_repository
+        state: present
+        autopublish: false
+      register: result
+    - name: Verify cleared autopublish flag
+      assert:
+        that:
+          - result.changed == true
+          - result.repository.autopublish == false
 
     - name: Fake modify repository
       pulp.squeezer.python_repository:
