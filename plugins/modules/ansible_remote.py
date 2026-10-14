@@ -47,6 +47,11 @@ options:
     description:
       - Sync only collections that have a signature.
     type: bool
+  sync_highest_versions:
+    description:
+      - Limit the number of highest versions synced per collection.
+      - Requires pulp_ansible >= 0.30.0.
+    type: int
 
 extends_documentation_fragment:
   - pulp.squeezer.pulp.remote
@@ -165,6 +170,7 @@ def main():
             "token": {"no_log": True},
             "sync_dependencies": {"type": "bool"},
             "signed_only": {"type": "bool"},
+            "sync_highest_versions": {"type": "int"},
         },
         required_if=[("state", "present", ["name"]), ("state", "absent", ["name"])],
     ) as module:
@@ -173,7 +179,7 @@ def main():
             module.context = PulpAnsibleCollectionRemoteContext(module.pulp_ctx)
         else:
             module.context = PulpAnsibleRoleRemoteContext(module.pulp_ctx)
-            for key in ["collections", "auth_url", "token", "sync_dependencies", "signed_only"]:
+            for key in ["collections", "auth_url", "token", "sync_dependencies", "signed_only", "sync_highest_versions"]:
                 if module.params[key] is not None:
                     raise SqueezerException(f"'{key}' can only be used with collection remotes.")
 
@@ -185,6 +191,7 @@ def main():
                 "token",
                 "sync_dependencies",
                 "signed_only",
+                "sync_highest_versions",
             ]
             if module.params[key] is not None
         }
